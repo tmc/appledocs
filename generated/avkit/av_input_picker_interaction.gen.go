@@ -107,24 +107,6 @@ func (i_ InputPickerInteraction) Present() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("present"))
 }
 
-// A Boolean value that indicates whether the picker is currently visible.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avinputpickerinteraction/ispresented
-func (i_ InputPickerInteraction) IsPresented() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("isPresented"))
-	return rv
-}
-
-
-// SetIsPresented sets the value of the isPresented property.
-// A Boolean value that indicates whether the picker is currently visible.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avinputpickerinteraction/ispresented
-func (i_ InputPickerInteraction) SetIsPresented(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIsPresented:"), value)
-}
-
 // The audio session for the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/audioSession
@@ -167,6 +149,24 @@ func (i_ InputPickerInteraction) SetDelegate(value objc.ID) {
 func (i_ InputPickerInteraction) Presented() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("presented"))
 	return rv
+}
+
+// A Boolean value that indicates whether the picker is currently visible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avinputpickerinteraction/ispresented
+func (i_ InputPickerInteraction) IsPresented() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isPresented"))
+	return rv
+}
+
+
+// SetIsPresented sets the value of the isPresented property.
+// A Boolean value that indicates whether the picker is currently visible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avinputpickerinteraction/ispresented
+func (i_ InputPickerInteraction) SetIsPresented(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsPresented:"), value)
 }
 
 

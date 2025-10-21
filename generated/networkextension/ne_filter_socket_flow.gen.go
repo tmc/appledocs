@@ -79,24 +79,6 @@ func NewNEFilterSocketFlow() NEFilterSocketFlow {
 }
 
 
-// The type of the socket.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/sockettype
-func (n_ NEFilterSocketFlow) SocketType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("socketType"))
-	return rv
-}
-
-
-// SetSocketType sets the value of the socketType property.
-// The type of the socket.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/sockettype
-func (n_ NEFilterSocketFlow) SetSocketType(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSocketType:"), value)
-}
-
 // An object containing details about the socket’s local endpoint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/localendpoint
@@ -113,6 +95,21 @@ func (n_ NEFilterSocketFlow) LocalEndpoint() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/localendpoint
 func (n_ NEFilterSocketFlow) SetLocalEndpoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalEndpoint:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/localflowendpoint-89z3l
+func (n_ NEFilterSocketFlow) LocalFlowEndpoint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("localFlowEndpoint"))
+	return rv
+}
+
+
+// SetLocalFlowEndpoint sets the value of the localFlowEndpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/localflowendpoint-89z3l
+func (n_ NEFilterSocketFlow) SetLocalFlowEndpoint(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalFlowEndpoint:"), value)
 }
 
 // An object containing details about the socket’s remote endpoint.
@@ -148,22 +145,22 @@ func (n_ NEFilterSocketFlow) SetRemoteFlowEndpoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteFlowEndpoint:"), value)
 }
 
-// The protocol of the socket.
+// The flow’s remote hostname, if applicable.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/socketprotocol
-func (n_ NEFilterSocketFlow) SocketProtocol() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("socketProtocol"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remotehostname
+func (n_ NEFilterSocketFlow) RemoteHostname() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("remoteHostname"))
 	return rv
 }
 
 
-// SetSocketProtocol sets the value of the socketProtocol property.
-// The protocol of the socket.
+// SetRemoteHostname sets the value of the remoteHostname property.
+// The flow’s remote hostname, if applicable.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/socketprotocol
-func (n_ NEFilterSocketFlow) SetSocketProtocol(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSocketProtocol:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remotehostname
+func (n_ NEFilterSocketFlow) SetRemoteHostname(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteHostname:"), objc.String(value))
 }
 
 // The protocol family of the socket.
@@ -184,37 +181,40 @@ func (n_ NEFilterSocketFlow) SetSocketFamily(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSocketFamily:"), value)
 }
 
+// The protocol of the socket.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/localflowendpoint-89z3l
-func (n_ NEFilterSocketFlow) LocalFlowEndpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("localFlowEndpoint"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/socketprotocol
+func (n_ NEFilterSocketFlow) SocketProtocol() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("socketProtocol"))
 	return rv
 }
 
 
-// SetLocalFlowEndpoint sets the value of the localFlowEndpoint property.
+// SetSocketProtocol sets the value of the socketProtocol property.
+// The protocol of the socket.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/localflowendpoint-89z3l
-func (n_ NEFilterSocketFlow) SetLocalFlowEndpoint(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalFlowEndpoint:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/socketprotocol
+func (n_ NEFilterSocketFlow) SetSocketProtocol(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSocketProtocol:"), value)
 }
 
-// The flow’s remote hostname, if applicable.
+// The type of the socket.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remotehostname
-func (n_ NEFilterSocketFlow) RemoteHostname() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("remoteHostname"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/sockettype
+func (n_ NEFilterSocketFlow) SocketType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("socketType"))
 	return rv
 }
 
 
-// SetRemoteHostname sets the value of the remoteHostname property.
-// The flow’s remote hostname, if applicable.
+// SetSocketType sets the value of the socketType property.
+// The type of the socket.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remotehostname
-func (n_ NEFilterSocketFlow) SetRemoteHostname(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteHostname:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/sockettype
+func (n_ NEFilterSocketFlow) SetSocketType(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSocketType:"), value)
 }
 
 

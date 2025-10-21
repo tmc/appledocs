@@ -80,24 +80,6 @@ func NewPHLivePhotoRequestOptions() PHLivePhotoRequestOptions {
 }
 
 
-// A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/isnetworkaccessallowed
-func (p_ PHLivePhotoRequestOptions) IsNetworkAccessAllowed() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
-	return rv
-}
-
-
-// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
-// A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/isnetworkaccessallowed
-func (p_ PHLivePhotoRequestOptions) SetIsNetworkAccessAllowed(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
-}
-
 // The requested Live Photo quality and delivery priority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/deliveryMode
@@ -168,6 +150,24 @@ func (p_ PHLivePhotoRequestOptions) Version() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/version
 func (p_ PHLivePhotoRequestOptions) SetVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
+}
+
+// A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/isnetworkaccessallowed
+func (p_ PHLivePhotoRequestOptions) IsNetworkAccessAllowed() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
+	return rv
+}
+
+
+// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
+// A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/isnetworkaccessallowed
+func (p_ PHLivePhotoRequestOptions) SetIsNetworkAccessAllowed(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
 }
 
 

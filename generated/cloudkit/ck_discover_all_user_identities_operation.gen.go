@@ -97,22 +97,22 @@ func (c_ CKDiscoverAllUserIdentitiesOperation) SetDiscoverAllUserIdentitiesResul
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverAllUserIdentitiesResultBlock:"), value)
 }
 
-// The relative amount of importance for granting system resources to the operation.
+// Identifiers that match contacts in the local Contacts database.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-func (c_ CKDiscoverAllUserIdentitiesOperation) QualityOfService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
+func (c_ CKDiscoverAllUserIdentitiesOperation) ContactIdentifiers() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifiers"))
 	return rv
 }
 
 
-// SetQualityOfService sets the value of the qualityOfService property.
-// The relative amount of importance for granting system resources to the operation.
+// SetContactIdentifiers sets the value of the contactIdentifiers property.
+// Identifiers that match contacts in the local Contacts database.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-func (c_ CKDiscoverAllUserIdentitiesOperation) SetQualityOfService(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetContactIdentifiers(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifiers:"), objc.String(value))
 }
 
 // The block to execute after the operation’s main task is completed.
@@ -133,22 +133,22 @@ func (c_ CKDiscoverAllUserIdentitiesOperation) SetCompletionBlock(value unsafe.P
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }
 
-// Identifiers that match contacts in the local Contacts database.
+// The relative amount of importance for granting system resources to the operation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
-func (c_ CKDiscoverAllUserIdentitiesOperation) ContactIdentifiers() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifiers"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
+func (c_ CKDiscoverAllUserIdentitiesOperation) QualityOfService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
 
-// SetContactIdentifiers sets the value of the contactIdentifiers property.
-// Identifiers that match contacts in the local Contacts database.
+// SetQualityOfService sets the value of the qualityOfService property.
+// The relative amount of importance for granting system resources to the operation.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
-func (c_ CKDiscoverAllUserIdentitiesOperation) SetContactIdentifiers(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifiers:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetQualityOfService(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
 

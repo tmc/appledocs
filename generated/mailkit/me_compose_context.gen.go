@@ -76,33 +76,17 @@ func NewMEComposeContext() MEComposeContext {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldencrypt
-func (m_ MEComposeContext) ShouldEncrypt() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("shouldEncrypt"))
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/action
+func (m_ MEComposeContext) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("action"))
 	return rv
 }
 
-
-// SetShouldEncrypt sets the value of the shouldEncrypt property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldencrypt
-func (m_ MEComposeContext) SetShouldEncrypt(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldEncrypt:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/issigned
-func (m_ MEComposeContext) IsSigned() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isSigned"))
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/originalMessage
+func (m_ MEComposeContext) OriginalMessage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("originalMessage"))
 	return rv
-}
-
-
-// SetIsSigned sets the value of the isSigned property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/issigned
-func (m_ MEComposeContext) SetIsSigned(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSigned:"), value)
 }
 
 //
@@ -121,21 +105,6 @@ func (m_ MEComposeContext) SetContextID(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldsign
-func (m_ MEComposeContext) ShouldSign() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("shouldSign"))
-	return rv
-}
-
-
-// SetShouldSign sets the value of the shouldSign property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldsign
-func (m_ MEComposeContext) SetShouldSign(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldSign:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/isencrypted
 func (m_ MEComposeContext) IsEncrypted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEncrypted"))
@@ -151,17 +120,48 @@ func (m_ MEComposeContext) SetIsEncrypted(value bool) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/action
-func (m_ MEComposeContext) Action() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("action"))
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/issigned
+func (m_ MEComposeContext) IsSigned() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isSigned"))
 	return rv
 }
 
+
+// SetIsSigned sets the value of the isSigned property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/originalMessage
-func (m_ MEComposeContext) OriginalMessage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("originalMessage"))
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/issigned
+func (m_ MEComposeContext) SetIsSigned(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSigned:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldencrypt
+func (m_ MEComposeContext) ShouldEncrypt() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldEncrypt"))
 	return rv
+}
+
+
+// SetShouldEncrypt sets the value of the shouldEncrypt property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldencrypt
+func (m_ MEComposeContext) SetShouldEncrypt(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldEncrypt:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldsign
+func (m_ MEComposeContext) ShouldSign() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldSign"))
+	return rv
+}
+
+
+// SetShouldSign sets the value of the shouldSign property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldsign
+func (m_ MEComposeContext) SetShouldSign(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldSign:"), value)
 }
 
 

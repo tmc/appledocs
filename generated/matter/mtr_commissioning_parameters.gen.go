@@ -77,54 +77,6 @@ func NewMTRCommissioningParameters() MTRCommissioningParameters {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/skipcommissioningcomplete
-func (m_ MTRCommissioningParameters) SkipCommissioningComplete() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("skipCommissioningComplete"))
-	return rv
-}
-
-
-// SetSkipCommissioningComplete sets the value of the skipCommissioningComplete property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/skipcommissioningcomplete
-func (m_ MTRCommissioningParameters) SetSkipCommissioningComplete(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSkipCommissioningComplete:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/threadoperationaldataset
-func (m_ MTRCommissioningParameters) ThreadOperationalDataset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("threadOperationalDataset"))
-	return rv
-}
-
-
-// SetThreadOperationalDataset sets the value of the threadOperationalDataset property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/threadoperationaldataset
-func (m_ MTRCommissioningParameters) SetThreadOperationalDataset(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setThreadOperationalDataset:"), value)
-}
-
-// Read device type information from all endpoints during commissioning.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/readendpointinformation
-func (m_ MTRCommissioningParameters) ReadEndpointInformation() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("readEndpointInformation"))
-	return rv
-}
-
-
-// SetReadEndpointInformation sets the value of the readEndpointInformation property.
-// Read device type information from all endpoints during commissioning.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/readendpointinformation
-func (m_ MTRCommissioningParameters) SetReadEndpointInformation(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReadEndpointInformation:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/attestationnonce
 func (m_ MTRCommissioningParameters) AttestationNonce() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationNonce"))
@@ -137,6 +89,51 @@ func (m_ MTRCommissioningParameters) AttestationNonce() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/attestationnonce
 func (m_ MTRCommissioningParameters) SetAttestationNonce(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationNonce:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/countrycode
+func (m_ MTRCommissioningParameters) CountryCode() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
+	return rv
+}
+
+
+// SetCountryCode sets the value of the countryCode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/countrycode
+func (m_ MTRCommissioningParameters) SetCountryCode(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/csrnonce-8gx94
+func (m_ MTRCommissioningParameters) CsrNonce() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("csrNonce"))
+	return rv
+}
+
+
+// SetCsrNonce sets the value of the csrNonce property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/csrnonce-8gx94
+func (m_ MTRCommissioningParameters) SetCsrNonce(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCsrNonce:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/deviceattestationdelegate
+func (m_ MTRCommissioningParameters) DeviceAttestationDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceAttestationDelegate"))
+	return rv
+}
+
+
+// SetDeviceAttestationDelegate sets the value of the deviceAttestationDelegate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/deviceattestationdelegate
+func (m_ MTRCommissioningParameters) SetDeviceAttestationDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceAttestationDelegate:"), value)
 }
 
 //
@@ -169,34 +166,52 @@ func (m_ MTRCommissioningParameters) SetFailSafeTimeout(value foundation.Number)
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFailSafeTimeout:"), value)
 }
 
+// Read device type information from all endpoints during commissioning.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/countrycode
-func (m_ MTRCommissioningParameters) CountryCode() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/readendpointinformation
+func (m_ MTRCommissioningParameters) ReadEndpointInformation() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("readEndpointInformation"))
 	return rv
 }
 
 
-// SetCountryCode sets the value of the countryCode property.
+// SetReadEndpointInformation sets the value of the readEndpointInformation property.
+// Read device type information from all endpoints during commissioning.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/countrycode
-func (m_ MTRCommissioningParameters) SetCountryCode(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/readendpointinformation
+func (m_ MTRCommissioningParameters) SetReadEndpointInformation(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReadEndpointInformation:"), value)
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/deviceattestationdelegate
-func (m_ MTRCommissioningParameters) DeviceAttestationDelegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceAttestationDelegate"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/skipcommissioningcomplete
+func (m_ MTRCommissioningParameters) SkipCommissioningComplete() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("skipCommissioningComplete"))
 	return rv
 }
 
 
-// SetDeviceAttestationDelegate sets the value of the deviceAttestationDelegate property.
+// SetSkipCommissioningComplete sets the value of the skipCommissioningComplete property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/deviceattestationdelegate
-func (m_ MTRCommissioningParameters) SetDeviceAttestationDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceAttestationDelegate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/skipcommissioningcomplete
+func (m_ MTRCommissioningParameters) SetSkipCommissioningComplete(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSkipCommissioningComplete:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/threadoperationaldataset
+func (m_ MTRCommissioningParameters) ThreadOperationalDataset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("threadOperationalDataset"))
+	return rv
+}
+
+
+// SetThreadOperationalDataset sets the value of the threadOperationalDataset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/threadoperationaldataset
+func (m_ MTRCommissioningParameters) SetThreadOperationalDataset(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setThreadOperationalDataset:"), value)
 }
 
 //
@@ -227,21 +242,6 @@ func (m_ MTRCommissioningParameters) WifiSSID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/wifissid
 func (m_ MTRCommissioningParameters) SetWifiSSID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWifiSSID:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/csrnonce-8gx94
-func (m_ MTRCommissioningParameters) CsrNonce() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("csrNonce"))
-	return rv
-}
-
-
-// SetCsrNonce sets the value of the csrNonce property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/csrnonce-8gx94
-func (m_ MTRCommissioningParameters) SetCsrNonce(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCsrNonce:"), value)
 }
 
 

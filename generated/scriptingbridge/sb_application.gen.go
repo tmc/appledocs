@@ -160,24 +160,6 @@ func (s_ SBApplication) ClassForScriptingClass(className string) objc.Class {
 	return rv
 }
 
-// A Boolean that indicates whether the target application represented by the
-//
-// [Full Topic]: https://developer.apple.com/documentation/scriptingbridge/sbapplication/isrunning
-func (s_ SBApplication) IsRunning() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isRunning"))
-	return rv
-}
-
-
-// SetIsRunning sets the value of the isRunning property.
-// A Boolean that indicates whether the target application represented by the
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/scriptingbridge/sbapplication/isrunning
-func (s_ SBApplication) SetIsRunning(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsRunning:"), value)
-}
-
 // The error-handling delegate of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/delegate
@@ -256,6 +238,24 @@ func (s_ SBApplication) Timeout() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/timeout
 func (s_ SBApplication) SetTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTimeout:"), value)
+}
+
+// A Boolean that indicates whether the target application represented by the
+//
+// [Full Topic]: https://developer.apple.com/documentation/scriptingbridge/sbapplication/isrunning
+func (s_ SBApplication) IsRunning() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isRunning"))
+	return rv
+}
+
+
+// SetIsRunning sets the value of the isRunning property.
+// A Boolean that indicates whether the target application represented by the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/scriptingbridge/sbapplication/isrunning
+func (s_ SBApplication) SetIsRunning(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsRunning:"), value)
 }
 
 

@@ -95,37 +95,11 @@ func NewReceiptRefreshRequestWithReceiptProperties(properties unsafe.Pointer) Re
 }
 
 
-// The delegate of the request object.
+// The properties of the receipt.
 //
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skrequest/delegate
-func (r_ ReceiptRefreshRequest) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The delegate of the request object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skrequest/delegate
-func (r_ ReceiptRefreshRequest) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setDelegate:"), value)
-}
-
-// A key with a value that indicates whether the receipt is in an expired state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skreceiptpropertyisexpired
-func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsExpired() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("SKReceiptPropertyIsExpired"))
-	return rv
-}
-
-// A key with a value that indicates whether the receipt is a Volume Purchase Plan receipt.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skreceiptpropertyisvolumepurchase
-func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsVolumePurchase() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("SKReceiptPropertyIsVolumePurchase"))
+// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKReceiptRefreshRequest/receiptProperties
+func (r_ ReceiptRefreshRequest) ReceiptProperties() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("receiptProperties"))
 	return rv
 }
 
@@ -147,6 +121,14 @@ func (r_ ReceiptRefreshRequest) SetAppStoreReceiptURL(value foundation.URL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAppStoreReceiptURL:"), value)
 }
 
+// A key with a value that indicates whether the receipt is in an expired state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skreceiptpropertyisexpired
+func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsExpired() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("SKReceiptPropertyIsExpired"))
+	return rv
+}
+
 // A key with a value that indicates whether the receipt is in a revoked state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skreceiptpropertyisrevoked
@@ -155,12 +137,30 @@ func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsRevoked() string {
 	return rv
 }
 
-// The properties of the receipt.
+// A key with a value that indicates whether the receipt is a Volume Purchase Plan receipt.
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKReceiptRefreshRequest/receiptProperties
-func (r_ ReceiptRefreshRequest) ReceiptProperties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("receiptProperties"))
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skreceiptpropertyisvolumepurchase
+func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsVolumePurchase() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("SKReceiptPropertyIsVolumePurchase"))
 	return rv
+}
+
+// The delegate of the request object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skrequest/delegate
+func (r_ ReceiptRefreshRequest) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate of the request object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skrequest/delegate
+func (r_ ReceiptRefreshRequest) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

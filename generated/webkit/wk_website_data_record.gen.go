@@ -80,6 +80,14 @@ func NewWebsiteDataRecord() WebsiteDataRecord {
 }
 
 
+// The types of data associated with the record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebsiteDataRecord/dataTypes
+func (w_ WebsiteDataRecord) DataTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("dataTypes"))
+	return rv
+}
+
 // The display name for the data record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatarecord/displayname
@@ -96,14 +104,6 @@ func (w_ WebsiteDataRecord) DisplayName() string {
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatarecord/displayname
 func (w_ WebsiteDataRecord) SetDisplayName(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), objc.String(value))
-}
-
-// The types of data associated with the record.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebsiteDataRecord/dataTypes
-func (w_ WebsiteDataRecord) DataTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("dataTypes"))
-	return rv
 }
 
 

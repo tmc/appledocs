@@ -245,40 +245,6 @@ func (c_ CKContainer) StatusForApplicationPermissionCompletionHandler(applicatio
 	objc.Send[objc.ID](c_.ID, objc.Sel("statusForApplicationPermission:completionHandler:"), applicationPermission, completionHandler)
 }
 
-// A constant that provides the default owner’s name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckownerdefaultname
-func (c_ CKContainer) CKOwnerDefaultName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CKOwnerDefaultName"))
-	return rv
-}
-
-// The user record ID for the corresponding user record.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKContainer) UserRecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userRecordID"))
-	return rv
-}
-
-
-// SetUserRecordID sets the value of the userRecordID property.
-// The user record ID for the corresponding user record.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKContainer) SetUserRecordID(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUserRecordID:"), value)
-}
-
-// A constant that provides the current user’s default name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname
-func (c_ CKContainer) CKCurrentUserDefaultName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CKCurrentUserDefaultName"))
-	return rv
-}
-
 // The container’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/containerIdentifier
@@ -309,6 +275,40 @@ func (c_ CKContainer) PublicCloudDatabase() unsafe.Pointer {
 func (c_ CKContainer) SharedCloudDatabase() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sharedCloudDatabase"))
 	return rv
+}
+
+// A constant that provides the current user’s default name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname
+func (c_ CKContainer) CKCurrentUserDefaultName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CKCurrentUserDefaultName"))
+	return rv
+}
+
+// A constant that provides the default owner’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckownerdefaultname
+func (c_ CKContainer) CKOwnerDefaultName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CKOwnerDefaultName"))
+	return rv
+}
+
+// The user record ID for the corresponding user record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
+func (c_ CKContainer) UserRecordID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userRecordID"))
+	return rv
+}
+
+
+// SetUserRecordID sets the value of the userRecordID property.
+// The user record ID for the corresponding user record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
+func (c_ CKContainer) SetUserRecordID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserRecordID:"), value)
 }
 
 

@@ -78,6 +78,24 @@ func NewMKLookAroundSceneRequest() MKLookAroundSceneRequest {
 }
 
 
+// A coordinate value that describes the location of the LookAround scene.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/coordinate
+func (m_ MKLookAroundSceneRequest) Coordinate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("coordinate"))
+	return rv
+}
+
+
+// SetCoordinate sets the value of the coordinate property.
+// A coordinate value that describes the location of the LookAround scene.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/coordinate
+func (m_ MKLookAroundSceneRequest) SetCoordinate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCoordinate:"), value)
+}
+
 // A Boolean value that indicates if the cancellation of a scene request was successful.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/iscancelled
@@ -130,24 +148,6 @@ func (m_ MKLookAroundSceneRequest) MapItem() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/mapitem
 func (m_ MKLookAroundSceneRequest) SetMapItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapItem:"), value)
-}
-
-// A coordinate value that describes the location of the LookAround scene.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/coordinate
-func (m_ MKLookAroundSceneRequest) Coordinate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("coordinate"))
-	return rv
-}
-
-
-// SetCoordinate sets the value of the coordinate property.
-// A coordinate value that describes the location of the LookAround scene.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/coordinate
-func (m_ MKLookAroundSceneRequest) SetCoordinate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCoordinate:"), value)
 }
 
 

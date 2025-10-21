@@ -90,6 +90,14 @@ func (g_ GraphExecutable) GetOutputTypesWithDeviceInputTypesCompilationDescripto
 	return rv
 }
 
+// Tensors targeted by the graph, can be used to order the outputs when executable was created with a graph.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutable/targetTensors
+func (g_ GraphExecutable) TargetTensors() []GraphTensor {
+	rv := objc.Send[[]GraphTensor](g_.ID, objc.Sel("targetTensors"))
+	return rv
+}
+
 // Tensors fed to the graph, can be used to order the inputs when executable is created with a graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable/feedtensors
@@ -124,14 +132,6 @@ func (g_ GraphExecutable) Options() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable/options
 func (g_ GraphExecutable) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOptions:"), value)
-}
-
-// Tensors targeted by the graph, can be used to order the outputs when executable was created with a graph.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutable/targetTensors
-func (g_ GraphExecutable) TargetTensors() []GraphTensor {
-	rv := objc.Send[[]GraphTensor](g_.ID, objc.Sel("targetTensors"))
-	return rv
 }
 
 

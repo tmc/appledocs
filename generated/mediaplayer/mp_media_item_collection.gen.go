@@ -102,24 +102,6 @@ func (mc _MediaItemCollectionClass) CollectionWithItems(items unsafe.Pointer) un
 	return rv
 }
 
-// An array of media item collections whose contained items match the query’s media property predicate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collections
-func (m_ MediaItemCollection) Collections() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("collections"))
-	return rv
-}
-
-
-// SetCollections sets the value of the collections property.
-// An array of media item collections whose contained items match the query’s media property predicate.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collections
-func (m_ MediaItemCollection) SetCollections(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCollections:"), value)
-}
-
 // The number of media items in a collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/count
@@ -150,6 +132,24 @@ func (m_ MediaItemCollection) MediaTypes() unsafe.Pointer {
 func (m_ MediaItemCollection) RepresentativeItem() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("representativeItem"))
 	return rv
+}
+
+// An array of media item collections whose contained items match the query’s media property predicate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collections
+func (m_ MediaItemCollection) Collections() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("collections"))
+	return rv
+}
+
+
+// SetCollections sets the value of the collections property.
+// An array of media item collections whose contained items match the query’s media property predicate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collections
+func (m_ MediaItemCollection) SetCollections(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCollections:"), value)
 }
 
 

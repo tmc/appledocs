@@ -79,6 +79,24 @@ func NewGraphExecutableSerializationDescriptor() GraphExecutableSerializationDes
 }
 
 
+// Flag to append to an existing .mpsgraphpackage if found at provided url.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutableSerializationDescriptor/append
+func (g_ GraphExecutableSerializationDescriptor) Append() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("append"))
+	return rv
+}
+
+
+// SetAppend sets the value of the append property.
+// Flag to append to an existing .mpsgraphpackage if found at provided url.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutableSerializationDescriptor/append
+func (g_ GraphExecutableSerializationDescriptor) SetAppend(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAppend:"), value)
+}
+
 // The deployment platform used to serialize the executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/deploymentplatform
@@ -113,24 +131,6 @@ func (g_ GraphExecutableSerializationDescriptor) MinimumDeploymentTarget() strin
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/minimumdeploymenttarget
 func (g_ GraphExecutableSerializationDescriptor) SetMinimumDeploymentTarget(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMinimumDeploymentTarget:"), objc.String(value))
-}
-
-// Flag to append to an existing .mpsgraphpackage if found at provided url.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutableSerializationDescriptor/append
-func (g_ GraphExecutableSerializationDescriptor) Append() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("append"))
-	return rv
-}
-
-
-// SetAppend sets the value of the append property.
-// Flag to append to an existing .mpsgraphpackage if found at provided url.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutableSerializationDescriptor/append
-func (g_ GraphExecutableSerializationDescriptor) SetAppend(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setAppend:"), value)
 }
 
 

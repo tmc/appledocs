@@ -94,21 +94,6 @@ func NewCKFetchDatabaseChangesOperationWithPreviousServerChangeToken(previousSer
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation/fetchdatabasechangesresultblock
-func (c_ CKFetchDatabaseChangesOperation) FetchDatabaseChangesResultBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchDatabaseChangesResultBlock"))
-	return rv
-}
-
-
-// SetFetchDatabaseChangesResultBlock sets the value of the fetchDatabaseChangesResultBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation/fetchdatabasechangesresultblock
-func (c_ CKFetchDatabaseChangesOperation) SetFetchDatabaseChangesResultBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchDatabaseChangesResultBlock:"), value)
-}
-
 // A Boolean value that indicates whether to send repeated requests to the server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/fetchAllChanges
@@ -161,6 +146,21 @@ func (c_ CKFetchDatabaseChangesOperation) ResultsLimit() uint {
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/resultsLimit
 func (c_ CKFetchDatabaseChangesOperation) SetResultsLimit(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation/fetchdatabasechangesresultblock
+func (c_ CKFetchDatabaseChangesOperation) FetchDatabaseChangesResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchDatabaseChangesResultBlock"))
+	return rv
+}
+
+
+// SetFetchDatabaseChangesResultBlock sets the value of the fetchDatabaseChangesResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation/fetchdatabasechangesresultblock
+func (c_ CKFetchDatabaseChangesOperation) SetFetchDatabaseChangesResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchDatabaseChangesResultBlock:"), value)
 }
 
 

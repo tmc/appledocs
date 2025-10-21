@@ -85,63 +85,18 @@ func (c_ CNNMultiaryKernel) DilationRateYatIndex(index uint) uint {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isstatemodified
-func (c_ CNNMultiaryKernel) IsStateModified() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isStateModified"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/cliprect
+func (c_ CNNMultiaryKernel) ClipRect() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("clipRect"))
 	return rv
 }
 
 
-// SetIsStateModified sets the value of the isStateModified property.
+// SetClipRect sets the value of the clipRect property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isstatemodified
-func (c_ CNNMultiaryKernel) SetIsStateModified(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsStateModified:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isbackwards
-func (c_ CNNMultiaryKernel) IsBackwards() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isBackwards"))
-	return rv
-}
-
-
-// SetIsBackwards sets the value of the isBackwards property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isbackwards
-func (c_ CNNMultiaryKernel) SetIsBackwards(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBackwards:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/sourcecount
-func (c_ CNNMultiaryKernel) SourceCount() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("sourceCount"))
-	return rv
-}
-
-
-// SetSourceCount sets the value of the sourceCount property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/sourcecount
-func (c_ CNNMultiaryKernel) SetSourceCount(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceCount:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/padding
-func (c_ CNNMultiaryKernel) Padding() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("padding"))
-	return rv
-}
-
-
-// SetPadding sets the value of the padding property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/padding
-func (c_ CNNMultiaryKernel) SetPadding(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPadding:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/cliprect
+func (c_ CNNMultiaryKernel) SetClipRect(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setClipRect:"), value)
 }
 
 //
@@ -175,18 +130,63 @@ func (c_ CNNMultiaryKernel) SetDestinationImageAllocator(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/cliprect
-func (c_ CNNMultiaryKernel) ClipRect() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("clipRect"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isbackwards
+func (c_ CNNMultiaryKernel) IsBackwards() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isBackwards"))
 	return rv
 }
 
 
-// SetClipRect sets the value of the clipRect property.
+// SetIsBackwards sets the value of the isBackwards property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/cliprect
-func (c_ CNNMultiaryKernel) SetClipRect(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setClipRect:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isbackwards
+func (c_ CNNMultiaryKernel) SetIsBackwards(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBackwards:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isstatemodified
+func (c_ CNNMultiaryKernel) IsStateModified() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isStateModified"))
+	return rv
+}
+
+
+// SetIsStateModified sets the value of the isStateModified property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isstatemodified
+func (c_ CNNMultiaryKernel) SetIsStateModified(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsStateModified:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/padding
+func (c_ CNNMultiaryKernel) Padding() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("padding"))
+	return rv
+}
+
+
+// SetPadding sets the value of the padding property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/padding
+func (c_ CNNMultiaryKernel) SetPadding(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPadding:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/sourcecount
+func (c_ CNNMultiaryKernel) SourceCount() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("sourceCount"))
+	return rv
+}
+
+
+// SetSourceCount sets the value of the sourceCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/sourcecount
+func (c_ CNNMultiaryKernel) SetSourceCount(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceCount:"), value)
 }
 
 

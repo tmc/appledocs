@@ -166,24 +166,6 @@ func (c_ CBIdentity) IsMemberOfGroup(group unsafe.Pointer) bool {
 	return rv
 }
 
-// Returns a Boolean value indicating the state of the identity’s hidden property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/ishidden
-func (c_ CBIdentity) IsHidden() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isHidden"))
-	return rv
-}
-
-
-// SetIsHidden sets the value of the isHidden property.
-// Returns a Boolean value indicating the state of the identity’s hidden property.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/ishidden
-func (c_ CBIdentity) SetIsHidden(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHidden:"), value)
-}
-
 // Returns an opaque object for use with the Core Services Identity API.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/CSIdentity
@@ -269,6 +251,24 @@ func (c_ CBIdentity) UniqueIdentifier() unsafe.Pointer {
 func (c_ CBIdentity) UUIDString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("UUIDString"))
 	return rv
+}
+
+// Returns a Boolean value indicating the state of the identity’s hidden property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/ishidden
+func (c_ CBIdentity) IsHidden() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// Returns a Boolean value indicating the state of the identity’s hidden property.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/ishidden
+func (c_ CBIdentity) SetIsHidden(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHidden:"), value)
 }
 
 

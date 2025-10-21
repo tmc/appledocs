@@ -81,24 +81,6 @@ func NewINCreateTaskListIntent() INCreateTaskListIntent {
 }
 
 
-// An array of strings containing the titles for individual tasks to add to the new task list.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/tasktitles
-func (i_ INCreateTaskListIntent) TaskTitles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("taskTitles"))
-	return rv
-}
-
-
-// SetTaskTitles sets the value of the taskTitles property.
-// An array of strings containing the titles for individual tasks to add to the new task list.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/tasktitles
-func (i_ INCreateTaskListIntent) SetTaskTitles(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitles:"), value)
-}
-
 // The group that contains the task list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/groupname
@@ -115,6 +97,24 @@ func (i_ INCreateTaskListIntent) GroupName() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/groupname
 func (i_ INCreateTaskListIntent) SetGroupName(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
+}
+
+// An array of strings containing the titles for individual tasks to add to the new task list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/tasktitles
+func (i_ INCreateTaskListIntent) TaskTitles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("taskTitles"))
+	return rv
+}
+
+
+// SetTaskTitles sets the value of the taskTitles property.
+// An array of strings containing the titles for individual tasks to add to the new task list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/tasktitles
+func (i_ INCreateTaskListIntent) SetTaskTitles(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitles:"), value)
 }
 
 // The title of the task list.

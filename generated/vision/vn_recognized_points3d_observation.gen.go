@@ -88,24 +88,6 @@ func (r_ RecognizedPoints3DObservation) RecognizedPointsForGroupKeyError(groupKe
 	return rv
 }
 
-// The available point keys in the observation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation/availablekeys
-func (r_ RecognizedPoints3DObservation) AvailableKeys() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("availableKeys"))
-	return rv
-}
-
-
-// SetAvailableKeys sets the value of the availableKeys property.
-// The available point keys in the observation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation/availablekeys
-func (r_ RecognizedPoints3DObservation) SetAvailableKeys(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setAvailableKeys:"), value)
-}
-
 // The available point group keys in the observation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation/availablegroupkeys
@@ -122,6 +104,24 @@ func (r_ RecognizedPoints3DObservation) AvailableGroupKeys() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation/availablegroupkeys
 func (r_ RecognizedPoints3DObservation) SetAvailableGroupKeys(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAvailableGroupKeys:"), value)
+}
+
+// The available point keys in the observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation/availablekeys
+func (r_ RecognizedPoints3DObservation) AvailableKeys() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("availableKeys"))
+	return rv
+}
+
+
+// SetAvailableKeys sets the value of the availableKeys property.
+// The available point keys in the observation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation/availablekeys
+func (r_ RecognizedPoints3DObservation) SetAvailableKeys(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setAvailableKeys:"), value)
 }
 
 

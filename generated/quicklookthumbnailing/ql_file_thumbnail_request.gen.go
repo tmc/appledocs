@@ -80,6 +80,32 @@ func NewFileThumbnailRequest() FileThumbnailRequest {
 }
 
 
+// The maximum accepted size of a thumbnail.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLFileThumbnailRequest/maximumSize
+func (f_ FileThumbnailRequest) MaximumSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](f_.ID, objc.Sel("maximumSize"))
+	return rv
+}
+
+// The URL of the image file to use for the thumbnail.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/fileurl
+func (f_ FileThumbnailRequest) FileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("fileURL"))
+	return rv
+}
+
+
+// SetFileURL sets the value of the fileURL property.
+// The URL of the image file to use for the thumbnail.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/fileurl
+func (f_ FileThumbnailRequest) SetFileURL(value foundation.URL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileURL:"), value)
+}
+
 // The minimum accepted size of a thumbnail.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/minimumsize
@@ -114,32 +140,6 @@ func (f_ FileThumbnailRequest) Scale() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/scale
 func (f_ FileThumbnailRequest) SetScale(value float64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setScale:"), value)
-}
-
-// The URL of the image file to use for the thumbnail.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/fileurl
-func (f_ FileThumbnailRequest) FileURL() foundation.URL {
-	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("fileURL"))
-	return rv
-}
-
-
-// SetFileURL sets the value of the fileURL property.
-// The URL of the image file to use for the thumbnail.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/fileurl
-func (f_ FileThumbnailRequest) SetFileURL(value foundation.URL) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileURL:"), value)
-}
-
-// The maximum accepted size of a thumbnail.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLFileThumbnailRequest/maximumSize
-func (f_ FileThumbnailRequest) MaximumSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](f_.ID, objc.Sel("maximumSize"))
-	return rv
 }
 
 

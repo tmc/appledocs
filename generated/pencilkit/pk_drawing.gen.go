@@ -151,14 +151,6 @@ func (d_ Drawing) ImageFromRectScale(rect coregraphics.CGRect, scale float64) un
 	return rv
 }
 
-// The uniform type identifier for data associated with a drawing object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pkappledrawingtypeidentifier
-func (d_ Drawing) PKAppleDrawingTypeIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("PKAppleDrawingTypeIdentifier"))
-	return rv
-}
-
 // The smallest rectangle used to represent the content’s bounds, taking into account line widths of that content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKDrawingReference/bounds
@@ -180,6 +172,14 @@ func (d_ Drawing) RequiredContentVersion() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKDrawingReference/strokes
 func (d_ Drawing) Strokes() []Stroke {
 	rv := objc.Send[[]Stroke](d_.ID, objc.Sel("strokes"))
+	return rv
+}
+
+// The uniform type identifier for data associated with a drawing object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pkappledrawingtypeidentifier
+func (d_ Drawing) PKAppleDrawingTypeIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("PKAppleDrawingTypeIdentifier"))
 	return rv
 }
 

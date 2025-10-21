@@ -91,21 +91,6 @@ func (h_ HKWorkoutEffortRelationship) SetActivity(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/workout
-func (h_ HKWorkoutEffortRelationship) Workout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("workout"))
-	return rv
-}
-
-
-// SetWorkout sets the value of the workout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/workout
-func (h_ HKWorkoutEffortRelationship) SetWorkout(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/samples
 func (h_ HKWorkoutEffortRelationship) Samples() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("samples"))
@@ -118,6 +103,21 @@ func (h_ HKWorkoutEffortRelationship) Samples() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/samples
 func (h_ HKWorkoutEffortRelationship) SetSamples(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSamples:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/workout
+func (h_ HKWorkoutEffortRelationship) Workout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("workout"))
+	return rv
+}
+
+
+// SetWorkout sets the value of the workout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/workout
+func (h_ HKWorkoutEffortRelationship) SetWorkout(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkout:"), value)
 }
 
 

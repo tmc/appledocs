@@ -77,18 +77,18 @@ func NewMTRDoorLockClusterGetCredentialStatusParams() MTRDoorLockClusterGetCrede
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetCredentialStatusParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusparams/credential
+func (m_ MTRDoorLockClusterGetCredentialStatusParams) Credential() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("credential"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetCredential sets the value of the credential property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetCredentialStatusParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusparams/credential
+func (m_ MTRDoorLockClusterGetCredentialStatusParams) SetCredential(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCredential:"), value)
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRDoorLockClusterGetCredentialStatusParams) SetServerSideProcessingTim
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusparams/credential
-func (m_ MTRDoorLockClusterGetCredentialStatusParams) Credential() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("credential"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterGetCredentialStatusParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetCredential sets the value of the credential property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusparams/credential
-func (m_ MTRDoorLockClusterGetCredentialStatusParams) SetCredential(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCredential:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterGetCredentialStatusParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

@@ -116,42 +116,6 @@ func (p_ PersistentStoreDescription) SetValueForPragmaNamed(value unsafe.Pointer
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:forPragmaNamed:"), value, objc.String(name))
 }
 
-// A flag that indicates whether this store will be read-only.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/isreadonly
-func (p_ PersistentStoreDescription) IsReadOnly() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isReadOnly"))
-	return rv
-}
-
-
-// SetIsReadOnly sets the value of the isReadOnly property.
-// A flag that indicates whether this store will be read-only.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/isreadonly
-func (p_ PersistentStoreDescription) SetIsReadOnly(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
-}
-
-// The type of store this description represents.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/type
-func (p_ PersistentStoreDescription) Type() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// SetType sets the value of the type property.
-// The type of store this description represents.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/type
-func (p_ PersistentStoreDescription) SetType(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
-}
-
 // Options that customize how this store description aligns with a CloudKit database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions
@@ -310,6 +274,42 @@ func (p_ PersistentStoreDescription) URL() foundation.URL {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/url
 func (p_ PersistentStoreDescription) SetURL(value foundation.URL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setURL:"), value)
+}
+
+// A flag that indicates whether this store will be read-only.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/isreadonly
+func (p_ PersistentStoreDescription) IsReadOnly() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isReadOnly"))
+	return rv
+}
+
+
+// SetIsReadOnly sets the value of the isReadOnly property.
+// A flag that indicates whether this store will be read-only.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/isreadonly
+func (p_ PersistentStoreDescription) SetIsReadOnly(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
+}
+
+// The type of store this description represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/type
+func (p_ PersistentStoreDescription) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The type of store this description represents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/type
+func (p_ PersistentStoreDescription) SetType(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
 }
 
 

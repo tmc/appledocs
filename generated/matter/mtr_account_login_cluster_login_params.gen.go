@@ -77,36 +77,6 @@ func NewMTRAccountLoginClusterLoginParams() MTRAccountLoginClusterLoginParams {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/serversideprocessingtimeout
-func (m_ MTRAccountLoginClusterLoginParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/serversideprocessingtimeout
-func (m_ MTRAccountLoginClusterLoginParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/tempaccountidentifier
-func (m_ MTRAccountLoginClusterLoginParams) TempAccountIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("tempAccountIdentifier"))
-	return rv
-}
-
-
-// SetTempAccountIdentifier sets the value of the tempAccountIdentifier property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/tempaccountidentifier
-func (m_ MTRAccountLoginClusterLoginParams) SetTempAccountIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTempAccountIdentifier:"), objc.String(value))
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/node
 func (m_ MTRAccountLoginClusterLoginParams) Node() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("node"))
@@ -122,6 +92,21 @@ func (m_ MTRAccountLoginClusterLoginParams) SetNode(value foundation.Number) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/serversideprocessingtimeout
+func (m_ MTRAccountLoginClusterLoginParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/serversideprocessingtimeout
+func (m_ MTRAccountLoginClusterLoginParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/setuppin
 func (m_ MTRAccountLoginClusterLoginParams) SetupPIN() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("setupPIN"))
@@ -134,6 +119,21 @@ func (m_ MTRAccountLoginClusterLoginParams) SetupPIN() string {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/setuppin
 func (m_ MTRAccountLoginClusterLoginParams) SetSetupPIN(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSetupPIN:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/tempaccountidentifier
+func (m_ MTRAccountLoginClusterLoginParams) TempAccountIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("tempAccountIdentifier"))
+	return rv
+}
+
+
+// SetTempAccountIdentifier sets the value of the tempAccountIdentifier property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/tempaccountidentifier
+func (m_ MTRAccountLoginClusterLoginParams) SetTempAccountIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTempAccountIdentifier:"), objc.String(value))
 }
 
 //

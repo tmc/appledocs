@@ -77,21 +77,6 @@ func NewMTRLevelControlClusterMoveToLevelParams() MTRLevelControlClusterMoveToLe
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/optionsmask
-func (m_ MTRLevelControlClusterMoveToLevelParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
-	return rv
-}
-
-
-// SetOptionsMask sets the value of the optionsMask property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/optionsmask
-func (m_ MTRLevelControlClusterMoveToLevelParams) SetOptionsMask(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/level
 func (m_ MTRLevelControlClusterMoveToLevelParams) Level() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("level"))
@@ -107,6 +92,21 @@ func (m_ MTRLevelControlClusterMoveToLevelParams) SetLevel(value foundation.Numb
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/optionsmask
+func (m_ MTRLevelControlClusterMoveToLevelParams) OptionsMask() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+	return rv
+}
+
+
+// SetOptionsMask sets the value of the optionsMask property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/optionsmask
+func (m_ MTRLevelControlClusterMoveToLevelParams) SetOptionsMask(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/optionsoverride
 func (m_ MTRLevelControlClusterMoveToLevelParams) OptionsOverride() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
@@ -119,21 +119,6 @@ func (m_ MTRLevelControlClusterMoveToLevelParams) OptionsOverride() foundation.N
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/optionsoverride
 func (m_ MTRLevelControlClusterMoveToLevelParams) SetOptionsOverride(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/transitiontime
-func (m_ MTRLevelControlClusterMoveToLevelParams) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
-	return rv
-}
-
-
-// SetTransitionTime sets the value of the transitionTime property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/transitiontime
-func (m_ MTRLevelControlClusterMoveToLevelParams) SetTransitionTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 
 //
@@ -164,6 +149,21 @@ func (m_ MTRLevelControlClusterMoveToLevelParams) TimedInvokeTimeoutMs() foundat
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/timedinvoketimeoutms
 func (m_ MTRLevelControlClusterMoveToLevelParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/transitiontime
+func (m_ MTRLevelControlClusterMoveToLevelParams) TransitionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+	return rv
+}
+
+
+// SetTransitionTime sets the value of the transitionTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/transitiontime
+func (m_ MTRLevelControlClusterMoveToLevelParams) SetTransitionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 
 

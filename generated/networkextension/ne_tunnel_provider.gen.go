@@ -97,14 +97,6 @@ func (n_ NETunnelProvider) SetTunnelNetworkSettingsCompletionHandler(tunnelNetwo
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelNetworkSettings:completionHandler:"), tunnelNetworkSettings, completionHandler)
 }
 
-// The domain used for Tunnel Provider errors.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovidererrordomain
-func (n_ NETunnelProvider) NETunnelProviderErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NETunnelProviderErrorDomain"))
-	return rv
-}
-
 // The app rules dictating which apps use the current tunneling session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/appRules
@@ -144,6 +136,14 @@ func (n_ NETunnelProvider) SetReasserting(value bool) {
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/routingMethod
 func (n_ NETunnelProvider) RoutingMethod() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("routingMethod"))
+	return rv
+}
+
+// The domain used for Tunnel Provider errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovidererrordomain
+func (n_ NETunnelProvider) NETunnelProviderErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NETunnelProviderErrorDomain"))
 	return rv
 }
 

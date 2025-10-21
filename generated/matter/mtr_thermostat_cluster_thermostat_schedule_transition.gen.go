@@ -78,6 +78,21 @@ func NewMTRThermostatClusterThermostatScheduleTransition() MTRThermostatClusterT
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/coolsetpoint
+func (m_ MTRThermostatClusterThermostatScheduleTransition) CoolSetpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("coolSetpoint"))
+	return rv
+}
+
+
+// SetCoolSetpoint sets the value of the coolSetpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/coolsetpoint
+func (m_ MTRThermostatClusterThermostatScheduleTransition) SetCoolSetpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolSetpoint:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/heatsetpoint
 func (m_ MTRThermostatClusterThermostatScheduleTransition) HeatSetpoint() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("heatSetpoint"))
@@ -105,21 +120,6 @@ func (m_ MTRThermostatClusterThermostatScheduleTransition) TransitionTime() foun
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/transitiontime
 func (m_ MTRThermostatClusterThermostatScheduleTransition) SetTransitionTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/coolsetpoint
-func (m_ MTRThermostatClusterThermostatScheduleTransition) CoolSetpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("coolSetpoint"))
-	return rv
-}
-
-
-// SetCoolSetpoint sets the value of the coolSetpoint property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/coolsetpoint
-func (m_ MTRThermostatClusterThermostatScheduleTransition) SetCoolSetpoint(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolSetpoint:"), value)
 }
 
 

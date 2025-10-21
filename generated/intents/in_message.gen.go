@@ -91,154 +91,28 @@ func NewINMessageWithIdentifierConversationIdentifierContentDateSentSenderRecipi
 }
 
 
-// The text that Siri recites to the message recipient.
+// The date and time the app sent the message to each recipient.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/content
-func (i_ INMessage) Content() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("content"))
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INMessage/dateSent
+func (i_ INMessage) DateSent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateSent"))
 	return rv
 }
 
-
-// SetContent sets the value of the content property.
-// The text that Siri recites to the message recipient.
-
+// The type of content the message contains.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/content
-func (i_ INMessage) SetContent(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/numberofattachments
-func (i_ INMessage) NumberOfAttachments() foundation.Number {
-	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("numberOfAttachments"))
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INMessage/messageType
+func (i_ INMessage) MessageType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("messageType"))
 	return rv
 }
 
-
-// SetNumberOfAttachments sets the value of the numberOfAttachments property.
+// The people who received the message.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/numberofattachments
-func (i_ INMessage) SetNumberOfAttachments(value foundation.Number) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfAttachments:"), value)
-}
-
-// The identifier of the conversation that contains this message.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/conversationidentifier
-func (i_ INMessage) ConversationIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("conversationIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INMessage/recipients
+func (i_ INMessage) Recipients() []INPerson {
+	rv := objc.Send[[]INPerson](i_.ID, objc.Sel("recipients"))
 	return rv
-}
-
-
-// SetConversationIdentifier sets the value of the conversationIdentifier property.
-// The identifier of the conversation that contains this message.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/conversationidentifier
-func (i_ INMessage) SetConversationIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifier:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sticker
-func (i_ INMessage) Sticker() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sticker"))
-	return rv
-}
-
-
-// SetSticker sets the value of the sticker property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sticker
-func (i_ INMessage) SetSticker(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSticker:"), value)
-}
-
-// The person who sent the message.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sender
-func (i_ INMessage) Sender() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sender"))
-	return rv
-}
-
-
-// SetSender sets the value of the sender property.
-// The person who sent the message.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sender
-func (i_ INMessage) SetSender(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSender:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/reaction
-func (i_ INMessage) Reaction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reaction"))
-	return rv
-}
-
-
-// SetReaction sets the value of the reaction property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/reaction
-func (i_ INMessage) SetReaction(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setReaction:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/linkmetadata
-func (i_ INMessage) LinkMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("linkMetadata"))
-	return rv
-}
-
-
-// SetLinkMetadata sets the value of the linkMetadata property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/linkmetadata
-func (i_ INMessage) SetLinkMetadata(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setLinkMetadata:"), value)
-}
-
-// The message’s unique identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/identifier
-func (i_ INMessage) Identifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// SetIdentifier sets the value of the identifier property.
-// The message’s unique identifier.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/identifier
-func (i_ INMessage) SetIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
-}
-
-// The name of the service that delivers the message.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/servicename
-func (i_ INMessage) ServiceName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("serviceName"))
-	return rv
-}
-
-
-// SetServiceName sets the value of the serviceName property.
-// The name of the service that delivers the message.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/servicename
-func (i_ INMessage) SetServiceName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setServiceName:"), objc.String(value))
 }
 
 //
@@ -274,6 +148,42 @@ func (i_ INMessage) SetAudioMessageFile(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioMessageFile:"), value)
 }
 
+// The text that Siri recites to the message recipient.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/content
+func (i_ INMessage) Content() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("content"))
+	return rv
+}
+
+
+// SetContent sets the value of the content property.
+// The text that Siri recites to the message recipient.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/content
+func (i_ INMessage) SetContent(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), objc.String(value))
+}
+
+// The identifier of the conversation that contains this message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/conversationidentifier
+func (i_ INMessage) ConversationIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("conversationIdentifier"))
+	return rv
+}
+
+
+// SetConversationIdentifier sets the value of the conversationIdentifier property.
+// The identifier of the conversation that contains this message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/conversationidentifier
+func (i_ INMessage) SetConversationIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifier:"), objc.String(value))
+}
+
 // The name of the grouped conversation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/groupname
@@ -292,28 +202,118 @@ func (i_ INMessage) SetGroupName(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
 }
 
-// The date and time the app sent the message to each recipient.
+// The message’s unique identifier.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INMessage/dateSent
-func (i_ INMessage) DateSent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateSent"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/identifier
+func (i_ INMessage) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
-// The type of content the message contains.
+
+// SetIdentifier sets the value of the identifier property.
+// The message’s unique identifier.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INMessage/messageType
-func (i_ INMessage) MessageType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("messageType"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/identifier
+func (i_ INMessage) SetIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/linkmetadata
+func (i_ INMessage) LinkMetadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("linkMetadata"))
 	return rv
 }
 
-// The people who received the message.
+
+// SetLinkMetadata sets the value of the linkMetadata property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INMessage/recipients
-func (i_ INMessage) Recipients() []INPerson {
-	rv := objc.Send[[]INPerson](i_.ID, objc.Sel("recipients"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/linkmetadata
+func (i_ INMessage) SetLinkMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLinkMetadata:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/numberofattachments
+func (i_ INMessage) NumberOfAttachments() foundation.Number {
+	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("numberOfAttachments"))
 	return rv
+}
+
+
+// SetNumberOfAttachments sets the value of the numberOfAttachments property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/numberofattachments
+func (i_ INMessage) SetNumberOfAttachments(value foundation.Number) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfAttachments:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/reaction
+func (i_ INMessage) Reaction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reaction"))
+	return rv
+}
+
+
+// SetReaction sets the value of the reaction property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/reaction
+func (i_ INMessage) SetReaction(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReaction:"), value)
+}
+
+// The person who sent the message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sender
+func (i_ INMessage) Sender() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sender"))
+	return rv
+}
+
+
+// SetSender sets the value of the sender property.
+// The person who sent the message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sender
+func (i_ INMessage) SetSender(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSender:"), value)
+}
+
+// The name of the service that delivers the message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/servicename
+func (i_ INMessage) ServiceName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("serviceName"))
+	return rv
+}
+
+
+// SetServiceName sets the value of the serviceName property.
+// The name of the service that delivers the message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/servicename
+func (i_ INMessage) SetServiceName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setServiceName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sticker
+func (i_ INMessage) Sticker() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sticker"))
+	return rv
+}
+
+
+// SetSticker sets the value of the sticker property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sticker
+func (i_ INMessage) SetSticker(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSticker:"), value)
 }
 
 

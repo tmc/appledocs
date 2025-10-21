@@ -79,22 +79,22 @@ func NewCPaddingLayer() CPaddingLayer {
 }
 
 
-// The top padding size.
+// The constant value you use if padding type is constant.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtop
-func (c_ CPaddingLayer) PaddingTop() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("paddingTop"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/constantvalue
+func (c_ CPaddingLayer) ConstantValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("constantValue"))
 	return rv
 }
 
 
-// SetPaddingTop sets the value of the paddingTop property.
-// The top padding size.
+// SetConstantValue sets the value of the constantValue property.
+// The constant value you use if padding type is constant.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtop
-func (c_ CPaddingLayer) SetPaddingTop(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingTop:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/constantvalue
+func (c_ CPaddingLayer) SetConstantValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setConstantValue:"), value)
 }
 
 // The bottom padding size.
@@ -113,42 +113,6 @@ func (c_ CPaddingLayer) PaddingBottom() int {
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingbottom
 func (c_ CPaddingLayer) SetPaddingBottom(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingBottom:"), value)
-}
-
-// The padding type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtype
-func (c_ CPaddingLayer) PaddingType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("paddingType"))
-	return rv
-}
-
-
-// SetPaddingType sets the value of the paddingType property.
-// The padding type.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtype
-func (c_ CPaddingLayer) SetPaddingType(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingType:"), value)
-}
-
-// The constant value you use if padding type is constant.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/constantvalue
-func (c_ CPaddingLayer) ConstantValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("constantValue"))
-	return rv
-}
-
-
-// SetConstantValue sets the value of the constantValue property.
-// The constant value you use if padding type is constant.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/constantvalue
-func (c_ CPaddingLayer) SetConstantValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConstantValue:"), value)
 }
 
 // The left padding size.
@@ -185,6 +149,42 @@ func (c_ CPaddingLayer) PaddingRight() int {
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingright
 func (c_ CPaddingLayer) SetPaddingRight(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingRight:"), value)
+}
+
+// The top padding size.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtop
+func (c_ CPaddingLayer) PaddingTop() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("paddingTop"))
+	return rv
+}
+
+
+// SetPaddingTop sets the value of the paddingTop property.
+// The top padding size.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtop
+func (c_ CPaddingLayer) SetPaddingTop(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingTop:"), value)
+}
+
+// The padding type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtype
+func (c_ CPaddingLayer) PaddingType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("paddingType"))
+	return rv
+}
+
+
+// SetPaddingType sets the value of the paddingType property.
+// The padding type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtype
+func (c_ CPaddingLayer) SetPaddingType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingType:"), value)
 }
 
 

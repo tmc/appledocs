@@ -228,24 +228,6 @@ func (a_ AMAction) WriteToDictionary(dictionary unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("writeToDictionary:"), dictionary)
 }
 
-// A Boolean value that indicates whether the user clicked the stop button on the parent workflow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/automator/amaction/isstopped
-func (a_ AMAction) IsStopped() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isStopped"))
-	return rv
-}
-
-
-// SetIsStopped sets the value of the isStopped property.
-// A Boolean value that indicates whether the user clicked the stop button on the parent workflow.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/automator/amaction/isstopped
-func (a_ AMAction) SetIsStopped(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsStopped:"), value)
-}
-
 // A Boolean value that indicates whether the action acts upon its input or the input is ignored.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/ignoresInput
@@ -340,6 +322,24 @@ func (a_ AMAction) SelectedOutputType() string {
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedOutputType
 func (a_ AMAction) SetSelectedOutputType(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedOutputType:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the user clicked the stop button on the parent workflow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amaction/isstopped
+func (a_ AMAction) IsStopped() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isStopped"))
+	return rv
+}
+
+
+// SetIsStopped sets the value of the isStopped property.
+// A Boolean value that indicates whether the user clicked the stop button on the parent workflow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amaction/isstopped
+func (a_ AMAction) SetIsStopped(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsStopped:"), value)
 }
 
 

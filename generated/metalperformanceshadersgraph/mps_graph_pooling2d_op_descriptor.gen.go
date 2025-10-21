@@ -81,130 +81,22 @@ func NewGraphPooling2DOpDescriptor() GraphPooling2DOpDescriptor {
 }
 
 
-// Defines the pooling window size for the width dimension.
+// Defines the explicit padding value for the width dimension to add before the data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/kernelwidth
-func (g_ GraphPooling2DOpDescriptor) KernelWidth() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("kernelWidth"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling2DOpDescriptor/paddingLeft
+func (g_ GraphPooling2DOpDescriptor) PaddingLeft() uint {
+	rv := objc.Send[uint](g_.ID, objc.Sel("paddingLeft"))
 	return rv
 }
 
 
-// SetKernelWidth sets the value of the kernelWidth property.
-// Defines the pooling window size for the width dimension.
+// SetPaddingLeft sets the value of the paddingLeft property.
+// Defines the explicit padding value for the width dimension to add before the data.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/kernelwidth
-func (g_ GraphPooling2DOpDescriptor) SetKernelWidth(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setKernelWidth:"), value)
-}
-
-// Defines the mode for returned indices of maximum values within each pooling window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/returnindicesmode
-func (g_ GraphPooling2DOpDescriptor) ReturnIndicesMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("returnIndicesMode"))
-	return rv
-}
-
-
-// SetReturnIndicesMode sets the value of the returnIndicesMode property.
-// Defines the mode for returned indices of maximum values within each pooling window.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/returnindicesmode
-func (g_ GraphPooling2DOpDescriptor) SetReturnIndicesMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesMode:"), value)
-}
-
-// Defines the explicit padding value for the height dimension to add before the data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingtop
-func (g_ GraphPooling2DOpDescriptor) PaddingTop() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("paddingTop"))
-	return rv
-}
-
-
-// SetPaddingTop sets the value of the paddingTop property.
-// Defines the explicit padding value for the height dimension to add before the data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingtop
-func (g_ GraphPooling2DOpDescriptor) SetPaddingTop(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingTop:"), value)
-}
-
-// Defines the dilation rate for the height dimension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/dilationrateiny
-func (g_ GraphPooling2DOpDescriptor) DilationRateInY() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("dilationRateInY"))
-	return rv
-}
-
-
-// SetDilationRateInY sets the value of the dilationRateInY property.
-// Defines the dilation rate for the height dimension.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/dilationrateiny
-func (g_ GraphPooling2DOpDescriptor) SetDilationRateInY(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInY:"), value)
-}
-
-// Defines what kind of padding graph applies to the operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingstyle
-func (g_ GraphPooling2DOpDescriptor) PaddingStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("paddingStyle"))
-	return rv
-}
-
-
-// SetPaddingStyle sets the value of the paddingStyle property.
-// Defines what kind of padding graph applies to the operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingstyle
-func (g_ GraphPooling2DOpDescriptor) SetPaddingStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
-}
-
-// Defines the data type for returned indices.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/returnindicesdatatype
-func (g_ GraphPooling2DOpDescriptor) ReturnIndicesDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("returnIndicesDataType"))
-	return rv
-}
-
-
-// SetReturnIndicesDataType sets the value of the returnIndicesDataType property.
-// Defines the data type for returned indices.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/returnindicesdatatype
-func (g_ GraphPooling2DOpDescriptor) SetReturnIndicesDataType(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesDataType:"), value)
-}
-
-// Defines the stride for the width dimension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/strideinx
-func (g_ GraphPooling2DOpDescriptor) StrideInX() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("strideInX"))
-	return rv
-}
-
-
-// SetStrideInX sets the value of the strideInX property.
-// Defines the stride for the width dimension.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/strideinx
-func (g_ GraphPooling2DOpDescriptor) SetStrideInX(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setStrideInX:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling2DOpDescriptor/paddingLeft
+func (g_ GraphPooling2DOpDescriptor) SetPaddingLeft(value uint) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingLeft:"), value)
 }
 
 // Affects how the graph computes the output size.
@@ -225,40 +117,22 @@ func (g_ GraphPooling2DOpDescriptor) SetCeilMode(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCeilMode:"), value)
 }
 
-// Defines the stride for the height dimension.
+// Defines the data layout of the input data in the forward pass. See:
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/strideiny
-func (g_ GraphPooling2DOpDescriptor) StrideInY() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("strideInY"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/datalayout
+func (g_ GraphPooling2DOpDescriptor) DataLayout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataLayout"))
 	return rv
 }
 
 
-// SetStrideInY sets the value of the strideInY property.
-// Defines the stride for the height dimension.
+// SetDataLayout sets the value of the dataLayout property.
+// Defines the data layout of the input data in the forward pass. See:
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/strideiny
-func (g_ GraphPooling2DOpDescriptor) SetStrideInY(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setStrideInY:"), value)
-}
-
-// Defines the pooling window size for the height dimension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/kernelheight
-func (g_ GraphPooling2DOpDescriptor) KernelHeight() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("kernelHeight"))
-	return rv
-}
-
-
-// SetKernelHeight sets the value of the kernelHeight property.
-// Defines the pooling window size for the height dimension.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/kernelheight
-func (g_ GraphPooling2DOpDescriptor) SetKernelHeight(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setKernelHeight:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/datalayout
+func (g_ GraphPooling2DOpDescriptor) SetDataLayout(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDataLayout:"), value)
 }
 
 // Defines the dilation rate for the width dimension.
@@ -279,40 +153,22 @@ func (g_ GraphPooling2DOpDescriptor) SetDilationRateInX(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInX:"), value)
 }
 
-// Defines the explicit padding value for the height dimension to add after the data.
+// Defines the dilation rate for the height dimension.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingbottom
-func (g_ GraphPooling2DOpDescriptor) PaddingBottom() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("paddingBottom"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/dilationrateiny
+func (g_ GraphPooling2DOpDescriptor) DilationRateInY() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("dilationRateInY"))
 	return rv
 }
 
 
-// SetPaddingBottom sets the value of the paddingBottom property.
-// Defines the explicit padding value for the height dimension to add after the data.
+// SetDilationRateInY sets the value of the dilationRateInY property.
+// Defines the dilation rate for the height dimension.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingbottom
-func (g_ GraphPooling2DOpDescriptor) SetPaddingBottom(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingBottom:"), value)
-}
-
-// Defines the data layout of the input data in the forward pass. See:
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/datalayout
-func (g_ GraphPooling2DOpDescriptor) DataLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataLayout"))
-	return rv
-}
-
-
-// SetDataLayout sets the value of the dataLayout property.
-// Defines the data layout of the input data in the forward pass. See:
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/datalayout
-func (g_ GraphPooling2DOpDescriptor) SetDataLayout(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDataLayout:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/dilationrateiny
+func (g_ GraphPooling2DOpDescriptor) SetDilationRateInY(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInY:"), value)
 }
 
 // Defines a mode for average pooling, where samples outside the input tensor count as zeroes in the average computation.
@@ -333,6 +189,60 @@ func (g_ GraphPooling2DOpDescriptor) SetIncludeZeroPadToAverage(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIncludeZeroPadToAverage:"), value)
 }
 
+// Defines the pooling window size for the height dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/kernelheight
+func (g_ GraphPooling2DOpDescriptor) KernelHeight() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("kernelHeight"))
+	return rv
+}
+
+
+// SetKernelHeight sets the value of the kernelHeight property.
+// Defines the pooling window size for the height dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/kernelheight
+func (g_ GraphPooling2DOpDescriptor) SetKernelHeight(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setKernelHeight:"), value)
+}
+
+// Defines the pooling window size for the width dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/kernelwidth
+func (g_ GraphPooling2DOpDescriptor) KernelWidth() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("kernelWidth"))
+	return rv
+}
+
+
+// SetKernelWidth sets the value of the kernelWidth property.
+// Defines the pooling window size for the width dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/kernelwidth
+func (g_ GraphPooling2DOpDescriptor) SetKernelWidth(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setKernelWidth:"), value)
+}
+
+// Defines the explicit padding value for the height dimension to add after the data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingbottom
+func (g_ GraphPooling2DOpDescriptor) PaddingBottom() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("paddingBottom"))
+	return rv
+}
+
+
+// SetPaddingBottom sets the value of the paddingBottom property.
+// Defines the explicit padding value for the height dimension to add after the data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingbottom
+func (g_ GraphPooling2DOpDescriptor) SetPaddingBottom(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingBottom:"), value)
+}
+
 // Defines the explicit padding value for the width dimension to add after the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingright
@@ -351,22 +261,112 @@ func (g_ GraphPooling2DOpDescriptor) SetPaddingRight(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingRight:"), value)
 }
 
-// Defines the explicit padding value for the width dimension to add before the data.
+// Defines what kind of padding graph applies to the operation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling2DOpDescriptor/paddingLeft
-func (g_ GraphPooling2DOpDescriptor) PaddingLeft() uint {
-	rv := objc.Send[uint](g_.ID, objc.Sel("paddingLeft"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingstyle
+func (g_ GraphPooling2DOpDescriptor) PaddingStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("paddingStyle"))
 	return rv
 }
 
 
-// SetPaddingLeft sets the value of the paddingLeft property.
-// Defines the explicit padding value for the width dimension to add before the data.
+// SetPaddingStyle sets the value of the paddingStyle property.
+// Defines what kind of padding graph applies to the operation.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling2DOpDescriptor/paddingLeft
-func (g_ GraphPooling2DOpDescriptor) SetPaddingLeft(value uint) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingLeft:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingstyle
+func (g_ GraphPooling2DOpDescriptor) SetPaddingStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
+}
+
+// Defines the explicit padding value for the height dimension to add before the data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingtop
+func (g_ GraphPooling2DOpDescriptor) PaddingTop() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("paddingTop"))
+	return rv
+}
+
+
+// SetPaddingTop sets the value of the paddingTop property.
+// Defines the explicit padding value for the height dimension to add before the data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/paddingtop
+func (g_ GraphPooling2DOpDescriptor) SetPaddingTop(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingTop:"), value)
+}
+
+// Defines the data type for returned indices.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/returnindicesdatatype
+func (g_ GraphPooling2DOpDescriptor) ReturnIndicesDataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("returnIndicesDataType"))
+	return rv
+}
+
+
+// SetReturnIndicesDataType sets the value of the returnIndicesDataType property.
+// Defines the data type for returned indices.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/returnindicesdatatype
+func (g_ GraphPooling2DOpDescriptor) SetReturnIndicesDataType(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesDataType:"), value)
+}
+
+// Defines the mode for returned indices of maximum values within each pooling window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/returnindicesmode
+func (g_ GraphPooling2DOpDescriptor) ReturnIndicesMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("returnIndicesMode"))
+	return rv
+}
+
+
+// SetReturnIndicesMode sets the value of the returnIndicesMode property.
+// Defines the mode for returned indices of maximum values within each pooling window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/returnindicesmode
+func (g_ GraphPooling2DOpDescriptor) SetReturnIndicesMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesMode:"), value)
+}
+
+// Defines the stride for the width dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/strideinx
+func (g_ GraphPooling2DOpDescriptor) StrideInX() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("strideInX"))
+	return rv
+}
+
+
+// SetStrideInX sets the value of the strideInX property.
+// Defines the stride for the width dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/strideinx
+func (g_ GraphPooling2DOpDescriptor) SetStrideInX(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setStrideInX:"), value)
+}
+
+// Defines the stride for the height dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/strideiny
+func (g_ GraphPooling2DOpDescriptor) StrideInY() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("strideInY"))
+	return rv
+}
+
+
+// SetStrideInY sets the value of the strideInY property.
+// Defines the stride for the height dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor/strideiny
+func (g_ GraphPooling2DOpDescriptor) SetStrideInY(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setStrideInY:"), value)
 }
 
 

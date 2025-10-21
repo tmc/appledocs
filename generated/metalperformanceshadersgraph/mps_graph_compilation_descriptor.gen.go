@@ -79,22 +79,58 @@ func NewGraphCompilationDescriptor() GraphCompilationDescriptor {
 }
 
 
-// The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
+// The dispatch queue used for the compilation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/optimizationlevel
-func (g_ GraphCompilationDescriptor) OptimizationLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("optimizationLevel"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/dispatchQueue
+func (g_ GraphCompilationDescriptor) DispatchQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dispatchQueue"))
 	return rv
 }
 
 
-// SetOptimizationLevel sets the value of the optimizationLevel property.
-// The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
+// SetDispatchQueue sets the value of the dispatchQueue property.
+// The dispatch queue used for the compilation.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/optimizationlevel
-func (g_ GraphCompilationDescriptor) SetOptimizationLevel(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationLevel:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/dispatchQueue
+func (g_ GraphCompilationDescriptor) SetDispatchQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDispatchQueue:"), value)
+}
+
+// The optimization profile for the graph optimization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationProfile
+func (g_ GraphCompilationDescriptor) OptimizationProfile() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("optimizationProfile"))
+	return rv
+}
+
+
+// SetOptimizationProfile sets the value of the optimizationProfile property.
+// The optimization profile for the graph optimization.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationProfile
+func (g_ GraphCompilationDescriptor) SetOptimizationProfile(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationProfile:"), value)
+}
+
+// The dictionary used during runtime to lookup the
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/callables
+func (g_ GraphCompilationDescriptor) Callables() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("callables"))
+	return rv
+}
+
+
+// SetCallables sets the value of the callables property.
+// The dictionary used during runtime to lookup the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/callables
+func (g_ GraphCompilationDescriptor) SetCallables(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setCallables:"), objc.String(value))
 }
 
 // The handler that the graph calls when the compilation completes.
@@ -113,6 +149,24 @@ func (g_ GraphCompilationDescriptor) CompilationCompletionHandler() unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/compilationcompletionhandler
 func (g_ GraphCompilationDescriptor) SetCompilationCompletionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompilationCompletionHandler:"), value)
+}
+
+// The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/optimizationlevel
+func (g_ GraphCompilationDescriptor) OptimizationLevel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("optimizationLevel"))
+	return rv
+}
+
+
+// SetOptimizationLevel sets the value of the optimizationLevel property.
+// The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/optimizationlevel
+func (g_ GraphCompilationDescriptor) SetOptimizationLevel(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationLevel:"), value)
 }
 
 // Across the executable allow reduced precision fast math optimizations.
@@ -149,60 +203,6 @@ func (g_ GraphCompilationDescriptor) WaitForCompilationCompletion() bool {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/waitforcompilationcompletion
 func (g_ GraphCompilationDescriptor) SetWaitForCompilationCompletion(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWaitForCompilationCompletion:"), value)
-}
-
-// The dictionary used during runtime to lookup the
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/callables
-func (g_ GraphCompilationDescriptor) Callables() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("callables"))
-	return rv
-}
-
-
-// SetCallables sets the value of the callables property.
-// The dictionary used during runtime to lookup the
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/callables
-func (g_ GraphCompilationDescriptor) SetCallables(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setCallables:"), objc.String(value))
-}
-
-// The dispatch queue used for the compilation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/dispatchQueue
-func (g_ GraphCompilationDescriptor) DispatchQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dispatchQueue"))
-	return rv
-}
-
-
-// SetDispatchQueue sets the value of the dispatchQueue property.
-// The dispatch queue used for the compilation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/dispatchQueue
-func (g_ GraphCompilationDescriptor) SetDispatchQueue(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDispatchQueue:"), value)
-}
-
-// The optimization profile for the graph optimization.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationProfile
-func (g_ GraphCompilationDescriptor) OptimizationProfile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("optimizationProfile"))
-	return rv
-}
-
-
-// SetOptimizationProfile sets the value of the optimizationProfile property.
-// The optimization profile for the graph optimization.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationProfile
-func (g_ GraphCompilationDescriptor) SetOptimizationProfile(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationProfile:"), value)
 }
 
 

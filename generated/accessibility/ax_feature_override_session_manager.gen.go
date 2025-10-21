@@ -101,16 +101,16 @@ func (a_ AXFeatureOverrideSessionManager) EndOverrideSessionError(session unsafe
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/accessibility/axfeatureoverridesessionerrordomain
-func (a_ AXFeatureOverrideSessionManager) AXFeatureOverrideSessionErrorDomain() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionManager/sharedInstance
+func (a_ AXFeatureOverrideSessionManager) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sharedInstance"))
 	return rv
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionManager/sharedInstance
-func (a_ AXFeatureOverrideSessionManager) SharedInstance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sharedInstance"))
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axfeatureoverridesessionerrordomain
+func (a_ AXFeatureOverrideSessionManager) AXFeatureOverrideSessionErrorDomain() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
 	return rv
 }
 

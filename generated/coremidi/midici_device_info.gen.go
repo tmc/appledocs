@@ -96,6 +96,24 @@ func (m_ MIDICIDeviceInfo) SetFamily(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFamily:"), value)
 }
 
+// The MIDI System Exclusive (SysEx) ID of the device manufacturer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/manufacturerid
+func (m_ MIDICIDeviceInfo) ManufacturerID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("manufacturerID"))
+	return rv
+}
+
+
+// SetManufacturerID sets the value of the manufacturerID property.
+// The MIDI System Exclusive (SysEx) ID of the device manufacturer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/manufacturerid
+func (m_ MIDICIDeviceInfo) SetManufacturerID(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setManufacturerID:"), value)
+}
+
 // The MIDI destination the device’s MIDI entity uses for capability inquiries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/mididestination
@@ -114,22 +132,22 @@ func (m_ MIDICIDeviceInfo) SetMidiDestination(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiDestination:"), value)
 }
 
-// The MIDI-CI device’s information.
+// The model number of the device.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-func (m_ MIDICIDeviceInfo) DeviceInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceInfo"))
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/modelnumber
+func (m_ MIDICIDeviceInfo) ModelNumber() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modelNumber"))
 	return rv
 }
 
 
-// SetDeviceInfo sets the value of the deviceInfo property.
-// The MIDI-CI device’s information.
+// SetModelNumber sets the value of the modelNumber property.
+// The model number of the device.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-func (m_ MIDICIDeviceInfo) SetDeviceInfo(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/modelnumber
+func (m_ MIDICIDeviceInfo) SetModelNumber(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModelNumber:"), value)
 }
 
 // The revision number of the device model number.
@@ -150,6 +168,24 @@ func (m_ MIDICIDeviceInfo) SetRevisionLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevisionLevel:"), value)
 }
 
+// The MIDI-CI device’s information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
+func (m_ MIDICIDeviceInfo) DeviceInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceInfo"))
+	return rv
+}
+
+
+// SetDeviceInfo sets the value of the deviceInfo property.
+// The MIDI-CI device’s information.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
+func (m_ MIDICIDeviceInfo) SetDeviceInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
+}
+
 // An array of initiators.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/initiators
@@ -166,42 +202,6 @@ func (m_ MIDICIDeviceInfo) Initiators() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/initiators
 func (m_ MIDICIDeviceInfo) SetInitiators(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInitiators:"), value)
-}
-
-// The MIDI System Exclusive (SysEx) ID of the device manufacturer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/manufacturerid
-func (m_ MIDICIDeviceInfo) ManufacturerID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("manufacturerID"))
-	return rv
-}
-
-
-// SetManufacturerID sets the value of the manufacturerID property.
-// The MIDI System Exclusive (SysEx) ID of the device manufacturer.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/manufacturerid
-func (m_ MIDICIDeviceInfo) SetManufacturerID(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setManufacturerID:"), value)
-}
-
-// The model number of the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/modelnumber
-func (m_ MIDICIDeviceInfo) ModelNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modelNumber"))
-	return rv
-}
-
-
-// SetModelNumber sets the value of the modelNumber property.
-// The model number of the device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/modelnumber
-func (m_ MIDICIDeviceInfo) SetModelNumber(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setModelNumber:"), value)
 }
 
 

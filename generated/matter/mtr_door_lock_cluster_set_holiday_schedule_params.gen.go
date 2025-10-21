@@ -77,36 +77,6 @@ func NewMTRDoorLockClusterSetHolidayScheduleParams() MTRDoorLockClusterSetHolida
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterSetHolidayScheduleParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/localstarttime
-func (m_ MTRDoorLockClusterSetHolidayScheduleParams) LocalStartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localStartTime"))
-	return rv
-}
-
-
-// SetLocalStartTime sets the value of the localStartTime property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/localstarttime
-func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetLocalStartTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalStartTime:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/holidayindex
 func (m_ MTRDoorLockClusterSetHolidayScheduleParams) HolidayIndex() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holidayIndex"))
@@ -137,6 +107,21 @@ func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetLocalEndTime(value found
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/localstarttime
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) LocalStartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localStartTime"))
+	return rv
+}
+
+
+// SetLocalStartTime sets the value of the localStartTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/localstarttime
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetLocalStartTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalStartTime:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/operatingmode
 func (m_ MTRDoorLockClusterSetHolidayScheduleParams) OperatingMode() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operatingMode"))
@@ -149,6 +134,21 @@ func (m_ MTRDoorLockClusterSetHolidayScheduleParams) OperatingMode() foundation.
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/operatingmode
 func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetOperatingMode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatingMode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

@@ -318,116 +318,6 @@ func (m_ ManagedObjectContext) Unlock() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("unlock"))
 }
 
-// A key for the set of objects that were updated.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsupdatedobjectskey
-func (m_ ManagedObjectContext) NSUpdatedObjectsKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSUpdatedObjectsKey"))
-	return rv
-}
-
-// The set of objects that have been inserted into the context but not yet saved in a persistent store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/insertedobjects
-func (m_ ManagedObjectContext) InsertedObjects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("insertedObjects"))
-	return rv
-}
-
-
-// SetInsertedObjects sets the value of the insertedObjects property.
-// The set of objects that have been inserted into the context but not yet saved in a persistent store.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/insertedobjects
-func (m_ ManagedObjectContext) SetInsertedObjects(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInsertedObjects:"), value)
-}
-
-// A key for the set of objects that were invalidated.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsinvalidatedobjectskey
-func (m_ ManagedObjectContext) NSInvalidatedObjectsKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSInvalidatedObjectsKey"))
-	return rv
-}
-
-// A key for the set of objects that were marked for deletion during the previous event.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsdeletedobjectskey
-func (m_ ManagedObjectContext) NSDeletedObjectsKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSDeletedObjectsKey"))
-	return rv
-}
-
-// A key for the set of objects that were refreshed but were not dirtied in the scope of this context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrefreshedobjectskey
-func (m_ ManagedObjectContext) NSRefreshedObjectsKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSRefreshedObjectsKey"))
-	return rv
-}
-
-// A key that specifies that all objects in the context have been invalidated.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsinvalidatedallobjectskey
-func (m_ ManagedObjectContext) NSInvalidatedAllObjectsKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSInvalidatedAllObjectsKey"))
-	return rv
-}
-
-// Constant used to reference the query generation token.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextquerygenerationkey
-func (m_ ManagedObjectContext) NSManagedObjectContextQueryGenerationKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSManagedObjectContextQueryGenerationKey"))
-	return rv
-}
-
-// A key for the set of objects that were inserted into the context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsinsertedobjectskey
-func (m_ ManagedObjectContext) NSInsertedObjectsKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSInsertedObjectsKey"))
-	return rv
-}
-
-// The parent of the context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/parent
-func (m_ ManagedObjectContext) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("parent"))
-	return rv
-}
-
-
-// SetParent sets the value of the parent property.
-// The parent of the context.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/parent
-func (m_ ManagedObjectContext) SetParent(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setParent:"), value)
-}
-
-// The object that provides undo support for the context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/undomanager
-func (m_ ManagedObjectContext) UndoManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("undoManager"))
-	return rv
-}
-
-
-// SetUndoManager sets the value of the undoManager property.
-// The object that provides undo support for the context.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/undomanager
-func (m_ ManagedObjectContext) SetUndoManager(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUndoManager:"), value)
-}
-
 // A Boolean value that indicates whether the context automatically merges changes saved to its persistent store coordinator or parent context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/automaticallyMergesChangesFromParent
@@ -643,6 +533,116 @@ func (m_ ManagedObjectContext) UpdatedObjects() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/userInfo
 func (m_ ManagedObjectContext) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+// A key for the set of objects that were marked for deletion during the previous event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsdeletedobjectskey
+func (m_ ManagedObjectContext) NSDeletedObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSDeletedObjectsKey"))
+	return rv
+}
+
+// A key for the set of objects that were inserted into the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsinsertedobjectskey
+func (m_ ManagedObjectContext) NSInsertedObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSInsertedObjectsKey"))
+	return rv
+}
+
+// A key that specifies that all objects in the context have been invalidated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsinvalidatedallobjectskey
+func (m_ ManagedObjectContext) NSInvalidatedAllObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSInvalidatedAllObjectsKey"))
+	return rv
+}
+
+// A key for the set of objects that were invalidated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsinvalidatedobjectskey
+func (m_ ManagedObjectContext) NSInvalidatedObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSInvalidatedObjectsKey"))
+	return rv
+}
+
+// The set of objects that have been inserted into the context but not yet saved in a persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/insertedobjects
+func (m_ ManagedObjectContext) InsertedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("insertedObjects"))
+	return rv
+}
+
+
+// SetInsertedObjects sets the value of the insertedObjects property.
+// The set of objects that have been inserted into the context but not yet saved in a persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/insertedobjects
+func (m_ ManagedObjectContext) SetInsertedObjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInsertedObjects:"), value)
+}
+
+// The parent of the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/parent
+func (m_ ManagedObjectContext) Parent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("parent"))
+	return rv
+}
+
+
+// SetParent sets the value of the parent property.
+// The parent of the context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/parent
+func (m_ ManagedObjectContext) SetParent(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setParent:"), value)
+}
+
+// The object that provides undo support for the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/undomanager
+func (m_ ManagedObjectContext) UndoManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("undoManager"))
+	return rv
+}
+
+
+// SetUndoManager sets the value of the undoManager property.
+// The object that provides undo support for the context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/undomanager
+func (m_ ManagedObjectContext) SetUndoManager(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUndoManager:"), value)
+}
+
+// Constant used to reference the query generation token.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextquerygenerationkey
+func (m_ ManagedObjectContext) NSManagedObjectContextQueryGenerationKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSManagedObjectContextQueryGenerationKey"))
+	return rv
+}
+
+// A key for the set of objects that were refreshed but were not dirtied in the scope of this context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrefreshedobjectskey
+func (m_ ManagedObjectContext) NSRefreshedObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSRefreshedObjectsKey"))
+	return rv
+}
+
+// A key for the set of objects that were updated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsupdatedobjectskey
+func (m_ ManagedObjectContext) NSUpdatedObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSUpdatedObjectsKey"))
 	return rv
 }
 

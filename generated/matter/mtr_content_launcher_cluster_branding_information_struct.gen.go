@@ -76,6 +76,36 @@ func NewMTRContentLauncherClusterBrandingInformationStruct() MTRContentLauncherC
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/background
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) Background() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("background"))
+	return rv
+}
+
+
+// SetBackground sets the value of the background property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/background
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetBackground(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBackground:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/logo
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) Logo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("logo"))
+	return rv
+}
+
+
+// SetLogo sets the value of the logo property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/logo
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetLogo(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLogo:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/progressbar
 func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProgressBar() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("progressBar"))
@@ -88,21 +118,6 @@ func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProgressBar() unsaf
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/progressbar
 func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetProgressBar(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProgressBar:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/watermark
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) WaterMark() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("waterMark"))
-	return rv
-}
-
-
-// SetWaterMark sets the value of the waterMark property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/watermark
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetWaterMark(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setWaterMark:"), value)
 }
 
 //
@@ -136,33 +151,18 @@ func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetSplash(value uns
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/logo
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) Logo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("logo"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/watermark
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) WaterMark() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("waterMark"))
 	return rv
 }
 
 
-// SetLogo sets the value of the logo property.
+// SetWaterMark sets the value of the waterMark property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/logo
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetLogo(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLogo:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/background
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) Background() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("background"))
-	return rv
-}
-
-
-// SetBackground sets the value of the background property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/background
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetBackground(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBackground:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/watermark
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetWaterMark(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setWaterMark:"), value)
 }
 
 

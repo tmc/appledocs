@@ -80,6 +80,24 @@ func NewMKHybridMapConfiguration() MKHybridMapConfiguration {
 
 
 
+// The filter the framework uses to determine the points of interest to show on the map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKHybridMapConfiguration/pointOfInterestFilter
+func (m_ MKHybridMapConfiguration) PointOfInterestFilter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+	return rv
+}
+
+
+// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
+// The filter the framework uses to determine the points of interest to show on the map.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKHybridMapConfiguration/pointOfInterestFilter
+func (m_ MKHybridMapConfiguration) SetPointOfInterestFilter(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
+}
+
 // A Boolean value that indicates whether the maps shows traffic conditions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkhybridmapconfiguration/showstraffic
@@ -96,24 +114,6 @@ func (m_ MKHybridMapConfiguration) ShowsTraffic() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkhybridmapconfiguration/showstraffic
 func (m_ MKHybridMapConfiguration) SetShowsTraffic(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsTraffic:"), value)
-}
-
-// A Boolean value that indicates whether the map displays the user tracking button.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
-func (m_ MKHybridMapConfiguration) ShowsUserTrackingButton() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
-	return rv
-}
-
-
-// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
-// A Boolean value that indicates whether the map displays the user tracking button.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
-func (m_ MKHybridMapConfiguration) SetShowsUserTrackingButton(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)
 }
 
 // A value that indicates whether the map’s pitch button is visible.
@@ -152,22 +152,22 @@ func (m_ MKHybridMapConfiguration) SetPreferredConfiguration(value unsafe.Pointe
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
-// The filter the framework uses to determine the points of interest to show on the map.
+// A Boolean value that indicates whether the map displays the user tracking button.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKHybridMapConfiguration/pointOfInterestFilter
-func (m_ MKHybridMapConfiguration) PointOfInterestFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
+func (m_ MKHybridMapConfiguration) ShowsUserTrackingButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
 	return rv
 }
 
 
-// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
-// The filter the framework uses to determine the points of interest to show on the map.
+// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
+// A Boolean value that indicates whether the map displays the user tracking button.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKHybridMapConfiguration/pointOfInterestFilter
-func (m_ MKHybridMapConfiguration) SetPointOfInterestFilter(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
+func (m_ MKHybridMapConfiguration) SetShowsUserTrackingButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)
 }
 
 

@@ -77,18 +77,18 @@ func NewMTROTASoftwareUpdateRequestorClusterDownloadErrorEvent() MTROTASoftwareU
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/softwareversion
-func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-2w5rw/bytesdownloaded
+func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) BytesDownloaded() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("bytesDownloaded"))
 	return rv
 }
 
 
-// SetSoftwareVersion sets the value of the softwareVersion property.
+// SetBytesDownloaded sets the value of the bytesDownloaded property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/softwareversion
-func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetSoftwareVersion(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-2w5rw/bytesdownloaded
+func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetBytesDownloaded(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBytesDownloaded:"), value)
 }
 
 //
@@ -107,21 +107,6 @@ func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetPlatformCode
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/bytesdownloaded
-func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) BytesDownloaded() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("bytesDownloaded"))
-	return rv
-}
-
-
-// SetBytesDownloaded sets the value of the bytesDownloaded property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/bytesdownloaded
-func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetBytesDownloaded(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBytesDownloaded:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-2w5rw/progresspercent
 func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) ProgressPercent() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("progressPercent"))
@@ -134,6 +119,21 @@ func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) ProgressPercent
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-2w5rw/progresspercent
 func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetProgressPercent(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProgressPercent:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-2w5rw/softwareversion
+func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SoftwareVersion() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+	return rv
+}
+
+
+// SetSoftwareVersion sets the value of the softwareVersion property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-2w5rw/softwareversion
+func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetSoftwareVersion(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 
 

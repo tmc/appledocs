@@ -115,94 +115,22 @@ func (m_ ManagedObjectModel) SetFetchRequestTemplateForName(fetchRequestTemplate
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFetchRequestTemplate:forName:"), fetchRequestTemplate, objc.String(name))
 }
 
-// The dictionary of the model’s entity names and their corresponding version hashes.
+// All the available configuration names of the model.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entityversionhashesbyname
-func (m_ ManagedObjectModel) EntityVersionHashesByName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("entityVersionHashesByName"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/configurations
+func (m_ ManagedObjectModel) Configurations() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("configurations"))
 	return rv
 }
 
 
-// SetEntityVersionHashesByName sets the value of the entityVersionHashesByName property.
-// The dictionary of the model’s entity names and their corresponding version hashes.
+// SetConfigurations sets the value of the configurations property.
+// All the available configuration names of the model.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entityversionhashesbyname
-func (m_ ManagedObjectModel) SetEntityVersionHashesByName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEntityVersionHashesByName:"), objc.String(value))
-}
-
-// The entities of the model, keyed by name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entitiesbyname
-func (m_ ManagedObjectModel) EntitiesByName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("entitiesByName"))
-	return rv
-}
-
-
-// SetEntitiesByName sets the value of the entitiesByName property.
-// The entities of the model, keyed by name.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entitiesbyname
-func (m_ ManagedObjectModel) SetEntitiesByName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEntitiesByName:"), objc.String(value))
-}
-
-// The set of developer-defined version identifiers for the object model.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionidentifiers
-func (m_ ManagedObjectModel) VersionIdentifiers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("versionIdentifiers"))
-	return rv
-}
-
-
-// SetVersionIdentifiers sets the value of the versionIdentifiers property.
-// The set of developer-defined version identifiers for the object model.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionidentifiers
-func (m_ ManagedObjectModel) SetVersionIdentifiers(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionIdentifiers:"), value)
-}
-
-// The Base64-encoded 128-bit model version hash.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionchecksum
-func (m_ ManagedObjectModel) VersionChecksum() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("versionChecksum"))
-	return rv
-}
-
-
-// SetVersionChecksum sets the value of the versionChecksum property.
-// The Base64-encoded 128-bit model version hash.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionchecksum
-func (m_ ManagedObjectModel) SetVersionChecksum(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), objc.String(value))
-}
-
-// The localization dictionary of the model.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/localizationdictionary
-func (m_ ManagedObjectModel) LocalizationDictionary() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("localizationDictionary"))
-	return rv
-}
-
-
-// SetLocalizationDictionary sets the value of the localizationDictionary property.
-// The localization dictionary of the model.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/localizationdictionary
-func (m_ ManagedObjectModel) SetLocalizationDictionary(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalizationDictionary:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/configurations
+func (m_ ManagedObjectModel) SetConfigurations(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setConfigurations:"), objc.String(value))
 }
 
 // The entities in the model.
@@ -223,6 +151,42 @@ func (m_ ManagedObjectModel) SetEntities(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntities:"), value)
 }
 
+// The entities of the model, keyed by name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entitiesbyname
+func (m_ ManagedObjectModel) EntitiesByName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("entitiesByName"))
+	return rv
+}
+
+
+// SetEntitiesByName sets the value of the entitiesByName property.
+// The entities of the model, keyed by name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entitiesbyname
+func (m_ ManagedObjectModel) SetEntitiesByName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEntitiesByName:"), objc.String(value))
+}
+
+// The dictionary of the model’s entity names and their corresponding version hashes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entityversionhashesbyname
+func (m_ ManagedObjectModel) EntityVersionHashesByName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("entityVersionHashesByName"))
+	return rv
+}
+
+
+// SetEntityVersionHashesByName sets the value of the entityVersionHashesByName property.
+// The dictionary of the model’s entity names and their corresponding version hashes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entityversionhashesbyname
+func (m_ ManagedObjectModel) SetEntityVersionHashesByName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEntityVersionHashesByName:"), objc.String(value))
+}
+
 // A dictionary of the receiver’s fetch request templates, keyed by name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/fetchrequesttemplatesbyname
@@ -241,22 +205,58 @@ func (m_ ManagedObjectModel) SetFetchRequestTemplatesByName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFetchRequestTemplatesByName:"), objc.String(value))
 }
 
-// All the available configuration names of the model.
+// The localization dictionary of the model.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/configurations
-func (m_ ManagedObjectModel) Configurations() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("configurations"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/localizationdictionary
+func (m_ ManagedObjectModel) LocalizationDictionary() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("localizationDictionary"))
 	return rv
 }
 
 
-// SetConfigurations sets the value of the configurations property.
-// All the available configuration names of the model.
+// SetLocalizationDictionary sets the value of the localizationDictionary property.
+// The localization dictionary of the model.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/configurations
-func (m_ ManagedObjectModel) SetConfigurations(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setConfigurations:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/localizationdictionary
+func (m_ ManagedObjectModel) SetLocalizationDictionary(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalizationDictionary:"), objc.String(value))
+}
+
+// The Base64-encoded 128-bit model version hash.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionchecksum
+func (m_ ManagedObjectModel) VersionChecksum() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("versionChecksum"))
+	return rv
+}
+
+
+// SetVersionChecksum sets the value of the versionChecksum property.
+// The Base64-encoded 128-bit model version hash.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionchecksum
+func (m_ ManagedObjectModel) SetVersionChecksum(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), objc.String(value))
+}
+
+// The set of developer-defined version identifiers for the object model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionidentifiers
+func (m_ ManagedObjectModel) VersionIdentifiers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("versionIdentifiers"))
+	return rv
+}
+
+
+// SetVersionIdentifiers sets the value of the versionIdentifiers property.
+// The set of developer-defined version identifiers for the object model.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionidentifiers
+func (m_ ManagedObjectModel) SetVersionIdentifiers(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionIdentifiers:"), value)
 }
 
 

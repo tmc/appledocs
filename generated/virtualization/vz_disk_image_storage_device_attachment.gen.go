@@ -82,24 +82,6 @@ func NewVZDiskImageStorageDeviceAttachment() VZDiskImageStorageDeviceAttachment 
 }
 
 
-// The mode in which the disk image synchronizes data with the underlying storage device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/synchronizationmode
-func (v_ VZDiskImageStorageDeviceAttachment) SynchronizationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("synchronizationMode"))
-	return rv
-}
-
-
-// SetSynchronizationMode sets the value of the synchronizationMode property.
-// The mode in which the disk image synchronizes data with the underlying storage device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/synchronizationmode
-func (v_ VZDiskImageStorageDeviceAttachment) SetSynchronizationMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setSynchronizationMode:"), value)
-}
-
 // The current cacheing mode for the virtual disk image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/cachingmode
@@ -134,6 +116,24 @@ func (v_ VZDiskImageStorageDeviceAttachment) IsReadOnly() bool {
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/isreadonly
 func (v_ VZDiskImageStorageDeviceAttachment) SetIsReadOnly(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsReadOnly:"), value)
+}
+
+// The mode in which the disk image synchronizes data with the underlying storage device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/synchronizationmode
+func (v_ VZDiskImageStorageDeviceAttachment) SynchronizationMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("synchronizationMode"))
+	return rv
+}
+
+
+// SetSynchronizationMode sets the value of the synchronizationMode property.
+// The mode in which the disk image synchronizes data with the underlying storage device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/synchronizationmode
+func (v_ VZDiskImageStorageDeviceAttachment) SetSynchronizationMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSynchronizationMode:"), value)
 }
 
 // The URL of the underlying disk image.

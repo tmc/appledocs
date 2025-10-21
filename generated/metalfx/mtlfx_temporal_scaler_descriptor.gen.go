@@ -128,60 +128,6 @@ func (f_ FXTemporalScalerDescriptor) NewTemporalScalerWithDeviceCompiler(device 
 	return rv
 }
 
-// A Boolean value that indicates whether a temporal scaler you create with the
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isreactivemasktextureenabled
-func (f_ FXTemporalScalerDescriptor) IsReactiveMaskTextureEnabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isReactiveMaskTextureEnabled"))
-	return rv
-}
-
-
-// SetIsReactiveMaskTextureEnabled sets the value of the isReactiveMaskTextureEnabled property.
-// A Boolean value that indicates whether a temporal scaler you create with the
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isreactivemasktextureenabled
-func (f_ FXTemporalScalerDescriptor) SetIsReactiveMaskTextureEnabled(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsReactiveMaskTextureEnabled:"), value)
-}
-
-// A Boolean value that indicates whether the temporal scaler you create with this descriptor uses dynamic resolution.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isinputcontentpropertiesenabled
-func (f_ FXTemporalScalerDescriptor) IsInputContentPropertiesEnabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isInputContentPropertiesEnabled"))
-	return rv
-}
-
-
-// SetIsInputContentPropertiesEnabled sets the value of the isInputContentPropertiesEnabled property.
-// A Boolean value that indicates whether the temporal scaler you create with this descriptor uses dynamic resolution.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isinputcontentpropertiesenabled
-func (f_ FXTemporalScalerDescriptor) SetIsInputContentPropertiesEnabled(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsInputContentPropertiesEnabled:"), value)
-}
-
-// A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isautoexposureenabled
-func (f_ FXTemporalScalerDescriptor) IsAutoExposureEnabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isAutoExposureEnabled"))
-	return rv
-}
-
-
-// SetIsAutoExposureEnabled sets the value of the isAutoExposureEnabled property.
-// A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isautoexposureenabled
-func (f_ FXTemporalScalerDescriptor) SetIsAutoExposureEnabled(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsAutoExposureEnabled:"), value)
-}
-
 // The pixel format of the input color texture for the temporal scaler you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/colorTextureFormat
@@ -450,6 +396,60 @@ func (f_ FXTemporalScalerDescriptor) RequiresSynchronousInitialization() bool {
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/requiresSynchronousInitialization
 func (f_ FXTemporalScalerDescriptor) SetRequiresSynchronousInitialization(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRequiresSynchronousInitialization:"), value)
+}
+
+// A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isautoexposureenabled
+func (f_ FXTemporalScalerDescriptor) IsAutoExposureEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isAutoExposureEnabled"))
+	return rv
+}
+
+
+// SetIsAutoExposureEnabled sets the value of the isAutoExposureEnabled property.
+// A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isautoexposureenabled
+func (f_ FXTemporalScalerDescriptor) SetIsAutoExposureEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsAutoExposureEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the temporal scaler you create with this descriptor uses dynamic resolution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isinputcontentpropertiesenabled
+func (f_ FXTemporalScalerDescriptor) IsInputContentPropertiesEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isInputContentPropertiesEnabled"))
+	return rv
+}
+
+
+// SetIsInputContentPropertiesEnabled sets the value of the isInputContentPropertiesEnabled property.
+// A Boolean value that indicates whether the temporal scaler you create with this descriptor uses dynamic resolution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isinputcontentpropertiesenabled
+func (f_ FXTemporalScalerDescriptor) SetIsInputContentPropertiesEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsInputContentPropertiesEnabled:"), value)
+}
+
+// A Boolean value that indicates whether a temporal scaler you create with the
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isreactivemasktextureenabled
+func (f_ FXTemporalScalerDescriptor) IsReactiveMaskTextureEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isReactiveMaskTextureEnabled"))
+	return rv
+}
+
+
+// SetIsReactiveMaskTextureEnabled sets the value of the isReactiveMaskTextureEnabled property.
+// A Boolean value that indicates whether a temporal scaler you create with the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isreactivemasktextureenabled
+func (f_ FXTemporalScalerDescriptor) SetIsReactiveMaskTextureEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsReactiveMaskTextureEnabled:"), value)
 }
 
 

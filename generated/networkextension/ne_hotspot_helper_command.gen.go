@@ -80,24 +80,6 @@ func NewNEHotspotHelperCommand() NEHotspotHelperCommand {
 }
 
 
-// The network associated with the command.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/network
-func (n_ NEHotspotHelperCommand) Network() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("network"))
-	return rv
-}
-
-
-// SetNetwork sets the value of the network property.
-// The network associated with the command.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/network
-func (n_ NEHotspotHelperCommand) SetNetwork(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setNetwork:"), value)
-}
-
 // The type of the command
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/commandtype
@@ -116,6 +98,39 @@ func (n_ NEHotspotHelperCommand) SetCommandType(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCommandType:"), value)
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/interface-46dq
+func (n_ NEHotspotHelperCommand) Interface() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("interface"))
+	return rv
+}
+
+
+// SetInterface sets the value of the interface property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/interface-46dq
+func (n_ NEHotspotHelperCommand) SetInterface(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setInterface:"), value)
+}
+
+// The network associated with the command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/network
+func (n_ NEHotspotHelperCommand) Network() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("network"))
+	return rv
+}
+
+
+// SetNetwork sets the value of the network property.
+// The network associated with the command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/network
+func (n_ NEHotspotHelperCommand) SetNetwork(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setNetwork:"), value)
+}
+
 // The list of networks associated with the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/networklist
@@ -132,21 +147,6 @@ func (n_ NEHotspotHelperCommand) NetworkList() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/networklist
 func (n_ NEHotspotHelperCommand) SetNetworkList(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNetworkList:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/interface-46dq
-func (n_ NEHotspotHelperCommand) Interface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("interface"))
-	return rv
-}
-
-
-// SetInterface sets the value of the interface property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/interface-46dq
-func (n_ NEHotspotHelperCommand) SetInterface(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setInterface:"), value)
 }
 
 

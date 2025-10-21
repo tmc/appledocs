@@ -181,14 +181,6 @@ func (m_ MediaQuery) RemoveFilterPredicate(predicate unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeFilterPredicate:"), predicate)
 }
 
-// A Boolean value that indicates whether the media item is part of a compilation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyiscompilation
-func (m_ MediaQuery) MPMediaItemPropertyIsCompilation() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaItemPropertyIsCompilation"))
-	return rv
-}
-
 // An array representing the section grouping of the query’s specified media item collections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/collectionSections
@@ -254,6 +246,14 @@ func (m_ MediaQuery) ItemSections() []MediaQuerySection {
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/items
 func (m_ MediaQuery) Items() []MediaItem {
 	rv := objc.Send[[]MediaItem](m_.ID, objc.Sel("items"))
+	return rv
+}
+
+// A Boolean value that indicates whether the media item is part of a compilation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyiscompilation
+func (m_ MediaQuery) MPMediaItemPropertyIsCompilation() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaItemPropertyIsCompilation"))
 	return rv
 }
 

@@ -77,6 +77,21 @@ func NewMTRAccountLoginClusterGetSetupPINParams() MTRAccountLoginClusterGetSetup
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinparams/serversideprocessingtimeout
+func (m_ MTRAccountLoginClusterGetSetupPINParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinparams/serversideprocessingtimeout
+func (m_ MTRAccountLoginClusterGetSetupPINParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinparams/tempaccountidentifier
 func (m_ MTRAccountLoginClusterGetSetupPINParams) TempAccountIdentifier() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("tempAccountIdentifier"))
@@ -104,21 +119,6 @@ func (m_ MTRAccountLoginClusterGetSetupPINParams) TimedInvokeTimeoutMs() foundat
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinparams/timedinvoketimeoutms
 func (m_ MTRAccountLoginClusterGetSetupPINParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinparams/serversideprocessingtimeout
-func (m_ MTRAccountLoginClusterGetSetupPINParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinparams/serversideprocessingtimeout
-func (m_ MTRAccountLoginClusterGetSetupPINParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 

@@ -81,76 +81,22 @@ func NewGCDirectionalGamepad() GCDirectionalGamepad {
 }
 
 
-// A Boolean value that indicates whether the profile reports the directional pad values relative to its current orientation.
+// The extended gamepad profile.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/allowsrotation
-func (g_ GCDirectionalGamepad) AllowsRotation() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("allowsRotation"))
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
+func (g_ GCDirectionalGamepad) ExtendedGamepad() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("extendedGamepad"))
 	return rv
 }
 
 
-// SetAllowsRotation sets the value of the allowsRotation property.
-// A Boolean value that indicates whether the profile reports the directional pad values relative to its current orientation.
+// SetExtendedGamepad sets the value of the extendedGamepad property.
+// The extended gamepad profile.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/allowsrotation
-func (g_ GCDirectionalGamepad) SetAllowsRotation(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setAllowsRotation:"), value)
-}
-
-// The physical input profile for the controller.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCDirectionalGamepad) PhysicalInputProfile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("physicalInputProfile"))
-	return rv
-}
-
-
-// SetPhysicalInputProfile sets the value of the physicalInputProfile property.
-// The physical input profile for the controller.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCDirectionalGamepad) SetPhysicalInputProfile(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
-}
-
-// The motion input profile.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCDirectionalGamepad) Motion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("motion"))
-	return rv
-}
-
-
-// SetMotion sets the value of the motion property.
-// The motion input profile.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCDirectionalGamepad) SetMotion(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
-}
-
-// The micro gamepad profile.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCDirectionalGamepad) MicroGamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("microGamepad"))
-	return rv
-}
-
-
-// SetMicroGamepad sets the value of the microGamepad property.
-// The micro gamepad profile.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCDirectionalGamepad) SetMicroGamepad(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
+func (g_ GCDirectionalGamepad) SetExtendedGamepad(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setExtendedGamepad:"), value)
 }
 
 // The gamepad profile.
@@ -171,22 +117,58 @@ func (g_ GCDirectionalGamepad) SetGamepad(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGamepad:"), value)
 }
 
-// The extended gamepad profile.
+// The micro gamepad profile.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-func (g_ GCDirectionalGamepad) ExtendedGamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("extendedGamepad"))
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
+func (g_ GCDirectionalGamepad) MicroGamepad() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("microGamepad"))
 	return rv
 }
 
 
-// SetExtendedGamepad sets the value of the extendedGamepad property.
-// The extended gamepad profile.
+// SetMicroGamepad sets the value of the microGamepad property.
+// The micro gamepad profile.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-func (g_ GCDirectionalGamepad) SetExtendedGamepad(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setExtendedGamepad:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
+func (g_ GCDirectionalGamepad) SetMicroGamepad(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
+}
+
+// The motion input profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
+func (g_ GCDirectionalGamepad) Motion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("motion"))
+	return rv
+}
+
+
+// SetMotion sets the value of the motion property.
+// The motion input profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
+func (g_ GCDirectionalGamepad) SetMotion(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
+}
+
+// The physical input profile for the controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
+func (g_ GCDirectionalGamepad) PhysicalInputProfile() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("physicalInputProfile"))
+	return rv
+}
+
+
+// SetPhysicalInputProfile sets the value of the physicalInputProfile property.
+// The physical input profile for the controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
+func (g_ GCDirectionalGamepad) SetPhysicalInputProfile(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
 }
 
 // A Boolean value that indicates whether the element provides analog data.
@@ -205,6 +187,24 @@ func (g_ GCDirectionalGamepad) IsAnalog() bool {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
 func (g_ GCDirectionalGamepad) SetIsAnalog(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsAnalog:"), value)
+}
+
+// A Boolean value that indicates whether the profile reports the directional pad values relative to its current orientation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/allowsrotation
+func (g_ GCDirectionalGamepad) AllowsRotation() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("allowsRotation"))
+	return rv
+}
+
+
+// SetAllowsRotation sets the value of the allowsRotation property.
+// A Boolean value that indicates whether the profile reports the directional pad values relative to its current orientation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/allowsrotation
+func (g_ GCDirectionalGamepad) SetAllowsRotation(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAllowsRotation:"), value)
 }
 
 // A Boolean value that indicates whether the directional pad reports absolute or relative values.

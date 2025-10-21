@@ -118,24 +118,6 @@ func (ec _EKStructuredLocationClass) LocationWithTitle(title string) unsafe.Poin
 	return rv
 }
 
-// The location to trigger an alarm.
-//
-// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekalarm/structuredlocation
-func (e_ EKStructuredLocation) StructuredLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("structuredLocation"))
-	return rv
-}
-
-
-// SetStructuredLocation sets the value of the structuredLocation property.
-// The location to trigger an alarm.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekalarm/structuredlocation
-func (e_ EKStructuredLocation) SetStructuredLocation(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setStructuredLocation:"), value)
-}
-
 // The core location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/geoLocation
@@ -188,6 +170,24 @@ func (e_ EKStructuredLocation) Title() string {
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/title
 func (e_ EKStructuredLocation) SetTitle(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+// The location to trigger an alarm.
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekalarm/structuredlocation
+func (e_ EKStructuredLocation) StructuredLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("structuredLocation"))
+	return rv
+}
+
+
+// SetStructuredLocation sets the value of the structuredLocation property.
+// The location to trigger an alarm.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekalarm/structuredlocation
+func (e_ EKStructuredLocation) SetStructuredLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setStructuredLocation:"), value)
 }
 
 

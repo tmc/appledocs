@@ -95,6 +95,22 @@ func (d_ DCDevice) GenerateTokenWithCompletionHandler(completion unsafe.Pointer)
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateTokenWithCompletionHandler:"), completion)
 }
 
+// A representation of the device for which you want to query the two bits of data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/current
+func (d_ DCDevice) CurrentDevice() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("currentDevice"))
+	return rv
+}
+
+// A Boolean value that indicates whether the device supports the DeviceCheck API.
+//
+// [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/isSupported
+func (d_ DCDevice) Supported() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
+	return rv
+}
+
 // A Boolean value that indicates whether the device supports the DeviceCheck
 //
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcdevice/issupported
@@ -111,22 +127,6 @@ func (d_ DCDevice) IsSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcdevice/issupported
 func (d_ DCDevice) SetIsSupported(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsSupported:"), value)
-}
-
-// A representation of the device for which you want to query the two bits of data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/current
-func (d_ DCDevice) CurrentDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("currentDevice"))
-	return rv
-}
-
-// A Boolean value that indicates whether the device supports the DeviceCheck API.
-//
-// [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/isSupported
-func (d_ DCDevice) Supported() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
-	return rv
 }
 
 

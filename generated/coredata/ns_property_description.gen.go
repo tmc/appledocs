@@ -88,96 +88,6 @@ func (p_ PropertyDescription) SetValidationPredicatesWithValidationWarnings(vali
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValidationPredicates:withValidationWarnings:"), validationPredicates, validationWarnings)
 }
 
-// A Boolean value that indicates whether the receiver should be indexed for searching.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexed
-func (p_ PropertyDescription) IsIndexed() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isIndexed"))
-	return rv
-}
-
-
-// SetIsIndexed sets the value of the isIndexed property.
-// A Boolean value that indicates whether the receiver should be indexed for searching.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexed
-func (p_ PropertyDescription) SetIsIndexed(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndexed:"), value)
-}
-
-// A Boolean value that indicates whether Core Data adds the property’s value to the Core Spotlight index.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexedbyspotlight
-func (p_ PropertyDescription) IsIndexedBySpotlight() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isIndexedBySpotlight"))
-	return rv
-}
-
-
-// SetIsIndexedBySpotlight sets the value of the isIndexedBySpotlight property.
-// A Boolean value that indicates whether Core Data adds the property’s value to the Core Spotlight index.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexedbyspotlight
-func (p_ PropertyDescription) SetIsIndexedBySpotlight(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndexedBySpotlight:"), value)
-}
-
-// A Boolean value that indicates whether to write the property’s data in an external record file that corresponds to the managed object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isstoredinexternalrecord
-func (p_ PropertyDescription) IsStoredInExternalRecord() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isStoredInExternalRecord"))
-	return rv
-}
-
-
-// SetIsStoredInExternalRecord sets the value of the isStoredInExternalRecord property.
-// A Boolean value that indicates whether to write the property’s data in an external record file that corresponds to the managed object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isstoredinexternalrecord
-func (p_ PropertyDescription) SetIsStoredInExternalRecord(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsStoredInExternalRecord:"), value)
-}
-
-// A Boolean value that indicates whether the receiver is transient.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/istransient
-func (p_ PropertyDescription) IsTransient() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isTransient"))
-	return rv
-}
-
-
-// SetIsTransient sets the value of the isTransient property.
-// A Boolean value that indicates whether the receiver is transient.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/istransient
-func (p_ PropertyDescription) SetIsTransient(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsTransient:"), value)
-}
-
-// A Boolean value that indicates whether the receiver is optional.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isoptional
-func (p_ PropertyDescription) IsOptional() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isOptional"))
-	return rv
-}
-
-
-// SetIsOptional sets the value of the isOptional property.
-// A Boolean value that indicates whether the receiver is optional.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isoptional
-func (p_ PropertyDescription) SetIsOptional(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOptional:"), value)
-}
-
 // The entity description of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/entity
@@ -370,6 +280,96 @@ func (p_ PropertyDescription) VersionHashModifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHashModifier
 func (p_ PropertyDescription) SetVersionHashModifier(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHashModifier:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the receiver should be indexed for searching.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexed
+func (p_ PropertyDescription) IsIndexed() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isIndexed"))
+	return rv
+}
+
+
+// SetIsIndexed sets the value of the isIndexed property.
+// A Boolean value that indicates whether the receiver should be indexed for searching.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexed
+func (p_ PropertyDescription) SetIsIndexed(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndexed:"), value)
+}
+
+// A Boolean value that indicates whether Core Data adds the property’s value to the Core Spotlight index.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexedbyspotlight
+func (p_ PropertyDescription) IsIndexedBySpotlight() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isIndexedBySpotlight"))
+	return rv
+}
+
+
+// SetIsIndexedBySpotlight sets the value of the isIndexedBySpotlight property.
+// A Boolean value that indicates whether Core Data adds the property’s value to the Core Spotlight index.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexedbyspotlight
+func (p_ PropertyDescription) SetIsIndexedBySpotlight(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndexedBySpotlight:"), value)
+}
+
+// A Boolean value that indicates whether the receiver is optional.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isoptional
+func (p_ PropertyDescription) IsOptional() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isOptional"))
+	return rv
+}
+
+
+// SetIsOptional sets the value of the isOptional property.
+// A Boolean value that indicates whether the receiver is optional.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isoptional
+func (p_ PropertyDescription) SetIsOptional(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOptional:"), value)
+}
+
+// A Boolean value that indicates whether to write the property’s data in an external record file that corresponds to the managed object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isstoredinexternalrecord
+func (p_ PropertyDescription) IsStoredInExternalRecord() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isStoredInExternalRecord"))
+	return rv
+}
+
+
+// SetIsStoredInExternalRecord sets the value of the isStoredInExternalRecord property.
+// A Boolean value that indicates whether to write the property’s data in an external record file that corresponds to the managed object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isstoredinexternalrecord
+func (p_ PropertyDescription) SetIsStoredInExternalRecord(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsStoredInExternalRecord:"), value)
+}
+
+// A Boolean value that indicates whether the receiver is transient.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/istransient
+func (p_ PropertyDescription) IsTransient() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isTransient"))
+	return rv
+}
+
+
+// SetIsTransient sets the value of the isTransient property.
+// A Boolean value that indicates whether the receiver is transient.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/istransient
+func (p_ PropertyDescription) SetIsTransient(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsTransient:"), value)
 }
 
 

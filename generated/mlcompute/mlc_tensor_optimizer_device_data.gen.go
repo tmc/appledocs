@@ -78,60 +78,6 @@ func NewCTensorOptimizerDeviceData() CTensorOptimizerDeviceData {
 }
 
 
-// The configuration object you use to create a tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/descriptor
-func (c_ CTensorOptimizerDeviceData) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
-	return rv
-}
-
-
-// SetDescriptor sets the value of the descriptor property.
-// The configuration object you use to create a tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/descriptor
-func (c_ CTensorOptimizerDeviceData) SetDescriptor(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
-}
-
-// A Boolean that indicates whether a tensor contains NaN or INF values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/hasvalidnumerics
-func (c_ CTensorOptimizerDeviceData) HasValidNumerics() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("hasValidNumerics"))
-	return rv
-}
-
-
-// SetHasValidNumerics sets the value of the hasValidNumerics property.
-// A Boolean that indicates whether a tensor contains NaN or INF values.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/hasvalidnumerics
-func (c_ CTensorOptimizerDeviceData) SetHasValidNumerics(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setHasValidNumerics:"), value)
-}
-
-// An array that contains the device optimizer buffers you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdevicedata
-func (c_ CTensorOptimizerDeviceData) OptimizerDeviceData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("optimizerDeviceData"))
-	return rv
-}
-
-
-// SetOptimizerDeviceData sets the value of the optimizerDeviceData property.
-// An array that contains the device optimizer buffers you specify.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdevicedata
-func (c_ CTensorOptimizerDeviceData) SetOptimizerDeviceData(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOptimizerDeviceData:"), value)
-}
-
 // The tensor data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/data
@@ -150,22 +96,22 @@ func (c_ CTensorOptimizerDeviceData) SetData(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setData:"), value)
 }
 
-// An array that contains optimizer buffers you specify when you create a tensor parameter.
+// The configuration object you use to create a tensor.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdata
-func (c_ CTensorOptimizerDeviceData) OptimizerData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("optimizerData"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/descriptor
+func (c_ CTensorOptimizerDeviceData) Descriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 
-// SetOptimizerData sets the value of the optimizerData property.
-// An array that contains optimizer buffers you specify when you create a tensor parameter.
+// SetDescriptor sets the value of the descriptor property.
+// The configuration object you use to create a tensor.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdata
-func (c_ CTensorOptimizerDeviceData) SetOptimizerData(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOptimizerData:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/descriptor
+func (c_ CTensorOptimizerDeviceData) SetDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
 }
 
 // The device associated with this tensor.
@@ -186,22 +132,22 @@ func (c_ CTensorOptimizerDeviceData) SetDevice(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDevice:"), value)
 }
 
-// A number that uniquely identifies the tensor, which the framework assigns when it creates a tensor.
+// A Boolean that indicates whether a tensor contains NaN or INF values.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/tensorid
-func (c_ CTensorOptimizerDeviceData) TensorID() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("tensorID"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/hasvalidnumerics
+func (c_ CTensorOptimizerDeviceData) HasValidNumerics() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("hasValidNumerics"))
 	return rv
 }
 
 
-// SetTensorID sets the value of the tensorID property.
-// A number that uniquely identifies the tensor, which the framework assigns when it creates a tensor.
+// SetHasValidNumerics sets the value of the hasValidNumerics property.
+// A Boolean that indicates whether a tensor contains NaN or INF values.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/tensorid
-func (c_ CTensorOptimizerDeviceData) SetTensorID(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTensorID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/hasvalidnumerics
+func (c_ CTensorOptimizerDeviceData) SetHasValidNumerics(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHasValidNumerics:"), value)
 }
 
 // A string that identifes this tensor.
@@ -220,6 +166,60 @@ func (c_ CTensorOptimizerDeviceData) Label() string {
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/label
 func (c_ CTensorOptimizerDeviceData) SetLabel(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+// An array that contains optimizer buffers you specify when you create a tensor parameter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdata
+func (c_ CTensorOptimizerDeviceData) OptimizerData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("optimizerData"))
+	return rv
+}
+
+
+// SetOptimizerData sets the value of the optimizerData property.
+// An array that contains optimizer buffers you specify when you create a tensor parameter.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdata
+func (c_ CTensorOptimizerDeviceData) SetOptimizerData(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOptimizerData:"), value)
+}
+
+// An array that contains the device optimizer buffers you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdevicedata
+func (c_ CTensorOptimizerDeviceData) OptimizerDeviceData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("optimizerDeviceData"))
+	return rv
+}
+
+
+// SetOptimizerDeviceData sets the value of the optimizerDeviceData property.
+// An array that contains the device optimizer buffers you specify.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdevicedata
+func (c_ CTensorOptimizerDeviceData) SetOptimizerDeviceData(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOptimizerDeviceData:"), value)
+}
+
+// A number that uniquely identifies the tensor, which the framework assigns when it creates a tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/tensorid
+func (c_ CTensorOptimizerDeviceData) TensorID() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("tensorID"))
+	return rv
+}
+
+
+// SetTensorID sets the value of the tensorID property.
+// A number that uniquely identifies the tensor, which the framework assigns when it creates a tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/tensorid
+func (c_ CTensorOptimizerDeviceData) SetTensorID(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTensorID:"), value)
 }
 
 

@@ -80,22 +80,6 @@ func NewHKObject() HKObject {
 }
 
 
-// The key path for accessing the object’s UUID inside a predicate format string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid
-func (h_ HKObject) HKPredicateKeyPathUUID() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
-	return rv
-}
-
-// The key path for accessing the object’s metadata dictionary inside a predicate format string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
-func (h_ HKObject) HKPredicateKeyPathMetadata() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
-	return rv
-}
-
 // The device that generated the data for this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/device
@@ -133,6 +117,22 @@ func (h_ HKObject) SourceRevision() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/uuid
 func (h_ HKObject) UUID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("UUID"))
+	return rv
+}
+
+// The key path for accessing the object’s metadata dictionary inside a predicate format string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
+func (h_ HKObject) HKPredicateKeyPathMetadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
+	return rv
+}
+
+// The key path for accessing the object’s UUID inside a predicate format string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid
+func (h_ HKObject) HKPredicateKeyPathUUID() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
 	return rv
 }
 

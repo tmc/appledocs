@@ -151,75 +151,6 @@ func (b_ BluetoothHandsFree) SetIndicatorValue(indicatorName string, indicatorVa
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIndicator:value:"), objc.String(indicatorName), indicatorValue)
 }
 
-// Return the output mute state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isoutputmuted
-func (b_ BluetoothHandsFree) IsOutputMuted() bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("isOutputMuted"))
-	return rv
-}
-
-
-// SetIsOutputMuted sets the value of the isOutputMuted property.
-// Return the output mute state.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isoutputmuted
-func (b_ BluetoothHandsFree) SetIsOutputMuted(value bool) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIsOutputMuted:"), value)
-}
-
-// Return YES if the device has SMS enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/issmsenabled
-func (b_ BluetoothHandsFree) IsSMSEnabled() bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("isSMSEnabled"))
-	return rv
-}
-
-
-// SetIsSMSEnabled sets the value of the isSMSEnabled property.
-// Return YES if the device has SMS enabled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/issmsenabled
-func (b_ BluetoothHandsFree) SetIsSMSEnabled(value bool) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIsSMSEnabled:"), value)
-}
-
-// Return the input mute state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isinputmuted
-func (b_ BluetoothHandsFree) IsInputMuted() bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("isInputMuted"))
-	return rv
-}
-
-
-// SetIsInputMuted sets the value of the isInputMuted property.
-// Return the input mute state.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isinputmuted
-func (b_ BluetoothHandsFree) SetIsInputMuted(value bool) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIsInputMuted:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isconnected
-func (b_ BluetoothHandsFree) IsConnected() bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("isConnected"))
-	return rv
-}
-
-
-// SetIsConnected sets the value of the isConnected property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isconnected
-func (b_ BluetoothHandsFree) SetIsConnected(value bool) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIsConnected:"), value)
-}
-
 // Return the delegate
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/delegate
@@ -381,6 +312,75 @@ func (b_ BluetoothHandsFree) SupportedFeatures() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/supportedFeatures
 func (b_ BluetoothHandsFree) SetSupportedFeatures(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSupportedFeatures:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isconnected
+func (b_ BluetoothHandsFree) IsConnected() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isConnected"))
+	return rv
+}
+
+
+// SetIsConnected sets the value of the isConnected property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isconnected
+func (b_ BluetoothHandsFree) SetIsConnected(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsConnected:"), value)
+}
+
+// Return the input mute state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isinputmuted
+func (b_ BluetoothHandsFree) IsInputMuted() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isInputMuted"))
+	return rv
+}
+
+
+// SetIsInputMuted sets the value of the isInputMuted property.
+// Return the input mute state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isinputmuted
+func (b_ BluetoothHandsFree) SetIsInputMuted(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsInputMuted:"), value)
+}
+
+// Return the output mute state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isoutputmuted
+func (b_ BluetoothHandsFree) IsOutputMuted() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isOutputMuted"))
+	return rv
+}
+
+
+// SetIsOutputMuted sets the value of the isOutputMuted property.
+// Return the output mute state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isoutputmuted
+func (b_ BluetoothHandsFree) SetIsOutputMuted(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsOutputMuted:"), value)
+}
+
+// Return YES if the device has SMS enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/issmsenabled
+func (b_ BluetoothHandsFree) IsSMSEnabled() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isSMSEnabled"))
+	return rv
+}
+
+
+// SetIsSMSEnabled sets the value of the isSMSEnabled property.
+// Return YES if the device has SMS enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/issmsenabled
+func (b_ BluetoothHandsFree) SetIsSMSEnabled(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsSMSEnabled:"), value)
 }
 
 

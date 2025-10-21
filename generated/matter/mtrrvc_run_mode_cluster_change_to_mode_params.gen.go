@@ -77,18 +77,18 @@ func NewMTRRVCRunModeClusterChangeToModeParams() MTRRVCRunModeClusterChangeToMod
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomodeparams/timedinvoketimeoutms
-func (m_ MTRRVCRunModeClusterChangeToModeParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomodeparams/newmode
+func (m_ MTRRVCRunModeClusterChangeToModeParams) NewMode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newMode"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetNewMode sets the value of the newMode property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomodeparams/timedinvoketimeoutms
-func (m_ MTRRVCRunModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomodeparams/newmode
+func (m_ MTRRVCRunModeClusterChangeToModeParams) SetNewMode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRRVCRunModeClusterChangeToModeParams) SetServerSideProcessingTimeout(
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomodeparams/newmode
-func (m_ MTRRVCRunModeClusterChangeToModeParams) NewMode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newMode"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomodeparams/timedinvoketimeoutms
+func (m_ MTRRVCRunModeClusterChangeToModeParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetNewMode sets the value of the newMode property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomodeparams/newmode
-func (m_ MTRRVCRunModeClusterChangeToModeParams) SetNewMode(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomodeparams/timedinvoketimeoutms
+func (m_ MTRRVCRunModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

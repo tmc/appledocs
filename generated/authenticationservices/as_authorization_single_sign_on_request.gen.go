@@ -79,39 +79,6 @@ func NewAuthorizationSingleSignOnRequest() AuthorizationSingleSignOnRequest {
 }
 
 
-// A Boolean value that indicates if the provider is capable of performing authorization within a given configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/canperformauthorization
-func (a_ AuthorizationSingleSignOnRequest) CanPerformAuthorization() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformAuthorization"))
-	return rv
-}
-
-
-// SetCanPerformAuthorization sets the value of the canPerformAuthorization property.
-// A Boolean value that indicates if the provider is capable of performing authorization within a given configuration.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/canperformauthorization
-func (a_ AuthorizationSingleSignOnRequest) SetCanPerformAuthorization(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCanPerformAuthorization:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonrequest/isuserinterfaceenabled
-func (a_ AuthorizationSingleSignOnRequest) IsUserInterfaceEnabled() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isUserInterfaceEnabled"))
-	return rv
-}
-
-
-// SetIsUserInterfaceEnabled sets the value of the isUserInterfaceEnabled property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonrequest/isuserinterfaceenabled
-func (a_ AuthorizationSingleSignOnRequest) SetIsUserInterfaceEnabled(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsUserInterfaceEnabled:"), value)
-}
-
 // Options that control the authorization process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/authorizationOptions
@@ -153,6 +120,39 @@ func (a_ AuthorizationSingleSignOnRequest) UserInterfaceEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/isUserInterfaceEnabled
 func (a_ AuthorizationSingleSignOnRequest) SetUserInterfaceEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUserInterfaceEnabled:"), value)
+}
+
+// A Boolean value that indicates if the provider is capable of performing authorization within a given configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/canperformauthorization
+func (a_ AuthorizationSingleSignOnRequest) CanPerformAuthorization() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformAuthorization"))
+	return rv
+}
+
+
+// SetCanPerformAuthorization sets the value of the canPerformAuthorization property.
+// A Boolean value that indicates if the provider is capable of performing authorization within a given configuration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/canperformauthorization
+func (a_ AuthorizationSingleSignOnRequest) SetCanPerformAuthorization(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCanPerformAuthorization:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonrequest/isuserinterfaceenabled
+func (a_ AuthorizationSingleSignOnRequest) IsUserInterfaceEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isUserInterfaceEnabled"))
+	return rv
+}
+
+
+// SetIsUserInterfaceEnabled sets the value of the isUserInterfaceEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonrequest/isuserinterfaceenabled
+func (a_ AuthorizationSingleSignOnRequest) SetIsUserInterfaceEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsUserInterfaceEnabled:"), value)
 }
 
 

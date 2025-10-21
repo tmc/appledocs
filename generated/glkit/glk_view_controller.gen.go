@@ -83,24 +83,6 @@ func NewGLKViewController() GLKViewController {
 }
 
 
-// A Boolean value that indicates whether the rendering loop is paused.
-//
-// [Full Topic]: https://developer.apple.com/documentation/glkit/glkviewcontroller/ispaused
-func (g_ GLKViewController) IsPaused() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("isPaused"))
-	return rv
-}
-
-
-// SetIsPaused sets the value of the isPaused property.
-// A Boolean value that indicates whether the rendering loop is paused.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/glkit/glkviewcontroller/ispaused
-func (g_ GLKViewController) SetIsPaused(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setIsPaused:"), value)
-}
-
 // The view controller’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/delegate
@@ -237,6 +219,24 @@ func (g_ GLKViewController) TimeSinceLastResume() foundation.TimeInterval {
 func (g_ GLKViewController) TimeSinceLastUpdate() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceLastUpdate"))
 	return rv
+}
+
+// A Boolean value that indicates whether the rendering loop is paused.
+//
+// [Full Topic]: https://developer.apple.com/documentation/glkit/glkviewcontroller/ispaused
+func (g_ GLKViewController) IsPaused() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isPaused"))
+	return rv
+}
+
+
+// SetIsPaused sets the value of the isPaused property.
+// A Boolean value that indicates whether the rendering loop is paused.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/glkit/glkviewcontroller/ispaused
+func (g_ GLKViewController) SetIsPaused(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsPaused:"), value)
 }
 
 

@@ -89,6 +89,14 @@ func (g_ GCDeviceHaptics) CreateEngineWithLocality(locality unsafe.Pointer) unsa
 	return rv
 }
 
+// The locations of haptic actuators on the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceHaptics/supportedLocalities
+func (g_ GCDeviceHaptics) SupportedLocalities() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("supportedLocalities"))
+	return rv
+}
+
 // A Boolean value that indicates whether the device supports haptic event playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreHaptics/CHHapticDeviceCapability/supportsHaptics
@@ -112,14 +120,6 @@ func (g_ GCDeviceHaptics) SetSupportsHaptics(value bool) {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gchapticdurationinfinite
 func (g_ GCDeviceHaptics) GCHapticDurationInfinite() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("GCHapticDurationInfinite"))
-	return rv
-}
-
-// The locations of haptic actuators on the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceHaptics/supportedLocalities
-func (g_ GCDeviceHaptics) SupportedLocalities() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("supportedLocalities"))
 	return rv
 }
 

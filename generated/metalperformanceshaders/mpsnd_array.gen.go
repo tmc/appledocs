@@ -99,18 +99,18 @@ func (n_ NDArray) SetDataType(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/label
-func (n_ NDArray) Label() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("label"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/datatypesize
+func (n_ NDArray) DataTypeSize() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("dataTypeSize"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
+// SetDataTypeSize sets the value of the dataTypeSize property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/label
-func (n_ NDArray) SetLabel(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/datatypesize
+func (n_ NDArray) SetDataTypeSize(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDataTypeSize:"), value)
 }
 
 //
@@ -129,33 +129,18 @@ func (n_ NDArray) SetDevice(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/datatypesize
-func (n_ NDArray) DataTypeSize() int {
-	rv := objc.Send[int](n_.ID, objc.Sel("dataTypeSize"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/label
+func (n_ NDArray) Label() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetDataTypeSize sets the value of the dataTypeSize property.
+// SetLabel sets the value of the label property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/datatypesize
-func (n_ NDArray) SetDataTypeSize(value int) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDataTypeSize:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/parent
-func (n_ NDArray) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("parent"))
-	return rv
-}
-
-
-// SetParent sets the value of the parent property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/parent
-func (n_ NDArray) SetParent(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setParent:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/label
+func (n_ NDArray) SetLabel(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //
@@ -171,6 +156,21 @@ func (n_ NDArray) NumberOfDimensions() int {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/numberofdimensions
 func (n_ NDArray) SetNumberOfDimensions(value int) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNumberOfDimensions:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/parent
+func (n_ NDArray) Parent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("parent"))
+	return rv
+}
+
+
+// SetParent sets the value of the parent property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/parent
+func (n_ NDArray) SetParent(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setParent:"), value)
 }
 
 

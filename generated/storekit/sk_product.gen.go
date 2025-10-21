@@ -81,168 +81,6 @@ func NewProduct() Product {
 }
 
 
-// A string that identifies the version of the content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentversion
-func (p_ Product) ContentVersion() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("contentVersion"))
-	return rv
-}
-
-
-// SetContentVersion sets the value of the contentVersion property.
-// A string that identifies the version of the content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentversion
-func (p_ Product) SetContentVersion(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContentVersion:"), objc.String(value))
-}
-
-// The name of the product.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizedtitle
-func (p_ Product) LocalizedTitle() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
-	return rv
-}
-
-
-// SetLocalizedTitle sets the value of the localizedTitle property.
-// The name of the product.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizedtitle
-func (p_ Product) SetLocalizedTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedTitle:"), objc.String(value))
-}
-
-// A string that identifies which version of the content is available for download.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentversion
-func (p_ Product) DownloadContentVersion() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("downloadContentVersion"))
-	return rv
-}
-
-
-// SetDownloadContentVersion sets the value of the downloadContentVersion property.
-// A string that identifies which version of the content is available for download.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentversion
-func (p_ Product) SetDownloadContentVersion(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDownloadContentVersion:"), objc.String(value))
-}
-
-// A Boolean value that indicates whether the App Store has downloadable content for this product.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/isdownloadable
-func (p_ Product) IsDownloadable() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isDownloadable"))
-	return rv
-}
-
-
-// SetIsDownloadable sets the value of the isDownloadable property.
-// A Boolean value that indicates whether the App Store has downloadable content for this product.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/isdownloadable
-func (p_ Product) SetIsDownloadable(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsDownloadable:"), value)
-}
-
-// A Boolean value that indicates whether the App Store has downloadable content for this product.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadable
-func (p_ Product) Downloadable() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("downloadable"))
-	return rv
-}
-
-
-// SetDownloadable sets the value of the downloadable property.
-// A Boolean value that indicates whether the App Store has downloadable content for this product.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadable
-func (p_ Product) SetDownloadable(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDownloadable:"), value)
-}
-
-// The total size of the content, in bytes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentlengths
-func (p_ Product) ContentLengths() foundation.Number {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("contentLengths"))
-	return rv
-}
-
-
-// SetContentLengths sets the value of the contentLengths property.
-// The total size of the content, in bytes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentlengths
-func (p_ Product) SetContentLengths(value foundation.Number) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContentLengths:"), value)
-}
-
-// The lengths of the downloadable files available for this product.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentlengths
-func (p_ Product) DownloadContentLengths() foundation.Number {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("downloadContentLengths"))
-	return rv
-}
-
-
-// SetDownloadContentLengths sets the value of the downloadContentLengths property.
-// The lengths of the downloadable files available for this product.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentlengths
-func (p_ Product) SetDownloadContentLengths(value foundation.Number) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDownloadContentLengths:"), value)
-}
-
-// A description of the product.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizeddescription
-func (p_ Product) LocalizedDescription() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedDescription"))
-	return rv
-}
-
-
-// SetLocalizedDescription sets the value of the localizedDescription property.
-// A description of the product.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizeddescription
-func (p_ Product) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
-}
-
-// The period details for products that are subscriptions.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/subscriptionperiod
-func (p_ Product) SubscriptionPeriod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("subscriptionPeriod"))
-	return rv
-}
-
-
-// SetSubscriptionPeriod sets the value of the subscriptionPeriod property.
-// The period details for products that are subscriptions.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/subscriptionperiod
-func (p_ Product) SetSubscriptionPeriod(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSubscriptionPeriod:"), value)
-}
-
 // An array of subscription offers available for the auto-renewable subscription.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProduct/discounts
@@ -297,6 +135,168 @@ func (p_ Product) ProductIdentifier() string {
 func (p_ Product) SubscriptionGroupIdentifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("subscriptionGroupIdentifier"))
 	return rv
+}
+
+// The total size of the content, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentlengths
+func (p_ Product) ContentLengths() foundation.Number {
+	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("contentLengths"))
+	return rv
+}
+
+
+// SetContentLengths sets the value of the contentLengths property.
+// The total size of the content, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentlengths
+func (p_ Product) SetContentLengths(value foundation.Number) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContentLengths:"), value)
+}
+
+// A string that identifies the version of the content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentversion
+func (p_ Product) ContentVersion() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("contentVersion"))
+	return rv
+}
+
+
+// SetContentVersion sets the value of the contentVersion property.
+// A string that identifies the version of the content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentversion
+func (p_ Product) SetContentVersion(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContentVersion:"), objc.String(value))
+}
+
+// The lengths of the downloadable files available for this product.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentlengths
+func (p_ Product) DownloadContentLengths() foundation.Number {
+	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("downloadContentLengths"))
+	return rv
+}
+
+
+// SetDownloadContentLengths sets the value of the downloadContentLengths property.
+// The lengths of the downloadable files available for this product.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentlengths
+func (p_ Product) SetDownloadContentLengths(value foundation.Number) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDownloadContentLengths:"), value)
+}
+
+// A string that identifies which version of the content is available for download.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentversion
+func (p_ Product) DownloadContentVersion() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("downloadContentVersion"))
+	return rv
+}
+
+
+// SetDownloadContentVersion sets the value of the downloadContentVersion property.
+// A string that identifies which version of the content is available for download.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentversion
+func (p_ Product) SetDownloadContentVersion(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDownloadContentVersion:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the App Store has downloadable content for this product.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadable
+func (p_ Product) Downloadable() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("downloadable"))
+	return rv
+}
+
+
+// SetDownloadable sets the value of the downloadable property.
+// A Boolean value that indicates whether the App Store has downloadable content for this product.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadable
+func (p_ Product) SetDownloadable(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDownloadable:"), value)
+}
+
+// A Boolean value that indicates whether the App Store has downloadable content for this product.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/isdownloadable
+func (p_ Product) IsDownloadable() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isDownloadable"))
+	return rv
+}
+
+
+// SetIsDownloadable sets the value of the isDownloadable property.
+// A Boolean value that indicates whether the App Store has downloadable content for this product.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/isdownloadable
+func (p_ Product) SetIsDownloadable(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsDownloadable:"), value)
+}
+
+// A description of the product.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizeddescription
+func (p_ Product) LocalizedDescription() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localizedDescription"))
+	return rv
+}
+
+
+// SetLocalizedDescription sets the value of the localizedDescription property.
+// A description of the product.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizeddescription
+func (p_ Product) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+}
+
+// The name of the product.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizedtitle
+func (p_ Product) LocalizedTitle() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
+	return rv
+}
+
+
+// SetLocalizedTitle sets the value of the localizedTitle property.
+// The name of the product.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizedtitle
+func (p_ Product) SetLocalizedTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedTitle:"), objc.String(value))
+}
+
+// The period details for products that are subscriptions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/subscriptionperiod
+func (p_ Product) SubscriptionPeriod() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("subscriptionPeriod"))
+	return rv
+}
+
+
+// SetSubscriptionPeriod sets the value of the subscriptionPeriod property.
+// The period details for products that are subscriptions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/subscriptionperiod
+func (p_ Product) SetSubscriptionPeriod(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSubscriptionPeriod:"), value)
 }
 
 

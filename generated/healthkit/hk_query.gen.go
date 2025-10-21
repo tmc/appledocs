@@ -104,24 +104,6 @@ func (hc _HKQueryClass) PredicateForObjectsFromWorkout(workout unsafe.Pointer) u
 	return rv
 }
 
-// The type of objects being queried.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
-func (h_ HKQuery) ObjectType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("objectType"))
-	return rv
-}
-
-
-// SetObjectType sets the value of the objectType property.
-// The type of objects being queried.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
-func (h_ HKQuery) SetObjectType(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setObjectType:"), value)
-}
-
 // The key path for accessing the object’s metadata dictionary inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
@@ -140,20 +122,20 @@ func (h_ HKQuery) HKPredicateKeyPathUUID() string {
 
 // The type of objects being queried.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
-func (h_ HKQuery) SampleType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sampleType"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
+func (h_ HKQuery) ObjectType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("objectType"))
 	return rv
 }
 
 
-// SetSampleType sets the value of the sampleType property.
+// SetObjectType sets the value of the objectType property.
 // The type of objects being queried.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
-func (h_ HKQuery) SetSampleType(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
+func (h_ HKQuery) SetObjectType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setObjectType:"), value)
 }
 
 // A predicate used to filter the objects returned from the HealthKit store.
@@ -172,6 +154,24 @@ func (h_ HKQuery) Predicate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/predicate
 func (h_ HKQuery) SetPredicate(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
+}
+
+// The type of objects being queried.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
+func (h_ HKQuery) SampleType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sampleType"))
+	return rv
+}
+
+
+// SetSampleType sets the value of the sampleType property.
+// The type of objects being queried.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
+func (h_ HKQuery) SetSampleType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
 }
 
 

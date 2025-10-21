@@ -108,24 +108,6 @@ func NewCXSetMutedCallActionWithCoder(aDecoder unsafe.Pointer) CXSetMutedCallAct
 
 // A Boolean value that indicates whether the call is muted.
 //
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetmutedcallaction/ismuted
-func (c_ CXSetMutedCallAction) IsMuted() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isMuted"))
-	return rv
-}
-
-
-// SetIsMuted sets the value of the isMuted property.
-// A Boolean value that indicates whether the call is muted.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetmutedcallaction/ismuted
-func (c_ CXSetMutedCallAction) SetIsMuted(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMuted:"), value)
-}
-
-// A Boolean value that indicates whether the call is muted.
-//
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/isMuted
 func (c_ CXSetMutedCallAction) Muted() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("muted"))
@@ -140,6 +122,24 @@ func (c_ CXSetMutedCallAction) Muted() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/isMuted
 func (c_ CXSetMutedCallAction) SetMuted(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMuted:"), value)
+}
+
+// A Boolean value that indicates whether the call is muted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetmutedcallaction/ismuted
+func (c_ CXSetMutedCallAction) IsMuted() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isMuted"))
+	return rv
+}
+
+
+// SetIsMuted sets the value of the isMuted property.
+// A Boolean value that indicates whether the call is muted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetmutedcallaction/ismuted
+func (c_ CXSetMutedCallAction) SetIsMuted(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMuted:"), value)
 }
 
 

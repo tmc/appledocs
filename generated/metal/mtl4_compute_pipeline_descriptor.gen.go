@@ -79,22 +79,22 @@ func NewMTL4ComputePipelineDescriptor() MTL4ComputePipelineDescriptor {
 }
 
 
-// A boolean value indicating whether the compute pipeline supports linking binary functions.
+// The maximum total number of threads that Metal can execute in a single threadgroup for the compute function.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/supportbinarylinking
-func (m_ MTL4ComputePipelineDescriptor) SupportBinaryLinking() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("supportBinaryLinking"))
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4ComputePipelineDescriptor/maxTotalThreadsPerThreadgroup
+func (m_ MTL4ComputePipelineDescriptor) MaxTotalThreadsPerThreadgroup() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("maxTotalThreadsPerThreadgroup"))
 	return rv
 }
 
 
-// SetSupportBinaryLinking sets the value of the supportBinaryLinking property.
-// A boolean value indicating whether the compute pipeline supports linking binary functions.
+// SetMaxTotalThreadsPerThreadgroup sets the value of the maxTotalThreadsPerThreadgroup property.
+// The maximum total number of threads that Metal can execute in a single threadgroup for the compute function.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/supportbinarylinking
-func (m_ MTL4ComputePipelineDescriptor) SetSupportBinaryLinking(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportBinaryLinking:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4ComputePipelineDescriptor/maxTotalThreadsPerThreadgroup
+func (m_ MTL4ComputePipelineDescriptor) SetMaxTotalThreadsPerThreadgroup(value uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTotalThreadsPerThreadgroup:"), value)
 }
 
 // A descriptor representing the compute pipeline’s function.
@@ -115,6 +115,24 @@ func (m_ MTL4ComputePipelineDescriptor) SetComputeFunctionDescriptor(value unsaf
 	objc.Send[objc.ID](m_.ID, objc.Sel("setComputeFunctionDescriptor:"), value)
 }
 
+// The required number of threads per threadgroup for compute dispatches.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/requiredthreadsperthreadgroup
+func (m_ MTL4ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
+	return rv
+}
+
+
+// SetRequiredThreadsPerThreadgroup sets the value of the requiredThreadsPerThreadgroup property.
+// The required number of threads per threadgroup for compute dispatches.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/requiredthreadsperthreadgroup
+func (m_ MTL4ComputePipelineDescriptor) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
+}
+
 // An object that contains information about functions to link to the compute pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/staticlinkingdescriptor
@@ -131,6 +149,24 @@ func (m_ MTL4ComputePipelineDescriptor) StaticLinkingDescriptor() unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/staticlinkingdescriptor
 func (m_ MTL4ComputePipelineDescriptor) SetStaticLinkingDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStaticLinkingDescriptor:"), value)
+}
+
+// A boolean value indicating whether the compute pipeline supports linking binary functions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/supportbinarylinking
+func (m_ MTL4ComputePipelineDescriptor) SupportBinaryLinking() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("supportBinaryLinking"))
+	return rv
+}
+
+
+// SetSupportBinaryLinking sets the value of the supportBinaryLinking property.
+// A boolean value indicating whether the compute pipeline supports linking binary functions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/supportbinarylinking
+func (m_ MTL4ComputePipelineDescriptor) SetSupportBinaryLinking(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportBinaryLinking:"), value)
 }
 
 // A value indicating whether the pipeline supports Metal indirect command buffers.
@@ -151,24 +187,6 @@ func (m_ MTL4ComputePipelineDescriptor) SetSupportIndirectCommandBuffers(value u
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportIndirectCommandBuffers:"), value)
 }
 
-// The required number of threads per threadgroup for compute dispatches.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/requiredthreadsperthreadgroup
-func (m_ MTL4ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
-	return rv
-}
-
-
-// SetRequiredThreadsPerThreadgroup sets the value of the requiredThreadsPerThreadgroup property.
-// The required number of threads per threadgroup for compute dispatches.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/requiredthreadsperthreadgroup
-func (m_ MTL4ComputePipelineDescriptor) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
-}
-
 // A boolean value indicating whether each dimension of the threadgroup size is a multiple of its
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/threadgroupsizeismultipleofthreadexecutionwidth
@@ -185,24 +203,6 @@ func (m_ MTL4ComputePipelineDescriptor) ThreadGroupSizeIsMultipleOfThreadExecuti
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/threadgroupsizeismultipleofthreadexecutionwidth
 func (m_ MTL4ComputePipelineDescriptor) SetThreadGroupSizeIsMultipleOfThreadExecutionWidth(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setThreadGroupSizeIsMultipleOfThreadExecutionWidth:"), value)
-}
-
-// The maximum total number of threads that Metal can execute in a single threadgroup for the compute function.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4ComputePipelineDescriptor/maxTotalThreadsPerThreadgroup
-func (m_ MTL4ComputePipelineDescriptor) MaxTotalThreadsPerThreadgroup() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("maxTotalThreadsPerThreadgroup"))
-	return rv
-}
-
-
-// SetMaxTotalThreadsPerThreadgroup sets the value of the maxTotalThreadsPerThreadgroup property.
-// The maximum total number of threads that Metal can execute in a single threadgroup for the compute function.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4ComputePipelineDescriptor/maxTotalThreadsPerThreadgroup
-func (m_ MTL4ComputePipelineDescriptor) SetMaxTotalThreadsPerThreadgroup(value uint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTotalThreadsPerThreadgroup:"), value)
 }
 
 

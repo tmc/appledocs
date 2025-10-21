@@ -77,36 +77,6 @@ func NewMTRActionsClusterResumeActionParams() MTRActionsClusterResumeActionParam
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/invokeid
-func (m_ MTRActionsClusterResumeActionParams) InvokeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
-	return rv
-}
-
-
-// SetInvokeID sets the value of the invokeID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/invokeid
-func (m_ MTRActionsClusterResumeActionParams) SetInvokeID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterResumeActionParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterResumeActionParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/actionid
 func (m_ MTRActionsClusterResumeActionParams) ActionID() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
@@ -122,6 +92,21 @@ func (m_ MTRActionsClusterResumeActionParams) SetActionID(value foundation.Numbe
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/invokeid
+func (m_ MTRActionsClusterResumeActionParams) InvokeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+	return rv
+}
+
+
+// SetInvokeID sets the value of the invokeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/invokeid
+func (m_ MTRActionsClusterResumeActionParams) SetInvokeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/serversideprocessingtimeout
 func (m_ MTRActionsClusterResumeActionParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -134,6 +119,21 @@ func (m_ MTRActionsClusterResumeActionParams) ServerSideProcessingTimeout() foun
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/serversideprocessingtimeout
 func (m_ MTRActionsClusterResumeActionParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/timedinvoketimeoutms
+func (m_ MTRActionsClusterResumeActionParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterresumeactionparams/timedinvoketimeoutms
+func (m_ MTRActionsClusterResumeActionParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

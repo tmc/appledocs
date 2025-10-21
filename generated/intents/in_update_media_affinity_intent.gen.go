@@ -81,22 +81,12 @@ func NewINUpdateMediaAffinityIntent() INUpdateMediaAffinityIntent {
 }
 
 
-// The type of item to search for.
+// The media items to update.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediasearch
-func (i_ INUpdateMediaAffinityIntent) MediaSearch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaSearch"))
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INUpdateMediaAffinityIntent/mediaItems
+func (i_ INUpdateMediaAffinityIntent) MediaItems() []INMediaItem {
+	rv := objc.Send[[]INMediaItem](i_.ID, objc.Sel("mediaItems"))
 	return rv
-}
-
-
-// SetMediaSearch sets the value of the mediaSearch property.
-// The type of item to search for.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediasearch
-func (i_ INUpdateMediaAffinityIntent) SetMediaSearch(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
 
 // The user’s affinity for the media item.
@@ -117,12 +107,22 @@ func (i_ INUpdateMediaAffinityIntent) SetAffinityType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAffinityType:"), value)
 }
 
-// The media items to update.
+// The type of item to search for.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INUpdateMediaAffinityIntent/mediaItems
-func (i_ INUpdateMediaAffinityIntent) MediaItems() []INMediaItem {
-	rv := objc.Send[[]INMediaItem](i_.ID, objc.Sel("mediaItems"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediasearch
+func (i_ INUpdateMediaAffinityIntent) MediaSearch() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaSearch"))
 	return rv
+}
+
+
+// SetMediaSearch sets the value of the mediaSearch property.
+// The type of item to search for.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediasearch
+func (i_ INUpdateMediaAffinityIntent) SetMediaSearch(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
 
 

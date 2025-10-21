@@ -81,24 +81,6 @@ func NewINBookRestaurantReservationIntent() INBookRestaurantReservationIntent {
 }
 
 
-// Information about any special requests made by the user.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guestprovidedspecialrequesttext
-func (i_ INBookRestaurantReservationIntent) GuestProvidedSpecialRequestText() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("guestProvidedSpecialRequestText"))
-	return rv
-}
-
-
-// SetGuestProvidedSpecialRequestText sets the value of the guestProvidedSpecialRequestText property.
-// Information about any special requests made by the user.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guestprovidedspecialrequesttext
-func (i_ INBookRestaurantReservationIntent) SetGuestProvidedSpecialRequestText(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGuestProvidedSpecialRequestText:"), objc.String(value))
-}
-
 // The date and time of the reservation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingdatecomponents
@@ -115,60 +97,6 @@ func (i_ INBookRestaurantReservationIntent) BookingDateComponents() unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingdatecomponents
 func (i_ INBookRestaurantReservationIntent) SetBookingDateComponents(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBookingDateComponents:"), value)
-}
-
-// The total number of people in the user’s party.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/partysize
-func (i_ INBookRestaurantReservationIntent) PartySize() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("partySize"))
-	return rv
-}
-
-
-// SetPartySize sets the value of the partySize property.
-// The total number of people in the user’s party.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/partysize
-func (i_ INBookRestaurantReservationIntent) SetPartySize(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
-}
-
-// The identity of the guest associated with the reservation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guest
-func (i_ INBookRestaurantReservationIntent) Guest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("guest"))
-	return rv
-}
-
-
-// SetGuest sets the value of the guest property.
-// The identity of the guest associated with the reservation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guest
-func (i_ INBookRestaurantReservationIntent) SetGuest(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGuest:"), value)
-}
-
-// The special offer, if any, selected by the user.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/selectedoffer
-func (i_ INBookRestaurantReservationIntent) SelectedOffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("selectedOffer"))
-	return rv
-}
-
-
-// SetSelectedOffer sets the value of the selectedOffer property.
-// The special offer, if any, selected by the user.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/selectedoffer
-func (i_ INBookRestaurantReservationIntent) SetSelectedOffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSelectedOffer:"), value)
 }
 
 // The unique identifier associated with the initial reservation data.
@@ -189,6 +117,60 @@ func (i_ INBookRestaurantReservationIntent) SetBookingIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBookingIdentifier:"), objc.String(value))
 }
 
+// The identity of the guest associated with the reservation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guest
+func (i_ INBookRestaurantReservationIntent) Guest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("guest"))
+	return rv
+}
+
+
+// SetGuest sets the value of the guest property.
+// The identity of the guest associated with the reservation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guest
+func (i_ INBookRestaurantReservationIntent) SetGuest(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGuest:"), value)
+}
+
+// Information about any special requests made by the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guestprovidedspecialrequesttext
+func (i_ INBookRestaurantReservationIntent) GuestProvidedSpecialRequestText() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("guestProvidedSpecialRequestText"))
+	return rv
+}
+
+
+// SetGuestProvidedSpecialRequestText sets the value of the guestProvidedSpecialRequestText property.
+// Information about any special requests made by the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guestprovidedspecialrequesttext
+func (i_ INBookRestaurantReservationIntent) SetGuestProvidedSpecialRequestText(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGuestProvidedSpecialRequestText:"), objc.String(value))
+}
+
+// The total number of people in the user’s party.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/partysize
+func (i_ INBookRestaurantReservationIntent) PartySize() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("partySize"))
+	return rv
+}
+
+
+// SetPartySize sets the value of the partySize property.
+// The total number of people in the user’s party.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/partysize
+func (i_ INBookRestaurantReservationIntent) SetPartySize(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
+}
+
 // The restaurant to contact regarding the booking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/restaurant
@@ -205,6 +187,24 @@ func (i_ INBookRestaurantReservationIntent) Restaurant() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/restaurant
 func (i_ INBookRestaurantReservationIntent) SetRestaurant(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRestaurant:"), value)
+}
+
+// The special offer, if any, selected by the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/selectedoffer
+func (i_ INBookRestaurantReservationIntent) SelectedOffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("selectedOffer"))
+	return rv
+}
+
+
+// SetSelectedOffer sets the value of the selectedOffer property.
+// The special offer, if any, selected by the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/selectedoffer
+func (i_ INBookRestaurantReservationIntent) SetSelectedOffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSelectedOffer:"), value)
 }
 
 

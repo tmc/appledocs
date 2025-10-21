@@ -145,42 +145,6 @@ func (s_ ScreenSaverView) StopAnimation() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stopAnimation"))
 }
 
-// A Boolean value that indicates whether the screen saver view is set to a size suitable for previewing its content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/ispreview
-func (s_ ScreenSaverView) IsPreview() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isPreview"))
-	return rv
-}
-
-
-// SetIsPreview sets the value of the isPreview property.
-// A Boolean value that indicates whether the screen saver view is set to a size suitable for previewing its content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/ispreview
-func (s_ ScreenSaverView) SetIsPreview(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsPreview:"), value)
-}
-
-// A Boolean value that indicates whether the screen saver is animating.
-//
-// [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/isanimating
-func (s_ ScreenSaverView) IsAnimating() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isAnimating"))
-	return rv
-}
-
-
-// SetIsAnimating sets the value of the isAnimating property.
-// A Boolean value that indicates whether the screen saver is animating.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/isanimating
-func (s_ ScreenSaverView) SetIsAnimating(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAnimating:"), value)
-}
-
 // The time interval between animation frames.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/animationTimeInterval
@@ -229,6 +193,42 @@ func (s_ ScreenSaverView) Animating() bool {
 func (s_ ScreenSaverView) Preview() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("preview"))
 	return rv
+}
+
+// A Boolean value that indicates whether the screen saver is animating.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/isanimating
+func (s_ ScreenSaverView) IsAnimating() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isAnimating"))
+	return rv
+}
+
+
+// SetIsAnimating sets the value of the isAnimating property.
+// A Boolean value that indicates whether the screen saver is animating.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/isanimating
+func (s_ ScreenSaverView) SetIsAnimating(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAnimating:"), value)
+}
+
+// A Boolean value that indicates whether the screen saver view is set to a size suitable for previewing its content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/ispreview
+func (s_ ScreenSaverView) IsPreview() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isPreview"))
+	return rv
+}
+
+
+// SetIsPreview sets the value of the isPreview property.
+// A Boolean value that indicates whether the screen saver view is set to a size suitable for previewing its content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/ispreview
+func (s_ ScreenSaverView) SetIsPreview(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsPreview:"), value)
 }
 
 

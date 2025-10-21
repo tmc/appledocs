@@ -78,96 +78,6 @@ func NewMEHEVCDependencyInfo() MEHEVCDependencyInfo {
 }
 
 
-// A Boolean value that indicates if the sample has an HEVC stepwise temporal sublayer access (STSA) picture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/hasstepwisetemporalsublayeraccess
-func (m_ MEHEVCDependencyInfo) HasStepwiseTemporalSubLayerAccess() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("hasStepwiseTemporalSubLayerAccess"))
-	return rv
-}
-
-
-// SetHasStepwiseTemporalSubLayerAccess sets the value of the hasStepwiseTemporalSubLayerAccess property.
-// A Boolean value that indicates if the sample has an HEVC stepwise temporal sublayer access (STSA) picture.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/hasstepwisetemporalsublayeraccess
-func (m_ MEHEVCDependencyInfo) SetHasStepwiseTemporalSubLayerAccess(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHasStepwiseTemporalSubLayerAccess:"), value)
-}
-
-// The HEVC profile compatibility flags (4 bytes), if available.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/profilecompatibilityflags
-func (m_ MEHEVCDependencyInfo) ProfileCompatibilityFlags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileCompatibilityFlags"))
-	return rv
-}
-
-
-// SetProfileCompatibilityFlags sets the value of the profileCompatibilityFlags property.
-// The HEVC profile compatibility flags (4 bytes), if available.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/profilecompatibilityflags
-func (m_ MEHEVCDependencyInfo) SetProfileCompatibilityFlags(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileCompatibilityFlags:"), value)
-}
-
-// A Boolean value that indicates if the sample has an HEVC temporal sublayer access (TSA) picture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/hastemporalsublayeraccess
-func (m_ MEHEVCDependencyInfo) HasTemporalSubLayerAccess() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("hasTemporalSubLayerAccess"))
-	return rv
-}
-
-
-// SetHasTemporalSubLayerAccess sets the value of the hasTemporalSubLayerAccess property.
-// A Boolean value that indicates if the sample has an HEVC temporal sublayer access (TSA) picture.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/hastemporalsublayeraccess
-func (m_ MEHEVCDependencyInfo) SetHasTemporalSubLayerAccess(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHasTemporalSubLayerAccess:"), value)
-}
-
-// The HEVC profile index, if available.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/profileindex
-func (m_ MEHEVCDependencyInfo) ProfileIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileIndex"))
-	return rv
-}
-
-
-// SetProfileIndex sets the value of the profileIndex property.
-// The HEVC profile index, if available.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/profileindex
-func (m_ MEHEVCDependencyInfo) SetProfileIndex(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileIndex:"), value)
-}
-
-// The HEVC tier level flag, if available.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/tierflag
-func (m_ MEHEVCDependencyInfo) TierFlag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tierFlag"))
-	return rv
-}
-
-
-// SetTierFlag sets the value of the tierFlag property.
-// The HEVC tier level flag, if available.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/tierflag
-func (m_ MEHEVCDependencyInfo) SetTierFlag(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTierFlag:"), value)
-}
-
 // The HEVC constraint indicator flags (6 bytes), if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEHEVCDependencyInfo/constraintIndicatorFlags
@@ -274,6 +184,96 @@ func (m_ MEHEVCDependencyInfo) TemporalLevel() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEHEVCDependencyInfo/temporalLevel
 func (m_ MEHEVCDependencyInfo) SetTemporalLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTemporalLevel:"), value)
+}
+
+// A Boolean value that indicates if the sample has an HEVC stepwise temporal sublayer access (STSA) picture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/hasstepwisetemporalsublayeraccess
+func (m_ MEHEVCDependencyInfo) HasStepwiseTemporalSubLayerAccess() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("hasStepwiseTemporalSubLayerAccess"))
+	return rv
+}
+
+
+// SetHasStepwiseTemporalSubLayerAccess sets the value of the hasStepwiseTemporalSubLayerAccess property.
+// A Boolean value that indicates if the sample has an HEVC stepwise temporal sublayer access (STSA) picture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/hasstepwisetemporalsublayeraccess
+func (m_ MEHEVCDependencyInfo) SetHasStepwiseTemporalSubLayerAccess(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHasStepwiseTemporalSubLayerAccess:"), value)
+}
+
+// A Boolean value that indicates if the sample has an HEVC temporal sublayer access (TSA) picture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/hastemporalsublayeraccess
+func (m_ MEHEVCDependencyInfo) HasTemporalSubLayerAccess() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("hasTemporalSubLayerAccess"))
+	return rv
+}
+
+
+// SetHasTemporalSubLayerAccess sets the value of the hasTemporalSubLayerAccess property.
+// A Boolean value that indicates if the sample has an HEVC temporal sublayer access (TSA) picture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/hastemporalsublayeraccess
+func (m_ MEHEVCDependencyInfo) SetHasTemporalSubLayerAccess(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHasTemporalSubLayerAccess:"), value)
+}
+
+// The HEVC profile compatibility flags (4 bytes), if available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/profilecompatibilityflags
+func (m_ MEHEVCDependencyInfo) ProfileCompatibilityFlags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileCompatibilityFlags"))
+	return rv
+}
+
+
+// SetProfileCompatibilityFlags sets the value of the profileCompatibilityFlags property.
+// The HEVC profile compatibility flags (4 bytes), if available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/profilecompatibilityflags
+func (m_ MEHEVCDependencyInfo) SetProfileCompatibilityFlags(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileCompatibilityFlags:"), value)
+}
+
+// The HEVC profile index, if available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/profileindex
+func (m_ MEHEVCDependencyInfo) ProfileIndex() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileIndex"))
+	return rv
+}
+
+
+// SetProfileIndex sets the value of the profileIndex property.
+// The HEVC profile index, if available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/profileindex
+func (m_ MEHEVCDependencyInfo) SetProfileIndex(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileIndex:"), value)
+}
+
+// The HEVC tier level flag, if available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/tierflag
+func (m_ MEHEVCDependencyInfo) TierFlag() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tierFlag"))
+	return rv
+}
+
+
+// SetTierFlag sets the value of the tierFlag property.
+// The HEVC tier level flag, if available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/tierflag
+func (m_ MEHEVCDependencyInfo) SetTierFlag(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTierFlag:"), value)
 }
 
 

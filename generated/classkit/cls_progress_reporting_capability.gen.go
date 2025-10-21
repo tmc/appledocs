@@ -94,6 +94,22 @@ func NewSProgressReportingCapabilityWithKindDetails(kind unsafe.Pointer, details
 }
 
 
+// A description of the capability presented to teachers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/details
+func (s_ SProgressReportingCapability) Details() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("details"))
+	return rv
+}
+
+// The kind of progress reporting capability.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/kind-swift.property
+func (s_ SProgressReportingCapability) Kind() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("kind"))
+	return rv
+}
+
 // The kinds of progress reporting that the context can perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clscontext/progressreportingcapabilities
@@ -110,22 +126,6 @@ func (s_ SProgressReportingCapability) ProgressReportingCapabilities() unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clscontext/progressreportingcapabilities
 func (s_ SProgressReportingCapability) SetProgressReportingCapabilities(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setProgressReportingCapabilities:"), value)
-}
-
-// A description of the capability presented to teachers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/details
-func (s_ SProgressReportingCapability) Details() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("details"))
-	return rv
-}
-
-// The kind of progress reporting capability.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/kind-swift.property
-func (s_ SProgressReportingCapability) Kind() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("kind"))
-	return rv
 }
 
 

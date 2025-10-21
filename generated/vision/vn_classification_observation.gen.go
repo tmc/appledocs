@@ -99,40 +99,12 @@ func (c_ ClassificationObservation) HasMinimumRecallForPrecision(minimumRecall u
 	return rv
 }
 
-// Classification label identifying the type of observation.
+// A Boolean variable indicating whether the observation contains precision and recall curves.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
-func (c_ ClassificationObservation) Identifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassificationObservation/hasPrecisionRecallCurve
+func (c_ ClassificationObservation) HasPrecisionRecallCurve() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("hasPrecisionRecallCurve"))
 	return rv
-}
-
-
-// SetIdentifier sets the value of the identifier property.
-// Classification label identifying the type of observation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
-func (c_ ClassificationObservation) SetIdentifier(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
-}
-
-// The name of the primary prediction feature output description.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ ClassificationObservation) PredictedFeatureName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
-	return rv
-}
-
-
-// SetPredictedFeatureName sets the value of the predictedFeatureName property.
-// The name of the primary prediction feature output description.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ ClassificationObservation) SetPredictedFeatureName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
 }
 
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
@@ -153,12 +125,40 @@ func (c_ ClassificationObservation) SetModelDescription(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
 }
 
-// A Boolean variable indicating whether the observation contains precision and recall curves.
+// The name of the primary prediction feature output description.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassificationObservation/hasPrecisionRecallCurve
-func (c_ ClassificationObservation) HasPrecisionRecallCurve() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("hasPrecisionRecallCurve"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
+func (c_ ClassificationObservation) PredictedFeatureName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
+}
+
+
+// SetPredictedFeatureName sets the value of the predictedFeatureName property.
+// The name of the primary prediction feature output description.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
+func (c_ ClassificationObservation) SetPredictedFeatureName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
+}
+
+// Classification label identifying the type of observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
+func (c_ ClassificationObservation) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// Classification label identifying the type of observation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
+func (c_ ClassificationObservation) SetIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 

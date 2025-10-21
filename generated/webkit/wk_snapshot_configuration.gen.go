@@ -82,22 +82,22 @@ func NewSnapshotConfiguration() SnapshotConfiguration {
 }
 
 
-// The width of the captured image, in points.
+// The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
 //
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/snapshotwidth
-func (s_ SnapshotConfiguration) SnapshotWidth() foundation.Number {
-	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("snapshotWidth"))
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSnapshotConfiguration/rect
+func (s_ SnapshotConfiguration) Rect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("rect"))
 	return rv
 }
 
 
-// SetSnapshotWidth sets the value of the snapshotWidth property.
-// The width of the captured image, in points.
+// SetRect sets the value of the rect property.
+// The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/snapshotwidth
-func (s_ SnapshotConfiguration) SetSnapshotWidth(value foundation.Number) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSnapshotWidth:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSnapshotConfiguration/rect
+func (s_ SnapshotConfiguration) SetRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRect:"), value)
 }
 
 // A Boolean value that indicates whether to take the snapshot after incorporating any pending screen updates.
@@ -118,22 +118,22 @@ func (s_ SnapshotConfiguration) SetAfterScreenUpdates(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAfterScreenUpdates:"), value)
 }
 
-// The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
+// The width of the captured image, in points.
 //
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSnapshotConfiguration/rect
-func (s_ SnapshotConfiguration) Rect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("rect"))
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/snapshotwidth
+func (s_ SnapshotConfiguration) SnapshotWidth() foundation.Number {
+	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("snapshotWidth"))
 	return rv
 }
 
 
-// SetRect sets the value of the rect property.
-// The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
+// SetSnapshotWidth sets the value of the snapshotWidth property.
+// The width of the captured image, in points.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSnapshotConfiguration/rect
-func (s_ SnapshotConfiguration) SetRect(value coregraphics.CGRect) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRect:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/snapshotwidth
+func (s_ SnapshotConfiguration) SetSnapshotWidth(value foundation.Number) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSnapshotWidth:"), value)
 }
 
 

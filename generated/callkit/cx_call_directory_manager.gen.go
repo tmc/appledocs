@@ -109,19 +109,19 @@ func (c_ CXCallDirectoryManager) ReloadExtensionWithIdentifierCompletionHandler(
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadExtensionWithIdentifier:completionHandler:"), objc.String(identifier), completion)
 }
 
-// Domain for errors when interacting with a call directory manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomaincalldirectorymanager
-func (c_ CXCallDirectoryManager) CXErrorDomainCallDirectoryManager() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainCallDirectoryManager"))
-	return rv
-}
-
 // Returns the shared call directory manager instance for the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/sharedInstance
 func (c_ CXCallDirectoryManager) SharedInstance() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sharedInstance"))
+	return rv
+}
+
+// Domain for errors when interacting with a call directory manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomaincalldirectorymanager
+func (c_ CXCallDirectoryManager) CXErrorDomainCallDirectoryManager() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainCallDirectoryManager"))
 	return rv
 }
 

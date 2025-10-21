@@ -94,24 +94,6 @@ func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentM
 }
 
 
-// The container that provides access to the migrating persistent store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
-func (c_ CustomMigrationStage) Container() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("container"))
-	return rv
-}
-
-
-// SetContainer sets the value of the container property.
-// The container that provides access to the migrating persistent store.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
-func (c_ CustomMigrationStage) SetContainer(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
-}
-
 // The reference that represents the migration’s source model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/currentModel
@@ -162,6 +144,24 @@ func (c_ CustomMigrationStage) WillMigrateHandler() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73
 func (c_ CustomMigrationStage) SetWillMigrateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWillMigrateHandler:"), value)
+}
+
+// The container that provides access to the migrating persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
+func (c_ CustomMigrationStage) Container() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("container"))
+	return rv
+}
+
+
+// SetContainer sets the value of the container property.
+// The container that provides access to the migrating persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
+func (c_ CustomMigrationStage) SetContainer(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }
 
 

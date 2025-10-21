@@ -92,6 +92,21 @@ func (m_ MTRActionsClusterPauseActionWithDurationParams) SetActionID(value found
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterpauseactionwithdurationparams/duration
+func (m_ MTRActionsClusterPauseActionWithDurationParams) Duration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// SetDuration sets the value of the duration property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterpauseactionwithdurationparams/duration
+func (m_ MTRActionsClusterPauseActionWithDurationParams) SetDuration(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterpauseactionwithdurationparams/invokeid
 func (m_ MTRActionsClusterPauseActionWithDurationParams) InvokeID() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
@@ -134,21 +149,6 @@ func (m_ MTRActionsClusterPauseActionWithDurationParams) TimedInvokeTimeoutMs() 
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterpauseactionwithdurationparams/timedinvoketimeoutms
 func (m_ MTRActionsClusterPauseActionWithDurationParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterpauseactionwithdurationparams/duration
-func (m_ MTRActionsClusterPauseActionWithDurationParams) Duration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
-	return rv
-}
-
-
-// SetDuration sets the value of the duration property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterpauseactionwithdurationparams/duration
-func (m_ MTRActionsClusterPauseActionWithDurationParams) SetDuration(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
 

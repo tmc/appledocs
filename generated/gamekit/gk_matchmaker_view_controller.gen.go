@@ -95,78 +95,6 @@ func NewMatchmakerViewControllerWithMatchRequest(request unsafe.Pointer) Matchma
 }
 
 
-// A Boolean value that indicates whether the match is hosted or peer-to-peer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/ishosted
-func (m_ MatchmakerViewController) IsHosted() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isHosted"))
-	return rv
-}
-
-
-// SetIsHosted sets the value of the isHosted property.
-// A Boolean value that indicates whether the match is hosted or peer-to-peer.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/ishosted
-func (m_ MatchmakerViewController) SetIsHosted(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsHosted:"), value)
-}
-
-// A Boolean value that indicates whether your game can start after a minimum number of players join a match.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/canstartwithminimumplayers
-func (m_ MatchmakerViewController) CanStartWithMinimumPlayers() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("canStartWithMinimumPlayers"))
-	return rv
-}
-
-
-// SetCanStartWithMinimumPlayers sets the value of the canStartWithMinimumPlayers property.
-// A Boolean value that indicates whether your game can start after a minimum number of players join a match.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/canstartwithminimumplayers
-func (m_ MatchmakerViewController) SetCanStartWithMinimumPlayers(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCanStartWithMinimumPlayers:"), value)
-}
-
-// The configuration for the desired match.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchrequest
-func (m_ MatchmakerViewController) MatchRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("matchRequest"))
-	return rv
-}
-
-
-// SetMatchRequest sets the value of the matchRequest property.
-// The configuration for the desired match.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchrequest
-func (m_ MatchmakerViewController) SetMatchRequest(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchRequest:"), value)
-}
-
-// The mode that a multiplayer game uses to find players.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchmakingmode
-func (m_ MatchmakerViewController) MatchmakingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("matchmakingMode"))
-	return rv
-}
-
-
-// SetMatchmakingMode sets the value of the matchmakingMode property.
-// The mode that a multiplayer game uses to find players.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchmakingmode
-func (m_ MatchmakerViewController) SetMatchmakingMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchmakingMode:"), value)
-}
-
 // The default invitation message sent to a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
@@ -219,6 +147,78 @@ func (m_ MatchmakerViewController) MatchmakerDelegate() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/matchmakerDelegate
 func (m_ MatchmakerViewController) SetMatchmakerDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchmakerDelegate:"), value)
+}
+
+// A Boolean value that indicates whether your game can start after a minimum number of players join a match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/canstartwithminimumplayers
+func (m_ MatchmakerViewController) CanStartWithMinimumPlayers() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("canStartWithMinimumPlayers"))
+	return rv
+}
+
+
+// SetCanStartWithMinimumPlayers sets the value of the canStartWithMinimumPlayers property.
+// A Boolean value that indicates whether your game can start after a minimum number of players join a match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/canstartwithminimumplayers
+func (m_ MatchmakerViewController) SetCanStartWithMinimumPlayers(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCanStartWithMinimumPlayers:"), value)
+}
+
+// A Boolean value that indicates whether the match is hosted or peer-to-peer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/ishosted
+func (m_ MatchmakerViewController) IsHosted() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isHosted"))
+	return rv
+}
+
+
+// SetIsHosted sets the value of the isHosted property.
+// A Boolean value that indicates whether the match is hosted or peer-to-peer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/ishosted
+func (m_ MatchmakerViewController) SetIsHosted(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsHosted:"), value)
+}
+
+// The configuration for the desired match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchrequest
+func (m_ MatchmakerViewController) MatchRequest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("matchRequest"))
+	return rv
+}
+
+
+// SetMatchRequest sets the value of the matchRequest property.
+// The configuration for the desired match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchrequest
+func (m_ MatchmakerViewController) SetMatchRequest(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchRequest:"), value)
+}
+
+// The mode that a multiplayer game uses to find players.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchmakingmode
+func (m_ MatchmakerViewController) MatchmakingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("matchmakingMode"))
+	return rv
+}
+
+
+// SetMatchmakingMode sets the value of the matchmakingMode property.
+// The mode that a multiplayer game uses to find players.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchmakingmode
+func (m_ MatchmakerViewController) SetMatchmakingMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchmakingMode:"), value)
 }
 
 

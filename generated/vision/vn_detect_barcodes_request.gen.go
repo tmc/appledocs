@@ -81,24 +81,6 @@ func NewDetectBarcodesRequest() DetectBarcodesRequest {
 }
 
 
-// The barcode symbologies that the request detects in an image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/symbologies
-func (d_ DetectBarcodesRequest) Symbologies() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("symbologies"))
-	return rv
-}
-
-
-// SetSymbologies sets the value of the symbologies property.
-// The barcode symbologies that the request detects in an image.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/symbologies
-func (d_ DetectBarcodesRequest) SetSymbologies(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setSymbologies:"), value)
-}
-
 // A Boolean value that indicates whether to coalesce multiple codes based on the symbology.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/coalescecompositesymbologies
@@ -117,12 +99,40 @@ func (d_ DetectBarcodesRequest) SetCoalesceCompositeSymbologies(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCoalesceCompositeSymbologies:"), value)
 }
 
-// A constant for specifying revision 3 of the barcode detection request.
+// The results of a barcode detection request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision3
-func (d_ DetectBarcodesRequest) VNDetectBarcodesRequestRevision3() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectBarcodesRequestRevision3"))
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
+func (d_ DetectBarcodesRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
 	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of a barcode detection request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
+func (d_ DetectBarcodesRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+// The barcode symbologies that the request detects in an image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/symbologies
+func (d_ DetectBarcodesRequest) Symbologies() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("symbologies"))
+	return rv
+}
+
+
+// SetSymbologies sets the value of the symbologies property.
+// The barcode symbologies that the request detects in an image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/symbologies
+func (d_ DetectBarcodesRequest) SetSymbologies(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSymbologies:"), value)
 }
 
 // A constant for specifying revision 1 of the barcode detection request.
@@ -141,22 +151,12 @@ func (d_ DetectBarcodesRequest) VNDetectBarcodesRequestRevision2() int {
 	return rv
 }
 
-// The results of a barcode detection request.
+// A constant for specifying revision 3 of the barcode detection request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
-func (d_ DetectBarcodesRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision3
+func (d_ DetectBarcodesRequest) VNDetectBarcodesRequestRevision3() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectBarcodesRequestRevision3"))
 	return rv
-}
-
-
-// SetResults sets the value of the results property.
-// The results of a barcode detection request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
-func (d_ DetectBarcodesRequest) SetResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
 

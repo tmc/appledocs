@@ -77,18 +77,18 @@ func NewMTROperationalCredentialsClusterNOCStruct() MTROperationalCredentialsClu
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/noc
-func (m_ MTROperationalCredentialsClusterNOCStruct) Noc() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("noc"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/fabricindex
+func (m_ MTROperationalCredentialsClusterNOCStruct) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetNoc sets the value of the noc property.
+// SetFabricIndex sets the value of the fabricIndex property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/noc
-func (m_ MTROperationalCredentialsClusterNOCStruct) SetNoc(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNoc:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/fabricindex
+func (m_ MTROperationalCredentialsClusterNOCStruct) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTROperationalCredentialsClusterNOCStruct) SetIcac(value unsafe.Pointer
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/fabricindex
-func (m_ MTROperationalCredentialsClusterNOCStruct) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/noc
+func (m_ MTROperationalCredentialsClusterNOCStruct) Noc() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("noc"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
+// SetNoc sets the value of the noc property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/fabricindex
-func (m_ MTROperationalCredentialsClusterNOCStruct) SetFabricIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/noc
+func (m_ MTROperationalCredentialsClusterNOCStruct) SetNoc(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNoc:"), value)
 }
 
 

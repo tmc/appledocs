@@ -11,8 +11,5 @@ type CFAllocatorRef unsafe.Pointer
 // CFStringRef is a CoreGraphics opaque type.
 type CFStringRef unsafe.Pointer
 
-// MTAudioProcessingTapRef is a CoreGraphics opaque type.
-type MTAudioProcessingTapRef unsafe.Pointer
-
 
 

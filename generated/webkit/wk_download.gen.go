@@ -86,54 +86,6 @@ func (d_ Download) Cancel(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("cancel:"), completionHandler)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originatingframe
-func (d_ Download) OriginatingFrame() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("originatingFrame"))
-	return rv
-}
-
-
-// SetOriginatingFrame sets the value of the originatingFrame property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originatingframe
-func (d_ Download) SetOriginatingFrame(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginatingFrame:"), value)
-}
-
-// An object that represents the request that initiated the download.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originalrequest
-func (d_ Download) OriginalRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("originalRequest"))
-	return rv
-}
-
-
-// SetOriginalRequest sets the value of the originalRequest property.
-// An object that represents the request that initiated the download.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originalrequest
-func (d_ Download) SetOriginalRequest(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginalRequest:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/isuserinitiated
-func (d_ Download) IsUserInitiated() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("isUserInitiated"))
-	return rv
-}
-
-
-// SetIsUserInitiated sets the value of the isUserInitiated property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/isuserinitiated
-func (d_ Download) SetIsUserInitiated(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setIsUserInitiated:"), value)
-}
-
 // An object you use to track download progress and handle redirects, authentication challenges, and failures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/delegate
@@ -158,6 +110,54 @@ func (d_ Download) SetDelegate(value objc.ID) {
 func (d_ Download) WebView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("webView"))
 	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/isuserinitiated
+func (d_ Download) IsUserInitiated() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isUserInitiated"))
+	return rv
+}
+
+
+// SetIsUserInitiated sets the value of the isUserInitiated property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/isuserinitiated
+func (d_ Download) SetIsUserInitiated(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsUserInitiated:"), value)
+}
+
+// An object that represents the request that initiated the download.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originalrequest
+func (d_ Download) OriginalRequest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("originalRequest"))
+	return rv
+}
+
+
+// SetOriginalRequest sets the value of the originalRequest property.
+// An object that represents the request that initiated the download.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originalrequest
+func (d_ Download) SetOriginalRequest(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginalRequest:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originatingframe
+func (d_ Download) OriginatingFrame() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("originatingFrame"))
+	return rv
+}
+
+
+// SetOriginatingFrame sets the value of the originatingFrame property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originatingframe
+func (d_ Download) SetOriginatingFrame(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginatingFrame:"), value)
 }
 
 

@@ -87,40 +87,22 @@ func (nc _NEHotspotNetworkClass) FetchCurrentWithCompletionHandler(completionHan
 	objc.Send[objc.ID](objc.ID(nc.class), objc.Sel("fetchCurrentWithCompletionHandler:"), completionHandler)
 }
 
-// Indicates whether the network is secure
+// The BSSID for the Wi-Fi network.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/issecure
-func (n_ NEHotspotNetwork) IsSecure() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isSecure"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/bssid
+func (n_ NEHotspotNetwork) Bssid() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("bssid"))
 	return rv
 }
 
 
-// SetIsSecure sets the value of the isSecure property.
-// Indicates whether the network is secure
+// SetBssid sets the value of the bssid property.
+// The BSSID for the Wi-Fi network.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/issecure
-func (n_ NEHotspotNetwork) SetIsSecure(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIsSecure:"), value)
-}
-
-// Indicates whether the network was just joined.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/didjustjoin
-func (n_ NEHotspotNetwork) DidJustJoin() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("didJustJoin"))
-	return rv
-}
-
-
-// SetDidJustJoin sets the value of the didJustJoin property.
-// Indicates whether the network was just joined.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/didjustjoin
-func (n_ NEHotspotNetwork) SetDidJustJoin(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDidJustJoin:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/bssid
+func (n_ NEHotspotNetwork) SetBssid(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setBssid:"), objc.String(value))
 }
 
 // Indicates whether the network was joined automatically or was joined explicitly by the user.
@@ -141,58 +123,58 @@ func (n_ NEHotspotNetwork) SetDidAutoJoin(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDidAutoJoin:"), value)
 }
 
-// The SSID for the Wi-Fi network.
+// Indicates whether the network was just joined.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ssid
-func (n_ NEHotspotNetwork) Ssid() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("ssid"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/didjustjoin
+func (n_ NEHotspotNetwork) DidJustJoin() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("didJustJoin"))
 	return rv
 }
 
 
-// SetSsid sets the value of the ssid property.
-// The SSID for the Wi-Fi network.
+// SetDidJustJoin sets the value of the didJustJoin property.
+// Indicates whether the network was just joined.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ssid
-func (n_ NEHotspotNetwork) SetSsid(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSsid:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/didjustjoin
+func (n_ NEHotspotNetwork) SetDidJustJoin(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDidJustJoin:"), value)
 }
 
-// The recent signal strength for the Wi-Fi network.
+// Indicates whether the calling Hotspot Helper is the chosen helper for this network.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/signalstrength
-func (n_ NEHotspotNetwork) SignalStrength() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("signalStrength"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ischosenhelper
+func (n_ NEHotspotNetwork) IsChosenHelper() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isChosenHelper"))
 	return rv
 }
 
 
-// SetSignalStrength sets the value of the signalStrength property.
-// The recent signal strength for the Wi-Fi network.
+// SetIsChosenHelper sets the value of the isChosenHelper property.
+// Indicates whether the calling Hotspot Helper is the chosen helper for this network.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/signalstrength
-func (n_ NEHotspotNetwork) SetSignalStrength(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSignalStrength:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ischosenhelper
+func (n_ NEHotspotNetwork) SetIsChosenHelper(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsChosenHelper:"), value)
 }
 
-// The BSSID for the Wi-Fi network.
+// Indicates whether the network is secure
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/bssid
-func (n_ NEHotspotNetwork) Bssid() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("bssid"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/issecure
+func (n_ NEHotspotNetwork) IsSecure() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isSecure"))
 	return rv
 }
 
 
-// SetBssid sets the value of the bssid property.
-// The BSSID for the Wi-Fi network.
+// SetIsSecure sets the value of the isSecure property.
+// Indicates whether the network is secure
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/bssid
-func (n_ NEHotspotNetwork) SetBssid(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setBssid:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/issecure
+func (n_ NEHotspotNetwork) SetIsSecure(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsSecure:"), value)
 }
 
 // The type of security used by the Wi-Fi network.
@@ -213,22 +195,40 @@ func (n_ NEHotspotNetwork) SetSecurityType(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSecurityType:"), value)
 }
 
-// Indicates whether the calling Hotspot Helper is the chosen helper for this network.
+// The recent signal strength for the Wi-Fi network.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ischosenhelper
-func (n_ NEHotspotNetwork) IsChosenHelper() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isChosenHelper"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/signalstrength
+func (n_ NEHotspotNetwork) SignalStrength() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("signalStrength"))
 	return rv
 }
 
 
-// SetIsChosenHelper sets the value of the isChosenHelper property.
-// Indicates whether the calling Hotspot Helper is the chosen helper for this network.
+// SetSignalStrength sets the value of the signalStrength property.
+// The recent signal strength for the Wi-Fi network.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ischosenhelper
-func (n_ NEHotspotNetwork) SetIsChosenHelper(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIsChosenHelper:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/signalstrength
+func (n_ NEHotspotNetwork) SetSignalStrength(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSignalStrength:"), value)
+}
+
+// The SSID for the Wi-Fi network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ssid
+func (n_ NEHotspotNetwork) Ssid() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("ssid"))
+	return rv
+}
+
+
+// SetSsid sets the value of the ssid property.
+// The SSID for the Wi-Fi network.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ssid
+func (n_ NEHotspotNetwork) SetSsid(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSsid:"), objc.String(value))
 }
 
 

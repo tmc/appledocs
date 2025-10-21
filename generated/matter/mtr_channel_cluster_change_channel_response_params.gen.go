@@ -77,21 +77,6 @@ func NewMTRChannelClusterChangeChannelResponseParams() MTRChannelClusterChangeCh
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/status
-func (m_ MTRChannelClusterChangeChannelResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
-	return rv
-}
-
-
-// SetStatus sets the value of the status property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/status
-func (m_ MTRChannelClusterChangeChannelResponseParams) SetStatus(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/data
 func (m_ MTRChannelClusterChangeChannelResponseParams) Data() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("data"))
@@ -104,6 +89,21 @@ func (m_ MTRChannelClusterChangeChannelResponseParams) Data() string {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/data
 func (m_ MTRChannelClusterChangeChannelResponseParams) SetData(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/status
+func (m_ MTRChannelClusterChangeChannelResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/status
+func (m_ MTRChannelClusterChangeChannelResponseParams) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
 //

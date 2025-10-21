@@ -77,66 +77,6 @@ func NewMTRColorControlClusterColorLoopSetParams() MTRColorControlClusterColorLo
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsmask
-func (m_ MTRColorControlClusterColorLoopSetParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
-	return rv
-}
-
-
-// SetOptionsMask sets the value of the optionsMask property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsmask
-func (m_ MTRColorControlClusterColorLoopSetParams) SetOptionsMask(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterColorLoopSetParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterColorLoopSetParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/time
-func (m_ MTRColorControlClusterColorLoopSetParams) Time() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("time"))
-	return rv
-}
-
-
-// SetTime sets the value of the time property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/time
-func (m_ MTRColorControlClusterColorLoopSetParams) SetTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTime:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsoverride
-func (m_ MTRColorControlClusterColorLoopSetParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
-	return rv
-}
-
-
-// SetOptionsOverride sets the value of the optionsOverride property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsoverride
-func (m_ MTRColorControlClusterColorLoopSetParams) SetOptionsOverride(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/action
 func (m_ MTRColorControlClusterColorLoopSetParams) Action() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("action"))
@@ -167,6 +107,81 @@ func (m_ MTRColorControlClusterColorLoopSetParams) SetDirection(value foundation
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsmask
+func (m_ MTRColorControlClusterColorLoopSetParams) OptionsMask() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+	return rv
+}
+
+
+// SetOptionsMask sets the value of the optionsMask property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsmask
+func (m_ MTRColorControlClusterColorLoopSetParams) SetOptionsMask(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsoverride
+func (m_ MTRColorControlClusterColorLoopSetParams) OptionsOverride() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+	return rv
+}
+
+
+// SetOptionsOverride sets the value of the optionsOverride property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsoverride
+func (m_ MTRColorControlClusterColorLoopSetParams) SetOptionsOverride(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/serversideprocessingtimeout
+func (m_ MTRColorControlClusterColorLoopSetParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/serversideprocessingtimeout
+func (m_ MTRColorControlClusterColorLoopSetParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/starthue
+func (m_ MTRColorControlClusterColorLoopSetParams) StartHue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startHue"))
+	return rv
+}
+
+
+// SetStartHue sets the value of the startHue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/starthue
+func (m_ MTRColorControlClusterColorLoopSetParams) SetStartHue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStartHue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/time
+func (m_ MTRColorControlClusterColorLoopSetParams) Time() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("time"))
+	return rv
+}
+
+
+// SetTime sets the value of the time property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/time
+func (m_ MTRColorControlClusterColorLoopSetParams) SetTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTime:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/timedinvoketimeoutms
 func (m_ MTRColorControlClusterColorLoopSetParams) TimedInvokeTimeoutMs() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
@@ -194,21 +209,6 @@ func (m_ MTRColorControlClusterColorLoopSetParams) UpdateFlags() foundation.Numb
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/updateflags
 func (m_ MTRColorControlClusterColorLoopSetParams) SetUpdateFlags(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdateFlags:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/starthue
-func (m_ MTRColorControlClusterColorLoopSetParams) StartHue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startHue"))
-	return rv
-}
-
-
-// SetStartHue sets the value of the startHue property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/starthue
-func (m_ MTRColorControlClusterColorLoopSetParams) SetStartHue(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartHue:"), value)
 }
 
 

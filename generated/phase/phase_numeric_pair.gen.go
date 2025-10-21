@@ -93,42 +93,6 @@ func NewPHASENumericPairWithFirstValueSecondValue(first unsafe.Pointer, second u
 }
 
 
-// The range of the envelope’s possible input values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/domain
-func (p_ PHASENumericPair) Domain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("domain"))
-	return rv
-}
-
-
-// SetDomain sets the value of the domain property.
-// The range of the envelope’s possible input values.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/domain
-func (p_ PHASENumericPair) SetDomain(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDomain:"), value)
-}
-
-// The bounds of the output value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/range
-func (p_ PHASENumericPair) Range() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("range"))
-	return rv
-}
-
-
-// SetRange sets the value of the range property.
-// The bounds of the output value.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/range
-func (p_ PHASENumericPair) SetRange(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRange:"), value)
-}
-
 // The first value in the pair.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/first
@@ -163,6 +127,42 @@ func (p_ PHASENumericPair) Second() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/second
 func (p_ PHASENumericPair) SetSecond(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSecond:"), value)
+}
+
+// The range of the envelope’s possible input values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/domain
+func (p_ PHASENumericPair) Domain() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("domain"))
+	return rv
+}
+
+
+// SetDomain sets the value of the domain property.
+// The range of the envelope’s possible input values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/domain
+func (p_ PHASENumericPair) SetDomain(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDomain:"), value)
+}
+
+// The bounds of the output value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/range
+func (p_ PHASENumericPair) Range() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("range"))
+	return rv
+}
+
+
+// SetRange sets the value of the range property.
+// The bounds of the output value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/range
+func (p_ PHASENumericPair) SetRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRange:"), value)
 }
 
 

@@ -89,6 +89,42 @@ func (s_ SFSpeechRecognizer) RecognitionTaskWithRequestDelegate(request unsafe.P
 	return rv
 }
 
+// A Boolean value that indicates whether the speech recognizer can operate without network access.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/supportsOnDeviceRecognition
+func (s_ SFSpeechRecognizer) SupportsOnDeviceRecognition() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("supportsOnDeviceRecognition"))
+	return rv
+}
+
+
+// SetSupportsOnDeviceRecognition sets the value of the supportsOnDeviceRecognition property.
+// A Boolean value that indicates whether the speech recognizer can operate without network access.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/supportsOnDeviceRecognition
+func (s_ SFSpeechRecognizer) SetSupportsOnDeviceRecognition(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSupportsOnDeviceRecognition:"), value)
+}
+
+// A hint that indicates the type of speech recognition being requested.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/defaulttaskhint
+func (s_ SFSpeechRecognizer) DefaultTaskHint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("defaultTaskHint"))
+	return rv
+}
+
+
+// SetDefaultTaskHint sets the value of the defaultTaskHint property.
+// A hint that indicates the type of speech recognition being requested.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/defaulttaskhint
+func (s_ SFSpeechRecognizer) SetDefaultTaskHint(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultTaskHint:"), value)
+}
+
 // The delegate object that handles changes to the availability of speech recognition services.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/delegate
@@ -125,24 +161,6 @@ func (s_ SFSpeechRecognizer) SetIsAvailable(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAvailable:"), value)
 }
 
-// A hint that indicates the type of speech recognition being requested.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/defaulttaskhint
-func (s_ SFSpeechRecognizer) DefaultTaskHint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("defaultTaskHint"))
-	return rv
-}
-
-
-// SetDefaultTaskHint sets the value of the defaultTaskHint property.
-// A hint that indicates the type of speech recognition being requested.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/defaulttaskhint
-func (s_ SFSpeechRecognizer) SetDefaultTaskHint(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultTaskHint:"), value)
-}
-
 // The locale of the speech recognizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/locale
@@ -177,24 +195,6 @@ func (s_ SFSpeechRecognizer) Queue() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/queue
 func (s_ SFSpeechRecognizer) SetQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQueue:"), value)
-}
-
-// A Boolean value that indicates whether the speech recognizer can operate without network access.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/supportsOnDeviceRecognition
-func (s_ SFSpeechRecognizer) SupportsOnDeviceRecognition() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("supportsOnDeviceRecognition"))
-	return rv
-}
-
-
-// SetSupportsOnDeviceRecognition sets the value of the supportsOnDeviceRecognition property.
-// A Boolean value that indicates whether the speech recognizer can operate without network access.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/supportsOnDeviceRecognition
-func (s_ SFSpeechRecognizer) SetSupportsOnDeviceRecognition(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSupportsOnDeviceRecognition:"), value)
 }
 
 

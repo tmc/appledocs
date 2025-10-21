@@ -79,24 +79,6 @@ func NewAccelerationStructureMotionBoundingBoxGeometryDescriptor() AccelerationS
 }
 
 
-// The stride, in bytes, between bounding boxes in each buffer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxstride
-func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxStride() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("boundingBoxStride"))
-	return rv
-}
-
-
-// SetBoundingBoxStride sets the value of the boundingBoxStride property.
-// The stride, in bytes, between bounding boxes in each buffer.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxstride
-func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxStride(value int) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxStride:"), value)
-}
-
 // A array of motion keyframes, each containing bounding box data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxbuffers
@@ -131,6 +113,24 @@ func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxCo
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxcount
 func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxCount(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxCount:"), value)
+}
+
+// The stride, in bytes, between bounding boxes in each buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxstride
+func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxStride() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("boundingBoxStride"))
+	return rv
+}
+
+
+// SetBoundingBoxStride sets the value of the boundingBoxStride property.
+// The stride, in bytes, between bounding boxes in each buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxstride
+func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxStride(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxStride:"), value)
 }
 
 

@@ -99,24 +99,6 @@ func (cc _CoreMLModelClass) ModelForMLModelError(model unsafe.Pointer, error_ un
 	return rv
 }
 
-// The model to base the image analysis request on.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequest/model
-func (c_ CoreMLModel) Model() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("model"))
-	return rv
-}
-
-
-// SetModel sets the value of the model property.
-// The model to base the image analysis request on.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequest/model
-func (c_ CoreMLModel) SetModel(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setModel:"), value)
-}
-
 // An optional object to support inputs outside Vision.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/featureProvider
@@ -151,6 +133,24 @@ func (c_ CoreMLModel) InputImageFeatureName() string {
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
 func (c_ CoreMLModel) SetInputImageFeatureName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputImageFeatureName:"), objc.String(value))
+}
+
+// The model to base the image analysis request on.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequest/model
+func (c_ CoreMLModel) Model() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("model"))
+	return rv
+}
+
+
+// SetModel sets the value of the model property.
+// The model to base the image analysis request on.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequest/model
+func (c_ CoreMLModel) SetModel(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModel:"), value)
 }
 
 

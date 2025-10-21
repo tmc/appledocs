@@ -77,21 +77,6 @@ func NewMTRHEPAFilterMonitoringClusterReplacementProductStruct() MTRHEPAFilterMo
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiervalue
-func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) ProductIdentifierValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("productIdentifierValue"))
-	return rv
-}
-
-
-// SetProductIdentifierValue sets the value of the productIdentifierValue property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiervalue
-func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierValue:"), objc.String(value))
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiertype
 func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) ProductIdentifierType() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productIdentifierType"))
@@ -104,6 +89,21 @@ func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) ProductIdentifi
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiertype
 func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierType(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiervalue
+func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) ProductIdentifierValue() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("productIdentifierValue"))
+	return rv
+}
+
+
+// SetProductIdentifierValue sets the value of the productIdentifierValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiervalue
+func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierValue:"), objc.String(value))
 }
 
 

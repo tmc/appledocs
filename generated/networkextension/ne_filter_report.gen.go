@@ -80,6 +80,24 @@ func NewNEFilterReport() NEFilterReport {
 }
 
 
+// The action taken on the reported flow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/action
+func (n_ NEFilterReport) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+// The action taken on the reported flow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/action
+func (n_ NEFilterReport) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setAction:"), value)
+}
+
 // The number of inbound bytes received from the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/bytesinboundcount
@@ -116,22 +134,22 @@ func (n_ NEFilterReport) SetBytesOutboundCount(value int) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setBytesOutboundCount:"), value)
 }
 
-// The action taken on the reported flow.
+// The type of event indicated by this report.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/action
-func (n_ NEFilterReport) Action() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("action"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.property
+func (n_ NEFilterReport) Event() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("event"))
 	return rv
 }
 
 
-// SetAction sets the value of the action property.
-// The action taken on the reported flow.
+// SetEvent sets the value of the event property.
+// The type of event indicated by this report.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/action
-func (n_ NEFilterReport) SetAction(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setAction:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.property
+func (n_ NEFilterReport) SetEvent(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setEvent:"), value)
 }
 
 // The flow on which the associated action was taken.
@@ -150,24 +168,6 @@ func (n_ NEFilterReport) Flow() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/flow
 func (n_ NEFilterReport) SetFlow(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFlow:"), value)
-}
-
-// The type of event indicated by this report.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.property
-func (n_ NEFilterReport) Event() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("event"))
-	return rv
-}
-
-
-// SetEvent sets the value of the event property.
-// The type of event indicated by this report.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.property
-func (n_ NEFilterReport) SetEvent(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setEvent:"), value)
 }
 
 // A Boolean value that indicates whether to send a report to the control provider when processing this verdict.

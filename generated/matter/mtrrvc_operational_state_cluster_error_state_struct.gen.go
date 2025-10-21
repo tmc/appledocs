@@ -92,21 +92,6 @@ func (m_ MTRRVCOperationalStateClusterErrorStateStruct) SetErrorStateDetails(val
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstatelabel
-func (m_ MTRRVCOperationalStateClusterErrorStateStruct) ErrorStateLabel() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("errorStateLabel"))
-	return rv
-}
-
-
-// SetErrorStateLabel sets the value of the errorStateLabel property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstatelabel
-func (m_ MTRRVCOperationalStateClusterErrorStateStruct) SetErrorStateLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), objc.String(value))
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstateid
 func (m_ MTRRVCOperationalStateClusterErrorStateStruct) ErrorStateID() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorStateID"))
@@ -119,6 +104,21 @@ func (m_ MTRRVCOperationalStateClusterErrorStateStruct) ErrorStateID() foundatio
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstateid
 func (m_ MTRRVCOperationalStateClusterErrorStateStruct) SetErrorStateID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstatelabel
+func (m_ MTRRVCOperationalStateClusterErrorStateStruct) ErrorStateLabel() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("errorStateLabel"))
+	return rv
+}
+
+
+// SetErrorStateLabel sets the value of the errorStateLabel property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstatelabel
+func (m_ MTRRVCOperationalStateClusterErrorStateStruct) SetErrorStateLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), objc.String(value))
 }
 
 

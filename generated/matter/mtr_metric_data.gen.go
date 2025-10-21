@@ -92,21 +92,6 @@ func (m_ MTRMetricData) SetDuration(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/value
-func (m_ MTRMetricData) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
-	return rv
-}
-
-
-// SetValue sets the value of the value property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/value
-func (m_ MTRMetricData) SetValue(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/errorcode
 func (m_ MTRMetricData) ErrorCode() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorCode"))
@@ -119,6 +104,21 @@ func (m_ MTRMetricData) ErrorCode() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/errorcode
 func (m_ MTRMetricData) SetErrorCode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorCode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/value
+func (m_ MTRMetricData) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/value
+func (m_ MTRMetricData) SetValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 
 

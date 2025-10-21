@@ -78,60 +78,6 @@ func NewCKFetchRecordZoneChangesConfiguration() CKFetchRecordZoneChangesConfigur
 }
 
 
-// The IDs of the record zones that contain the records to fetch.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/recordzoneids
-func (c_ CKFetchRecordZoneChangesConfiguration) RecordZoneIDs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneIDs"))
-	return rv
-}
-
-
-// SetRecordZoneIDs sets the value of the recordZoneIDs property.
-// The IDs of the record zones that contain the records to fetch.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/recordzoneids
-func (c_ CKFetchRecordZoneChangesConfiguration) SetRecordZoneIDs(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneIDs:"), value)
-}
-
-// A dictionary of configurations for fetching change operations by zone identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/configurationsbyrecordzoneid
-func (c_ CKFetchRecordZoneChangesConfiguration) ConfigurationsByRecordZoneID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("configurationsByRecordZoneID"))
-	return rv
-}
-
-
-// SetConfigurationsByRecordZoneID sets the value of the configurationsByRecordZoneID property.
-// A dictionary of configurations for fetching change operations by zone identifier.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/configurationsbyrecordzoneid
-func (c_ CKFetchRecordZoneChangesConfiguration) SetConfigurationsByRecordZoneID(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConfigurationsByRecordZoneID:"), value)
-}
-
-// A Boolean value that indicates whether to send repeated requests to the server.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchallchanges
-func (c_ CKFetchRecordZoneChangesConfiguration) FetchAllChanges() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("fetchAllChanges"))
-	return rv
-}
-
-
-// SetFetchAllChanges sets the value of the fetchAllChanges property.
-// A Boolean value that indicates whether to send repeated requests to the server.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchallchanges
-func (c_ CKFetchRecordZoneChangesConfiguration) SetFetchAllChanges(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAllChanges:"), value)
-}
-
 // An array of the record keys to retrieve.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesConfiguration/desiredKeys
@@ -194,6 +140,60 @@ func (c_ CKFetchRecordZoneChangesConfiguration) ResultsLimit() uint {
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneConfiguration/resultsLimit
 func (c_ CKFetchRecordZoneChangesConfiguration) SetResultsLimit(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
+}
+
+// A dictionary of configurations for fetching change operations by zone identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/configurationsbyrecordzoneid
+func (c_ CKFetchRecordZoneChangesConfiguration) ConfigurationsByRecordZoneID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("configurationsByRecordZoneID"))
+	return rv
+}
+
+
+// SetConfigurationsByRecordZoneID sets the value of the configurationsByRecordZoneID property.
+// A dictionary of configurations for fetching change operations by zone identifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/configurationsbyrecordzoneid
+func (c_ CKFetchRecordZoneChangesConfiguration) SetConfigurationsByRecordZoneID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setConfigurationsByRecordZoneID:"), value)
+}
+
+// A Boolean value that indicates whether to send repeated requests to the server.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchallchanges
+func (c_ CKFetchRecordZoneChangesConfiguration) FetchAllChanges() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("fetchAllChanges"))
+	return rv
+}
+
+
+// SetFetchAllChanges sets the value of the fetchAllChanges property.
+// A Boolean value that indicates whether to send repeated requests to the server.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchallchanges
+func (c_ CKFetchRecordZoneChangesConfiguration) SetFetchAllChanges(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAllChanges:"), value)
+}
+
+// The IDs of the record zones that contain the records to fetch.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/recordzoneids
+func (c_ CKFetchRecordZoneChangesConfiguration) RecordZoneIDs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneIDs"))
+	return rv
+}
+
+
+// SetRecordZoneIDs sets the value of the recordZoneIDs property.
+// The IDs of the record zones that contain the records to fetch.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/recordzoneids
+func (c_ CKFetchRecordZoneChangesConfiguration) SetRecordZoneIDs(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneIDs:"), value)
 }
 
 

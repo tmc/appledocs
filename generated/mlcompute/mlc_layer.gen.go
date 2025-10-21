@@ -80,6 +80,24 @@ func NewCLayer() CLayer {
 }
 
 
+// A device type that indicates where the system executes the layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/devicetype
+func (c_ CLayer) DeviceType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("deviceType"))
+	return rv
+}
+
+
+// SetDeviceType sets the value of the deviceType property.
+// A device type that indicates where the system executes the layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/devicetype
+func (c_ CLayer) SetDeviceType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDeviceType:"), value)
+}
+
 // A Boolean that indicates whether you choose to debug the layer when executing a graph that includes it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/isdebuggingenabled
@@ -132,24 +150,6 @@ func (c_ CLayer) LayerID() int {
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/layerid
 func (c_ CLayer) SetLayerID(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLayerID:"), value)
-}
-
-// A device type that indicates where the system executes the layer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/devicetype
-func (c_ CLayer) DeviceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("deviceType"))
-	return rv
-}
-
-
-// SetDeviceType sets the value of the deviceType property.
-// A device type that indicates where the system executes the layer.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/devicetype
-func (c_ CLayer) SetDeviceType(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDeviceType:"), value)
 }
 
 

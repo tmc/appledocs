@@ -80,39 +80,6 @@ func NewCanvasView() CanvasView {
 }
 
 
-// A Boolean value that indicates whether a ruler view is visible on the canvas.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pkcanvasview/isruleractive
-func (c_ CanvasView) IsRulerActive() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isRulerActive"))
-	return rv
-}
-
-
-// SetIsRulerActive sets the value of the isRulerActive property.
-// A Boolean value that indicates whether a ruler view is visible on the canvas.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pkcanvasview/isruleractive
-func (c_ CanvasView) SetIsRulerActive(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRulerActive:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pkcanvasview/isdrawingenabled
-func (c_ CanvasView) IsDrawingEnabled() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isDrawingEnabled"))
-	return rv
-}
-
-
-// SetIsDrawingEnabled sets the value of the isDrawingEnabled property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pkcanvasview/isdrawingenabled
-func (c_ CanvasView) SetIsDrawingEnabled(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDrawingEnabled:"), value)
-}
-
 // A Boolean value that indicates whether the canvas accepts input from the user’s finger in addition to Apple Pencil.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/allowsFingerDrawing
@@ -260,6 +227,39 @@ func (c_ CanvasView) Tool() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/tool-6str6
 func (c_ CanvasView) SetTool(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTool:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pkcanvasview/isdrawingenabled
+func (c_ CanvasView) IsDrawingEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDrawingEnabled"))
+	return rv
+}
+
+
+// SetIsDrawingEnabled sets the value of the isDrawingEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pkcanvasview/isdrawingenabled
+func (c_ CanvasView) SetIsDrawingEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDrawingEnabled:"), value)
+}
+
+// A Boolean value that indicates whether a ruler view is visible on the canvas.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pkcanvasview/isruleractive
+func (c_ CanvasView) IsRulerActive() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isRulerActive"))
+	return rv
+}
+
+
+// SetIsRulerActive sets the value of the isRulerActive property.
+// A Boolean value that indicates whether a ruler view is visible on the canvas.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pkcanvasview/isruleractive
+func (c_ CanvasView) SetIsRulerActive(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRulerActive:"), value)
 }
 
 

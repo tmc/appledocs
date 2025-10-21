@@ -77,21 +77,6 @@ func NewMTROTASoftwareUpdateRequestorClusterVersionAppliedEvent() MTROTASoftware
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/softwareversion
-func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
-	return rv
-}
-
-
-// SetSoftwareVersion sets the value of the softwareVersion property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/softwareversion
-func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SetSoftwareVersion(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/productid
 func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) ProductID() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
@@ -104,6 +89,21 @@ func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) ProductID() fo
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/productid
 func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SetProductID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/softwareversion
+func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SoftwareVersion() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+	return rv
+}
+
+
+// SetSoftwareVersion sets the value of the softwareVersion property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/softwareversion
+func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SetSoftwareVersion(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 
 

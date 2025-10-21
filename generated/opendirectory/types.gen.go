@@ -26,17 +26,5 @@ type CFStringRef unsafe.Pointer
 // CFTypeRef is a CoreGraphics opaque type.
 type CFTypeRef unsafe.Pointer
 
-// ODNodeRef is a CoreGraphics opaque type.
-type ODNodeRef unsafe.Pointer
-
-// ODQueryRef is a CoreGraphics opaque type.
-type ODQueryRef unsafe.Pointer
-
-// ODRecordRef is a CoreGraphics opaque type.
-type ODRecordRef unsafe.Pointer
-
-// ODSessionRef is a CoreGraphics opaque type.
-type ODSessionRef unsafe.Pointer
-
 
 

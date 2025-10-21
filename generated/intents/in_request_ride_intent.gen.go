@@ -81,76 +81,12 @@ func NewINRequestRideIntent() INRequestRideIntent {
 }
 
 
-// The number of passengers that the ride must accommodate.
+// The user’s starting location.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/partysize-39k7z
-func (i_ INRequestRideIntent) PartySize() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("partySize"))
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INRequestRideIntent/pickupLocation
+func (i_ INRequestRideIntent) PickupLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pickupLocation"))
 	return rv
-}
-
-
-// SetPartySize sets the value of the partySize property.
-// The number of passengers that the ride must accommodate.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/partysize-39k7z
-func (i_ INRequestRideIntent) SetPartySize(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
-}
-
-// The name of the ride option selected by the user.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/rideoptionname
-func (i_ INRequestRideIntent) RideOptionName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rideOptionName"))
-	return rv
-}
-
-
-// SetRideOptionName sets the value of the rideOptionName property.
-// The name of the ride option selected by the user.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/rideoptionname
-func (i_ INRequestRideIntent) SetRideOptionName(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRideOptionName:"), value)
-}
-
-// The user’s requested payment method.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/paymentmethod
-func (i_ INRequestRideIntent) PaymentMethod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("paymentMethod"))
-	return rv
-}
-
-
-// SetPaymentMethod sets the value of the paymentMethod property.
-// The user’s requested payment method.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/paymentmethod
-func (i_ INRequestRideIntent) SetPaymentMethod(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentMethod:"), value)
-}
-
-// The time at which to pick up the user.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/scheduledpickuptime
-func (i_ INRequestRideIntent) ScheduledPickupTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("scheduledPickupTime"))
-	return rv
-}
-
-
-// SetScheduledPickupTime sets the value of the scheduledPickupTime property.
-// The time at which to pick up the user.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/scheduledpickuptime
-func (i_ INRequestRideIntent) SetScheduledPickupTime(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setScheduledPickupTime:"), value)
 }
 
 // The user’s destination.
@@ -171,12 +107,76 @@ func (i_ INRequestRideIntent) SetDropOffLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
 
-// The user’s starting location.
+// The number of passengers that the ride must accommodate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INRequestRideIntent/pickupLocation
-func (i_ INRequestRideIntent) PickupLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pickupLocation"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/partysize-39k7z
+func (i_ INRequestRideIntent) PartySize() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("partySize"))
 	return rv
+}
+
+
+// SetPartySize sets the value of the partySize property.
+// The number of passengers that the ride must accommodate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/partysize-39k7z
+func (i_ INRequestRideIntent) SetPartySize(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
+}
+
+// The user’s requested payment method.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/paymentmethod
+func (i_ INRequestRideIntent) PaymentMethod() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("paymentMethod"))
+	return rv
+}
+
+
+// SetPaymentMethod sets the value of the paymentMethod property.
+// The user’s requested payment method.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/paymentmethod
+func (i_ INRequestRideIntent) SetPaymentMethod(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentMethod:"), value)
+}
+
+// The name of the ride option selected by the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/rideoptionname
+func (i_ INRequestRideIntent) RideOptionName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rideOptionName"))
+	return rv
+}
+
+
+// SetRideOptionName sets the value of the rideOptionName property.
+// The name of the ride option selected by the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/rideoptionname
+func (i_ INRequestRideIntent) SetRideOptionName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRideOptionName:"), value)
+}
+
+// The time at which to pick up the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/scheduledpickuptime
+func (i_ INRequestRideIntent) ScheduledPickupTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("scheduledPickupTime"))
+	return rv
+}
+
+
+// SetScheduledPickupTime sets the value of the scheduledPickupTime property.
+// The time at which to pick up the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/scheduledpickuptime
+func (i_ INRequestRideIntent) SetScheduledPickupTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setScheduledPickupTime:"), value)
 }
 
 

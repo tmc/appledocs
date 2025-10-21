@@ -81,94 +81,40 @@ func NewExpressionDescription() ExpressionDescription {
 }
 
 
-// A collection of either property descriptions or string property names that specify which properties should be returned by the fetch.
+// The expression to evaluate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/propertiestofetch
-func (e_ ExpressionDescription) PropertiesToFetch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("propertiesToFetch"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
+func (e_ ExpressionDescription) Expression() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expression"))
 	return rv
 }
 
 
-// SetPropertiesToFetch sets the value of the propertiesToFetch property.
-// A collection of either property descriptions or string property names that specify which properties should be returned by the fetch.
+// SetExpression sets the value of the expression property.
+// The expression to evaluate.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/propertiestofetch
-func (e_ ExpressionDescription) SetPropertiesToFetch(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setPropertiesToFetch:"), value)
-}
-
-// The predicate of the fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (e_ ExpressionDescription) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("predicate"))
-	return rv
-}
-
-
-// SetPredicate sets the value of the predicate property.
-// The predicate of the fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (e_ ExpressionDescription) SetPredicate(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setPredicate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
+func (e_ ExpressionDescription) SetExpression(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setExpression:"), value)
 }
 
 // The attribute type of the expression’s result.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsexpressiondescription/resulttype
-func (e_ ExpressionDescription) ResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("resultType"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
+func (e_ ExpressionDescription) ExpressionResultType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expressionResultType"))
 	return rv
 }
 
 
-// SetResultType sets the value of the resultType property.
+// SetExpressionResultType sets the value of the expressionResultType property.
 // The attribute type of the expression’s result.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsexpressiondescription/resulttype
-func (e_ ExpressionDescription) SetResultType(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setResultType:"), value)
-}
-
-// The fetch limit of the fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (e_ ExpressionDescription) FetchLimit() int {
-	rv := objc.Send[int](e_.ID, objc.Sel("fetchLimit"))
-	return rv
-}
-
-
-// SetFetchLimit sets the value of the fetchLimit property.
-// The fetch limit of the fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (e_ ExpressionDescription) SetFetchLimit(value int) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchLimit:"), value)
-}
-
-// The fetch offset of the fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (e_ ExpressionDescription) FetchOffset() int {
-	rv := objc.Send[int](e_.ID, objc.Sel("fetchOffset"))
-	return rv
-}
-
-
-// SetFetchOffset sets the value of the fetchOffset property.
-// The fetch offset of the fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (e_ ExpressionDescription) SetFetchOffset(value int) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchOffset:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
+func (e_ ExpressionDescription) SetExpressionResultType(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionResultType:"), value)
 }
 
 // An array containing the properties of the receiver.
@@ -187,6 +133,24 @@ func (e_ ExpressionDescription) Properties() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/properties
 func (e_ ExpressionDescription) SetProperties(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setProperties:"), value)
+}
+
+// The attribute type of the expression’s result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsexpressiondescription/resulttype
+func (e_ ExpressionDescription) ResultType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("resultType"))
+	return rv
+}
+
+
+// SetResultType sets the value of the resultType property.
+// The attribute type of the expression’s result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsexpressiondescription/resulttype
+func (e_ ExpressionDescription) SetResultType(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setResultType:"), value)
 }
 
 // An array of persistent stores specified for the fetch request.
@@ -225,40 +189,76 @@ func (e_ ExpressionDescription) SetFetchBatchSize(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
 
-// The expression to evaluate.
+// The fetch limit of the fetch request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
-func (e_ ExpressionDescription) Expression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expression"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
+func (e_ ExpressionDescription) FetchLimit() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("fetchLimit"))
 	return rv
 }
 
 
-// SetExpression sets the value of the expression property.
-// The expression to evaluate.
+// SetFetchLimit sets the value of the fetchLimit property.
+// The fetch limit of the fetch request.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
-func (e_ ExpressionDescription) SetExpression(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setExpression:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
+func (e_ ExpressionDescription) SetFetchLimit(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchLimit:"), value)
 }
 
-// The attribute type of the expression’s result.
+// The fetch offset of the fetch request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
-func (e_ ExpressionDescription) ExpressionResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expressionResultType"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
+func (e_ ExpressionDescription) FetchOffset() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("fetchOffset"))
 	return rv
 }
 
 
-// SetExpressionResultType sets the value of the expressionResultType property.
-// The attribute type of the expression’s result.
+// SetFetchOffset sets the value of the fetchOffset property.
+// The fetch offset of the fetch request.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
-func (e_ ExpressionDescription) SetExpressionResultType(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionResultType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
+func (e_ ExpressionDescription) SetFetchOffset(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchOffset:"), value)
+}
+
+// The predicate of the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
+func (e_ ExpressionDescription) Predicate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("predicate"))
+	return rv
+}
+
+
+// SetPredicate sets the value of the predicate property.
+// The predicate of the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
+func (e_ ExpressionDescription) SetPredicate(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setPredicate:"), value)
+}
+
+// A collection of either property descriptions or string property names that specify which properties should be returned by the fetch.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/propertiestofetch
+func (e_ ExpressionDescription) PropertiesToFetch() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("propertiesToFetch"))
+	return rv
+}
+
+
+// SetPropertiesToFetch sets the value of the propertiesToFetch property.
+// A collection of either property descriptions or string property names that specify which properties should be returned by the fetch.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/propertiestofetch
+func (e_ ExpressionDescription) SetPropertiesToFetch(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setPropertiesToFetch:"), value)
 }
 
 

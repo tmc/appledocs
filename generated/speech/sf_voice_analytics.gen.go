@@ -80,22 +80,22 @@ func NewSFVoiceAnalytics() SFVoiceAnalytics {
 }
 
 
-// The highness or lowness of the tone (fundamental frequency) in each frame of a transcription segment, expressed as a logarithm.
+// A Boolean value that indicates whether speech recognition is complete and whether the transcriptions are final.
 //
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/pitch
-func (s_ SFVoiceAnalytics) Pitch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pitch"))
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/isfinal
+func (s_ SFVoiceAnalytics) IsFinal() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isFinal"))
 	return rv
 }
 
 
-// SetPitch sets the value of the pitch property.
-// The highness or lowness of the tone (fundamental frequency) in each frame of a transcription segment, expressed as a logarithm.
+// SetIsFinal sets the value of the isFinal property.
+// A Boolean value that indicates whether speech recognition is complete and whether the transcriptions are final.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/pitch
-func (s_ SFVoiceAnalytics) SetPitch(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPitch:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/isfinal
+func (s_ SFVoiceAnalytics) SetIsFinal(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsFinal:"), value)
 }
 
 // The variation in pitch in each frame of a transcription segment, expressed as a percentage of the frame’s fundamental frequency.
@@ -114,6 +114,24 @@ func (s_ SFVoiceAnalytics) Jitter() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/jitter
 func (s_ SFVoiceAnalytics) SetJitter(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setJitter:"), value)
+}
+
+// The highness or lowness of the tone (fundamental frequency) in each frame of a transcription segment, expressed as a logarithm.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/pitch
+func (s_ SFVoiceAnalytics) Pitch() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pitch"))
+	return rv
+}
+
+
+// SetPitch sets the value of the pitch property.
+// The highness or lowness of the tone (fundamental frequency) in each frame of a transcription segment, expressed as a logarithm.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/pitch
+func (s_ SFVoiceAnalytics) SetPitch(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPitch:"), value)
 }
 
 // The variation in vocal volume stability (amplitude) in each frame of a transcription segment, expressed in decibels.
@@ -150,24 +168,6 @@ func (s_ SFVoiceAnalytics) Voicing() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/voicing
 func (s_ SFVoiceAnalytics) SetVoicing(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoicing:"), value)
-}
-
-// A Boolean value that indicates whether speech recognition is complete and whether the transcriptions are final.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/isfinal
-func (s_ SFVoiceAnalytics) IsFinal() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isFinal"))
-	return rv
-}
-
-
-// SetIsFinal sets the value of the isFinal property.
-// A Boolean value that indicates whether speech recognition is complete and whether the transcriptions are final.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/isfinal
-func (s_ SFVoiceAnalytics) SetIsFinal(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsFinal:"), value)
 }
 
 

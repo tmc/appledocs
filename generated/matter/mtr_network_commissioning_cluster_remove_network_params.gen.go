@@ -77,18 +77,18 @@ func NewMTRNetworkCommissioningClusterRemoveNetworkParams() MTRNetworkCommission
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) Breadcrumb() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+// SetBreadcrumb sets the value of the breadcrumb property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) SetBreadcrumb(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) SetNetworkID(value u
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/serversideprocessingtimeout
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) SetBreadcrumb(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/serversideprocessingtimeout
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

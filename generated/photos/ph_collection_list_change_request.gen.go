@@ -175,6 +175,14 @@ func (p_ PHCollectionListChangeRequest) ReplaceChildCollectionsAtIndexesWithChil
 	objc.Send[objc.ID](p_.ID, objc.Sel("replaceChildCollectionsAtIndexes:withChildCollections:"), indexes, collections)
 }
 
+// A placeholder object for the collection list that the change request creates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/placeholderForCreatedCollectionList
+func (p_ PHCollectionListChangeRequest) PlaceholderForCreatedCollectionList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("placeholderForCreatedCollectionList"))
+	return rv
+}
+
 // The displayed name of the collection list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcollectionlistchangerequest/title
@@ -191,14 +199,6 @@ func (p_ PHCollectionListChangeRequest) Title() string {
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcollectionlistchangerequest/title
 func (p_ PHCollectionListChangeRequest) SetTitle(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
-}
-
-// A placeholder object for the collection list that the change request creates.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/placeholderForCreatedCollectionList
-func (p_ PHCollectionListChangeRequest) PlaceholderForCreatedCollectionList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("placeholderForCreatedCollectionList"))
-	return rv
 }
 
 

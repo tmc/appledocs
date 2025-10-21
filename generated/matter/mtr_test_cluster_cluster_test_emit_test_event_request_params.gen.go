@@ -78,36 +78,6 @@ func NewMTRTestClusterClusterTestEmitTestEventRequestParams() MTRTestClusterClus
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventrequestparams/arg3
-func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) Arg3() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg3"))
-	return rv
-}
-
-
-// SetArg3 sets the value of the arg3 property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventrequestparams/arg3
-func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) SetArg3(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventrequestparams/serversideprocessingtimeout
-func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventrequestparams/serversideprocessingtimeout
-func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventrequestparams/arg1
 func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) Arg1() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
@@ -135,6 +105,36 @@ func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) Arg2() foundation.
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventrequestparams/arg2
 func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) SetArg2(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventrequestparams/arg3
+func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) Arg3() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg3"))
+	return rv
+}
+
+
+// SetArg3 sets the value of the arg3 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventrequestparams/arg3
+func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) SetArg3(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventrequestparams/serversideprocessingtimeout
+func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventrequestparams/serversideprocessingtimeout
+func (m_ MTRTestClusterClusterTestEmitTestEventRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

@@ -78,18 +78,18 @@ func NewMTRTestClusterClusterSimpleStructEchoRequestParams() MTRTestClusterClust
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/arg1
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) Arg1() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetArg1 sets the value of the arg1 property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/arg1
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetArg1(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
 //
@@ -108,18 +108,18 @@ func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetServerSideProces
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/arg1
-func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) Arg1() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetArg1 sets the value of the arg1 property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/arg1
-func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetArg1(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

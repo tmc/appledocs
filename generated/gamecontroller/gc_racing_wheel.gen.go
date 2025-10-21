@@ -97,6 +97,22 @@ func (g_ GCRacingWheel) RelinquishDevice() {
 
 // A Boolean value that indicates whether the racing wheel sends events to the app.
 //
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCRacingWheel/isAcquired
+func (g_ GCRacingWheel) Acquired() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("acquired"))
+	return rv
+}
+
+// A Boolean value that indicates whether the object is a snapshot of a racing wheel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCRacingWheel/isSnapshot
+func (g_ GCRacingWheel) Snapshot() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("snapshot"))
+	return rv
+}
+
+// A Boolean value that indicates whether the racing wheel sends events to the app.
+//
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/isacquired
 func (g_ GCRacingWheel) IsAcquired() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isAcquired"))
@@ -147,22 +163,6 @@ func (g_ GCRacingWheel) WheelInput() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/wheelinput
 func (g_ GCRacingWheel) SetWheelInput(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWheelInput:"), value)
-}
-
-// A Boolean value that indicates whether the racing wheel sends events to the app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCRacingWheel/isAcquired
-func (g_ GCRacingWheel) Acquired() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("acquired"))
-	return rv
-}
-
-// A Boolean value that indicates whether the object is a snapshot of a racing wheel.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCRacingWheel/isSnapshot
-func (g_ GCRacingWheel) Snapshot() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("snapshot"))
-	return rv
 }
 
 

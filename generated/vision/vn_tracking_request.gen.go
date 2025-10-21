@@ -90,6 +90,24 @@ func (t_ TrackingRequest) SupportedNumberOfTrackersAndReturnError(error_ unsafe.
 	return rv
 }
 
+// The observation object defining a region to track.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/inputobservation
+func (t_ TrackingRequest) InputObservation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("inputObservation"))
+	return rv
+}
+
+
+// SetInputObservation sets the value of the inputObservation property.
+// The observation object defining a region to track.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/inputobservation
+func (t_ TrackingRequest) SetInputObservation(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setInputObservation:"), value)
+}
+
 // A Boolean that indicates the last frame in a tracking sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/islastframe
@@ -124,24 +142,6 @@ func (t_ TrackingRequest) TrackingLevel() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/trackinglevel
 func (t_ TrackingRequest) SetTrackingLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTrackingLevel:"), value)
-}
-
-// The observation object defining a region to track.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/inputobservation
-func (t_ TrackingRequest) InputObservation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("inputObservation"))
-	return rv
-}
-
-
-// SetInputObservation sets the value of the inputObservation property.
-// The observation object defining a region to track.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/inputobservation
-func (t_ TrackingRequest) SetInputObservation(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setInputObservation:"), value)
 }
 
 

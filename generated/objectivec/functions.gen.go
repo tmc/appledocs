@@ -655,8 +655,8 @@ func class_addProperty(cls unsafe.Pointer, name unsafe.Pointer, attributes unsaf
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_addProtocol(_:_:)
-func class_addProtocol(cls unsafe.Pointer, protocol unsafe.Pointer) unsafe.Pointer {
-	return _class_addProtocol(cls, protocol)
+func class_addProtocol(cls unsafe.Pointer, protocol_ unsafe.Pointer) unsafe.Pointer {
+	return _class_addProtocol(cls, protocol_)
 	}
 
 
@@ -665,8 +665,8 @@ func class_addProtocol(cls unsafe.Pointer, protocol unsafe.Pointer) unsafe.Point
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_conformsToProtocol(_:_:)
-func class_conformsToProtocol(cls unsafe.Pointer, protocol unsafe.Pointer) unsafe.Pointer {
-	return _class_conformsToProtocol(cls, protocol)
+func class_conformsToProtocol(cls unsafe.Pointer, protocol_ unsafe.Pointer) unsafe.Pointer {
+	return _class_conformsToProtocol(cls, protocol_)
 	}
 
 

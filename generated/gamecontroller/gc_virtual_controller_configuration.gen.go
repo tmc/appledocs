@@ -80,6 +80,24 @@ func NewGCVirtualControllerConfiguration() GCVirtualControllerConfiguration {
 }
 
 
+// A Boolean value that indicates whether the system or the app presents the virtual interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration/isHidden
+func (g_ GCVirtualControllerConfiguration) Hidden() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("hidden"))
+	return rv
+}
+
+
+// SetHidden sets the value of the hidden property.
+// A Boolean value that indicates whether the system or the app presents the virtual interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration/isHidden
+func (g_ GCVirtualControllerConfiguration) SetHidden(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setHidden:"), value)
+}
+
 // The input elements of a virtual controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
@@ -114,24 +132,6 @@ func (g_ GCVirtualControllerConfiguration) IsHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/ishidden
 func (g_ GCVirtualControllerConfiguration) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
-}
-
-// A Boolean value that indicates whether the system or the app presents the virtual interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration/isHidden
-func (g_ GCVirtualControllerConfiguration) Hidden() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("hidden"))
-	return rv
-}
-
-
-// SetHidden sets the value of the hidden property.
-// A Boolean value that indicates whether the system or the app presents the virtual interface.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration/isHidden
-func (g_ GCVirtualControllerConfiguration) SetHidden(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setHidden:"), value)
 }
 
 

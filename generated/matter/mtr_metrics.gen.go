@@ -76,21 +76,6 @@ func NewMTRMetrics() MTRMetrics {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/uniqueidentifier
-func (m_ MTRMetrics) UniqueIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("uniqueIdentifier"))
-	return rv
-}
-
-
-// SetUniqueIdentifier sets the value of the uniqueIdentifier property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/uniqueidentifier
-func (m_ MTRMetrics) SetUniqueIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUniqueIdentifier:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/allkeys
 func (m_ MTRMetrics) AllKeys() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("allKeys"))
@@ -103,6 +88,21 @@ func (m_ MTRMetrics) AllKeys() string {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/allkeys
 func (m_ MTRMetrics) SetAllKeys(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllKeys:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/uniqueidentifier
+func (m_ MTRMetrics) UniqueIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("uniqueIdentifier"))
+	return rv
+}
+
+
+// SetUniqueIdentifier sets the value of the uniqueIdentifier property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/uniqueidentifier
+func (m_ MTRMetrics) SetUniqueIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUniqueIdentifier:"), value)
 }
 
 

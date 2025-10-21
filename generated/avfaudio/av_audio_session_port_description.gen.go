@@ -80,58 +80,12 @@ func NewAudioSessionPortDescription() AudioSessionPortDescription {
 }
 
 
-// A system-assigned unique identifier (UID) for the port.
+// The preferred audio data source for the port.
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
-func (a_ AudioSessionPortDescription) Uid() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("uid"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortDescription/preferredDataSource
+func (a_ AudioSessionPortDescription) PreferredDataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredDataSource"))
 	return rv
-}
-
-
-// SetUid sets the value of the uid property.
-// A system-assigned unique identifier (UID) for the port.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
-func (a_ AudioSessionPortDescription) SetUid(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUid:"), objc.String(value))
-}
-
-// The currently selected audio data source for the port.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/selecteddatasource
-func (a_ AudioSessionPortDescription) SelectedDataSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("selectedDataSource"))
-	return rv
-}
-
-
-// SetSelectedDataSource sets the value of the selectedDataSource property.
-// The currently selected audio data source for the port.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/selecteddatasource
-func (a_ AudioSessionPortDescription) SetSelectedDataSource(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedDataSource:"), value)
-}
-
-// A Boolean value that indicates whether the port supports spatial audio playback.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled
-func (a_ AudioSessionPortDescription) IsSpatialAudioEnabled() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isSpatialAudioEnabled"))
-	return rv
-}
-
-
-// SetIsSpatialAudioEnabled sets the value of the isSpatialAudioEnabled property.
-// A Boolean value that indicates whether the port supports spatial audio playback.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled
-func (a_ AudioSessionPortDescription) SetIsSpatialAudioEnabled(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSpatialAudioEnabled:"), value)
 }
 
 // An array of input ports available for audio routing.
@@ -152,40 +106,22 @@ func (a_ AudioSessionPortDescription) SetAvailableInputs(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableInputs:"), value)
 }
 
-// The available data sources for the port.
+// A description of the current audio route’s input and output ports.
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
-func (a_ AudioSessionPortDescription) DataSources() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dataSources"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
+func (a_ AudioSessionPortDescription) CurrentRoute() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentRoute"))
 	return rv
 }
 
 
-// SetDataSources sets the value of the dataSources property.
-// The available data sources for the port.
+// SetCurrentRoute sets the value of the currentRoute property.
+// A description of the current audio route’s input and output ports.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
-func (a_ AudioSessionPortDescription) SetDataSources(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSources:"), value)
-}
-
-// A descriptive name for the port.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
-func (a_ AudioSessionPortDescription) PortName() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("portName"))
-	return rv
-}
-
-
-// SetPortName sets the value of the portName property.
-// A descriptive name for the port.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
-func (a_ AudioSessionPortDescription) SetPortName(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPortName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
+func (a_ AudioSessionPortDescription) SetCurrentRoute(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentRoute:"), value)
 }
 
 // An optional port extension that describes capabilities relevant to Bluetooth microphone ports.
@@ -206,6 +142,42 @@ func (a_ AudioSessionPortDescription) SetBluetoothMicrophoneExtension(value unsa
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBluetoothMicrophoneExtension:"), value)
 }
 
+// An array of channel objects that describe the port’s input or output channels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/channels
+func (a_ AudioSessionPortDescription) Channels() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("channels"))
+	return rv
+}
+
+
+// SetChannels sets the value of the channels property.
+// An array of channel objects that describe the port’s input or output channels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/channels
+func (a_ AudioSessionPortDescription) SetChannels(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setChannels:"), value)
+}
+
+// The available data sources for the port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
+func (a_ AudioSessionPortDescription) DataSources() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dataSources"))
+	return rv
+}
+
+
+// SetDataSources sets the value of the dataSources property.
+// The available data sources for the port.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
+func (a_ AudioSessionPortDescription) SetDataSources(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSources:"), value)
+}
+
 // A Boolean value that indicates whether the associated hardware port has built-in processing for two-way voice communication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/hashardwarevoicecallprocessing
@@ -224,22 +196,40 @@ func (a_ AudioSessionPortDescription) SetHasHardwareVoiceCallProcessing(value bo
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHasHardwareVoiceCallProcessing:"), value)
 }
 
-// A description of the current audio route’s input and output ports.
+// A Boolean value that indicates whether the port supports spatial audio playback.
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
-func (a_ AudioSessionPortDescription) CurrentRoute() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentRoute"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled
+func (a_ AudioSessionPortDescription) IsSpatialAudioEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isSpatialAudioEnabled"))
 	return rv
 }
 
 
-// SetCurrentRoute sets the value of the currentRoute property.
-// A description of the current audio route’s input and output ports.
+// SetIsSpatialAudioEnabled sets the value of the isSpatialAudioEnabled property.
+// A Boolean value that indicates whether the port supports spatial audio playback.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
-func (a_ AudioSessionPortDescription) SetCurrentRoute(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentRoute:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled
+func (a_ AudioSessionPortDescription) SetIsSpatialAudioEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSpatialAudioEnabled:"), value)
+}
+
+// A descriptive name for the port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
+func (a_ AudioSessionPortDescription) PortName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("portName"))
+	return rv
+}
+
+
+// SetPortName sets the value of the portName property.
+// A descriptive name for the port.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
+func (a_ AudioSessionPortDescription) SetPortName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPortName:"), objc.String(value))
 }
 
 // The type of the port.
@@ -260,30 +250,40 @@ func (a_ AudioSessionPortDescription) SetPortType(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPortType:"), value)
 }
 
-// An array of channel objects that describe the port’s input or output channels.
+// The currently selected audio data source for the port.
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/channels
-func (a_ AudioSessionPortDescription) Channels() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("channels"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/selecteddatasource
+func (a_ AudioSessionPortDescription) SelectedDataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("selectedDataSource"))
 	return rv
 }
 
 
-// SetChannels sets the value of the channels property.
-// An array of channel objects that describe the port’s input or output channels.
+// SetSelectedDataSource sets the value of the selectedDataSource property.
+// The currently selected audio data source for the port.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/channels
-func (a_ AudioSessionPortDescription) SetChannels(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setChannels:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/selecteddatasource
+func (a_ AudioSessionPortDescription) SetSelectedDataSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedDataSource:"), value)
 }
 
-// The preferred audio data source for the port.
+// A system-assigned unique identifier (UID) for the port.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortDescription/preferredDataSource
-func (a_ AudioSessionPortDescription) PreferredDataSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredDataSource"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
+func (a_ AudioSessionPortDescription) Uid() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("uid"))
 	return rv
+}
+
+
+// SetUid sets the value of the uid property.
+// A system-assigned unique identifier (UID) for the port.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
+func (a_ AudioSessionPortDescription) SetUid(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUid:"), objc.String(value))
 }
 
 

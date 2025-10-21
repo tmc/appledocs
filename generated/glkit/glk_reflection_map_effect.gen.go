@@ -89,24 +89,6 @@ func (g_ GLKReflectionMapEffect) PrepareToDraw() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("prepareToDraw"))
 }
 
-// The order in which textures are applied to rendered primitives.
-//
-// [Full Topic]: https://developer.apple.com/documentation/glkit/glkbaseeffect/textureorder
-func (g_ GLKReflectionMapEffect) TextureOrder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("textureOrder"))
-	return rv
-}
-
-
-// SetTextureOrder sets the value of the textureOrder property.
-// The order in which textures are applied to rendered primitives.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/glkit/glkbaseeffect/textureorder
-func (g_ GLKReflectionMapEffect) SetTextureOrder(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setTextureOrder:"), value)
-}
-
 // The reflection matrix to apply to the normals of the submitted vertices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/matrix
@@ -131,6 +113,24 @@ func (g_ GLKReflectionMapEffect) SetMatrix(value unsafe.Pointer) {
 func (g_ GLKReflectionMapEffect) TextureCubeMap() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("textureCubeMap"))
 	return rv
+}
+
+// The order in which textures are applied to rendered primitives.
+//
+// [Full Topic]: https://developer.apple.com/documentation/glkit/glkbaseeffect/textureorder
+func (g_ GLKReflectionMapEffect) TextureOrder() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("textureOrder"))
+	return rv
+}
+
+
+// SetTextureOrder sets the value of the textureOrder property.
+// The order in which textures are applied to rendered primitives.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/glkit/glkbaseeffect/textureorder
+func (g_ GLKReflectionMapEffect) SetTextureOrder(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTextureOrder:"), value)
 }
 
 

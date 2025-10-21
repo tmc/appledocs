@@ -79,40 +79,22 @@ func NewSequenceConstraint() SequenceConstraint {
 }
 
 
-// The description that all sequence elements must match.
+// The constraint for a dictionary feature.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequenceconstraint/valuedescription
-func (s_ SequenceConstraint) ValueDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("valueDescription"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
+func (s_ SequenceConstraint) DictionaryConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("dictionaryConstraint"))
 	return rv
 }
 
 
-// SetValueDescription sets the value of the valueDescription property.
-// The description that all sequence elements must match.
+// SetDictionaryConstraint sets the value of the dictionaryConstraint property.
+// The constraint for a dictionary feature.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequenceconstraint/valuedescription
-func (s_ SequenceConstraint) SetValueDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setValueDescription:"), value)
-}
-
-// The range of values allowed for the sequence’s length.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequenceconstraint/countrange
-func (s_ SequenceConstraint) CountRange() foundation.Range {
-	rv := objc.Send[foundation.Range](s_.ID, objc.Sel("countRange"))
-	return rv
-}
-
-
-// SetCountRange sets the value of the countRange property.
-// The range of values allowed for the sequence’s length.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequenceconstraint/countrange
-func (s_ SequenceConstraint) SetCountRange(value foundation.Range) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCountRange:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
+func (s_ SequenceConstraint) SetDictionaryConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDictionaryConstraint:"), value)
 }
 
 // The size and format constraints for an image feature.
@@ -151,22 +133,22 @@ func (s_ SequenceConstraint) SetMultiArrayConstraint(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMultiArrayConstraint:"), value)
 }
 
-// The constraint for a dictionary feature.
+// The constraints for a sequence feature.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
-func (s_ SequenceConstraint) DictionaryConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("dictionaryConstraint"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
+func (s_ SequenceConstraint) SequenceConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sequenceConstraint"))
 	return rv
 }
 
 
-// SetDictionaryConstraint sets the value of the dictionaryConstraint property.
-// The constraint for a dictionary feature.
+// SetSequenceConstraint sets the value of the sequenceConstraint property.
+// The constraints for a sequence feature.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
-func (s_ SequenceConstraint) SetDictionaryConstraint(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDictionaryConstraint:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
+func (s_ SequenceConstraint) SetSequenceConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSequenceConstraint:"), value)
 }
 
 // The state feature value constraint.
@@ -187,22 +169,40 @@ func (s_ SequenceConstraint) SetStateConstraint(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStateConstraint:"), value)
 }
 
-// The constraints for a sequence feature.
+// The range of values allowed for the sequence’s length.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
-func (s_ SequenceConstraint) SequenceConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sequenceConstraint"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequenceconstraint/countrange
+func (s_ SequenceConstraint) CountRange() foundation.Range {
+	rv := objc.Send[foundation.Range](s_.ID, objc.Sel("countRange"))
 	return rv
 }
 
 
-// SetSequenceConstraint sets the value of the sequenceConstraint property.
-// The constraints for a sequence feature.
+// SetCountRange sets the value of the countRange property.
+// The range of values allowed for the sequence’s length.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
-func (s_ SequenceConstraint) SetSequenceConstraint(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSequenceConstraint:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequenceconstraint/countrange
+func (s_ SequenceConstraint) SetCountRange(value foundation.Range) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCountRange:"), value)
+}
+
+// The description that all sequence elements must match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequenceconstraint/valuedescription
+func (s_ SequenceConstraint) ValueDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("valueDescription"))
+	return rv
+}
+
+
+// SetValueDescription sets the value of the valueDescription property.
+// The description that all sequence elements must match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequenceconstraint/valuedescription
+func (s_ SequenceConstraint) SetValueDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setValueDescription:"), value)
 }
 
 

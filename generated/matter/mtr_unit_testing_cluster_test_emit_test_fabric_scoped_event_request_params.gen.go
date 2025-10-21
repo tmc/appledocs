@@ -77,21 +77,6 @@ func NewMTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams() MTRUni
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittestfabricscopedeventrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittestfabricscopedeventrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittestfabricscopedeventrequestparams/arg1
 func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams) Arg1() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
@@ -104,6 +89,21 @@ func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams) Arg1()
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittestfabricscopedeventrequestparams/arg1
 func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams) SetArg1(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittestfabricscopedeventrequestparams/serversideprocessingtimeout
+func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittestfabricscopedeventrequestparams/serversideprocessingtimeout
+func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

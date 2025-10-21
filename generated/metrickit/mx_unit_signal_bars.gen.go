@@ -87,6 +87,14 @@ func (mc _MXUnitSignalBarsClass) Bars() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("bars"))
 	return rv
 }
+// The number of bars of connectivity to the cellular network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXUnitSignalBars/bars
+func (m_ MXUnitSignalBars) Bars() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bars"))
+	return rv
+}
+
 // An object representing the distribution of the different levels of connectivity to the cellular network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxcellularconditionmetric/histogrammedcellularconditiontime
@@ -103,14 +111,6 @@ func (m_ MXUnitSignalBars) HistogrammedCellularConditionTime() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxcellularconditionmetric/histogrammedcellularconditiontime
 func (m_ MXUnitSignalBars) SetHistogrammedCellularConditionTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHistogrammedCellularConditionTime:"), value)
-}
-
-// The number of bars of connectivity to the cellular network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXUnitSignalBars/bars
-func (m_ MXUnitSignalBars) Bars() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bars"))
-	return rv
 }
 
 

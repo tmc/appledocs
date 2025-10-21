@@ -81,22 +81,22 @@ func NewMTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor() MTL4Accel
 }
 
 
-// Declares the stride, in bytes, between bounding boxes in the bounding box buffers each entry in
+// Configures a reference to a buffer where each entry contains a reference to a buffer of bounding boxes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotionboundingboxgeometrydescriptor/boundingboxstride
-func (m_ MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxStride() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("boundingBoxStride"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotionboundingboxgeometrydescriptor/boundingboxbuffers
+func (m_ MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxBuffers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("boundingBoxBuffers"))
 	return rv
 }
 
 
-// SetBoundingBoxStride sets the value of the boundingBoxStride property.
-// Declares the stride, in bytes, between bounding boxes in the bounding box buffers each entry in
+// SetBoundingBoxBuffers sets the value of the boundingBoxBuffers property.
+// Configures a reference to a buffer where each entry contains a reference to a buffer of bounding boxes.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotionboundingboxgeometrydescriptor/boundingboxstride
-func (m_ MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxStride(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxStride:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotionboundingboxgeometrydescriptor/boundingboxbuffers
+func (m_ MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxBuffers(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxBuffers:"), value)
 }
 
 // Declares the number of bounding boxes in each buffer that
@@ -117,22 +117,22 @@ func (m_ MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundi
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxCount:"), value)
 }
 
-// Configures a reference to a buffer where each entry contains a reference to a buffer of bounding boxes.
+// Declares the stride, in bytes, between bounding boxes in the bounding box buffers each entry in
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotionboundingboxgeometrydescriptor/boundingboxbuffers
-func (m_ MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("boundingBoxBuffers"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotionboundingboxgeometrydescriptor/boundingboxstride
+func (m_ MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxStride() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("boundingBoxStride"))
 	return rv
 }
 
 
-// SetBoundingBoxBuffers sets the value of the boundingBoxBuffers property.
-// Configures a reference to a buffer where each entry contains a reference to a buffer of bounding boxes.
+// SetBoundingBoxStride sets the value of the boundingBoxStride property.
+// Declares the stride, in bytes, between bounding boxes in the bounding box buffers each entry in
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotionboundingboxgeometrydescriptor/boundingboxbuffers
-func (m_ MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxBuffers(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxBuffers:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotionboundingboxgeometrydescriptor/boundingboxstride
+func (m_ MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxStride(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxStride:"), value)
 }
 
 

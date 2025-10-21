@@ -164,60 +164,6 @@ func (p_ PHAsset) RequestContentEditingInputWithOptionsCompletionHandler(options
 	return rv
 }
 
-// A Boolean value that indicates whether the user hides the asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/ishidden
-func (p_ PHAsset) IsHidden() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isHidden"))
-	return rv
-}
-
-
-// SetIsHidden sets the value of the isHidden property.
-// A Boolean value that indicates whether the user hides the asset.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/ishidden
-func (p_ PHAsset) SetIsHidden(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHidden:"), value)
-}
-
-// A Boolean value that indicates whether the user hides the sync failure message.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/issyncfailurehidden
-func (p_ PHAsset) IsSyncFailureHidden() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isSyncFailureHidden"))
-	return rv
-}
-
-
-// SetIsSyncFailureHidden sets the value of the isSyncFailureHidden property.
-// A Boolean value that indicates whether the user hides the sync failure message.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/issyncfailurehidden
-func (p_ PHAsset) SetIsSyncFailureHidden(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSyncFailureHidden:"), value)
-}
-
-// A Boolean value that indicates whether the user marks the asset as a favorite.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/isfavorite
-func (p_ PHAsset) IsFavorite() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isFavorite"))
-	return rv
-}
-
-
-// SetIsFavorite sets the value of the isFavorite property.
-// A Boolean value that indicates whether the user marks the asset as a favorite.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/isfavorite
-func (p_ PHAsset) SetIsFavorite(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFavorite:"), value)
-}
-
 // The date and time this asset was added to the photo library (from the device that was used to add this asset)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/addedDate
@@ -376,6 +322,60 @@ func (p_ PHAsset) RepresentsBurst() bool {
 func (p_ PHAsset) SourceType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sourceType"))
 	return rv
+}
+
+// A Boolean value that indicates whether the user marks the asset as a favorite.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/isfavorite
+func (p_ PHAsset) IsFavorite() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isFavorite"))
+	return rv
+}
+
+
+// SetIsFavorite sets the value of the isFavorite property.
+// A Boolean value that indicates whether the user marks the asset as a favorite.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/isfavorite
+func (p_ PHAsset) SetIsFavorite(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFavorite:"), value)
+}
+
+// A Boolean value that indicates whether the user hides the asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/ishidden
+func (p_ PHAsset) IsHidden() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// A Boolean value that indicates whether the user hides the asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/ishidden
+func (p_ PHAsset) SetIsHidden(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// A Boolean value that indicates whether the user hides the sync failure message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/issyncfailurehidden
+func (p_ PHAsset) IsSyncFailureHidden() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isSyncFailureHidden"))
+	return rv
+}
+
+
+// SetIsSyncFailureHidden sets the value of the isSyncFailureHidden property.
+// A Boolean value that indicates whether the user hides the sync failure message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/issyncfailurehidden
+func (p_ PHAsset) SetIsSyncFailureHidden(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSyncFailureHidden:"), value)
 }
 
 

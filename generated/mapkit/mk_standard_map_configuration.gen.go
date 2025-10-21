@@ -79,22 +79,22 @@ func NewMKStandardMapConfiguration() MKStandardMapConfiguration {
 }
 
 
-// A Boolean value that indicates whether the map displays the user tracking button.
+// The filter used to determine the points of interest shown on the map.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
-func (m_ MKStandardMapConfiguration) ShowsUserTrackingButton() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/pointOfInterestFilter
+func (m_ MKStandardMapConfiguration) PointOfInterestFilter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
 	return rv
 }
 
 
-// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
-// A Boolean value that indicates whether the map displays the user tracking button.
+// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
+// The filter used to determine the points of interest shown on the map.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
-func (m_ MKStandardMapConfiguration) SetShowsUserTrackingButton(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/pointOfInterestFilter
+func (m_ MKStandardMapConfiguration) SetPointOfInterestFilter(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
 // A value that indicates whether the map’s pitch button is visible.
@@ -115,24 +115,6 @@ func (m_ MKStandardMapConfiguration) SetPitchButtonVisibility(value unsafe.Point
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchButtonVisibility:"), value)
 }
 
-// The value that indicates how the framework emphasizes map features.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.property
-func (m_ MKStandardMapConfiguration) EmphasisStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("emphasisStyle"))
-	return rv
-}
-
-
-// SetEmphasisStyle sets the value of the emphasisStyle property.
-// The value that indicates how the framework emphasizes map features.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.property
-func (m_ MKStandardMapConfiguration) SetEmphasisStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEmphasisStyle:"), value)
-}
-
 // The characteristics of the map view, including the map type and features the map displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
@@ -151,6 +133,42 @@ func (m_ MKStandardMapConfiguration) SetPreferredConfiguration(value unsafe.Poin
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
+// A Boolean value that indicates whether the map displays the user tracking button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
+func (m_ MKStandardMapConfiguration) ShowsUserTrackingButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
+	return rv
+}
+
+
+// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
+// A Boolean value that indicates whether the map displays the user tracking button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
+func (m_ MKStandardMapConfiguration) SetShowsUserTrackingButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)
+}
+
+// The value that indicates how the framework emphasizes map features.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.property
+func (m_ MKStandardMapConfiguration) EmphasisStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("emphasisStyle"))
+	return rv
+}
+
+
+// SetEmphasisStyle sets the value of the emphasisStyle property.
+// The value that indicates how the framework emphasizes map features.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.property
+func (m_ MKStandardMapConfiguration) SetEmphasisStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEmphasisStyle:"), value)
+}
+
 // A Boolean value that controls whether the map displays traffic conditions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/showstraffic
@@ -167,24 +185,6 @@ func (m_ MKStandardMapConfiguration) ShowsTraffic() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/showstraffic
 func (m_ MKStandardMapConfiguration) SetShowsTraffic(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsTraffic:"), value)
-}
-
-// The filter used to determine the points of interest shown on the map.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/pointOfInterestFilter
-func (m_ MKStandardMapConfiguration) PointOfInterestFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
-	return rv
-}
-
-
-// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
-// The filter used to determine the points of interest shown on the map.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/pointOfInterestFilter
-func (m_ MKStandardMapConfiguration) SetPointOfInterestFilter(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
 

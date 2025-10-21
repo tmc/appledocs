@@ -99,6 +99,69 @@ func (m_ MTRDeviceController) SetupCommissioningSessionWithPayloadNewNodeIDError
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a04u
+func (m_ MTRDeviceController) ControllerNodeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("controllerNodeID"))
+	return rv
+}
+
+
+// SetControllerNodeID sets the value of the controllerNodeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a04u
+func (m_ MTRDeviceController) SetControllerNodeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setControllerNodeID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a03y
+func (m_ MTRDeviceController) ControllerNodeId() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("controllerNodeId"))
+	return rv
+}
+
+
+// SetControllerNodeId sets the value of the controllerNodeId property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a03y
+func (m_ MTRDeviceController) SetControllerNodeId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setControllerNodeId:"), value)
+}
+
+// Returns the list of MTRDevice instances that this controller has loaded
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/devices
+func (m_ MTRDeviceController) Devices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("devices"))
+	return rv
+}
+
+
+// SetDevices sets the value of the devices property.
+// Returns the list of MTRDevice instances that this controller has loaded
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/devices
+func (m_ MTRDeviceController) SetDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDevices:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/isrunning
+func (m_ MTRDeviceController) IsRunning() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isRunning"))
+	return rv
+}
+
+
+// SetIsRunning sets the value of the isRunning property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/isrunning
+func (m_ MTRDeviceController) SetIsRunning(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRunning:"), value)
+}
+
 // If true, the controller has been suspended via
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/issuspended
@@ -136,54 +199,6 @@ func (m_ MTRDeviceController) SetNodesWithStoredData(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a04u
-func (m_ MTRDeviceController) ControllerNodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("controllerNodeID"))
-	return rv
-}
-
-
-// SetControllerNodeID sets the value of the controllerNodeID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a04u
-func (m_ MTRDeviceController) SetControllerNodeID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setControllerNodeID:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/isrunning
-func (m_ MTRDeviceController) IsRunning() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isRunning"))
-	return rv
-}
-
-
-// SetIsRunning sets the value of the isRunning property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/isrunning
-func (m_ MTRDeviceController) SetIsRunning(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRunning:"), value)
-}
-
-// Returns the list of MTRDevice instances that this controller has loaded
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/devices
-func (m_ MTRDeviceController) Devices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("devices"))
-	return rv
-}
-
-
-// SetDevices sets the value of the devices property.
-// Returns the list of MTRDevice instances that this controller has loaded
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/devices
-func (m_ MTRDeviceController) SetDevices(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDevices:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/uniqueidentifier
 func (m_ MTRDeviceController) UniqueIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("uniqueIdentifier"))
@@ -196,21 +211,6 @@ func (m_ MTRDeviceController) UniqueIdentifier() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/uniqueidentifier
 func (m_ MTRDeviceController) SetUniqueIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUniqueIdentifier:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a03y
-func (m_ MTRDeviceController) ControllerNodeId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("controllerNodeId"))
-	return rv
-}
-
-
-// SetControllerNodeId sets the value of the controllerNodeId property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a03y
-func (m_ MTRDeviceController) SetControllerNodeId(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setControllerNodeId:"), value)
 }
 
 

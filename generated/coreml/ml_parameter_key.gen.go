@@ -81,6 +81,24 @@ func NewParameterKey() ParameterKey {
 }
 
 
+// The configuration of the model set during initialization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
+func (p_ ParameterKey) Configuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("configuration"))
+	return rv
+}
+
+
+// SetConfiguration sets the value of the configuration property.
+// The configuration of the model set during initialization.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
+func (p_ ParameterKey) SetConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguration:"), value)
+}
+
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
@@ -115,24 +133,6 @@ func (p_ ParameterKey) Parameters() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters
 func (p_ ParameterKey) SetParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setParameters:"), value)
-}
-
-// The configuration of the model set during initialization.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
-func (p_ ParameterKey) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-
-// SetConfiguration sets the value of the configuration property.
-// The configuration of the model set during initialization.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
-func (p_ ParameterKey) SetConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguration:"), value)
 }
 
 

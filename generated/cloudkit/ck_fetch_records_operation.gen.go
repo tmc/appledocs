@@ -102,54 +102,6 @@ func (cc _CKFetchRecordsOperationClass) FetchCurrentUserRecordOperation() unsafe
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/perrecordresultblock
-func (c_ CKFetchRecordsOperation) PerRecordResultBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordResultBlock"))
-	return rv
-}
-
-
-// SetPerRecordResultBlock sets the value of the perRecordResultBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/perrecordresultblock
-func (c_ CKFetchRecordsOperation) SetPerRecordResultBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordResultBlock:"), value)
-}
-
-// The block to execute after the operation’s main task is completed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-func (c_ CKFetchRecordsOperation) CompletionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
-	return rv
-}
-
-
-// SetCompletionBlock sets the value of the completionBlock property.
-// The block to execute after the operation’s main task is completed.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-func (c_ CKFetchRecordsOperation) SetCompletionBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/fetchrecordsresultblock
-func (c_ CKFetchRecordsOperation) FetchRecordsResultBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordsResultBlock"))
-	return rv
-}
-
-
-// SetFetchRecordsResultBlock sets the value of the fetchRecordsResultBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/fetchrecordsresultblock
-func (c_ CKFetchRecordsOperation) SetFetchRecordsResultBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordsResultBlock:"), value)
-}
-
 // The fields of the records to fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/desiredKeys-34l1l
@@ -204,6 +156,54 @@ func (c_ CKFetchRecordsOperation) SetRecordIDs(value []CKRecordID) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordIDs:"), nsArray)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/fetchrecordsresultblock
+func (c_ CKFetchRecordsOperation) FetchRecordsResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordsResultBlock"))
+	return rv
+}
+
+
+// SetFetchRecordsResultBlock sets the value of the fetchRecordsResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/fetchrecordsresultblock
+func (c_ CKFetchRecordsOperation) SetFetchRecordsResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordsResultBlock:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/perrecordresultblock
+func (c_ CKFetchRecordsOperation) PerRecordResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordResultBlock"))
+	return rv
+}
+
+
+// SetPerRecordResultBlock sets the value of the perRecordResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/perrecordresultblock
+func (c_ CKFetchRecordsOperation) SetPerRecordResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordResultBlock:"), value)
+}
+
+// The block to execute after the operation’s main task is completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKFetchRecordsOperation) CompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
+	return rv
+}
+
+
+// SetCompletionBlock sets the value of the completionBlock property.
+// The block to execute after the operation’s main task is completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKFetchRecordsOperation) SetCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }
 
 

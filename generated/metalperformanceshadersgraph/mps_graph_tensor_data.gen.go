@@ -95,22 +95,12 @@ func NewGraphTensorDataWithMPSVectorRank(vector unsafe.Pointer, rank uint) Graph
 }
 
 
-// The shape of the tensor data.
+// The data type of the tensor data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/shape
-func (g_ GraphTensorData) Shape() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("shape"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensorData/dataType
+func (g_ GraphTensorData) DataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataType"))
 	return rv
-}
-
-
-// SetShape sets the value of the shape property.
-// The shape of the tensor data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/shape
-func (g_ GraphTensorData) SetShape(value foundation.Number) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setShape:"), value)
 }
 
 // The device of the tensor data.
@@ -131,12 +121,22 @@ func (g_ GraphTensorData) SetDevice(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDevice:"), value)
 }
 
-// The data type of the tensor data.
+// The shape of the tensor data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensorData/dataType
-func (g_ GraphTensorData) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataType"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/shape
+func (g_ GraphTensorData) Shape() foundation.Number {
+	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("shape"))
 	return rv
+}
+
+
+// SetShape sets the value of the shape property.
+// The shape of the tensor data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/shape
+func (g_ GraphTensorData) SetShape(value foundation.Number) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setShape:"), value)
 }
 
 

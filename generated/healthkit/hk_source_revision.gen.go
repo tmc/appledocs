@@ -80,6 +80,24 @@ func NewHKSourceRevision() HKSourceRevision {
 }
 
 
+// The app or device that created this object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
+func (h_ HKSourceRevision) SourceRevision() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sourceRevision"))
+	return rv
+}
+
+
+// SetSourceRevision sets the value of the sourceRevision property.
+// The app or device that created this object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
+func (h_ HKSourceRevision) SetSourceRevision(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceRevision:"), value)
+}
+
 // A string that identifies the operating system used to save a sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/operatingsystemversion
@@ -150,24 +168,6 @@ func (h_ HKSourceRevision) Version() string {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/version
 func (h_ HKSourceRevision) SetVersion(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), objc.String(value))
-}
-
-// The app or device that created this object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
-func (h_ HKSourceRevision) SourceRevision() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sourceRevision"))
-	return rv
-}
-
-
-// SetSourceRevision sets the value of the sourceRevision property.
-// The app or device that created this object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
-func (h_ HKSourceRevision) SetSourceRevision(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceRevision:"), value)
 }
 
 

@@ -81,24 +81,6 @@ func NewCaptureManager() CaptureManager {
 
 
 
-// A Boolean value that indicates whether Metal commands are being captured.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturemanager/iscapturing
-func (c_ CaptureManager) IsCapturing() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isCapturing"))
-	return rv
-}
-
-
-// SetIsCapturing sets the value of the isCapturing property.
-// A Boolean value that indicates whether Metal commands are being captured.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturemanager/iscapturing
-func (c_ CaptureManager) SetIsCapturing(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCapturing:"), value)
-}
-
 // The capture scope to use when a capture is initiated in Xcode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturemanager/defaultcapturescope
@@ -115,6 +97,24 @@ func (c_ CaptureManager) DefaultCaptureScope() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturemanager/defaultcapturescope
 func (c_ CaptureManager) SetDefaultCaptureScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultCaptureScope:"), value)
+}
+
+// A Boolean value that indicates whether Metal commands are being captured.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturemanager/iscapturing
+func (c_ CaptureManager) IsCapturing() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isCapturing"))
+	return rv
+}
+
+
+// SetIsCapturing sets the value of the isCapturing property.
+// A Boolean value that indicates whether Metal commands are being captured.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturemanager/iscapturing
+func (c_ CaptureManager) SetIsCapturing(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCapturing:"), value)
 }
 
 

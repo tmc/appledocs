@@ -80,6 +80,14 @@ func NewIncrementalStoreNode() IncrementalStoreNode {
 }
 
 
+// The object ID that identifies the data stored by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode/objectID
+func (i_ IncrementalStoreNode) ObjectID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("objectID"))
+	return rv
+}
+
 // The version of data in the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
@@ -96,14 +104,6 @@ func (i_ IncrementalStoreNode) Version() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
 func (i_ IncrementalStoreNode) SetVersion(value uint64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVersion:"), value)
-}
-
-// The object ID that identifies the data stored by the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode/objectID
-func (i_ IncrementalStoreNode) ObjectID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("objectID"))
-	return rv
 }
 
 

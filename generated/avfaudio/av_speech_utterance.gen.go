@@ -89,56 +89,6 @@ func (sc _SpeechUtteranceClass) SpeechUtteranceWithAttributedString(string_ unsa
 	return rv
 }
 
-// The maximum rate the speech synthesizer uses when speaking an utterance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterancemaximumspeechrate
-func (s_ SpeechUtterance) AVSpeechUtteranceMaximumSpeechRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceMaximumSpeechRate"))
-	return rv
-}
-
-// The minimum rate the speech synthesizer uses when speaking an utterance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutteranceminimumspeechrate
-func (s_ SpeechUtterance) AVSpeechUtteranceMinimumSpeechRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceMinimumSpeechRate"))
-	return rv
-}
-
-// The default rate the speech synthesizer uses when speaking an utterance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterancedefaultspeechrate
-func (s_ SpeechUtterance) AVSpeechUtteranceDefaultSpeechRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceDefaultSpeechRate"))
-	return rv
-}
-
-// A string that contains International Phonetic Alphabet (IPA) symbols the speech synthesizer uses to control pronunciation of certain words or phrases.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisipanotationattribute
-func (s_ SpeechUtterance) AVSpeechSynthesisIPANotationAttribute() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("AVSpeechSynthesisIPANotationAttribute"))
-	return rv
-}
-
-// A Boolean that specifies whether assistive technology settings take precedence over the property values of this utterance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/prefersassistivetechnologysettings
-func (s_ SpeechUtterance) PrefersAssistiveTechnologySettings() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("prefersAssistiveTechnologySettings"))
-	return rv
-}
-
-
-// SetPrefersAssistiveTechnologySettings sets the value of the prefersAssistiveTechnologySettings property.
-// A Boolean that specifies whether assistive technology settings take precedence over the property values of this utterance.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/prefersassistivetechnologysettings
-func (s_ SpeechUtterance) SetPrefersAssistiveTechnologySettings(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPrefersAssistiveTechnologySettings:"), value)
-}
-
 // An attributed string that contains the text for speech synthesis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/attributedSpeechString
@@ -261,6 +211,56 @@ func (s_ SpeechUtterance) Volume() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/volume
 func (s_ SpeechUtterance) SetVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
+}
+
+// A string that contains International Phonetic Alphabet (IPA) symbols the speech synthesizer uses to control pronunciation of certain words or phrases.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisipanotationattribute
+func (s_ SpeechUtterance) AVSpeechSynthesisIPANotationAttribute() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("AVSpeechSynthesisIPANotationAttribute"))
+	return rv
+}
+
+// A Boolean that specifies whether assistive technology settings take precedence over the property values of this utterance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/prefersassistivetechnologysettings
+func (s_ SpeechUtterance) PrefersAssistiveTechnologySettings() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("prefersAssistiveTechnologySettings"))
+	return rv
+}
+
+
+// SetPrefersAssistiveTechnologySettings sets the value of the prefersAssistiveTechnologySettings property.
+// A Boolean that specifies whether assistive technology settings take precedence over the property values of this utterance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/prefersassistivetechnologysettings
+func (s_ SpeechUtterance) SetPrefersAssistiveTechnologySettings(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPrefersAssistiveTechnologySettings:"), value)
+}
+
+// The default rate the speech synthesizer uses when speaking an utterance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterancedefaultspeechrate
+func (s_ SpeechUtterance) AVSpeechUtteranceDefaultSpeechRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceDefaultSpeechRate"))
+	return rv
+}
+
+// The maximum rate the speech synthesizer uses when speaking an utterance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterancemaximumspeechrate
+func (s_ SpeechUtterance) AVSpeechUtteranceMaximumSpeechRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceMaximumSpeechRate"))
+	return rv
+}
+
+// The minimum rate the speech synthesizer uses when speaking an utterance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutteranceminimumspeechrate
+func (s_ SpeechUtterance) AVSpeechUtteranceMinimumSpeechRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceMinimumSpeechRate"))
+	return rv
 }
 
 

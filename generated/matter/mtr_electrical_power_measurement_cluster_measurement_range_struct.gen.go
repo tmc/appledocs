@@ -77,48 +77,18 @@ func NewMTRElectricalPowerMeasurementClusterMeasurementRangeStruct() MTRElectric
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/measurementtype
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) MeasurementType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("measurementType"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/endsystime
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) EndSystime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endSystime"))
 	return rv
 }
 
 
-// SetMeasurementType sets the value of the measurementType property.
+// SetEndSystime sets the value of the endSystime property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/measurementtype
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMeasurementType(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasurementType:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/maxsystime
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) MaxSystime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxSystime"))
-	return rv
-}
-
-
-// SetMaxSystime sets the value of the maxSystime property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/maxsystime
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMaxSystime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxSystime:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/max
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) Max() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("max"))
-	return rv
-}
-
-
-// SetMax sets the value of the max property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/max
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMax(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMax:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/endsystime
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetEndSystime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndSystime:"), value)
 }
 
 //
@@ -137,33 +107,33 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetEndTimes
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/starttimestamp
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) StartTimestamp() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTimestamp"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/max
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) Max() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("max"))
 	return rv
 }
 
 
-// SetStartTimestamp sets the value of the startTimestamp property.
+// SetMax sets the value of the max property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/starttimestamp
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetStartTimestamp(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTimestamp:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/max
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMax(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMax:"), value)
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/minsystime
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) MinSystime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minSystime"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/maxsystime
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) MaxSystime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxSystime"))
 	return rv
 }
 
 
-// SetMinSystime sets the value of the minSystime property.
+// SetMaxSystime sets the value of the maxSystime property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/minsystime
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMinSystime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMinSystime:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/maxsystime
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMaxSystime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxSystime:"), value)
 }
 
 //
@@ -182,18 +152,18 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMaxTimes
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/startsystime
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) StartSystime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startSystime"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/measurementtype
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) MeasurementType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("measurementType"))
 	return rv
 }
 
 
-// SetStartSystime sets the value of the startSystime property.
+// SetMeasurementType sets the value of the measurementType property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/startsystime
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetStartSystime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartSystime:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/measurementtype
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMeasurementType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasurementType:"), value)
 }
 
 //
@@ -212,6 +182,21 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMin(valu
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/minsystime
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) MinSystime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minSystime"))
+	return rv
+}
+
+
+// SetMinSystime sets the value of the minSystime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/minsystime
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMinSystime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMinSystime:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/mintimestamp
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) MinTimestamp() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minTimestamp"))
@@ -227,18 +212,33 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetMinTimes
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/endsystime
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) EndSystime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endSystime"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/startsystime
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) StartSystime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startSystime"))
 	return rv
 }
 
 
-// SetEndSystime sets the value of the endSystime property.
+// SetStartSystime sets the value of the startSystime property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/endsystime
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetEndSystime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEndSystime:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/startsystime
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetStartSystime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStartSystime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/starttimestamp
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) StartTimestamp() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTimestamp"))
+	return rv
+}
+
+
+// SetStartTimestamp sets the value of the startTimestamp property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementrangestruct/starttimestamp
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementRangeStruct) SetStartTimestamp(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTimestamp:"), value)
 }
 
 

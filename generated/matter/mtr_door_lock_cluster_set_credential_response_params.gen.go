@@ -92,18 +92,18 @@ func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetNextCredentialIndex(v
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/userindex
-func (m_ MTRDoorLockClusterSetCredentialResponseParams) UserIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/status
+func (m_ MTRDoorLockClusterSetCredentialResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetUserIndex sets the value of the userIndex property.
+// SetStatus sets the value of the status property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/userindex
-func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetUserIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/status
+func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
 //
@@ -122,18 +122,18 @@ func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetTimedInvokeTimeoutMs(
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/status
-func (m_ MTRDoorLockClusterSetCredentialResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/userindex
+func (m_ MTRDoorLockClusterSetCredentialResponseParams) UserIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
+// SetUserIndex sets the value of the userIndex property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/status
-func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetStatus(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/userindex
+func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetUserIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 
 

@@ -4281,8 +4281,8 @@ func SSLGetNegotiatedCipher(context unsafe.Pointer, cipherSuite unsafe.Pointer) 
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetNegotiatedProtocolVersion(_:_:)
-func SSLGetNegotiatedProtocolVersion(context unsafe.Pointer, protocol unsafe.Pointer) unsafe.Pointer {
-	return _SSLGetNegotiatedProtocolVersion(context, protocol)
+func SSLGetNegotiatedProtocolVersion(context unsafe.Pointer, protocol_ unsafe.Pointer) unsafe.Pointer {
+	return _SSLGetNegotiatedProtocolVersion(context, protocol_)
 	}
 
 
@@ -4353,8 +4353,8 @@ func SSLGetPeerID(context unsafe.Pointer, peerID unsafe.Pointer, peerIDLen unsaf
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetProtocolVersion
-func SSLGetProtocolVersion(context unsafe.Pointer, protocol unsafe.Pointer) unsafe.Pointer {
-	return _SSLGetProtocolVersion(context, protocol)
+func SSLGetProtocolVersion(context unsafe.Pointer, protocol_ unsafe.Pointer) unsafe.Pointer {
+	return _SSLGetProtocolVersion(context, protocol_)
 	}
 
 
@@ -4365,8 +4365,8 @@ func SSLGetProtocolVersion(context unsafe.Pointer, protocol unsafe.Pointer) unsa
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetProtocolVersionEnabled
-func SSLGetProtocolVersionEnabled(context unsafe.Pointer, protocol unsafe.Pointer, enable unsafe.Pointer) unsafe.Pointer {
-	return _SSLGetProtocolVersionEnabled(context, protocol, enable)
+func SSLGetProtocolVersionEnabled(context unsafe.Pointer, protocol_ unsafe.Pointer, enable unsafe.Pointer) unsafe.Pointer {
+	return _SSLGetProtocolVersionEnabled(context, protocol_, enable)
 	}
 
 
@@ -4737,8 +4737,8 @@ func SSLSetProtocolVersion(context unsafe.Pointer, version unsafe.Pointer) unsaf
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetProtocolVersionEnabled
-func SSLSetProtocolVersionEnabled(context unsafe.Pointer, protocol unsafe.Pointer, enable unsafe.Pointer) unsafe.Pointer {
-	return _SSLSetProtocolVersionEnabled(context, protocol, enable)
+func SSLSetProtocolVersionEnabled(context unsafe.Pointer, protocol_ unsafe.Pointer, enable unsafe.Pointer) unsafe.Pointer {
+	return _SSLSetProtocolVersionEnabled(context, protocol_, enable)
 	}
 
 
@@ -4961,8 +4961,8 @@ func SecAddSharedWebCredential(fqdn unsafe.Pointer, account unsafe.Pointer, pass
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAsn1AllocCopy
-func SecAsn1AllocCopy(coder unsafe.Pointer, src unsafe.Pointer, len unsafe.Pointer, dest unsafe.Pointer) unsafe.Pointer {
-	return _SecAsn1AllocCopy(coder, src, len, dest)
+func SecAsn1AllocCopy(coder unsafe.Pointer, src unsafe.Pointer, len_ unsafe.Pointer, dest unsafe.Pointer) unsafe.Pointer {
+	return _SecAsn1AllocCopy(coder, src, len_, dest)
 	}
 
 
@@ -4985,8 +4985,8 @@ func SecAsn1AllocCopyItem(coder unsafe.Pointer, src unsafe.Pointer, dest unsafe.
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAsn1AllocItem
-func SecAsn1AllocItem(coder unsafe.Pointer, item unsafe.Pointer, len unsafe.Pointer) unsafe.Pointer {
-	return _SecAsn1AllocItem(coder, item, len)
+func SecAsn1AllocItem(coder unsafe.Pointer, item unsafe.Pointer, len_ unsafe.Pointer) unsafe.Pointer {
+	return _SecAsn1AllocItem(coder, item, len_)
 	}
 
 
@@ -5021,8 +5021,8 @@ func SecAsn1CoderRelease(coder unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAsn1Decode
-func SecAsn1Decode(coder unsafe.Pointer, src unsafe.Pointer, len unsafe.Pointer, templates unsafe.Pointer, dest unsafe.Pointer) unsafe.Pointer {
-	return _SecAsn1Decode(coder, src, len, templates, dest)
+func SecAsn1Decode(coder unsafe.Pointer, src unsafe.Pointer, len_ unsafe.Pointer, templates unsafe.Pointer, dest unsafe.Pointer) unsafe.Pointer {
+	return _SecAsn1Decode(coder, src, len_, templates, dest)
 	}
 
 
@@ -5057,8 +5057,8 @@ func SecAsn1EncodeItem(coder unsafe.Pointer, src unsafe.Pointer, templates unsaf
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAsn1Malloc
-func SecAsn1Malloc(coder unsafe.Pointer, len unsafe.Pointer) unsafe.Pointer {
-	return _SecAsn1Malloc(coder, len)
+func SecAsn1Malloc(coder unsafe.Pointer, len_ unsafe.Pointer) unsafe.Pointer {
+	return _SecAsn1Malloc(coder, len_)
 	}
 
 

@@ -107,6 +107,36 @@ func (m_ MTRColorControlClusterMoveColorParams) SetOptionsOverride(value foundat
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolorparams/ratex
+func (m_ MTRColorControlClusterMoveColorParams) RateX() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rateX"))
+	return rv
+}
+
+
+// SetRateX sets the value of the rateX property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolorparams/ratex
+func (m_ MTRColorControlClusterMoveColorParams) SetRateX(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRateX:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolorparams/ratey
+func (m_ MTRColorControlClusterMoveColorParams) RateY() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rateY"))
+	return rv
+}
+
+
+// SetRateY sets the value of the rateY property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolorparams/ratey
+func (m_ MTRColorControlClusterMoveColorParams) SetRateY(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRateY:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolorparams/serversideprocessingtimeout
 func (m_ MTRColorControlClusterMoveColorParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -134,36 +164,6 @@ func (m_ MTRColorControlClusterMoveColorParams) TimedInvokeTimeoutMs() foundatio
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolorparams/timedinvoketimeoutms
 func (m_ MTRColorControlClusterMoveColorParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolorparams/ratey
-func (m_ MTRColorControlClusterMoveColorParams) RateY() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rateY"))
-	return rv
-}
-
-
-// SetRateY sets the value of the rateY property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolorparams/ratey
-func (m_ MTRColorControlClusterMoveColorParams) SetRateY(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRateY:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolorparams/ratex
-func (m_ MTRColorControlClusterMoveColorParams) RateX() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rateX"))
-	return rv
-}
-
-
-// SetRateX sets the value of the rateX property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolorparams/ratex
-func (m_ MTRColorControlClusterMoveColorParams) SetRateX(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRateX:"), value)
 }
 
 

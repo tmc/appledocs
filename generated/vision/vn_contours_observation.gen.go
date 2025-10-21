@@ -97,24 +97,6 @@ func (c_ ContoursObservation) ContourAtIndexError(contourIndex int, error_ unsaf
 	return rv
 }
 
-// The results of the request to detect contours.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/results
-func (c_ ContoursObservation) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("results"))
-	return rv
-}
-
-
-// SetResults sets the value of the results property.
-// The results of the request to detect contours.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/results
-func (c_ ContoursObservation) SetResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setResults:"), value)
-}
-
 // The total number of detected contours.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNContoursObservation/contourCount
@@ -145,6 +127,24 @@ func (c_ ContoursObservation) TopLevelContourCount() int {
 func (c_ ContoursObservation) TopLevelContours() []Contour {
 	rv := objc.Send[[]Contour](c_.ID, objc.Sel("topLevelContours"))
 	return rv
+}
+
+// The results of the request to detect contours.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/results
+func (c_ ContoursObservation) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the request to detect contours.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/results
+func (c_ ContoursObservation) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResults:"), value)
 }
 
 

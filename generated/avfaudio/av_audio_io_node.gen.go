@@ -81,24 +81,6 @@ func NewAudioIONode() AudioIONode {
 }
 
 
-// A Boolean value that indicates whether voice processing is in an enabled state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/isvoiceprocessingenabled
-func (a_ AudioIONode) IsVoiceProcessingEnabled() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingEnabled"))
-	return rv
-}
-
-
-// SetIsVoiceProcessingEnabled sets the value of the isVoiceProcessingEnabled property.
-// A Boolean value that indicates whether voice processing is in an enabled state.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/isvoiceprocessingenabled
-func (a_ AudioIONode) SetIsVoiceProcessingEnabled(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingEnabled:"), value)
-}
-
 // The node’s underlying audio unit, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/audiounit
@@ -115,6 +97,24 @@ func (a_ AudioIONode) AudioUnit() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/audiounit
 func (a_ AudioIONode) SetAudioUnit(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioUnit:"), value)
+}
+
+// A Boolean value that indicates whether voice processing is in an enabled state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/isvoiceprocessingenabled
+func (a_ AudioIONode) IsVoiceProcessingEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingEnabled"))
+	return rv
+}
+
+
+// SetIsVoiceProcessingEnabled sets the value of the isVoiceProcessingEnabled property.
+// A Boolean value that indicates whether voice processing is in an enabled state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/isvoiceprocessingenabled
+func (a_ AudioIONode) SetIsVoiceProcessingEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingEnabled:"), value)
 }
 
 // The presentation or hardware latency, applicable when rendering to or from an audio device.

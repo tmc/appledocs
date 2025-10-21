@@ -106,6 +106,32 @@ func NewCoreMLRequestWithModelCompletionHandler(model unsafe.Pointer, completion
 }
 
 
+// An optional setting that tells the Vision algorithm how to scale an input image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption
+func (c_ CoreMLRequest) ImageCropAndScaleOption() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("imageCropAndScaleOption"))
+	return rv
+}
+
+
+// SetImageCropAndScaleOption sets the value of the imageCropAndScaleOption property.
+// An optional setting that tells the Vision algorithm how to scale an input image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption
+func (c_ CoreMLRequest) SetImageCropAndScaleOption(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setImageCropAndScaleOption:"), value)
+}
+
+// The model to base the image analysis request on.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/model
+func (c_ CoreMLRequest) Model() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("model"))
+	return rv
+}
+
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
@@ -142,6 +168,14 @@ func (c_ CoreMLRequest) SetPredictedFeatureName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
 }
 
+// A constant for specifying revision 1 of a Core ML request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequestrevision1
+func (c_ CoreMLRequest) VNCoreMLRequestRevision1() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("VNCoreMLRequestRevision1"))
+	return rv
+}
+
 // The level of confidence in the observation’s accuracy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
@@ -158,40 +192,6 @@ func (c_ CoreMLRequest) Confidence() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
 func (c_ CoreMLRequest) SetConfidence(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidence:"), value)
-}
-
-// A constant for specifying revision 1 of a Core ML request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequestrevision1
-func (c_ CoreMLRequest) VNCoreMLRequestRevision1() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("VNCoreMLRequestRevision1"))
-	return rv
-}
-
-// An optional setting that tells the Vision algorithm how to scale an input image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption
-func (c_ CoreMLRequest) ImageCropAndScaleOption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("imageCropAndScaleOption"))
-	return rv
-}
-
-
-// SetImageCropAndScaleOption sets the value of the imageCropAndScaleOption property.
-// An optional setting that tells the Vision algorithm how to scale an input image.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption
-func (c_ CoreMLRequest) SetImageCropAndScaleOption(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setImageCropAndScaleOption:"), value)
-}
-
-// The model to base the image analysis request on.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/model
-func (c_ CoreMLRequest) Model() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("model"))
-	return rv
 }
 
 

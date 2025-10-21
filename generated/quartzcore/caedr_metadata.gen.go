@@ -116,6 +116,21 @@ func (ec _EDRMetadataClass) Available() bool {
 	rv := objc.Send[bool](objc.ID(ec.class), objc.Sel("available"))
 	return rv
 }
+// Extended dynamic range (EDR) metadata for the Hybrid Log-Gamma (HLG) transfer function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/hlg
+func (e_ EDRMetadata) HLGMetadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("HLGMetadata"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/isAvailable
+func (e_ EDRMetadata) Available() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("available"))
+	return rv
+}
+
 // Metadata describing the tone mapping to apply to the extended dynamic range (EDR) values in the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/cametallayer/edrmetadata
@@ -132,21 +147,6 @@ func (e_ EDRMetadata) EdrMetadata() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/cametallayer/edrmetadata
 func (e_ EDRMetadata) SetEdrMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEdrMetadata:"), value)
-}
-
-// Extended dynamic range (EDR) metadata for the Hybrid Log-Gamma (HLG) transfer function.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/hlg
-func (e_ EDRMetadata) HLGMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("HLGMetadata"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/isAvailable
-func (e_ EDRMetadata) Available() bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("available"))
-	return rv
 }
 
 

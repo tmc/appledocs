@@ -82,6 +82,14 @@ func NewINSetDefrosterSettingsInCarIntent() INSetDefrosterSettingsInCarIntent {
 }
 
 
+// A Boolean indicating whether to enable or disable the defroster.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INSetDefrosterSettingsInCarIntent/enable-8tf0i
+func (i_ INSetDefrosterSettingsInCarIntent) Enable() foundation.Number {
+	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("enable"))
+	return rv
+}
+
 // The name of the car you applied the settings to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/carname
@@ -116,14 +124,6 @@ func (i_ INSetDefrosterSettingsInCarIntent) Defroster() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/defroster
 func (i_ INSetDefrosterSettingsInCarIntent) SetDefroster(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDefroster:"), value)
-}
-
-// A Boolean indicating whether to enable or disable the defroster.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSetDefrosterSettingsInCarIntent/enable-8tf0i
-func (i_ INSetDefrosterSettingsInCarIntent) Enable() foundation.Number {
-	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("enable"))
-	return rv
 }
 
 

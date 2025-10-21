@@ -176,42 +176,6 @@ func (p_ PaymentQueue) StartDownloads(downloads unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startDownloads:"), downloads)
 }
 
-// An array of all active payment queue observers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/transactionobservers
-func (p_ PaymentQueue) TransactionObservers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionObservers"))
-	return rv
-}
-
-
-// SetTransactionObservers sets the value of the transactionObservers property.
-// An array of all active payment queue observers.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/transactionobservers
-func (p_ PaymentQueue) SetTransactionObservers(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTransactionObservers:"), value)
-}
-
-// The App Store storefront of the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/storefront
-func (p_ PaymentQueue) Storefront() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("storefront"))
-	return rv
-}
-
-
-// SetStorefront sets the value of the storefront property.
-// The App Store storefront of the device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/storefront
-func (p_ PaymentQueue) SetStorefront(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStorefront:"), value)
-}
-
 // A delegate that provides information needed to complete transactions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/delegate
@@ -236,6 +200,42 @@ func (p_ PaymentQueue) SetDelegate(value objc.ID) {
 func (p_ PaymentQueue) Transactions() []PaymentTransaction {
 	rv := objc.Send[[]PaymentTransaction](p_.ID, objc.Sel("transactions"))
 	return rv
+}
+
+// The App Store storefront of the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/storefront
+func (p_ PaymentQueue) Storefront() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("storefront"))
+	return rv
+}
+
+
+// SetStorefront sets the value of the storefront property.
+// The App Store storefront of the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/storefront
+func (p_ PaymentQueue) SetStorefront(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStorefront:"), value)
+}
+
+// An array of all active payment queue observers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/transactionobservers
+func (p_ PaymentQueue) TransactionObservers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionObservers"))
+	return rv
+}
+
+
+// SetTransactionObservers sets the value of the transactionObservers property.
+// An array of all active payment queue observers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/transactionobservers
+func (p_ PaymentQueue) SetTransactionObservers(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTransactionObservers:"), value)
 }
 
 

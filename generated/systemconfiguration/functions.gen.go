@@ -1353,8 +1353,8 @@ func SCNetworkInterfaceSetMediaOptions(interface_ unsafe.Pointer, subtype unsafe
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolGetConfiguration(_:)
-func SCNetworkProtocolGetConfiguration(protocol unsafe.Pointer) unsafe.Pointer {
-	return _SCNetworkProtocolGetConfiguration(protocol)
+func SCNetworkProtocolGetConfiguration(protocol_ unsafe.Pointer) unsafe.Pointer {
+	return _SCNetworkProtocolGetConfiguration(protocol_)
 	}
 
 
@@ -1363,8 +1363,8 @@ func SCNetworkProtocolGetConfiguration(protocol unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolGetEnabled(_:)
-func SCNetworkProtocolGetEnabled(protocol unsafe.Pointer) unsafe.Pointer {
-	return _SCNetworkProtocolGetEnabled(protocol)
+func SCNetworkProtocolGetEnabled(protocol_ unsafe.Pointer) unsafe.Pointer {
+	return _SCNetworkProtocolGetEnabled(protocol_)
 	}
 
 
@@ -1373,8 +1373,8 @@ func SCNetworkProtocolGetEnabled(protocol unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolGetProtocolType(_:)
-func SCNetworkProtocolGetProtocolType(protocol unsafe.Pointer) unsafe.Pointer {
-	return _SCNetworkProtocolGetProtocolType(protocol)
+func SCNetworkProtocolGetProtocolType(protocol_ unsafe.Pointer) unsafe.Pointer {
+	return _SCNetworkProtocolGetProtocolType(protocol_)
 	}
 
 
@@ -1393,8 +1393,8 @@ func SCNetworkProtocolGetTypeID() unsafe.Pointer {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolSetConfiguration(_:_:)
-func SCNetworkProtocolSetConfiguration(protocol unsafe.Pointer, config unsafe.Pointer) unsafe.Pointer {
-	return _SCNetworkProtocolSetConfiguration(protocol, config)
+func SCNetworkProtocolSetConfiguration(protocol_ unsafe.Pointer, config unsafe.Pointer) unsafe.Pointer {
+	return _SCNetworkProtocolSetConfiguration(protocol_, config)
 	}
 
 
@@ -1403,8 +1403,8 @@ func SCNetworkProtocolSetConfiguration(protocol unsafe.Pointer, config unsafe.Po
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolSetEnabled(_:_:)
-func SCNetworkProtocolSetEnabled(protocol unsafe.Pointer, enabled unsafe.Pointer) unsafe.Pointer {
-	return _SCNetworkProtocolSetEnabled(protocol, enabled)
+func SCNetworkProtocolSetEnabled(protocol_ unsafe.Pointer, enabled unsafe.Pointer) unsafe.Pointer {
+	return _SCNetworkProtocolSetEnabled(protocol_, enabled)
 	}
 
 

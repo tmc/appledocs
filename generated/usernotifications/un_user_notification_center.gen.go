@@ -184,14 +184,6 @@ func (u_ UNUserNotificationCenter) SetNotificationCategories(categories unsafe.P
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNotificationCategories:"), categories)
 }
 
-// The error domain for notifications.
-//
-// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unerrordomain
-func (u_ UNUserNotificationCenter) UNErrorDomain() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("UNErrorDomain"))
-	return rv
-}
-
 // The notification center’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/delegate
@@ -215,6 +207,14 @@ func (u_ UNUserNotificationCenter) SetDelegate(value objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/supportsContentExtensions
 func (u_ UNUserNotificationCenter) SupportsContentExtensions() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("supportsContentExtensions"))
+	return rv
+}
+
+// The error domain for notifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unerrordomain
+func (u_ UNUserNotificationCenter) UNErrorDomain() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("UNErrorDomain"))
 	return rv
 }
 

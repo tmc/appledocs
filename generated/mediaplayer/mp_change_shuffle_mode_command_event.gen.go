@@ -79,24 +79,6 @@ func NewChangeShuffleModeCommandEvent() ChangeShuffleModeCommandEvent {
 }
 
 
-// The shuffle type used when fulfilling the event request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommandevent/shuffletype
-func (c_ ChangeShuffleModeCommandEvent) ShuffleType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("shuffleType"))
-	return rv
-}
-
-
-// SetShuffleType sets the value of the shuffleType property.
-// The shuffle type used when fulfilling the event request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommandevent/shuffletype
-func (c_ ChangeShuffleModeCommandEvent) SetShuffleType(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShuffleType:"), value)
-}
-
 // A Boolean value that indicates whether the shuffle mode is preserved between playback sessions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommandevent/preservesshufflemode
@@ -113,6 +95,24 @@ func (c_ ChangeShuffleModeCommandEvent) PreservesShuffleMode() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommandevent/preservesshufflemode
 func (c_ ChangeShuffleModeCommandEvent) SetPreservesShuffleMode(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreservesShuffleMode:"), value)
+}
+
+// The shuffle type used when fulfilling the event request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommandevent/shuffletype
+func (c_ ChangeShuffleModeCommandEvent) ShuffleType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("shuffleType"))
+	return rv
+}
+
+
+// SetShuffleType sets the value of the shuffleType property.
+// The shuffle type used when fulfilling the event request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommandevent/shuffletype
+func (c_ ChangeShuffleModeCommandEvent) SetShuffleType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShuffleType:"), value)
 }
 
 

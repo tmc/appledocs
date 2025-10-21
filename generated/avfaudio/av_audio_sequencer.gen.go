@@ -97,58 +97,22 @@ func (a_ AudioSequencer) SecondsForBeats(beats unsafe.Pointer) foundation.TimeIn
 	return rv
 }
 
-// The track that contains tempo information about the sequence.
+// The current playback position, in beats.
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/tempotrack
-func (a_ AudioSequencer) TempoTrack() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("tempoTrack"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/currentpositioninbeats
+func (a_ AudioSequencer) CurrentPositionInBeats() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentPositionInBeats"))
 	return rv
 }
 
 
-// SetTempoTrack sets the value of the tempoTrack property.
-// The track that contains tempo information about the sequence.
+// SetCurrentPositionInBeats sets the value of the currentPositionInBeats property.
+// The current playback position, in beats.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/tempotrack
-func (a_ AudioSequencer) SetTempoTrack(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTempoTrack:"), value)
-}
-
-// A dictionary that contains metadata from a sequence.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/userinfo
-func (a_ AudioSequencer) UserInfo() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("userInfo"))
-	return rv
-}
-
-
-// SetUserInfo sets the value of the userInfo property.
-// A dictionary that contains metadata from a sequence.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/userinfo
-func (a_ AudioSequencer) SetUserInfo(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUserInfo:"), objc.String(value))
-}
-
-// The playback rate of the sequencer’s player.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/rate
-func (a_ AudioSequencer) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rate"))
-	return rv
-}
-
-
-// SetRate sets the value of the rate property.
-// The playback rate of the sequencer’s player.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/rate
-func (a_ AudioSequencer) SetRate(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/currentpositioninbeats
+func (a_ AudioSequencer) SetCurrentPositionInBeats(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentPositionInBeats:"), value)
 }
 
 // The current playback position, in seconds.
@@ -169,6 +133,60 @@ func (a_ AudioSequencer) SetCurrentPositionInSeconds(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentPositionInSeconds:"), value)
 }
 
+// A Boolean value that indicates whether the sequencer’s player is in a playing state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/isplaying
+func (a_ AudioSequencer) IsPlaying() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isPlaying"))
+	return rv
+}
+
+
+// SetIsPlaying sets the value of the isPlaying property.
+// A Boolean value that indicates whether the sequencer’s player is in a playing state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/isplaying
+func (a_ AudioSequencer) SetIsPlaying(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlaying:"), value)
+}
+
+// The playback rate of the sequencer’s player.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/rate
+func (a_ AudioSequencer) Rate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rate"))
+	return rv
+}
+
+
+// SetRate sets the value of the rate property.
+// The playback rate of the sequencer’s player.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/rate
+func (a_ AudioSequencer) SetRate(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRate:"), value)
+}
+
+// The track that contains tempo information about the sequence.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/tempotrack
+func (a_ AudioSequencer) TempoTrack() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("tempoTrack"))
+	return rv
+}
+
+
+// SetTempoTrack sets the value of the tempoTrack property.
+// The track that contains tempo information about the sequence.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/tempotrack
+func (a_ AudioSequencer) SetTempoTrack(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTempoTrack:"), value)
+}
+
 // An array that contains all the tracks in the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/tracks
@@ -187,22 +205,22 @@ func (a_ AudioSequencer) SetTracks(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTracks:"), value)
 }
 
-// The current playback position, in beats.
+// A dictionary that contains metadata from a sequence.
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/currentpositioninbeats
-func (a_ AudioSequencer) CurrentPositionInBeats() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentPositionInBeats"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/userinfo
+func (a_ AudioSequencer) UserInfo() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
 
-// SetCurrentPositionInBeats sets the value of the currentPositionInBeats property.
-// The current playback position, in beats.
+// SetUserInfo sets the value of the userInfo property.
+// A dictionary that contains metadata from a sequence.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/currentpositioninbeats
-func (a_ AudioSequencer) SetCurrentPositionInBeats(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentPositionInBeats:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/userinfo
+func (a_ AudioSequencer) SetUserInfo(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUserInfo:"), objc.String(value))
 }
 
 // A timestamp you use to access all events in a music track through a beat range.
@@ -221,24 +239,6 @@ func (a_ AudioSequencer) AVMusicTimeStampEndOfTrack() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmusictimestampendoftrack
 func (a_ AudioSequencer) SetAVMusicTimeStampEndOfTrack(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAVMusicTimeStampEndOfTrack:"), value)
-}
-
-// A Boolean value that indicates whether the sequencer’s player is in a playing state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/isplaying
-func (a_ AudioSequencer) IsPlaying() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isPlaying"))
-	return rv
-}
-
-
-// SetIsPlaying sets the value of the isPlaying property.
-// A Boolean value that indicates whether the sequencer’s player is in a playing state.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/isplaying
-func (a_ AudioSequencer) SetIsPlaying(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlaying:"), value)
 }
 
 

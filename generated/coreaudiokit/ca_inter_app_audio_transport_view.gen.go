@@ -81,111 +81,6 @@ func NewInterAppAudioTransportView() InterAppAudioTransportView {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isconnected
-func (i_ InterAppAudioTransportView) IsConnected() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("isConnected"))
-	return rv
-}
-
-
-// SetIsConnected sets the value of the isConnected property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isconnected
-func (i_ InterAppAudioTransportView) SetIsConnected(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIsConnected:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isplaying
-func (i_ InterAppAudioTransportView) IsPlaying() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("isPlaying"))
-	return rv
-}
-
-
-// SetIsPlaying sets the value of the isPlaying property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isplaying
-func (i_ InterAppAudioTransportView) SetIsPlaying(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIsPlaying:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/pausebuttoncolor
-func (i_ InterAppAudioTransportView) PauseButtonColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pauseButtonColor"))
-	return rv
-}
-
-
-// SetPauseButtonColor sets the value of the pauseButtonColor property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/pausebuttoncolor
-func (i_ InterAppAudioTransportView) SetPauseButtonColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPauseButtonColor:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isenabled
-func (i_ InterAppAudioTransportView) IsEnabled() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("isEnabled"))
-	return rv
-}
-
-
-// SetIsEnabled sets the value of the isEnabled property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isenabled
-func (i_ InterAppAudioTransportView) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isrecording
-func (i_ InterAppAudioTransportView) IsRecording() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("isRecording"))
-	return rv
-}
-
-
-// SetIsRecording sets the value of the isRecording property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isrecording
-func (i_ InterAppAudioTransportView) SetIsRecording(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIsRecording:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/playbuttoncolor
-func (i_ InterAppAudioTransportView) PlayButtonColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("playButtonColor"))
-	return rv
-}
-
-
-// SetPlayButtonColor sets the value of the playButtonColor property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/playbuttoncolor
-func (i_ InterAppAudioTransportView) SetPlayButtonColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPlayButtonColor:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/rewindbuttoncolor
-func (i_ InterAppAudioTransportView) RewindButtonColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rewindButtonColor"))
-	return rv
-}
-
-
-// SetRewindButtonColor sets the value of the rewindButtonColor property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/rewindbuttoncolor
-func (i_ InterAppAudioTransportView) SetRewindButtonColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRewindButtonColor:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/currentTimeLabelFont
 func (i_ InterAppAudioTransportView) CurrentTimeLabelFont() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("currentTimeLabelFont"))
@@ -257,6 +152,111 @@ func (i_ InterAppAudioTransportView) RecordButtonColor() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/recordButtonColor
 func (i_ InterAppAudioTransportView) SetRecordButtonColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecordButtonColor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isconnected
+func (i_ InterAppAudioTransportView) IsConnected() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isConnected"))
+	return rv
+}
+
+
+// SetIsConnected sets the value of the isConnected property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isconnected
+func (i_ InterAppAudioTransportView) SetIsConnected(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsConnected:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isenabled
+func (i_ InterAppAudioTransportView) IsEnabled() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isenabled
+func (i_ InterAppAudioTransportView) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isplaying
+func (i_ InterAppAudioTransportView) IsPlaying() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isPlaying"))
+	return rv
+}
+
+
+// SetIsPlaying sets the value of the isPlaying property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isplaying
+func (i_ InterAppAudioTransportView) SetIsPlaying(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsPlaying:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isrecording
+func (i_ InterAppAudioTransportView) IsRecording() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isRecording"))
+	return rv
+}
+
+
+// SetIsRecording sets the value of the isRecording property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isrecording
+func (i_ InterAppAudioTransportView) SetIsRecording(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsRecording:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/pausebuttoncolor
+func (i_ InterAppAudioTransportView) PauseButtonColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pauseButtonColor"))
+	return rv
+}
+
+
+// SetPauseButtonColor sets the value of the pauseButtonColor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/pausebuttoncolor
+func (i_ InterAppAudioTransportView) SetPauseButtonColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPauseButtonColor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/playbuttoncolor
+func (i_ InterAppAudioTransportView) PlayButtonColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("playButtonColor"))
+	return rv
+}
+
+
+// SetPlayButtonColor sets the value of the playButtonColor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/playbuttoncolor
+func (i_ InterAppAudioTransportView) SetPlayButtonColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPlayButtonColor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/rewindbuttoncolor
+func (i_ InterAppAudioTransportView) RewindButtonColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rewindButtonColor"))
+	return rv
+}
+
+
+// SetRewindButtonColor sets the value of the rewindButtonColor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/rewindbuttoncolor
+func (i_ InterAppAudioTransportView) SetRewindButtonColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRewindButtonColor:"), value)
 }
 
 

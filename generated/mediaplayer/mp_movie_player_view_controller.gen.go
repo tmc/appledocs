@@ -83,24 +83,6 @@ func NewMoviePlayerViewController() MoviePlayerViewController {
 }
 
 
-// A Boolean value that indicates whether the route button is visible in the volume view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
-func (m_ MoviePlayerViewController) ShowsRouteButton() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
-	return rv
-}
-
-
-// SetShowsRouteButton sets the value of the showsRouteButton property.
-// A Boolean value that indicates whether the route button is visible in the volume view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
-func (m_ MoviePlayerViewController) SetShowsRouteButton(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
-}
-
 // The bounds, in points, of the content area for the full size image associated with the media item artwork.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
@@ -135,6 +117,24 @@ func (m_ MoviePlayerViewController) MoviePlayer() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayerviewcontroller/movieplayer
 func (m_ MoviePlayerViewController) SetMoviePlayer(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMoviePlayer:"), value)
+}
+
+// A Boolean value that indicates whether the route button is visible in the volume view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MoviePlayerViewController) ShowsRouteButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
+	return rv
+}
+
+
+// SetShowsRouteButton sets the value of the showsRouteButton property.
+// A Boolean value that indicates whether the route button is visible in the volume view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MoviePlayerViewController) SetShowsRouteButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
 }
 
 

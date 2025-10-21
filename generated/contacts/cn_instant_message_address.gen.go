@@ -109,14 +109,6 @@ func (cc _CNInstantMessageAddressClass) LocalizedStringForService(service string
 	return rv
 }
 
-// Instant message service for AIM.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceaim
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceAIM() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceAIM"))
-	return rv
-}
-
 // The name of the instant message address service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/service
@@ -133,6 +125,48 @@ func (c_ CNInstantMessageAddress) Service() string {
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/service
 func (c_ CNInstantMessageAddress) SetService(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setService:"), objc.String(value))
+}
+
+// The user name for instant message service address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/username
+func (c_ CNInstantMessageAddress) Username() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("username"))
+	return rv
+}
+
+
+// SetUsername sets the value of the username property.
+// The user name for instant message service address.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/username
+func (c_ CNInstantMessageAddress) SetUsername(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUsername:"), objc.String(value))
+}
+
+// Instant message address service key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddressservicekey
+func (c_ CNInstantMessageAddress) CNInstantMessageAddressServiceKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageAddressServiceKey"))
+	return rv
+}
+
+// Instant message address username key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddressusernamekey
+func (c_ CNInstantMessageAddress) CNInstantMessageAddressUsernameKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageAddressUsernameKey"))
+	return rv
+}
+
+// Instant message service for AIM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceaim
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceAIM() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceAIM"))
+	return rv
 }
 
 // Instant message service for Facebook.
@@ -159,45 +193,11 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceGoogleTalk() string {
 	return rv
 }
 
-// Instant message address service key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddressservicekey
-func (c_ CNInstantMessageAddress) CNInstantMessageAddressServiceKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageAddressServiceKey"))
-	return rv
-}
-
 // Instant message service for ICQ.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceicq
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceICQ() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceICQ"))
-	return rv
-}
-
-// The user name for instant message service address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/username
-func (c_ CNInstantMessageAddress) Username() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("username"))
-	return rv
-}
-
-
-// SetUsername sets the value of the username property.
-// The user name for instant message service address.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/username
-func (c_ CNInstantMessageAddress) SetUsername(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUsername:"), objc.String(value))
-}
-
-// Instant message service for MSN.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicemsn
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceMSN() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceMSN"))
 	return rv
 }
 
@@ -209,11 +209,19 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceJabber() string {
 	return rv
 }
 
-// Instant message service for Yahoo.
+// Instant message service for MSN.
 //
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceyahoo
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceYahoo() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceYahoo"))
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicemsn
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceMSN() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceMSN"))
+	return rv
+}
+
+// Instant message service for QQ.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceqq
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceQQ() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceQQ"))
 	return rv
 }
 
@@ -225,19 +233,11 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceSkype() string {
 	return rv
 }
 
-// Instant message address username key.
+// Instant message service for Yahoo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddressusernamekey
-func (c_ CNInstantMessageAddress) CNInstantMessageAddressUsernameKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageAddressUsernameKey"))
-	return rv
-}
-
-// Instant message service for QQ.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceqq
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceQQ() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceQQ"))
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceyahoo
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceYahoo() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceYahoo"))
 	return rv
 }
 

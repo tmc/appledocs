@@ -14,9 +14,6 @@ type CFDataRef unsafe.Pointer
 // CFDictionaryRef is a CoreGraphics opaque type.
 type CFDictionaryRef unsafe.Pointer
 
-// CFMutableDataRef is a CoreGraphics opaque type.
-type CFMutableDataRef unsafe.Pointer
-
 // CFStringRef is a CoreGraphics opaque type.
 type CFStringRef unsafe.Pointer
 
@@ -26,29 +23,11 @@ type CFTypeRef unsafe.Pointer
 // CFURLRef is a CoreGraphics opaque type.
 type CFURLRef unsafe.Pointer
 
-// CGDataConsumerRef is a CoreGraphics opaque type.
-type CGDataConsumerRef unsafe.Pointer
-
 // CGDataProviderRef is a CoreGraphics opaque type.
 type CGDataProviderRef unsafe.Pointer
 
-// CGImageDestinationRef is a CoreGraphics opaque type.
-type CGImageDestinationRef unsafe.Pointer
-
-// CGImageMetadataRef is a CoreGraphics opaque type.
-type CGImageMetadataRef unsafe.Pointer
-
-// CGImageMetadataTagRef is a CoreGraphics opaque type.
-type CGImageMetadataTagRef unsafe.Pointer
-
 // CGImageRef is a CoreGraphics opaque type.
 type CGImageRef unsafe.Pointer
-
-// CGImageSourceRef is a CoreGraphics opaque type.
-type CGImageSourceRef unsafe.Pointer
-
-// CGMutableImageMetadataRef is a CoreGraphics opaque type.
-type CGMutableImageMetadataRef unsafe.Pointer
 
 
 

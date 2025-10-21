@@ -78,21 +78,6 @@ func NewMTRContentLauncherClusterDimension() MTRContentLauncherClusterDimension 
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/width
-func (m_ MTRContentLauncherClusterDimension) Width() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("width"))
-	return rv
-}
-
-
-// SetWidth sets the value of the width property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/width
-func (m_ MTRContentLauncherClusterDimension) SetWidth(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setWidth:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/height
 func (m_ MTRContentLauncherClusterDimension) Height() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("height"))
@@ -120,6 +105,21 @@ func (m_ MTRContentLauncherClusterDimension) Metric() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/metric
 func (m_ MTRContentLauncherClusterDimension) SetMetric(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetric:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/width
+func (m_ MTRContentLauncherClusterDimension) Width() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("width"))
+	return rv
+}
+
+
+// SetWidth sets the value of the width property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/width
+func (m_ MTRContentLauncherClusterDimension) SetWidth(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setWidth:"), value)
 }
 
 

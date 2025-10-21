@@ -104,24 +104,6 @@ func NewAXNumericDataAxisDescriptorWithTitleLowerBoundUpperBoundGridlinePosition
 }
 
 
-// A range that defines the minimum and maximum displayable values for the axis.
-//
-// [Full Topic]: https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/range
-func (a_ AXNumericDataAxisDescriptor) Range() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("range"))
-	return rv
-}
-
-
-// SetRange sets the value of the range property.
-// A range that defines the minimum and maximum displayable values for the axis.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/range
-func (a_ AXNumericDataAxisDescriptor) SetRange(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRange:"), value)
-}
-
 // The positions of the gridlines along the axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/gridlinePositions-9z10e
@@ -220,6 +202,24 @@ func (a_ AXNumericDataAxisDescriptor) ValueDescriptionProvider() string {
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/valueDescriptionProvider
 func (a_ AXNumericDataAxisDescriptor) SetValueDescriptionProvider(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValueDescriptionProvider:"), objc.String(value))
+}
+
+// A range that defines the minimum and maximum displayable values for the axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/range
+func (a_ AXNumericDataAxisDescriptor) Range() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("range"))
+	return rv
+}
+
+
+// SetRange sets the value of the range property.
+// A range that defines the minimum and maximum displayable values for the axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/range
+func (a_ AXNumericDataAxisDescriptor) SetRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRange:"), value)
 }
 
 

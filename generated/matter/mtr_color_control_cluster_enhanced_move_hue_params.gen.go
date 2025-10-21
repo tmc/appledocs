@@ -77,6 +77,21 @@ func NewMTRColorControlClusterEnhancedMoveHueParams() MTRColorControlClusterEnha
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/movemode
+func (m_ MTRColorControlClusterEnhancedMoveHueParams) MoveMode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("moveMode"))
+	return rv
+}
+
+
+// SetMoveMode sets the value of the moveMode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/movemode
+func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetMoveMode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMoveMode:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/optionsmask
 func (m_ MTRColorControlClusterEnhancedMoveHueParams) OptionsMask() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
@@ -149,21 +164,6 @@ func (m_ MTRColorControlClusterEnhancedMoveHueParams) TimedInvokeTimeoutMs() fou
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/timedinvoketimeoutms
 func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/movemode
-func (m_ MTRColorControlClusterEnhancedMoveHueParams) MoveMode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("moveMode"))
-	return rv
-}
-
-
-// SetMoveMode sets the value of the moveMode property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/movemode
-func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetMoveMode(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMoveMode:"), value)
 }
 
 

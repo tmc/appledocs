@@ -80,96 +80,6 @@ func NewPreferences() Preferences {
 }
 
 
-// A Boolean value that indicates whether a web view can display content full screen.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/iselementfullscreenenabled
-func (p_ Preferences) IsElementFullscreenEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isElementFullscreenEnabled"))
-	return rv
-}
-
-
-// SetIsElementFullscreenEnabled sets the value of the isElementFullscreenEnabled property.
-// A Boolean value that indicates whether a web view can display content full screen.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/iselementfullscreenenabled
-func (p_ Preferences) SetIsElementFullscreenEnabled(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsElementFullscreenEnabled:"), value)
-}
-
-// The object that manages the preference-related settings for the web view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/preferences
-func (p_ Preferences) Preferences() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferences"))
-	return rv
-}
-
-
-// SetPreferences sets the value of the preferences property.
-// The object that manages the preference-related settings for the web view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/preferences
-func (p_ Preferences) SetPreferences(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferences:"), value)
-}
-
-// A Boolean value that indicates whether to allow people to select or otherwise interact with text.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/istextinteractionenabled
-func (p_ Preferences) IsTextInteractionEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isTextInteractionEnabled"))
-	return rv
-}
-
-
-// SetIsTextInteractionEnabled sets the value of the isTextInteractionEnabled property.
-// A Boolean value that indicates whether to allow people to select or otherwise interact with text.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/istextinteractionenabled
-func (p_ Preferences) SetIsTextInteractionEnabled(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsTextInteractionEnabled:"), value)
-}
-
-// A Boolean value that indicates whether the web view shows warnings for suspected fraudulent content, such as malware or phishing attemps.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/isfraudulentwebsitewarningenabled
-func (p_ Preferences) IsFraudulentWebsiteWarningEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isFraudulentWebsiteWarningEnabled"))
-	return rv
-}
-
-
-// SetIsFraudulentWebsiteWarningEnabled sets the value of the isFraudulentWebsiteWarningEnabled property.
-// A Boolean value that indicates whether the web view shows warnings for suspected fraudulent content, such as malware or phishing attemps.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/isfraudulentwebsitewarningenabled
-func (p_ Preferences) SetIsFraudulentWebsiteWarningEnabled(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFraudulentWebsiteWarningEnabled:"), value)
-}
-
-// A Boolean that indicates whether to apply site-specific compatibility workarounds.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/issitespecificquirksmodeenabled
-func (p_ Preferences) IsSiteSpecificQuirksModeEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isSiteSpecificQuirksModeEnabled"))
-	return rv
-}
-
-
-// SetIsSiteSpecificQuirksModeEnabled sets the value of the isSiteSpecificQuirksModeEnabled property.
-// A Boolean that indicates whether to apply site-specific compatibility workarounds.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/issitespecificquirksmodeenabled
-func (p_ Preferences) SetIsSiteSpecificQuirksModeEnabled(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSiteSpecificQuirksModeEnabled:"), value)
-}
-
 // A policy you set to specify how a web view that’s not in a window handles tasks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/inactiveSchedulingPolicy-swift.property
@@ -399,6 +309,96 @@ func (p_ Preferences) TabFocusesLinks() bool {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/tabFocusesLinks
 func (p_ Preferences) SetTabFocusesLinks(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTabFocusesLinks:"), value)
+}
+
+// A Boolean value that indicates whether a web view can display content full screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/iselementfullscreenenabled
+func (p_ Preferences) IsElementFullscreenEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isElementFullscreenEnabled"))
+	return rv
+}
+
+
+// SetIsElementFullscreenEnabled sets the value of the isElementFullscreenEnabled property.
+// A Boolean value that indicates whether a web view can display content full screen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/iselementfullscreenenabled
+func (p_ Preferences) SetIsElementFullscreenEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsElementFullscreenEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the web view shows warnings for suspected fraudulent content, such as malware or phishing attemps.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/isfraudulentwebsitewarningenabled
+func (p_ Preferences) IsFraudulentWebsiteWarningEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isFraudulentWebsiteWarningEnabled"))
+	return rv
+}
+
+
+// SetIsFraudulentWebsiteWarningEnabled sets the value of the isFraudulentWebsiteWarningEnabled property.
+// A Boolean value that indicates whether the web view shows warnings for suspected fraudulent content, such as malware or phishing attemps.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/isfraudulentwebsitewarningenabled
+func (p_ Preferences) SetIsFraudulentWebsiteWarningEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFraudulentWebsiteWarningEnabled:"), value)
+}
+
+// A Boolean that indicates whether to apply site-specific compatibility workarounds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/issitespecificquirksmodeenabled
+func (p_ Preferences) IsSiteSpecificQuirksModeEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isSiteSpecificQuirksModeEnabled"))
+	return rv
+}
+
+
+// SetIsSiteSpecificQuirksModeEnabled sets the value of the isSiteSpecificQuirksModeEnabled property.
+// A Boolean that indicates whether to apply site-specific compatibility workarounds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/issitespecificquirksmodeenabled
+func (p_ Preferences) SetIsSiteSpecificQuirksModeEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSiteSpecificQuirksModeEnabled:"), value)
+}
+
+// A Boolean value that indicates whether to allow people to select or otherwise interact with text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/istextinteractionenabled
+func (p_ Preferences) IsTextInteractionEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isTextInteractionEnabled"))
+	return rv
+}
+
+
+// SetIsTextInteractionEnabled sets the value of the isTextInteractionEnabled property.
+// A Boolean value that indicates whether to allow people to select or otherwise interact with text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpreferences/istextinteractionenabled
+func (p_ Preferences) SetIsTextInteractionEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsTextInteractionEnabled:"), value)
+}
+
+// The object that manages the preference-related settings for the web view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/preferences
+func (p_ Preferences) Preferences() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferences"))
+	return rv
+}
+
+
+// SetPreferences sets the value of the preferences property.
+// The object that manages the preference-related settings for the web view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/preferences
+func (p_ Preferences) SetPreferences(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferences:"), value)
 }
 
 

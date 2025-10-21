@@ -97,24 +97,6 @@ func (c_ CUpsampleLayer) SetAlignsCorners(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlignsCorners:"), value)
 }
 
-// An array that contains the dimensions of the result tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/shape-61n1u
-func (c_ CUpsampleLayer) Shape() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("shape"))
-	return rv
-}
-
-
-// SetShape sets the value of the shape property.
-// An array that contains the dimensions of the result tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/shape-61n1u
-func (c_ CUpsampleLayer) SetShape(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShape:"), value)
-}
-
 // The upsampling algorithm type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/samplemode
@@ -131,6 +113,24 @@ func (c_ CUpsampleLayer) SampleMode() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/samplemode
 func (c_ CUpsampleLayer) SetSampleMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleMode:"), value)
+}
+
+// An array that contains the dimensions of the result tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/shape-61n1u
+func (c_ CUpsampleLayer) Shape() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("shape"))
+	return rv
+}
+
+
+// SetShape sets the value of the shape property.
+// An array that contains the dimensions of the result tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/shape-61n1u
+func (c_ CUpsampleLayer) SetShape(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShape:"), value)
 }
 
 

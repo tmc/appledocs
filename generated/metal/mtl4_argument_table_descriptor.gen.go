@@ -80,42 +80,6 @@ func NewMTL4ArgumentTableDescriptor() MTL4ArgumentTableDescriptor {
 }
 
 
-// Determines the number of texture-binding slots for the argument table.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxtexturebindcount
-func (m_ MTL4ArgumentTableDescriptor) MaxTextureBindCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("maxTextureBindCount"))
-	return rv
-}
-
-
-// SetMaxTextureBindCount sets the value of the maxTextureBindCount property.
-// Determines the number of texture-binding slots for the argument table.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxtexturebindcount
-func (m_ MTL4ArgumentTableDescriptor) SetMaxTextureBindCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTextureBindCount:"), value)
-}
-
-// Determines the number of sampler state-binding slots for the argument table.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxsamplerstatebindcount
-func (m_ MTL4ArgumentTableDescriptor) MaxSamplerStateBindCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("maxSamplerStateBindCount"))
-	return rv
-}
-
-
-// SetMaxSamplerStateBindCount sets the value of the maxSamplerStateBindCount property.
-// Determines the number of sampler state-binding slots for the argument table.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxsamplerstatebindcount
-func (m_ MTL4ArgumentTableDescriptor) SetMaxSamplerStateBindCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxSamplerStateBindCount:"), value)
-}
-
 // Configures whether Metal initializes the bindings to nil values upon creation of argument table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/initializebindings
@@ -152,6 +116,60 @@ func (m_ MTL4ArgumentTableDescriptor) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
+// Determines the number of buffer-binding slots for the argument table.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxbufferbindcount
+func (m_ MTL4ArgumentTableDescriptor) MaxBufferBindCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("maxBufferBindCount"))
+	return rv
+}
+
+
+// SetMaxBufferBindCount sets the value of the maxBufferBindCount property.
+// Determines the number of buffer-binding slots for the argument table.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxbufferbindcount
+func (m_ MTL4ArgumentTableDescriptor) SetMaxBufferBindCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxBufferBindCount:"), value)
+}
+
+// Determines the number of sampler state-binding slots for the argument table.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxsamplerstatebindcount
+func (m_ MTL4ArgumentTableDescriptor) MaxSamplerStateBindCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("maxSamplerStateBindCount"))
+	return rv
+}
+
+
+// SetMaxSamplerStateBindCount sets the value of the maxSamplerStateBindCount property.
+// Determines the number of sampler state-binding slots for the argument table.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxsamplerstatebindcount
+func (m_ MTL4ArgumentTableDescriptor) SetMaxSamplerStateBindCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxSamplerStateBindCount:"), value)
+}
+
+// Determines the number of texture-binding slots for the argument table.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxtexturebindcount
+func (m_ MTL4ArgumentTableDescriptor) MaxTextureBindCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("maxTextureBindCount"))
+	return rv
+}
+
+
+// SetMaxTextureBindCount sets the value of the maxTextureBindCount property.
+// Determines the number of texture-binding slots for the argument table.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxtexturebindcount
+func (m_ MTL4ArgumentTableDescriptor) SetMaxTextureBindCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxTextureBindCount:"), value)
+}
+
 // Controls whether Metal should reserve memory for attribute strides in the argument table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/supportattributestrides
@@ -175,24 +193,6 @@ func (m_ MTL4ArgumentTableDescriptor) SetSupportAttributeStrides(value bool) {
 func (m_ MTL4ArgumentTableDescriptor) MTL4CommandQueueErrorDomain() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("MTL4CommandQueueErrorDomain"))
 	return rv
-}
-
-// Determines the number of buffer-binding slots for the argument table.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxbufferbindcount
-func (m_ MTL4ArgumentTableDescriptor) MaxBufferBindCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("maxBufferBindCount"))
-	return rv
-}
-
-
-// SetMaxBufferBindCount sets the value of the maxBufferBindCount property.
-// Determines the number of buffer-binding slots for the argument table.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/maxbufferbindcount
-func (m_ MTL4ArgumentTableDescriptor) SetMaxBufferBindCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxBufferBindCount:"), value)
 }
 
 

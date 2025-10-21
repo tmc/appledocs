@@ -91,42 +91,6 @@ func NewToolPickerCustomItemConfigurationWithIdentifierName(identifier string, n
 }
 
 
-// The current color of the custom tool item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/color
-func (t_ ToolPickerCustomItemConfiguration) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("color"))
-	return rv
-}
-
-
-// SetColor sets the value of the color property.
-// The current color of the custom tool item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/color
-func (t_ ToolPickerCustomItemConfiguration) SetColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
-}
-
-// The current width of the custom tool item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/width
-func (t_ ToolPickerCustomItemConfiguration) Width() float64 {
-	rv := objc.Send[float64](t_.ID, objc.Sel("width"))
-	return rv
-}
-
-
-// SetWidth sets the value of the width property.
-// The current width of the custom tool item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/width
-func (t_ ToolPickerCustomItemConfiguration) SetWidth(value float64) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setWidth:"), value)
-}
-
 // A Boolean value that determines whether to show the color selection UI for the tool.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/allowsColorSelection
@@ -269,6 +233,42 @@ func (t_ ToolPickerCustomItemConfiguration) WidthVariants() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/widthVariants
 func (t_ ToolPickerCustomItemConfiguration) SetWidthVariants(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWidthVariants:"), value)
+}
+
+// The current color of the custom tool item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/color
+func (t_ ToolPickerCustomItemConfiguration) Color() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("color"))
+	return rv
+}
+
+
+// SetColor sets the value of the color property.
+// The current color of the custom tool item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/color
+func (t_ ToolPickerCustomItemConfiguration) SetColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
+}
+
+// The current width of the custom tool item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/width
+func (t_ ToolPickerCustomItemConfiguration) Width() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("width"))
+	return rv
+}
+
+
+// SetWidth sets the value of the width property.
+// The current width of the custom tool item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/width
+func (t_ ToolPickerCustomItemConfiguration) SetWidth(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setWidth:"), value)
 }
 
 

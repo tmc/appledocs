@@ -109,6 +109,14 @@ func (s_ STScreenTimeConfigurationObserver) StopObserving() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stopObserving"))
 }
 
+// The configuration being observed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfigurationObserver/configuration
+func (s_ STScreenTimeConfigurationObserver) Configuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("configuration"))
+	return rv
+}
+
 // A Boolean that indicates whether the device is currently enforcing child
 //
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfiguration/enforceschildrestrictions
@@ -125,14 +133,6 @@ func (s_ STScreenTimeConfigurationObserver) EnforcesChildRestrictions() bool {
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfiguration/enforceschildrestrictions
 func (s_ STScreenTimeConfigurationObserver) SetEnforcesChildRestrictions(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEnforcesChildRestrictions:"), value)
-}
-
-// The configuration being observed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfigurationObserver/configuration
-func (s_ STScreenTimeConfigurationObserver) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("configuration"))
-	return rv
 }
 
 

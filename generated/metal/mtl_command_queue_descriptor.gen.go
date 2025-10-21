@@ -78,6 +78,24 @@ func NewCommandQueueDescriptor() CommandQueueDescriptor {
 }
 
 
+// The shader logging configuration that the command queue uses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandQueueDescriptor/logState
+func (c_ CommandQueueDescriptor) LogState() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("logState"))
+	return rv
+}
+
+
+// SetLogState sets the value of the logState property.
+// The shader logging configuration that the command queue uses.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandQueueDescriptor/logState
+func (c_ CommandQueueDescriptor) SetLogState(value objc.ID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLogState:"), value)
+}
+
 // The domain for Metal command buffer errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbuffererrordomain
@@ -102,24 +120,6 @@ func (c_ CommandQueueDescriptor) MaxCommandBufferCount() int {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandqueuedescriptor/maxcommandbuffercount
 func (c_ CommandQueueDescriptor) SetMaxCommandBufferCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxCommandBufferCount:"), value)
-}
-
-// The shader logging configuration that the command queue uses.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandQueueDescriptor/logState
-func (c_ CommandQueueDescriptor) LogState() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("logState"))
-	return rv
-}
-
-
-// SetLogState sets the value of the logState property.
-// The shader logging configuration that the command queue uses.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandQueueDescriptor/logState
-func (c_ CommandQueueDescriptor) SetLogState(value objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLogState:"), value)
 }
 
 

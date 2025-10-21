@@ -78,6 +78,24 @@ func NewAuthorizationProviderExtensionAuthorizationResult() AuthorizationProvide
 }
 
 
+// A dictionary of authorization HTTP headers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpauthorizationheaders
+func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpAuthorizationHeaders() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("httpAuthorizationHeaders"))
+	return rv
+}
+
+
+// SetHttpAuthorizationHeaders sets the value of the httpAuthorizationHeaders property.
+// A dictionary of authorization HTTP headers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpauthorizationheaders
+func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpAuthorizationHeaders(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpAuthorizationHeaders:"), objc.String(value))
+}
+
 // The HTTP response body.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpbody
@@ -112,24 +130,6 @@ func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpResponse() unsaf
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpresponse
 func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpResponse(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpResponse:"), value)
-}
-
-// A dictionary of authorization HTTP headers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpauthorizationheaders
-func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpAuthorizationHeaders() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("httpAuthorizationHeaders"))
-	return rv
-}
-
-
-// SetHttpAuthorizationHeaders sets the value of the httpAuthorizationHeaders property.
-// A dictionary of authorization HTTP headers.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpauthorizationheaders
-func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpAuthorizationHeaders(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpAuthorizationHeaders:"), objc.String(value))
 }
 
 

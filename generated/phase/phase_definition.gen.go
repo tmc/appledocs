@@ -80,6 +80,14 @@ func NewPHASEDefinition() PHASEDefinition {
 }
 
 
+// A unique name for the definition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDefinition/identifier
+func (p_ PHASEDefinition) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
 // A dictionary of metaparameters that all sound event assets share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
@@ -96,14 +104,6 @@ func (p_ PHASEDefinition) GlobalMetaParameters() string {
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
 func (p_ PHASEDefinition) SetGlobalMetaParameters(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
-}
-
-// A unique name for the definition.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDefinition/identifier
-func (p_ PHASEDefinition) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
-	return rv
 }
 
 

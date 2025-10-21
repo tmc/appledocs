@@ -77,6 +77,21 @@ func NewChallengesViewController() ChallengesViewController {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengesViewController/challengeDelegate
+func (c_ ChallengesViewController) ChallengeDelegate() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("challengeDelegate"))
+	return rv
+}
+
+
+// SetChallengeDelegate sets the value of the challengeDelegate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengesViewController/challengeDelegate
+func (c_ ChallengesViewController) SetChallengeDelegate(value objc.ID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setChallengeDelegate:"), value)
+}
+
 // The delegate for the event handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
@@ -93,21 +108,6 @@ func (c_ ChallengesViewController) Delegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
 func (c_ ChallengesViewController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengesViewController/challengeDelegate
-func (c_ ChallengesViewController) ChallengeDelegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("challengeDelegate"))
-	return rv
-}
-
-
-// SetChallengeDelegate sets the value of the challengeDelegate property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengesViewController/challengeDelegate
-func (c_ ChallengesViewController) SetChallengeDelegate(value objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setChallengeDelegate:"), value)
 }
 
 

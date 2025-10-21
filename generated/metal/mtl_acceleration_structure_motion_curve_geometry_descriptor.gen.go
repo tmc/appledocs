@@ -77,6 +77,66 @@ func NewAccelerationStructureMotionCurveGeometryDescriptor() AccelerationStructu
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointbuffers
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointBuffers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("controlPointBuffers"))
+	return rv
+}
+
+
+// SetControlPointBuffers sets the value of the controlPointBuffers property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointbuffers
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointBuffers(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointBuffers:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointcount
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointCount() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("controlPointCount"))
+	return rv
+}
+
+
+// SetControlPointCount sets the value of the controlPointCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointcount
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointCount(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointCount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointformat
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("controlPointFormat"))
+	return rv
+}
+
+
+// SetControlPointFormat sets the value of the controlPointFormat property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointformat
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointFormat:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointstride
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointStride() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("controlPointStride"))
+	return rv
+}
+
+
+// SetControlPointStride sets the value of the controlPointStride property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointstride
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointStride(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointStride:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/curvebasis
 func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveBasis() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("curveBasis"))
@@ -107,66 +167,6 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetCurveEndCaps(val
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/segmentcount
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SegmentCount() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("segmentCount"))
-	return rv
-}
-
-
-// SetSegmentCount sets the value of the segmentCount property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/segmentcount
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetSegmentCount(value int) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSegmentCount:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/segmentcontrolpointcount
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SegmentControlPointCount() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("segmentControlPointCount"))
-	return rv
-}
-
-
-// SetSegmentControlPointCount sets the value of the segmentControlPointCount property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/segmentcontrolpointcount
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetSegmentControlPointCount(value int) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSegmentControlPointCount:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointstride
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointStride() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("controlPointStride"))
-	return rv
-}
-
-
-// SetControlPointStride sets the value of the controlPointStride property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointstride
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointStride(value int) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointStride:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/indexbufferoffset
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) IndexBufferOffset() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("indexBufferOffset"))
-	return rv
-}
-
-
-// SetIndexBufferOffset sets the value of the indexBufferOffset property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/indexbufferoffset
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetIndexBufferOffset(value int) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexBufferOffset:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/curvetype
 func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("curveType"))
@@ -179,66 +179,6 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveType() unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/curvetype
 func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetCurveType(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurveType:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointbuffers
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("controlPointBuffers"))
-	return rv
-}
-
-
-// SetControlPointBuffers sets the value of the controlPointBuffers property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointbuffers
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointBuffers(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointBuffers:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/indextype
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("indexType"))
-	return rv
-}
-
-
-// SetIndexType sets the value of the indexType property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/indextype
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetIndexType(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexType:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/radiusstride
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) RadiusStride() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("radiusStride"))
-	return rv
-}
-
-
-// SetRadiusStride sets the value of the radiusStride property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/radiusstride
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusStride(value int) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRadiusStride:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/radiusformat
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) RadiusFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("radiusFormat"))
-	return rv
-}
-
-
-// SetRadiusFormat sets the value of the radiusFormat property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/radiusformat
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusFormat(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRadiusFormat:"), value)
 }
 
 //
@@ -257,18 +197,33 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetIndexBuffer(valu
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointcount
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointCount() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("controlPointCount"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/indexbufferoffset
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) IndexBufferOffset() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("indexBufferOffset"))
 	return rv
 }
 
 
-// SetControlPointCount sets the value of the controlPointCount property.
+// SetIndexBufferOffset sets the value of the indexBufferOffset property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointcount
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointCount(value int) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointCount:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/indexbufferoffset
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetIndexBufferOffset(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexBufferOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/indextype
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) IndexType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("indexType"))
+	return rv
+}
+
+
+// SetIndexType sets the value of the indexType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/indextype
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetIndexType(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexType:"), value)
 }
 
 //
@@ -287,18 +242,63 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusBuffers(va
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointformat
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("controlPointFormat"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/radiusformat
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) RadiusFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("radiusFormat"))
 	return rv
 }
 
 
-// SetControlPointFormat sets the value of the controlPointFormat property.
+// SetRadiusFormat sets the value of the radiusFormat property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointformat
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointFormat(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointFormat:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/radiusformat
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRadiusFormat:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/radiusstride
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) RadiusStride() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("radiusStride"))
+	return rv
+}
+
+
+// SetRadiusStride sets the value of the radiusStride property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/radiusstride
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusStride(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRadiusStride:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/segmentcontrolpointcount
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SegmentControlPointCount() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("segmentControlPointCount"))
+	return rv
+}
+
+
+// SetSegmentControlPointCount sets the value of the segmentControlPointCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/segmentcontrolpointcount
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetSegmentControlPointCount(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSegmentControlPointCount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/segmentcount
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SegmentCount() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("segmentCount"))
+	return rv
+}
+
+
+// SetSegmentCount sets the value of the segmentCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/segmentcount
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetSegmentCount(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSegmentCount:"), value)
 }
 
 

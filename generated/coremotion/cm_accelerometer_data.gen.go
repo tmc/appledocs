@@ -81,6 +81,14 @@ func NewAccelerometerData() AccelerometerData {
 }
 
 
+// The acceleration measured by the accelerometer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAccelerometerData/acceleration
+func (a_ AccelerometerData) Acceleration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("acceleration"))
+	return rv
+}
+
 // The time when the logged item is valid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmlogitem/timestamp
@@ -115,14 +123,6 @@ func (a_ AccelerometerData) AccelerometerData() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerdata
 func (a_ AccelerometerData) SetAccelerometerData(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccelerometerData:"), value)
-}
-
-// The acceleration measured by the accelerometer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAccelerometerData/acceleration
-func (a_ AccelerometerData) Acceleration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("acceleration"))
-	return rv
 }
 
 

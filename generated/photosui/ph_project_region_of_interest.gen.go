@@ -81,22 +81,20 @@ func NewPHProjectRegionOfInterest() PHProjectRegionOfInterest {
 }
 
 
-// The rectangle representing the region’s location.
+// The region’s quality.
 //
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/rect
-func (p_ PHProjectRegionOfInterest) Rect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("rect"))
+// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectRegionOfInterest/quality
+func (p_ PHProjectRegionOfInterest) Quality() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("quality"))
 	return rv
 }
 
-
-// SetRect sets the value of the rect property.
-// The rectangle representing the region’s location.
-
+// The face region’s weight.
 //
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/rect
-func (p_ PHProjectRegionOfInterest) SetRect(value coregraphics.CGRect) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRect:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectRegionOfInterest/weight
+func (p_ PHProjectRegionOfInterest) Weight() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("weight"))
+	return rv
 }
 
 // The region’s unique identifier.
@@ -117,20 +115,22 @@ func (p_ PHProjectRegionOfInterest) SetIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
-// The region’s quality.
+// The rectangle representing the region’s location.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectRegionOfInterest/quality
-func (p_ PHProjectRegionOfInterest) Quality() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("quality"))
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/rect
+func (p_ PHProjectRegionOfInterest) Rect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("rect"))
 	return rv
 }
 
-// The face region’s weight.
+
+// SetRect sets the value of the rect property.
+// The rectangle representing the region’s location.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectRegionOfInterest/weight
-func (p_ PHProjectRegionOfInterest) Weight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("weight"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/rect
+func (p_ PHProjectRegionOfInterest) SetRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRect:"), value)
 }
 
 

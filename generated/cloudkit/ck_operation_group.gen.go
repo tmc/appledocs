@@ -93,24 +93,6 @@ func NewCKOperationGroupWithCoder(aDecoder unsafe.Pointer) CKOperationGroup {
 }
 
 
-// The operation’s group.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/group
-func (c_ CKOperationGroup) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("group"))
-	return rv
-}
-
-
-// SetGroup sets the value of the group property.
-// The operation’s group.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/group
-func (c_ CKOperationGroup) SetGroup(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGroup:"), value)
-}
-
 // The default configuration for operations in the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/defaultConfiguration
@@ -207,6 +189,24 @@ func (c_ CKOperationGroup) Quantity() uint {
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/quantity
 func (c_ CKOperationGroup) SetQuantity(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQuantity:"), value)
+}
+
+// The operation’s group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/group
+func (c_ CKOperationGroup) Group() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("group"))
+	return rv
+}
+
+
+// SetGroup sets the value of the group property.
+// The operation’s group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/group
+func (c_ CKOperationGroup) SetGroup(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGroup:"), value)
 }
 
 

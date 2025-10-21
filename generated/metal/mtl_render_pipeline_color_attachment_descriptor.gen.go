@@ -80,24 +80,6 @@ func NewRenderPipelineColorAttachmentDescriptor() RenderPipelineColorAttachmentD
 }
 
 
-// A Boolean value that determines whether blending is enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/isblendingenabled
-func (r_ RenderPipelineColorAttachmentDescriptor) IsBlendingEnabled() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isBlendingEnabled"))
-	return rv
-}
-
-
-// SetIsBlendingEnabled sets the value of the isBlendingEnabled property.
-// A Boolean value that determines whether blending is enabled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/isblendingenabled
-func (r_ RenderPipelineColorAttachmentDescriptor) SetIsBlendingEnabled(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsBlendingEnabled:"), value)
-}
-
 // The blend operation assigned for the alpha data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptor/alphaBlendOperation
@@ -258,6 +240,24 @@ func (r_ RenderPipelineColorAttachmentDescriptor) WriteMask() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptor/writeMask
 func (r_ RenderPipelineColorAttachmentDescriptor) SetWriteMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setWriteMask:"), value)
+}
+
+// A Boolean value that determines whether blending is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/isblendingenabled
+func (r_ RenderPipelineColorAttachmentDescriptor) IsBlendingEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isBlendingEnabled"))
+	return rv
+}
+
+
+// SetIsBlendingEnabled sets the value of the isBlendingEnabled property.
+// A Boolean value that determines whether blending is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/isblendingenabled
+func (r_ RenderPipelineColorAttachmentDescriptor) SetIsBlendingEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsBlendingEnabled:"), value)
 }
 
 

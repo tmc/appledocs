@@ -178,6 +178,14 @@ func (c_ CompositeBehavior) WeightForBehavior(behavior unsafe.Pointer) unsafe.Po
 	return rv
 }
 
+// The number of individual behaviors in the composite behavior.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/behaviorCount
+func (c_ CompositeBehavior) BehaviorCount() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("behaviorCount"))
+	return rv
+}
+
 // A weighted collection of goals that influence the agent’s movement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
@@ -194,14 +202,6 @@ func (c_ CompositeBehavior) Behavior() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
 func (c_ CompositeBehavior) SetBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBehavior:"), value)
-}
-
-// The number of individual behaviors in the composite behavior.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/behaviorCount
-func (c_ CompositeBehavior) BehaviorCount() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("behaviorCount"))
-	return rv
 }
 
 

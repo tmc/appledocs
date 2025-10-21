@@ -108,14 +108,6 @@ func (w_ WebAuthenticationSession) Start() bool {
 	return rv
 }
 
-// The error domain for a web authentication session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrordomain
-func (w_ WebAuthenticationSession) ASWebAuthenticationSessionErrorDomain() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("ASWebAuthenticationSessionErrorDomain"))
-	return rv
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/additionalHeaderFields
 func (w_ WebAuthenticationSession) AdditionalHeaderFields() unsafe.Pointer {
@@ -173,6 +165,14 @@ func (w_ WebAuthenticationSession) PresentationContextProvider() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/presentationContextProvider
 func (w_ WebAuthenticationSession) SetPresentationContextProvider(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPresentationContextProvider:"), value)
+}
+
+// The error domain for a web authentication session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrordomain
+func (w_ WebAuthenticationSession) ASWebAuthenticationSessionErrorDomain() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("ASWebAuthenticationSessionErrorDomain"))
+	return rv
 }
 
 

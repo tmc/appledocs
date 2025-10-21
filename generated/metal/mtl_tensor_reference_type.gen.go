@@ -78,55 +78,12 @@ func NewTensorReferenceType() TensorReferenceType {
 }
 
 
+// The underlying data format of the tensor.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
-func (t_ TensorReferenceType) MTL_TENSOR_MAX_RANK() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("MTL_TENSOR_MAX_RANK"))
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorReferenceType/tensorDataType
+func (t_ TensorReferenceType) TensorDataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tensorDataType"))
 	return rv
-}
-
-
-// SetMTL_TENSOR_MAX_RANK sets the value of the MTL_TENSOR_MAX_RANK property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
-func (t_ TensorReferenceType) SetMTL_TENSOR_MAX_RANK(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMTL_TENSOR_MAX_RANK:"), value)
-}
-
-// The data format you use for indexing into the tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/indextype
-func (t_ TensorReferenceType) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("indexType"))
-	return rv
-}
-
-
-// SetIndexType sets the value of the indexType property.
-// The data format you use for indexing into the tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/indextype
-func (t_ TensorReferenceType) SetIndexType(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIndexType:"), value)
-}
-
-// The array of sizes, in elements, one for each dimension of this tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/dimensions
-func (t_ TensorReferenceType) Dimensions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dimensions"))
-	return rv
-}
-
-
-// SetDimensions sets the value of the dimensions property.
-// The array of sizes, in elements, one for each dimension of this tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/dimensions
-func (t_ TensorReferenceType) SetDimensions(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDimensions:"), value)
 }
 
 // An error domain for errors that pertain to creating a tensor.
@@ -155,12 +112,55 @@ func (t_ TensorReferenceType) SetAccess(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAccess:"), value)
 }
 
-// The underlying data format of the tensor.
+// The array of sizes, in elements, one for each dimension of this tensor.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorReferenceType/tensorDataType
-func (t_ TensorReferenceType) TensorDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tensorDataType"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/dimensions
+func (t_ TensorReferenceType) Dimensions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dimensions"))
 	return rv
+}
+
+
+// SetDimensions sets the value of the dimensions property.
+// The array of sizes, in elements, one for each dimension of this tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/dimensions
+func (t_ TensorReferenceType) SetDimensions(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDimensions:"), value)
+}
+
+// The data format you use for indexing into the tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/indextype
+func (t_ TensorReferenceType) IndexType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("indexType"))
+	return rv
+}
+
+
+// SetIndexType sets the value of the indexType property.
+// The data format you use for indexing into the tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/indextype
+func (t_ TensorReferenceType) SetIndexType(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIndexType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
+func (t_ TensorReferenceType) MTL_TENSOR_MAX_RANK() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("MTL_TENSOR_MAX_RANK"))
+	return rv
+}
+
+
+// SetMTL_TENSOR_MAX_RANK sets the value of the MTL_TENSOR_MAX_RANK property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
+func (t_ TensorReferenceType) SetMTL_TENSOR_MAX_RANK(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMTL_TENSOR_MAX_RANK:"), value)
 }
 
 

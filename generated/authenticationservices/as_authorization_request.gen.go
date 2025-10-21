@@ -80,22 +80,22 @@ func NewAuthorizationRequest() AuthorizationRequest {
 }
 
 
-// The provider servicing the request.
+// The authorization requests that the controller manages.
 //
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationrequest/provider
-func (a_ AuthorizationRequest) Provider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("provider"))
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
+func (a_ AuthorizationRequest) AuthorizationRequests() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationRequests"))
 	return rv
 }
 
 
-// SetProvider sets the value of the provider property.
-// The provider servicing the request.
+// SetAuthorizationRequests sets the value of the authorizationRequests property.
+// The authorization requests that the controller manages.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationrequest/provider
-func (a_ AuthorizationRequest) SetProvider(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setProvider:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
+func (a_ AuthorizationRequest) SetAuthorizationRequests(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
 }
 
 // An array of custom authorization methods for the user to choose.
@@ -116,22 +116,22 @@ func (a_ AuthorizationRequest) SetCustomAuthorizationMethods(value unsafe.Pointe
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCustomAuthorizationMethods:"), value)
 }
 
-// The authorization requests that the controller manages.
+// The provider servicing the request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationRequest) AuthorizationRequests() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationRequests"))
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationrequest/provider
+func (a_ AuthorizationRequest) Provider() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("provider"))
 	return rv
 }
 
 
-// SetAuthorizationRequests sets the value of the authorizationRequests property.
-// The authorization requests that the controller manages.
+// SetProvider sets the value of the provider property.
+// The provider servicing the request.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationRequest) SetAuthorizationRequests(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationrequest/provider
+func (a_ AuthorizationRequest) SetProvider(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setProvider:"), value)
 }
 
 

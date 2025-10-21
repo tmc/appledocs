@@ -80,58 +80,22 @@ func NewPHProjectInfo() PHProjectInfo {
 }
 
 
-// An array of project sections, each containing one or more section content objects.
+// A Boolean value indicating whether branding was enabled in the source project.
 //
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/sections
-func (p_ PHProjectInfo) Sections() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sections"))
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/brandingenabled
+func (p_ PHProjectInfo) BrandingEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("brandingEnabled"))
 	return rv
 }
 
 
-// SetSections sets the value of the sections property.
-// An array of project sections, each containing one or more section content objects.
+// SetBrandingEnabled sets the value of the brandingEnabled property.
+// A Boolean value indicating whether branding was enabled in the source project.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/sections
-func (p_ PHProjectInfo) SetSections(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSections:"), value)
-}
-
-// A Boolean value indicating whether page numbering was enabled in the source project.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/pagenumbersenabled
-func (p_ PHProjectInfo) PageNumbersEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("pageNumbersEnabled"))
-	return rv
-}
-
-
-// SetPageNumbersEnabled sets the value of the pageNumbersEnabled property.
-// A Boolean value indicating whether page numbering was enabled in the source project.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/pagenumbersenabled
-func (p_ PHProjectInfo) SetPageNumbersEnabled(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPageNumbersEnabled:"), value)
-}
-
-// The project type that the user selected from the project extension options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/projecttype
-func (p_ PHProjectInfo) ProjectType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("projectType"))
-	return rv
-}
-
-
-// SetProjectType sets the value of the projectType property.
-// The project type that the user selected from the project extension options.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/projecttype
-func (p_ PHProjectInfo) SetProjectType(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProjectType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/brandingenabled
+func (p_ PHProjectInfo) SetBrandingEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBrandingEnabled:"), value)
 }
 
 // The source from which the project was created.
@@ -152,40 +116,22 @@ func (p_ PHProjectInfo) SetCreationSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCreationSource:"), value)
 }
 
-// The product theme identifier of the originating Apple Print Product.
+// A Boolean value indicating whether page numbering was enabled in the source project.
 //
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/themeidentifier
-func (p_ PHProjectInfo) ThemeIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("themeIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/pagenumbersenabled
+func (p_ PHProjectInfo) PageNumbersEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("pageNumbersEnabled"))
 	return rv
 }
 
 
-// SetThemeIdentifier sets the value of the themeIdentifier property.
-// The product theme identifier of the originating Apple Print Product.
+// SetPageNumbersEnabled sets the value of the pageNumbersEnabled property.
+// A Boolean value indicating whether page numbering was enabled in the source project.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/themeidentifier
-func (p_ PHProjectInfo) SetThemeIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setThemeIdentifier:"), objc.String(value))
-}
-
-// A Boolean value indicating whether branding was enabled in the source project.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/brandingenabled
-func (p_ PHProjectInfo) BrandingEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("brandingEnabled"))
-	return rv
-}
-
-
-// SetBrandingEnabled sets the value of the brandingEnabled property.
-// A Boolean value indicating whether branding was enabled in the source project.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/brandingenabled
-func (p_ PHProjectInfo) SetBrandingEnabled(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setBrandingEnabled:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/pagenumbersenabled
+func (p_ PHProjectInfo) SetPageNumbersEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPageNumbersEnabled:"), value)
 }
 
 // The product identifier of the originating Apple Print Product.
@@ -204,6 +150,60 @@ func (p_ PHProjectInfo) ProductIdentifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/productidentifier
 func (p_ PHProjectInfo) SetProductIdentifier(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProductIdentifier:"), objc.String(value))
+}
+
+// The project type that the user selected from the project extension options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/projecttype
+func (p_ PHProjectInfo) ProjectType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("projectType"))
+	return rv
+}
+
+
+// SetProjectType sets the value of the projectType property.
+// The project type that the user selected from the project extension options.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/projecttype
+func (p_ PHProjectInfo) SetProjectType(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProjectType:"), value)
+}
+
+// An array of project sections, each containing one or more section content objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/sections
+func (p_ PHProjectInfo) Sections() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sections"))
+	return rv
+}
+
+
+// SetSections sets the value of the sections property.
+// An array of project sections, each containing one or more section content objects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/sections
+func (p_ PHProjectInfo) SetSections(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSections:"), value)
+}
+
+// The product theme identifier of the originating Apple Print Product.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/themeidentifier
+func (p_ PHProjectInfo) ThemeIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("themeIdentifier"))
+	return rv
+}
+
+
+// SetThemeIdentifier sets the value of the themeIdentifier property.
+// The product theme identifier of the originating Apple Print Product.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/themeidentifier
+func (p_ PHProjectInfo) SetThemeIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setThemeIdentifier:"), objc.String(value))
 }
 
 

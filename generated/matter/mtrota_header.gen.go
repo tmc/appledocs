@@ -77,18 +77,18 @@ func NewMTROTAHeader() MTROTAHeader {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/vendorid
-func (m_ MTROTAHeader) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigest
+func (m_ MTROTAHeader) ImageDigest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("imageDigest"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
+// SetImageDigest sets the value of the imageDigest property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/vendorid
-func (m_ MTROTAHeader) SetVendorID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigest
+func (m_ MTROTAHeader) SetImageDigest(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImageDigest:"), value)
 }
 
 //
@@ -137,33 +137,18 @@ func (m_ MTROTAHeader) SetMinApplicableVersion(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigest
-func (m_ MTROTAHeader) ImageDigest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("imageDigest"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/payloadsize
+func (m_ MTROTAHeader) PayloadSize() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("payloadSize"))
 	return rv
 }
 
 
-// SetImageDigest sets the value of the imageDigest property.
+// SetPayloadSize sets the value of the payloadSize property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigest
-func (m_ MTROTAHeader) SetImageDigest(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setImageDigest:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/releasenotesurl
-func (m_ MTROTAHeader) ReleaseNotesURL() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("releaseNotesURL"))
-	return rv
-}
-
-
-// SetReleaseNotesURL sets the value of the releaseNotesURL property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/releasenotesurl
-func (m_ MTROTAHeader) SetReleaseNotesURL(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseNotesURL:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/payloadsize
+func (m_ MTROTAHeader) SetPayloadSize(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPayloadSize:"), value)
 }
 
 //
@@ -182,18 +167,18 @@ func (m_ MTROTAHeader) SetProductID(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversionstring
-func (m_ MTROTAHeader) SoftwareVersionString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("softwareVersionString"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/releasenotesurl
+func (m_ MTROTAHeader) ReleaseNotesURL() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("releaseNotesURL"))
 	return rv
 }
 
 
-// SetSoftwareVersionString sets the value of the softwareVersionString property.
+// SetReleaseNotesURL sets the value of the releaseNotesURL property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversionstring
-func (m_ MTROTAHeader) SetSoftwareVersionString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/releasenotesurl
+func (m_ MTROTAHeader) SetReleaseNotesURL(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseNotesURL:"), objc.String(value))
 }
 
 //
@@ -212,18 +197,33 @@ func (m_ MTROTAHeader) SetSoftwareVersion(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/payloadsize
-func (m_ MTROTAHeader) PayloadSize() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("payloadSize"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversionstring
+func (m_ MTROTAHeader) SoftwareVersionString() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("softwareVersionString"))
 	return rv
 }
 
 
-// SetPayloadSize sets the value of the payloadSize property.
+// SetSoftwareVersionString sets the value of the softwareVersionString property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/payloadsize
-func (m_ MTROTAHeader) SetPayloadSize(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPayloadSize:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversionstring
+func (m_ MTROTAHeader) SetSoftwareVersionString(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/vendorid
+func (m_ MTROTAHeader) VendorID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+	return rv
+}
+
+
+// SetVendorID sets the value of the vendorID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/vendorid
+func (m_ MTROTAHeader) SetVendorID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 
 

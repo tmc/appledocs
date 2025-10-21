@@ -97,24 +97,6 @@ func (m_ MEByteSource) ReadDataOfLengthFromOffsetToDestinationCompletionHandler(
 	objc.Send[objc.ID](m_.ID, objc.Sel("readDataOfLength:fromOffset:toDestination:completionHandler:"), length, offset, dest, completionHandler)
 }
 
-// The name of the file for the byte source.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mebytesource/filename
-func (m_ MEByteSource) FileName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("fileName"))
-	return rv
-}
-
-
-// SetFileName sets the value of the fileName property.
-// The name of the file for the byte source.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mebytesource/filename
-func (m_ MEByteSource) SetFileName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFileName:"), objc.String(value))
-}
-
 // The format of the byte source file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mebytesource/contenttype
@@ -149,6 +131,24 @@ func (m_ MEByteSource) FileLength() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mebytesource/filelength
 func (m_ MEByteSource) SetFileLength(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFileLength:"), value)
+}
+
+// The name of the file for the byte source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mebytesource/filename
+func (m_ MEByteSource) FileName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("fileName"))
+	return rv
+}
+
+
+// SetFileName sets the value of the fileName property.
+// The name of the file for the byte source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mebytesource/filename
+func (m_ MEByteSource) SetFileName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFileName:"), objc.String(value))
 }
 
 // An array of related file names in the parent directory of the byte source file.

@@ -80,6 +80,24 @@ func NewRasterizationRateSampleArray() RasterizationRateSampleArray {
 }
 
 
+// The horizontal rasterization rates for the layer map’s rows.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/horizontal
+func (r_ RasterizationRateSampleArray) Horizontal() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("horizontal"))
+	return rv
+}
+
+
+// SetHorizontal sets the value of the horizontal property.
+// The horizontal rasterization rates for the layer map’s rows.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/horizontal
+func (r_ RasterizationRateSampleArray) SetHorizontal(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setHorizontal:"), value)
+}
+
 // The maximum number of rows and columns in the layer map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/maxsamplecount
@@ -132,24 +150,6 @@ func (r_ RasterizationRateSampleArray) Vertical() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/vertical
 func (r_ RasterizationRateSampleArray) SetVertical(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVertical:"), value)
-}
-
-// The horizontal rasterization rates for the layer map’s rows.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/horizontal
-func (r_ RasterizationRateSampleArray) Horizontal() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("horizontal"))
-	return rv
-}
-
-
-// SetHorizontal sets the value of the horizontal property.
-// The horizontal rasterization rates for the layer map’s rows.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/horizontal
-func (r_ RasterizationRateSampleArray) SetHorizontal(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setHorizontal:"), value)
 }
 
 

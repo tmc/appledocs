@@ -105,21 +105,6 @@ func (a_ AccelerationStructure) SetBoundingBox(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/usage
-func (a_ AccelerationStructure) Usage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("usage"))
-	return rv
-}
-
-
-// SetUsage sets the value of the usage property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/usage
-func (a_ AccelerationStructure) SetUsage(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUsage:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/group
 func (a_ AccelerationStructure) Group() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("group"))
@@ -147,6 +132,21 @@ func (a_ AccelerationStructure) Status() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/status
 func (a_ AccelerationStructure) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStatus:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/usage
+func (a_ AccelerationStructure) Usage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("usage"))
+	return rv
+}
+
+
+// SetUsage sets the value of the usage property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/usage
+func (a_ AccelerationStructure) SetUsage(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUsage:"), value)
 }
 
 

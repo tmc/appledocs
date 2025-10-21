@@ -86,6 +86,22 @@ func (ic _IdentifierManagerClass) SharedManager() unsafe.Pointer {
 	return rv
 }
 
+// The UUID that is specific to a device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier
+func (i_ IdentifierManager) AdvertisingIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("advertisingIdentifier"))
+	return rv
+}
+
+// A Boolean value that indicates whether the user has limited ad tracking enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/isAdvertisingTrackingEnabled
+func (i_ IdentifierManager) AdvertisingTrackingEnabled() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("advertisingTrackingEnabled"))
+	return rv
+}
+
 // A Boolean value that indicates whether the user has limited ad tracking
 //
 // [Full Topic]: https://developer.apple.com/documentation/adsupport/asidentifiermanager/isadvertisingtrackingenabled
@@ -102,22 +118,6 @@ func (i_ IdentifierManager) IsAdvertisingTrackingEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/adsupport/asidentifiermanager/isadvertisingtrackingenabled
 func (i_ IdentifierManager) SetIsAdvertisingTrackingEnabled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsAdvertisingTrackingEnabled:"), value)
-}
-
-// The UUID that is specific to a device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier
-func (i_ IdentifierManager) AdvertisingIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("advertisingIdentifier"))
-	return rv
-}
-
-// A Boolean value that indicates whether the user has limited ad tracking enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/isAdvertisingTrackingEnabled
-func (i_ IdentifierManager) AdvertisingTrackingEnabled() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("advertisingTrackingEnabled"))
-	return rv
 }
 
 

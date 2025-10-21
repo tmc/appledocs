@@ -81,24 +81,6 @@ func NewHKDocumentQuery() HKDocumentQuery {
 }
 
 
-// The maximum number of documents the receiver will return upon completion.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/limit
-func (h_ HKDocumentQuery) Limit() int {
-	rv := objc.Send[int](h_.ID, objc.Sel("limit"))
-	return rv
-}
-
-
-// SetLimit sets the value of the limit property.
-// The maximum number of documents the receiver will return upon completion.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/limit
-func (h_ HKDocumentQuery) SetLimit(value int) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setLimit:"), value)
-}
-
 // A Boolean value that indicates whether the sample includes the full document’s data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/includedocumentdata
@@ -115,6 +97,24 @@ func (h_ HKDocumentQuery) IncludeDocumentData() bool {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/includedocumentdata
 func (h_ HKDocumentQuery) SetIncludeDocumentData(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIncludeDocumentData:"), value)
+}
+
+// The maximum number of documents the receiver will return upon completion.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/limit
+func (h_ HKDocumentQuery) Limit() int {
+	rv := objc.Send[int](h_.ID, objc.Sel("limit"))
+	return rv
+}
+
+
+// SetLimit sets the value of the limit property.
+// The maximum number of documents the receiver will return upon completion.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/limit
+func (h_ HKDocumentQuery) SetLimit(value int) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setLimit:"), value)
 }
 
 // An array of sort descriptors that specify the order of the results returned by this query.

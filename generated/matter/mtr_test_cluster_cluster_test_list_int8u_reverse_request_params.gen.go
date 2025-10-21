@@ -78,21 +78,6 @@ func NewMTRTestClusterClusterTestListInt8UReverseRequestParams() MTRTestClusterC
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/arg1
 func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) Arg1() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
@@ -120,6 +105,21 @@ func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) ServerSideProce
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/serversideprocessingtimeout
 func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

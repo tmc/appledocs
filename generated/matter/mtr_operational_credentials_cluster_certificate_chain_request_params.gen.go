@@ -77,21 +77,6 @@ func NewMTROperationalCredentialsClusterCertificateChainRequestParams() MTROpera
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainrequestparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainrequestparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainrequestparams/certificatetype
 func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) CertificateType() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("certificateType"))
@@ -104,6 +89,21 @@ func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) Certific
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainrequestparams/certificatetype
 func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) SetCertificateType(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificateType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainrequestparams/serversideprocessingtimeout
+func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainrequestparams/serversideprocessingtimeout
+func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

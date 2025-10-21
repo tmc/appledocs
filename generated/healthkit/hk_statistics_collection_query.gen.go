@@ -81,22 +81,22 @@ func NewHKStatisticsCollectionQuery() HKStatisticsCollectionQuery {
 }
 
 
-// The date components that define the time interval for each statistics object in the collection.
+// The anchor date for the collection’s time intervals.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
-func (h_ HKStatisticsCollectionQuery) IntervalComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("intervalComponents"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
+func (h_ HKStatisticsCollectionQuery) AnchorDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("anchorDate"))
 	return rv
 }
 
 
-// SetIntervalComponents sets the value of the intervalComponents property.
-// The date components that define the time interval for each statistics object in the collection.
+// SetAnchorDate sets the value of the anchorDate property.
+// The anchor date for the collection’s time intervals.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
-func (h_ HKStatisticsCollectionQuery) SetIntervalComponents(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIntervalComponents:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
+func (h_ HKStatisticsCollectionQuery) SetAnchorDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAnchorDate:"), value)
 }
 
 // The results handler for the query’s initial results.
@@ -117,40 +117,22 @@ func (h_ HKStatisticsCollectionQuery) SetInitialResultsHandler(value unsafe.Poin
 	objc.Send[objc.ID](h_.ID, objc.Sel("setInitialResultsHandler:"), value)
 }
 
-// The results handler for monitoring updates to the HealthKit store.
+// The date components that define the time interval for each statistics object in the collection.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/statisticsupdatehandler
-func (h_ HKStatisticsCollectionQuery) StatisticsUpdateHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("statisticsUpdateHandler"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
+func (h_ HKStatisticsCollectionQuery) IntervalComponents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("intervalComponents"))
 	return rv
 }
 
 
-// SetStatisticsUpdateHandler sets the value of the statisticsUpdateHandler property.
-// The results handler for monitoring updates to the HealthKit store.
+// SetIntervalComponents sets the value of the intervalComponents property.
+// The date components that define the time interval for each statistics object in the collection.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/statisticsupdatehandler
-func (h_ HKStatisticsCollectionQuery) SetStatisticsUpdateHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setStatisticsUpdateHandler:"), value)
-}
-
-// The anchor date for the collection’s time intervals.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
-func (h_ HKStatisticsCollectionQuery) AnchorDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("anchorDate"))
-	return rv
-}
-
-
-// SetAnchorDate sets the value of the anchorDate property.
-// The anchor date for the collection’s time intervals.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
-func (h_ HKStatisticsCollectionQuery) SetAnchorDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAnchorDate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
+func (h_ HKStatisticsCollectionQuery) SetIntervalComponents(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIntervalComponents:"), value)
 }
 
 // A list of options that define the type of statistical calculations performed and the way in which data from multiple sources are merged.
@@ -169,6 +151,24 @@ func (h_ HKStatisticsCollectionQuery) Options() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/options
 func (h_ HKStatisticsCollectionQuery) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setOptions:"), value)
+}
+
+// The results handler for monitoring updates to the HealthKit store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/statisticsupdatehandler
+func (h_ HKStatisticsCollectionQuery) StatisticsUpdateHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("statisticsUpdateHandler"))
+	return rv
+}
+
+
+// SetStatisticsUpdateHandler sets the value of the statisticsUpdateHandler property.
+// The results handler for monitoring updates to the HealthKit store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/statisticsupdatehandler
+func (h_ HKStatisticsCollectionQuery) SetStatisticsUpdateHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setStatisticsUpdateHandler:"), value)
 }
 
 

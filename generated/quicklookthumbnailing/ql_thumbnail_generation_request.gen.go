@@ -93,6 +93,58 @@ func NewThumbnailGenerationRequestWithFileAtURLSizeScaleRepresentationTypes(url 
 }
 
 
+// The minimum height or width for a generated thumbnail.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/minimumDimension
+func (t_ ThumbnailGenerationRequest) MinimumDimension() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("minimumDimension"))
+	return rv
+}
+
+
+// SetMinimumDimension sets the value of the minimumDimension property.
+// The minimum height or width for a generated thumbnail.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/minimumDimension
+func (t_ ThumbnailGenerationRequest) SetMinimumDimension(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMinimumDimension:"), value)
+}
+
+// The thumbnail sizes that you provide for a thumbnail request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/representationTypes-swift.property
+func (t_ ThumbnailGenerationRequest) RepresentationTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("representationTypes"))
+	return rv
+}
+
+// The pixel density of the display on the intended device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/scale
+func (t_ ThumbnailGenerationRequest) Scale() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("scale"))
+	return rv
+}
+
+// The content type of the source data for the thumbnail request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/contenttype
+func (t_ ThumbnailGenerationRequest) ContentType() UTType {
+	rv := objc.Send[UTType](t_.ID, objc.Sel("contentType"))
+	return rv
+}
+
+
+// SetContentType sets the value of the contentType property.
+// The content type of the source data for the thumbnail request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/contenttype
+func (t_ ThumbnailGenerationRequest) SetContentType(value UTType) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setContentType:"), value)
+}
+
 // A Boolean value indicating whether the generated thumbnail request should include icon decorations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/iconmode
@@ -127,58 +179,6 @@ func (t_ ThumbnailGenerationRequest) Size() coregraphics.CGSize {
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/size
 func (t_ ThumbnailGenerationRequest) SetSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSize:"), value)
-}
-
-// The content type of the source data for the thumbnail request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/contenttype
-func (t_ ThumbnailGenerationRequest) ContentType() UTType {
-	rv := objc.Send[UTType](t_.ID, objc.Sel("contentType"))
-	return rv
-}
-
-
-// SetContentType sets the value of the contentType property.
-// The content type of the source data for the thumbnail request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/contenttype
-func (t_ ThumbnailGenerationRequest) SetContentType(value UTType) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setContentType:"), value)
-}
-
-// The minimum height or width for a generated thumbnail.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/minimumDimension
-func (t_ ThumbnailGenerationRequest) MinimumDimension() float64 {
-	rv := objc.Send[float64](t_.ID, objc.Sel("minimumDimension"))
-	return rv
-}
-
-
-// SetMinimumDimension sets the value of the minimumDimension property.
-// The minimum height or width for a generated thumbnail.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/minimumDimension
-func (t_ ThumbnailGenerationRequest) SetMinimumDimension(value float64) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMinimumDimension:"), value)
-}
-
-// The thumbnail sizes that you provide for a thumbnail request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/representationTypes-swift.property
-func (t_ ThumbnailGenerationRequest) RepresentationTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("representationTypes"))
-	return rv
-}
-
-// The pixel density of the display on the intended device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/scale
-func (t_ ThumbnailGenerationRequest) Scale() float64 {
-	rv := objc.Send[float64](t_.ID, objc.Sel("scale"))
-	return rv
 }
 
 

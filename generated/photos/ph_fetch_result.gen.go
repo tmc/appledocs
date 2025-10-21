@@ -80,6 +80,14 @@ func NewPHFetchResult() PHFetchResult {
 }
 
 
+// The number of objects in the fetch result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchResult/count
+func (p_ PHFetchResult) Count() uint {
+	rv := objc.Send[uint](p_.ID, objc.Sel("count"))
+	return rv
+}
+
 // The first object in the fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresult/firstobject
@@ -132,14 +140,6 @@ func (p_ PHFetchResult) LocalIdentifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
 func (p_ PHFetchResult) SetLocalIdentifier(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
-}
-
-// The number of objects in the fetch result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchResult/count
-func (p_ PHFetchResult) Count() uint {
-	rv := objc.Send[uint](p_.ID, objc.Sel("count"))
-	return rv
 }
 
 

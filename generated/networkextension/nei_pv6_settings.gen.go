@@ -81,40 +81,60 @@ func NewNEIPv6Settings() NEIPv6Settings {
 }
 
 
-// The tunnel IP version 6 settings.
+// The IPv6 network traffic that the system routes to the primary physical interface, not the TUN interface.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings
-func (n_ NEIPv6Settings) Ipv6Settings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("ipv6Settings"))
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Settings/excludedRoutes
+func (n_ NEIPv6Settings) ExcludedRoutes() []NEIPv6Route {
+	rv := objc.Send[[]NEIPv6Route](n_.ID, objc.Sel("excludedRoutes"))
 	return rv
 }
 
 
-// SetIpv6Settings sets the value of the ipv6Settings property.
-// The tunnel IP version 6 settings.
+// SetExcludedRoutes sets the value of the excludedRoutes property.
+// The IPv6 network traffic that the system routes to the primary physical interface, not the TUN interface.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings
-func (n_ NEIPv6Settings) SetIpv6Settings(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIpv6Settings:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Settings/excludedRoutes
+func (n_ NEIPv6Settings) SetExcludedRoutes(value []NEIPv6Route) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedRoutes:"), nsArray)
 }
 
-// The size of the maximum trasnmission unit, in bytes.
+// The IPv6 network traffic that the system routes to the TUN interface.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/mtu
-func (n_ NEIPv6Settings) Mtu() foundation.Number {
-	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("mtu"))
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Settings/includedRoutes
+func (n_ NEIPv6Settings) IncludedRoutes() []NEIPv6Route {
+	rv := objc.Send[[]NEIPv6Route](n_.ID, objc.Sel("includedRoutes"))
 	return rv
 }
 
 
-// SetMtu sets the value of the mtu property.
-// The size of the maximum trasnmission unit, in bytes.
+// SetIncludedRoutes sets the value of the includedRoutes property.
+// The IPv6 network traffic that the system routes to the TUN interface.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/mtu
-func (n_ NEIPv6Settings) SetMtu(value foundation.Number) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMtu:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Settings/includedRoutes
+func (n_ NEIPv6Settings) SetIncludedRoutes(value []NEIPv6Route) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedRoutes:"), nsArray)
 }
 
 // The IPv6 addresses to assign to the TUN interface.
@@ -171,6 +191,42 @@ func (n_ NEIPv6Settings) SetIpv4Settings(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIpv4Settings:"), value)
 }
 
+// The tunnel IP version 6 settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings
+func (n_ NEIPv6Settings) Ipv6Settings() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("ipv6Settings"))
+	return rv
+}
+
+
+// SetIpv6Settings sets the value of the ipv6Settings property.
+// The tunnel IP version 6 settings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings
+func (n_ NEIPv6Settings) SetIpv6Settings(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIpv6Settings:"), value)
+}
+
+// The size of the maximum trasnmission unit, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/mtu
+func (n_ NEIPv6Settings) Mtu() foundation.Number {
+	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("mtu"))
+	return rv
+}
+
+
+// SetMtu sets the value of the mtu property.
+// The size of the maximum trasnmission unit, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/mtu
+func (n_ NEIPv6Settings) SetMtu(value foundation.Number) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMtu:"), value)
+}
+
 // The number of bytes added to each tunneled packet for storing tunneling protocol headers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/tunneloverheadbytes
@@ -187,62 +243,6 @@ func (n_ NEIPv6Settings) TunnelOverheadBytes() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/tunneloverheadbytes
 func (n_ NEIPv6Settings) SetTunnelOverheadBytes(value foundation.Number) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelOverheadBytes:"), value)
-}
-
-// The IPv6 network traffic that the system routes to the primary physical interface, not the TUN interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Settings/excludedRoutes
-func (n_ NEIPv6Settings) ExcludedRoutes() []NEIPv6Route {
-	rv := objc.Send[[]NEIPv6Route](n_.ID, objc.Sel("excludedRoutes"))
-	return rv
-}
-
-
-// SetExcludedRoutes sets the value of the excludedRoutes property.
-// The IPv6 network traffic that the system routes to the primary physical interface, not the TUN interface.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Settings/excludedRoutes
-func (n_ NEIPv6Settings) SetExcludedRoutes(value []NEIPv6Route) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedRoutes:"), nsArray)
-}
-
-// The IPv6 network traffic that the system routes to the TUN interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Settings/includedRoutes
-func (n_ NEIPv6Settings) IncludedRoutes() []NEIPv6Route {
-	rv := objc.Send[[]NEIPv6Route](n_.ID, objc.Sel("includedRoutes"))
-	return rv
-}
-
-
-// SetIncludedRoutes sets the value of the includedRoutes property.
-// The IPv6 network traffic that the system routes to the TUN interface.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Settings/includedRoutes
-func (n_ NEIPv6Settings) SetIncludedRoutes(value []NEIPv6Route) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedRoutes:"), nsArray)
 }
 
 

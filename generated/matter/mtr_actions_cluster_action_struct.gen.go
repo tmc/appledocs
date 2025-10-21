@@ -77,21 +77,6 @@ func NewMTRActionsClusterActionStruct() MTRActionsClusterActionStruct {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/type
-func (m_ MTRActionsClusterActionStruct) Type() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// SetType sets the value of the type property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/type
-func (m_ MTRActionsClusterActionStruct) SetType(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/actionid
 func (m_ MTRActionsClusterActionStruct) ActionID() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
@@ -104,6 +89,21 @@ func (m_ MTRActionsClusterActionStruct) ActionID() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/actionid
 func (m_ MTRActionsClusterActionStruct) SetActionID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/endpointlistid
+func (m_ MTRActionsClusterActionStruct) EndpointListID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpointListID"))
+	return rv
+}
+
+
+// SetEndpointListID sets the value of the endpointListID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/endpointlistid
+func (m_ MTRActionsClusterActionStruct) SetEndpointListID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpointListID:"), value)
 }
 
 //
@@ -137,21 +137,6 @@ func (m_ MTRActionsClusterActionStruct) SetState(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/endpointlistid
-func (m_ MTRActionsClusterActionStruct) EndpointListID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpointListID"))
-	return rv
-}
-
-
-// SetEndpointListID sets the value of the endpointListID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/endpointlistid
-func (m_ MTRActionsClusterActionStruct) SetEndpointListID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpointListID:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/supportedcommands
 func (m_ MTRActionsClusterActionStruct) SupportedCommands() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("supportedCommands"))
@@ -164,6 +149,21 @@ func (m_ MTRActionsClusterActionStruct) SupportedCommands() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/supportedcommands
 func (m_ MTRActionsClusterActionStruct) SetSupportedCommands(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportedCommands:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/type
+func (m_ MTRActionsClusterActionStruct) Type() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/type
+func (m_ MTRActionsClusterActionStruct) SetType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 
 

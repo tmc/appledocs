@@ -89,60 +89,6 @@ func (c_ CXCall) IsEqualToCall(call unsafe.Pointer) bool {
 	return rv
 }
 
-// Returns the active calls of the telephony provider.
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallobserver/calls
-func (c_ CXCall) Calls() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("calls"))
-	return rv
-}
-
-
-// SetCalls sets the value of the calls property.
-// Returns the active calls of the telephony provider.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallobserver/calls
-func (c_ CXCall) SetCalls(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCalls:"), value)
-}
-
-// A Boolean value that indicates whether the call is outgoing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isoutgoing
-func (c_ CXCall) IsOutgoing() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isOutgoing"))
-	return rv
-}
-
-
-// SetIsOutgoing sets the value of the isOutgoing property.
-// A Boolean value that indicates whether the call is outgoing.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isoutgoing
-func (c_ CXCall) SetIsOutgoing(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOutgoing:"), value)
-}
-
-// A Boolean value that indicates whether the call is on hold.
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isonhold
-func (c_ CXCall) IsOnHold() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isOnHold"))
-	return rv
-}
-
-
-// SetIsOnHold sets the value of the isOnHold property.
-// A Boolean value that indicates whether the call is on hold.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isonhold
-func (c_ CXCall) SetIsOnHold(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOnHold:"), value)
-}
-
 // A Boolean value that indicates whether the call has connected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCall/hasConnected
@@ -181,6 +127,60 @@ func (c_ CXCall) Outgoing() bool {
 func (c_ CXCall) UUID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("UUID"))
 	return rv
+}
+
+// A Boolean value that indicates whether the call is on hold.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isonhold
+func (c_ CXCall) IsOnHold() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isOnHold"))
+	return rv
+}
+
+
+// SetIsOnHold sets the value of the isOnHold property.
+// A Boolean value that indicates whether the call is on hold.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isonhold
+func (c_ CXCall) SetIsOnHold(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOnHold:"), value)
+}
+
+// A Boolean value that indicates whether the call is outgoing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isoutgoing
+func (c_ CXCall) IsOutgoing() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isOutgoing"))
+	return rv
+}
+
+
+// SetIsOutgoing sets the value of the isOutgoing property.
+// A Boolean value that indicates whether the call is outgoing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isoutgoing
+func (c_ CXCall) SetIsOutgoing(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOutgoing:"), value)
+}
+
+// Returns the active calls of the telephony provider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallobserver/calls
+func (c_ CXCall) Calls() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("calls"))
+	return rv
+}
+
+
+// SetCalls sets the value of the calls property.
+// Returns the active calls of the telephony provider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallobserver/calls
+func (c_ CXCall) SetCalls(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCalls:"), value)
 }
 
 

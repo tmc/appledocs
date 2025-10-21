@@ -132,14 +132,6 @@ func (c_ Context) SetCredentialType(credential unsafe.Pointer, type_ unsafe.Poin
 	return rv
 }
 
-// The maximum allowable reuse duration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/localauthentication/latouchidauthenticationmaximumallowablereuseduration
-func (c_ Context) LATouchIDAuthenticationMaximumAllowableReuseDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("LATouchIDAuthenticationMaximumAllowableReuseDuration"))
-	return rv
-}
-
 // The type of biometric authentication supported by the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/biometryType
@@ -270,6 +262,14 @@ func (c_ Context) TouchIDAuthenticationAllowableReuseDuration() foundation.TimeI
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration
 func (c_ Context) SetTouchIDAuthenticationAllowableReuseDuration(value foundation.TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTouchIDAuthenticationAllowableReuseDuration:"), value)
+}
+
+// The maximum allowable reuse duration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/localauthentication/latouchidauthenticationmaximumallowablereuseduration
+func (c_ Context) LATouchIDAuthenticationMaximumAllowableReuseDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("LATouchIDAuthenticationMaximumAllowableReuseDuration"))
+	return rv
 }
 
 

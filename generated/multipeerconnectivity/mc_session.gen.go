@@ -163,14 +163,6 @@ func (m_ MCSession) StartStreamWithNameToPeerError(streamName string, peerID uns
 	return rv
 }
 
-// The
-//
-// [Full Topic]: https://developer.apple.com/documentation/multipeerconnectivity/mcerrordomain
-func (m_ MCSession) MCErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MCErrorDomain"))
-	return rv
-}
-
 // An array of all peers that are currently connected to this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/connectedPeers
@@ -218,6 +210,14 @@ func (m_ MCSession) MyPeerID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/securityIdentity
 func (m_ MCSession) SecurityIdentity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("securityIdentity"))
+	return rv
+}
+
+// The
+//
+// [Full Topic]: https://developer.apple.com/documentation/multipeerconnectivity/mcerrordomain
+func (m_ MCSession) MCErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MCErrorDomain"))
 	return rv
 }
 

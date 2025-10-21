@@ -88,54 +88,6 @@ func (cc _CNPostalAddressClass) LocalizedStringForKey(key string) string {
 	return rv
 }
 
-// The country or region name of the address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscountrykey
-func (c_ CNPostalAddress) CNPostalAddressCountryKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCountryKey"))
-	return rv
-}
-
-// The postal code of the address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresspostalcodekey
-func (c_ CNPostalAddress) CNPostalAddressPostalCodeKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressPostalCodeKey"))
-	return rv
-}
-
-// The ISO country code of the address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressisocountrycodekey
-func (c_ CNPostalAddress) CNPostalAddressISOCountryCodeKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressISOCountryCodeKey"))
-	return rv
-}
-
-// The street name of the address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstreetkey
-func (c_ CNPostalAddress) CNPostalAddressStreetKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStreetKey"))
-	return rv
-}
-
-// The city of the address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscitykey
-func (c_ CNPostalAddress) CNPostalAddressCityKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCityKey"))
-	return rv
-}
-
-// The state name of the address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstatekey
-func (c_ CNPostalAddress) CNPostalAddressStateKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStateKey"))
-	return rv
-}
-
 // The city name in a postal address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/city
@@ -197,6 +149,54 @@ func (c_ CNPostalAddress) SubAdministrativeArea() string {
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/subLocality
 func (c_ CNPostalAddress) SubLocality() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("subLocality"))
+	return rv
+}
+
+// The city of the address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscitykey
+func (c_ CNPostalAddress) CNPostalAddressCityKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCityKey"))
+	return rv
+}
+
+// The country or region name of the address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscountrykey
+func (c_ CNPostalAddress) CNPostalAddressCountryKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCountryKey"))
+	return rv
+}
+
+// The ISO country code of the address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressisocountrycodekey
+func (c_ CNPostalAddress) CNPostalAddressISOCountryCodeKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressISOCountryCodeKey"))
+	return rv
+}
+
+// The postal code of the address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresspostalcodekey
+func (c_ CNPostalAddress) CNPostalAddressPostalCodeKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressPostalCodeKey"))
+	return rv
+}
+
+// The state name of the address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstatekey
+func (c_ CNPostalAddress) CNPostalAddressStateKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStateKey"))
+	return rv
+}
+
+// The street name of the address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstreetkey
+func (c_ CNPostalAddress) CNPostalAddressStreetKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStreetKey"))
 	return rv
 }
 

@@ -81,22 +81,6 @@ func NewHKCDADocumentSample() HKCDADocumentSample {
 }
 
 
-// The key path for accessing the document’s title inside a predicate format string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdatitle
-func (h_ HKCDADocumentSample) HKPredicateKeyPathCDATitle() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDATitle"))
-	return rv
-}
-
-// The key path for accessing the patient’s name inside a predicate format string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdapatientname
-func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAPatientName() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDAPatientName"))
-	return rv
-}
-
 // The CDA document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocumentsample/document
@@ -115,6 +99,14 @@ func (h_ HKCDADocumentSample) SetDocument(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDocument:"), value)
 }
 
+// A key for accessing validation error information from an error object’s user information dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdetailedcdavalidationerrorkey
+func (h_ HKCDADocumentSample) HKDetailedCDAValidationErrorKey() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKDetailedCDAValidationErrorKey"))
+	return rv
+}
+
 // The key path for accessing the author’s name inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdaauthorname
@@ -131,11 +123,19 @@ func (h_ HKCDADocumentSample) HKPredicateKeyPathCDACustodianName() string {
 	return rv
 }
 
-// A key for accessing validation error information from an error object’s user information dictionary.
+// The key path for accessing the patient’s name inside a predicate format string.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdetailedcdavalidationerrorkey
-func (h_ HKCDADocumentSample) HKDetailedCDAValidationErrorKey() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKDetailedCDAValidationErrorKey"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdapatientname
+func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAPatientName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDAPatientName"))
+	return rv
+}
+
+// The key path for accessing the document’s title inside a predicate format string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdatitle
+func (h_ HKCDADocumentSample) HKPredicateKeyPathCDATitle() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDATitle"))
 	return rv
 }
 

@@ -77,21 +77,6 @@ func NewMTROperationalStateClusterStopParams() MTROperationalStateClusterStopPar
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusterstopparams/timedinvoketimeoutms
-func (m_ MTROperationalStateClusterStopParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusterstopparams/timedinvoketimeoutms
-func (m_ MTROperationalStateClusterStopParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusterstopparams/serversideprocessingtimeout
 func (m_ MTROperationalStateClusterStopParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,6 +89,21 @@ func (m_ MTROperationalStateClusterStopParams) ServerSideProcessingTimeout() fou
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusterstopparams/serversideprocessingtimeout
 func (m_ MTROperationalStateClusterStopParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusterstopparams/timedinvoketimeoutms
+func (m_ MTROperationalStateClusterStopParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusterstopparams/timedinvoketimeoutms
+func (m_ MTROperationalStateClusterStopParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

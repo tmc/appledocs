@@ -81,22 +81,22 @@ func NewINSetTaskAttributeIntent() INSetTaskAttributeIntent {
 }
 
 
-// The time-based trigger to apply to the task.
+// The priority for the task.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/temporaleventtrigger
-func (i_ INSetTaskAttributeIntent) TemporalEventTrigger() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("temporalEventTrigger"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/priority
+func (i_ INSetTaskAttributeIntent) Priority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("priority"))
 	return rv
 }
 
 
-// SetTemporalEventTrigger sets the value of the temporalEventTrigger property.
-// The time-based trigger to apply to the task.
+// SetPriority sets the value of the priority property.
+// The priority for the task.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/temporaleventtrigger
-func (i_ INSetTaskAttributeIntent) SetTemporalEventTrigger(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTemporalEventTrigger:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/priority
+func (i_ INSetTaskAttributeIntent) SetPriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPriority:"), value)
 }
 
 // The location-based trigger to apply to the task.
@@ -117,22 +117,22 @@ func (i_ INSetTaskAttributeIntent) SetSpatialEventTrigger(value unsafe.Pointer) 
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSpatialEventTrigger:"), value)
 }
 
-// The priority for the task.
+// The status to apply to the task.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/priority
-func (i_ INSetTaskAttributeIntent) Priority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("priority"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/status
+func (i_ INSetTaskAttributeIntent) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetPriority sets the value of the priority property.
-// The priority for the task.
+// SetStatus sets the value of the status property.
+// The status to apply to the task.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/priority
-func (i_ INSetTaskAttributeIntent) SetPriority(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPriority:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/status
+func (i_ INSetTaskAttributeIntent) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setStatus:"), value)
 }
 
 // The task targetted for modification.
@@ -171,22 +171,22 @@ func (i_ INSetTaskAttributeIntent) SetTaskTitle(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitle:"), value)
 }
 
-// The status to apply to the task.
+// The time-based trigger to apply to the task.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/status
-func (i_ INSetTaskAttributeIntent) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("status"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/temporaleventtrigger
+func (i_ INSetTaskAttributeIntent) TemporalEventTrigger() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("temporalEventTrigger"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-// The status to apply to the task.
+// SetTemporalEventTrigger sets the value of the temporalEventTrigger property.
+// The time-based trigger to apply to the task.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/status
-func (i_ INSetTaskAttributeIntent) SetStatus(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setStatus:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/temporaleventtrigger
+func (i_ INSetTaskAttributeIntent) SetTemporalEventTrigger(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTemporalEventTrigger:"), value)
 }
 
 

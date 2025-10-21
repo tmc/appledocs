@@ -77,21 +77,6 @@ func NewMTRUnitTestingClusterTestNestedStructArgumentRequestParams() MTRUnitTest
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructargumentrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestNestedStructArgumentRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructargumentrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestNestedStructArgumentRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructargumentrequestparams/arg1
 func (m_ MTRUnitTestingClusterTestNestedStructArgumentRequestParams) Arg1() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
@@ -104,6 +89,21 @@ func (m_ MTRUnitTestingClusterTestNestedStructArgumentRequestParams) Arg1() unsa
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructargumentrequestparams/arg1
 func (m_ MTRUnitTestingClusterTestNestedStructArgumentRequestParams) SetArg1(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructargumentrequestparams/serversideprocessingtimeout
+func (m_ MTRUnitTestingClusterTestNestedStructArgumentRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructargumentrequestparams/serversideprocessingtimeout
+func (m_ MTRUnitTestingClusterTestNestedStructArgumentRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

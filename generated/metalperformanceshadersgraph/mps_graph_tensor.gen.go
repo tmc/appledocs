@@ -81,6 +81,22 @@ func NewGraphTensor() GraphTensor {
 }
 
 
+// The data type of the tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor/dataType
+func (g_ GraphTensor) DataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataType"))
+	return rv
+}
+
+// The shape of the tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor/shape
+func (g_ GraphTensor) Shape() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("shape"))
+	return rv
+}
+
 // The operation responsible for creating this tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/operation
@@ -97,22 +113,6 @@ func (g_ GraphTensor) Operation() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/operation
 func (g_ GraphTensor) SetOperation(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOperation:"), value)
-}
-
-// The data type of the tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor/dataType
-func (g_ GraphTensor) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataType"))
-	return rv
-}
-
-// The shape of the tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor/shape
-func (g_ GraphTensor) Shape() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("shape"))
-	return rv
 }
 
 

@@ -77,18 +77,18 @@ func NewMTRChannelClusterLineupInfoStruct() MTRChannelClusterLineupInfoStruct {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/operatorname
-func (m_ MTRChannelClusterLineupInfoStruct) OperatorName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("operatorName"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupinfotype
+func (m_ MTRChannelClusterLineupInfoStruct) LineupInfoType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lineupInfoType"))
 	return rv
 }
 
 
-// SetOperatorName sets the value of the operatorName property.
+// SetLineupInfoType sets the value of the lineupInfoType property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/operatorname
-func (m_ MTRChannelClusterLineupInfoStruct) SetOperatorName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatorName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupinfotype
+func (m_ MTRChannelClusterLineupInfoStruct) SetLineupInfoType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupInfoType:"), value)
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRChannelClusterLineupInfoStruct) SetLineupName(value string) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupinfotype
-func (m_ MTRChannelClusterLineupInfoStruct) LineupInfoType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lineupInfoType"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/operatorname
+func (m_ MTRChannelClusterLineupInfoStruct) OperatorName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("operatorName"))
 	return rv
 }
 
 
-// SetLineupInfoType sets the value of the lineupInfoType property.
+// SetOperatorName sets the value of the operatorName property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupinfotype
-func (m_ MTRChannelClusterLineupInfoStruct) SetLineupInfoType(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupInfoType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/operatorname
+func (m_ MTRChannelClusterLineupInfoStruct) SetOperatorName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatorName:"), objc.String(value))
 }
 
 //

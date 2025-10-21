@@ -92,21 +92,6 @@ func (u_ USBHostCIDeviceStateMachine) RespondToCommandStatusError(command unsafe
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/completeroute
-func (u_ USBHostCIDeviceStateMachine) CompleteRoute() int {
-	rv := objc.Send[int](u_.ID, objc.Sel("completeRoute"))
-	return rv
-}
-
-
-// SetCompleteRoute sets the value of the completeRoute property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/completeroute
-func (u_ USBHostCIDeviceStateMachine) SetCompleteRoute(value int) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCompleteRoute:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/controllerInterface
 func (u_ USBHostCIDeviceStateMachine) ControllerInterface() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerInterface"))
@@ -125,6 +110,21 @@ func (u_ USBHostCIDeviceStateMachine) DeviceAddress() uint {
 func (u_ USBHostCIDeviceStateMachine) DeviceState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deviceState"))
 	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/completeroute
+func (u_ USBHostCIDeviceStateMachine) CompleteRoute() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("completeRoute"))
+	return rv
+}
+
+
+// SetCompleteRoute sets the value of the completeRoute property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/completeroute
+func (u_ USBHostCIDeviceStateMachine) SetCompleteRoute(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCompleteRoute:"), value)
 }
 
 

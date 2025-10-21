@@ -80,58 +80,12 @@ func NewPDFAction() PDFAction {
 }
 
 
-// Returns the modification date of the annotation.
+// Returns the type of the action.
 //
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/modificationdate
-func (p_ PDFAction) ModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modificationDate"))
+// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAction/type
+func (p_ PDFAction) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
-}
-
-
-// SetModificationDate sets the value of the modificationDate property.
-// Returns the modification date of the annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/modificationdate
-func (p_ PDFAction) SetModificationDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setModificationDate:"), value)
-}
-
-// Returns the name of the user who created the annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFAction) UserName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
-	return rv
-}
-
-
-// SetUserName sets the value of the userName property.
-// Returns the name of the user who created the annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFAction) SetUserName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
-}
-
-// Returns the page that the annotation is associated with.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/page
-func (p_ PDFAction) Page() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("page"))
-	return rv
-}
-
-
-// SetPage sets the value of the page property.
-// Returns the page that the annotation is associated with.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/page
-func (p_ PDFAction) SetPage(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPage:"), value)
 }
 
 // An object that represents an action for a PDF element, such as a link annotation.
@@ -152,12 +106,58 @@ func (p_ PDFAction) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAction:"), value)
 }
 
-// Returns the type of the action.
+// Returns the modification date of the annotation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAction/type
-func (p_ PDFAction) Type() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("type"))
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/modificationdate
+func (p_ PDFAction) ModificationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modificationDate"))
 	return rv
+}
+
+
+// SetModificationDate sets the value of the modificationDate property.
+// Returns the modification date of the annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/modificationdate
+func (p_ PDFAction) SetModificationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setModificationDate:"), value)
+}
+
+// Returns the page that the annotation is associated with.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/page
+func (p_ PDFAction) Page() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("page"))
+	return rv
+}
+
+
+// SetPage sets the value of the page property.
+// Returns the page that the annotation is associated with.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/page
+func (p_ PDFAction) SetPage(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPage:"), value)
+}
+
+// Returns the name of the user who created the annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
+func (p_ PDFAction) UserName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
+	return rv
+}
+
+
+// SetUserName sets the value of the userName property.
+// Returns the name of the user who created the annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
+func (p_ PDFAction) SetUserName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
 }
 
 

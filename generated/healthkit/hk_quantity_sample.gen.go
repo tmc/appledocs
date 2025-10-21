@@ -136,22 +136,6 @@ func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDateM
 	return rv
 }
 
-// The key path for accessing the sample’s quantity.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathquantity
-func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathQuantity"))
-	return rv
-}
-
-// A key path for the sample’s count.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcount
-func (h_ HKQuantitySample) HKPredicateKeyPathCount() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCount"))
-	return rv
-}
-
 // The number of quantities contained in this sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/count
@@ -173,6 +157,22 @@ func (h_ HKQuantitySample) Quantity() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/quantityType
 func (h_ HKQuantitySample) QuantityType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("quantityType"))
+	return rv
+}
+
+// A key path for the sample’s count.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcount
+func (h_ HKQuantitySample) HKPredicateKeyPathCount() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCount"))
+	return rv
+}
+
+// The key path for accessing the sample’s quantity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathquantity
+func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathQuantity"))
 	return rv
 }
 

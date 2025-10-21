@@ -80,6 +80,21 @@ func NewCNNNeuronNode() CNNNeuronNode {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/a
+func (c_ CNNNeuronNode) A() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("a"))
+	return rv
+}
+
+
+// SetA sets the value of the a property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/a
+func (c_ CNNNeuronNode) SetA(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setA:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/b
 func (c_ CNNNeuronNode) B() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("b"))
@@ -107,21 +122,6 @@ func (c_ CNNNeuronNode) C() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/c
 func (c_ CNNNeuronNode) SetC(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setC:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/a
-func (c_ CNNNeuronNode) A() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("a"))
-	return rv
-}
-
-
-// SetA sets the value of the a property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/a
-func (c_ CNNNeuronNode) SetA(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setA:"), value)
 }
 
 

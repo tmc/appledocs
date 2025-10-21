@@ -79,24 +79,6 @@ func NewCDropoutLayer() CDropoutLayer {
 }
 
 
-// The seed you use to generate random numbers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/seed
-func (c_ CDropoutLayer) Seed() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("seed"))
-	return rv
-}
-
-
-// SetSeed sets the value of the seed property.
-// The seed you use to generate random numbers.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/seed
-func (c_ CDropoutLayer) SetSeed(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)
-}
-
 // The dropout rate you use for each element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/rate
@@ -113,6 +95,24 @@ func (c_ CDropoutLayer) Rate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/rate
 func (c_ CDropoutLayer) SetRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRate:"), value)
+}
+
+// The seed you use to generate random numbers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/seed
+func (c_ CDropoutLayer) Seed() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("seed"))
+	return rv
+}
+
+
+// SetSeed sets the value of the seed property.
+// The seed you use to generate random numbers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/seed
+func (c_ CDropoutLayer) SetSeed(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)
 }
 
 

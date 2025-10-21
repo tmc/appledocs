@@ -80,22 +80,22 @@ func NewGCEventInteraction() GCEventInteraction {
 }
 
 
-// A Boolean value that determines whether events are delivered exclusively
+// The types of game controller events that should be delivered through the Game Controller framework.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gceventinteraction/receiveseventsinview
-func (g_ GCEventInteraction) ReceivesEventsInView() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("receivesEventsInView"))
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/handledEventTypes
+func (g_ GCEventInteraction) HandledEventTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("handledEventTypes"))
 	return rv
 }
 
 
-// SetReceivesEventsInView sets the value of the receivesEventsInView property.
-// A Boolean value that determines whether events are delivered exclusively
+// SetHandledEventTypes sets the value of the handledEventTypes property.
+// The types of game controller events that should be delivered through the Game Controller framework.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gceventinteraction/receiveseventsinview
-func (g_ GCEventInteraction) SetReceivesEventsInView(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setReceivesEventsInView:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/handledEventTypes
+func (g_ GCEventInteraction) SetHandledEventTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setHandledEventTypes:"), value)
 }
 
 // The block that the framework calls when the user presses the pause button on the controller.
@@ -116,22 +116,22 @@ func (g_ GCEventInteraction) SetControllerPausedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setControllerPausedHandler:"), value)
 }
 
-// The types of game controller events that should be delivered through the Game Controller framework.
+// A Boolean value that determines whether events are delivered exclusively
 //
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/handledEventTypes
-func (g_ GCEventInteraction) HandledEventTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("handledEventTypes"))
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gceventinteraction/receiveseventsinview
+func (g_ GCEventInteraction) ReceivesEventsInView() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("receivesEventsInView"))
 	return rv
 }
 
 
-// SetHandledEventTypes sets the value of the handledEventTypes property.
-// The types of game controller events that should be delivered through the Game Controller framework.
+// SetReceivesEventsInView sets the value of the receivesEventsInView property.
+// A Boolean value that determines whether events are delivered exclusively
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/handledEventTypes
-func (g_ GCEventInteraction) SetHandledEventTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setHandledEventTypes:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gceventinteraction/receiveseventsinview
+func (g_ GCEventInteraction) SetReceivesEventsInView(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setReceivesEventsInView:"), value)
 }
 
 

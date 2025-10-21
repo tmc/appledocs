@@ -95,42 +95,6 @@ func (vc _VZMacOSRestoreImageClass) FetchLatestSupportedWithCompletionHandler(co
 	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("fetchLatestSupportedWithCompletionHandler:"), completionHandler)
 }
 
-// The Mac hardware model.
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
-func (v_ VZMacOSRestoreImage) HardwareModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("hardwareModel"))
-	return rv
-}
-
-
-// SetHardwareModel sets the value of the hardwareModel property.
-// The Mac hardware model.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
-func (v_ VZMacOSRestoreImage) SetHardwareModel(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)
-}
-
-// A Boolean value that indicates whether the current host supports this restore image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/issupported
-func (v_ VZMacOSRestoreImage) IsSupported() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("isSupported"))
-	return rv
-}
-
-
-// SetIsSupported sets the value of the isSupported property.
-// A Boolean value that indicates whether the current host supports this restore image.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/issupported
-func (v_ VZMacOSRestoreImage) SetIsSupported(value bool) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setIsSupported:"), value)
-}
-
 // The build version this restore image contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/buildVersion
@@ -169,6 +133,42 @@ func (v_ VZMacOSRestoreImage) OperatingSystemVersion() unsafe.Pointer {
 func (v_ VZMacOSRestoreImage) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("URL"))
 	return rv
+}
+
+// A Boolean value that indicates whether the current host supports this restore image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/issupported
+func (v_ VZMacOSRestoreImage) IsSupported() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isSupported"))
+	return rv
+}
+
+
+// SetIsSupported sets the value of the isSupported property.
+// A Boolean value that indicates whether the current host supports this restore image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/issupported
+func (v_ VZMacOSRestoreImage) SetIsSupported(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsSupported:"), value)
+}
+
+// The Mac hardware model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
+func (v_ VZMacOSRestoreImage) HardwareModel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("hardwareModel"))
+	return rv
+}
+
+
+// SetHardwareModel sets the value of the hardwareModel property.
+// The Mac hardware model.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
+func (v_ VZMacOSRestoreImage) SetHardwareModel(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)
 }
 
 

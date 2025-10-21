@@ -81,24 +81,6 @@ func NewINSearchCallHistoryIntent() INSearchCallHistoryIntent {
 }
 
 
-// The person involved in the call.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/recipient
-func (i_ INSearchCallHistoryIntent) Recipient() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("recipient"))
-	return rv
-}
-
-
-// SetRecipient sets the value of the recipient property.
-// The person involved in the call.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/recipient
-func (i_ INSearchCallHistoryIntent) SetRecipient(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipient:"), value)
-}
-
 // The audio-video capabilities of the call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/callcapabilities
@@ -115,24 +97,6 @@ func (i_ INSearchCallHistoryIntent) CallCapabilities() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/callcapabilities
 func (i_ INSearchCallHistoryIntent) SetCallCapabilities(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapabilities:"), value)
-}
-
-// A Boolean value that indicates whether the user has seen the call yet.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/unseen-9ua7o
-func (i_ INSearchCallHistoryIntent) Unseen() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("unseen"))
-	return rv
-}
-
-
-// SetUnseen sets the value of the unseen property.
-// A Boolean value that indicates whether the user has seen the call yet.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/unseen-9ua7o
-func (i_ INSearchCallHistoryIntent) SetUnseen(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setUnseen:"), value)
 }
 
 // The call type.
@@ -153,6 +117,24 @@ func (i_ INSearchCallHistoryIntent) SetCallType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallType:"), value)
 }
 
+// The types of calls to search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/calltypes
+func (i_ INSearchCallHistoryIntent) CallTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callTypes"))
+	return rv
+}
+
+
+// SetCallTypes sets the value of the callTypes property.
+// The types of calls to search.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/calltypes
+func (i_ INSearchCallHistoryIntent) SetCallTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallTypes:"), value)
+}
+
 // The range of dates associated with the call records.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/datecreated
@@ -171,22 +153,40 @@ func (i_ INSearchCallHistoryIntent) SetDateCreated(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
 
-// The types of calls to search.
+// The person involved in the call.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/calltypes
-func (i_ INSearchCallHistoryIntent) CallTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callTypes"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/recipient
+func (i_ INSearchCallHistoryIntent) Recipient() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("recipient"))
 	return rv
 }
 
 
-// SetCallTypes sets the value of the callTypes property.
-// The types of calls to search.
+// SetRecipient sets the value of the recipient property.
+// The person involved in the call.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/calltypes
-func (i_ INSearchCallHistoryIntent) SetCallTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCallTypes:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/recipient
+func (i_ INSearchCallHistoryIntent) SetRecipient(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipient:"), value)
+}
+
+// A Boolean value that indicates whether the user has seen the call yet.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/unseen-9ua7o
+func (i_ INSearchCallHistoryIntent) Unseen() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("unseen"))
+	return rv
+}
+
+
+// SetUnseen sets the value of the unseen property.
+// A Boolean value that indicates whether the user has seen the call yet.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/unseen-9ua7o
+func (i_ INSearchCallHistoryIntent) SetUnseen(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setUnseen:"), value)
 }
 
 

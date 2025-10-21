@@ -29,14 +29,5 @@ type CFURLRef unsafe.Pointer
 // CFWriteStreamRef is a CoreGraphics opaque type.
 type CFWriteStreamRef unsafe.Pointer
 
-// LSMMapRef is a CoreGraphics opaque type.
-type LSMMapRef unsafe.Pointer
-
-// LSMResultRef is a CoreGraphics opaque type.
-type LSMResultRef unsafe.Pointer
-
-// LSMTextRef is a CoreGraphics opaque type.
-type LSMTextRef unsafe.Pointer
-
 
 

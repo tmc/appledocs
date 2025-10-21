@@ -77,21 +77,6 @@ func NewMTRActionsClusterInstantActionWithTransitionParams() MTRActionsClusterIn
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/actionid
 func (m_ MTRActionsClusterInstantActionWithTransitionParams) ActionID() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
@@ -104,6 +89,36 @@ func (m_ MTRActionsClusterInstantActionWithTransitionParams) ActionID() foundati
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/actionid
 func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetActionID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/invokeid
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) InvokeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+	return rv
+}
+
+
+// SetInvokeID sets the value of the invokeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/invokeid
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetInvokeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/serversideprocessingtimeout
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/serversideprocessingtimeout
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
@@ -134,21 +149,6 @@ func (m_ MTRActionsClusterInstantActionWithTransitionParams) TransitionTime() fo
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/transitiontime
 func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTransitionTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/invokeid
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) InvokeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
-	return rv
-}
-
-
-// SetInvokeID sets the value of the invokeID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/invokeid
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetInvokeID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
 

@@ -79,6 +79,60 @@ func NewCGroupNormalizationLayer() CGroupNormalizationLayer {
 }
 
 
+// The beta tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/beta
+func (c_ CGroupNormalizationLayer) Beta() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
+	return rv
+}
+
+
+// SetBeta sets the value of the beta property.
+// The beta tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/beta
+func (c_ CGroupNormalizationLayer) SetBeta(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
+}
+
+// The beta tensor parameter you use for optimizer updates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/betaparameter
+func (c_ CGroupNormalizationLayer) BetaParameter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("betaParameter"))
+	return rv
+}
+
+
+// SetBetaParameter sets the value of the betaParameter property.
+// The beta tensor parameter you use for optimizer updates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/betaparameter
+func (c_ CGroupNormalizationLayer) SetBetaParameter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
+}
+
+// The number of feature channels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/featurechannelcount
+func (c_ CGroupNormalizationLayer) FeatureChannelCount() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("featureChannelCount"))
+	return rv
+}
+
+
+// SetFeatureChannelCount sets the value of the featureChannelCount property.
+// The number of feature channels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/featurechannelcount
+func (c_ CGroupNormalizationLayer) SetFeatureChannelCount(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureChannelCount:"), value)
+}
+
 // The gamma tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/gamma
@@ -115,60 +169,6 @@ func (c_ CGroupNormalizationLayer) SetGammaParameter(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGammaParameter:"), value)
 }
 
-// The beta tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/beta
-func (c_ CGroupNormalizationLayer) Beta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
-	return rv
-}
-
-
-// SetBeta sets the value of the beta property.
-// The beta tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/beta
-func (c_ CGroupNormalizationLayer) SetBeta(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
-}
-
-// The variance epsilon you use for numerical stability.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/varianceepsilon
-func (c_ CGroupNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("varianceEpsilon"))
-	return rv
-}
-
-
-// SetVarianceEpsilon sets the value of the varianceEpsilon property.
-// The variance epsilon you use for numerical stability.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/varianceepsilon
-func (c_ CGroupNormalizationLayer) SetVarianceEpsilon(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
-}
-
-// The beta tensor parameter you use for optimizer updates.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/betaparameter
-func (c_ CGroupNormalizationLayer) BetaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("betaParameter"))
-	return rv
-}
-
-
-// SetBetaParameter sets the value of the betaParameter property.
-// The beta tensor parameter you use for optimizer updates.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/betaparameter
-func (c_ CGroupNormalizationLayer) SetBetaParameter(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
-}
-
 // The number of groups into which you separate the channels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/groupcount
@@ -187,22 +187,22 @@ func (c_ CGroupNormalizationLayer) SetGroupCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGroupCount:"), value)
 }
 
-// The number of feature channels.
+// The variance epsilon you use for numerical stability.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/featurechannelcount
-func (c_ CGroupNormalizationLayer) FeatureChannelCount() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("featureChannelCount"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/varianceepsilon
+func (c_ CGroupNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("varianceEpsilon"))
 	return rv
 }
 
 
-// SetFeatureChannelCount sets the value of the featureChannelCount property.
-// The number of feature channels.
+// SetVarianceEpsilon sets the value of the varianceEpsilon property.
+// The variance epsilon you use for numerical stability.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/featurechannelcount
-func (c_ CGroupNormalizationLayer) SetFeatureChannelCount(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureChannelCount:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/varianceepsilon
+func (c_ CGroupNormalizationLayer) SetVarianceEpsilon(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
 }
 
 

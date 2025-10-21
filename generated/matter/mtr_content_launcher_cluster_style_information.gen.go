@@ -77,21 +77,6 @@ func NewMTRContentLauncherClusterStyleInformation() MTRContentLauncherClusterSty
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/size
-func (m_ MTRContentLauncherClusterStyleInformation) Size() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("size"))
-	return rv
-}
-
-
-// SetSize sets the value of the size property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/size
-func (m_ MTRContentLauncherClusterStyleInformation) SetSize(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSize:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/color
 func (m_ MTRContentLauncherClusterStyleInformation) Color() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("color"))
@@ -104,6 +89,21 @@ func (m_ MTRContentLauncherClusterStyleInformation) Color() string {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/color
 func (m_ MTRContentLauncherClusterStyleInformation) SetColor(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColor:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/size
+func (m_ MTRContentLauncherClusterStyleInformation) Size() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// SetSize sets the value of the size property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/size
+func (m_ MTRContentLauncherClusterStyleInformation) SetSize(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSize:"), value)
 }
 
 

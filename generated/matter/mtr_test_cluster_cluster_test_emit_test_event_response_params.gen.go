@@ -78,21 +78,6 @@ func NewMTRTestClusterClusterTestEmitTestEventResponseParams() MTRTestClusterClu
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventresponseparams/value
-func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
-	return rv
-}
-
-
-// SetValue sets the value of the value property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventresponseparams/value
-func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) SetValue(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) TimedInvokeTimeoutMs() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
@@ -105,6 +90,21 @@ func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) TimedInvokeTimeou
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventresponseparams/value
+func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventresponseparams/value
+func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) SetValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 
 

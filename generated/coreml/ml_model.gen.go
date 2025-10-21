@@ -245,24 +245,6 @@ func (m_ Model) PredictionsFromBatchError(inputBatch objc.ID, error_ unsafe.Poin
 	return rv
 }
 
-// A dictionary of the model’s creation information, such as its description, author, version, and license.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata
-func (m_ Model) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadata"))
-	return rv
-}
-
-
-// SetMetadata sets the value of the metadata property.
-// A dictionary of the model’s creation information, such as its description, author, version, and license.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata
-func (m_ Model) SetMetadata(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadata:"), value)
-}
-
 // The list of available compute devices that the model’s prediction can use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/availableComputeDevices-42uzt
@@ -285,6 +267,24 @@ func (m_ Model) Configuration() unsafe.Pointer {
 func (m_ Model) ModelDescription() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modelDescription"))
 	return rv
+}
+
+// A dictionary of the model’s creation information, such as its description, author, version, and license.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata
+func (m_ Model) Metadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// SetMetadata sets the value of the metadata property.
+// A dictionary of the model’s creation information, such as its description, author, version, and license.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata
+func (m_ Model) SetMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadata:"), value)
 }
 
 

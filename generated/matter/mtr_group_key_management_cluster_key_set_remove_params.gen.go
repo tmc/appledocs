@@ -77,18 +77,18 @@ func NewMTRGroupKeyManagementClusterKeySetRemoveParams() MTRGroupKeyManagementCl
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetremoveparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetRemoveParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetremoveparams/groupkeysetid
+func (m_ MTRGroupKeyManagementClusterKeySetRemoveParams) GroupKeySetID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupKeySetID"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetGroupKeySetID sets the value of the groupKeySetID property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetremoveparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetRemoveParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetremoveparams/groupkeysetid
+func (m_ MTRGroupKeyManagementClusterKeySetRemoveParams) SetGroupKeySetID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetID:"), value)
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRGroupKeyManagementClusterKeySetRemoveParams) SetServerSideProcessing
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetremoveparams/groupkeysetid
-func (m_ MTRGroupKeyManagementClusterKeySetRemoveParams) GroupKeySetID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupKeySetID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetremoveparams/timedinvoketimeoutms
+func (m_ MTRGroupKeyManagementClusterKeySetRemoveParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetGroupKeySetID sets the value of the groupKeySetID property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetremoveparams/groupkeysetid
-func (m_ MTRGroupKeyManagementClusterKeySetRemoveParams) SetGroupKeySetID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetremoveparams/timedinvoketimeoutms
+func (m_ MTRGroupKeyManagementClusterKeySetRemoveParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

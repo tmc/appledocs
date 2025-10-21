@@ -80,6 +80,14 @@ func NewNEDNSProxyManager() NEDNSProxyManager {
 }
 
 
+// The DNS proxy error domain.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyerrordomain
+func (n_ NEDNSProxyManager) NEDNSProxyErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEDNSProxyErrorDomain"))
+	return rv
+}
+
 // The status of a DNS proxy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/isenabled
@@ -96,14 +104,6 @@ func (n_ NEDNSProxyManager) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/isenabled
 func (n_ NEDNSProxyManager) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
-// The DNS proxy error domain.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyerrordomain
-func (n_ NEDNSProxyManager) NEDNSProxyErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEDNSProxyErrorDomain"))
-	return rv
 }
 
 // A description of the DNS proxy.

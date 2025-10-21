@@ -96,6 +96,22 @@ func (v_ VertexDescriptor) Reset() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("reset"))
 }
 
+// An array of state data that describes how vertex attribute data is stored in memory and is mapped to arguments for a vertex shader function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/attributes
+func (v_ VertexDescriptor) Attributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attributes"))
+	return rv
+}
+
+// An array of state data that describes how data are fetched by a vertex shader function when rendering primitives.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/layouts
+func (v_ VertexDescriptor) Layouts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("layouts"))
+	return rv
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlbufferlayoutstridedynamic
 func (v_ VertexDescriptor) MTLBufferLayoutStrideDynamic() int {
@@ -119,22 +135,6 @@ func (v_ VertexDescriptor) VertexDescriptor() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexdescriptor
 func (v_ VertexDescriptor) SetVertexDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVertexDescriptor:"), value)
-}
-
-// An array of state data that describes how vertex attribute data is stored in memory and is mapped to arguments for a vertex shader function.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/attributes
-func (v_ VertexDescriptor) Attributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attributes"))
-	return rv
-}
-
-// An array of state data that describes how data are fetched by a vertex shader function when rendering primitives.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/layouts
-func (v_ VertexDescriptor) Layouts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("layouts"))
-	return rv
 }
 
 

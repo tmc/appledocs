@@ -121,58 +121,6 @@ func (c_ CSSearchQuery) Start() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("start"))
 }
 
-// Indicates that the activity type to continue is a search or query.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/csquerycontinuationactiontype
-func (c_ CSSearchQuery) CSQueryContinuationActionType() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CSQueryContinuationActionType"))
-	return rv
-}
-
-// Provides the key for the current query in the info dictionary of the user activity object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquerystring
-func (c_ CSSearchQuery) CSSearchQueryString() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchQueryString"))
-	return rv
-}
-
-// The results that match the current query string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/results-swift.property
-func (c_ CSSearchQuery) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("results"))
-	return rv
-}
-
-
-// SetResults sets the value of the results property.
-// The results that match the current query string.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/results-swift.property
-func (c_ CSSearchQuery) SetResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setResults:"), value)
-}
-
-// A Boolean value that indicates whether the current query is no longer running.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/iscancelled
-func (c_ CSSearchQuery) IsCancelled() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isCancelled"))
-	return rv
-}
-
-
-// SetIsCancelled sets the value of the isCancelled property.
-// A Boolean value that indicates whether the current query is no longer running.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/iscancelled
-func (c_ CSSearchQuery) SetIsCancelled(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCancelled:"), value)
-}
-
 // The number of matching items found for the given query string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/foundItemCount
@@ -215,6 +163,58 @@ func (c_ CSSearchQuery) SetProtectionClasses(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setProtectionClasses:"), nsArray)
+}
+
+// Indicates that the activity type to continue is a search or query.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/csquerycontinuationactiontype
+func (c_ CSSearchQuery) CSQueryContinuationActionType() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSQueryContinuationActionType"))
+	return rv
+}
+
+// A Boolean value that indicates whether the current query is no longer running.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/iscancelled
+func (c_ CSSearchQuery) IsCancelled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isCancelled"))
+	return rv
+}
+
+
+// SetIsCancelled sets the value of the isCancelled property.
+// A Boolean value that indicates whether the current query is no longer running.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/iscancelled
+func (c_ CSSearchQuery) SetIsCancelled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCancelled:"), value)
+}
+
+// The results that match the current query string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/results-swift.property
+func (c_ CSSearchQuery) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results that match the current query string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/results-swift.property
+func (c_ CSSearchQuery) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResults:"), value)
+}
+
+// Provides the key for the current query in the info dictionary of the user activity object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquerystring
+func (c_ CSSearchQuery) CSSearchQueryString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchQueryString"))
+	return rv
 }
 
 

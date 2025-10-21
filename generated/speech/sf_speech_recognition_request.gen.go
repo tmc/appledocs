@@ -80,78 +80,6 @@ func NewSFSpeechRecognitionRequest() SFSpeechRecognitionRequest {
 }
 
 
-// An identifier string that you use to describe the type of interaction associated with the speech recognition request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/interactionidentifier
-func (s_ SFSpeechRecognitionRequest) InteractionIdentifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("interactionIdentifier"))
-	return rv
-}
-
-
-// SetInteractionIdentifier sets the value of the interactionIdentifier property.
-// An identifier string that you use to describe the type of interaction associated with the speech recognition request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/interactionidentifier
-func (s_ SFSpeechRecognitionRequest) SetInteractionIdentifier(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setInteractionIdentifier:"), objc.String(value))
-}
-
-// An array of phrases that should be recognized, even if they are not in the system vocabulary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/contextualstrings
-func (s_ SFSpeechRecognitionRequest) ContextualStrings() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("contextualStrings"))
-	return rv
-}
-
-
-// SetContextualStrings sets the value of the contextualStrings property.
-// An array of phrases that should be recognized, even if they are not in the system vocabulary.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/contextualstrings
-func (s_ SFSpeechRecognitionRequest) SetContextualStrings(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setContextualStrings:"), objc.String(value))
-}
-
-// A Boolean value that indicates whether to add punctuation to speech recognition results.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/addspunctuation
-func (s_ SFSpeechRecognitionRequest) AddsPunctuation() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("addsPunctuation"))
-	return rv
-}
-
-
-// SetAddsPunctuation sets the value of the addsPunctuation property.
-// A Boolean value that indicates whether to add punctuation to speech recognition results.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/addspunctuation
-func (s_ SFSpeechRecognitionRequest) SetAddsPunctuation(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAddsPunctuation:"), value)
-}
-
-// A value that indicates the type of speech recognition being performed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/taskhint
-func (s_ SFSpeechRecognitionRequest) TaskHint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("taskHint"))
-	return rv
-}
-
-
-// SetTaskHint sets the value of the taskHint property.
-// A value that indicates the type of speech recognition being performed.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/taskhint
-func (s_ SFSpeechRecognitionRequest) SetTaskHint(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTaskHint:"), value)
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/customizedLanguageModel
 func (s_ SFSpeechRecognitionRequest) CustomizedLanguageModel() unsafe.Pointer {
@@ -201,6 +129,78 @@ func (s_ SFSpeechRecognitionRequest) ShouldReportPartialResults() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/shouldReportPartialResults
 func (s_ SFSpeechRecognitionRequest) SetShouldReportPartialResults(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShouldReportPartialResults:"), value)
+}
+
+// A Boolean value that indicates whether to add punctuation to speech recognition results.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/addspunctuation
+func (s_ SFSpeechRecognitionRequest) AddsPunctuation() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("addsPunctuation"))
+	return rv
+}
+
+
+// SetAddsPunctuation sets the value of the addsPunctuation property.
+// A Boolean value that indicates whether to add punctuation to speech recognition results.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/addspunctuation
+func (s_ SFSpeechRecognitionRequest) SetAddsPunctuation(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAddsPunctuation:"), value)
+}
+
+// An array of phrases that should be recognized, even if they are not in the system vocabulary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/contextualstrings
+func (s_ SFSpeechRecognitionRequest) ContextualStrings() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("contextualStrings"))
+	return rv
+}
+
+
+// SetContextualStrings sets the value of the contextualStrings property.
+// An array of phrases that should be recognized, even if they are not in the system vocabulary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/contextualstrings
+func (s_ SFSpeechRecognitionRequest) SetContextualStrings(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContextualStrings:"), objc.String(value))
+}
+
+// An identifier string that you use to describe the type of interaction associated with the speech recognition request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/interactionidentifier
+func (s_ SFSpeechRecognitionRequest) InteractionIdentifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("interactionIdentifier"))
+	return rv
+}
+
+
+// SetInteractionIdentifier sets the value of the interactionIdentifier property.
+// An identifier string that you use to describe the type of interaction associated with the speech recognition request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/interactionidentifier
+func (s_ SFSpeechRecognitionRequest) SetInteractionIdentifier(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setInteractionIdentifier:"), objc.String(value))
+}
+
+// A value that indicates the type of speech recognition being performed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/taskhint
+func (s_ SFSpeechRecognitionRequest) TaskHint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("taskHint"))
+	return rv
+}
+
+
+// SetTaskHint sets the value of the taskHint property.
+// A value that indicates the type of speech recognition being performed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/taskhint
+func (s_ SFSpeechRecognitionRequest) SetTaskHint(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTaskHint:"), value)
 }
 
 

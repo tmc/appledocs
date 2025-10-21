@@ -80,24 +80,6 @@ func NewBarcodeObservation() BarcodeObservation {
 }
 
 
-// The results of a barcode detection request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
-func (b_ BarcodeObservation) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("results"))
-	return rv
-}
-
-
-// SetResults sets the value of the results property.
-// The results of a barcode detection request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
-func (b_ BarcodeObservation) SetResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setResults:"), value)
-}
-
 // An object that describes the low-level details about the barcode and its data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/barcodeDescriptor
@@ -167,6 +149,24 @@ func (b_ BarcodeObservation) SupplementalPayloadString() string {
 func (b_ BarcodeObservation) Symbology() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("symbology"))
 	return rv
+}
+
+// The results of a barcode detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
+func (b_ BarcodeObservation) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of a barcode detection request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
+func (b_ BarcodeObservation) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setResults:"), value)
 }
 
 

@@ -91,42 +91,6 @@ func (m_ MetalLayer) NextDrawable() objc.ID {
 	return rv
 }
 
-// A positive integer that identifies the drawable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDrawable/drawableID
-func (m_ MetalLayer) DrawableID() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("drawableID"))
-	return rv
-}
-
-
-// SetDrawableID sets the value of the drawableID property.
-// A positive integer that identifies the drawable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDrawable/drawableID
-func (m_ MetalLayer) SetDrawableID(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDrawableID:"), value)
-}
-
-// The host time, in seconds, when the drawable was displayed onscreen.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDrawable/presentedTime
-func (m_ MetalLayer) PresentedTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("presentedTime"))
-	return rv
-}
-
-
-// SetPresentedTime sets the value of the presentedTime property.
-// The host time, in seconds, when the drawable was displayed onscreen.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDrawable/presentedTime
-func (m_ MetalLayer) SetPresentedTime(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPresentedTime:"), value)
-}
-
 // A Boolean value that determines whether requests for a new buffer expire if the system can’t satisfy them.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/allowsNextDrawableTimeout
@@ -356,6 +320,42 @@ func (m_ MetalLayer) WantsExtendedDynamicRangeContent() bool {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent
 func (m_ MetalLayer) SetWantsExtendedDynamicRangeContent(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWantsExtendedDynamicRangeContent:"), value)
+}
+
+// A positive integer that identifies the drawable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDrawable/drawableID
+func (m_ MetalLayer) DrawableID() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("drawableID"))
+	return rv
+}
+
+
+// SetDrawableID sets the value of the drawableID property.
+// A positive integer that identifies the drawable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDrawable/drawableID
+func (m_ MetalLayer) SetDrawableID(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDrawableID:"), value)
+}
+
+// The host time, in seconds, when the drawable was displayed onscreen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDrawable/presentedTime
+func (m_ MetalLayer) PresentedTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("presentedTime"))
+	return rv
+}
+
+
+// SetPresentedTime sets the value of the presentedTime property.
+// The host time, in seconds, when the drawable was displayed onscreen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDrawable/presentedTime
+func (m_ MetalLayer) SetPresentedTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPresentedTime:"), value)
 }
 
 

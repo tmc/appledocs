@@ -92,21 +92,6 @@ func (n_ NDArrayDescriptor) SliceRangeForDimension(dimensionIndex uint) unsafe.P
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/numberofdimensions
-func (n_ NDArrayDescriptor) NumberOfDimensions() int {
-	rv := objc.Send[int](n_.ID, objc.Sel("numberOfDimensions"))
-	return rv
-}
-
-
-// SetNumberOfDimensions sets the value of the numberOfDimensions property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/numberofdimensions
-func (n_ NDArrayDescriptor) SetNumberOfDimensions(value int) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setNumberOfDimensions:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/datatype
 func (n_ NDArrayDescriptor) DataType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("dataType"))
@@ -119,6 +104,21 @@ func (n_ NDArrayDescriptor) DataType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/datatype
 func (n_ NDArrayDescriptor) SetDataType(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDataType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/numberofdimensions
+func (n_ NDArrayDescriptor) NumberOfDimensions() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("numberOfDimensions"))
+	return rv
+}
+
+
+// SetNumberOfDimensions sets the value of the numberOfDimensions property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/numberofdimensions
+func (n_ NDArrayDescriptor) SetNumberOfDimensions(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setNumberOfDimensions:"), value)
 }
 
 //

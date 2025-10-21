@@ -132,24 +132,6 @@ func (d_ DecisionTree) FindActionForAnswers(answers unsafe.Pointer) objc.ID {
 	return rv
 }
 
-// A textual representation of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (d_ DecisionTree) Description() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("description"))
-	return rv
-}
-
-
-// SetDescription sets the value of the description property.
-// A textual representation of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (d_ DecisionTree) SetDescription(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
-}
-
 // The randomizer to be used when evaluating parts of the tree that branch randomly.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/randomSource
@@ -174,6 +156,24 @@ func (d_ DecisionTree) SetRandomSource(value unsafe.Pointer) {
 func (d_ DecisionTree) RootNode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("rootNode"))
 	return rv
+}
+
+// A textual representation of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
+func (d_ DecisionTree) Description() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("description"))
+	return rv
+}
+
+
+// SetDescription sets the value of the description property.
+// A textual representation of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
+func (d_ DecisionTree) SetDescription(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
 

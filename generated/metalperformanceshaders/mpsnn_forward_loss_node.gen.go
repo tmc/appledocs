@@ -85,78 +85,33 @@ func (f_ ForwardLossNode) GradientFiltersWithSources(sourceGradient unsafe.Point
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/propertycallback
-func (f_ ForwardLossNode) PropertyCallBack() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("propertyCallBack"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/delta
+func (f_ ForwardLossNode) Delta() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delta"))
 	return rv
 }
 
 
-// SetPropertyCallBack sets the value of the propertyCallBack property.
+// SetDelta sets the value of the delta property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/propertycallback
-func (f_ ForwardLossNode) SetPropertyCallBack(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setPropertyCallBack:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/delta
+func (f_ ForwardLossNode) SetDelta(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setDelta:"), value)
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/losstype
-func (f_ ForwardLossNode) LossType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("lossType"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/epsilon
+func (f_ ForwardLossNode) Epsilon() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("epsilon"))
 	return rv
 }
 
 
-// SetLossType sets the value of the lossType property.
+// SetEpsilon sets the value of the epsilon property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/losstype
-func (f_ ForwardLossNode) SetLossType(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLossType:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/weight
-func (f_ ForwardLossNode) Weight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("weight"))
-	return rv
-}
-
-
-// SetWeight sets the value of the weight property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/weight
-func (f_ ForwardLossNode) SetWeight(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setWeight:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reductiontype
-func (f_ ForwardLossNode) ReductionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("reductionType"))
-	return rv
-}
-
-
-// SetReductionType sets the value of the reductionType property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reductiontype
-func (f_ ForwardLossNode) SetReductionType(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setReductionType:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reduceacrossbatch
-func (f_ ForwardLossNode) ReduceAcrossBatch() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("reduceAcrossBatch"))
-	return rv
-}
-
-
-// SetReduceAcrossBatch sets the value of the reduceAcrossBatch property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reduceacrossbatch
-func (f_ ForwardLossNode) SetReduceAcrossBatch(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setReduceAcrossBatch:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/epsilon
+func (f_ ForwardLossNode) SetEpsilon(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setEpsilon:"), value)
 }
 
 //
@@ -175,18 +130,18 @@ func (f_ ForwardLossNode) SetLabelSmoothing(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/delta
-func (f_ ForwardLossNode) Delta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delta"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/losstype
+func (f_ ForwardLossNode) LossType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("lossType"))
 	return rv
 }
 
 
-// SetDelta sets the value of the delta property.
+// SetLossType sets the value of the lossType property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/delta
-func (f_ ForwardLossNode) SetDelta(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setDelta:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/losstype
+func (f_ ForwardLossNode) SetLossType(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLossType:"), value)
 }
 
 //
@@ -205,18 +160,63 @@ func (f_ ForwardLossNode) SetNumberOfClasses(value int) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/epsilon
-func (f_ ForwardLossNode) Epsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("epsilon"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/propertycallback
+func (f_ ForwardLossNode) PropertyCallBack() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("propertyCallBack"))
 	return rv
 }
 
 
-// SetEpsilon sets the value of the epsilon property.
+// SetPropertyCallBack sets the value of the propertyCallBack property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/epsilon
-func (f_ ForwardLossNode) SetEpsilon(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setEpsilon:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/propertycallback
+func (f_ ForwardLossNode) SetPropertyCallBack(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPropertyCallBack:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reduceacrossbatch
+func (f_ ForwardLossNode) ReduceAcrossBatch() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("reduceAcrossBatch"))
+	return rv
+}
+
+
+// SetReduceAcrossBatch sets the value of the reduceAcrossBatch property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reduceacrossbatch
+func (f_ ForwardLossNode) SetReduceAcrossBatch(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setReduceAcrossBatch:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reductiontype
+func (f_ ForwardLossNode) ReductionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("reductionType"))
+	return rv
+}
+
+
+// SetReductionType sets the value of the reductionType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reductiontype
+func (f_ ForwardLossNode) SetReductionType(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setReductionType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/weight
+func (f_ ForwardLossNode) Weight() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("weight"))
+	return rv
+}
+
+
+// SetWeight sets the value of the weight property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/weight
+func (f_ ForwardLossNode) SetWeight(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setWeight:"), value)
 }
 
 

@@ -77,21 +77,6 @@ func NewMTRWindowCoveringClusterGoToLiftValueParams() MTRWindowCoveringClusterGo
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftvalueparams/serversideprocessingtimeout
-func (m_ MTRWindowCoveringClusterGoToLiftValueParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftvalueparams/serversideprocessingtimeout
-func (m_ MTRWindowCoveringClusterGoToLiftValueParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftvalueparams/liftvalue
 func (m_ MTRWindowCoveringClusterGoToLiftValueParams) LiftValue() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("liftValue"))
@@ -104,6 +89,21 @@ func (m_ MTRWindowCoveringClusterGoToLiftValueParams) LiftValue() foundation.Num
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftvalueparams/liftvalue
 func (m_ MTRWindowCoveringClusterGoToLiftValueParams) SetLiftValue(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLiftValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftvalueparams/serversideprocessingtimeout
+func (m_ MTRWindowCoveringClusterGoToLiftValueParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftvalueparams/serversideprocessingtimeout
+func (m_ MTRWindowCoveringClusterGoToLiftValueParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

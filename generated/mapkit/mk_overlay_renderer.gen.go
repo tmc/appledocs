@@ -80,24 +80,6 @@ func NewMKOverlayRenderer() MKOverlayRenderer {
 }
 
 
-// The blend mode to apply to the overlay.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/blendmode
-func (m_ MKOverlayRenderer) BlendMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("blendMode"))
-	return rv
-}
-
-
-// SetBlendMode sets the value of the blendMode property.
-// The blend mode to apply to the overlay.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/blendmode
-func (m_ MKOverlayRenderer) SetBlendMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBlendMode:"), value)
-}
-
 // The amount of transparency to apply to the overlay.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/alpha
@@ -116,22 +98,22 @@ func (m_ MKOverlayRenderer) SetAlpha(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlpha:"), value)
 }
 
-// The overlay object containing the data for drawing.
+// The blend mode to apply to the overlay.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/overlay
-func (m_ MKOverlayRenderer) Overlay() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("overlay"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/blendmode
+func (m_ MKOverlayRenderer) BlendMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("blendMode"))
 	return rv
 }
 
 
-// SetOverlay sets the value of the overlay property.
-// The overlay object containing the data for drawing.
+// SetBlendMode sets the value of the blendMode property.
+// The blend mode to apply to the overlay.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/overlay
-func (m_ MKOverlayRenderer) SetOverlay(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOverlay:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/blendmode
+func (m_ MKOverlayRenderer) SetBlendMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBlendMode:"), value)
 }
 
 // The scale factor for drawing the overlay’s content.
@@ -150,6 +132,24 @@ func (m_ MKOverlayRenderer) ContentScaleFactor() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/contentscalefactor
 func (m_ MKOverlayRenderer) SetContentScaleFactor(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContentScaleFactor:"), value)
+}
+
+// The overlay object containing the data for drawing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/overlay
+func (m_ MKOverlayRenderer) Overlay() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("overlay"))
+	return rv
+}
+
+
+// SetOverlay sets the value of the overlay property.
+// The overlay object containing the data for drawing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/overlay
+func (m_ MKOverlayRenderer) SetOverlay(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOverlay:"), value)
 }
 
 

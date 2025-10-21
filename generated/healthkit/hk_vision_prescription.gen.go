@@ -81,24 +81,6 @@ func NewHKVisionPrescription() HKVisionPrescription {
 }
 
 
-// The date when the prescription expires.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
-func (h_ HKVisionPrescription) ExpirationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("expirationDate"))
-	return rv
-}
-
-
-// SetExpirationDate sets the value of the expirationDate property.
-// The date when the prescription expires.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
-func (h_ HKVisionPrescription) SetExpirationDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
-}
-
 // The date when the doctor issued the prescription.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
@@ -115,6 +97,24 @@ func (h_ HKVisionPrescription) DateIssued() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
 func (h_ HKVisionPrescription) SetDateIssued(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateIssued:"), value)
+}
+
+// The date when the prescription expires.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
+func (h_ HKVisionPrescription) ExpirationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("expirationDate"))
+	return rv
+}
+
+
+// SetExpirationDate sets the value of the expirationDate property.
+// The date when the prescription expires.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
+func (h_ HKVisionPrescription) SetExpirationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
 }
 
 // The type of vision prescription.

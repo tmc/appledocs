@@ -77,21 +77,6 @@ func NewMTRDoorLockClusterGetHolidayScheduleResponseParams() MTRDoorLockClusterG
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localstarttime
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) LocalStartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localStartTime"))
-	return rv
-}
-
-
-// SetLocalStartTime sets the value of the localStartTime property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localstarttime
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetLocalStartTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalStartTime:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/holidayindex
 func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) HolidayIndex() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holidayIndex"))
@@ -107,18 +92,33 @@ func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetHolidayIndex(val
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localendtime
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) LocalEndTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localEndTime"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetLocalEndTime sets the value of the localEndTime property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localendtime
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetLocalEndTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalEndTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localstarttime
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) LocalStartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localStartTime"))
+	return rv
+}
+
+
+// SetLocalStartTime sets the value of the localStartTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localstarttime
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetLocalStartTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalStartTime:"), value)
 }
 
 //
@@ -152,18 +152,18 @@ func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetStatus(value fou
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localendtime
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) LocalEndTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localEndTime"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetLocalEndTime sets the value of the localEndTime property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localendtime
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetLocalEndTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalEndTime:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

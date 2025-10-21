@@ -78,24 +78,6 @@ func NewINMediaItem() INMediaItem {
 }
 
 
-// The media item type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/type
-func (i_ INMediaItem) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// SetType sets the value of the type property.
-// The media item type.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/type
-func (i_ INMediaItem) SetType(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
-}
-
 // The artist associated with the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/artist
@@ -166,6 +148,24 @@ func (i_ INMediaItem) Title() string {
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/title
 func (i_ INMediaItem) SetTitle(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+// The media item type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/type
+func (i_ INMediaItem) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The media item type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/type
+func (i_ INMediaItem) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
 }
 
 

@@ -104,30 +104,6 @@ func (cc _CNContainerClass) PredicateForContainersWithIdentifiers(identifiers un
 	return rv
 }
 
-// The name of the container.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainernamekey
-func (c_ CNContainer) CNContainerNameKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerNameKey"))
-	return rv
-}
-
-// The type of the container.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainertypekey
-func (c_ CNContainer) CNContainerTypeKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerTypeKey"))
-	return rv
-}
-
-// The identifier key of the container.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontaineridentifierkey
-func (c_ CNContainer) CNContainerIdentifierKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerIdentifierKey"))
-	return rv
-}
-
 // The unique identifier for a contacts container on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/identifier
@@ -149,6 +125,30 @@ func (c_ CNContainer) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/type
 func (c_ CNContainer) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
+	return rv
+}
+
+// The identifier key of the container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontaineridentifierkey
+func (c_ CNContainer) CNContainerIdentifierKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerIdentifierKey"))
+	return rv
+}
+
+// The name of the container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainernamekey
+func (c_ CNContainer) CNContainerNameKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerNameKey"))
+	return rv
+}
+
+// The type of the container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainertypekey
+func (c_ CNContainer) CNContainerTypeKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerTypeKey"))
 	return rv
 }
 

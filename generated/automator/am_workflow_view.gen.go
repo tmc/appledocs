@@ -82,42 +82,6 @@ func NewAMWorkflowView() AMWorkflowView {
 }
 
 
-// The controller’s workflow view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property
-func (a_ AMWorkflowView) WorkflowView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("workflowView"))
-	return rv
-}
-
-
-// SetWorkflowView sets the value of the workflowView property.
-// The controller’s workflow view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property
-func (a_ AMWorkflowView) SetWorkflowView(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowView:"), value)
-}
-
-// A Boolean value that indicates whether the workflow view is editable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
-func (a_ AMWorkflowView) IsEditable() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isEditable"))
-	return rv
-}
-
-
-// SetIsEditable sets the value of the isEditable property.
-// A Boolean value that indicates whether the workflow view is editable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
-func (a_ AMWorkflowView) SetIsEditable(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEditable:"), value)
-}
-
 // A Boolean value that indicates whether the workflow view is editable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/isEditable
@@ -152,6 +116,42 @@ func (a_ AMWorkflowView) WorkflowController() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/workflowController
 func (a_ AMWorkflowView) SetWorkflowController(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowController:"), value)
+}
+
+// The controller’s workflow view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property
+func (a_ AMWorkflowView) WorkflowView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("workflowView"))
+	return rv
+}
+
+
+// SetWorkflowView sets the value of the workflowView property.
+// The controller’s workflow view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property
+func (a_ AMWorkflowView) SetWorkflowView(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowView:"), value)
+}
+
+// A Boolean value that indicates whether the workflow view is editable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
+func (a_ AMWorkflowView) IsEditable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isEditable"))
+	return rv
+}
+
+
+// SetIsEditable sets the value of the isEditable property.
+// A Boolean value that indicates whether the workflow view is editable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
+func (a_ AMWorkflowView) SetIsEditable(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEditable:"), value)
 }
 
 

@@ -94,14 +94,6 @@ func (m_ MXSignpostRecord) JSONRepresentation() unsafe.Pointer {
 	return rv
 }
 
-// Error domain for error values from app metrics.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXSignpostRecord) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
-	return rv
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/beginTimeStamp
 func (m_ MXSignpostRecord) BeginTimeStamp() unsafe.Pointer {
@@ -148,6 +140,14 @@ func (m_ MXSignpostRecord) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/subsystem
 func (m_ MXSignpostRecord) Subsystem() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("subsystem"))
+	return rv
+}
+
+// Error domain for error values from app metrics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
+func (m_ MXSignpostRecord) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

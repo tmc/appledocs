@@ -80,24 +80,6 @@ func NewModelConfiguration() ModelConfiguration {
 }
 
 
-// A human readable name of a model for display purposes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
-func (m_ ModelConfiguration) ModelDisplayName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("modelDisplayName"))
-	return rv
-}
-
-
-// SetModelDisplayName sets the value of the modelDisplayName property.
-// A human readable name of a model for display purposes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
-func (m_ ModelConfiguration) SetModelDisplayName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), objc.String(value))
-}
-
 // A Boolean value that determines whether to allow low-precision accumulation on a GPU.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/allowLowPrecisionAccumulationOnGPU
@@ -204,6 +186,24 @@ func (m_ ModelConfiguration) PreferredMetalDevice() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/preferredMetalDevice
 func (m_ ModelConfiguration) SetPreferredMetalDevice(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredMetalDevice:"), value)
+}
+
+// A human readable name of a model for display purposes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
+func (m_ ModelConfiguration) ModelDisplayName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("modelDisplayName"))
+	return rv
+}
+
+
+// SetModelDisplayName sets the value of the modelDisplayName property.
+// A human readable name of a model for display purposes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
+func (m_ ModelConfiguration) SetModelDisplayName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), objc.String(value))
 }
 
 

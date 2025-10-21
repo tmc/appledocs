@@ -77,21 +77,6 @@ func NewMTRDoorLockClusterLockUserChangeEvent() MTRDoorLockClusterLockUserChange
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/operationsource
-func (m_ MTRDoorLockClusterLockUserChangeEvent) OperationSource() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationSource"))
-	return rv
-}
-
-
-// SetOperationSource sets the value of the operationSource property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/operationsource
-func (m_ MTRDoorLockClusterLockUserChangeEvent) SetOperationSource(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationSource:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/dataindex
 func (m_ MTRDoorLockClusterLockUserChangeEvent) DataIndex() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dataIndex"))
@@ -107,33 +92,18 @@ func (m_ MTRDoorLockClusterLockUserChangeEvent) SetDataIndex(value foundation.Nu
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/sourcenode
-func (m_ MTRDoorLockClusterLockUserChangeEvent) SourceNode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sourceNode"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/dataoperationtype
+func (m_ MTRDoorLockClusterLockUserChangeEvent) DataOperationType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dataOperationType"))
 	return rv
 }
 
 
-// SetSourceNode sets the value of the sourceNode property.
+// SetDataOperationType sets the value of the dataOperationType property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/sourcenode
-func (m_ MTRDoorLockClusterLockUserChangeEvent) SetSourceNode(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceNode:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/userindex
-func (m_ MTRDoorLockClusterLockUserChangeEvent) UserIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
-	return rv
-}
-
-
-// SetUserIndex sets the value of the userIndex property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/userindex
-func (m_ MTRDoorLockClusterLockUserChangeEvent) SetUserIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/dataoperationtype
+func (m_ MTRDoorLockClusterLockUserChangeEvent) SetDataOperationType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDataOperationType:"), value)
 }
 
 //
@@ -167,18 +137,48 @@ func (m_ MTRDoorLockClusterLockUserChangeEvent) SetLockDataType(value foundation
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/dataoperationtype
-func (m_ MTRDoorLockClusterLockUserChangeEvent) DataOperationType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dataOperationType"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/operationsource
+func (m_ MTRDoorLockClusterLockUserChangeEvent) OperationSource() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationSource"))
 	return rv
 }
 
 
-// SetDataOperationType sets the value of the dataOperationType property.
+// SetOperationSource sets the value of the operationSource property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/dataoperationtype
-func (m_ MTRDoorLockClusterLockUserChangeEvent) SetDataOperationType(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDataOperationType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/operationsource
+func (m_ MTRDoorLockClusterLockUserChangeEvent) SetOperationSource(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationSource:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/sourcenode
+func (m_ MTRDoorLockClusterLockUserChangeEvent) SourceNode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sourceNode"))
+	return rv
+}
+
+
+// SetSourceNode sets the value of the sourceNode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/sourcenode
+func (m_ MTRDoorLockClusterLockUserChangeEvent) SetSourceNode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceNode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/userindex
+func (m_ MTRDoorLockClusterLockUserChangeEvent) UserIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+	return rv
+}
+
+
+// SetUserIndex sets the value of the userIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockuserchangeevent/userindex
+func (m_ MTRDoorLockClusterLockUserChangeEvent) SetUserIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 
 

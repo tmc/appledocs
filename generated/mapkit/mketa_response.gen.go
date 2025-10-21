@@ -80,22 +80,22 @@ func NewMKETAResponse() MKETAResponse {
 }
 
 
-// The start point of the route.
+// The end point of the route.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/source
-func (m_ MKETAResponse) Source() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("source"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/destination
+func (m_ MKETAResponse) Destination() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("destination"))
 	return rv
 }
 
 
-// SetSource sets the value of the source property.
-// The start point of the route.
+// SetDestination sets the value of the destination property.
+// The end point of the route.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/source
-func (m_ MKETAResponse) SetSource(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSource:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/destination
+func (m_ MKETAResponse) SetDestination(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDestination:"), value)
 }
 
 // The expected travel distance, in meters.
@@ -116,40 +116,22 @@ func (m_ MKETAResponse) SetDistance(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDistance:"), value)
 }
 
-// The expected travel time, in seconds.
+// The expected arrival time.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedtraveltime
-func (m_ MKETAResponse) ExpectedTravelTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("expectedTravelTime"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedarrivaldate
+func (m_ MKETAResponse) ExpectedArrivalDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("expectedArrivalDate"))
 	return rv
 }
 
 
-// SetExpectedTravelTime sets the value of the expectedTravelTime property.
-// The expected travel time, in seconds.
+// SetExpectedArrivalDate sets the value of the expectedArrivalDate property.
+// The expected arrival time.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedtraveltime
-func (m_ MKETAResponse) SetExpectedTravelTime(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedTravelTime:"), value)
-}
-
-// The end point of the route.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/destination
-func (m_ MKETAResponse) Destination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("destination"))
-	return rv
-}
-
-
-// SetDestination sets the value of the destination property.
-// The end point of the route.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/destination
-func (m_ MKETAResponse) SetDestination(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDestination:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedarrivaldate
+func (m_ MKETAResponse) SetExpectedArrivalDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedArrivalDate:"), value)
 }
 
 // The expected departure time.
@@ -170,22 +152,40 @@ func (m_ MKETAResponse) SetExpectedDepartureDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedDepartureDate:"), value)
 }
 
-// The expected arrival time.
+// The expected travel time, in seconds.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedarrivaldate
-func (m_ MKETAResponse) ExpectedArrivalDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("expectedArrivalDate"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedtraveltime
+func (m_ MKETAResponse) ExpectedTravelTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("expectedTravelTime"))
 	return rv
 }
 
 
-// SetExpectedArrivalDate sets the value of the expectedArrivalDate property.
-// The expected arrival time.
+// SetExpectedTravelTime sets the value of the expectedTravelTime property.
+// The expected travel time, in seconds.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedarrivaldate
-func (m_ MKETAResponse) SetExpectedArrivalDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedArrivalDate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedtraveltime
+func (m_ MKETAResponse) SetExpectedTravelTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedTravelTime:"), value)
+}
+
+// The start point of the route.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/source
+func (m_ MKETAResponse) Source() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("source"))
+	return rv
+}
+
+
+// SetSource sets the value of the source property.
+// The start point of the route.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/source
+func (m_ MKETAResponse) SetSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSource:"), value)
 }
 
 // The type of conveyance to use for determining the travel time.

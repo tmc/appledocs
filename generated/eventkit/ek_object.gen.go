@@ -105,6 +105,22 @@ func (e_ EKObject) Rollback() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("rollback"))
 }
 
+// Returns whether this object or any of the objects it contains has uncommitted changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/hasChanges
+func (e_ EKObject) HasChanges() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("hasChanges"))
+	return rv
+}
+
+// A Boolean value that indicates whether this object has ever been saved.
+//
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/isNew
+func (e_ EKObject) New() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("new"))
+	return rv
+}
+
 // A Boolean value that indicates whether this object has ever been saved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekobject/isnew
@@ -121,22 +137,6 @@ func (e_ EKObject) IsNew() bool {
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekobject/isnew
 func (e_ EKObject) SetIsNew(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsNew:"), value)
-}
-
-// Returns whether this object or any of the objects it contains has uncommitted changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/hasChanges
-func (e_ EKObject) HasChanges() bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("hasChanges"))
-	return rv
-}
-
-// A Boolean value that indicates whether this object has ever been saved.
-//
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/isNew
-func (e_ EKObject) New() bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("new"))
-	return rv
 }
 
 

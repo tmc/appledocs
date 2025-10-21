@@ -77,21 +77,6 @@ func NewMTROptionalQRCodeInfo() MTROptionalQRCodeInfo {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/type
-func (m_ MTROptionalQRCodeInfo) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// SetType sets the value of the type property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/type
-func (m_ MTROptionalQRCodeInfo) SetType(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/infotype
 func (m_ MTROptionalQRCodeInfo) InfoType() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("infoType"))
@@ -104,21 +89,6 @@ func (m_ MTROptionalQRCodeInfo) InfoType() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/infotype
 func (m_ MTROptionalQRCodeInfo) SetInfoType(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInfoType:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/tag
-func (m_ MTROptionalQRCodeInfo) Tag() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("tag"))
-	return rv
-}
-
-
-// SetTag sets the value of the tag property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/tag
-func (m_ MTROptionalQRCodeInfo) SetTag(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTag:"), value)
 }
 
 //
@@ -149,6 +119,36 @@ func (m_ MTROptionalQRCodeInfo) StringValue() string {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/stringvalue
 func (m_ MTROptionalQRCodeInfo) SetStringValue(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/tag
+func (m_ MTROptionalQRCodeInfo) Tag() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("tag"))
+	return rv
+}
+
+
+// SetTag sets the value of the tag property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/tag
+func (m_ MTROptionalQRCodeInfo) SetTag(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTag:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/type
+func (m_ MTROptionalQRCodeInfo) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/type
+func (m_ MTROptionalQRCodeInfo) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 
 

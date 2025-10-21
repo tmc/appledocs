@@ -77,21 +77,6 @@ func NewMTRUnitTestingClusterTestListInt8UArgumentRequestParams() MTRUnitTesting
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestlistint8uargumentrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestListInt8UArgumentRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestlistint8uargumentrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestListInt8UArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestlistint8uargumentrequestparams/arg1
 func (m_ MTRUnitTestingClusterTestListInt8UArgumentRequestParams) Arg1() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
@@ -119,6 +104,21 @@ func (m_ MTRUnitTestingClusterTestListInt8UArgumentRequestParams) ServerSideProc
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestlistint8uargumentrequestparams/serversideprocessingtimeout
 func (m_ MTRUnitTestingClusterTestListInt8UArgumentRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestlistint8uargumentrequestparams/timedinvoketimeoutms
+func (m_ MTRUnitTestingClusterTestListInt8UArgumentRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestlistint8uargumentrequestparams/timedinvoketimeoutms
+func (m_ MTRUnitTestingClusterTestListInt8UArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

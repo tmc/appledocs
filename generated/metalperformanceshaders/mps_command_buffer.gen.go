@@ -83,21 +83,6 @@ func (c_ CommandBuffer) PrefetchHeapForWorkloadSize(size unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscommandbuffer/rootcommandbuffer
-func (c_ CommandBuffer) RootCommandBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rootCommandBuffer"))
-	return rv
-}
-
-
-// SetRootCommandBuffer sets the value of the rootCommandBuffer property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscommandbuffer/rootcommandbuffer
-func (c_ CommandBuffer) SetRootCommandBuffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRootCommandBuffer:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/commandBuffer
 func (c_ CommandBuffer) CommandBuffer() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("commandBuffer"))
@@ -132,6 +117,21 @@ func (c_ CommandBuffer) Predicate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/predicate
 func (c_ CommandBuffer) SetPredicate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscommandbuffer/rootcommandbuffer
+func (c_ CommandBuffer) RootCommandBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rootCommandBuffer"))
+	return rv
+}
+
+
+// SetRootCommandBuffer sets the value of the rootCommandBuffer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscommandbuffer/rootcommandbuffer
+func (c_ CommandBuffer) SetRootCommandBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRootCommandBuffer:"), value)
 }
 
 

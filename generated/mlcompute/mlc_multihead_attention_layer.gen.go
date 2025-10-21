@@ -81,40 +81,22 @@ func NewCMultiheadAttentionLayer() CMultiheadAttentionLayer {
 }
 
 
-// The configuration object you use to create the multi-head attention layer.
+// The array of attention biases you use for key and value.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/descriptor
-func (c_ CMultiheadAttentionLayer) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/attentionbiases
+func (c_ CMultiheadAttentionLayer) AttentionBiases() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attentionBiases"))
 	return rv
 }
 
 
-// SetDescriptor sets the value of the descriptor property.
-// The configuration object you use to create the multi-head attention layer.
+// SetAttentionBiases sets the value of the attentionBiases property.
+// The array of attention biases you use for key and value.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/descriptor
-func (c_ CMultiheadAttentionLayer) SetDescriptor(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
-}
-
-// The array of weights tensor parameters you use for optimizer updates.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weightsparameters
-func (c_ CMultiheadAttentionLayer) WeightsParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weightsParameters"))
-	return rv
-}
-
-
-// SetWeightsParameters sets the value of the weightsParameters property.
-// The array of weights tensor parameters you use for optimizer updates.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weightsparameters
-func (c_ CMultiheadAttentionLayer) SetWeightsParameters(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameters:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/attentionbiases
+func (c_ CMultiheadAttentionLayer) SetAttentionBiases(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAttentionBiases:"), value)
 }
 
 // The array of biases you use for query, key, value, and output projections.
@@ -135,24 +117,6 @@ func (c_ CMultiheadAttentionLayer) SetBiases(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBiases:"), value)
 }
 
-// The array of weights you use for query, key, value, and output projections.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weights
-func (c_ CMultiheadAttentionLayer) Weights() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weights"))
-	return rv
-}
-
-
-// SetWeights sets the value of the weights property.
-// The array of weights you use for query, key, value, and output projections.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weights
-func (c_ CMultiheadAttentionLayer) SetWeights(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
-}
-
 // The array of biases tensor parameters you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/biasesparameters
@@ -171,22 +135,58 @@ func (c_ CMultiheadAttentionLayer) SetBiasesParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBiasesParameters:"), value)
 }
 
-// The array of attention biases you use for key and value.
+// The configuration object you use to create the multi-head attention layer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/attentionbiases
-func (c_ CMultiheadAttentionLayer) AttentionBiases() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attentionBiases"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/descriptor
+func (c_ CMultiheadAttentionLayer) Descriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 
-// SetAttentionBiases sets the value of the attentionBiases property.
-// The array of attention biases you use for key and value.
+// SetDescriptor sets the value of the descriptor property.
+// The configuration object you use to create the multi-head attention layer.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/attentionbiases
-func (c_ CMultiheadAttentionLayer) SetAttentionBiases(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAttentionBiases:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/descriptor
+func (c_ CMultiheadAttentionLayer) SetDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
+}
+
+// The array of weights you use for query, key, value, and output projections.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weights
+func (c_ CMultiheadAttentionLayer) Weights() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weights"))
+	return rv
+}
+
+
+// SetWeights sets the value of the weights property.
+// The array of weights you use for query, key, value, and output projections.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weights
+func (c_ CMultiheadAttentionLayer) SetWeights(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
+}
+
+// The array of weights tensor parameters you use for optimizer updates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weightsparameters
+func (c_ CMultiheadAttentionLayer) WeightsParameters() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weightsParameters"))
+	return rv
+}
+
+
+// SetWeightsParameters sets the value of the weightsParameters property.
+// The array of weights tensor parameters you use for optimizer updates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weightsparameters
+func (c_ CMultiheadAttentionLayer) SetWeightsParameters(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameters:"), value)
 }
 
 

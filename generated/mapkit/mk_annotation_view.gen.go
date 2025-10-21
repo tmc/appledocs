@@ -83,6 +83,168 @@ func NewMKAnnotationView() MKAnnotationView {
 }
 
 
+// An identifier that determines whether the annotation view participates in clustering.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/clusteringIdentifier
+func (m_ MKAnnotationView) ClusteringIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("clusteringIdentifier"))
+	return rv
+}
+
+
+// SetClusteringIdentifier sets the value of the clusteringIdentifier property.
+// An identifier that determines whether the annotation view participates in clustering.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/clusteringIdentifier
+func (m_ MKAnnotationView) SetClusteringIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setClusteringIdentifier:"), objc.String(value))
+}
+
+// An offset that changes the accessory’s default anchor point.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/accessoryoffset
+func (m_ MKAnnotationView) AccessoryOffset() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("accessoryOffset"))
+	return rv
+}
+
+
+// SetAccessoryOffset sets the value of the accessoryOffset property.
+// An offset that changes the accessory’s default anchor point.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/accessoryoffset
+func (m_ MKAnnotationView) SetAccessoryOffset(value coregraphics.CGPoint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessoryOffset:"), value)
+}
+
+// The annotation object associated with the view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/annotation
+func (m_ MKAnnotationView) Annotation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("annotation"))
+	return rv
+}
+
+
+// SetAnnotation sets the value of the annotation property.
+// The annotation object associated with the view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/annotation
+func (m_ MKAnnotationView) SetAnnotation(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAnnotation:"), value)
+}
+
+// The offset (in points) at which to place the callout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/calloutoffset
+func (m_ MKAnnotationView) CalloutOffset() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("calloutOffset"))
+	return rv
+}
+
+
+// SetCalloutOffset sets the value of the calloutOffset property.
+// The offset (in points) at which to place the callout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/calloutoffset
+func (m_ MKAnnotationView) SetCalloutOffset(value coregraphics.CGPoint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCalloutOffset:"), value)
+}
+
+// A Boolean value that indicates whether the annotation view is able to display extra information in a callout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/canshowcallout
+func (m_ MKAnnotationView) CanShowCallout() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("canShowCallout"))
+	return rv
+}
+
+
+// SetCanShowCallout sets the value of the canShowCallout property.
+// A Boolean value that indicates whether the annotation view is able to display extra information in a callout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/canshowcallout
+func (m_ MKAnnotationView) SetCanShowCallout(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCanShowCallout:"), value)
+}
+
+// The offset (in points) at which to display the view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/centeroffset
+func (m_ MKAnnotationView) CenterOffset() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("centerOffset"))
+	return rv
+}
+
+
+// SetCenterOffset sets the value of the centerOffset property.
+// The offset (in points) at which to display the view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/centeroffset
+func (m_ MKAnnotationView) SetCenterOffset(value coregraphics.CGPoint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCenterOffset:"), value)
+}
+
+// The clustering annotation view that replaces the annotation view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/cluster
+func (m_ MKAnnotationView) Cluster() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cluster"))
+	return rv
+}
+
+
+// SetCluster sets the value of the cluster property.
+// The clustering annotation view that replaces the annotation view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/cluster
+func (m_ MKAnnotationView) SetCluster(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
+}
+
+// The collision mode to use when interpreting the collision frame rectangle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.property
+func (m_ MKAnnotationView) CollisionMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("collisionMode"))
+	return rv
+}
+
+
+// SetCollisionMode sets the value of the collisionMode property.
+// The collision mode to use when interpreting the collision frame rectangle.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.property
+func (m_ MKAnnotationView) SetCollisionMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCollisionMode:"), value)
+}
+
+// The detail accessory view to use in the standard callout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/detailcalloutaccessoryview
+func (m_ MKAnnotationView) DetailCalloutAccessoryView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("detailCalloutAccessoryView"))
+	return rv
+}
+
+
+// SetDetailCalloutAccessoryView sets the value of the detailCalloutAccessoryView property.
+// The detail accessory view to use in the standard callout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/detailcalloutaccessoryview
+func (m_ MKAnnotationView) SetDetailCalloutAccessoryView(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDetailCalloutAccessoryView:"), value)
+}
+
 // The display priority of the annotation view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/displaypriority
@@ -119,240 +281,6 @@ func (m_ MKAnnotationView) SetDragState(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDragState:"), value)
 }
 
-// An offset that changes the accessory’s default anchor point.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/accessoryoffset
-func (m_ MKAnnotationView) AccessoryOffset() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("accessoryOffset"))
-	return rv
-}
-
-
-// SetAccessoryOffset sets the value of the accessoryOffset property.
-// An offset that changes the accessory’s default anchor point.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/accessoryoffset
-func (m_ MKAnnotationView) SetAccessoryOffset(value coregraphics.CGPoint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessoryOffset:"), value)
-}
-
-// A Boolean value that indicates whether the annotation view is able to display extra information in a callout.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/canshowcallout
-func (m_ MKAnnotationView) CanShowCallout() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("canShowCallout"))
-	return rv
-}
-
-
-// SetCanShowCallout sets the value of the canShowCallout property.
-// A Boolean value that indicates whether the annotation view is able to display extra information in a callout.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/canshowcallout
-func (m_ MKAnnotationView) SetCanShowCallout(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCanShowCallout:"), value)
-}
-
-// The detail accessory view to use in the standard callout.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/detailcalloutaccessoryview
-func (m_ MKAnnotationView) DetailCalloutAccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("detailCalloutAccessoryView"))
-	return rv
-}
-
-
-// SetDetailCalloutAccessoryView sets the value of the detailCalloutAccessoryView property.
-// The detail accessory view to use in the standard callout.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/detailcalloutaccessoryview
-func (m_ MKAnnotationView) SetDetailCalloutAccessoryView(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDetailCalloutAccessoryView:"), value)
-}
-
-// The string that identifies that the annotation view is reusable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/reuseidentifier
-func (m_ MKAnnotationView) ReuseIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("reuseIdentifier"))
-	return rv
-}
-
-
-// SetReuseIdentifier sets the value of the reuseIdentifier property.
-// The string that identifies that the annotation view is reusable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/reuseidentifier
-func (m_ MKAnnotationView) SetReuseIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReuseIdentifier:"), objc.String(value))
-}
-
-// The offset (in points) at which to place the callout.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/calloutoffset
-func (m_ MKAnnotationView) CalloutOffset() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("calloutOffset"))
-	return rv
-}
-
-
-// SetCalloutOffset sets the value of the calloutOffset property.
-// The offset (in points) at which to place the callout.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/calloutoffset
-func (m_ MKAnnotationView) SetCalloutOffset(value coregraphics.CGPoint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCalloutOffset:"), value)
-}
-
-// The relative importance of the annotation view when in an unselected state with respect to its ordering along the z-axis.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/zpriority
-func (m_ MKAnnotationView) ZPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("zPriority"))
-	return rv
-}
-
-
-// SetZPriority sets the value of the zPriority property.
-// The relative importance of the annotation view when in an unselected state with respect to its ordering along the z-axis.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/zpriority
-func (m_ MKAnnotationView) SetZPriority(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setZPriority:"), value)
-}
-
-// The offset (in points) at which to display the view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/centeroffset
-func (m_ MKAnnotationView) CenterOffset() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("centerOffset"))
-	return rv
-}
-
-
-// SetCenterOffset sets the value of the centerOffset property.
-// The offset (in points) at which to display the view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/centeroffset
-func (m_ MKAnnotationView) SetCenterOffset(value coregraphics.CGPoint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCenterOffset:"), value)
-}
-
-// A Boolean value that indicates whether the annotation view is in a selected state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/isselected
-func (m_ MKAnnotationView) IsSelected() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isSelected"))
-	return rv
-}
-
-
-// SetIsSelected sets the value of the isSelected property.
-// A Boolean value that indicates whether the annotation view is in a selected state.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/isselected
-func (m_ MKAnnotationView) SetIsSelected(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSelected:"), value)
-}
-
-// The offset in points from the middle-right of the annotation view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/rightcalloutoffset
-func (m_ MKAnnotationView) RightCalloutOffset() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("rightCalloutOffset"))
-	return rv
-}
-
-
-// SetRightCalloutOffset sets the value of the rightCalloutOffset property.
-// The offset in points from the middle-right of the annotation view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/rightcalloutoffset
-func (m_ MKAnnotationView) SetRightCalloutOffset(value coregraphics.CGPoint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRightCalloutOffset:"), value)
-}
-
-// The annotation object associated with the view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/annotation
-func (m_ MKAnnotationView) Annotation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("annotation"))
-	return rv
-}
-
-
-// SetAnnotation sets the value of the annotation property.
-// The annotation object associated with the view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/annotation
-func (m_ MKAnnotationView) SetAnnotation(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAnnotation:"), value)
-}
-
-// The view to display on the right side of the standard callout.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/rightcalloutaccessoryview
-func (m_ MKAnnotationView) RightCalloutAccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rightCalloutAccessoryView"))
-	return rv
-}
-
-
-// SetRightCalloutAccessoryView sets the value of the rightCalloutAccessoryView property.
-// The view to display on the right side of the standard callout.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/rightcalloutaccessoryview
-func (m_ MKAnnotationView) SetRightCalloutAccessoryView(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRightCalloutAccessoryView:"), value)
-}
-
-// A Boolean value that indicates whether the map view highlights the annotation view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/ishighlighted
-func (m_ MKAnnotationView) IsHighlighted() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isHighlighted"))
-	return rv
-}
-
-
-// SetIsHighlighted sets the value of the isHighlighted property.
-// A Boolean value that indicates whether the map view highlights the annotation view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/ishighlighted
-func (m_ MKAnnotationView) SetIsHighlighted(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsHighlighted:"), value)
-}
-
-// The view to display on the left side of the standard callout.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutaccessoryview
-func (m_ MKAnnotationView) LeftCalloutAccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("leftCalloutAccessoryView"))
-	return rv
-}
-
-
-// SetLeftCalloutAccessoryView sets the value of the leftCalloutAccessoryView property.
-// The view to display on the left side of the standard callout.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutaccessoryview
-func (m_ MKAnnotationView) SetLeftCalloutAccessoryView(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLeftCalloutAccessoryView:"), value)
-}
-
 // The image the annotation view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/image
@@ -369,78 +297,6 @@ func (m_ MKAnnotationView) Image() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/image
 func (m_ MKAnnotationView) SetImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
-}
-
-// The relative importance of the annotation view when in a selected state with respect to its ordering along the z-axis.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/selectedzpriority
-func (m_ MKAnnotationView) SelectedZPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("selectedZPriority"))
-	return rv
-}
-
-
-// SetSelectedZPriority sets the value of the selectedZPriority property.
-// The relative importance of the annotation view when in a selected state with respect to its ordering along the z-axis.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/selectedzpriority
-func (m_ MKAnnotationView) SetSelectedZPriority(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedZPriority:"), value)
-}
-
-// A Boolean value that indicates whether the annotation is in an enabled state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/isenabled
-func (m_ MKAnnotationView) IsEnabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
-	return rv
-}
-
-
-// SetIsEnabled sets the value of the isEnabled property.
-// A Boolean value that indicates whether the annotation is in an enabled state.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/isenabled
-func (m_ MKAnnotationView) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
-// The offset in points from the middle-left of the annotation view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutoffset
-func (m_ MKAnnotationView) LeftCalloutOffset() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("leftCalloutOffset"))
-	return rv
-}
-
-
-// SetLeftCalloutOffset sets the value of the leftCalloutOffset property.
-// The offset in points from the middle-left of the annotation view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutoffset
-func (m_ MKAnnotationView) SetLeftCalloutOffset(value coregraphics.CGPoint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLeftCalloutOffset:"), value)
-}
-
-// The collision mode to use when interpreting the collision frame rectangle.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.property
-func (m_ MKAnnotationView) CollisionMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("collisionMode"))
-	return rv
-}
-
-
-// SetCollisionMode sets the value of the collisionMode property.
-// The collision mode to use when interpreting the collision frame rectangle.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.property
-func (m_ MKAnnotationView) SetCollisionMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCollisionMode:"), value)
 }
 
 // A Boolean value that indicates whether the annotation view is draggable.
@@ -461,40 +317,184 @@ func (m_ MKAnnotationView) SetIsDraggable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDraggable:"), value)
 }
 
-// The clustering annotation view that replaces the annotation view.
+// A Boolean value that indicates whether the annotation is in an enabled state.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/cluster
-func (m_ MKAnnotationView) Cluster() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cluster"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/isenabled
+func (m_ MKAnnotationView) IsEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
 }
 
 
-// SetCluster sets the value of the cluster property.
-// The clustering annotation view that replaces the annotation view.
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether the annotation is in an enabled state.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/cluster
-func (m_ MKAnnotationView) SetCluster(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/isenabled
+func (m_ MKAnnotationView) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
-// An identifier that determines whether the annotation view participates in clustering.
+// A Boolean value that indicates whether the map view highlights the annotation view.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/clusteringIdentifier
-func (m_ MKAnnotationView) ClusteringIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("clusteringIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/ishighlighted
+func (m_ MKAnnotationView) IsHighlighted() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isHighlighted"))
 	return rv
 }
 
 
-// SetClusteringIdentifier sets the value of the clusteringIdentifier property.
-// An identifier that determines whether the annotation view participates in clustering.
+// SetIsHighlighted sets the value of the isHighlighted property.
+// A Boolean value that indicates whether the map view highlights the annotation view.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/clusteringIdentifier
-func (m_ MKAnnotationView) SetClusteringIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setClusteringIdentifier:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/ishighlighted
+func (m_ MKAnnotationView) SetIsHighlighted(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsHighlighted:"), value)
+}
+
+// A Boolean value that indicates whether the annotation view is in a selected state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/isselected
+func (m_ MKAnnotationView) IsSelected() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isSelected"))
+	return rv
+}
+
+
+// SetIsSelected sets the value of the isSelected property.
+// A Boolean value that indicates whether the annotation view is in a selected state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/isselected
+func (m_ MKAnnotationView) SetIsSelected(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSelected:"), value)
+}
+
+// The view to display on the left side of the standard callout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutaccessoryview
+func (m_ MKAnnotationView) LeftCalloutAccessoryView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("leftCalloutAccessoryView"))
+	return rv
+}
+
+
+// SetLeftCalloutAccessoryView sets the value of the leftCalloutAccessoryView property.
+// The view to display on the left side of the standard callout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutaccessoryview
+func (m_ MKAnnotationView) SetLeftCalloutAccessoryView(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLeftCalloutAccessoryView:"), value)
+}
+
+// The offset in points from the middle-left of the annotation view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutoffset
+func (m_ MKAnnotationView) LeftCalloutOffset() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("leftCalloutOffset"))
+	return rv
+}
+
+
+// SetLeftCalloutOffset sets the value of the leftCalloutOffset property.
+// The offset in points from the middle-left of the annotation view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutoffset
+func (m_ MKAnnotationView) SetLeftCalloutOffset(value coregraphics.CGPoint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLeftCalloutOffset:"), value)
+}
+
+// The string that identifies that the annotation view is reusable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/reuseidentifier
+func (m_ MKAnnotationView) ReuseIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("reuseIdentifier"))
+	return rv
+}
+
+
+// SetReuseIdentifier sets the value of the reuseIdentifier property.
+// The string that identifies that the annotation view is reusable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/reuseidentifier
+func (m_ MKAnnotationView) SetReuseIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReuseIdentifier:"), objc.String(value))
+}
+
+// The view to display on the right side of the standard callout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/rightcalloutaccessoryview
+func (m_ MKAnnotationView) RightCalloutAccessoryView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rightCalloutAccessoryView"))
+	return rv
+}
+
+
+// SetRightCalloutAccessoryView sets the value of the rightCalloutAccessoryView property.
+// The view to display on the right side of the standard callout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/rightcalloutaccessoryview
+func (m_ MKAnnotationView) SetRightCalloutAccessoryView(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRightCalloutAccessoryView:"), value)
+}
+
+// The offset in points from the middle-right of the annotation view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/rightcalloutoffset
+func (m_ MKAnnotationView) RightCalloutOffset() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("rightCalloutOffset"))
+	return rv
+}
+
+
+// SetRightCalloutOffset sets the value of the rightCalloutOffset property.
+// The offset in points from the middle-right of the annotation view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/rightcalloutoffset
+func (m_ MKAnnotationView) SetRightCalloutOffset(value coregraphics.CGPoint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRightCalloutOffset:"), value)
+}
+
+// The relative importance of the annotation view when in a selected state with respect to its ordering along the z-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/selectedzpriority
+func (m_ MKAnnotationView) SelectedZPriority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("selectedZPriority"))
+	return rv
+}
+
+
+// SetSelectedZPriority sets the value of the selectedZPriority property.
+// The relative importance of the annotation view when in a selected state with respect to its ordering along the z-axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/selectedzpriority
+func (m_ MKAnnotationView) SetSelectedZPriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedZPriority:"), value)
+}
+
+// The relative importance of the annotation view when in an unselected state with respect to its ordering along the z-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/zpriority
+func (m_ MKAnnotationView) ZPriority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("zPriority"))
+	return rv
+}
+
+
+// SetZPriority sets the value of the zPriority property.
+// The relative importance of the annotation view when in an unselected state with respect to its ordering along the z-axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/zpriority
+func (m_ MKAnnotationView) SetZPriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setZPriority:"), value)
 }
 
 

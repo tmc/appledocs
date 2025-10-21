@@ -77,36 +77,6 @@ func NewMTRContentLauncherClusterLaunchContentParams() MTRContentLauncherCluster
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/serversideprocessingtimeout
-func (m_ MTRContentLauncherClusterLaunchContentParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/serversideprocessingtimeout
-func (m_ MTRContentLauncherClusterLaunchContentParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/usecurrentcontext
-func (m_ MTRContentLauncherClusterLaunchContentParams) UseCurrentContext() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("useCurrentContext"))
-	return rv
-}
-
-
-// SetUseCurrentContext sets the value of the useCurrentContext property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/usecurrentcontext
-func (m_ MTRContentLauncherClusterLaunchContentParams) SetUseCurrentContext(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUseCurrentContext:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/autoplay
 func (m_ MTRContentLauncherClusterLaunchContentParams) AutoPlay() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("autoPlay"))
@@ -152,6 +122,21 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) SetSearch(value unsafe.Po
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/serversideprocessingtimeout
+func (m_ MTRContentLauncherClusterLaunchContentParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/serversideprocessingtimeout
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/timedinvoketimeoutms
 func (m_ MTRContentLauncherClusterLaunchContentParams) TimedInvokeTimeoutMs() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
@@ -164,6 +149,21 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) TimedInvokeTimeoutMs() fo
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/timedinvoketimeoutms
 func (m_ MTRContentLauncherClusterLaunchContentParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/usecurrentcontext
+func (m_ MTRContentLauncherClusterLaunchContentParams) UseCurrentContext() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("useCurrentContext"))
+	return rv
+}
+
+
+// SetUseCurrentContext sets the value of the useCurrentContext property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/usecurrentcontext
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetUseCurrentContext(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUseCurrentContext:"), value)
 }
 
 

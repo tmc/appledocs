@@ -123,24 +123,6 @@ func (d_ DisplayLink) RemoveFromRunLoopForMode(runloop unsafe.Pointer, mode unsa
 	objc.Send[objc.ID](d_.ID, objc.Sel("removeFromRunLoop:forMode:"), runloop, mode)
 }
 
-// A Boolean value that indicates whether the system suspends the display link’s notifications to the target.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cadisplaylink/ispaused
-func (d_ DisplayLink) IsPaused() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("isPaused"))
-	return rv
-}
-
-
-// SetIsPaused sets the value of the isPaused property.
-// A Boolean value that indicates whether the system suspends the display link’s notifications to the target.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cadisplaylink/ispaused
-func (d_ DisplayLink) SetIsPaused(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setIsPaused:"), value)
-}
-
 // The time interval between screen refresh updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/duration
@@ -235,6 +217,24 @@ func (d_ DisplayLink) TargetTimestamp() unsafe.Pointer {
 func (d_ DisplayLink) Timestamp() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timestamp"))
 	return rv
+}
+
+// A Boolean value that indicates whether the system suspends the display link’s notifications to the target.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cadisplaylink/ispaused
+func (d_ DisplayLink) IsPaused() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isPaused"))
+	return rv
+}
+
+
+// SetIsPaused sets the value of the isPaused property.
+// A Boolean value that indicates whether the system suspends the display link’s notifications to the target.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cadisplaylink/ispaused
+func (d_ DisplayLink) SetIsPaused(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsPaused:"), value)
 }
 
 

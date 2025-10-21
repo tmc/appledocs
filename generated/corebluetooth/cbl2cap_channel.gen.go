@@ -78,6 +78,24 @@ func NewCBL2CAPChannel() CBL2CAPChannel {
 }
 
 
+// The stream used for reading data from the remote peer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
+func (c_ CBL2CAPChannel) InputStream() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("inputStream"))
+	return rv
+}
+
+
+// SetInputStream sets the value of the inputStream property.
+// The stream used for reading data from the remote peer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
+func (c_ CBL2CAPChannel) SetInputStream(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInputStream:"), value)
+}
+
 // The stream used for writing data to the peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
@@ -94,24 +112,6 @@ func (c_ CBL2CAPChannel) OutputStream() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
 func (c_ CBL2CAPChannel) SetOutputStream(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputStream:"), value)
-}
-
-// The PSM of the channel.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
-func (c_ CBL2CAPChannel) Psm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("psm"))
-	return rv
-}
-
-
-// SetPsm sets the value of the psm property.
-// The PSM of the channel.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
-func (c_ CBL2CAPChannel) SetPsm(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPsm:"), value)
 }
 
 // The peer connected to the channel.
@@ -132,22 +132,22 @@ func (c_ CBL2CAPChannel) SetPeer(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPeer:"), value)
 }
 
-// The stream used for reading data from the remote peer.
+// The PSM of the channel.
 //
-// [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-func (c_ CBL2CAPChannel) InputStream() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("inputStream"))
+// [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
+func (c_ CBL2CAPChannel) Psm() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("psm"))
 	return rv
 }
 
 
-// SetInputStream sets the value of the inputStream property.
-// The stream used for reading data from the remote peer.
+// SetPsm sets the value of the psm property.
+// The PSM of the channel.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-func (c_ CBL2CAPChannel) SetInputStream(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInputStream:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
+func (c_ CBL2CAPChannel) SetPsm(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPsm:"), value)
 }
 
 

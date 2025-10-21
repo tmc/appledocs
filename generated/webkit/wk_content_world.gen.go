@@ -87,6 +87,14 @@ func (cc _ContentWorldClass) PageWorld() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("pageWorld"))
 	return rv
 }
+// The content world for the current webpage’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentWorld/page
+func (c_ ContentWorld) PageWorld() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("pageWorld"))
+	return rv
+}
+
 // The name of a custom content world.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkcontentworld/name
@@ -103,14 +111,6 @@ func (c_ ContentWorld) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkcontentworld/name
 func (c_ ContentWorld) SetName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// The content world for the current webpage’s content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentWorld/page
-func (c_ ContentWorld) PageWorld() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("pageWorld"))
-	return rv
 }
 
 

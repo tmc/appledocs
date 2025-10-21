@@ -78,6 +78,21 @@ func NewMTRTestClusterClusterTestNullableOptionalResponseParams() MTRTestCluster
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/originalvalue
+func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) OriginalValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("originalValue"))
+	return rv
+}
+
+
+// SetOriginalValue sets the value of the originalValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/originalvalue
+func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetOriginalValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOriginalValue:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) TimedInvokeTimeoutMs() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
@@ -90,6 +105,21 @@ func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) TimedInvokeTim
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/value
+func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/value
+func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 
 //
@@ -120,36 +150,6 @@ func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) WasPresent() f
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/waspresent
 func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetWasPresent(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWasPresent:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/value
-func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
-	return rv
-}
-
-
-// SetValue sets the value of the value property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/value
-func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetValue(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/originalvalue
-func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) OriginalValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("originalValue"))
-	return rv
-}
-
-
-// SetOriginalValue sets the value of the originalValue property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/originalvalue
-func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetOriginalValue(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOriginalValue:"), value)
 }
 
 

@@ -88,6 +88,14 @@ func (a_ AuthorizationSingleSignOnProvider) CreateRequest() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean value that indicates if the provider is capable of performing authorization within a given configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnProvider/canPerformAuthorization
+func (a_ AuthorizationSingleSignOnProvider) CanPerformAuthorization() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformAuthorization"))
+	return rv
+}
+
 // The URL of the identity provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/url
@@ -104,14 +112,6 @@ func (a_ AuthorizationSingleSignOnProvider) Url() foundation.URL {
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/url
 func (a_ AuthorizationSingleSignOnProvider) SetUrl(value foundation.URL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUrl:"), value)
-}
-
-// A Boolean value that indicates if the provider is capable of performing authorization within a given configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnProvider/canPerformAuthorization
-func (a_ AuthorizationSingleSignOnProvider) CanPerformAuthorization() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformAuthorization"))
-	return rv
 }
 
 

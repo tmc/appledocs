@@ -88,6 +88,24 @@ func (ac _ArgumentDescriptorClass) ArgumentDescriptor() unsafe.Pointer {
 	return rv
 }
 
+// The length of an array argument.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArgumentDescriptor/arrayLength
+func (a_ ArgumentDescriptor) ArrayLength() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("arrayLength"))
+	return rv
+}
+
+
+// SetArrayLength sets the value of the arrayLength property.
+// The length of an array argument.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArgumentDescriptor/arrayLength
+func (a_ ArgumentDescriptor) SetArrayLength(value uint) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setArrayLength:"), value)
+}
+
 // The access permissions of the argument.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/access
@@ -104,6 +122,42 @@ func (a_ ArgumentDescriptor) Access() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/access
 func (a_ ArgumentDescriptor) SetAccess(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccess:"), value)
+}
+
+// The alignment of the constant block.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/constantblockalignment
+func (a_ ArgumentDescriptor) ConstantBlockAlignment() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("constantBlockAlignment"))
+	return rv
+}
+
+
+// SetConstantBlockAlignment sets the value of the constantBlockAlignment property.
+// The alignment of the constant block.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/constantblockalignment
+func (a_ ArgumentDescriptor) SetConstantBlockAlignment(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setConstantBlockAlignment:"), value)
+}
+
+// The data type of the argument.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/datatype
+func (a_ ArgumentDescriptor) DataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dataType"))
+	return rv
+}
+
+
+// SetDataType sets the value of the dataType property.
+// The data type of the argument.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/datatype
+func (a_ ArgumentDescriptor) SetDataType(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDataType:"), value)
 }
 
 // The index ID of the argument.
@@ -147,60 +201,6 @@ func (a_ ArgumentDescriptor) SetTextureType(value unsafe.Pointer) {
 func (a_ ArgumentDescriptor) MTLAttributeStrideStatic() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("MTLAttributeStrideStatic"))
 	return rv
-}
-
-// The alignment of the constant block.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/constantblockalignment
-func (a_ ArgumentDescriptor) ConstantBlockAlignment() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("constantBlockAlignment"))
-	return rv
-}
-
-
-// SetConstantBlockAlignment sets the value of the constantBlockAlignment property.
-// The alignment of the constant block.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/constantblockalignment
-func (a_ ArgumentDescriptor) SetConstantBlockAlignment(value int) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setConstantBlockAlignment:"), value)
-}
-
-// The data type of the argument.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/datatype
-func (a_ ArgumentDescriptor) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dataType"))
-	return rv
-}
-
-
-// SetDataType sets the value of the dataType property.
-// The data type of the argument.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/datatype
-func (a_ ArgumentDescriptor) SetDataType(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDataType:"), value)
-}
-
-// The length of an array argument.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArgumentDescriptor/arrayLength
-func (a_ ArgumentDescriptor) ArrayLength() uint {
-	rv := objc.Send[uint](a_.ID, objc.Sel("arrayLength"))
-	return rv
-}
-
-
-// SetArrayLength sets the value of the arrayLength property.
-// The length of an array argument.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArgumentDescriptor/arrayLength
-func (a_ ArgumentDescriptor) SetArrayLength(value uint) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setArrayLength:"), value)
 }
 
 

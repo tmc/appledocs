@@ -380,24 +380,6 @@ func (f_ FeatureValue) IsEqualToFeatureValue(value unsafe.Pointer) bool {
 	return rv
 }
 
-// A Boolean value that indicates whether the feature value is undefined or missing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturevalue/isundefined
-func (f_ FeatureValue) IsUndefined() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isUndefined"))
-	return rv
-}
-
-
-// SetIsUndefined sets the value of the isUndefined property.
-// A Boolean value that indicates whether the feature value is undefined or missing.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturevalue/isundefined
-func (f_ FeatureValue) SetIsUndefined(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsUndefined:"), value)
-}
-
 // The underlying dictionary of the feature value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/dictionaryValue
@@ -468,6 +450,24 @@ func (f_ FeatureValue) StringValue() string {
 func (f_ FeatureValue) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("type"))
 	return rv
+}
+
+// A Boolean value that indicates whether the feature value is undefined or missing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturevalue/isundefined
+func (f_ FeatureValue) IsUndefined() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isUndefined"))
+	return rv
+}
+
+
+// SetIsUndefined sets the value of the isUndefined property.
+// A Boolean value that indicates whether the feature value is undefined or missing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturevalue/isundefined
+func (f_ FeatureValue) SetIsUndefined(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsUndefined:"), value)
 }
 
 

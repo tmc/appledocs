@@ -81,78 +81,6 @@ func NewPHASEGeneratorNodeDefinition() PHASEGeneratorNodeDefinition {
 }
 
 
-// A group this node conforms to for gain and rate control.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/group
-func (p_ PHASEGeneratorNodeDefinition) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("group"))
-	return rv
-}
-
-
-// SetGroup sets the value of the group property.
-// A group this node conforms to for gain and rate control.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/group
-func (p_ PHASEGeneratorNodeDefinition) SetGroup(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGroup:"), value)
-}
-
-// The node’s loudness.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/level
-func (p_ PHASEGeneratorNodeDefinition) Level() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("level"))
-	return rv
-}
-
-
-// SetLevel sets the value of the level property.
-// The node’s loudness.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/level
-func (p_ PHASEGeneratorNodeDefinition) SetLevel(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLevel:"), value)
-}
-
-// A sound pressure level strategy for loudness correction.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/calibrationmode
-func (p_ PHASEGeneratorNodeDefinition) CalibrationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("calibrationMode"))
-	return rv
-}
-
-
-// SetCalibrationMode sets the value of the calibrationMode property.
-// A sound pressure level strategy for loudness correction.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/calibrationmode
-func (p_ PHASEGeneratorNodeDefinition) SetCalibrationMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCalibrationMode:"), value)
-}
-
-// An object that combines audio layers for the node’s output.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/mixerdefinition
-func (p_ PHASEGeneratorNodeDefinition) MixerDefinition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mixerDefinition"))
-	return rv
-}
-
-
-// SetMixerDefinition sets the value of the mixerDefinition property.
-// An object that combines audio layers for the node’s output.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/mixerdefinition
-func (p_ PHASEGeneratorNodeDefinition) SetMixerDefinition(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMixerDefinition:"), value)
-}
-
 // A meta parameter that dynamically changes the audio’s loudness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeneratorNodeDefinition/gainMetaParameterDefinition
@@ -205,6 +133,78 @@ func (p_ PHASEGeneratorNodeDefinition) RateMetaParameterDefinition() unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeneratorNodeDefinition/rateMetaParameterDefinition
 func (p_ PHASEGeneratorNodeDefinition) SetRateMetaParameterDefinition(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRateMetaParameterDefinition:"), value)
+}
+
+// A sound pressure level strategy for loudness correction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/calibrationmode
+func (p_ PHASEGeneratorNodeDefinition) CalibrationMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("calibrationMode"))
+	return rv
+}
+
+
+// SetCalibrationMode sets the value of the calibrationMode property.
+// A sound pressure level strategy for loudness correction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/calibrationmode
+func (p_ PHASEGeneratorNodeDefinition) SetCalibrationMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCalibrationMode:"), value)
+}
+
+// A group this node conforms to for gain and rate control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/group
+func (p_ PHASEGeneratorNodeDefinition) Group() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("group"))
+	return rv
+}
+
+
+// SetGroup sets the value of the group property.
+// A group this node conforms to for gain and rate control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/group
+func (p_ PHASEGeneratorNodeDefinition) SetGroup(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGroup:"), value)
+}
+
+// The node’s loudness.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/level
+func (p_ PHASEGeneratorNodeDefinition) Level() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("level"))
+	return rv
+}
+
+
+// SetLevel sets the value of the level property.
+// The node’s loudness.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/level
+func (p_ PHASEGeneratorNodeDefinition) SetLevel(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLevel:"), value)
+}
+
+// An object that combines audio layers for the node’s output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/mixerdefinition
+func (p_ PHASEGeneratorNodeDefinition) MixerDefinition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mixerDefinition"))
+	return rv
+}
+
+
+// SetMixerDefinition sets the value of the mixerDefinition property.
+// An object that combines audio layers for the node’s output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/mixerdefinition
+func (p_ PHASEGeneratorNodeDefinition) SetMixerDefinition(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMixerDefinition:"), value)
 }
 
 

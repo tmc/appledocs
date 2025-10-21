@@ -80,22 +80,45 @@ func NewJSValue() JSValue {
 }
 
 
-// A Boolean value that indicates whether the instance is a JavaScript
+// The JavaScript context hosting this value.
 //
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isdate
-func (j_ JSValue) IsDate() bool {
-	rv := objc.Send[bool](j_.ID, objc.Sel("isDate"))
+// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValue/context
+func (j_ JSValue) Context() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("context"))
+	return rv
+}
+
+// A Boolean value that indicates whether the instance is a JavaScript array value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isarray
+func (j_ JSValue) IsArray() bool {
+	rv := objc.Send[bool](j_.ID, objc.Sel("isArray"))
 	return rv
 }
 
 
-// SetIsDate sets the value of the isDate property.
-// A Boolean value that indicates whether the instance is a JavaScript
+// SetIsArray sets the value of the isArray property.
+// A Boolean value that indicates whether the instance is a JavaScript array value.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isdate
-func (j_ JSValue) SetIsDate(value bool) {
-	objc.Send[objc.ID](j_.ID, objc.Sel("setIsDate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isarray
+func (j_ JSValue) SetIsArray(value bool) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setIsArray:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isbigint
+func (j_ JSValue) IsBigInt() bool {
+	rv := objc.Send[bool](j_.ID, objc.Sel("isBigInt"))
+	return rv
+}
+
+
+// SetIsBigInt sets the value of the isBigInt property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isbigint
+func (j_ JSValue) SetIsBigInt(value bool) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setIsBigInt:"), value)
 }
 
 // A Boolean value that indicates whether the instance is a JavaScript Boolean value.
@@ -118,6 +141,78 @@ func (j_ JSValue) SetIsBoolean(value bool) {
 
 // A Boolean value that indicates whether the instance is a JavaScript
 //
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isdate
+func (j_ JSValue) IsDate() bool {
+	rv := objc.Send[bool](j_.ID, objc.Sel("isDate"))
+	return rv
+}
+
+
+// SetIsDate sets the value of the isDate property.
+// A Boolean value that indicates whether the instance is a JavaScript
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isdate
+func (j_ JSValue) SetIsDate(value bool) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setIsDate:"), value)
+}
+
+// A Boolean value that indicates whether the instance corresponds to the JavaScript
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnull
+func (j_ JSValue) IsNull() bool {
+	rv := objc.Send[bool](j_.ID, objc.Sel("isNull"))
+	return rv
+}
+
+
+// SetIsNull sets the value of the isNull property.
+// A Boolean value that indicates whether the instance corresponds to the JavaScript
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnull
+func (j_ JSValue) SetIsNull(value bool) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setIsNull:"), value)
+}
+
+// A Boolean value that indicates whether the instance is a JavaScript numeric value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnumber
+func (j_ JSValue) IsNumber() bool {
+	rv := objc.Send[bool](j_.ID, objc.Sel("isNumber"))
+	return rv
+}
+
+
+// SetIsNumber sets the value of the isNumber property.
+// A Boolean value that indicates whether the instance is a JavaScript numeric value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnumber
+func (j_ JSValue) SetIsNumber(value bool) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setIsNumber:"), value)
+}
+
+// A Boolean value that indicates whether the instance is a JavaScript object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isobject
+func (j_ JSValue) IsObject() bool {
+	rv := objc.Send[bool](j_.ID, objc.Sel("isObject"))
+	return rv
+}
+
+
+// SetIsObject sets the value of the isObject property.
+// A Boolean value that indicates whether the instance is a JavaScript object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isobject
+func (j_ JSValue) SetIsObject(value bool) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setIsObject:"), value)
+}
+
+// A Boolean value that indicates whether the instance is a JavaScript
+//
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isstring
 func (j_ JSValue) IsString() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isString"))
@@ -132,24 +227,6 @@ func (j_ JSValue) IsString() bool {
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isstring
 func (j_ JSValue) SetIsString(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsString:"), value)
-}
-
-// A Boolean value that indicates whether the instance is a JavaScript array value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isarray
-func (j_ JSValue) IsArray() bool {
-	rv := objc.Send[bool](j_.ID, objc.Sel("isArray"))
-	return rv
-}
-
-
-// SetIsArray sets the value of the isArray property.
-// A Boolean value that indicates whether the instance is a JavaScript array value.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isarray
-func (j_ JSValue) SetIsArray(value bool) {
-	objc.Send[objc.ID](j_.ID, objc.Sel("setIsArray:"), value)
 }
 
 // A Boolean value that indicates whether the instance is a symbol.
@@ -188,24 +265,6 @@ func (j_ JSValue) SetIsUndefined(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsUndefined:"), value)
 }
 
-// A Boolean value that indicates whether the instance is a JavaScript numeric value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnumber
-func (j_ JSValue) IsNumber() bool {
-	rv := objc.Send[bool](j_.ID, objc.Sel("isNumber"))
-	return rv
-}
-
-
-// SetIsNumber sets the value of the isNumber property.
-// A Boolean value that indicates whether the instance is a JavaScript numeric value.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnumber
-func (j_ JSValue) SetIsNumber(value bool) {
-	objc.Send[objc.ID](j_.ID, objc.Sel("setIsNumber:"), value)
-}
-
 // Returns the C representation of the JavaScript value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/jsvalueref
@@ -222,65 +281,6 @@ func (j_ JSValue) JsValueRef() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/jsvalueref
 func (j_ JSValue) SetJsValueRef(value unsafe.Pointer) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setJsValueRef:"), value)
-}
-
-// A Boolean value that indicates whether the instance corresponds to the JavaScript
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnull
-func (j_ JSValue) IsNull() bool {
-	rv := objc.Send[bool](j_.ID, objc.Sel("isNull"))
-	return rv
-}
-
-
-// SetIsNull sets the value of the isNull property.
-// A Boolean value that indicates whether the instance corresponds to the JavaScript
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnull
-func (j_ JSValue) SetIsNull(value bool) {
-	objc.Send[objc.ID](j_.ID, objc.Sel("setIsNull:"), value)
-}
-
-// A Boolean value that indicates whether the instance is a JavaScript object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isobject
-func (j_ JSValue) IsObject() bool {
-	rv := objc.Send[bool](j_.ID, objc.Sel("isObject"))
-	return rv
-}
-
-
-// SetIsObject sets the value of the isObject property.
-// A Boolean value that indicates whether the instance is a JavaScript object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isobject
-func (j_ JSValue) SetIsObject(value bool) {
-	objc.Send[objc.ID](j_.ID, objc.Sel("setIsObject:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isbigint
-func (j_ JSValue) IsBigInt() bool {
-	rv := objc.Send[bool](j_.ID, objc.Sel("isBigInt"))
-	return rv
-}
-
-
-// SetIsBigInt sets the value of the isBigInt property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isbigint
-func (j_ JSValue) SetIsBigInt(value bool) {
-	objc.Send[objc.ID](j_.ID, objc.Sel("setIsBigInt:"), value)
-}
-
-// The JavaScript context hosting this value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValue/context
-func (j_ JSValue) Context() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("context"))
-	return rv
 }
 
 

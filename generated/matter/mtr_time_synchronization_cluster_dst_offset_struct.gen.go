@@ -92,21 +92,6 @@ func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) SetOffset(value foundatio
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsetstruct/validuntil
-func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) ValidUntil() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validUntil"))
-	return rv
-}
-
-
-// SetValidUntil sets the value of the validUntil property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsetstruct/validuntil
-func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) SetValidUntil(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValidUntil:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsetstruct/validstarting
 func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) ValidStarting() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validStarting"))
@@ -119,6 +104,21 @@ func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) ValidStarting() foundatio
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsetstruct/validstarting
 func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) SetValidStarting(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValidStarting:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsetstruct/validuntil
+func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) ValidUntil() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validUntil"))
+	return rv
+}
+
+
+// SetValidUntil sets the value of the validUntil property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsetstruct/validuntil
+func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) SetValidUntil(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValidUntil:"), value)
 }
 
 

@@ -77,18 +77,18 @@ func NewMTRDoorLockClusterLockOperationEvent() MTRDoorLockClusterLockOperationEv
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/operationsource
-func (m_ MTRDoorLockClusterLockOperationEvent) OperationSource() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationSource"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/credentials
+func (m_ MTRDoorLockClusterLockOperationEvent) Credentials() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("credentials"))
 	return rv
 }
 
 
-// SetOperationSource sets the value of the operationSource property.
+// SetCredentials sets the value of the credentials property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/operationsource
-func (m_ MTRDoorLockClusterLockOperationEvent) SetOperationSource(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationSource:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/credentials
+func (m_ MTRDoorLockClusterLockOperationEvent) SetCredentials(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentials:"), value)
 }
 
 //
@@ -122,6 +122,21 @@ func (m_ MTRDoorLockClusterLockOperationEvent) SetLockOperationType(value founda
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/operationsource
+func (m_ MTRDoorLockClusterLockOperationEvent) OperationSource() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationSource"))
+	return rv
+}
+
+
+// SetOperationSource sets the value of the operationSource property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/operationsource
+func (m_ MTRDoorLockClusterLockOperationEvent) SetOperationSource(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationSource:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/sourcenode
 func (m_ MTRDoorLockClusterLockOperationEvent) SourceNode() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sourceNode"))
@@ -134,21 +149,6 @@ func (m_ MTRDoorLockClusterLockOperationEvent) SourceNode() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/sourcenode
 func (m_ MTRDoorLockClusterLockOperationEvent) SetSourceNode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceNode:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/credentials
-func (m_ MTRDoorLockClusterLockOperationEvent) Credentials() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("credentials"))
-	return rv
-}
-
-
-// SetCredentials sets the value of the credentials property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/credentials
-func (m_ MTRDoorLockClusterLockOperationEvent) SetCredentials(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentials:"), value)
 }
 
 //

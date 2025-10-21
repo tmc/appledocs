@@ -92,6 +92,21 @@ func (m_ MTRServerAttribute) SetAttributeID(value foundation.Number) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/iswritable
+func (m_ MTRServerAttribute) IsWritable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isWritable"))
+	return rv
+}
+
+
+// SetIsWritable sets the value of the isWritable property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/iswritable
+func (m_ MTRServerAttribute) SetIsWritable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsWritable:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/requiredreadprivilege
 func (m_ MTRServerAttribute) RequiredReadPrivilege() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredReadPrivilege"))
@@ -119,21 +134,6 @@ func (m_ MTRServerAttribute) Value() string {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/value
 func (m_ MTRServerAttribute) SetValue(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/iswritable
-func (m_ MTRServerAttribute) IsWritable() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isWritable"))
-	return rv
-}
-
-
-// SetIsWritable sets the value of the isWritable property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/iswritable
-func (m_ MTRServerAttribute) SetIsWritable(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsWritable:"), value)
 }
 
 

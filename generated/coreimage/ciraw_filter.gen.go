@@ -145,234 +145,6 @@ func (rc _RAWFilterClass) SupportedCameraModels() []string {
 	rv := objc.Send[[]string](objc.ID(rc.class), objc.Sel("supportedCameraModels"))
 	return rv
 }
-// A Boolean that indicates if the current image supports sharpness adjustments.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/issharpnesssupported
-func (r_ RAWFilter) IsSharpnessSupported() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isSharpnessSupported"))
-	return rv
-}
-
-
-// SetIsSharpnessSupported sets the value of the isSharpnessSupported property.
-// A Boolean that indicates if the current image supports sharpness adjustments.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/issharpnesssupported
-func (r_ RAWFilter) SetIsSharpnessSupported(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsSharpnessSupported:"), value)
-}
-
-// A Boolean that indicates if the current image supports luminance noise reduction adjustments.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isluminancenoisereductionsupported
-func (r_ RAWFilter) IsLuminanceNoiseReductionSupported() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isLuminanceNoiseReductionSupported"))
-	return rv
-}
-
-
-// SetIsLuminanceNoiseReductionSupported sets the value of the isLuminanceNoiseReductionSupported property.
-// A Boolean that indicates if the current image supports luminance noise reduction adjustments.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isluminancenoisereductionsupported
-func (r_ RAWFilter) SetIsLuminanceNoiseReductionSupported(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLuminanceNoiseReductionSupported:"), value)
-}
-
-// A Boolean that indicates if the current image supports detail enhancement adjustments.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdetailsupported
-func (r_ RAWFilter) IsDetailSupported() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isDetailSupported"))
-	return rv
-}
-
-
-// SetIsDetailSupported sets the value of the isDetailSupported property.
-// A Boolean that indicates if the current image supports detail enhancement adjustments.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdetailsupported
-func (r_ RAWFilter) SetIsDetailSupported(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDetailSupported:"), value)
-}
-
-// A Boolean that indicates whether to enable draft mode.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdraftmodeenabled
-func (r_ RAWFilter) IsDraftModeEnabled() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isDraftModeEnabled"))
-	return rv
-}
-
-
-// SetIsDraftModeEnabled sets the value of the isDraftModeEnabled property.
-// A Boolean that indicates whether to enable draft mode.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdraftmodeenabled
-func (r_ RAWFilter) SetIsDraftModeEnabled(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDraftModeEnabled:"), value)
-}
-
-// A Boolean that indicates if the current image supports contrast adjustments.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscontrastsupported
-func (r_ RAWFilter) IsContrastSupported() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isContrastSupported"))
-	return rv
-}
-
-
-// SetIsContrastSupported sets the value of the isContrastSupported property.
-// A Boolean that indicates if the current image supports contrast adjustments.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscontrastsupported
-func (r_ RAWFilter) SetIsContrastSupported(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsContrastSupported:"), value)
-}
-
-// A Boolean that indicates if the current image supports moire artifact reduction adjustments.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ismoirereductionsupported
-func (r_ RAWFilter) IsMoireReductionSupported() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isMoireReductionSupported"))
-	return rv
-}
-
-
-// SetIsMoireReductionSupported sets the value of the isMoireReductionSupported property.
-// A Boolean that indicates if the current image supports moire artifact reduction adjustments.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ismoirereductionsupported
-func (r_ RAWFilter) SetIsMoireReductionSupported(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsMoireReductionSupported:"), value)
-}
-
-// A Boolean that indicates if you can enable lens correction for the current image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionsupported
-func (r_ RAWFilter) IsLensCorrectionSupported() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isLensCorrectionSupported"))
-	return rv
-}
-
-
-// SetIsLensCorrectionSupported sets the value of the isLensCorrectionSupported property.
-// A Boolean that indicates if you can enable lens correction for the current image.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionsupported
-func (r_ RAWFilter) SetIsLensCorrectionSupported(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLensCorrectionSupported:"), value)
-}
-
-// A Boolean that indicates if the current image supports color noise reduction adjustments.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscolornoisereductionsupported
-func (r_ RAWFilter) IsColorNoiseReductionSupported() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isColorNoiseReductionSupported"))
-	return rv
-}
-
-
-// SetIsColorNoiseReductionSupported sets the value of the isColorNoiseReductionSupported property.
-// A Boolean that indicates if the current image supports color noise reduction adjustments.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscolornoisereductionsupported
-func (r_ RAWFilter) SetIsColorNoiseReductionSupported(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsColorNoiseReductionSupported:"), value)
-}
-
-// A Boolean that indicates whether to enable gamut mapping.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isgamutmappingenabled
-func (r_ RAWFilter) IsGamutMappingEnabled() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isGamutMappingEnabled"))
-	return rv
-}
-
-
-// SetIsGamutMappingEnabled sets the value of the isGamutMappingEnabled property.
-// A Boolean that indicates whether to enable gamut mapping.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isgamutmappingenabled
-func (r_ RAWFilter) SetIsGamutMappingEnabled(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsGamutMappingEnabled:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoverysupported
-func (r_ RAWFilter) IsHighlightRecoverySupported() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isHighlightRecoverySupported"))
-	return rv
-}
-
-
-// SetIsHighlightRecoverySupported sets the value of the isHighlightRecoverySupported property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoverysupported
-func (r_ RAWFilter) SetIsHighlightRecoverySupported(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsHighlightRecoverySupported:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoveryenabled
-func (r_ RAWFilter) IsHighlightRecoveryEnabled() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isHighlightRecoveryEnabled"))
-	return rv
-}
-
-
-// SetIsHighlightRecoveryEnabled sets the value of the isHighlightRecoveryEnabled property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoveryenabled
-func (r_ RAWFilter) SetIsHighlightRecoveryEnabled(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsHighlightRecoveryEnabled:"), value)
-}
-
-// A Boolean that indicates if the current image supports local tone curve adjustments.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islocaltonemapsupported
-func (r_ RAWFilter) IsLocalToneMapSupported() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isLocalToneMapSupported"))
-	return rv
-}
-
-
-// SetIsLocalToneMapSupported sets the value of the isLocalToneMapSupported property.
-// A Boolean that indicates if the current image supports local tone curve adjustments.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islocaltonemapsupported
-func (r_ RAWFilter) SetIsLocalToneMapSupported(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLocalToneMapSupported:"), value)
-}
-
-// A Boolean that indicates whether to enable lens correction.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionenabled
-func (r_ RAWFilter) IsLensCorrectionEnabled() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isLensCorrectionEnabled"))
-	return rv
-}
-
-
-// SetIsLensCorrectionEnabled sets the value of the isLensCorrectionEnabled property.
-// A Boolean that indicates whether to enable lens correction.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionenabled
-func (r_ RAWFilter) SetIsLensCorrectionEnabled(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLensCorrectionEnabled:"), value)
-}
-
 // A value that indicates the baseline exposure to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/baselineExposure
@@ -977,6 +749,234 @@ func (r_ RAWFilter) SupportedCameraModels() []string {
 func (r_ RAWFilter) SupportedDecoderVersions() []string {
 	rv := objc.Send[[]string](r_.ID, objc.Sel("supportedDecoderVersions"))
 	return rv
+}
+
+// A Boolean that indicates if the current image supports color noise reduction adjustments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscolornoisereductionsupported
+func (r_ RAWFilter) IsColorNoiseReductionSupported() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isColorNoiseReductionSupported"))
+	return rv
+}
+
+
+// SetIsColorNoiseReductionSupported sets the value of the isColorNoiseReductionSupported property.
+// A Boolean that indicates if the current image supports color noise reduction adjustments.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscolornoisereductionsupported
+func (r_ RAWFilter) SetIsColorNoiseReductionSupported(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsColorNoiseReductionSupported:"), value)
+}
+
+// A Boolean that indicates if the current image supports contrast adjustments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscontrastsupported
+func (r_ RAWFilter) IsContrastSupported() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isContrastSupported"))
+	return rv
+}
+
+
+// SetIsContrastSupported sets the value of the isContrastSupported property.
+// A Boolean that indicates if the current image supports contrast adjustments.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscontrastsupported
+func (r_ RAWFilter) SetIsContrastSupported(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsContrastSupported:"), value)
+}
+
+// A Boolean that indicates if the current image supports detail enhancement adjustments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdetailsupported
+func (r_ RAWFilter) IsDetailSupported() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isDetailSupported"))
+	return rv
+}
+
+
+// SetIsDetailSupported sets the value of the isDetailSupported property.
+// A Boolean that indicates if the current image supports detail enhancement adjustments.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdetailsupported
+func (r_ RAWFilter) SetIsDetailSupported(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDetailSupported:"), value)
+}
+
+// A Boolean that indicates whether to enable draft mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdraftmodeenabled
+func (r_ RAWFilter) IsDraftModeEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isDraftModeEnabled"))
+	return rv
+}
+
+
+// SetIsDraftModeEnabled sets the value of the isDraftModeEnabled property.
+// A Boolean that indicates whether to enable draft mode.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdraftmodeenabled
+func (r_ RAWFilter) SetIsDraftModeEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDraftModeEnabled:"), value)
+}
+
+// A Boolean that indicates whether to enable gamut mapping.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isgamutmappingenabled
+func (r_ RAWFilter) IsGamutMappingEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isGamutMappingEnabled"))
+	return rv
+}
+
+
+// SetIsGamutMappingEnabled sets the value of the isGamutMappingEnabled property.
+// A Boolean that indicates whether to enable gamut mapping.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isgamutmappingenabled
+func (r_ RAWFilter) SetIsGamutMappingEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsGamutMappingEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoveryenabled
+func (r_ RAWFilter) IsHighlightRecoveryEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isHighlightRecoveryEnabled"))
+	return rv
+}
+
+
+// SetIsHighlightRecoveryEnabled sets the value of the isHighlightRecoveryEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoveryenabled
+func (r_ RAWFilter) SetIsHighlightRecoveryEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsHighlightRecoveryEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoverysupported
+func (r_ RAWFilter) IsHighlightRecoverySupported() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isHighlightRecoverySupported"))
+	return rv
+}
+
+
+// SetIsHighlightRecoverySupported sets the value of the isHighlightRecoverySupported property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoverysupported
+func (r_ RAWFilter) SetIsHighlightRecoverySupported(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsHighlightRecoverySupported:"), value)
+}
+
+// A Boolean that indicates whether to enable lens correction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionenabled
+func (r_ RAWFilter) IsLensCorrectionEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isLensCorrectionEnabled"))
+	return rv
+}
+
+
+// SetIsLensCorrectionEnabled sets the value of the isLensCorrectionEnabled property.
+// A Boolean that indicates whether to enable lens correction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionenabled
+func (r_ RAWFilter) SetIsLensCorrectionEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLensCorrectionEnabled:"), value)
+}
+
+// A Boolean that indicates if you can enable lens correction for the current image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionsupported
+func (r_ RAWFilter) IsLensCorrectionSupported() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isLensCorrectionSupported"))
+	return rv
+}
+
+
+// SetIsLensCorrectionSupported sets the value of the isLensCorrectionSupported property.
+// A Boolean that indicates if you can enable lens correction for the current image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionsupported
+func (r_ RAWFilter) SetIsLensCorrectionSupported(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLensCorrectionSupported:"), value)
+}
+
+// A Boolean that indicates if the current image supports local tone curve adjustments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islocaltonemapsupported
+func (r_ RAWFilter) IsLocalToneMapSupported() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isLocalToneMapSupported"))
+	return rv
+}
+
+
+// SetIsLocalToneMapSupported sets the value of the isLocalToneMapSupported property.
+// A Boolean that indicates if the current image supports local tone curve adjustments.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islocaltonemapsupported
+func (r_ RAWFilter) SetIsLocalToneMapSupported(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLocalToneMapSupported:"), value)
+}
+
+// A Boolean that indicates if the current image supports luminance noise reduction adjustments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isluminancenoisereductionsupported
+func (r_ RAWFilter) IsLuminanceNoiseReductionSupported() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isLuminanceNoiseReductionSupported"))
+	return rv
+}
+
+
+// SetIsLuminanceNoiseReductionSupported sets the value of the isLuminanceNoiseReductionSupported property.
+// A Boolean that indicates if the current image supports luminance noise reduction adjustments.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isluminancenoisereductionsupported
+func (r_ RAWFilter) SetIsLuminanceNoiseReductionSupported(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLuminanceNoiseReductionSupported:"), value)
+}
+
+// A Boolean that indicates if the current image supports moire artifact reduction adjustments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ismoirereductionsupported
+func (r_ RAWFilter) IsMoireReductionSupported() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isMoireReductionSupported"))
+	return rv
+}
+
+
+// SetIsMoireReductionSupported sets the value of the isMoireReductionSupported property.
+// A Boolean that indicates if the current image supports moire artifact reduction adjustments.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ismoirereductionsupported
+func (r_ RAWFilter) SetIsMoireReductionSupported(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsMoireReductionSupported:"), value)
+}
+
+// A Boolean that indicates if the current image supports sharpness adjustments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/issharpnesssupported
+func (r_ RAWFilter) IsSharpnessSupported() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isSharpnessSupported"))
+	return rv
+}
+
+
+// SetIsSharpnessSupported sets the value of the isSharpnessSupported property.
+// A Boolean that indicates if the current image supports sharpness adjustments.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/issharpnesssupported
+func (r_ RAWFilter) SetIsSharpnessSupported(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsSharpnessSupported:"), value)
 }
 
 

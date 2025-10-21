@@ -81,22 +81,22 @@ func NewINSearchForPhotosIntent() INSearchForPhotosIntent {
 }
 
 
-// The attributes that must be present in the photos.
+// The name of the album that contains the photos.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/includedattributes
-func (i_ INSearchForPhotosIntent) IncludedAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("includedAttributes"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/albumname
+func (i_ INSearchForPhotosIntent) AlbumName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("albumName"))
 	return rv
 }
 
 
-// SetIncludedAttributes sets the value of the includedAttributes property.
-// The attributes that must be present in the photos.
+// SetAlbumName sets the value of the albumName property.
+// The name of the album that contains the photos.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/includedattributes
-func (i_ INSearchForPhotosIntent) SetIncludedAttributes(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIncludedAttributes:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/albumname
+func (i_ INSearchForPhotosIntent) SetAlbumName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), objc.String(value))
 }
 
 // The range of dates during which someone took the pictures.
@@ -117,6 +117,42 @@ func (i_ INSearchForPhotosIntent) SetDateCreated(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
 
+// The attributes that must not be present in the photos.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/excludedattributes
+func (i_ INSearchForPhotosIntent) ExcludedAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("excludedAttributes"))
+	return rv
+}
+
+
+// SetExcludedAttributes sets the value of the excludedAttributes property.
+// The attributes that must not be present in the photos.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/excludedattributes
+func (i_ INSearchForPhotosIntent) SetExcludedAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setExcludedAttributes:"), value)
+}
+
+// The attributes that must be present in the photos.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/includedattributes
+func (i_ INSearchForPhotosIntent) IncludedAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("includedAttributes"))
+	return rv
+}
+
+
+// SetIncludedAttributes sets the value of the includedAttributes property.
+// The attributes that must be present in the photos.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/includedattributes
+func (i_ INSearchForPhotosIntent) SetIncludedAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIncludedAttributes:"), value)
+}
+
 // The location where someone took the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/locationcreated
@@ -133,24 +169,6 @@ func (i_ INSearchForPhotosIntent) LocationCreated() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/locationcreated
 func (i_ INSearchForPhotosIntent) SetLocationCreated(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocationCreated:"), value)
-}
-
-// The name of the album that contains the photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/albumname
-func (i_ INSearchForPhotosIntent) AlbumName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("albumName"))
-	return rv
-}
-
-
-// SetAlbumName sets the value of the albumName property.
-// The name of the album that contains the photos.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/albumname
-func (i_ INSearchForPhotosIntent) SetAlbumName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), objc.String(value))
 }
 
 // The people identified in the photos.
@@ -189,22 +207,22 @@ func (i_ INSearchForPhotosIntent) SetPeopleInPhotoOperator(value unsafe.Pointer)
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPeopleInPhotoOperator:"), value)
 }
 
-// The attributes that must not be present in the photos.
+// An array of terms to look for in the photos.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/excludedattributes
-func (i_ INSearchForPhotosIntent) ExcludedAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("excludedAttributes"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchterms
+func (i_ INSearchForPhotosIntent) SearchTerms() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("searchTerms"))
 	return rv
 }
 
 
-// SetExcludedAttributes sets the value of the excludedAttributes property.
-// The attributes that must not be present in the photos.
+// SetSearchTerms sets the value of the searchTerms property.
+// An array of terms to look for in the photos.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/excludedattributes
-func (i_ INSearchForPhotosIntent) SetExcludedAttributes(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setExcludedAttributes:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchterms
+func (i_ INSearchForPhotosIntent) SetSearchTerms(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), objc.String(value))
 }
 
 // The operator that defines how to incorporate the search terms when performing the search.
@@ -223,24 +241,6 @@ func (i_ INSearchForPhotosIntent) SearchTermsOperator() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchtermsoperator
 func (i_ INSearchForPhotosIntent) SetSearchTermsOperator(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTermsOperator:"), value)
-}
-
-// An array of terms to look for in the photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchterms
-func (i_ INSearchForPhotosIntent) SearchTerms() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("searchTerms"))
-	return rv
-}
-
-
-// SetSearchTerms sets the value of the searchTerms property.
-// An array of terms to look for in the photos.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchterms
-func (i_ INSearchForPhotosIntent) SetSearchTerms(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), objc.String(value))
 }
 
 

@@ -80,24 +80,6 @@ func NewWebExtensionMessagePort() WebExtensionMessagePort {
 }
 
 
-// Indicates whether the message port is disconnected.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/isdisconnected
-func (w_ WebExtensionMessagePort) IsDisconnected() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("isDisconnected"))
-	return rv
-}
-
-
-// SetIsDisconnected sets the value of the isDisconnected property.
-// Indicates whether the message port is disconnected.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/isdisconnected
-func (w_ WebExtensionMessagePort) SetIsDisconnected(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIsDisconnected:"), value)
-}
-
 // The unique identifier for the app to which this port should be connected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/applicationidentifier
@@ -132,6 +114,24 @@ func (w_ WebExtensionMessagePort) DisconnectHandler() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/disconnecthandler
 func (w_ WebExtensionMessagePort) SetDisconnectHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDisconnectHandler:"), value)
+}
+
+// Indicates whether the message port is disconnected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/isdisconnected
+func (w_ WebExtensionMessagePort) IsDisconnected() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isDisconnected"))
+	return rv
+}
+
+
+// SetIsDisconnected sets the value of the isDisconnected property.
+// Indicates whether the message port is disconnected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/isdisconnected
+func (w_ WebExtensionMessagePort) SetIsDisconnected(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsDisconnected:"), value)
 }
 
 // The block to be executed when a message is received from the web extension.

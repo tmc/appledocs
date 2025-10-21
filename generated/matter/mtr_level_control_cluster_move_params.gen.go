@@ -92,33 +92,18 @@ func (m_ MTRLevelControlClusterMoveParams) SetMoveMode(value foundation.Number) 
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterMoveParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/optionsmask
+func (m_ MTRLevelControlClusterMoveParams) OptionsMask() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetOptionsMask sets the value of the optionsMask property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterMoveParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/rate
-func (m_ MTRLevelControlClusterMoveParams) Rate() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rate"))
-	return rv
-}
-
-
-// SetRate sets the value of the rate property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/rate
-func (m_ MTRLevelControlClusterMoveParams) SetRate(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/optionsmask
+func (m_ MTRLevelControlClusterMoveParams) SetOptionsMask(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
 //
@@ -137,6 +122,21 @@ func (m_ MTRLevelControlClusterMoveParams) SetOptionsOverride(value foundation.N
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/rate
+func (m_ MTRLevelControlClusterMoveParams) Rate() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rate"))
+	return rv
+}
+
+
+// SetRate sets the value of the rate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/rate
+func (m_ MTRLevelControlClusterMoveParams) SetRate(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/serversideprocessingtimeout
 func (m_ MTRLevelControlClusterMoveParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -152,18 +152,18 @@ func (m_ MTRLevelControlClusterMoveParams) SetServerSideProcessingTimeout(value 
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/optionsmask
-func (m_ MTRLevelControlClusterMoveParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/timedinvoketimeoutms
+func (m_ MTRLevelControlClusterMoveParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetOptionsMask sets the value of the optionsMask property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/optionsmask
-func (m_ MTRLevelControlClusterMoveParams) SetOptionsMask(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermoveparams/timedinvoketimeoutms
+func (m_ MTRLevelControlClusterMoveParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

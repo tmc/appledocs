@@ -17,8 +17,5 @@ type CFStringRef unsafe.Pointer
 // CFTypeRef is a CoreGraphics opaque type.
 type CFTypeRef unsafe.Pointer
 
-// IOSurfaceRef is a CoreGraphics opaque type.
-type IOSurfaceRef unsafe.Pointer
-
 
 

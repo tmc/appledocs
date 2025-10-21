@@ -79,19 +79,37 @@ func NewOSSystemExtensionProperties() OSSystemExtensionProperties {
 }
 
 
+// The bundle version of the extension.
 //
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/isenabled
-func (o_ OSSystemExtensionProperties) IsEnabled() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isEnabled"))
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/bundleVersion
+func (o_ OSSystemExtensionProperties) BundleVersion() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleVersion"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/isAwaitingUserApproval
+func (o_ OSSystemExtensionProperties) IsAwaitingUserApproval() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isAwaitingUserApproval"))
+	return rv
+}
+
+// The bundle identifier of the extension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleidentifier
+func (o_ OSSystemExtensionProperties) BundleIdentifier() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
+// SetBundleIdentifier sets the value of the bundleIdentifier property.
+// The bundle identifier of the extension.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/isenabled
-func (o_ OSSystemExtensionProperties) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIsEnabled:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleidentifier
+func (o_ OSSystemExtensionProperties) SetBundleIdentifier(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
 }
 
 // The bundle short version string of the extension.
@@ -112,22 +130,19 @@ func (o_ OSSystemExtensionProperties) SetBundleShortVersion(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleShortVersion:"), objc.String(value))
 }
 
-// The bundle identifier of the extension.
 //
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleidentifier
-func (o_ OSSystemExtensionProperties) BundleIdentifier() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/isenabled
+func (o_ OSSystemExtensionProperties) IsEnabled() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isEnabled"))
 	return rv
 }
 
 
-// SetBundleIdentifier sets the value of the bundleIdentifier property.
-// The bundle identifier of the extension.
-
+// SetIsEnabled sets the value of the isEnabled property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleidentifier
-func (o_ OSSystemExtensionProperties) SetBundleIdentifier(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/isenabled
+func (o_ OSSystemExtensionProperties) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 //
@@ -161,21 +176,6 @@ func (o_ OSSystemExtensionProperties) Url() foundation.URL {
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/url
 func (o_ OSSystemExtensionProperties) SetUrl(value foundation.URL) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUrl:"), value)
-}
-
-// The bundle version of the extension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/bundleVersion
-func (o_ OSSystemExtensionProperties) BundleVersion() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleVersion"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/isAwaitingUserApproval
-func (o_ OSSystemExtensionProperties) IsAwaitingUserApproval() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isAwaitingUserApproval"))
-	return rv
 }
 
 

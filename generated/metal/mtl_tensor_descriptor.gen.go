@@ -78,12 +78,22 @@ func NewTensorDescriptor() TensorDescriptor {
 }
 
 
-// An error domain for errors that pertain to creating a tensor.
+// An array of sizes, in elements, one for each dimension of the tensors you create with this descriptor.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
-func (t_ TensorDescriptor) MTLTensorDomain() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("MTLTensorDomain"))
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/dimensions
+func (t_ TensorDescriptor) Dimensions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dimensions"))
 	return rv
+}
+
+
+// SetDimensions sets the value of the dimensions property.
+// An array of sizes, in elements, one for each dimension of the tensors you create with this descriptor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/dimensions
+func (t_ TensorDescriptor) SetDimensions(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDimensions:"), value)
 }
 
 // A value that configures the cache mode of CPU mapping of tensors you create with this descriptor.
@@ -104,19 +114,22 @@ func (t_ TensorDescriptor) SetCpuCacheMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCpuCacheMode:"), value)
 }
 
+// A data format for the tensors you create with this descriptor.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
-func (t_ TensorDescriptor) MTL_TENSOR_MAX_RANK() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("MTL_TENSOR_MAX_RANK"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/datatype
+func (t_ TensorDescriptor) DataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dataType"))
 	return rv
 }
 
 
-// SetMTL_TENSOR_MAX_RANK sets the value of the MTL_TENSOR_MAX_RANK property.
+// SetDataType sets the value of the dataType property.
+// A data format for the tensors you create with this descriptor.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
-func (t_ TensorDescriptor) SetMTL_TENSOR_MAX_RANK(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMTL_TENSOR_MAX_RANK:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/datatype
+func (t_ TensorDescriptor) SetDataType(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDataType:"), value)
 }
 
 // A value that configures the hazard tracking of tensors you create with this descriptor.
@@ -135,42 +148,6 @@ func (t_ TensorDescriptor) HazardTrackingMode() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/hazardtrackingmode
 func (t_ TensorDescriptor) SetHazardTrackingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHazardTrackingMode:"), value)
-}
-
-// A set of contexts in which you can use tensors you create with this descriptor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/usage
-func (t_ TensorDescriptor) Usage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("usage"))
-	return rv
-}
-
-
-// SetUsage sets the value of the usage property.
-// A set of contexts in which you can use tensors you create with this descriptor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/usage
-func (t_ TensorDescriptor) SetUsage(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setUsage:"), value)
-}
-
-// An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/strides
-func (t_ TensorDescriptor) Strides() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("strides"))
-	return rv
-}
-
-
-// SetStrides sets the value of the strides property.
-// An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/strides
-func (t_ TensorDescriptor) SetStrides(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStrides:"), value)
 }
 
 // A packed set of the
@@ -209,40 +186,63 @@ func (t_ TensorDescriptor) SetStorageMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStorageMode:"), value)
 }
 
-// A data format for the tensors you create with this descriptor.
+// An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/datatype
-func (t_ TensorDescriptor) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dataType"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/strides
+func (t_ TensorDescriptor) Strides() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("strides"))
 	return rv
 }
 
 
-// SetDataType sets the value of the dataType property.
-// A data format for the tensors you create with this descriptor.
+// SetStrides sets the value of the strides property.
+// An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/datatype
-func (t_ TensorDescriptor) SetDataType(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDataType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/strides
+func (t_ TensorDescriptor) SetStrides(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStrides:"), value)
 }
 
-// An array of sizes, in elements, one for each dimension of the tensors you create with this descriptor.
+// A set of contexts in which you can use tensors you create with this descriptor.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/dimensions
-func (t_ TensorDescriptor) Dimensions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dimensions"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/usage
+func (t_ TensorDescriptor) Usage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("usage"))
 	return rv
 }
 
 
-// SetDimensions sets the value of the dimensions property.
-// An array of sizes, in elements, one for each dimension of the tensors you create with this descriptor.
+// SetUsage sets the value of the usage property.
+// A set of contexts in which you can use tensors you create with this descriptor.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/dimensions
-func (t_ TensorDescriptor) SetDimensions(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDimensions:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/usage
+func (t_ TensorDescriptor) SetUsage(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setUsage:"), value)
+}
+
+// An error domain for errors that pertain to creating a tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
+func (t_ TensorDescriptor) MTLTensorDomain() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("MTLTensorDomain"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
+func (t_ TensorDescriptor) MTL_TENSOR_MAX_RANK() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("MTL_TENSOR_MAX_RANK"))
+	return rv
+}
+
+
+// SetMTL_TENSOR_MAX_RANK sets the value of the MTL_TENSOR_MAX_RANK property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
+func (t_ TensorDescriptor) SetMTL_TENSOR_MAX_RANK(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMTL_TENSOR_MAX_RANK:"), value)
 }
 
 

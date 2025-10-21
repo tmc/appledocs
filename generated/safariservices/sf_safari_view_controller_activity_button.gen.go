@@ -86,6 +86,13 @@ func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/extensionIdentifier
+func (s_ SFSafariViewControllerActivityButton) ExtensionIdentifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("extensionIdentifier"))
+	return rv
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/activitybutton/templateimage
 func (s_ SFSafariViewControllerActivityButton) TemplateImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("templateImage"))
@@ -98,13 +105,6 @@ func (s_ SFSafariViewControllerActivityButton) TemplateImage() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/activitybutton/templateimage
 func (s_ SFSafariViewControllerActivityButton) SetTemplateImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTemplateImage:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/extensionIdentifier
-func (s_ SFSafariViewControllerActivityButton) ExtensionIdentifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("extensionIdentifier"))
-	return rv
 }
 
 

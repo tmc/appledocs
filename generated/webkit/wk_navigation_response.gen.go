@@ -80,6 +80,14 @@ func NewNavigationResponse() NavigationResponse {
 }
 
 
+// A Boolean value that indicates whether WebKit is capable of displaying the response’s MIME type natively.
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationResponse/canShowMIMEType
+func (n_ NavigationResponse) CanShowMIMEType() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("canShowMIMEType"))
+	return rv
+}
+
 // A Boolean value that indicates whether the response targets the web view’s main frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/isformainframe
@@ -114,14 +122,6 @@ func (n_ NavigationResponse) Response() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/response
 func (n_ NavigationResponse) SetResponse(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setResponse:"), value)
-}
-
-// A Boolean value that indicates whether WebKit is capable of displaying the response’s MIME type natively.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationResponse/canShowMIMEType
-func (n_ NavigationResponse) CanShowMIMEType() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("canShowMIMEType"))
-	return rv
 }
 
 

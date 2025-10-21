@@ -77,18 +77,18 @@ func NewMTRColorControlClusterEnhancedMoveToHueAndSaturationParams() MTRColorCon
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/enhancedhue
+func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) EnhancedHue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("enhancedHue"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+// SetEnhancedHue sets the value of the enhancedHue property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/enhancedhue
+func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetEnhancedHue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEnhancedHue:"), value)
 }
 
 //
@@ -107,51 +107,6 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetOptionsM
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/saturation
-func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) Saturation() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("saturation"))
-	return rv
-}
-
-
-// SetSaturation sets the value of the saturation property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/saturation
-func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetSaturation(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSaturation:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/enhancedhue
-func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) EnhancedHue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("enhancedHue"))
-	return rv
-}
-
-
-// SetEnhancedHue sets the value of the enhancedHue property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/enhancedhue
-func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetEnhancedHue(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEnhancedHue:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/transitiontime
-func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
-	return rv
-}
-
-
-// SetTransitionTime sets the value of the transitionTime property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/transitiontime
-func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetTransitionTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/optionsoverride
 func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) OptionsOverride() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
@@ -167,6 +122,36 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetOptionsO
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/saturation
+func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) Saturation() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("saturation"))
+	return rv
+}
+
+
+// SetSaturation sets the value of the saturation property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/saturation
+func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetSaturation(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSaturation:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/serversideprocessingtimeout
+func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/serversideprocessingtimeout
+func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/timedinvoketimeoutms
 func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) TimedInvokeTimeoutMs() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
@@ -179,6 +164,21 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) TimedInvoke
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/timedinvoketimeoutms
 func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/transitiontime
+func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) TransitionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+	return rv
+}
+
+
+// SetTransitionTime sets the value of the transitionTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueandsaturationparams/transitiontime
+func (m_ MTRColorControlClusterEnhancedMoveToHueAndSaturationParams) SetTransitionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 
 

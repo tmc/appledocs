@@ -77,21 +77,6 @@ func NewMTRApplicationLauncherClusterHideAppParams() MTRApplicationLauncherClust
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/serversideprocessingtimeout
-func (m_ MTRApplicationLauncherClusterHideAppParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/serversideprocessingtimeout
-func (m_ MTRApplicationLauncherClusterHideAppParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/application
 func (m_ MTRApplicationLauncherClusterHideAppParams) Application() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("application"))
@@ -104,6 +89,21 @@ func (m_ MTRApplicationLauncherClusterHideAppParams) Application() unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/application
 func (m_ MTRApplicationLauncherClusterHideAppParams) SetApplication(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/serversideprocessingtimeout
+func (m_ MTRApplicationLauncherClusterHideAppParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/serversideprocessingtimeout
+func (m_ MTRApplicationLauncherClusterHideAppParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

@@ -77,21 +77,6 @@ func NewMTROperationalCredentialsClusterCSRResponseParams() MTROperationalCreden
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/nocsrelements
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) NocsrElements() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nocsrElements"))
-	return rv
-}
-
-
-// SetNocsrElements sets the value of the nocsrElements property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/nocsrelements
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetNocsrElements(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNocsrElements:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/attestationsignature
 func (m_ MTROperationalCredentialsClusterCSRResponseParams) AttestationSignature() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationSignature"))
@@ -104,6 +89,21 @@ func (m_ MTROperationalCredentialsClusterCSRResponseParams) AttestationSignature
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/attestationsignature
 func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetAttestationSignature(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationSignature:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/nocsrelements
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) NocsrElements() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nocsrElements"))
+	return rv
+}
+
+
+// SetNocsrElements sets the value of the nocsrElements property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/nocsrelements
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetNocsrElements(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNocsrElements:"), value)
 }
 
 //

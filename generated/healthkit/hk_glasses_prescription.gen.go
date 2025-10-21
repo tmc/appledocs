@@ -81,24 +81,6 @@ func NewHKGlassesPrescription() HKGlassesPrescription {
 }
 
 
-// The lens specification for the right eye.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
-func (h_ HKGlassesPrescription) RightEye() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("rightEye"))
-	return rv
-}
-
-
-// SetRightEye sets the value of the rightEye property.
-// The lens specification for the right eye.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
-func (h_ HKGlassesPrescription) SetRightEye(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setRightEye:"), value)
-}
-
 // The lens specification for the left eye.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/lefteye
@@ -115,6 +97,24 @@ func (h_ HKGlassesPrescription) LeftEye() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/lefteye
 func (h_ HKGlassesPrescription) SetLeftEye(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLeftEye:"), value)
+}
+
+// The lens specification for the right eye.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
+func (h_ HKGlassesPrescription) RightEye() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("rightEye"))
+	return rv
+}
+
+
+// SetRightEye sets the value of the rightEye property.
+// The lens specification for the right eye.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
+func (h_ HKGlassesPrescription) SetRightEye(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRightEye:"), value)
 }
 
 // A description of the glasses prescription.

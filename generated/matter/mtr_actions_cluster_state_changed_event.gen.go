@@ -92,21 +92,6 @@ func (m_ MTRActionsClusterStateChangedEvent) SetActionID(value foundation.Number
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/newstate
-func (m_ MTRActionsClusterStateChangedEvent) NewState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
-	return rv
-}
-
-
-// SetNewState sets the value of the newState property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/newstate
-func (m_ MTRActionsClusterStateChangedEvent) SetNewState(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNewState:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/invokeid
 func (m_ MTRActionsClusterStateChangedEvent) InvokeID() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
@@ -119,6 +104,21 @@ func (m_ MTRActionsClusterStateChangedEvent) InvokeID() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/invokeid
 func (m_ MTRActionsClusterStateChangedEvent) SetInvokeID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/newstate
+func (m_ MTRActionsClusterStateChangedEvent) NewState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
+	return rv
+}
+
+
+// SetNewState sets the value of the newState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/newstate
+func (m_ MTRActionsClusterStateChangedEvent) SetNewState(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewState:"), value)
 }
 
 

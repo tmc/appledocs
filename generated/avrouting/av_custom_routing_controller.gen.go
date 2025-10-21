@@ -96,42 +96,6 @@ func (c_ CustomRoutingController) SetActiveForRoute(active bool, route unsafe.Po
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActive:forRoute:"), active, route)
 }
 
-// A list of authorized routes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutes
-func (c_ CustomRoutingController) AuthorizedRoutes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("authorizedRoutes"))
-	return rv
-}
-
-
-// SetAuthorizedRoutes sets the value of the authorizedRoutes property.
-// A list of authorized routes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutes
-func (c_ CustomRoutingController) SetAuthorizedRoutes(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAuthorizedRoutes:"), value)
-}
-
-// An array of route addresses known to be on the local network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
-func (c_ CustomRoutingController) KnownRouteIPs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("knownRouteIPs"))
-	return rv
-}
-
-
-// SetKnownRouteIPs sets the value of the knownRouteIPs property.
-// An array of route addresses known to be on the local network.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
-func (c_ CustomRoutingController) SetKnownRouteIPs(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKnownRouteIPs:"), value)
-}
-
 // An array of custom action items to add to a route picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/customActionItems
@@ -176,6 +140,42 @@ func (c_ CustomRoutingController) Delegate() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/delegate
 func (c_ CustomRoutingController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// A list of authorized routes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutes
+func (c_ CustomRoutingController) AuthorizedRoutes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("authorizedRoutes"))
+	return rv
+}
+
+
+// SetAuthorizedRoutes sets the value of the authorizedRoutes property.
+// A list of authorized routes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutes
+func (c_ CustomRoutingController) SetAuthorizedRoutes(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAuthorizedRoutes:"), value)
+}
+
+// An array of route addresses known to be on the local network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
+func (c_ CustomRoutingController) KnownRouteIPs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("knownRouteIPs"))
+	return rv
+}
+
+
+// SetKnownRouteIPs sets the value of the knownRouteIPs property.
+// An array of route addresses known to be on the local network.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
+func (c_ CustomRoutingController) SetKnownRouteIPs(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKnownRouteIPs:"), value)
 }
 
 

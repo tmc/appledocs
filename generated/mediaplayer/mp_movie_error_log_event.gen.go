@@ -81,94 +81,22 @@ func NewMovieErrorLogEvent() MovieErrorLogEvent {
 }
 
 
-// A unique error code identifier.
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errorstatuscode
-func (m_ MovieErrorLogEvent) ErrorStatusCode() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("errorStatusCode"))
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MovieErrorLogEvent) ImageCropRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("imageCropRect"))
 	return rv
 }
 
 
-// SetErrorStatusCode sets the value of the errorStatusCode property.
-// A unique error code identifier.
+// SetImageCropRect sets the value of the imageCropRect property.
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errorstatuscode
-func (m_ MovieErrorLogEvent) SetErrorStatusCode(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStatusCode:"), value)
-}
-
-// A Boolean value that indicates whether the route button is visible in the volume view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
-func (m_ MovieErrorLogEvent) ShowsRouteButton() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
-	return rv
-}
-
-
-// SetShowsRouteButton sets the value of the showsRouteButton property.
-// A Boolean value that indicates whether the route button is visible in the volume view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
-func (m_ MovieErrorLogEvent) SetShowsRouteButton(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
-}
-
-// The URI of the item playing when the error occurred.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/uri
-func (m_ MovieErrorLogEvent) Uri() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("uri"))
-	return rv
-}
-
-
-// SetUri sets the value of the uri property.
-// The URI of the item playing when the error occurred.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/uri
-func (m_ MovieErrorLogEvent) SetUri(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUri:"), objc.String(value))
-}
-
-// The IP address of the web server that was the source of the error.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/serveraddress
-func (m_ MovieErrorLogEvent) ServerAddress() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("serverAddress"))
-	return rv
-}
-
-
-// SetServerAddress sets the value of the serverAddress property.
-// The IP address of the web server that was the source of the error.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/serveraddress
-func (m_ MovieErrorLogEvent) SetServerAddress(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerAddress:"), objc.String(value))
-}
-
-// A description of the error.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errorcomment
-func (m_ MovieErrorLogEvent) ErrorComment() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("errorComment"))
-	return rv
-}
-
-
-// SetErrorComment sets the value of the errorComment property.
-// A description of the error.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errorcomment
-func (m_ MovieErrorLogEvent) SetErrorComment(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorComment:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MovieErrorLogEvent) SetImageCropRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImageCropRect:"), value)
 }
 
 // The date and time when the error occurred.
@@ -189,22 +117,22 @@ func (m_ MovieErrorLogEvent) SetDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDate:"), value)
 }
 
-// A globally unique identifier (GUID) for the playback session.
+// A description of the error.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/playbacksessionid
-func (m_ MovieErrorLogEvent) PlaybackSessionID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("playbackSessionID"))
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errorcomment
+func (m_ MovieErrorLogEvent) ErrorComment() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("errorComment"))
 	return rv
 }
 
 
-// SetPlaybackSessionID sets the value of the playbackSessionID property.
-// A globally unique identifier (GUID) for the playback session.
+// SetErrorComment sets the value of the errorComment property.
+// A description of the error.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/playbacksessionid
-func (m_ MovieErrorLogEvent) SetPlaybackSessionID(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSessionID:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errorcomment
+func (m_ MovieErrorLogEvent) SetErrorComment(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorComment:"), objc.String(value))
 }
 
 // The network domain of the error.
@@ -225,22 +153,94 @@ func (m_ MovieErrorLogEvent) SetErrorDomain(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorDomain:"), objc.String(value))
 }
 
-// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+// A unique error code identifier.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
-func (m_ MovieErrorLogEvent) ImageCropRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("imageCropRect"))
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errorstatuscode
+func (m_ MovieErrorLogEvent) ErrorStatusCode() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("errorStatusCode"))
 	return rv
 }
 
 
-// SetImageCropRect sets the value of the imageCropRect property.
-// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+// SetErrorStatusCode sets the value of the errorStatusCode property.
+// A unique error code identifier.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
-func (m_ MovieErrorLogEvent) SetImageCropRect(value coregraphics.CGRect) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setImageCropRect:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errorstatuscode
+func (m_ MovieErrorLogEvent) SetErrorStatusCode(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStatusCode:"), value)
+}
+
+// A globally unique identifier (GUID) for the playback session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/playbacksessionid
+func (m_ MovieErrorLogEvent) PlaybackSessionID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("playbackSessionID"))
+	return rv
+}
+
+
+// SetPlaybackSessionID sets the value of the playbackSessionID property.
+// A globally unique identifier (GUID) for the playback session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/playbacksessionid
+func (m_ MovieErrorLogEvent) SetPlaybackSessionID(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSessionID:"), objc.String(value))
+}
+
+// The IP address of the web server that was the source of the error.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/serveraddress
+func (m_ MovieErrorLogEvent) ServerAddress() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serverAddress"))
+	return rv
+}
+
+
+// SetServerAddress sets the value of the serverAddress property.
+// The IP address of the web server that was the source of the error.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/serveraddress
+func (m_ MovieErrorLogEvent) SetServerAddress(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerAddress:"), objc.String(value))
+}
+
+// The URI of the item playing when the error occurred.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/uri
+func (m_ MovieErrorLogEvent) Uri() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("uri"))
+	return rv
+}
+
+
+// SetUri sets the value of the uri property.
+// The URI of the item playing when the error occurred.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/uri
+func (m_ MovieErrorLogEvent) SetUri(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUri:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the route button is visible in the volume view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MovieErrorLogEvent) ShowsRouteButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
+	return rv
+}
+
+
+// SetShowsRouteButton sets the value of the showsRouteButton property.
+// A Boolean value that indicates whether the route button is visible in the volume view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MovieErrorLogEvent) SetShowsRouteButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
 }
 
 

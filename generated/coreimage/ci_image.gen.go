@@ -1012,24 +1012,6 @@ func (i_ Image) ImageByUnpremultiplyingAlpha() unsafe.Pointer {
 	return rv
 }
 
-// Returns YES if the image is known to have and alpha value of
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/ciimage/isopaque
-func (i_ Image) IsOpaque() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("isOpaque"))
-	return rv
-}
-
-
-// SetIsOpaque sets the value of the isOpaque property.
-// Returns YES if the image is known to have and alpha value of
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/ciimage/isopaque
-func (i_ Image) SetIsOpaque(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIsOpaque:"), value)
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/black
 func (i_ Image) BlackImage() unsafe.Pointer {
@@ -1208,6 +1190,24 @@ func (i_ Image) WhiteImage() unsafe.Pointer {
 func (i_ Image) YellowImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("yellowImage"))
 	return rv
+}
+
+// Returns YES if the image is known to have and alpha value of
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/ciimage/isopaque
+func (i_ Image) IsOpaque() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isOpaque"))
+	return rv
+}
+
+
+// SetIsOpaque sets the value of the isOpaque property.
+// Returns YES if the image is known to have and alpha value of
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/ciimage/isopaque
+func (i_ Image) SetIsOpaque(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsOpaque:"), value)
 }
 
 

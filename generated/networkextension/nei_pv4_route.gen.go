@@ -78,24 +78,6 @@ func NewNEIPv4Route() NEIPv4Route {
 }
 
 
-// The address of the next-hop gateway of the route.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/gatewayaddress
-func (n_ NEIPv4Route) GatewayAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("gatewayAddress"))
-	return rv
-}
-
-
-// SetGatewayAddress sets the value of the gatewayAddress property.
-// The address of the next-hop gateway of the route.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/gatewayaddress
-func (n_ NEIPv4Route) SetGatewayAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), objc.String(value))
-}
-
 // The destination network address of the route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationaddress
@@ -112,6 +94,42 @@ func (n_ NEIPv4Route) DestinationAddress() string {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationaddress
 func (n_ NEIPv4Route) SetDestinationAddress(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationAddress:"), objc.String(value))
+}
+
+// The destination network mask of the route.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationsubnetmask
+func (n_ NEIPv4Route) DestinationSubnetMask() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("destinationSubnetMask"))
+	return rv
+}
+
+
+// SetDestinationSubnetMask sets the value of the destinationSubnetMask property.
+// The destination network mask of the route.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationsubnetmask
+func (n_ NEIPv4Route) SetDestinationSubnetMask(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationSubnetMask:"), objc.String(value))
+}
+
+// The address of the next-hop gateway of the route.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/gatewayaddress
+func (n_ NEIPv4Route) GatewayAddress() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("gatewayAddress"))
+	return rv
+}
+
+
+// SetGatewayAddress sets the value of the gatewayAddress property.
+// The address of the next-hop gateway of the route.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/gatewayaddress
+func (n_ NEIPv4Route) SetGatewayAddress(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), objc.String(value))
 }
 
 // The IPv4 network traffic that the system routes to the primary physical interface, not the TUN interface.
@@ -148,24 +166,6 @@ func (n_ NEIPv4Route) IncludedRoutes() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/includedroutes
 func (n_ NEIPv4Route) SetIncludedRoutes(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedRoutes:"), value)
-}
-
-// The destination network mask of the route.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationsubnetmask
-func (n_ NEIPv4Route) DestinationSubnetMask() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("destinationSubnetMask"))
-	return rv
-}
-
-
-// SetDestinationSubnetMask sets the value of the destinationSubnetMask property.
-// The destination network mask of the route.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationsubnetmask
-func (n_ NEIPv4Route) SetDestinationSubnetMask(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationSubnetMask:"), objc.String(value))
 }
 
 

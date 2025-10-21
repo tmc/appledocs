@@ -77,36 +77,6 @@ func NewMTRReadParams() MTRReadParams {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldassumeunknownattributesreportable
-func (m_ MTRReadParams) ShouldAssumeUnknownAttributesReportable() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("shouldAssumeUnknownAttributesReportable"))
-	return rv
-}
-
-
-// SetShouldAssumeUnknownAttributesReportable sets the value of the shouldAssumeUnknownAttributesReportable property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldassumeunknownattributesreportable
-func (m_ MTRReadParams) SetShouldAssumeUnknownAttributesReportable(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldAssumeUnknownAttributesReportable:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldfilterbyfabric
-func (m_ MTRReadParams) ShouldFilterByFabric() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("shouldFilterByFabric"))
-	return rv
-}
-
-
-// SetShouldFilterByFabric sets the value of the shouldFilterByFabric property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldfilterbyfabric
-func (m_ MTRReadParams) SetShouldFilterByFabric(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldFilterByFabric:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/fabricFiltered
 func (m_ MTRReadParams) FabricFiltered() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricFiltered"))
@@ -164,6 +134,36 @@ func (m_ MTRReadParams) FilterByFabric() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/shouldFilterByFabric
 func (m_ MTRReadParams) SetFilterByFabric(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFilterByFabric:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldassumeunknownattributesreportable
+func (m_ MTRReadParams) ShouldAssumeUnknownAttributesReportable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldAssumeUnknownAttributesReportable"))
+	return rv
+}
+
+
+// SetShouldAssumeUnknownAttributesReportable sets the value of the shouldAssumeUnknownAttributesReportable property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldassumeunknownattributesreportable
+func (m_ MTRReadParams) SetShouldAssumeUnknownAttributesReportable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldAssumeUnknownAttributesReportable:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldfilterbyfabric
+func (m_ MTRReadParams) ShouldFilterByFabric() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldFilterByFabric"))
+	return rv
+}
+
+
+// SetShouldFilterByFabric sets the value of the shouldFilterByFabric property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldfilterbyfabric
+func (m_ MTRReadParams) SetShouldFilterByFabric(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldFilterByFabric:"), value)
 }
 
 

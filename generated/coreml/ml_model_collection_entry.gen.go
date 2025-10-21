@@ -88,6 +88,22 @@ func (m_ ModelCollectionEntry) IsEqualToModelCollectionEntry(entry unsafe.Pointe
 	return rv
 }
 
+// The name of the model, which is unique to the collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelIdentifier
+func (m_ ModelCollectionEntry) ModelIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("modelIdentifier"))
+	return rv
+}
+
+// The compiled model’s location on the device’s file system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelURL
+func (m_ ModelCollectionEntry) ModelURL() foundation.URL {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("modelURL"))
+	return rv
+}
+
 // A dictionary of model entries keyed to the models’ identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entries
@@ -104,22 +120,6 @@ func (m_ ModelCollectionEntry) Entries() string {
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entries
 func (m_ ModelCollectionEntry) SetEntries(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntries:"), objc.String(value))
-}
-
-// The name of the model, which is unique to the collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelIdentifier
-func (m_ ModelCollectionEntry) ModelIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("modelIdentifier"))
-	return rv
-}
-
-// The compiled model’s location on the device’s file system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelURL
-func (m_ ModelCollectionEntry) ModelURL() foundation.URL {
-	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("modelURL"))
-	return rv
 }
 
 

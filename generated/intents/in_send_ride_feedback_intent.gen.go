@@ -82,22 +82,12 @@ func NewINSendRideFeedbackIntent() INSendRideFeedbackIntent {
 }
 
 
-// The tip for the driver.
+// The unique identifier that you assigned to the ride.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/tip
-func (i_ INSendRideFeedbackIntent) Tip() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tip"))
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INSendRideFeedbackIntent/rideIdentifier
+func (i_ INSendRideFeedbackIntent) RideIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
-}
-
-
-// SetTip sets the value of the tip property.
-// The tip for the driver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/tip
-func (i_ INSendRideFeedbackIntent) SetTip(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTip:"), value)
 }
 
 // The user-supplied rating for the driver.
@@ -118,12 +108,22 @@ func (i_ INSendRideFeedbackIntent) SetRating(value foundation.Number) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRating:"), value)
 }
 
-// The unique identifier that you assigned to the ride.
+// The tip for the driver.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSendRideFeedbackIntent/rideIdentifier
-func (i_ INSendRideFeedbackIntent) RideIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/tip
+func (i_ INSendRideFeedbackIntent) Tip() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tip"))
 	return rv
+}
+
+
+// SetTip sets the value of the tip property.
+// The tip for the driver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/tip
+func (i_ INSendRideFeedbackIntent) SetTip(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTip:"), value)
 }
 
 

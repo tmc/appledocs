@@ -80,22 +80,12 @@ func NewSNClassification() SNClassification {
 }
 
 
-// The time span that corresponds to the result’s classifications.
+// A prediction label that’s one of the classifications a sound classifier’s underlying model defines.
 //
-// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
-func (s_ SNClassification) TimeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("timeRange"))
+// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassification/identifier
+func (s_ SNClassification) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
-}
-
-
-// SetTimeRange sets the value of the timeRange property.
-// The time span that corresponds to the result’s classifications.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
-func (s_ SNClassification) SetTimeRange(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTimeRange:"), value)
 }
 
 // The confidence value the model has in its prediction.
@@ -134,12 +124,22 @@ func (s_ SNClassification) SetClassifications(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setClassifications:"), value)
 }
 
-// A prediction label that’s one of the classifications a sound classifier’s underlying model defines.
+// The time span that corresponds to the result’s classifications.
 //
-// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassification/identifier
-func (s_ SNClassification) Identifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
+func (s_ SNClassification) TimeRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("timeRange"))
 	return rv
+}
+
+
+// SetTimeRange sets the value of the timeRange property.
+// The time span that corresponds to the result’s classifications.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
+func (s_ SNClassification) SetTimeRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTimeRange:"), value)
 }
 
 

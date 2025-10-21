@@ -114,6 +114,40 @@ func (c_ CNPostalAddressFormatter) StringFromPostalAddress(postalAddress unsafe.
 	return rv
 }
 
+// The style to apply when formatting strings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter/style
+func (c_ CNPostalAddressFormatter) Style() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("style"))
+	return rv
+}
+
+
+// SetStyle sets the value of the style property.
+// The style to apply when formatting strings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter/style
+func (c_ CNPostalAddressFormatter) SetStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStyle:"), value)
+}
+
+// The city of the address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscitykey
+func (c_ CNPostalAddressFormatter) CNPostalAddressCityKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCityKey"))
+	return rv
+}
+
+// The country or region name of the address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscountrykey
+func (c_ CNPostalAddressFormatter) CNPostalAddressCountryKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCountryKey"))
+	return rv
+}
+
 // The ISO country code of the address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressisocountrycodekey
@@ -122,11 +156,11 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressISOCountryCodeKey() string {
 	return rv
 }
 
-// The sublocality of the address.
+// An attribute that identifies the localized property of postal address.
 //
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresssublocalitykey
-func (c_ CNPostalAddressFormatter) CNPostalAddressSubLocalityKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressSubLocalityKey"))
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresslocalizedpropertynameattribute
+func (c_ CNPostalAddressFormatter) CNPostalAddressLocalizedPropertyNameAttribute() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressLocalizedPropertyNameAttribute"))
 	return rv
 }
 
@@ -135,6 +169,22 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressSubLocalityKey() string {
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresspostalcodekey
 func (c_ CNPostalAddressFormatter) CNPostalAddressPostalCodeKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressPostalCodeKey"))
+	return rv
+}
+
+// An attribute that identifies the purpose of a range of characters in an attributed string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresspropertyattribute
+func (c_ CNPostalAddressFormatter) CNPostalAddressPropertyAttribute() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressPropertyAttribute"))
+	return rv
+}
+
+// The state name of the address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstatekey
+func (c_ CNPostalAddressFormatter) CNPostalAddressStateKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStateKey"))
 	return rv
 }
 
@@ -154,62 +204,12 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressSubAdministrativeAreaKey() str
 	return rv
 }
 
-// The city of the address.
+// The sublocality of the address.
 //
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscitykey
-func (c_ CNPostalAddressFormatter) CNPostalAddressCityKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCityKey"))
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresssublocalitykey
+func (c_ CNPostalAddressFormatter) CNPostalAddressSubLocalityKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressSubLocalityKey"))
 	return rv
-}
-
-// The state name of the address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstatekey
-func (c_ CNPostalAddressFormatter) CNPostalAddressStateKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStateKey"))
-	return rv
-}
-
-// An attribute that identifies the purpose of a range of characters in an attributed string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresspropertyattribute
-func (c_ CNPostalAddressFormatter) CNPostalAddressPropertyAttribute() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressPropertyAttribute"))
-	return rv
-}
-
-// An attribute that identifies the localized property of postal address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresslocalizedpropertynameattribute
-func (c_ CNPostalAddressFormatter) CNPostalAddressLocalizedPropertyNameAttribute() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressLocalizedPropertyNameAttribute"))
-	return rv
-}
-
-// The country or region name of the address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscountrykey
-func (c_ CNPostalAddressFormatter) CNPostalAddressCountryKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCountryKey"))
-	return rv
-}
-
-// The style to apply when formatting strings.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter/style
-func (c_ CNPostalAddressFormatter) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("style"))
-	return rv
-}
-
-
-// SetStyle sets the value of the style property.
-// The style to apply when formatting strings.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter/style
-func (c_ CNPostalAddressFormatter) SetStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStyle:"), value)
 }
 
 

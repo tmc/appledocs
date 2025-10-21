@@ -107,6 +107,22 @@ func NewCKReferenceWithRecordIDAction(recordID unsafe.Pointer, action unsafe.Poi
 
 // The ownership behavior for the records.
 //
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/action-swift.property
+func (c_ CKReference) ReferenceAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("referenceAction"))
+	return rv
+}
+
+// The ID of the referenced record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/recordID
+func (c_ CKReference) RecordID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordID"))
+	return rv
+}
+
+// The ownership behavior for the records.
+//
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/reference/action-swift.property
 func (c_ CKReference) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
@@ -139,22 +155,6 @@ func (c_ CKReference) RecordChangeTag() string {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
 func (c_ CKReference) SetRecordChangeTag(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
-}
-
-// The ownership behavior for the records.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/action-swift.property
-func (c_ CKReference) ReferenceAction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("referenceAction"))
-	return rv
-}
-
-// The ID of the referenced record.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/recordID
-func (c_ CKReference) RecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordID"))
-	return rv
 }
 
 

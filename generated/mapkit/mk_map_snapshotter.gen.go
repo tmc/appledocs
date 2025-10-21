@@ -119,6 +119,14 @@ func (m_ MKMapSnapshotter) StartWithQueueCompletionHandler(queue unsafe.Pointer,
 
 // A Boolean value that indicates whether the snapshotter is generating an image.
 //
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/isLoading
+func (m_ MKMapSnapshotter) Loading() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("loading"))
+	return rv
+}
+
+// A Boolean value that indicates whether the snapshotter is generating an image.
+//
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/isloading
 func (m_ MKMapSnapshotter) IsLoading() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
@@ -133,14 +141,6 @@ func (m_ MKMapSnapshotter) IsLoading() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/isloading
 func (m_ MKMapSnapshotter) SetIsLoading(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)
-}
-
-// A Boolean value that indicates whether the snapshotter is generating an image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/isLoading
-func (m_ MKMapSnapshotter) Loading() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("loading"))
-	return rv
 }
 
 

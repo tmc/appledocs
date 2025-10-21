@@ -77,21 +77,6 @@ func NewMTRAttributeRequestPath() MTRAttributeRequestPath {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/endpoint
-func (m_ MTRAttributeRequestPath) Endpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
-	return rv
-}
-
-
-// SetEndpoint sets the value of the endpoint property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/endpoint
-func (m_ MTRAttributeRequestPath) SetEndpoint(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/attribute
 func (m_ MTRAttributeRequestPath) Attribute() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("attribute"))
@@ -119,6 +104,21 @@ func (m_ MTRAttributeRequestPath) Cluster() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/cluster
 func (m_ MTRAttributeRequestPath) SetCluster(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/endpoint
+func (m_ MTRAttributeRequestPath) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+	return rv
+}
+
+
+// SetEndpoint sets the value of the endpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/endpoint
+func (m_ MTRAttributeRequestPath) SetEndpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
 

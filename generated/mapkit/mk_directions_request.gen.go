@@ -80,22 +80,6 @@ func NewMKDirectionsRequest() MKDirectionsRequest {
 }
 
 
-// Public transit directions between the specified start and end points.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodetransit
-func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeTransit() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeTransit"))
-	return rv
-}
-
-// Cycling directions between the specified start and end points.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodecycling
-func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeCycling() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeCycling"))
-	return rv
-}
-
 // The arrival date for the trip.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/arrivaldate
@@ -112,40 +96,6 @@ func (m_ MKDirectionsRequest) ArrivalDate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/arrivaldate
 func (m_ MKDirectionsRequest) SetArrivalDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArrivalDate:"), value)
-}
-
-// Walking directions between the specified start and end points.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodewalking
-func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeWalking() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeWalking"))
-	return rv
-}
-
-// The type of map (standard, satellite, or hybrid) to display.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsmaptypekey
-func (m_ MKDirectionsRequest) MKLaunchOptionsMapTypeKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsMapTypeKey"))
-	return rv
-}
-
-// The value that indicates whether the framework avoids routes that have tolls when providing directions.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/tollpreference
-func (m_ MKDirectionsRequest) TollPreference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tollPreference"))
-	return rv
-}
-
-
-// SetTollPreference sets the value of the tollPreference property.
-// The value that indicates whether the framework avoids routes that have tolls when providing directions.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/tollpreference
-func (m_ MKDirectionsRequest) SetTollPreference(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTollPreference:"), value)
 }
 
 // The departure date for the trip.
@@ -166,32 +116,6 @@ func (m_ MKDirectionsRequest) SetDepartureDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDepartureDate:"), value)
 }
 
-// The value that indicates whether the framework uses or avoids highways when providing directions.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/highwaypreference
-func (m_ MKDirectionsRequest) HighwayPreference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("highwayPreference"))
-	return rv
-}
-
-
-// SetHighwayPreference sets the value of the highwayPreference property.
-// The value that indicates whether the framework uses or avoids highways when providing directions.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/highwaypreference
-func (m_ MKDirectionsRequest) SetHighwayPreference(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHighwayPreference:"), value)
-}
-
-// The virtual camera to use for viewing the map.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionscamerakey
-func (m_ MKDirectionsRequest) MKLaunchOptionsCameraKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsCameraKey"))
-	return rv
-}
-
 // The end point for routing directions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/destination
@@ -210,30 +134,22 @@ func (m_ MKDirectionsRequest) SetDestination(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDestination:"), value)
 }
 
-// The type of conveyance that the directions apply to.
+// The value that indicates whether the framework uses or avoids highways when providing directions.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/transporttype
-func (m_ MKDirectionsRequest) TransportType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transportType"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/highwaypreference
+func (m_ MKDirectionsRequest) HighwayPreference() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("highwayPreference"))
 	return rv
 }
 
 
-// SetTransportType sets the value of the transportType property.
-// The type of conveyance that the directions apply to.
+// SetHighwayPreference sets the value of the highwayPreference property.
+// The value that indicates whether the framework uses or avoids highways when providing directions.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/transporttype
-func (m_ MKDirectionsRequest) SetTransportType(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransportType:"), value)
-}
-
-// A Boolean value that indicates whether to display traffic information.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsshowstraffickey
-func (m_ MKDirectionsRequest) MKLaunchOptionsShowsTrafficKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsShowsTrafficKey"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/highwaypreference
+func (m_ MKDirectionsRequest) SetHighwayPreference(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHighwayPreference:"), value)
 }
 
 // A Boolean value that indicates whether your app requests multiple routes when they’re available.
@@ -254,22 +170,6 @@ func (m_ MKDirectionsRequest) SetRequestsAlternateRoutes(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestsAlternateRoutes:"), value)
 }
 
-// Directions that match the user’s preferred transportation type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodedefault
-func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeDefault() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeDefault"))
-	return rv
-}
-
-// The mode of transportation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodekey
-func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeKey"))
-	return rv
-}
-
 // The starting point for routing directions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/source
@@ -288,6 +188,98 @@ func (m_ MKDirectionsRequest) SetSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSource:"), value)
 }
 
+// The value that indicates whether the framework avoids routes that have tolls when providing directions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/tollpreference
+func (m_ MKDirectionsRequest) TollPreference() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tollPreference"))
+	return rv
+}
+
+
+// SetTollPreference sets the value of the tollPreference property.
+// The value that indicates whether the framework avoids routes that have tolls when providing directions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/tollpreference
+func (m_ MKDirectionsRequest) SetTollPreference(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTollPreference:"), value)
+}
+
+// The type of conveyance that the directions apply to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/transporttype
+func (m_ MKDirectionsRequest) TransportType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transportType"))
+	return rv
+}
+
+
+// SetTransportType sets the value of the transportType property.
+// The type of conveyance that the directions apply to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/request/transporttype
+func (m_ MKDirectionsRequest) SetTransportType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransportType:"), value)
+}
+
+// The virtual camera to use for viewing the map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionscamerakey
+func (m_ MKDirectionsRequest) MKLaunchOptionsCameraKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsCameraKey"))
+	return rv
+}
+
+// Cycling directions between the specified start and end points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodecycling
+func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeCycling() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeCycling"))
+	return rv
+}
+
+// Directions that match the user’s preferred transportation type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodedefault
+func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeDefault() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeDefault"))
+	return rv
+}
+
+// Driving directions between the specified start and end points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodedriving
+func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeDriving() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeDriving"))
+	return rv
+}
+
+// The mode of transportation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodekey
+func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeKey"))
+	return rv
+}
+
+// Public transit directions between the specified start and end points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodetransit
+func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeTransit() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeTransit"))
+	return rv
+}
+
+// Walking directions between the specified start and end points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodewalking
+func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeWalking() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeWalking"))
+	return rv
+}
+
 // The coordinate value on which to center the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsmapcenterkey
@@ -304,11 +296,19 @@ func (m_ MKDirectionsRequest) MKLaunchOptionsMapSpanKey() string {
 	return rv
 }
 
-// Driving directions between the specified start and end points.
+// The type of map (standard, satellite, or hybrid) to display.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodedriving
-func (m_ MKDirectionsRequest) MKLaunchOptionsDirectionsModeDriving() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsDirectionsModeDriving"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsmaptypekey
+func (m_ MKDirectionsRequest) MKLaunchOptionsMapTypeKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsMapTypeKey"))
+	return rv
+}
+
+// A Boolean value that indicates whether to display traffic information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklaunchoptionsshowstraffickey
+func (m_ MKDirectionsRequest) MKLaunchOptionsShowsTrafficKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKLaunchOptionsShowsTrafficKey"))
 	return rv
 }
 

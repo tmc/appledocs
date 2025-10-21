@@ -99,6 +99,14 @@ func (f_ FSResource) Revoke() {
 
 // A Boolean value that indicates whether the resource is revoked.
 //
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/isRevoked
+func (f_ FSResource) Revoked() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("revoked"))
+	return rv
+}
+
+// A Boolean value that indicates whether the resource is revoked.
+//
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsresource/isrevoked
 func (f_ FSResource) IsRevoked() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isRevoked"))
@@ -113,14 +121,6 @@ func (f_ FSResource) IsRevoked() bool {
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsresource/isrevoked
 func (f_ FSResource) SetIsRevoked(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsRevoked:"), value)
-}
-
-// A Boolean value that indicates whether the resource is revoked.
-//
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/isRevoked
-func (f_ FSResource) Revoked() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("revoked"))
-	return rv
 }
 
 

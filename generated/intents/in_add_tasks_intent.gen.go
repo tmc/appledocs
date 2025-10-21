@@ -81,42 +81,6 @@ func NewINAddTasksIntent() INAddTasksIntent {
 }
 
 
-// The task list to receive the new tasks.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/targettasklist
-func (i_ INAddTasksIntent) TargetTaskList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("targetTaskList"))
-	return rv
-}
-
-
-// SetTargetTaskList sets the value of the targetTaskList property.
-// The task list to receive the new tasks.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/targettasklist
-func (i_ INAddTasksIntent) SetTargetTaskList(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTargetTaskList:"), value)
-}
-
-// An array of strings containing the titles of the new tasks.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/tasktitles
-func (i_ INAddTasksIntent) TaskTitles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("taskTitles"))
-	return rv
-}
-
-
-// SetTaskTitles sets the value of the taskTitles property.
-// An array of strings containing the titles of the new tasks.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/tasktitles
-func (i_ INAddTasksIntent) SetTaskTitles(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitles:"), value)
-}
-
 // The priority for the new task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/priority
@@ -151,6 +115,42 @@ func (i_ INAddTasksIntent) SpatialEventTrigger() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/spatialeventtrigger
 func (i_ INAddTasksIntent) SetSpatialEventTrigger(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSpatialEventTrigger:"), value)
+}
+
+// The task list to receive the new tasks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/targettasklist
+func (i_ INAddTasksIntent) TargetTaskList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("targetTaskList"))
+	return rv
+}
+
+
+// SetTargetTaskList sets the value of the targetTaskList property.
+// The task list to receive the new tasks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/targettasklist
+func (i_ INAddTasksIntent) SetTargetTaskList(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTargetTaskList:"), value)
+}
+
+// An array of strings containing the titles of the new tasks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/tasktitles
+func (i_ INAddTasksIntent) TaskTitles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("taskTitles"))
+	return rv
+}
+
+
+// SetTaskTitles sets the value of the taskTitles property.
+// An array of strings containing the titles of the new tasks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/tasktitles
+func (i_ INAddTasksIntent) SetTaskTitles(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitles:"), value)
 }
 
 // The time-based trigger to associate with each of the new tasks.

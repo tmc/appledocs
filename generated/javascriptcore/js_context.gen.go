@@ -107,6 +107,50 @@ func (j_ JSContext) ObjectForKeyedSubscript(key objc.ID) unsafe.Pointer {
 	return rv
 }
 
+// A JavaScript exception to be thrown in evaluation of the script.
+//
+// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/exception
+func (j_ JSContext) Exception() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("exception"))
+	return rv
+}
+
+
+// SetException sets the value of the exception property.
+// A JavaScript exception to be thrown in evaluation of the script.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/exception
+func (j_ JSContext) SetException(value unsafe.Pointer) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setException:"), value)
+}
+
+// The JavaScript virtual machine to which the context belongs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/virtualMachine
+func (j_ JSContext) VirtualMachine() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("virtualMachine"))
+	return rv
+}
+
+// A block to be invoked should evaluating a script result in a JavaScript exception being thrown.
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/exceptionhandler
+func (j_ JSContext) ExceptionHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("exceptionHandler"))
+	return rv
+}
+
+
+// SetExceptionHandler sets the value of the exceptionHandler property.
+// A block to be invoked should evaluating a script result in a JavaScript exception being thrown.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/exceptionhandler
+func (j_ JSContext) SetExceptionHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setExceptionHandler:"), value)
+}
+
 // The JavaScript global object associated with the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/globalobject
@@ -161,24 +205,6 @@ func (j_ JSContext) SetJsGlobalContextRef(value unsafe.Pointer) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setJsGlobalContextRef:"), value)
 }
 
-// A block to be invoked should evaluating a script result in a JavaScript exception being thrown.
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/exceptionhandler
-func (j_ JSContext) ExceptionHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("exceptionHandler"))
-	return rv
-}
-
-
-// SetExceptionHandler sets the value of the exceptionHandler property.
-// A block to be invoked should evaluating a script result in a JavaScript exception being thrown.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/exceptionhandler
-func (j_ JSContext) SetExceptionHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](j_.ID, objc.Sel("setExceptionHandler:"), value)
-}
-
 // A descriptive name for the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
@@ -195,32 +221,6 @@ func (j_ JSContext) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
 func (j_ JSContext) SetName(value string) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// A JavaScript exception to be thrown in evaluation of the script.
-//
-// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/exception
-func (j_ JSContext) Exception() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("exception"))
-	return rv
-}
-
-
-// SetException sets the value of the exception property.
-// A JavaScript exception to be thrown in evaluation of the script.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/exception
-func (j_ JSContext) SetException(value unsafe.Pointer) {
-	objc.Send[objc.ID](j_.ID, objc.Sel("setException:"), value)
-}
-
-// The JavaScript virtual machine to which the context belongs.
-//
-// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/virtualMachine
-func (j_ JSContext) VirtualMachine() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("virtualMachine"))
-	return rv
 }
 
 

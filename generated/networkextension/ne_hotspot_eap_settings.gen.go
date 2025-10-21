@@ -79,6 +79,24 @@ func NewNEHotspotEAPSettings() NEHotspotEAPSettings {
 }
 
 
+// A Boolean value indicating whether a network requires two-factor authentication or allows zero-factor authentication.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/istlsclientcertificaterequired
+func (n_ NEHotspotEAPSettings) IsTLSClientCertificateRequired() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isTLSClientCertificateRequired"))
+	return rv
+}
+
+
+// SetIsTLSClientCertificateRequired sets the value of the isTLSClientCertificateRequired property.
+// A Boolean value indicating whether a network requires two-factor authentication or allows zero-factor authentication.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/istlsclientcertificaterequired
+func (n_ NEHotspotEAPSettings) SetIsTLSClientCertificateRequired(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsTLSClientCertificateRequired:"), value)
+}
+
 // The identity string to be used in the EAP-Identity/Response packet during outer EAP authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/outeridentity
@@ -115,24 +133,6 @@ func (n_ NEHotspotEAPSettings) SetPassword(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPassword:"), objc.String(value))
 }
 
-// The user name string for EAP authentication, encoded as UTF-8.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/username
-func (n_ NEHotspotEAPSettings) Username() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("username"))
-	return rv
-}
-
-
-// SetUsername sets the value of the username property.
-// The user name string for EAP authentication, encoded as UTF-8.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/username
-func (n_ NEHotspotEAPSettings) SetUsername(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), objc.String(value))
-}
-
 // The Transport Layer Security (TLS) version to use during a TLS authentication handshake.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/preferredtlsversion
@@ -149,24 +149,6 @@ func (n_ NEHotspotEAPSettings) PreferredTLSVersion() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/preferredtlsversion
 func (n_ NEHotspotEAPSettings) SetPreferredTLSVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPreferredTLSVersion:"), value)
-}
-
-// A Boolean value indicating whether a network requires two-factor authentication or allows zero-factor authentication.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/istlsclientcertificaterequired
-func (n_ NEHotspotEAPSettings) IsTLSClientCertificateRequired() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isTLSClientCertificateRequired"))
-	return rv
-}
-
-
-// SetIsTLSClientCertificateRequired sets the value of the isTLSClientCertificateRequired property.
-// A Boolean value indicating whether a network requires two-factor authentication or allows zero-factor authentication.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/istlsclientcertificaterequired
-func (n_ NEHotspotEAPSettings) SetIsTLSClientCertificateRequired(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIsTLSClientCertificateRequired:"), value)
 }
 
 // An array of supported EAP types.
@@ -187,6 +169,24 @@ func (n_ NEHotspotEAPSettings) SetSupportedEAPTypes(value foundation.Number) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSupportedEAPTypes:"), value)
 }
 
+// An array of server certificate common name strings used to verify a server’s certificate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/trustedservernames
+func (n_ NEHotspotEAPSettings) TrustedServerNames() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("trustedServerNames"))
+	return rv
+}
+
+
+// SetTrustedServerNames sets the value of the trustedServerNames property.
+// An array of server certificate common name strings used to verify a server’s certificate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/trustedservernames
+func (n_ NEHotspotEAPSettings) SetTrustedServerNames(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTrustedServerNames:"), objc.String(value))
+}
+
 // The inner-layer authentication protocol used by a TTLS module.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.property
@@ -205,22 +205,22 @@ func (n_ NEHotspotEAPSettings) SetTtlsInnerAuthenticationType(value unsafe.Point
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTtlsInnerAuthenticationType:"), value)
 }
 
-// An array of server certificate common name strings used to verify a server’s certificate.
+// The user name string for EAP authentication, encoded as UTF-8.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/trustedservernames
-func (n_ NEHotspotEAPSettings) TrustedServerNames() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("trustedServerNames"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/username
+func (n_ NEHotspotEAPSettings) Username() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("username"))
 	return rv
 }
 
 
-// SetTrustedServerNames sets the value of the trustedServerNames property.
-// An array of server certificate common name strings used to verify a server’s certificate.
+// SetUsername sets the value of the username property.
+// The user name string for EAP authentication, encoded as UTF-8.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/trustedservernames
-func (n_ NEHotspotEAPSettings) SetTrustedServerNames(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTrustedServerNames:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/username
+func (n_ NEHotspotEAPSettings) SetUsername(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), objc.String(value))
 }
 
 

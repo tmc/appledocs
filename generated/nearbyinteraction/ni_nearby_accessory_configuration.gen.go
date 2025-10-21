@@ -106,22 +106,30 @@ func NewNINearbyAccessoryConfigurationWithDataError(data unsafe.Pointer, error_ 
 }
 
 
-// An object that the framework notifies of session events.
+// An identifier for the accessory in a session.
 //
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
-func (n_ NINearbyAccessoryConfiguration) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/accessoryDiscoveryToken
+func (n_ NINearbyAccessoryConfiguration) AccessoryDiscoveryToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("accessoryDiscoveryToken"))
+	return rv
+}
+
+// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/isCameraAssistanceEnabled
+func (n_ NINearbyAccessoryConfiguration) CameraAssistanceEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("cameraAssistanceEnabled"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
-// An object that the framework notifies of session events.
+// SetCameraAssistanceEnabled sets the value of the cameraAssistanceEnabled property.
+// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
-func (n_ NINearbyAccessoryConfiguration) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/isCameraAssistanceEnabled
+func (n_ NINearbyAccessoryConfiguration) SetCameraAssistanceEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setCameraAssistanceEnabled:"), value)
 }
 
 // A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
@@ -160,30 +168,22 @@ func (n_ NINearbyAccessoryConfiguration) SetDistance(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDistance:"), value)
 }
 
-// An identifier for the accessory in a session.
+// An object that the framework notifies of session events.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/accessoryDiscoveryToken
-func (n_ NINearbyAccessoryConfiguration) AccessoryDiscoveryToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("accessoryDiscoveryToken"))
-	return rv
-}
-
-// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/isCameraAssistanceEnabled
-func (n_ NINearbyAccessoryConfiguration) CameraAssistanceEnabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("cameraAssistanceEnabled"))
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
+func (n_ NINearbyAccessoryConfiguration) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetCameraAssistanceEnabled sets the value of the cameraAssistanceEnabled property.
-// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
+// SetDelegate sets the value of the delegate property.
+// An object that the framework notifies of session events.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/isCameraAssistanceEnabled
-func (n_ NINearbyAccessoryConfiguration) SetCameraAssistanceEnabled(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setCameraAssistanceEnabled:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
+func (n_ NINearbyAccessoryConfiguration) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

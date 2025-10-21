@@ -78,6 +78,14 @@ func NewSpeechSynthesisProviderRequest() SpeechSynthesisProviderRequest {
 }
 
 
+// The voice to use in the speech request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderRequest/voice
+func (s_ SpeechSynthesisProviderRequest) Voice() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voice"))
+	return rv
+}
+
 // The description of the text to synthesize.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisproviderrequest/ssmlrepresentation
@@ -94,14 +102,6 @@ func (s_ SpeechSynthesisProviderRequest) SsmlRepresentation() string {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisproviderrequest/ssmlrepresentation
 func (s_ SpeechSynthesisProviderRequest) SetSsmlRepresentation(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSsmlRepresentation:"), objc.String(value))
-}
-
-// The voice to use in the speech request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderRequest/voice
-func (s_ SpeechSynthesisProviderRequest) Voice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voice"))
-	return rv
 }
 
 

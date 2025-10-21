@@ -78,18 +78,18 @@ func NewMTRTestClusterClusterTestSimpleOptionalArgumentRequestParams() MTRTestCl
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/arg1
+func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) Arg1() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetArg1 sets the value of the arg1 property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/arg1
+func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) SetArg1(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
 //
@@ -108,18 +108,18 @@ func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) SetServer
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/arg1
-func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) Arg1() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetArg1 sets the value of the arg1 property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/arg1
-func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) SetArg1(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

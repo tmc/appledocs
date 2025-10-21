@@ -78,21 +78,6 @@ func NewScreenshotOutput() ScreenshotOutput {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotoutput/sdrimage
-func (s_ ScreenshotOutput) SdrImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sdrImage"))
-	return rv
-}
-
-
-// SetSdrImage sets the value of the sdrImage property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotoutput/sdrimage
-func (s_ ScreenshotOutput) SetSdrImage(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSdrImage:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/fileURL
 func (s_ ScreenshotOutput) FileURL() foundation.URL {
 	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("fileURL"))
@@ -120,6 +105,21 @@ func (s_ ScreenshotOutput) HdrImage() coregraphics.CGImageRef {
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/hdrImage
 func (s_ ScreenshotOutput) SetHdrImage(value coregraphics.CGImageRef) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHdrImage:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotoutput/sdrimage
+func (s_ ScreenshotOutput) SdrImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sdrImage"))
+	return rv
+}
+
+
+// SetSdrImage sets the value of the sdrImage property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotoutput/sdrimage
+func (s_ ScreenshotOutput) SetSdrImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSdrImage:"), value)
 }
 
 

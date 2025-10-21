@@ -117,24 +117,6 @@ func (m_ MetalDisplayLink) RemoveFromRunLoopForMode(runloop unsafe.Pointer, mode
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeFromRunLoop:forMode:"), runloop, mode)
 }
 
-// A Boolean value that indicates whether the system suspends the display link’s notifications to the target.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/ispaused
-func (m_ MetalDisplayLink) IsPaused() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isPaused"))
-	return rv
-}
-
-
-// SetIsPaused sets the value of the isPaused property.
-// A Boolean value that indicates whether the system suspends the display link’s notifications to the target.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/ispaused
-func (m_ MetalDisplayLink) SetIsPaused(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPaused:"), value)
-}
-
 // An instance of a type your app implements that responds to the system’s callbacks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/delegate
@@ -205,6 +187,24 @@ func (m_ MetalDisplayLink) PreferredFrameRateRange() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/preferredFrameRateRange
 func (m_ MetalDisplayLink) SetPreferredFrameRateRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredFrameRateRange:"), value)
+}
+
+// A Boolean value that indicates whether the system suspends the display link’s notifications to the target.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/ispaused
+func (m_ MetalDisplayLink) IsPaused() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isPaused"))
+	return rv
+}
+
+
+// SetIsPaused sets the value of the isPaused property.
+// A Boolean value that indicates whether the system suspends the display link’s notifications to the target.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/ispaused
+func (m_ MetalDisplayLink) SetIsPaused(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPaused:"), value)
 }
 
 

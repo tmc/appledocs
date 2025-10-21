@@ -80,24 +80,6 @@ func NewDepthStencilDescriptor() DepthStencilDescriptor {
 }
 
 
-// A Boolean value that indicates whether depth values can be written to the depth attachment.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldepthstencildescriptor/isdepthwriteenabled
-func (d_ DepthStencilDescriptor) IsDepthWriteEnabled() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("isDepthWriteEnabled"))
-	return rv
-}
-
-
-// SetIsDepthWriteEnabled sets the value of the isDepthWriteEnabled property.
-// A Boolean value that indicates whether depth values can be written to the depth attachment.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldepthstencildescriptor/isdepthwriteenabled
-func (d_ DepthStencilDescriptor) SetIsDepthWriteEnabled(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDepthWriteEnabled:"), value)
-}
-
 // The stencil descriptor for back-facing primitives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/backFaceStencil
@@ -186,6 +168,24 @@ func (d_ DepthStencilDescriptor) Label() string {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/label
 func (d_ DepthStencilDescriptor) SetLabel(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether depth values can be written to the depth attachment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldepthstencildescriptor/isdepthwriteenabled
+func (d_ DepthStencilDescriptor) IsDepthWriteEnabled() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isDepthWriteEnabled"))
+	return rv
+}
+
+
+// SetIsDepthWriteEnabled sets the value of the isDepthWriteEnabled property.
+// A Boolean value that indicates whether depth values can be written to the depth attachment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldepthstencildescriptor/isdepthwriteenabled
+func (d_ DepthStencilDescriptor) SetIsDepthWriteEnabled(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDepthWriteEnabled:"), value)
 }
 
 

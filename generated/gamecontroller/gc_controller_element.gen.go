@@ -80,22 +80,20 @@ func NewGCControllerElement() GCControllerElement {
 }
 
 
-// The element’s system symbol, not the remapped symbol.
+// The element’s aliases you use when accessing it with the subscript notation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedsfsymbolsname
-func (g_ GCControllerElement) UnmappedSfSymbolsName() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("unmappedSfSymbolsName"))
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerElement/aliases
+func (g_ GCControllerElement) Aliases() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("aliases"))
 	return rv
 }
 
-
-// SetUnmappedSfSymbolsName sets the value of the unmappedSfSymbolsName property.
-// The element’s system symbol, not the remapped symbol.
-
+// A Boolean value that indicates whether the element provides analog data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedsfsymbolsname
-func (g_ GCControllerElement) SetUnmappedSfSymbolsName(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedSfSymbolsName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerElement/isAnalog
+func (g_ GCControllerElement) Analog() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("analog"))
+	return rv
 }
 
 // The enclosing element for this element.
@@ -116,22 +114,40 @@ func (g_ GCControllerElement) SetCollection(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCollection:"), value)
 }
 
-// A system symbol for the element or the remapped element.
+// A Boolean value that indicates whether the element provides analog data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/sfsymbolsname
-func (g_ GCControllerElement) SfSymbolsName() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("sfSymbolsName"))
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
+func (g_ GCControllerElement) IsAnalog() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isAnalog"))
 	return rv
 }
 
 
-// SetSfSymbolsName sets the value of the sfSymbolsName property.
-// A system symbol for the element or the remapped element.
+// SetIsAnalog sets the value of the isAnalog property.
+// A Boolean value that indicates whether the element provides analog data.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/sfsymbolsname
-func (g_ GCControllerElement) SetSfSymbolsName(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setSfSymbolsName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
+func (g_ GCControllerElement) SetIsAnalog(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsAnalog:"), value)
+}
+
+// A Boolean value that indicates whether the user binds the element to a system gesture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isboundtosystemgesture
+func (g_ GCControllerElement) IsBoundToSystemGesture() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isBoundToSystemGesture"))
+	return rv
+}
+
+
+// SetIsBoundToSystemGesture sets the value of the isBoundToSystemGesture property.
+// A Boolean value that indicates whether the user binds the element to a system gesture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isboundtosystemgesture
+func (g_ GCControllerElement) SetIsBoundToSystemGesture(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsBoundToSystemGesture:"), value)
 }
 
 // The localized name for the element or the remapped element.
@@ -170,22 +186,22 @@ func (g_ GCControllerElement) SetPreferredSystemGestureState(value unsafe.Pointe
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPreferredSystemGestureState:"), value)
 }
 
-// A Boolean value that indicates whether the user binds the element to a system gesture.
+// A system symbol for the element or the remapped element.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isboundtosystemgesture
-func (g_ GCControllerElement) IsBoundToSystemGesture() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("isBoundToSystemGesture"))
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/sfsymbolsname
+func (g_ GCControllerElement) SfSymbolsName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("sfSymbolsName"))
 	return rv
 }
 
 
-// SetIsBoundToSystemGesture sets the value of the isBoundToSystemGesture property.
-// A Boolean value that indicates whether the user binds the element to a system gesture.
+// SetSfSymbolsName sets the value of the sfSymbolsName property.
+// A system symbol for the element or the remapped element.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isboundtosystemgesture
-func (g_ GCControllerElement) SetIsBoundToSystemGesture(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setIsBoundToSystemGesture:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/sfsymbolsname
+func (g_ GCControllerElement) SetSfSymbolsName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSfSymbolsName:"), objc.String(value))
 }
 
 // The element’s localized name, not the remapped name.
@@ -206,38 +222,22 @@ func (g_ GCControllerElement) SetUnmappedLocalizedName(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedLocalizedName:"), objc.String(value))
 }
 
-// A Boolean value that indicates whether the element provides analog data.
+// The element’s system symbol, not the remapped symbol.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
-func (g_ GCControllerElement) IsAnalog() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("isAnalog"))
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedsfsymbolsname
+func (g_ GCControllerElement) UnmappedSfSymbolsName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("unmappedSfSymbolsName"))
 	return rv
 }
 
 
-// SetIsAnalog sets the value of the isAnalog property.
-// A Boolean value that indicates whether the element provides analog data.
+// SetUnmappedSfSymbolsName sets the value of the unmappedSfSymbolsName property.
+// The element’s system symbol, not the remapped symbol.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
-func (g_ GCControllerElement) SetIsAnalog(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setIsAnalog:"), value)
-}
-
-// The element’s aliases you use when accessing it with the subscript notation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerElement/aliases
-func (g_ GCControllerElement) Aliases() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("aliases"))
-	return rv
-}
-
-// A Boolean value that indicates whether the element provides analog data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerElement/isAnalog
-func (g_ GCControllerElement) Analog() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("analog"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedsfsymbolsname
+func (g_ GCControllerElement) SetUnmappedSfSymbolsName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedSfSymbolsName:"), objc.String(value))
 }
 
 

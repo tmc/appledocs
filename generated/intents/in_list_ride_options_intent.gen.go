@@ -81,24 +81,6 @@ func NewINListRideOptionsIntent() INListRideOptionsIntent {
 }
 
 
-// The user’s starting location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/pickuplocation
-func (i_ INListRideOptionsIntent) PickupLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pickupLocation"))
-	return rv
-}
-
-
-// SetPickupLocation sets the value of the pickupLocation property.
-// The user’s starting location.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/pickuplocation
-func (i_ INListRideOptionsIntent) SetPickupLocation(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
-}
-
 // The user’s destination.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/dropofflocation
@@ -115,6 +97,24 @@ func (i_ INListRideOptionsIntent) DropOffLocation() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/dropofflocation
 func (i_ INListRideOptionsIntent) SetDropOffLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
+}
+
+// The user’s starting location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/pickuplocation
+func (i_ INListRideOptionsIntent) PickupLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pickupLocation"))
+	return rv
+}
+
+
+// SetPickupLocation sets the value of the pickupLocation property.
+// The user’s starting location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/pickuplocation
+func (i_ INListRideOptionsIntent) SetPickupLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
 }
 
 

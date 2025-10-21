@@ -170,78 +170,6 @@ func (r_ RPScreenRecorder) StopRecordingWithOutputURLCompletionHandler(url found
 	objc.Send[objc.ID](r_.ID, objc.Sel("stopRecordingWithOutputURL:completionHandler:"), url, completionHandler)
 }
 
-// A Boolean value that indicates whether the camera is currently enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/iscameraenabled
-func (r_ RPScreenRecorder) IsCameraEnabled() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isCameraEnabled"))
-	return rv
-}
-
-
-// SetIsCameraEnabled sets the value of the isCameraEnabled property.
-// A Boolean value that indicates whether the camera is currently enabled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/iscameraenabled
-func (r_ RPScreenRecorder) SetIsCameraEnabled(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsCameraEnabled:"), value)
-}
-
-// A Boolean value that indicates whether the microphone is currently enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/ismicrophoneenabled
-func (r_ RPScreenRecorder) IsMicrophoneEnabled() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isMicrophoneEnabled"))
-	return rv
-}
-
-
-// SetIsMicrophoneEnabled sets the value of the isMicrophoneEnabled property.
-// A Boolean value that indicates whether the microphone is currently enabled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/ismicrophoneenabled
-func (r_ RPScreenRecorder) SetIsMicrophoneEnabled(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsMicrophoneEnabled:"), value)
-}
-
-// A Boolean value that indicates whether the app is currently recording.
-//
-// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isrecording
-func (r_ RPScreenRecorder) IsRecording() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isRecording"))
-	return rv
-}
-
-
-// SetIsRecording sets the value of the isRecording property.
-// A Boolean value that indicates whether the app is currently recording.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isrecording
-func (r_ RPScreenRecorder) SetIsRecording(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsRecording:"), value)
-}
-
-// A Boolean value that indicates whether the screen recorder is available for recording.
-//
-// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isavailable
-func (r_ RPScreenRecorder) IsAvailable() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isAvailable"))
-	return rv
-}
-
-
-// SetIsAvailable sets the value of the isAvailable property.
-// A Boolean value that indicates whether the screen recorder is available for recording.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isavailable
-func (r_ RPScreenRecorder) SetIsAvailable(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsAvailable:"), value)
-}
-
 // The camera position to use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/cameraPosition
@@ -336,6 +264,78 @@ func (r_ RPScreenRecorder) SetMicrophoneEnabled(value bool) {
 func (r_ RPScreenRecorder) Recording() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("recording"))
 	return rv
+}
+
+// A Boolean value that indicates whether the screen recorder is available for recording.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isavailable
+func (r_ RPScreenRecorder) IsAvailable() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isAvailable"))
+	return rv
+}
+
+
+// SetIsAvailable sets the value of the isAvailable property.
+// A Boolean value that indicates whether the screen recorder is available for recording.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isavailable
+func (r_ RPScreenRecorder) SetIsAvailable(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsAvailable:"), value)
+}
+
+// A Boolean value that indicates whether the camera is currently enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/iscameraenabled
+func (r_ RPScreenRecorder) IsCameraEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isCameraEnabled"))
+	return rv
+}
+
+
+// SetIsCameraEnabled sets the value of the isCameraEnabled property.
+// A Boolean value that indicates whether the camera is currently enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/iscameraenabled
+func (r_ RPScreenRecorder) SetIsCameraEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsCameraEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the microphone is currently enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/ismicrophoneenabled
+func (r_ RPScreenRecorder) IsMicrophoneEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isMicrophoneEnabled"))
+	return rv
+}
+
+
+// SetIsMicrophoneEnabled sets the value of the isMicrophoneEnabled property.
+// A Boolean value that indicates whether the microphone is currently enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/ismicrophoneenabled
+func (r_ RPScreenRecorder) SetIsMicrophoneEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsMicrophoneEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the app is currently recording.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isrecording
+func (r_ RPScreenRecorder) IsRecording() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isRecording"))
+	return rv
+}
+
+
+// SetIsRecording sets the value of the isRecording property.
+// A Boolean value that indicates whether the app is currently recording.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isrecording
+func (r_ RPScreenRecorder) SetIsRecording(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsRecording:"), value)
 }
 
 

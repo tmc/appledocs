@@ -1583,8 +1583,8 @@ func nw_content_context_copy_antecedent(context unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_copy_protocol_metadata(_:_:)
-func nw_content_context_copy_protocol_metadata(context unsafe.Pointer, protocol unsafe.Pointer) unsafe.Pointer {
-	return _nw_content_context_copy_protocol_metadata(context, protocol)
+func nw_content_context_copy_protocol_metadata(context unsafe.Pointer, protocol_ unsafe.Pointer) unsafe.Pointer {
+	return _nw_content_context_copy_protocol_metadata(context, protocol_)
 	}
 
 
@@ -3863,8 +3863,8 @@ func nw_protocol_stack_iterate_application_protocols(stack unsafe.Pointer, itera
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_stack_prepend_application_protocol(_:_:)
-func nw_protocol_stack_prepend_application_protocol(stack unsafe.Pointer, protocol unsafe.Pointer) {
-	_nw_protocol_stack_prepend_application_protocol(stack, protocol)
+func nw_protocol_stack_prepend_application_protocol(stack unsafe.Pointer, protocol_ unsafe.Pointer) {
+	_nw_protocol_stack_prepend_application_protocol(stack, protocol_)
 	}
 
 
@@ -3873,8 +3873,8 @@ func nw_protocol_stack_prepend_application_protocol(stack unsafe.Pointer, protoc
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_stack_set_transport_protocol(_:_:)
-func nw_protocol_stack_set_transport_protocol(stack unsafe.Pointer, protocol unsafe.Pointer) {
-	_nw_protocol_stack_set_transport_protocol(stack, protocol)
+func nw_protocol_stack_set_transport_protocol(stack unsafe.Pointer, protocol_ unsafe.Pointer) {
+	_nw_protocol_stack_set_transport_protocol(stack, protocol_)
 	}
 
 

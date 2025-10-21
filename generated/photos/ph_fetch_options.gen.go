@@ -80,276 +80,6 @@ func NewPHFetchOptions() PHFetchOptions {
 }
 
 
-// The date and time of the asset’s creation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/creationdate
-func (p_ PHFetchOptions) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("creationDate"))
-	return rv
-}
-
-
-// SetCreationDate sets the value of the creationDate property.
-// The date and time of the asset’s creation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/creationdate
-func (p_ PHFetchOptions) SetCreationDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCreationDate:"), value)
-}
-
-// The estimated number of assets in the asset collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/estimatedassetcount
-func (p_ PHFetchOptions) EstimatedAssetCount() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("estimatedAssetCount"))
-	return rv
-}
-
-
-// SetEstimatedAssetCount sets the value of the estimatedAssetCount property.
-// The estimated number of assets in the asset collection.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/estimatedassetcount
-func (p_ PHFetchOptions) SetEstimatedAssetCount(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setEstimatedAssetCount:"), value)
-}
-
-// The latest creation date among all assets in the collection list.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phcollectionlist/enddate
-func (p_ PHFetchOptions) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("endDate"))
-	return rv
-}
-
-
-// SetEndDate sets the value of the endDate property.
-// The latest creation date among all assets in the collection list.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phcollectionlist/enddate
-func (p_ PHFetchOptions) SetEndDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setEndDate:"), value)
-}
-
-// The earliest creation date among all assets in the asset collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/startdate
-func (p_ PHFetchOptions) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startDate"))
-	return rv
-}
-
-
-// SetStartDate sets the value of the startDate property.
-// The earliest creation date among all assets in the asset collection.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/startdate
-func (p_ PHFetchOptions) SetStartDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
-}
-
-// The duration, in seconds, of the video asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/duration
-func (p_ PHFetchOptions) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("duration"))
-	return rv
-}
-
-
-// SetDuration sets the value of the duration property.
-// The duration, in seconds, of the video asset.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/duration
-func (p_ PHFetchOptions) SetDuration(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDuration:"), value)
-}
-
-// The height, in pixels, of the asset’s image or video data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/pixelheight
-func (p_ PHFetchOptions) PixelHeight() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("pixelHeight"))
-	return rv
-}
-
-
-// SetPixelHeight sets the value of the pixelHeight property.
-// The height, in pixels, of the asset’s image or video data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/pixelheight
-func (p_ PHFetchOptions) SetPixelHeight(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelHeight:"), value)
-}
-
-// The type of the asset, such as video or audio.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediatype
-func (p_ PHFetchOptions) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaType"))
-	return rv
-}
-
-
-// SetMediaType sets the value of the mediaType property.
-// The type of the asset, such as video or audio.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediatype
-func (p_ PHFetchOptions) SetMediaType(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMediaType:"), value)
-}
-
-// The width, in pixels, of the asset’s image or video data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/pixelwidth
-func (p_ PHFetchOptions) PixelWidth() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("pixelWidth"))
-	return rv
-}
-
-
-// SetPixelWidth sets the value of the pixelWidth property.
-// The width, in pixels, of the asset’s image or video data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/pixelwidth
-func (p_ PHFetchOptions) SetPixelWidth(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelWidth:"), value)
-}
-
-// The unique identifier shared by photo assets from the same burst sequence.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/burstidentifier
-func (p_ PHFetchOptions) BurstIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("burstIdentifier"))
-	return rv
-}
-
-
-// SetBurstIdentifier sets the value of the burstIdentifier property.
-// The unique identifier shared by photo assets from the same burst sequence.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/burstidentifier
-func (p_ PHFetchOptions) SetBurstIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setBurstIdentifier:"), objc.String(value))
-}
-
-// The date and time of the asset’s last modification.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/modificationdate
-func (p_ PHFetchOptions) ModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modificationDate"))
-	return rv
-}
-
-
-// SetModificationDate sets the value of the modificationDate property.
-// The date and time of the asset’s last modification.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/modificationdate
-func (p_ PHFetchOptions) SetModificationDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setModificationDate:"), value)
-}
-
-// A Boolean value that indicates whether the user hides the asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/ishidden
-func (p_ PHFetchOptions) IsHidden() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isHidden"))
-	return rv
-}
-
-
-// SetIsHidden sets the value of the isHidden property.
-// A Boolean value that indicates whether the user hides the asset.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/ishidden
-func (p_ PHFetchOptions) SetIsHidden(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHidden:"), value)
-}
-
-// A unique string that persistently identifies the object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHFetchOptions) LocalIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
-	return rv
-}
-
-
-// SetLocalIdentifier sets the value of the localIdentifier property.
-// A unique string that persistently identifies the object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHFetchOptions) SetLocalIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
-}
-
-// The localized name of the collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phcollection/localizedtitle
-func (p_ PHFetchOptions) LocalizedTitle() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
-	return rv
-}
-
-
-// SetLocalizedTitle sets the value of the localizedTitle property.
-// The localized name of the collection.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phcollection/localizedtitle
-func (p_ PHFetchOptions) SetLocalizedTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedTitle:"), objc.String(value))
-}
-
-// The subtypes of the asset, identifying special kinds of assets, such as panoramic photo or high-frame-rate video.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediasubtypes
-func (p_ PHFetchOptions) MediaSubtypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaSubtypes"))
-	return rv
-}
-
-
-// SetMediaSubtypes sets the value of the mediaSubtypes property.
-// The subtypes of the asset, identifying special kinds of assets, such as panoramic photo or high-frame-rate video.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediasubtypes
-func (p_ PHFetchOptions) SetMediaSubtypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMediaSubtypes:"), value)
-}
-
-// A Boolean value that indicates whether the user marks the asset as a favorite.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/isfavorite
-func (p_ PHFetchOptions) IsFavorite() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isFavorite"))
-	return rv
-}
-
-
-// SetIsFavorite sets the value of the isFavorite property.
-// A Boolean value that indicates whether the user marks the asset as a favorite.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/isfavorite
-func (p_ PHFetchOptions) SetIsFavorite(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFavorite:"), value)
-}
-
 // The maximum number of objects to include in the fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/fetchLimit
@@ -484,6 +214,276 @@ func (p_ PHFetchOptions) WantsIncrementalChangeDetails() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/wantsIncrementalChangeDetails
 func (p_ PHFetchOptions) SetWantsIncrementalChangeDetails(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWantsIncrementalChangeDetails:"), value)
+}
+
+// The unique identifier shared by photo assets from the same burst sequence.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/burstidentifier
+func (p_ PHFetchOptions) BurstIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("burstIdentifier"))
+	return rv
+}
+
+
+// SetBurstIdentifier sets the value of the burstIdentifier property.
+// The unique identifier shared by photo assets from the same burst sequence.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/burstidentifier
+func (p_ PHFetchOptions) SetBurstIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBurstIdentifier:"), objc.String(value))
+}
+
+// The date and time of the asset’s creation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/creationdate
+func (p_ PHFetchOptions) CreationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("creationDate"))
+	return rv
+}
+
+
+// SetCreationDate sets the value of the creationDate property.
+// The date and time of the asset’s creation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/creationdate
+func (p_ PHFetchOptions) SetCreationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCreationDate:"), value)
+}
+
+// The duration, in seconds, of the video asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/duration
+func (p_ PHFetchOptions) Duration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// SetDuration sets the value of the duration property.
+// The duration, in seconds, of the video asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/duration
+func (p_ PHFetchOptions) SetDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDuration:"), value)
+}
+
+// A Boolean value that indicates whether the user marks the asset as a favorite.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/isfavorite
+func (p_ PHFetchOptions) IsFavorite() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isFavorite"))
+	return rv
+}
+
+
+// SetIsFavorite sets the value of the isFavorite property.
+// A Boolean value that indicates whether the user marks the asset as a favorite.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/isfavorite
+func (p_ PHFetchOptions) SetIsFavorite(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFavorite:"), value)
+}
+
+// A Boolean value that indicates whether the user hides the asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/ishidden
+func (p_ PHFetchOptions) IsHidden() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// A Boolean value that indicates whether the user hides the asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/ishidden
+func (p_ PHFetchOptions) SetIsHidden(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// The subtypes of the asset, identifying special kinds of assets, such as panoramic photo or high-frame-rate video.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediasubtypes
+func (p_ PHFetchOptions) MediaSubtypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaSubtypes"))
+	return rv
+}
+
+
+// SetMediaSubtypes sets the value of the mediaSubtypes property.
+// The subtypes of the asset, identifying special kinds of assets, such as panoramic photo or high-frame-rate video.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediasubtypes
+func (p_ PHFetchOptions) SetMediaSubtypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMediaSubtypes:"), value)
+}
+
+// The type of the asset, such as video or audio.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediatype
+func (p_ PHFetchOptions) MediaType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaType"))
+	return rv
+}
+
+
+// SetMediaType sets the value of the mediaType property.
+// The type of the asset, such as video or audio.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediatype
+func (p_ PHFetchOptions) SetMediaType(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMediaType:"), value)
+}
+
+// The date and time of the asset’s last modification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/modificationdate
+func (p_ PHFetchOptions) ModificationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modificationDate"))
+	return rv
+}
+
+
+// SetModificationDate sets the value of the modificationDate property.
+// The date and time of the asset’s last modification.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/modificationdate
+func (p_ PHFetchOptions) SetModificationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setModificationDate:"), value)
+}
+
+// The height, in pixels, of the asset’s image or video data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/pixelheight
+func (p_ PHFetchOptions) PixelHeight() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("pixelHeight"))
+	return rv
+}
+
+
+// SetPixelHeight sets the value of the pixelHeight property.
+// The height, in pixels, of the asset’s image or video data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/pixelheight
+func (p_ PHFetchOptions) SetPixelHeight(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelHeight:"), value)
+}
+
+// The width, in pixels, of the asset’s image or video data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/pixelwidth
+func (p_ PHFetchOptions) PixelWidth() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("pixelWidth"))
+	return rv
+}
+
+
+// SetPixelWidth sets the value of the pixelWidth property.
+// The width, in pixels, of the asset’s image or video data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phasset/pixelwidth
+func (p_ PHFetchOptions) SetPixelWidth(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelWidth:"), value)
+}
+
+// The latest creation date among all assets in the asset collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/enddate
+func (p_ PHFetchOptions) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// SetEndDate sets the value of the endDate property.
+// The latest creation date among all assets in the asset collection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/enddate
+func (p_ PHFetchOptions) SetEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEndDate:"), value)
+}
+
+// The estimated number of assets in the asset collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/estimatedassetcount
+func (p_ PHFetchOptions) EstimatedAssetCount() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("estimatedAssetCount"))
+	return rv
+}
+
+
+// SetEstimatedAssetCount sets the value of the estimatedAssetCount property.
+// The estimated number of assets in the asset collection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/estimatedassetcount
+func (p_ PHFetchOptions) SetEstimatedAssetCount(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEstimatedAssetCount:"), value)
+}
+
+// The earliest creation date among all assets in the asset collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/startdate
+func (p_ PHFetchOptions) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+// SetStartDate sets the value of the startDate property.
+// The earliest creation date among all assets in the asset collection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/startdate
+func (p_ PHFetchOptions) SetStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
+}
+
+// The localized name of the collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcollection/localizedtitle
+func (p_ PHFetchOptions) LocalizedTitle() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
+	return rv
+}
+
+
+// SetLocalizedTitle sets the value of the localizedTitle property.
+// The localized name of the collection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcollection/localizedtitle
+func (p_ PHFetchOptions) SetLocalizedTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedTitle:"), objc.String(value))
+}
+
+// A unique string that persistently identifies the object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
+func (p_ PHFetchOptions) LocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
+	return rv
+}
+
+
+// SetLocalIdentifier sets the value of the localIdentifier property.
+// A unique string that persistently identifies the object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
+func (p_ PHFetchOptions) SetLocalIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
 }
 
 

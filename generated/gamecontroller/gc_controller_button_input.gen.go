@@ -83,78 +83,6 @@ func NewGCControllerButtonInput() GCControllerButtonInput {
 
 // A Boolean value that indicates whether the user is touching the button.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/istouched
-func (g_ GCControllerButtonInput) IsTouched() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("isTouched"))
-	return rv
-}
-
-
-// SetIsTouched sets the value of the isTouched property.
-// A Boolean value that indicates whether the user is touching the button.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/istouched
-func (g_ GCControllerButtonInput) SetIsTouched(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setIsTouched:"), value)
-}
-
-// The block that the element calls when the user presses or releases the button.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/pressedchangedhandler
-func (g_ GCControllerButtonInput) PressedChangedHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("pressedChangedHandler"))
-	return rv
-}
-
-
-// SetPressedChangedHandler sets the value of the pressedChangedHandler property.
-// The block that the element calls when the user presses or releases the button.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/pressedchangedhandler
-func (g_ GCControllerButtonInput) SetPressedChangedHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPressedChangedHandler:"), value)
-}
-
-// A Boolean value that indicates whether the user is pressing the button.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/ispressed
-func (g_ GCControllerButtonInput) IsPressed() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("isPressed"))
-	return rv
-}
-
-
-// SetIsPressed sets the value of the isPressed property.
-// A Boolean value that indicates whether the user is pressing the button.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/ispressed
-func (g_ GCControllerButtonInput) SetIsPressed(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setIsPressed:"), value)
-}
-
-// The level of pressure the user is applying to the button.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/value
-func (g_ GCControllerButtonInput) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("value"))
-	return rv
-}
-
-
-// SetValue sets the value of the value property.
-// The level of pressure the user is applying to the button.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/value
-func (g_ GCControllerButtonInput) SetValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:"), value)
-}
-
-// A Boolean value that indicates whether the user is touching the button.
-//
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerButtonInput/isTouched
 func (g_ GCControllerButtonInput) Touched() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("touched"))
@@ -195,6 +123,78 @@ func (g_ GCControllerButtonInput) ValueChangedHandler() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerButtonInput/valueChangedHandler
 func (g_ GCControllerButtonInput) SetValueChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
+}
+
+// A Boolean value that indicates whether the user is pressing the button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/ispressed
+func (g_ GCControllerButtonInput) IsPressed() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isPressed"))
+	return rv
+}
+
+
+// SetIsPressed sets the value of the isPressed property.
+// A Boolean value that indicates whether the user is pressing the button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/ispressed
+func (g_ GCControllerButtonInput) SetIsPressed(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsPressed:"), value)
+}
+
+// A Boolean value that indicates whether the user is touching the button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/istouched
+func (g_ GCControllerButtonInput) IsTouched() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isTouched"))
+	return rv
+}
+
+
+// SetIsTouched sets the value of the isTouched property.
+// A Boolean value that indicates whether the user is touching the button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/istouched
+func (g_ GCControllerButtonInput) SetIsTouched(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsTouched:"), value)
+}
+
+// The block that the element calls when the user presses or releases the button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/pressedchangedhandler
+func (g_ GCControllerButtonInput) PressedChangedHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("pressedChangedHandler"))
+	return rv
+}
+
+
+// SetPressedChangedHandler sets the value of the pressedChangedHandler property.
+// The block that the element calls when the user presses or releases the button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/pressedchangedhandler
+func (g_ GCControllerButtonInput) SetPressedChangedHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPressedChangedHandler:"), value)
+}
+
+// The level of pressure the user is applying to the button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/value
+func (g_ GCControllerButtonInput) Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+// The level of pressure the user is applying to the button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/value
+func (g_ GCControllerButtonInput) SetValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:"), value)
 }
 
 

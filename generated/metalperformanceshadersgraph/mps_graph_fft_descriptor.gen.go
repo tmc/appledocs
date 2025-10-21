@@ -89,6 +89,24 @@ func (gc _GraphFFTDescriptorClass) Descriptor() unsafe.Pointer {
 	return rv
 }
 
+// The scaling mode of the fast fourier transform (FFT) operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor/scalingMode
+func (g_ GraphFFTDescriptor) ScalingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("scalingMode"))
+	return rv
+}
+
+
+// SetScalingMode sets the value of the scalingMode property.
+// The scaling mode of the fast fourier transform (FFT) operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor/scalingMode
+func (g_ GraphFFTDescriptor) SetScalingMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setScalingMode:"), value)
+}
+
 // A Boolean-valued parameter that defines the phase factor sign for Fourier transforms.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/inverse
@@ -123,24 +141,6 @@ func (g_ GraphFFTDescriptor) RoundToOddHermitean() bool {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/roundtooddhermitean
 func (g_ GraphFFTDescriptor) SetRoundToOddHermitean(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRoundToOddHermitean:"), value)
-}
-
-// The scaling mode of the fast fourier transform (FFT) operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor/scalingMode
-func (g_ GraphFFTDescriptor) ScalingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("scalingMode"))
-	return rv
-}
-
-
-// SetScalingMode sets the value of the scalingMode property.
-// The scaling mode of the fast fourier transform (FFT) operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor/scalingMode
-func (g_ GraphFFTDescriptor) SetScalingMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setScalingMode:"), value)
 }
 
 

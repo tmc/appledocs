@@ -81,37 +81,30 @@ func NewPDFDestination() PDFDestination {
 }
 
 
-// Returns the type of the annotation.
+// Returns the page that the destination refers to.
 //
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
-func (p_ PDFDestination) Type() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("type"))
+// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDestination/page
+func (p_ PDFDestination) Page() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("page"))
+	return rv
+}
+
+// An object that represents an action for a PDF element, such as a link annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/action
+func (p_ PDFDestination) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("action"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
-// Returns the type of the annotation.
+// SetAction sets the value of the action property.
+// An object that represents an action for a PDF element, such as a link annotation.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
-func (p_ PDFDestination) SetType(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfdestination/zoom
-func (p_ PDFDestination) Zoom() float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("zoom"))
-	return rv
-}
-
-
-// SetZoom sets the value of the zoom property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfdestination/zoom
-func (p_ PDFDestination) SetZoom(value float64) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setZoom:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/action
+func (p_ PDFDestination) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAction:"), value)
 }
 
 // Returns the modification date of the annotation.
@@ -132,47 +125,22 @@ func (p_ PDFDestination) SetModificationDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModificationDate:"), value)
 }
 
-// Returns a
+// Returns the type of the annotation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/currentdestination
-func (p_ PDFDestination) CurrentDestination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentDestination"))
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
+func (p_ PDFDestination) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetCurrentDestination sets the value of the currentDestination property.
-// Returns a
+// SetType sets the value of the type property.
+// Returns the type of the annotation.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/currentdestination
-func (p_ PDFDestination) SetCurrentDestination(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDestination:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/kpdfdestinationunspecifiedvalue
-func (p_ PDFDestination) KPDFDestinationUnspecifiedValue() float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("kPDFDestinationUnspecifiedValue"))
-	return rv
-}
-
-// An object that represents an action for a PDF element, such as a link annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/action
-func (p_ PDFDestination) Action() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("action"))
-	return rv
-}
-
-
-// SetAction sets the value of the action property.
-// An object that represents an action for a PDF element, such as a link annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/action
-func (p_ PDFDestination) SetAction(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAction:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
+func (p_ PDFDestination) SetType(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
 }
 
 // Returns the name of the user who created the annotation.
@@ -211,11 +179,43 @@ func (p_ PDFDestination) SetPoint(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPoint:"), value)
 }
 
-// Returns the page that the destination refers to.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDestination/page
-func (p_ PDFDestination) Page() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("page"))
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfdestination/zoom
+func (p_ PDFDestination) Zoom() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("zoom"))
+	return rv
+}
+
+
+// SetZoom sets the value of the zoom property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfdestination/zoom
+func (p_ PDFDestination) SetZoom(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setZoom:"), value)
+}
+
+// Returns a
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/currentdestination
+func (p_ PDFDestination) CurrentDestination() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentDestination"))
+	return rv
+}
+
+
+// SetCurrentDestination sets the value of the currentDestination property.
+// Returns a
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/currentdestination
+func (p_ PDFDestination) SetCurrentDestination(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDestination:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/kpdfdestinationunspecifiedvalue
+func (p_ PDFDestination) KPDFDestinationUnspecifiedValue() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("kPDFDestinationUnspecifiedValue"))
 	return rv
 }
 

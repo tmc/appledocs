@@ -77,6 +77,36 @@ func NewMTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams() MTRNetwor
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) Breadcrumb() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+	return rv
+}
+
+
+// SetBreadcrumb sets the value of the breadcrumb property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetBreadcrumb(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/operationaldataset
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) OperationalDataset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalDataset"))
+	return rv
+}
+
+
+// SetOperationalDataset sets the value of the operationalDataset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/operationaldataset
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetOperationalDataset(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalDataset:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/serversideprocessingtimeout
 func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,36 +134,6 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) TimedInvo
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/timedinvoketimeoutms
 func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/operationaldataset
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) OperationalDataset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalDataset"))
-	return rv
-}
-
-
-// SetOperationalDataset sets the value of the operationalDataset property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/operationaldataset
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetOperationalDataset(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalDataset:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
-	return rv
-}
-
-
-// SetBreadcrumb sets the value of the breadcrumb property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetBreadcrumb(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
 

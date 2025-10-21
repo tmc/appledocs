@@ -98,24 +98,6 @@ func (h_ HKLensSpecification) SetAddPower(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAddPower:"), value)
 }
 
-// Part of the correction for astigmatism that measures the strength of the correction.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
-func (h_ HKLensSpecification) Cylinder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("cylinder"))
-	return rv
-}
-
-
-// SetCylinder sets the value of the cylinder property.
-// Part of the correction for astigmatism that measures the strength of the correction.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
-func (h_ HKLensSpecification) SetCylinder(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setCylinder:"), value)
-}
-
 // Part of the correction for astigmatism that measures the orientation fo the correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
@@ -132,6 +114,24 @@ func (h_ HKLensSpecification) Axis() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
 func (h_ HKLensSpecification) SetAxis(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAxis:"), value)
+}
+
+// Part of the correction for astigmatism that measures the strength of the correction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
+func (h_ HKLensSpecification) Cylinder() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("cylinder"))
+	return rv
+}
+
+
+// SetCylinder sets the value of the cylinder property.
+// Part of the correction for astigmatism that measures the strength of the correction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
+func (h_ HKLensSpecification) SetCylinder(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCylinder:"), value)
 }
 
 // The correction for farsightedness.

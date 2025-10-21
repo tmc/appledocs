@@ -82,6 +82,40 @@ func NewDisplayManager() DisplayManager {
 
 // A Boolean value that indicates whether the user has enabled display critera matching.
 //
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/isDisplayCriteriaMatchingEnabled
+func (d_ DisplayManager) DisplayCriteriaMatchingEnabled() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("displayCriteriaMatchingEnabled"))
+	return rv
+}
+
+// A Boolean value that indicates whether a display mode switch is in progress.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/isDisplayModeSwitchInProgress
+func (d_ DisplayManager) DisplayModeSwitchInProgress() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("displayModeSwitchInProgress"))
+	return rv
+}
+
+// A hint for the TV to set the display mode to best match the currently playing content’s display criteria.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
+func (d_ DisplayManager) PreferredDisplayCriteria() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("preferredDisplayCriteria"))
+	return rv
+}
+
+
+// SetPreferredDisplayCriteria sets the value of the preferredDisplayCriteria property.
+// A hint for the TV to set the display mode to best match the currently playing content’s display criteria.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
+func (d_ DisplayManager) SetPreferredDisplayCriteria(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredDisplayCriteria:"), value)
+}
+
+// A Boolean value that indicates whether the user has enabled display critera matching.
+//
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaycriteriamatchingenabled
 func (d_ DisplayManager) IsDisplayCriteriaMatchingEnabled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isDisplayCriteriaMatchingEnabled"))
@@ -114,40 +148,6 @@ func (d_ DisplayManager) IsDisplayModeSwitchInProgress() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaymodeswitchinprogress
 func (d_ DisplayManager) SetIsDisplayModeSwitchInProgress(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDisplayModeSwitchInProgress:"), value)
-}
-
-// A Boolean value that indicates whether the user has enabled display critera matching.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/isDisplayCriteriaMatchingEnabled
-func (d_ DisplayManager) DisplayCriteriaMatchingEnabled() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("displayCriteriaMatchingEnabled"))
-	return rv
-}
-
-// A Boolean value that indicates whether a display mode switch is in progress.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/isDisplayModeSwitchInProgress
-func (d_ DisplayManager) DisplayModeSwitchInProgress() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("displayModeSwitchInProgress"))
-	return rv
-}
-
-// A hint for the TV to set the display mode to best match the currently playing content’s display criteria.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
-func (d_ DisplayManager) PreferredDisplayCriteria() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("preferredDisplayCriteria"))
-	return rv
-}
-
-
-// SetPreferredDisplayCriteria sets the value of the preferredDisplayCriteria property.
-// A hint for the TV to set the display mode to best match the currently playing content’s display criteria.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
-func (d_ DisplayManager) SetPreferredDisplayCriteria(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredDisplayCriteria:"), value)
 }
 
 

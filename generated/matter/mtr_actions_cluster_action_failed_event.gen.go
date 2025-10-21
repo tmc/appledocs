@@ -77,18 +77,18 @@ func NewMTRActionsClusterActionFailedEvent() MTRActionsClusterActionFailedEvent 
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/newstate
-func (m_ MTRActionsClusterActionFailedEvent) NewState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/actionid
+func (m_ MTRActionsClusterActionFailedEvent) ActionID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
 	return rv
 }
 
 
-// SetNewState sets the value of the newState property.
+// SetActionID sets the value of the actionID property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/newstate
-func (m_ MTRActionsClusterActionFailedEvent) SetNewState(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNewState:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/actionid
+func (m_ MTRActionsClusterActionFailedEvent) SetActionID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
 //
@@ -107,21 +107,6 @@ func (m_ MTRActionsClusterActionFailedEvent) SetError(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/actionid
-func (m_ MTRActionsClusterActionFailedEvent) ActionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
-	return rv
-}
-
-
-// SetActionID sets the value of the actionID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/actionid
-func (m_ MTRActionsClusterActionFailedEvent) SetActionID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/invokeid
 func (m_ MTRActionsClusterActionFailedEvent) InvokeID() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
@@ -134,6 +119,21 @@ func (m_ MTRActionsClusterActionFailedEvent) InvokeID() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/invokeid
 func (m_ MTRActionsClusterActionFailedEvent) SetInvokeID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/newstate
+func (m_ MTRActionsClusterActionFailedEvent) NewState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
+	return rv
+}
+
+
+// SetNewState sets the value of the newState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/newstate
+func (m_ MTRActionsClusterActionFailedEvent) SetNewState(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewState:"), value)
 }
 
 

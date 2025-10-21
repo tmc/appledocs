@@ -99,32 +99,6 @@ func (n_ NEFilterControlProvider) SetRemediationMap(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRemediationMap:"), objc.String(value))
 }
 
-// This string will be replaced with the value of the username property set in the filter configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationurlusername
-func (n_ NEFilterControlProvider) NEFilterProviderRemediationURLUsername() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterProviderRemediationURLUsername"))
-	return rv
-}
-
-
-// SetNEFilterProviderRemediationURLUsername sets the value of the NEFilterProviderRemediationURLUsername property.
-// This string will be replaced with the value of the username property set in the filter configuration.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationurlusername
-func (n_ NEFilterControlProvider) SetNEFilterProviderRemediationURLUsername(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setNEFilterProviderRemediationURLUsername:"), objc.String(value))
-}
-
-// A key in the
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationmapremediationbuttontexts
-func (n_ NEFilterControlProvider) NEFilterProviderRemediationMapRemediationButtonTexts() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterProviderRemediationMapRemediationButtonTexts"))
-	return rv
-}
-
 // A dictionary containing strings to be appended to URLs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltercontrolprovider/urlappendstringmap
@@ -141,6 +115,22 @@ func (n_ NEFilterControlProvider) UrlAppendStringMap() string {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltercontrolprovider/urlappendstringmap
 func (n_ NEFilterControlProvider) SetUrlAppendStringMap(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUrlAppendStringMap:"), objc.String(value))
+}
+
+// A key in the
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationmapremediationbuttontexts
+func (n_ NEFilterControlProvider) NEFilterProviderRemediationMapRemediationButtonTexts() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterProviderRemediationMapRemediationButtonTexts"))
+	return rv
+}
+
+// A key in the
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationmapremediationurls
+func (n_ NEFilterControlProvider) NEFilterProviderRemediationMapRemediationURLs() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterProviderRemediationMapRemediationURLs"))
+	return rv
 }
 
 // This string will be replaced with the full URL of the flow.
@@ -161,12 +151,22 @@ func (n_ NEFilterControlProvider) SetNEFilterProviderRemediationURLFlowURL(value
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNEFilterProviderRemediationURLFlowURL:"), objc.String(value))
 }
 
-// A key in the
+// This string will be replaced with the hostname portion of the flow’s URL.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationmapremediationurls
-func (n_ NEFilterControlProvider) NEFilterProviderRemediationMapRemediationURLs() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterProviderRemediationMapRemediationURLs"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationurlflowurlhostname
+func (n_ NEFilterControlProvider) NEFilterProviderRemediationURLFlowURLHostname() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterProviderRemediationURLFlowURLHostname"))
 	return rv
+}
+
+
+// SetNEFilterProviderRemediationURLFlowURLHostname sets the value of the NEFilterProviderRemediationURLFlowURLHostname property.
+// This string will be replaced with the hostname portion of the flow’s URL.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationurlflowurlhostname
+func (n_ NEFilterControlProvider) SetNEFilterProviderRemediationURLFlowURLHostname(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setNEFilterProviderRemediationURLFlowURLHostname:"), objc.String(value))
 }
 
 // This string will be replaced with the value of the organization property set in the filter configuration.
@@ -187,22 +187,22 @@ func (n_ NEFilterControlProvider) SetNEFilterProviderRemediationURLOrganization(
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNEFilterProviderRemediationURLOrganization:"), objc.String(value))
 }
 
-// This string will be replaced with the hostname portion of the flow’s URL.
+// This string will be replaced with the value of the username property set in the filter configuration.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationurlflowurlhostname
-func (n_ NEFilterControlProvider) NEFilterProviderRemediationURLFlowURLHostname() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterProviderRemediationURLFlowURLHostname"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationurlusername
+func (n_ NEFilterControlProvider) NEFilterProviderRemediationURLUsername() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterProviderRemediationURLUsername"))
 	return rv
 }
 
 
-// SetNEFilterProviderRemediationURLFlowURLHostname sets the value of the NEFilterProviderRemediationURLFlowURLHostname property.
-// This string will be replaced with the hostname portion of the flow’s URL.
+// SetNEFilterProviderRemediationURLUsername sets the value of the NEFilterProviderRemediationURLUsername property.
+// This string will be replaced with the value of the username property set in the filter configuration.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationurlflowurlhostname
-func (n_ NEFilterControlProvider) SetNEFilterProviderRemediationURLFlowURLHostname(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setNEFilterProviderRemediationURLFlowURLHostname:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderremediationurlusername
+func (n_ NEFilterControlProvider) SetNEFilterProviderRemediationURLUsername(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setNEFilterProviderRemediationURLUsername:"), objc.String(value))
 }
 
 

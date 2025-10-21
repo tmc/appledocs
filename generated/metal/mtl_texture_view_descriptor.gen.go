@@ -77,18 +77,18 @@ func NewTextureViewDescriptor() TextureViewDescriptor {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/swizzle
-func (t_ TextureViewDescriptor) Swizzle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("swizzle"))
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureViewDescriptor/textureType
+func (t_ TextureViewDescriptor) TextureType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textureType"))
 	return rv
 }
 
 
-// SetSwizzle sets the value of the swizzle property.
+// SetTextureType sets the value of the textureType property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/swizzle
-func (t_ TextureViewDescriptor) SetSwizzle(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSwizzle:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureViewDescriptor/textureType
+func (t_ TextureViewDescriptor) SetTextureType(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextureType:"), value)
 }
 
 // A desired range of mip levels of a texture view.
@@ -143,18 +143,18 @@ func (t_ TextureViewDescriptor) SetSliceRange(value foundation.Range) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureViewDescriptor/textureType
-func (t_ TextureViewDescriptor) TextureType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textureType"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/swizzle
+func (t_ TextureViewDescriptor) Swizzle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("swizzle"))
 	return rv
 }
 
 
-// SetTextureType sets the value of the textureType property.
+// SetSwizzle sets the value of the swizzle property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureViewDescriptor/textureType
-func (t_ TextureViewDescriptor) SetTextureType(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextureType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/swizzle
+func (t_ TextureViewDescriptor) SetSwizzle(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSwizzle:"), value)
 }
 
 

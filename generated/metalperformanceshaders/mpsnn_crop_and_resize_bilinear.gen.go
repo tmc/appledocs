@@ -89,18 +89,17 @@ func NewCropAndResizeBilinearWithCoderDevice(aDecoder unsafe.Pointer, device obj
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/resizewidth
-func (c_ CropAndResizeBilinear) ResizeWidth() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("resizeWidth"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/regions
+func (c_ CropAndResizeBilinear) Regions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("regions"))
 	return rv
 }
 
-
-// SetResizeWidth sets the value of the resizeWidth property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/resizewidth
-func (c_ CropAndResizeBilinear) SetResizeWidth(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setResizeWidth:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/resizeHeight
+func (c_ CropAndResizeBilinear) ResizeHeight() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("resizeHeight"))
+	return rv
 }
 
 //
@@ -119,17 +118,18 @@ func (c_ CropAndResizeBilinear) SetNumberOfRegions(value int) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/regions
-func (c_ CropAndResizeBilinear) Regions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("regions"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/resizewidth
+func (c_ CropAndResizeBilinear) ResizeWidth() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("resizeWidth"))
 	return rv
 }
 
+
+// SetResizeWidth sets the value of the resizeWidth property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/resizeHeight
-func (c_ CropAndResizeBilinear) ResizeHeight() uint {
-	rv := objc.Send[uint](c_.ID, objc.Sel("resizeHeight"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/resizewidth
+func (c_ CropAndResizeBilinear) SetResizeWidth(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResizeWidth:"), value)
 }
 
 

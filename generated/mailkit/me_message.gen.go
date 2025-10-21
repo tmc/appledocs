@@ -78,132 +78,6 @@ func NewMEMessage() MEMessage {
 }
 
 
-// An array of email addresses to use when replying to the message.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/replytoaddresses
-func (m_ MEMessage) ReplyToAddresses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("replyToAddresses"))
-	return rv
-}
-
-
-// SetReplyToAddresses sets the value of the replyToAddresses property.
-// An array of email addresses to use when replying to the message.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/replytoaddresses
-func (m_ MEMessage) SetReplyToAddresses(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReplyToAddresses:"), value)
-}
-
-// An array of email addresses for the secondary recipients of the message.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/ccaddresses
-func (m_ MEMessage) CcAddresses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("ccAddresses"))
-	return rv
-}
-
-
-// SetCcAddresses sets the value of the ccAddresses property.
-// An array of email addresses for the secondary recipients of the message.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/ccaddresses
-func (m_ MEMessage) SetCcAddresses(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCcAddresses:"), value)
-}
-
-// An array of email addresses for the primary recipients of the message.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/toaddresses
-func (m_ MEMessage) ToAddresses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("toAddresses"))
-	return rv
-}
-
-
-// SetToAddresses sets the value of the toAddresses property.
-// An array of email addresses for the primary recipients of the message.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/toaddresses
-func (m_ MEMessage) SetToAddresses(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setToAddresses:"), value)
-}
-
-// The raw RFC 2822 header and body content of the message.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/rawdata
-func (m_ MEMessage) RawData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rawData"))
-	return rv
-}
-
-
-// SetRawData sets the value of the rawData property.
-// The raw RFC 2822 header and body content of the message.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/rawdata
-func (m_ MEMessage) SetRawData(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRawData:"), value)
-}
-
-// An array of email addresses for the concealed tertiary recipients of the message.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/bccaddresses
-func (m_ MEMessage) BccAddresses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bccAddresses"))
-	return rv
-}
-
-
-// SetBccAddresses sets the value of the bccAddresses property.
-// An array of email addresses for the concealed tertiary recipients of the message.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/bccaddresses
-func (m_ MEMessage) SetBccAddresses(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBccAddresses:"), value)
-}
-
-// The state of the mail message.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/state
-func (m_ MEMessage) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("state"))
-	return rv
-}
-
-
-// SetState sets the value of the state property.
-// The state of the mail message.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/state
-func (m_ MEMessage) SetState(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
-}
-
-// The sender’s email address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/fromaddress
-func (m_ MEMessage) FromAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fromAddress"))
-	return rv
-}
-
-
-// SetFromAddress sets the value of the fromAddress property.
-// The sender’s email address.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/fromaddress
-func (m_ MEMessage) SetFromAddress(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFromAddress:"), value)
-}
-
 // An array of email addresses for all recipients of the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/allRecipientAddresses
@@ -241,6 +115,132 @@ func (m_ MEMessage) Headers() unsafe.Pointer {
 func (m_ MEMessage) Subject() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("subject"))
 	return rv
+}
+
+// An array of email addresses for the concealed tertiary recipients of the message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/bccaddresses
+func (m_ MEMessage) BccAddresses() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bccAddresses"))
+	return rv
+}
+
+
+// SetBccAddresses sets the value of the bccAddresses property.
+// An array of email addresses for the concealed tertiary recipients of the message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/bccaddresses
+func (m_ MEMessage) SetBccAddresses(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBccAddresses:"), value)
+}
+
+// An array of email addresses for the secondary recipients of the message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/ccaddresses
+func (m_ MEMessage) CcAddresses() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("ccAddresses"))
+	return rv
+}
+
+
+// SetCcAddresses sets the value of the ccAddresses property.
+// An array of email addresses for the secondary recipients of the message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/ccaddresses
+func (m_ MEMessage) SetCcAddresses(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCcAddresses:"), value)
+}
+
+// The sender’s email address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/fromaddress
+func (m_ MEMessage) FromAddress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fromAddress"))
+	return rv
+}
+
+
+// SetFromAddress sets the value of the fromAddress property.
+// The sender’s email address.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/fromaddress
+func (m_ MEMessage) SetFromAddress(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFromAddress:"), value)
+}
+
+// The raw RFC 2822 header and body content of the message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/rawdata
+func (m_ MEMessage) RawData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rawData"))
+	return rv
+}
+
+
+// SetRawData sets the value of the rawData property.
+// The raw RFC 2822 header and body content of the message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/rawdata
+func (m_ MEMessage) SetRawData(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRawData:"), value)
+}
+
+// An array of email addresses to use when replying to the message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/replytoaddresses
+func (m_ MEMessage) ReplyToAddresses() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("replyToAddresses"))
+	return rv
+}
+
+
+// SetReplyToAddresses sets the value of the replyToAddresses property.
+// An array of email addresses to use when replying to the message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/replytoaddresses
+func (m_ MEMessage) SetReplyToAddresses(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReplyToAddresses:"), value)
+}
+
+// The state of the mail message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/state
+func (m_ MEMessage) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// The state of the mail message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/state
+func (m_ MEMessage) SetState(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
+}
+
+// An array of email addresses for the primary recipients of the message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/toaddresses
+func (m_ MEMessage) ToAddresses() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("toAddresses"))
+	return rv
+}
+
+
+// SetToAddresses sets the value of the toAddresses property.
+// An array of email addresses for the primary recipients of the message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/toaddresses
+func (m_ MEMessage) SetToAddresses(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setToAddresses:"), value)
 }
 
 

@@ -81,6 +81,60 @@ func NewFetchedPropertyDescription() FetchedPropertyDescription {
 }
 
 
+// The fetch request of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription/fetchRequest
+func (f_ FetchedPropertyDescription) FetchRequest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fetchRequest"))
+	return rv
+}
+
+
+// SetFetchRequest sets the value of the fetchRequest property.
+// The fetch request of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription/fetchRequest
+func (f_ FetchedPropertyDescription) SetFetchRequest(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchRequest:"), value)
+}
+
+// An array of persistent stores specified for the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
+func (f_ FetchedPropertyDescription) AffectedStores() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("affectedStores"))
+	return rv
+}
+
+
+// SetAffectedStores sets the value of the affectedStores property.
+// An array of persistent stores specified for the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
+func (f_ FetchedPropertyDescription) SetAffectedStores(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
+}
+
+// The batch size of the objects specified in the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
+func (f_ FetchedPropertyDescription) FetchBatchSize() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("fetchBatchSize"))
+	return rv
+}
+
+
+// SetFetchBatchSize sets the value of the fetchBatchSize property.
+// The batch size of the objects specified in the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
+func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
+}
+
 // The fetch limit of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
@@ -133,60 +187,6 @@ func (f_ FetchedPropertyDescription) Predicate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
 func (f_ FetchedPropertyDescription) SetPredicate(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
-}
-
-// The batch size of the objects specified in the fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (f_ FetchedPropertyDescription) FetchBatchSize() int {
-	rv := objc.Send[int](f_.ID, objc.Sel("fetchBatchSize"))
-	return rv
-}
-
-
-// SetFetchBatchSize sets the value of the fetchBatchSize property.
-// The batch size of the objects specified in the fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
-}
-
-// An array of persistent stores specified for the fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (f_ FetchedPropertyDescription) AffectedStores() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("affectedStores"))
-	return rv
-}
-
-
-// SetAffectedStores sets the value of the affectedStores property.
-// An array of persistent stores specified for the fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (f_ FetchedPropertyDescription) SetAffectedStores(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
-}
-
-// The fetch request of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription/fetchRequest
-func (f_ FetchedPropertyDescription) FetchRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fetchRequest"))
-	return rv
-}
-
-
-// SetFetchRequest sets the value of the fetchRequest property.
-// The fetch request of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription/fetchRequest
-func (f_ FetchedPropertyDescription) SetFetchRequest(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchRequest:"), value)
 }
 
 

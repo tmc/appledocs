@@ -93,40 +93,20 @@ func NewVZMacHardwareModelWithDataRepresentation(dataRepresentation unsafe.Point
 }
 
 
-// The Mac hardware model.
+// Returns the opaque data representation of the hardware model.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
-func (v_ VZMacHardwareModel) HardwareModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("hardwareModel"))
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel/dataRepresentation
+func (v_ VZMacHardwareModel) DataRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }
 
-
-// SetHardwareModel sets the value of the hardwareModel property.
-// The Mac hardware model.
-
+// A Boolean value that indicates whether the host supports this hardware model.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
-func (v_ VZMacHardwareModel) SetHardwareModel(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)
-}
-
-// This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
-func (v_ VZMacHardwareModel) MostFeaturefulSupportedConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel/isSupported
+func (v_ VZMacHardwareModel) Supported() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("supported"))
 	return rv
-}
-
-
-// SetMostFeaturefulSupportedConfiguration sets the value of the mostFeaturefulSupportedConfiguration property.
-// This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
-func (v_ VZMacHardwareModel) SetMostFeaturefulSupportedConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setMostFeaturefulSupportedConfiguration:"), value)
 }
 
 // A Boolean value that indicates whether the host supports this hardware model.
@@ -147,20 +127,40 @@ func (v_ VZMacHardwareModel) SetIsSupported(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsSupported:"), value)
 }
 
-// Returns the opaque data representation of the hardware model.
+// This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel/dataRepresentation
-func (v_ VZMacHardwareModel) DataRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("dataRepresentation"))
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
+func (v_ VZMacHardwareModel) MostFeaturefulSupportedConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
 	return rv
 }
 
-// A Boolean value that indicates whether the host supports this hardware model.
+
+// SetMostFeaturefulSupportedConfiguration sets the value of the mostFeaturefulSupportedConfiguration property.
+// This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel/isSupported
-func (v_ VZMacHardwareModel) Supported() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("supported"))
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
+func (v_ VZMacHardwareModel) SetMostFeaturefulSupportedConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setMostFeaturefulSupportedConfiguration:"), value)
+}
+
+// The Mac hardware model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
+func (v_ VZMacHardwareModel) HardwareModel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("hardwareModel"))
 	return rv
+}
+
+
+// SetHardwareModel sets the value of the hardwareModel property.
+// The Mac hardware model.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
+func (v_ VZMacHardwareModel) SetHardwareModel(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)
 }
 
 

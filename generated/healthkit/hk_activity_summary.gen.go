@@ -89,29 +89,6 @@ func (h_ HKActivitySummary) DateComponentsForCalendar(calendar unsafe.Pointer) u
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
-func (h_ HKActivitySummary) IsPaused() bool {
-	rv := objc.Send[bool](h_.ID, objc.Sel("isPaused"))
-	return rv
-}
-
-
-// SetIsPaused sets the value of the isPaused property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
-func (h_ HKActivitySummary) SetIsPaused(value bool) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIsPaused:"), value)
-}
-
-// The key path for accessing an activity summary’s date components.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathdatecomponents
-func (h_ HKActivitySummary) HKPredicateKeyPathDateComponents() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathDateComponents"))
-	return rv
-}
-
 // The amount of active energy the user burned during the specified day.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activeEnergyBurned
@@ -323,6 +300,29 @@ func (h_ HKActivitySummary) StandHoursGoal() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/standHoursGoal
 func (h_ HKActivitySummary) SetStandHoursGoal(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStandHoursGoal:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
+func (h_ HKActivitySummary) IsPaused() bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("isPaused"))
+	return rv
+}
+
+
+// SetIsPaused sets the value of the isPaused property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
+func (h_ HKActivitySummary) SetIsPaused(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIsPaused:"), value)
+}
+
+// The key path for accessing an activity summary’s date components.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathdatecomponents
+func (h_ HKActivitySummary) HKPredicateKeyPathDateComponents() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathDateComponents"))
+	return rv
 }
 
 

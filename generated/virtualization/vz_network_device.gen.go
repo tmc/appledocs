@@ -80,24 +80,6 @@ func NewVZNetworkDevice() VZNetworkDevice {
 }
 
 
-// The array of network devices that you expose to the guest operating system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
-func (v_ VZNetworkDevice) NetworkDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("networkDevices"))
-	return rv
-}
-
-
-// SetNetworkDevices sets the value of the networkDevices property.
-// The array of network devices that you expose to the guest operating system.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
-func (v_ VZNetworkDevice) SetNetworkDevices(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)
-}
-
 // The network attachment that’s connected to this network device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdevice/attachment
@@ -114,6 +96,24 @@ func (v_ VZNetworkDevice) Attachment() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdevice/attachment
 func (v_ VZNetworkDevice) SetAttachment(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
+}
+
+// The list of configured network devices on the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/networkdevices
+func (v_ VZNetworkDevice) NetworkDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("networkDevices"))
+	return rv
+}
+
+
+// SetNetworkDevices sets the value of the networkDevices property.
+// The list of configured network devices on the VM.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/networkdevices
+func (v_ VZNetworkDevice) SetNetworkDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)
 }
 
 

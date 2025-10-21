@@ -94,24 +94,6 @@ func NewPaymentDiscountWithIdentifierKeyIdentifierNonceSignatureTimestamp(identi
 }
 
 
-// The details of the discount offer to apply to the payment.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skpayment/paymentdiscount
-func (p_ PaymentDiscount) PaymentDiscount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("paymentDiscount"))
-	return rv
-}
-
-
-// SetPaymentDiscount sets the value of the paymentDiscount property.
-// The details of the discount offer to apply to the payment.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skpayment/paymentdiscount
-func (p_ PaymentDiscount) SetPaymentDiscount(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPaymentDiscount:"), value)
-}
-
 // A string used to uniquely identify a discount offer for a product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/identifier
@@ -150,6 +132,24 @@ func (p_ PaymentDiscount) Signature() string {
 func (p_ PaymentDiscount) Timestamp() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("timestamp"))
 	return rv
+}
+
+// The details of the discount offer to apply to the payment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpayment/paymentdiscount
+func (p_ PaymentDiscount) PaymentDiscount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("paymentDiscount"))
+	return rv
+}
+
+
+// SetPaymentDiscount sets the value of the paymentDiscount property.
+// The details of the discount offer to apply to the payment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpayment/paymentdiscount
+func (p_ PaymentDiscount) SetPaymentDiscount(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPaymentDiscount:"), value)
 }
 
 

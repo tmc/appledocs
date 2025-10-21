@@ -93,24 +93,6 @@ func NewPHAdjustmentDataWithFormatIdentifierFormatVersionData(formatIdentifier s
 }
 
 
-// An object that describes the most recent edit to the asset’s content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/adjustmentdata
-func (p_ PHAdjustmentData) AdjustmentData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("adjustmentData"))
-	return rv
-}
-
-
-// SetAdjustmentData sets the value of the adjustmentData property.
-// An object that describes the most recent edit to the asset’s content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/adjustmentdata
-func (p_ PHAdjustmentData) SetAdjustmentData(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
-}
-
 // Data that contains the information necessary to reconstruct the adjustment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/data
@@ -133,6 +115,24 @@ func (p_ PHAdjustmentData) FormatIdentifier() string {
 func (p_ PHAdjustmentData) FormatVersion() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("formatVersion"))
 	return rv
+}
+
+// An object that describes the most recent edit to the asset’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/adjustmentdata
+func (p_ PHAdjustmentData) AdjustmentData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("adjustmentData"))
+	return rv
+}
+
+
+// SetAdjustmentData sets the value of the adjustmentData property.
+// An object that describes the most recent edit to the asset’s content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/adjustmentdata
+func (p_ PHAdjustmentData) SetAdjustmentData(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
 }
 
 

@@ -76,21 +76,6 @@ func NewMTRPowerSourceClusterBatFaultChangeType() MTRPowerSourceClusterBatFaultC
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatfaultchangetype/previous
-func (m_ MTRPowerSourceClusterBatFaultChangeType) Previous() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previous"))
-	return rv
-}
-
-
-// SetPrevious sets the value of the previous property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatfaultchangetype/previous
-func (m_ MTRPowerSourceClusterBatFaultChangeType) SetPrevious(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatfaultchangetype/current
 func (m_ MTRPowerSourceClusterBatFaultChangeType) Current() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("current"))
@@ -103,6 +88,21 @@ func (m_ MTRPowerSourceClusterBatFaultChangeType) Current() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatfaultchangetype/current
 func (m_ MTRPowerSourceClusterBatFaultChangeType) SetCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatfaultchangetype/previous
+func (m_ MTRPowerSourceClusterBatFaultChangeType) Previous() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previous"))
+	return rv
+}
+
+
+// SetPrevious sets the value of the previous property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatfaultchangetype/previous
+func (m_ MTRPowerSourceClusterBatFaultChangeType) SetPrevious(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)
 }
 
 

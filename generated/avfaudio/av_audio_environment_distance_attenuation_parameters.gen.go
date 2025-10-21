@@ -78,24 +78,6 @@ func NewAudioEnvironmentDistanceAttenuationParameters() AudioEnvironmentDistance
 }
 
 
-// A factor that determines the attenuation curve.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/rollofffactor
-func (a_ AudioEnvironmentDistanceAttenuationParameters) RolloffFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rolloffFactor"))
-	return rv
-}
-
-
-// SetRolloffFactor sets the value of the rolloffFactor property.
-// A factor that determines the attenuation curve.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/rollofffactor
-func (a_ AudioEnvironmentDistanceAttenuationParameters) SetRolloffFactor(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRolloffFactor:"), value)
-}
-
 // The distance attenuation model that describes the drop-off in gain as the source moves away from the listener.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/distanceattenuationmodel
@@ -148,6 +130,24 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) ReferenceDistance() unsa
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/referencedistance
 func (a_ AudioEnvironmentDistanceAttenuationParameters) SetReferenceDistance(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReferenceDistance:"), value)
+}
+
+// A factor that determines the attenuation curve.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/rollofffactor
+func (a_ AudioEnvironmentDistanceAttenuationParameters) RolloffFactor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rolloffFactor"))
+	return rv
+}
+
+
+// SetRolloffFactor sets the value of the rolloffFactor property.
+// A factor that determines the attenuation curve.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/rollofffactor
+func (a_ AudioEnvironmentDistanceAttenuationParameters) SetRolloffFactor(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRolloffFactor:"), value)
 }
 
 

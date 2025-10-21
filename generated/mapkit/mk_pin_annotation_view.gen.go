@@ -81,22 +81,22 @@ func NewMKPinAnnotationView() MKPinAnnotationView {
 }
 
 
-// The color of the pin head.
+// A Boolean value indicating whether the annotation view is animated onto the screen.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
-func (m_ MKPinAnnotationView) PinTintColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pinTintColor"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/animatesdrop
+func (m_ MKPinAnnotationView) AnimatesDrop() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("animatesDrop"))
 	return rv
 }
 
 
-// SetPinTintColor sets the value of the pinTintColor property.
-// The color of the pin head.
+// SetAnimatesDrop sets the value of the animatesDrop property.
+// A Boolean value indicating whether the annotation view is animated onto the screen.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
-func (m_ MKPinAnnotationView) SetPinTintColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPinTintColor:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/animatesdrop
+func (m_ MKPinAnnotationView) SetAnimatesDrop(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAnimatesDrop:"), value)
 }
 
 // The color of the pin head.
@@ -117,22 +117,22 @@ func (m_ MKPinAnnotationView) SetPinColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinColor:"), value)
 }
 
-// A Boolean value indicating whether the annotation view is animated onto the screen.
+// The color of the pin head.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/animatesdrop
-func (m_ MKPinAnnotationView) AnimatesDrop() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("animatesDrop"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
+func (m_ MKPinAnnotationView) PinTintColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pinTintColor"))
 	return rv
 }
 
 
-// SetAnimatesDrop sets the value of the animatesDrop property.
-// A Boolean value indicating whether the annotation view is animated onto the screen.
+// SetPinTintColor sets the value of the pinTintColor property.
+// The color of the pin head.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/animatesdrop
-func (m_ MKPinAnnotationView) SetAnimatesDrop(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAnimatesDrop:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
+func (m_ MKPinAnnotationView) SetPinTintColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPinTintColor:"), value)
 }
 
 

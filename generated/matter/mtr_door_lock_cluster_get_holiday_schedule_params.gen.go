@@ -77,6 +77,21 @@ func NewMTRDoorLockClusterGetHolidayScheduleParams() MTRDoorLockClusterGetHolida
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/holidayindex
+func (m_ MTRDoorLockClusterGetHolidayScheduleParams) HolidayIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holidayIndex"))
+	return rv
+}
+
+
+// SetHolidayIndex sets the value of the holidayIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/holidayindex
+func (m_ MTRDoorLockClusterGetHolidayScheduleParams) SetHolidayIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHolidayIndex:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/serversideprocessingtimeout
 func (m_ MTRDoorLockClusterGetHolidayScheduleParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,21 +119,6 @@ func (m_ MTRDoorLockClusterGetHolidayScheduleParams) TimedInvokeTimeoutMs() foun
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/timedinvoketimeoutms
 func (m_ MTRDoorLockClusterGetHolidayScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/holidayindex
-func (m_ MTRDoorLockClusterGetHolidayScheduleParams) HolidayIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holidayIndex"))
-	return rv
-}
-
-
-// SetHolidayIndex sets the value of the holidayIndex property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/holidayindex
-func (m_ MTRDoorLockClusterGetHolidayScheduleParams) SetHolidayIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHolidayIndex:"), value)
 }
 
 

@@ -77,21 +77,6 @@ func NewMTRValveConfigurationAndControlClusterValveStateChangedEvent() MTRValveC
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvestate
-func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("valveState"))
-	return rv
-}
-
-
-// SetValveState sets the value of the valveState property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvestate
-func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveState(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValveState:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvelevel
 func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveLevel() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("valveLevel"))
@@ -104,6 +89,21 @@ func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveLeve
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvelevel
 func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveLevel(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValveLevel:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvestate
+func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("valveState"))
+	return rv
+}
+
+
+// SetValveState sets the value of the valveState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvestate
+func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveState(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValveState:"), value)
 }
 
 

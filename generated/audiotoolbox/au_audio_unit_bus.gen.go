@@ -101,24 +101,6 @@ func (a_ AudioUnitBus) SetFormatError(format unsafe.Pointer, outError unsafe.Poi
 	return rv
 }
 
-// Determines whether the bus is active.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/isenabled
-func (a_ AudioUnitBus) IsEnabled() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
-	return rv
-}
-
-
-// SetIsEnabled sets the value of the isEnabled property.
-// Determines whether the bus is active.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/isenabled
-func (a_ AudioUnitBus) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
 // The bus type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/busType
@@ -272,6 +254,24 @@ func (a_ AudioUnitBus) SetSupportedChannelCounts(value []foundation.Number) {
 func (a_ AudioUnitBus) SupportedChannelLayoutTags() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("supportedChannelLayoutTags"))
 	return rv
+}
+
+// Determines whether the bus is active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/isenabled
+func (a_ AudioUnitBus) IsEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// Determines whether the bus is active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/isenabled
+func (a_ AudioUnitBus) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 

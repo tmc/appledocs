@@ -80,60 +80,6 @@ func NewMTL4AccelerationStructureGeometryDescriptor() MTL4AccelerationStructureG
 }
 
 
-// Assigns optional buffer containing data to associate with each primitive in this geometry.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedatabuffer
-func (m_ MTL4AccelerationStructureGeometryDescriptor) PrimitiveDataBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("primitiveDataBuffer"))
-	return rv
-}
-
-
-// SetPrimitiveDataBuffer sets the value of the primitiveDataBuffer property.
-// Assigns optional buffer containing data to associate with each primitive in this geometry.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedatabuffer
-func (m_ MTL4AccelerationStructureGeometryDescriptor) SetPrimitiveDataBuffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveDataBuffer:"), value)
-}
-
-// Sets the size, in bytes, of the data for each primitive in the primitive data buffer
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedataelementsize
-func (m_ MTL4AccelerationStructureGeometryDescriptor) PrimitiveDataElementSize() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("primitiveDataElementSize"))
-	return rv
-}
-
-
-// SetPrimitiveDataElementSize sets the value of the primitiveDataElementSize property.
-// Sets the size, in bytes, of the data for each primitive in the primitive data buffer
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedataelementsize
-func (m_ MTL4AccelerationStructureGeometryDescriptor) SetPrimitiveDataElementSize(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveDataElementSize:"), value)
-}
-
-// Assigns an optional label you can assign to this geometry for debugging purposes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/label
-func (m_ MTL4AccelerationStructureGeometryDescriptor) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
-	return rv
-}
-
-
-// SetLabel sets the value of the label property.
-// Assigns an optional label you can assign to this geometry for debugging purposes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/label
-func (m_ MTL4AccelerationStructureGeometryDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
-}
-
 // A boolean value that indicates whether the ray-tracing system in Metal allows the invocation of intersection functions
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/allowduplicateintersectionfunctioninvocation
@@ -170,6 +116,24 @@ func (m_ MTL4AccelerationStructureGeometryDescriptor) SetIntersectionFunctionTab
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntersectionFunctionTableOffset:"), value)
 }
 
+// Assigns an optional label you can assign to this geometry for debugging purposes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/label
+func (m_ MTL4AccelerationStructureGeometryDescriptor) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+// Assigns an optional label you can assign to this geometry for debugging purposes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/label
+func (m_ MTL4AccelerationStructureGeometryDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
 // Provides a hint to Metal that this geometry is opaque, potentially accelerating the ray/primitive intersection process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/opaque
@@ -186,6 +150,42 @@ func (m_ MTL4AccelerationStructureGeometryDescriptor) Opaque() bool {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/opaque
 func (m_ MTL4AccelerationStructureGeometryDescriptor) SetOpaque(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOpaque:"), value)
+}
+
+// Assigns optional buffer containing data to associate with each primitive in this geometry.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedatabuffer
+func (m_ MTL4AccelerationStructureGeometryDescriptor) PrimitiveDataBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("primitiveDataBuffer"))
+	return rv
+}
+
+
+// SetPrimitiveDataBuffer sets the value of the primitiveDataBuffer property.
+// Assigns optional buffer containing data to associate with each primitive in this geometry.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedatabuffer
+func (m_ MTL4AccelerationStructureGeometryDescriptor) SetPrimitiveDataBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveDataBuffer:"), value)
+}
+
+// Sets the size, in bytes, of the data for each primitive in the primitive data buffer
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedataelementsize
+func (m_ MTL4AccelerationStructureGeometryDescriptor) PrimitiveDataElementSize() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("primitiveDataElementSize"))
+	return rv
+}
+
+
+// SetPrimitiveDataElementSize sets the value of the primitiveDataElementSize property.
+// Sets the size, in bytes, of the data for each primitive in the primitive data buffer
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedataelementsize
+func (m_ MTL4AccelerationStructureGeometryDescriptor) SetPrimitiveDataElementSize(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveDataElementSize:"), value)
 }
 
 // Defines the stride, in bytes, between each primitive’s data in the primitive data buffer

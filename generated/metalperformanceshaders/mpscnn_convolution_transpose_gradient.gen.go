@@ -83,36 +83,6 @@ func (c_ CNNConvolutionTransposeGradient) ReloadWeightsAndBiasesFromDataSource()
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/gradientoption
-func (c_ CNNConvolutionTransposeGradient) GradientOption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gradientOption"))
-	return rv
-}
-
-
-// SetGradientOption sets the value of the gradientOption property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/gradientoption
-func (c_ CNNConvolutionTransposeGradient) SetGradientOption(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGradientOption:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/sourcegradientfeaturechannels
-func (c_ CNNConvolutionTransposeGradient) SourceGradientFeatureChannels() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("sourceGradientFeatureChannels"))
-	return rv
-}
-
-
-// SetSourceGradientFeatureChannels sets the value of the sourceGradientFeatureChannels property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/sourcegradientfeaturechannels
-func (c_ CNNConvolutionTransposeGradient) SetSourceGradientFeatureChannels(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceGradientFeatureChannels:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/datasource
 func (c_ CNNConvolutionTransposeGradient) DataSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dataSource"))
@@ -128,6 +98,21 @@ func (c_ CNNConvolutionTransposeGradient) SetDataSource(value unsafe.Pointer) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/gradientoption
+func (c_ CNNConvolutionTransposeGradient) GradientOption() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gradientOption"))
+	return rv
+}
+
+
+// SetGradientOption sets the value of the gradientOption property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/gradientoption
+func (c_ CNNConvolutionTransposeGradient) SetGradientOption(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGradientOption:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/groups
 func (c_ CNNConvolutionTransposeGradient) Groups() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("groups"))
@@ -140,6 +125,21 @@ func (c_ CNNConvolutionTransposeGradient) Groups() int {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/groups
 func (c_ CNNConvolutionTransposeGradient) SetGroups(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGroups:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/sourcegradientfeaturechannels
+func (c_ CNNConvolutionTransposeGradient) SourceGradientFeatureChannels() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("sourceGradientFeatureChannels"))
+	return rv
+}
+
+
+// SetSourceGradientFeatureChannels sets the value of the sourceGradientFeatureChannels property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient/sourcegradientfeaturechannels
+func (c_ CNNConvolutionTransposeGradient) SetSourceGradientFeatureChannels(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceGradientFeatureChannels:"), value)
 }
 
 //

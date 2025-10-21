@@ -80,76 +80,12 @@ func NewHKDevice() HKDevice {
 }
 
 
-// The device identifier portion of the US Food and Drug Administration’s Unique Device Identifier (UDI).
+// An identifier that uniquely identifies the device object on the hardware running this code.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/udideviceidentifier
-func (h_ HKDevice) UdiDeviceIdentifier() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("udiDeviceIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDevice/localIdentifier
+func (h_ HKDevice) LocalIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("localIdentifier"))
 	return rv
-}
-
-
-// SetUdiDeviceIdentifier sets the value of the udiDeviceIdentifier property.
-// The device identifier portion of the US Food and Drug Administration’s Unique Device Identifier (UDI).
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/udideviceidentifier
-func (h_ HKDevice) SetUdiDeviceIdentifier(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setUdiDeviceIdentifier:"), objc.String(value))
-}
-
-// The user-facing name for the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/name
-func (h_ HKDevice) Name() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-// The user-facing name for the device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/name
-func (h_ HKDevice) SetName(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// An arbitrary string representing the hardware version of the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/hardwareversion
-func (h_ HKDevice) HardwareVersion() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("hardwareVersion"))
-	return rv
-}
-
-
-// SetHardwareVersion sets the value of the hardwareVersion property.
-// An arbitrary string representing the hardware version of the device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/hardwareversion
-func (h_ HKDevice) SetHardwareVersion(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setHardwareVersion:"), objc.String(value))
-}
-
-// An arbitrary string representing the version of the software running on the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/softwareversion
-func (h_ HKDevice) SoftwareVersion() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("softwareVersion"))
-	return rv
-}
-
-
-// SetSoftwareVersion sets the value of the softwareVersion property.
-// An arbitrary string representing the version of the software running on the device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/softwareversion
-func (h_ HKDevice) SetSoftwareVersion(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSoftwareVersion:"), objc.String(value))
 }
 
 // An arbitrary string representing the current version of the firmware running on the device.
@@ -170,22 +106,22 @@ func (h_ HKDevice) SetFirmwareVersion(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setFirmwareVersion:"), objc.String(value))
 }
 
-// A string representing the device’s model.
+// An arbitrary string representing the hardware version of the device.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/model
-func (h_ HKDevice) Model() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("model"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/hardwareversion
+func (h_ HKDevice) HardwareVersion() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("hardwareVersion"))
 	return rv
 }
 
 
-// SetModel sets the value of the model property.
-// A string representing the device’s model.
+// SetHardwareVersion sets the value of the hardwareVersion property.
+// An arbitrary string representing the hardware version of the device.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/model
-func (h_ HKDevice) SetModel(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setModel:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/hardwareversion
+func (h_ HKDevice) SetHardwareVersion(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setHardwareVersion:"), objc.String(value))
 }
 
 // A string representing the device’s manufacturer.
@@ -206,12 +142,76 @@ func (h_ HKDevice) SetManufacturer(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setManufacturer:"), objc.String(value))
 }
 
-// An identifier that uniquely identifies the device object on the hardware running this code.
+// A string representing the device’s model.
 //
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDevice/localIdentifier
-func (h_ HKDevice) LocalIdentifier() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("localIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/model
+func (h_ HKDevice) Model() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("model"))
 	return rv
+}
+
+
+// SetModel sets the value of the model property.
+// A string representing the device’s model.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/model
+func (h_ HKDevice) SetModel(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setModel:"), objc.String(value))
+}
+
+// The user-facing name for the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/name
+func (h_ HKDevice) Name() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The user-facing name for the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/name
+func (h_ HKDevice) SetName(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// An arbitrary string representing the version of the software running on the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/softwareversion
+func (h_ HKDevice) SoftwareVersion() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("softwareVersion"))
+	return rv
+}
+
+
+// SetSoftwareVersion sets the value of the softwareVersion property.
+// An arbitrary string representing the version of the software running on the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/softwareversion
+func (h_ HKDevice) SetSoftwareVersion(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSoftwareVersion:"), objc.String(value))
+}
+
+// The device identifier portion of the US Food and Drug Administration’s Unique Device Identifier (UDI).
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/udideviceidentifier
+func (h_ HKDevice) UdiDeviceIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("udiDeviceIdentifier"))
+	return rv
+}
+
+
+// SetUdiDeviceIdentifier sets the value of the udiDeviceIdentifier property.
+// The device identifier portion of the US Food and Drug Administration’s Unique Device Identifier (UDI).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/udideviceidentifier
+func (h_ HKDevice) SetUdiDeviceIdentifier(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setUdiDeviceIdentifier:"), objc.String(value))
 }
 
 

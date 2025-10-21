@@ -77,33 +77,18 @@ func NewMTRBindingClusterTargetStruct() MTRBindingClusterTargetStruct {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/group
-func (m_ MTRBindingClusterTargetStruct) Group() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("group"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/cluster
+func (m_ MTRBindingClusterTargetStruct) Cluster() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
 	return rv
 }
 
 
-// SetGroup sets the value of the group property.
+// SetCluster sets the value of the cluster property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/group
-func (m_ MTRBindingClusterTargetStruct) SetGroup(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroup:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/fabricindex
-func (m_ MTRBindingClusterTargetStruct) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
-	return rv
-}
-
-
-// SetFabricIndex sets the value of the fabricIndex property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/fabricindex
-func (m_ MTRBindingClusterTargetStruct) SetFabricIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/cluster
+func (m_ MTRBindingClusterTargetStruct) SetCluster(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
 //
@@ -122,18 +107,33 @@ func (m_ MTRBindingClusterTargetStruct) SetEndpoint(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/cluster
-func (m_ MTRBindingClusterTargetStruct) Cluster() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/fabricindex
+func (m_ MTRBindingClusterTargetStruct) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetCluster sets the value of the cluster property.
+// SetFabricIndex sets the value of the fabricIndex property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/cluster
-func (m_ MTRBindingClusterTargetStruct) SetCluster(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/fabricindex
+func (m_ MTRBindingClusterTargetStruct) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/group
+func (m_ MTRBindingClusterTargetStruct) Group() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("group"))
+	return rv
+}
+
+
+// SetGroup sets the value of the group property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/group
+func (m_ MTRBindingClusterTargetStruct) SetGroup(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroup:"), value)
 }
 
 //

@@ -81,6 +81,22 @@ func NewGraphOperation() GraphOperation {
 }
 
 
+// The graph on which the operation is defined.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/graph
+func (g_ GraphOperation) Graph() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("graph"))
+	return rv
+}
+
+// Name of the operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/name
+func (g_ GraphOperation) Name() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("name"))
+	return rv
+}
+
 // The set of operations guaranteed to execute before this operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/controldependencies
@@ -97,24 +113,6 @@ func (g_ GraphOperation) ControlDependencies() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/controldependencies
 func (g_ GraphOperation) SetControlDependencies(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setControlDependencies:"), value)
-}
-
-// The output tensors of the operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/outputtensors
-func (g_ GraphOperation) OutputTensors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputTensors"))
-	return rv
-}
-
-
-// SetOutputTensors sets the value of the outputTensors property.
-// The output tensors of the operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/outputtensors
-func (g_ GraphOperation) SetOutputTensors(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputTensors:"), value)
 }
 
 // The input tensors of the operation.
@@ -135,20 +133,22 @@ func (g_ GraphOperation) SetInputTensors(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInputTensors:"), value)
 }
 
-// The graph on which the operation is defined.
+// The output tensors of the operation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/graph
-func (g_ GraphOperation) Graph() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("graph"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/outputtensors
+func (g_ GraphOperation) OutputTensors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputTensors"))
 	return rv
 }
 
-// Name of the operation.
+
+// SetOutputTensors sets the value of the outputTensors property.
+// The output tensors of the operation.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/name
-func (g_ GraphOperation) Name() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("name"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/outputtensors
+func (g_ GraphOperation) SetOutputTensors(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputTensors:"), value)
 }
 
 

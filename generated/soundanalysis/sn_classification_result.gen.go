@@ -89,6 +89,14 @@ func (s_ SNClassificationResult) ClassificationForIdentifier(identifier string) 
 	return rv
 }
 
+// A sorted array of the request’s top classification candidates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassificationResult/classifications
+func (s_ SNClassificationResult) Classifications() []SNClassification {
+	rv := objc.Send[[]SNClassification](s_.ID, objc.Sel("classifications"))
+	return rv
+}
+
 // The time span that corresponds to the result’s classifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
@@ -105,14 +113,6 @@ func (s_ SNClassificationResult) TimeRange() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
 func (s_ SNClassificationResult) SetTimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTimeRange:"), value)
-}
-
-// A sorted array of the request’s top classification candidates.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassificationResult/classifications
-func (s_ SNClassificationResult) Classifications() []SNClassification {
-	rv := objc.Send[[]SNClassification](s_.ID, objc.Sel("classifications"))
-	return rv
 }
 
 

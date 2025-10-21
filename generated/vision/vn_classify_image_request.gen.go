@@ -98,19 +98,19 @@ func (c_ ClassifyImageRequest) SupportedIdentifiersAndReturnError(error_ unsafe.
 	return rv
 }
 
-// A constant for specifying the first revision of the image-classification request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassifyimagerequestrevision1
-func (c_ ClassifyImageRequest) VNClassifyImageRequestRevision1() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("VNClassifyImageRequestRevision1"))
-	return rv
-}
-
 // The results of the image classification request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassifyImageRequest/results
 func (c_ ClassifyImageRequest) Results() []ClassificationObservation {
 	rv := objc.Send[[]ClassificationObservation](c_.ID, objc.Sel("results"))
+	return rv
+}
+
+// A constant for specifying the first revision of the image-classification request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassifyimagerequestrevision1
+func (c_ ClassifyImageRequest) VNClassifyImageRequestRevision1() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("VNClassifyImageRequestRevision1"))
 	return rv
 }
 

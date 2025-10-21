@@ -77,36 +77,6 @@ func NewMTRColorControlClusterMoveToColorTemperatureParams() MTRColorControlClus
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/colortemperaturemireds
-func (m_ MTRColorControlClusterMoveToColorTemperatureParams) ColorTemperatureMireds() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("colorTemperatureMireds"))
-	return rv
-}
-
-
-// SetColorTemperatureMireds sets the value of the colorTemperatureMireds property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/colortemperaturemireds
-func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetColorTemperatureMireds(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperatureMireds:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterMoveToColorTemperatureParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/colortemperature
 func (m_ MTRColorControlClusterMoveToColorTemperatureParams) ColorTemperature() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("colorTemperature"))
@@ -119,6 +89,21 @@ func (m_ MTRColorControlClusterMoveToColorTemperatureParams) ColorTemperature() 
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/colortemperature
 func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetColorTemperature(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperature:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/colortemperaturemireds
+func (m_ MTRColorControlClusterMoveToColorTemperatureParams) ColorTemperatureMireds() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("colorTemperatureMireds"))
+	return rv
+}
+
+
+// SetColorTemperatureMireds sets the value of the colorTemperatureMireds property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/colortemperaturemireds
+func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetColorTemperatureMireds(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperatureMireds:"), value)
 }
 
 //
@@ -137,18 +122,33 @@ func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetOptionsMask(valu
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/transitiontime
-func (m_ MTRColorControlClusterMoveToColorTemperatureParams) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/optionsoverride
+func (m_ MTRColorControlClusterMoveToColorTemperatureParams) OptionsOverride() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
 	return rv
 }
 
 
-// SetTransitionTime sets the value of the transitionTime property.
+// SetOptionsOverride sets the value of the optionsOverride property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/transitiontime
-func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetTransitionTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/optionsoverride
+func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetOptionsOverride(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/serversideprocessingtimeout
+func (m_ MTRColorControlClusterMoveToColorTemperatureParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/serversideprocessingtimeout
+func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
@@ -167,18 +167,18 @@ func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetTimedInvokeTimeo
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/optionsoverride
-func (m_ MTRColorControlClusterMoveToColorTemperatureParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/transitiontime
+func (m_ MTRColorControlClusterMoveToColorTemperatureParams) TransitionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
 	return rv
 }
 
 
-// SetOptionsOverride sets the value of the optionsOverride property.
+// SetTransitionTime sets the value of the transitionTime property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/optionsoverride
-func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetOptionsOverride(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetocolortemperatureparams/transitiontime
+func (m_ MTRColorControlClusterMoveToColorTemperatureParams) SetTransitionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 
 

@@ -96,24 +96,6 @@ func (r_ ResourceStatePassSampleBufferAttachmentDescriptor) SetEndOfEncoderSampl
 	objc.Send[objc.ID](r_.ID, objc.Sel("setEndOfEncoderSampleIndex:"), value)
 }
 
-// The index the Metal device object should use to store GPU counters when starting the resource state pass.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptor/startofencodersampleindex
-func (r_ ResourceStatePassSampleBufferAttachmentDescriptor) StartOfEncoderSampleIndex() int {
-	rv := objc.Send[int](r_.ID, objc.Sel("startOfEncoderSampleIndex"))
-	return rv
-}
-
-
-// SetStartOfEncoderSampleIndex sets the value of the startOfEncoderSampleIndex property.
-// The index the Metal device object should use to store GPU counters when starting the resource state pass.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptor/startofencodersampleindex
-func (r_ ResourceStatePassSampleBufferAttachmentDescriptor) SetStartOfEncoderSampleIndex(value int) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setStartOfEncoderSampleIndex:"), value)
-}
-
 // A specialized memory buffer that the GPU uses to store its counter data during the resource state pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptor/samplebuffer
@@ -130,6 +112,24 @@ func (r_ ResourceStatePassSampleBufferAttachmentDescriptor) SampleBuffer() unsaf
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptor/samplebuffer
 func (r_ ResourceStatePassSampleBufferAttachmentDescriptor) SetSampleBuffer(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSampleBuffer:"), value)
+}
+
+// The index the Metal device object should use to store GPU counters when starting the resource state pass.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptor/startofencodersampleindex
+func (r_ ResourceStatePassSampleBufferAttachmentDescriptor) StartOfEncoderSampleIndex() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("startOfEncoderSampleIndex"))
+	return rv
+}
+
+
+// SetStartOfEncoderSampleIndex sets the value of the startOfEncoderSampleIndex property.
+// The index the Metal device object should use to store GPU counters when starting the resource state pass.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptor/startofencodersampleindex
+func (r_ ResourceStatePassSampleBufferAttachmentDescriptor) SetStartOfEncoderSampleIndex(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setStartOfEncoderSampleIndex:"), value)
 }
 
 

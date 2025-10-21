@@ -80,22 +80,22 @@ func NewBlitPassSampleBufferAttachmentDescriptor() BlitPassSampleBufferAttachmen
 }
 
 
-// A specialized memory buffer that the GPU uses to store its counter data during the blit pass.
+// An index within a counter sample buffer that tells the GPU where to store counter data from the start of a blit pass.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlblitpasssamplebufferattachmentdescriptor/samplebuffer
-func (b_ BlitPassSampleBufferAttachmentDescriptor) SampleBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sampleBuffer"))
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBlitPassSampleBufferAttachmentDescriptor/startOfEncoderSampleIndex
+func (b_ BlitPassSampleBufferAttachmentDescriptor) StartOfEncoderSampleIndex() uint {
+	rv := objc.Send[uint](b_.ID, objc.Sel("startOfEncoderSampleIndex"))
 	return rv
 }
 
 
-// SetSampleBuffer sets the value of the sampleBuffer property.
-// A specialized memory buffer that the GPU uses to store its counter data during the blit pass.
+// SetStartOfEncoderSampleIndex sets the value of the startOfEncoderSampleIndex property.
+// An index within a counter sample buffer that tells the GPU where to store counter data from the start of a blit pass.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlblitpasssamplebufferattachmentdescriptor/samplebuffer
-func (b_ BlitPassSampleBufferAttachmentDescriptor) SetSampleBuffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setSampleBuffer:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBlitPassSampleBufferAttachmentDescriptor/startOfEncoderSampleIndex
+func (b_ BlitPassSampleBufferAttachmentDescriptor) SetStartOfEncoderSampleIndex(value uint) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setStartOfEncoderSampleIndex:"), value)
 }
 
 // An index within a counter sample buffer that tells the GPU where to store counter data from the end of a blit pass.
@@ -116,22 +116,22 @@ func (b_ BlitPassSampleBufferAttachmentDescriptor) SetEndOfEncoderSampleIndex(va
 	objc.Send[objc.ID](b_.ID, objc.Sel("setEndOfEncoderSampleIndex:"), value)
 }
 
-// An index within a counter sample buffer that tells the GPU where to store counter data from the start of a blit pass.
+// A specialized memory buffer that the GPU uses to store its counter data during the blit pass.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBlitPassSampleBufferAttachmentDescriptor/startOfEncoderSampleIndex
-func (b_ BlitPassSampleBufferAttachmentDescriptor) StartOfEncoderSampleIndex() uint {
-	rv := objc.Send[uint](b_.ID, objc.Sel("startOfEncoderSampleIndex"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlblitpasssamplebufferattachmentdescriptor/samplebuffer
+func (b_ BlitPassSampleBufferAttachmentDescriptor) SampleBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sampleBuffer"))
 	return rv
 }
 
 
-// SetStartOfEncoderSampleIndex sets the value of the startOfEncoderSampleIndex property.
-// An index within a counter sample buffer that tells the GPU where to store counter data from the start of a blit pass.
+// SetSampleBuffer sets the value of the sampleBuffer property.
+// A specialized memory buffer that the GPU uses to store its counter data during the blit pass.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBlitPassSampleBufferAttachmentDescriptor/startOfEncoderSampleIndex
-func (b_ BlitPassSampleBufferAttachmentDescriptor) SetStartOfEncoderSampleIndex(value uint) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setStartOfEncoderSampleIndex:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlblitpasssamplebufferattachmentdescriptor/samplebuffer
+func (b_ BlitPassSampleBufferAttachmentDescriptor) SetSampleBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setSampleBuffer:"), value)
 }
 
 

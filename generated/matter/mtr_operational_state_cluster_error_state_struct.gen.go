@@ -77,21 +77,6 @@ func NewMTROperationalStateClusterErrorStateStruct() MTROperationalStateClusterE
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstateid
-func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorStateID"))
-	return rv
-}
-
-
-// SetErrorStateID sets the value of the errorStateID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstateid
-func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateID:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatedetails
 func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateDetails() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("errorStateDetails"))
@@ -104,6 +89,21 @@ func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateDetails() string 
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatedetails
 func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateDetails(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateDetails:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstateid
+func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorStateID"))
+	return rv
+}
+
+
+// SetErrorStateID sets the value of the errorStateID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstateid
+func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateID:"), value)
 }
 
 //

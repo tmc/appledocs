@@ -82,18 +82,28 @@ func NewGraph() Graph {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourceimagehandles
-func (g_ Graph) SourceImageHandles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("sourceImageHandles"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGraph/resultStateHandles
+func (g_ Graph) ResultStateHandles() []objc.ID {
+	rv := objc.Send[[]objc.ID](g_.ID, objc.Sel("resultStateHandles"))
+	return rv
+}
+
+// The number of channels in the destination image to skip before writing output data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationfeaturechanneloffset
+func (g_ Graph) DestinationFeatureChannelOffset() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("destinationFeatureChannelOffset"))
 	return rv
 }
 
 
-// SetSourceImageHandles sets the value of the sourceImageHandles property.
+// SetDestinationFeatureChannelOffset sets the value of the destinationFeatureChannelOffset property.
+// The number of channels in the destination image to skip before writing output data.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourceimagehandles
-func (g_ Graph) SetSourceImageHandles(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setSourceImageHandles:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationfeaturechanneloffset
+func (g_ Graph) SetDestinationFeatureChannelOffset(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDestinationFeatureChannelOffset:"), value)
 }
 
 // The position of the destination image’s clip rectangle origin, relative to the source image.
@@ -130,36 +140,18 @@ func (g_ Graph) SetDestinationImageAllocator(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourcestatehandles
-func (g_ Graph) SourceStateHandles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("sourceStateHandles"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/format
+func (g_ Graph) Format() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("format"))
 	return rv
 }
 
 
-// SetSourceStateHandles sets the value of the sourceStateHandles property.
+// SetFormat sets the value of the format property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourcestatehandles
-func (g_ Graph) SetSourceStateHandles(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setSourceStateHandles:"), value)
-}
-
-// The number of channels in the destination image to skip before writing output data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationfeaturechanneloffset
-func (g_ Graph) DestinationFeatureChannelOffset() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("destinationFeatureChannelOffset"))
-	return rv
-}
-
-
-// SetDestinationFeatureChannelOffset sets the value of the destinationFeatureChannelOffset property.
-// The number of channels in the destination image to skip before writing output data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationfeaturechanneloffset
-func (g_ Graph) SetDestinationFeatureChannelOffset(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDestinationFeatureChannelOffset:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/format
+func (g_ Graph) SetFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setFormat:"), value)
 }
 
 //
@@ -193,21 +185,6 @@ func (g_ Graph) SetOutputStateIsTemporary(value bool) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/format
-func (g_ Graph) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("format"))
-	return rv
-}
-
-
-// SetFormat sets the value of the format property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/format
-func (g_ Graph) SetFormat(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setFormat:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/resulthandle
 func (g_ Graph) ResultHandle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("resultHandle"))
@@ -238,10 +215,33 @@ func (g_ Graph) SetResultImageIsNeeded(value bool) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGraph/resultStateHandles
-func (g_ Graph) ResultStateHandles() []objc.ID {
-	rv := objc.Send[[]objc.ID](g_.ID, objc.Sel("resultStateHandles"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourceimagehandles
+func (g_ Graph) SourceImageHandles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("sourceImageHandles"))
 	return rv
+}
+
+
+// SetSourceImageHandles sets the value of the sourceImageHandles property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourceimagehandles
+func (g_ Graph) SetSourceImageHandles(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSourceImageHandles:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourcestatehandles
+func (g_ Graph) SourceStateHandles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("sourceStateHandles"))
+	return rv
+}
+
+
+// SetSourceStateHandles sets the value of the sourceStateHandles property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourcestatehandles
+func (g_ Graph) SetSourceStateHandles(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSourceStateHandles:"), value)
 }
 
 

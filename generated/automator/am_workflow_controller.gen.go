@@ -120,42 +120,6 @@ func (a_ AMWorkflowController) Stop(sender objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stop:"), sender)
 }
 
-// A Boolean value that indicates whether the controller’s workflow is currently paused.
-//
-// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/ispaused
-func (a_ AMWorkflowController) IsPaused() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isPaused"))
-	return rv
-}
-
-
-// SetIsPaused sets the value of the isPaused property.
-// A Boolean value that indicates whether the controller’s workflow is currently paused.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/ispaused
-func (a_ AMWorkflowController) SetIsPaused(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPaused:"), value)
-}
-
-// A Boolean value that indicates whether the controller’s workflow is currently running.
-//
-// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/isrunning
-func (a_ AMWorkflowController) IsRunning() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
-	return rv
-}
-
-
-// SetIsRunning sets the value of the isRunning property.
-// A Boolean value that indicates whether the controller’s workflow is currently running.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/isrunning
-func (a_ AMWorkflowController) SetIsRunning(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
-}
-
 // A Boolean value that indicates whether the controller’s workflow is able to run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/canRun
@@ -232,6 +196,42 @@ func (a_ AMWorkflowController) WorkflowView() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflowView-swift.property
 func (a_ AMWorkflowController) SetWorkflowView(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowView:"), value)
+}
+
+// A Boolean value that indicates whether the controller’s workflow is currently paused.
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/ispaused
+func (a_ AMWorkflowController) IsPaused() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isPaused"))
+	return rv
+}
+
+
+// SetIsPaused sets the value of the isPaused property.
+// A Boolean value that indicates whether the controller’s workflow is currently paused.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/ispaused
+func (a_ AMWorkflowController) SetIsPaused(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPaused:"), value)
+}
+
+// A Boolean value that indicates whether the controller’s workflow is currently running.
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/isrunning
+func (a_ AMWorkflowController) IsRunning() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
+	return rv
+}
+
+
+// SetIsRunning sets the value of the isRunning property.
+// A Boolean value that indicates whether the controller’s workflow is currently running.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/isrunning
+func (a_ AMWorkflowController) SetIsRunning(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
 }
 
 

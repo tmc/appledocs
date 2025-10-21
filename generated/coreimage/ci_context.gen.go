@@ -652,6 +652,22 @@ func (c_ Context) WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsErro
 	return rv
 }
 
+// The working color space of the Core Image context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/workingColorSpace
+func (c_ Context) WorkingColorSpace() coregraphics.CGColorSpaceRef {
+	rv := objc.Send[coregraphics.CGColorSpaceRef](c_.ID, objc.Sel("workingColorSpace"))
+	return rv
+}
+
+// The working pixel format of the Core Image context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/workingFormat
+func (c_ Context) WorkingFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("workingFormat"))
+	return rv
+}
+
 // The render destination’s representation of alpha (transparency) values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/alphamode
@@ -668,22 +684,6 @@ func (c_ Context) AlphaMode() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/alphamode
 func (c_ Context) SetAlphaMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlphaMode:"), value)
-}
-
-// The working color space of the Core Image context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/workingColorSpace
-func (c_ Context) WorkingColorSpace() coregraphics.CGColorSpaceRef {
-	rv := objc.Send[coregraphics.CGColorSpaceRef](c_.ID, objc.Sel("workingColorSpace"))
-	return rv
-}
-
-// The working pixel format of the Core Image context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/workingFormat
-func (c_ Context) WorkingFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("workingFormat"))
-	return rv
 }
 
 

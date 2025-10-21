@@ -127,42 +127,6 @@ func (u_ USBHostPipe) SendIORequestWithDataBytesTransferredCompletionTimeoutErro
 	return rv
 }
 
-// A property that retrieves the original endpoint descriptors from the pipe at the point of creation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/originaldescriptors
-func (u_ USBHostPipe) OriginalDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("originalDescriptors"))
-	return rv
-}
-
-
-// SetOriginalDescriptors sets the value of the originalDescriptors property.
-// A property that retrieves the original endpoint descriptors from the pipe at the point of creation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/originaldescriptors
-func (u_ USBHostPipe) SetOriginalDescriptors(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setOriginalDescriptors:"), value)
-}
-
-// A property that retrieves the current idle suspend timeout.
-//
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/idletimeout
-func (u_ USBHostPipe) IdleTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("idleTimeout"))
-	return rv
-}
-
-
-// SetIdleTimeout sets the value of the idleTimeout property.
-// A property that retrieves the current idle suspend timeout.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/idletimeout
-func (u_ USBHostPipe) SetIdleTimeout(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIdleTimeout:"), value)
-}
-
 // The default completion timeout for input/output requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdefaultcontrolcompletiontimeout
@@ -187,6 +151,42 @@ func (u_ USBHostPipe) Descriptors() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/descriptors
 func (u_ USBHostPipe) SetDescriptors(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDescriptors:"), value)
+}
+
+// A property that retrieves the current idle suspend timeout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/idletimeout
+func (u_ USBHostPipe) IdleTimeout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("idleTimeout"))
+	return rv
+}
+
+
+// SetIdleTimeout sets the value of the idleTimeout property.
+// A property that retrieves the current idle suspend timeout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/idletimeout
+func (u_ USBHostPipe) SetIdleTimeout(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIdleTimeout:"), value)
+}
+
+// A property that retrieves the original endpoint descriptors from the pipe at the point of creation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/originaldescriptors
+func (u_ USBHostPipe) OriginalDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("originalDescriptors"))
+	return rv
+}
+
+
+// SetOriginalDescriptors sets the value of the originalDescriptors property.
+// A property that retrieves the original endpoint descriptors from the pipe at the point of creation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/originaldescriptors
+func (u_ USBHostPipe) SetOriginalDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setOriginalDescriptors:"), value)
 }
 
 

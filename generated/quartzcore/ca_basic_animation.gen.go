@@ -81,60 +81,6 @@ func NewBasicAnimation() BasicAnimation {
 }
 
 
-// The background color of the receiver. Animatable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (b_ BasicAnimation) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backgroundColor"))
-	return rv
-}
-
-
-// SetBackgroundColor sets the value of the backgroundColor property.
-// The background color of the receiver. Animatable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (b_ BasicAnimation) SetBackgroundColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setBackgroundColor:"), value)
-}
-
-// The transform applied to the layer’s contents. Animatable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/transform
-func (b_ BasicAnimation) Transform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("transform"))
-	return rv
-}
-
-
-// SetTransform sets the value of the transform property.
-// The transform applied to the layer’s contents. Animatable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/transform
-func (b_ BasicAnimation) SetTransform(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTransform:"), value)
-}
-
-// The opacity of the receiver. Animatable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/opacity
-func (b_ BasicAnimation) Opacity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("opacity"))
-	return rv
-}
-
-
-// SetOpacity sets the value of the opacity property.
-// The opacity of the receiver. Animatable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/opacity
-func (b_ BasicAnimation) SetOpacity(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setOpacity:"), value)
-}
-
 // Defines the value the receiver uses to perform relative interpolation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CABasicAnimation/byValue
@@ -187,6 +133,60 @@ func (b_ BasicAnimation) ToValue() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CABasicAnimation/toValue
 func (b_ BasicAnimation) SetToValue(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setToValue:"), value)
+}
+
+// The background color of the receiver. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
+func (b_ BasicAnimation) BackgroundColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backgroundColor"))
+	return rv
+}
+
+
+// SetBackgroundColor sets the value of the backgroundColor property.
+// The background color of the receiver. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
+func (b_ BasicAnimation) SetBackgroundColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setBackgroundColor:"), value)
+}
+
+// The opacity of the receiver. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/opacity
+func (b_ BasicAnimation) Opacity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("opacity"))
+	return rv
+}
+
+
+// SetOpacity sets the value of the opacity property.
+// The opacity of the receiver. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/opacity
+func (b_ BasicAnimation) SetOpacity(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setOpacity:"), value)
+}
+
+// The transform applied to the layer’s contents. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/transform
+func (b_ BasicAnimation) Transform() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("transform"))
+	return rv
+}
+
+
+// SetTransform sets the value of the transform property.
+// The transform applied to the layer’s contents. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/transform
+func (b_ BasicAnimation) SetTransform(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTransform:"), value)
 }
 
 

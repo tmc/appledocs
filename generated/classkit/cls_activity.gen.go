@@ -122,24 +122,6 @@ func (s_ SActivity) Stop() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stop"))
 }
 
-// A Boolean that indicates whether an activity is running.
-//
-// [Full Topic]: https://developer.apple.com/documentation/classkit/clsactivity/isstarted
-func (s_ SActivity) IsStarted() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isStarted"))
-	return rv
-}
-
-
-// SetIsStarted sets the value of the isStarted property.
-// A Boolean that indicates whether an activity is running.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/classkit/clsactivity/isstarted
-func (s_ SActivity) SetIsStarted(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsStarted:"), value)
-}
-
 // The list of activity items associated with an activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/additionalActivityItems
@@ -198,6 +180,24 @@ func (s_ SActivity) Progress() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/progress
 func (s_ SActivity) SetProgress(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setProgress:"), value)
+}
+
+// A Boolean that indicates whether an activity is running.
+//
+// [Full Topic]: https://developer.apple.com/documentation/classkit/clsactivity/isstarted
+func (s_ SActivity) IsStarted() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isStarted"))
+	return rv
+}
+
+
+// SetIsStarted sets the value of the isStarted property.
+// A Boolean that indicates whether an activity is running.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/classkit/clsactivity/isstarted
+func (s_ SActivity) SetIsStarted(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsStarted:"), value)
 }
 
 

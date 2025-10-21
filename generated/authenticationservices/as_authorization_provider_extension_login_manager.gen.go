@@ -103,24 +103,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SaveCertificateKeyType(cert
 	objc.Send[objc.ID](a_.ID, objc.Sel("saveCertificate:keyType:"), certificate, keyType)
 }
 
-// The current login configuration for the extension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginconfiguration
-func (a_ AuthorizationProviderExtensionLoginManager) LoginConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("loginConfiguration"))
-	return rv
-}
-
-
-// SetLoginConfiguration sets the value of the loginConfiguration property.
-// The current login configuration for the extension.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginconfiguration
-func (a_ AuthorizationProviderExtensionLoginManager) SetLoginConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginConfiguration:"), value)
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/authenticationmethod
 func (a_ AuthorizationProviderExtensionLoginManager) AuthenticationMethod() unsafe.Pointer {
@@ -137,39 +119,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetAuthenticationMethod(val
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/userloginconfiguration
-func (a_ AuthorizationProviderExtensionLoginManager) UserLoginConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("userLoginConfiguration"))
-	return rv
-}
-
-
-// SetUserLoginConfiguration sets the value of the userLoginConfiguration property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/userloginconfiguration
-func (a_ AuthorizationProviderExtensionLoginManager) SetUserLoginConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUserLoginConfiguration:"), value)
-}
-
-// The device registration token from the mobile device management profile.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/registrationtoken
-func (a_ AuthorizationProviderExtensionLoginManager) RegistrationToken() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("registrationToken"))
-	return rv
-}
-
-
-// SetRegistrationToken sets the value of the registrationToken property.
-// The device registration token from the mobile device management profile.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/registrationtoken
-func (a_ AuthorizationProviderExtensionLoginManager) SetRegistrationToken(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRegistrationToken:"), objc.String(value))
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/extensiondata
 func (a_ AuthorizationProviderExtensionLoginManager) ExtensionData() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("extensionData"))
@@ -182,24 +131,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) ExtensionData() unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/extensiondata
 func (a_ AuthorizationProviderExtensionLoginManager) SetExtensionData(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setExtensionData:"), value)
-}
-
-// A Boolean value that indicates whether the user completes registration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isuserregistered
-func (a_ AuthorizationProviderExtensionLoginManager) IsUserRegistered() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isUserRegistered"))
-	return rv
-}
-
-
-// SetIsUserRegistered sets the value of the isUserRegistered property.
-// A Boolean value that indicates whether the user completes registration.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isuserregistered
-func (a_ AuthorizationProviderExtensionLoginManager) SetIsUserRegistered(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsUserRegistered:"), value)
 }
 
 // A Boolean value that indicates whether the device completes registration.
@@ -220,6 +151,42 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetIsDeviceRegistered(value
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsDeviceRegistered:"), value)
 }
 
+// A Boolean value that indicates whether the user completes registration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isuserregistered
+func (a_ AuthorizationProviderExtensionLoginManager) IsUserRegistered() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isUserRegistered"))
+	return rv
+}
+
+
+// SetIsUserRegistered sets the value of the isUserRegistered property.
+// A Boolean value that indicates whether the user completes registration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isuserregistered
+func (a_ AuthorizationProviderExtensionLoginManager) SetIsUserRegistered(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsUserRegistered:"), value)
+}
+
+// The current login configuration for the extension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginconfiguration
+func (a_ AuthorizationProviderExtensionLoginManager) LoginConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("loginConfiguration"))
+	return rv
+}
+
+
+// SetLoginConfiguration sets the value of the loginConfiguration property.
+// The current login configuration for the extension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginconfiguration
+func (a_ AuthorizationProviderExtensionLoginManager) SetLoginConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginConfiguration:"), value)
+}
+
 // The user name to use when authenticating with the identity provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginusername
@@ -238,6 +205,24 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetLoginUserName(value stri
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), objc.String(value))
 }
 
+// The device registration token from the mobile device management profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/registrationtoken
+func (a_ AuthorizationProviderExtensionLoginManager) RegistrationToken() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("registrationToken"))
+	return rv
+}
+
+
+// SetRegistrationToken sets the value of the registrationToken property.
+// The device registration token from the mobile device management profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/registrationtoken
+func (a_ AuthorizationProviderExtensionLoginManager) SetRegistrationToken(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRegistrationToken:"), objc.String(value))
+}
+
 // The single sign-on response tokens for the current user and extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/ssotokens
@@ -254,6 +239,21 @@ func (a_ AuthorizationProviderExtensionLoginManager) SsoTokens() unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/ssotokens
 func (a_ AuthorizationProviderExtensionLoginManager) SetSsoTokens(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSsoTokens:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/userloginconfiguration
+func (a_ AuthorizationProviderExtensionLoginManager) UserLoginConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("userLoginConfiguration"))
+	return rv
+}
+
+
+// SetUserLoginConfiguration sets the value of the userLoginConfiguration property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/userloginconfiguration
+func (a_ AuthorizationProviderExtensionLoginManager) SetUserLoginConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUserLoginConfiguration:"), value)
 }
 
 

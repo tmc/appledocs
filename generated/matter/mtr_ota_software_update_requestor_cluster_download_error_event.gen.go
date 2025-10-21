@@ -78,18 +78,18 @@ func NewMTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent() MTROtaSoftwareU
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/progresspercent
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) ProgressPercent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("progressPercent"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/bytesdownloaded
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) BytesDownloaded() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("bytesDownloaded"))
 	return rv
 }
 
 
-// SetProgressPercent sets the value of the progressPercent property.
+// SetBytesDownloaded sets the value of the bytesDownloaded property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/progresspercent
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetProgressPercent(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProgressPercent:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/bytesdownloaded
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetBytesDownloaded(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBytesDownloaded:"), value)
 }
 
 //
@@ -108,18 +108,18 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetPlatformCode
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/bytesdownloaded
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) BytesDownloaded() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("bytesDownloaded"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/progresspercent
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) ProgressPercent() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("progressPercent"))
 	return rv
 }
 
 
-// SetBytesDownloaded sets the value of the bytesDownloaded property.
+// SetProgressPercent sets the value of the progressPercent property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/bytesdownloaded
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetBytesDownloaded(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBytesDownloaded:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/progresspercent
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetProgressPercent(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProgressPercent:"), value)
 }
 
 //

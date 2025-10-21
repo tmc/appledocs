@@ -78,21 +78,6 @@ func NewMTRTestClusterClusterTestAddArgumentsResponseParams() MTRTestClusterClus
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestaddargumentsresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestAddArgumentsResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestaddargumentsresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestAddArgumentsResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestaddargumentsresponseparams/returnvalue
 func (m_ MTRTestClusterClusterTestAddArgumentsResponseParams) ReturnValue() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("returnValue"))
@@ -105,6 +90,21 @@ func (m_ MTRTestClusterClusterTestAddArgumentsResponseParams) ReturnValue() foun
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestaddargumentsresponseparams/returnvalue
 func (m_ MTRTestClusterClusterTestAddArgumentsResponseParams) SetReturnValue(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReturnValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestaddargumentsresponseparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestAddArgumentsResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestaddargumentsresponseparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestAddArgumentsResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

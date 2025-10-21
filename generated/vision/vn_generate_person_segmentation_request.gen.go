@@ -81,6 +81,24 @@ func NewGeneratePersonSegmentationRequest() GeneratePersonSegmentationRequest {
 }
 
 
+// The pixel format of the output image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/outputPixelFormat
+func (g_ GeneratePersonSegmentationRequest) OutputPixelFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputPixelFormat"))
+	return rv
+}
+
+
+// SetOutputPixelFormat sets the value of the outputPixelFormat property.
+// The pixel format of the output image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/outputPixelFormat
+func (g_ GeneratePersonSegmentationRequest) SetOutputPixelFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputPixelFormat:"), value)
+}
+
 // A value that indicates how the request balances accuracy and performance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.property
@@ -123,24 +141,6 @@ func (g_ GeneratePersonSegmentationRequest) SetResults(value unsafe.Pointer) {
 func (g_ GeneratePersonSegmentationRequest) VNGeneratePersonSegmentationRequestRevision1() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGeneratePersonSegmentationRequestRevision1"))
 	return rv
-}
-
-// The pixel format of the output image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/outputPixelFormat
-func (g_ GeneratePersonSegmentationRequest) OutputPixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputPixelFormat"))
-	return rv
-}
-
-
-// SetOutputPixelFormat sets the value of the outputPixelFormat property.
-// The pixel format of the output image.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/outputPixelFormat
-func (g_ GeneratePersonSegmentationRequest) SetOutputPixelFormat(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputPixelFormat:"), value)
 }
 
 

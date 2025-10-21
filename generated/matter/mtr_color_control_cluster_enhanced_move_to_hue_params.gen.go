@@ -77,21 +77,6 @@ func NewMTRColorControlClusterEnhancedMoveToHueParams() MTRColorControlClusterEn
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/optionsmask
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
-	return rv
-}
-
-
-// SetOptionsMask sets the value of the optionsMask property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/optionsmask
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetOptionsMask(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/direction
 func (m_ MTRColorControlClusterEnhancedMoveToHueParams) Direction() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("direction"))
@@ -122,18 +107,18 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetEnhancedHue(value fou
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/transitiontime
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/optionsmask
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) OptionsMask() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
 	return rv
 }
 
 
-// SetTransitionTime sets the value of the transitionTime property.
+// SetOptionsMask sets the value of the optionsMask property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/transitiontime
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetTransitionTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/optionsmask
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetOptionsMask(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
 //
@@ -179,6 +164,21 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueParams) TimedInvokeTimeoutMs() f
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/timedinvoketimeoutms
 func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/transitiontime
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) TransitionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+	return rv
+}
+
+
+// SetTransitionTime sets the value of the transitionTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/transitiontime
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetTransitionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 
 

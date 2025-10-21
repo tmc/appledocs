@@ -202,42 +202,6 @@ func (a_ AudioRecorder) UpdateMeters() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateMeters"))
 }
 
-// A Boolean value that indicates whether you’ve enabled the recorder to generate audio-level metering data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/ismeteringenabled
-func (a_ AudioRecorder) IsMeteringEnabled() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isMeteringEnabled"))
-	return rv
-}
-
-
-// SetIsMeteringEnabled sets the value of the isMeteringEnabled property.
-// A Boolean value that indicates whether you’ve enabled the recorder to generate audio-level metering data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/ismeteringenabled
-func (a_ AudioRecorder) SetIsMeteringEnabled(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsMeteringEnabled:"), value)
-}
-
-// A Boolean value that indicates whether the audio recorder is recording.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/isrecording
-func (a_ AudioRecorder) IsRecording() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isRecording"))
-	return rv
-}
-
-
-// SetIsRecording sets the value of the isRecording property.
-// A Boolean value that indicates whether the audio recorder is recording.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/isrecording
-func (a_ AudioRecorder) SetIsRecording(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRecording:"), value)
-}
-
 // An array of channel descriptions associated with the audio recorder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/channelAssignments
@@ -348,6 +312,42 @@ func (a_ AudioRecorder) Settings() unsafe.Pointer {
 func (a_ AudioRecorder) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("url"))
 	return rv
+}
+
+// A Boolean value that indicates whether you’ve enabled the recorder to generate audio-level metering data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/ismeteringenabled
+func (a_ AudioRecorder) IsMeteringEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isMeteringEnabled"))
+	return rv
+}
+
+
+// SetIsMeteringEnabled sets the value of the isMeteringEnabled property.
+// A Boolean value that indicates whether you’ve enabled the recorder to generate audio-level metering data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/ismeteringenabled
+func (a_ AudioRecorder) SetIsMeteringEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsMeteringEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the audio recorder is recording.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/isrecording
+func (a_ AudioRecorder) IsRecording() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isRecording"))
+	return rv
+}
+
+
+// SetIsRecording sets the value of the isRecording property.
+// A Boolean value that indicates whether the audio recorder is recording.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/isrecording
+func (a_ AudioRecorder) SetIsRecording(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRecording:"), value)
 }
 
 

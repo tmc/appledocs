@@ -80,42 +80,6 @@ func NewMKUserLocation() MKUserLocation {
 }
 
 
-// The annotation object that represents the user’s location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/userlocation
-func (m_ MKUserLocation) UserLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("userLocation"))
-	return rv
-}
-
-
-// SetUserLocation sets the value of the userLocation property.
-// The annotation object that represents the user’s location.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/userlocation
-func (m_ MKUserLocation) SetUserLocation(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUserLocation:"), value)
-}
-
-// A Boolean value that indicates whether the map view is updating the user’s location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/isupdating
-func (m_ MKUserLocation) IsUpdating() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdating"))
-	return rv
-}
-
-
-// SetIsUpdating sets the value of the isUpdating property.
-// A Boolean value that indicates whether the map view is updating the user’s location.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/isupdating
-func (m_ MKUserLocation) SetIsUpdating(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdating:"), value)
-}
-
 // The heading of the user’s location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/heading
@@ -174,6 +138,42 @@ func (m_ MKUserLocation) Title() string {
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/title
 func (m_ MKUserLocation) SetTitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+// The annotation object that represents the user’s location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/userlocation
+func (m_ MKUserLocation) UserLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("userLocation"))
+	return rv
+}
+
+
+// SetUserLocation sets the value of the userLocation property.
+// The annotation object that represents the user’s location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/userlocation
+func (m_ MKUserLocation) SetUserLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUserLocation:"), value)
+}
+
+// A Boolean value that indicates whether the map view is updating the user’s location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/isupdating
+func (m_ MKUserLocation) IsUpdating() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdating"))
+	return rv
+}
+
+
+// SetIsUpdating sets the value of the isUpdating property.
+// A Boolean value that indicates whether the map view is updating the user’s location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/isupdating
+func (m_ MKUserLocation) SetIsUpdating(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdating:"), value)
 }
 
 

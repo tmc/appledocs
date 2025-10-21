@@ -98,130 +98,6 @@ func (mc _MediaItemClass) TitlePropertyForGroupingType(groupingType unsafe.Point
 	return rv
 }
 
-// A Boolean value that indicates whether the media item has explicit (adult) lyrics or language.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isexplicititem
-func (m_ MediaItem) IsExplicitItem() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isExplicitItem"))
-	return rv
-}
-
-
-// SetIsExplicitItem sets the value of the isExplicitItem property.
-// A Boolean value that indicates whether the media item has explicit (adult) lyrics or language.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isexplicititem
-func (m_ MediaItem) SetIsExplicitItem(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsExplicitItem:"), value)
-}
-
-// A Boolean value that indicates whether the media item has a protected asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/hasprotectedasset
-func (m_ MediaItem) HasProtectedAsset() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("hasProtectedAsset"))
-	return rv
-}
-
-
-// SetHasProtectedAsset sets the value of the hasProtectedAsset property.
-// A Boolean value that indicates whether the media item has a protected asset.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/hasprotectedasset
-func (m_ MediaItem) SetHasProtectedAsset(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHasProtectedAsset:"), value)
-}
-
-// The musical composer for the media item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/composer
-func (m_ MediaItem) Composer() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("composer"))
-	return rv
-}
-
-
-// SetComposer sets the value of the composer property.
-// The musical composer for the media item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/composer
-func (m_ MediaItem) SetComposer(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setComposer:"), objc.String(value))
-}
-
-// The persistent identifier for a media entity.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaentitypropertypersistentid
-func (m_ MediaItem) MPMediaEntityPropertyPersistentID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaEntityPropertyPersistentID"))
-	return rv
-}
-
-// A Boolean value that indicates whether the media item is part of a compilation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/iscompilation
-func (m_ MediaItem) IsCompilation() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isCompilation"))
-	return rv
-}
-
-
-// SetIsCompilation sets the value of the isCompilation property.
-// A Boolean value that indicates whether the media item is part of a compilation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/iscompilation
-func (m_ MediaItem) SetIsCompilation(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCompilation:"), value)
-}
-
-// The key for the persistent identifier for the media item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypersistentid
-func (m_ MediaItem) MPMediaItemPropertyPersistentID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaItemPropertyPersistentID"))
-	return rv
-}
-
-// A Boolean value that indicates whether the media item is an iCloud Music Library item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isclouditem
-func (m_ MediaItem) IsCloudItem() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isCloudItem"))
-	return rv
-}
-
-
-// SetIsCloudItem sets the value of the isCloudItem property.
-// A Boolean value that indicates whether the media item is an iCloud Music Library item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isclouditem
-func (m_ MediaItem) SetIsCloudItem(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCloudItem:"), value)
-}
-
-// A Boolean value that indicates whether the media item is a preorder.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/ispreorder
-func (m_ MediaItem) IsPreorder() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isPreorder"))
-	return rv
-}
-
-
-// SetIsPreorder sets the value of the isPreorder property.
-// A Boolean value that indicates whether the media item is a preorder.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/ispreorder
-func (m_ MediaItem) SetIsPreorder(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPreorder:"), value)
-}
-
 // The primary performing artist for an album.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/albumArtist
@@ -523,6 +399,130 @@ func (m_ MediaItem) Title() string {
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/userGrouping
 func (m_ MediaItem) UserGrouping() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("userGrouping"))
+	return rv
+}
+
+// The persistent identifier for a media entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaentitypropertypersistentid
+func (m_ MediaItem) MPMediaEntityPropertyPersistentID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaEntityPropertyPersistentID"))
+	return rv
+}
+
+// The musical composer for the media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/composer
+func (m_ MediaItem) Composer() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("composer"))
+	return rv
+}
+
+
+// SetComposer sets the value of the composer property.
+// The musical composer for the media item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/composer
+func (m_ MediaItem) SetComposer(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setComposer:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the media item has a protected asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/hasprotectedasset
+func (m_ MediaItem) HasProtectedAsset() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("hasProtectedAsset"))
+	return rv
+}
+
+
+// SetHasProtectedAsset sets the value of the hasProtectedAsset property.
+// A Boolean value that indicates whether the media item has a protected asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/hasprotectedasset
+func (m_ MediaItem) SetHasProtectedAsset(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHasProtectedAsset:"), value)
+}
+
+// A Boolean value that indicates whether the media item is an iCloud Music Library item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isclouditem
+func (m_ MediaItem) IsCloudItem() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isCloudItem"))
+	return rv
+}
+
+
+// SetIsCloudItem sets the value of the isCloudItem property.
+// A Boolean value that indicates whether the media item is an iCloud Music Library item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isclouditem
+func (m_ MediaItem) SetIsCloudItem(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCloudItem:"), value)
+}
+
+// A Boolean value that indicates whether the media item is part of a compilation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/iscompilation
+func (m_ MediaItem) IsCompilation() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isCompilation"))
+	return rv
+}
+
+
+// SetIsCompilation sets the value of the isCompilation property.
+// A Boolean value that indicates whether the media item is part of a compilation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/iscompilation
+func (m_ MediaItem) SetIsCompilation(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCompilation:"), value)
+}
+
+// A Boolean value that indicates whether the media item has explicit (adult) lyrics or language.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isexplicititem
+func (m_ MediaItem) IsExplicitItem() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isExplicitItem"))
+	return rv
+}
+
+
+// SetIsExplicitItem sets the value of the isExplicitItem property.
+// A Boolean value that indicates whether the media item has explicit (adult) lyrics or language.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isexplicititem
+func (m_ MediaItem) SetIsExplicitItem(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsExplicitItem:"), value)
+}
+
+// A Boolean value that indicates whether the media item is a preorder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/ispreorder
+func (m_ MediaItem) IsPreorder() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isPreorder"))
+	return rv
+}
+
+
+// SetIsPreorder sets the value of the isPreorder property.
+// A Boolean value that indicates whether the media item is a preorder.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/ispreorder
+func (m_ MediaItem) SetIsPreorder(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPreorder:"), value)
+}
+
+// The key for the persistent identifier for the media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypersistentid
+func (m_ MediaItem) MPMediaItemPropertyPersistentID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaItemPropertyPersistentID"))
 	return rv
 }
 

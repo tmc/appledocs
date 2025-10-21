@@ -78,18 +78,18 @@ func NewMTRGeneralDiagnosticsClusterNetworkInterfaceType() MTRGeneralDiagnostics
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv6
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) OffPremiseServicesReachableIPv6() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offPremiseServicesReachableIPv6"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/hardwareaddress
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) HardwareAddress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("hardwareAddress"))
 	return rv
 }
 
 
-// SetOffPremiseServicesReachableIPv6 sets the value of the offPremiseServicesReachableIPv6 property.
+// SetHardwareAddress sets the value of the hardwareAddress property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv6
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetOffPremiseServicesReachableIPv6(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOffPremiseServicesReachableIPv6:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/hardwareaddress
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetHardwareAddress(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHardwareAddress:"), value)
 }
 
 //
@@ -123,48 +123,18 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetIPv6Addresses(valu
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/type
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) Type() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/isoperational
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IsOperational() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("isOperational"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
+// SetIsOperational sets the value of the isOperational property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/type
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetType(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv4
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) OffPremiseServicesReachableIPv4() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offPremiseServicesReachableIPv4"))
-	return rv
-}
-
-
-// SetOffPremiseServicesReachableIPv4 sets the value of the offPremiseServicesReachableIPv4 property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv4
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetOffPremiseServicesReachableIPv4(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOffPremiseServicesReachableIPv4:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/hardwareaddress
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) HardwareAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("hardwareAddress"))
-	return rv
-}
-
-
-// SetHardwareAddress sets the value of the hardwareAddress property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/hardwareaddress
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetHardwareAddress(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHardwareAddress:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/isoperational
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetIsOperational(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsOperational:"), value)
 }
 
 //
@@ -183,18 +153,48 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetName(value string)
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/isoperational
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IsOperational() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("isOperational"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv4
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) OffPremiseServicesReachableIPv4() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offPremiseServicesReachableIPv4"))
 	return rv
 }
 
 
-// SetIsOperational sets the value of the isOperational property.
+// SetOffPremiseServicesReachableIPv4 sets the value of the offPremiseServicesReachableIPv4 property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/isoperational
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetIsOperational(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsOperational:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv4
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetOffPremiseServicesReachableIPv4(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOffPremiseServicesReachableIPv4:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv6
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) OffPremiseServicesReachableIPv6() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offPremiseServicesReachableIPv6"))
+	return rv
+}
+
+
+// SetOffPremiseServicesReachableIPv6 sets the value of the offPremiseServicesReachableIPv6 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv6
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetOffPremiseServicesReachableIPv6(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOffPremiseServicesReachableIPv6:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/type
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) Type() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/type
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 
 

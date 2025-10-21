@@ -130,32 +130,6 @@ func (c_ CSSearchableItemAttributeSet) ValueForCustomKey(key unsafe.Pointer) obj
 	return rv
 }
 
-// A key that specifies the action’s identifier in a user activity.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/csactionidentifier
-func (c_ CSSearchableItemAttributeSet) CSActionIdentifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CSActionIdentifier"))
-	return rv
-}
-
-// The composer of the song or audio composition that the audio file contains.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/composer
-func (c_ CSSearchableItemAttributeSet) Composer() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("composer"))
-	return rv
-}
-
-
-// SetComposer sets the value of the composer property.
-// The composer of the song or audio composition that the audio file contains.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/composer
-func (c_ CSSearchableItemAttributeSet) SetComposer(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setComposer:"), objc.String(value))
-}
-
 // An array of objects representing the content of the From: field in an item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/1621608-authors
@@ -3926,6 +3900,32 @@ func (c_ CSSearchableItemAttributeSet) WhiteBalance() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/whiteBalance
 func (c_ CSSearchableItemAttributeSet) SetWhiteBalance(value foundation.Number) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWhiteBalance:"), value)
+}
+
+// A key that specifies the action’s identifier in a user activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/csactionidentifier
+func (c_ CSSearchableItemAttributeSet) CSActionIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSActionIdentifier"))
+	return rv
+}
+
+// The composer of the song or audio composition that the audio file contains.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/composer
+func (c_ CSSearchableItemAttributeSet) Composer() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("composer"))
+	return rv
+}
+
+
+// SetComposer sets the value of the composer property.
+// The composer of the song or audio composition that the audio file contains.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/composer
+func (c_ CSSearchableItemAttributeSet) SetComposer(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setComposer:"), objc.String(value))
 }
 
 

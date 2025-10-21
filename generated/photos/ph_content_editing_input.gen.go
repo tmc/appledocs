@@ -81,24 +81,6 @@ func NewPHContentEditingInput() PHContentEditingInput {
 }
 
 
-// The output of an asset content editing session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHContentEditingInput) ContentEditingOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentEditingOutput"))
-	return rv
-}
-
-
-// SetContentEditingOutput sets the value of the contentEditingOutput property.
-// The output of an asset content editing session.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHContentEditingInput) SetContentEditingOutput(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
-}
-
 // An object that describes the most recent edit to the asset’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/adjustmentData
@@ -209,6 +191,24 @@ func (p_ PHContentEditingInput) PlaybackStyle() unsafe.Pointer {
 func (p_ PHContentEditingInput) UniformTypeIdentifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("uniformTypeIdentifier"))
 	return rv
+}
+
+// The output of an asset content editing session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
+func (p_ PHContentEditingInput) ContentEditingOutput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentEditingOutput"))
+	return rv
+}
+
+
+// SetContentEditingOutput sets the value of the contentEditingOutput property.
+// The output of an asset content editing session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
+func (p_ PHContentEditingInput) SetContentEditingOutput(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
 }
 
 

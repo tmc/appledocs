@@ -78,21 +78,6 @@ func NewMTRTestClusterClusterTestEnumsResponseParams() MTRTestClusterClusterTest
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/arg2
-func (m_ MTRTestClusterClusterTestEnumsResponseParams) Arg2() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg2"))
-	return rv
-}
-
-
-// SetArg2 sets the value of the arg2 property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/arg2
-func (m_ MTRTestClusterClusterTestEnumsResponseParams) SetArg2(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/arg1
 func (m_ MTRTestClusterClusterTestEnumsResponseParams) Arg1() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
@@ -105,6 +90,21 @@ func (m_ MTRTestClusterClusterTestEnumsResponseParams) Arg1() foundation.Number 
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/arg1
 func (m_ MTRTestClusterClusterTestEnumsResponseParams) SetArg1(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/arg2
+func (m_ MTRTestClusterClusterTestEnumsResponseParams) Arg2() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg2"))
+	return rv
+}
+
+
+// SetArg2 sets the value of the arg2 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/arg2
+func (m_ MTRTestClusterClusterTestEnumsResponseParams) SetArg2(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
 //

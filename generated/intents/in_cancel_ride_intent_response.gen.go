@@ -81,24 +81,6 @@ func NewINCancelRideIntentResponse() INCancelRideIntentResponse {
 }
 
 
-// The code indicating whether you successfully handled the intent.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/code
-func (i_ INCancelRideIntentResponse) Code() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
-	return rv
-}
-
-
-// SetCode sets the value of the code property.
-// The code indicating whether you successfully handled the intent.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/code
-func (i_ INCancelRideIntentResponse) SetCode(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
-}
-
 // The cancellation fee charged by your service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/cancellationfee
@@ -133,6 +115,24 @@ func (i_ INCancelRideIntentResponse) CancellationFeeThreshold() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/cancellationfeethreshold
 func (i_ INCancelRideIntentResponse) SetCancellationFeeThreshold(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCancellationFeeThreshold:"), value)
+}
+
+// The code indicating whether you successfully handled the intent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/code
+func (i_ INCancelRideIntentResponse) Code() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
+	return rv
+}
+
+
+// SetCode sets the value of the code property.
+// The code indicating whether you successfully handled the intent.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/code
+func (i_ INCancelRideIntentResponse) SetCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
 
 

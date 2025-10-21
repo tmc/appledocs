@@ -96,24 +96,6 @@ func (g_ GCVirtualControllerElementConfiguration) SetActsAsTouchpad(value bool) 
 	objc.Send[objc.ID](g_.ID, objc.Sel("setActsAsTouchpad:"), value)
 }
 
-// The Bezier path for the shape of an element.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
-func (g_ GCVirtualControllerElementConfiguration) Path() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("path"))
-	return rv
-}
-
-
-// SetPath sets the value of the path property.
-// The Bezier path for the shape of an element.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
-func (g_ GCVirtualControllerElementConfiguration) SetPath(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPath:"), value)
-}
-
 // A Boolean value that determines whether the virtual controller hides the element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/ishidden
@@ -130,6 +112,24 @@ func (g_ GCVirtualControllerElementConfiguration) IsHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/ishidden
 func (g_ GCVirtualControllerElementConfiguration) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// The Bezier path for the shape of an element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
+func (g_ GCVirtualControllerElementConfiguration) Path() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("path"))
+	return rv
+}
+
+
+// SetPath sets the value of the path property.
+// The Bezier path for the shape of an element.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
+func (g_ GCVirtualControllerElementConfiguration) SetPath(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPath:"), value)
 }
 
 

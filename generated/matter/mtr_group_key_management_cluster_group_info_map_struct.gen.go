@@ -77,36 +77,6 @@ func NewMTRGroupKeyManagementClusterGroupInfoMapStruct() MTRGroupKeyManagementCl
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupname
-func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("groupName"))
-	return rv
-}
-
-
-// SetGroupName sets the value of the groupName property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupname
-func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupid
-func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupId"))
-	return rv
-}
-
-
-// SetGroupId sets the value of the groupId property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupid
-func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupId(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/endpoints
 func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) Endpoints() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endpoints"))
@@ -134,6 +104,36 @@ func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) FabricIndex() foundatio
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/fabricindex
 func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetFabricIndex(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupid
+func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupId() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupId"))
+	return rv
+}
+
+
+// SetGroupId sets the value of the groupId property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupid
+func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupname
+func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("groupName"))
+	return rv
+}
+
+
+// SetGroupName sets the value of the groupName property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupname
+func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), objc.String(value))
 }
 
 

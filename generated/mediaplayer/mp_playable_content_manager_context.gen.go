@@ -115,60 +115,6 @@ func (p_ PlayableContentManagerContext) SetContentLimitsEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentLimitsEnabled:"), value)
 }
 
-// Returns the number of content items to display during content limiting.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontentitemscount
-func (p_ PlayableContentManagerContext) EnforcedContentItemsCount() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("enforcedContentItemsCount"))
-	return rv
-}
-
-
-// SetEnforcedContentItemsCount sets the value of the enforcedContentItemsCount property.
-// Returns the number of content items to display during content limiting.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontentitemscount
-func (p_ PlayableContentManagerContext) SetEnforcedContentItemsCount(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setEnforcedContentItemsCount:"), value)
-}
-
-// A Boolean value that indicates whether the route button is visible in the volume view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
-func (p_ PlayableContentManagerContext) ShowsRouteButton() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("showsRouteButton"))
-	return rv
-}
-
-
-// SetShowsRouteButton sets the value of the showsRouteButton property.
-// A Boolean value that indicates whether the route button is visible in the volume view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
-func (p_ PlayableContentManagerContext) SetShowsRouteButton(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsRouteButton:"), value)
-}
-
-// The maximum depth of the navigation hierarchy allowed by the content server.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontenttreedepth
-func (p_ PlayableContentManagerContext) EnforcedContentTreeDepth() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("enforcedContentTreeDepth"))
-	return rv
-}
-
-
-// SetEnforcedContentTreeDepth sets the value of the enforcedContentTreeDepth property.
-// The maximum depth of the navigation hierarchy allowed by the content server.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontenttreedepth
-func (p_ PlayableContentManagerContext) SetEnforcedContentTreeDepth(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setEnforcedContentTreeDepth:"), value)
-}
-
 // A Boolean value that indicates whether the content server enforces content limits.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/contentlimitsenforced
@@ -203,6 +149,60 @@ func (p_ PlayableContentManagerContext) EndpointAvailable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/endpointavailable
 func (p_ PlayableContentManagerContext) SetEndpointAvailable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndpointAvailable:"), value)
+}
+
+// Returns the number of content items to display during content limiting.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontentitemscount
+func (p_ PlayableContentManagerContext) EnforcedContentItemsCount() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("enforcedContentItemsCount"))
+	return rv
+}
+
+
+// SetEnforcedContentItemsCount sets the value of the enforcedContentItemsCount property.
+// Returns the number of content items to display during content limiting.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontentitemscount
+func (p_ PlayableContentManagerContext) SetEnforcedContentItemsCount(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEnforcedContentItemsCount:"), value)
+}
+
+// The maximum depth of the navigation hierarchy allowed by the content server.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontenttreedepth
+func (p_ PlayableContentManagerContext) EnforcedContentTreeDepth() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("enforcedContentTreeDepth"))
+	return rv
+}
+
+
+// SetEnforcedContentTreeDepth sets the value of the enforcedContentTreeDepth property.
+// The maximum depth of the navigation hierarchy allowed by the content server.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontenttreedepth
+func (p_ PlayableContentManagerContext) SetEnforcedContentTreeDepth(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEnforcedContentTreeDepth:"), value)
+}
+
+// A Boolean value that indicates whether the route button is visible in the volume view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (p_ PlayableContentManagerContext) ShowsRouteButton() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("showsRouteButton"))
+	return rv
+}
+
+
+// SetShowsRouteButton sets the value of the showsRouteButton property.
+// A Boolean value that indicates whether the route button is visible in the volume view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (p_ PlayableContentManagerContext) SetShowsRouteButton(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsRouteButton:"), value)
 }
 
 

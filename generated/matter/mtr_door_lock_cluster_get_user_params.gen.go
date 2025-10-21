@@ -77,6 +77,21 @@ func NewMTRDoorLockClusterGetUserParams() MTRDoorLockClusterGetUserParams {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterGetUserParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterGetUserParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/timedinvoketimeoutms
 func (m_ MTRDoorLockClusterGetUserParams) TimedInvokeTimeoutMs() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
@@ -104,21 +119,6 @@ func (m_ MTRDoorLockClusterGetUserParams) UserIndex() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/userindex
 func (m_ MTRDoorLockClusterGetUserParams) SetUserIndex(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterGetUserParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterGetUserParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 

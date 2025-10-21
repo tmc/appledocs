@@ -83,21 +83,6 @@ func (s_ SVGFDenoiser) EncodeToCommandBufferSourceTextureDestinationTextureSourc
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/svgf
-func (s_ SVGFDenoiser) Svgf() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("svgf"))
-	return rv
-}
-
-
-// SetSvgf sets the value of the svgf property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/svgf
-func (s_ SVGFDenoiser) SetSvgf(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSvgf:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/bilateralfilteriterations
 func (s_ SVGFDenoiser) BilateralFilterIterations() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("bilateralFilterIterations"))
@@ -110,6 +95,21 @@ func (s_ SVGFDenoiser) BilateralFilterIterations() int {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/bilateralfilteriterations
 func (s_ SVGFDenoiser) SetBilateralFilterIterations(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBilateralFilterIterations:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/svgf
+func (s_ SVGFDenoiser) Svgf() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("svgf"))
+	return rv
+}
+
+
+// SetSvgf sets the value of the svgf property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/svgf
+func (s_ SVGFDenoiser) SetSvgf(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSvgf:"), value)
 }
 
 //

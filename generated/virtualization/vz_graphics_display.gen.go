@@ -115,6 +115,14 @@ func (v_ VZGraphicsDisplay) RemoveObserver(observer objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeObserver:"), observer)
 }
 
+// Returns the size of the display, in pixels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay/sizeInPixels
+func (v_ VZGraphicsDisplay) SizeInPixels() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("sizeInPixels"))
+	return rv
+}
+
 // The list of graphics displays configured for this graphics device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgraphicsdevice/displays
@@ -131,14 +139,6 @@ func (v_ VZGraphicsDisplay) Displays() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgraphicsdevice/displays
 func (v_ VZGraphicsDisplay) SetDisplays(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDisplays:"), value)
-}
-
-// Returns the size of the display, in pixels.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay/sizeInPixels
-func (v_ VZGraphicsDisplay) SizeInPixels() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("sizeInPixels"))
-	return rv
 }
 
 

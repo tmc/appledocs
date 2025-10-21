@@ -105,40 +105,20 @@ func NewCKRecordIDWithRecordNameZoneID(recordName string, zoneID unsafe.Pointer)
 }
 
 
-// The ID of the user who creates the record.
+// The unique name of the record.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
-func (c_ CKRecordID) CreatorUserRecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("creatorUserRecordID"))
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/recordName
+func (c_ CKRecordID) RecordName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("recordName"))
 	return rv
 }
 
-
-// SetCreatorUserRecordID sets the value of the creatorUserRecordID property.
-// The ID of the user who creates the record.
-
+// The ID of the zone that contains the record.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
-func (c_ CKRecordID) SetCreatorUserRecordID(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCreatorUserRecordID:"), value)
-}
-
-// The server change token for the record.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-func (c_ CKRecordID) RecordChangeTag() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/zoneID
+func (c_ CKRecordID) ZoneID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneID"))
 	return rv
-}
-
-
-// SetRecordChangeTag sets the value of the recordChangeTag property.
-// The server change token for the record.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-func (c_ CKRecordID) SetRecordChangeTag(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
 }
 
 // The time when CloudKit first saves the record to the server.
@@ -159,40 +139,22 @@ func (c_ CKRecordID) SetCreationDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCreationDate:"), value)
 }
 
-// The most recent time that CloudKit saved the record to the server.
+// The ID of the user who creates the record.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
-func (c_ CKRecordID) ModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modificationDate"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
+func (c_ CKRecordID) CreatorUserRecordID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("creatorUserRecordID"))
 	return rv
 }
 
 
-// SetModificationDate sets the value of the modificationDate property.
-// The most recent time that CloudKit saved the record to the server.
+// SetCreatorUserRecordID sets the value of the creatorUserRecordID property.
+// The ID of the user who creates the record.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
-func (c_ CKRecordID) SetModificationDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setModificationDate:"), value)
-}
-
-// The value that your app defines to identify the type of record.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordtype-6v7au
-func (c_ CKRecordID) RecordType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
-	return rv
-}
-
-
-// SetRecordType sets the value of the recordType property.
-// The value that your app defines to identify the type of record.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordtype-6v7au
-func (c_ CKRecordID) SetRecordType(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
+func (c_ CKRecordID) SetCreatorUserRecordID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCreatorUserRecordID:"), value)
 }
 
 // The ID of the user who most recently modified the record.
@@ -213,12 +175,40 @@ func (c_ CKRecordID) SetLastModifiedUserRecordID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLastModifiedUserRecordID:"), value)
 }
 
-// The name of a share record that manages a shared record zone.
+// The most recent time that CloudKit saved the record to the server.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordnamezonewideshare
-func (c_ CKRecordID) CKRecordNameZoneWideShare() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CKRecordNameZoneWideShare"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
+func (c_ CKRecordID) ModificationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modificationDate"))
 	return rv
+}
+
+
+// SetModificationDate sets the value of the modificationDate property.
+// The most recent time that CloudKit saved the record to the server.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
+func (c_ CKRecordID) SetModificationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModificationDate:"), value)
+}
+
+// The server change token for the record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
+func (c_ CKRecordID) RecordChangeTag() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
+	return rv
+}
+
+
+// SetRecordChangeTag sets the value of the recordChangeTag property.
+// The server change token for the record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
+func (c_ CKRecordID) SetRecordChangeTag(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
 }
 
 // The unique ID of the record.
@@ -239,19 +229,29 @@ func (c_ CKRecordID) SetRecordID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordID:"), value)
 }
 
-// The unique name of the record.
+// The value that your app defines to identify the type of record.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/recordName
-func (c_ CKRecordID) RecordName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("recordName"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordtype-6v7au
+func (c_ CKRecordID) RecordType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
 	return rv
 }
 
-// The ID of the zone that contains the record.
+
+// SetRecordType sets the value of the recordType property.
+// The value that your app defines to identify the type of record.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/zoneID
-func (c_ CKRecordID) ZoneID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneID"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordtype-6v7au
+func (c_ CKRecordID) SetRecordType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordType:"), value)
+}
+
+// The name of a share record that manages a shared record zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordnamezonewideshare
+func (c_ CKRecordID) CKRecordNameZoneWideShare() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CKRecordNameZoneWideShare"))
 	return rv
 }
 

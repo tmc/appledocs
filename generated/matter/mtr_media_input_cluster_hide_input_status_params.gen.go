@@ -77,21 +77,6 @@ func NewMTRMediaInputClusterHideInputStatusParams() MTRMediaInputClusterHideInpu
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/timedinvoketimeoutms
-func (m_ MTRMediaInputClusterHideInputStatusParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/timedinvoketimeoutms
-func (m_ MTRMediaInputClusterHideInputStatusParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/serversideprocessingtimeout
 func (m_ MTRMediaInputClusterHideInputStatusParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,6 +89,21 @@ func (m_ MTRMediaInputClusterHideInputStatusParams) ServerSideProcessingTimeout(
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/serversideprocessingtimeout
 func (m_ MTRMediaInputClusterHideInputStatusParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/timedinvoketimeoutms
+func (m_ MTRMediaInputClusterHideInputStatusParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/timedinvoketimeoutms
+func (m_ MTRMediaInputClusterHideInputStatusParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

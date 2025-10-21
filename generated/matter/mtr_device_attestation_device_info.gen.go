@@ -113,18 +113,48 @@ func (m_ MTRDeviceAttestationDeviceInfo) SetAttestationNonce(value unsafe.Pointe
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/daccertificate
-func (m_ MTRDeviceAttestationDeviceInfo) DacCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dacCertificate"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationproductid
+func (m_ MTRDeviceAttestationDeviceInfo) BasicInformationProductID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("basicInformationProductID"))
 	return rv
 }
 
 
-// SetDacCertificate sets the value of the dacCertificate property.
+// SetBasicInformationProductID sets the value of the basicInformationProductID property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/daccertificate
-func (m_ MTRDeviceAttestationDeviceInfo) SetDacCertificate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDacCertificate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationproductid
+func (m_ MTRDeviceAttestationDeviceInfo) SetBasicInformationProductID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBasicInformationProductID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationvendorid
+func (m_ MTRDeviceAttestationDeviceInfo) BasicInformationVendorID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("basicInformationVendorID"))
+	return rv
+}
+
+
+// SetBasicInformationVendorID sets the value of the basicInformationVendorID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationvendorid
+func (m_ MTRDeviceAttestationDeviceInfo) SetBasicInformationVendorID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBasicInformationVendorID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/certificatedeclaration
+func (m_ MTRDeviceAttestationDeviceInfo) CertificateDeclaration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificateDeclaration"))
+	return rv
+}
+
+
+// SetCertificateDeclaration sets the value of the certificateDeclaration property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/certificatedeclaration
+func (m_ MTRDeviceAttestationDeviceInfo) SetCertificateDeclaration(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificateDeclaration:"), value)
 }
 
 // The certification declaration of the device, if available. This is a DER-encoded string
@@ -146,18 +176,33 @@ func (m_ MTRDeviceAttestationDeviceInfo) SetCertificationDeclaration(value unsaf
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/vendorid
-func (m_ MTRDeviceAttestationDeviceInfo) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/daccertificate
+func (m_ MTRDeviceAttestationDeviceInfo) DacCertificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dacCertificate"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
+// SetDacCertificate sets the value of the dacCertificate property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/vendorid
-func (m_ MTRDeviceAttestationDeviceInfo) SetVendorID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/daccertificate
+func (m_ MTRDeviceAttestationDeviceInfo) SetDacCertificate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDacCertificate:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/dacpaicertificate
+func (m_ MTRDeviceAttestationDeviceInfo) DacPAICertificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dacPAICertificate"))
+	return rv
+}
+
+
+// SetDacPAICertificate sets the value of the dacPAICertificate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/dacpaicertificate
+func (m_ MTRDeviceAttestationDeviceInfo) SetDacPAICertificate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDacPAICertificate:"), value)
 }
 
 // A signature, using the device attestation private key of the device that sent
@@ -197,51 +242,6 @@ func (m_ MTRDeviceAttestationDeviceInfo) SetElementsTLV(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/dacpaicertificate
-func (m_ MTRDeviceAttestationDeviceInfo) DacPAICertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dacPAICertificate"))
-	return rv
-}
-
-
-// SetDacPAICertificate sets the value of the dacPAICertificate property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/dacpaicertificate
-func (m_ MTRDeviceAttestationDeviceInfo) SetDacPAICertificate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDacPAICertificate:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationvendorid
-func (m_ MTRDeviceAttestationDeviceInfo) BasicInformationVendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("basicInformationVendorID"))
-	return rv
-}
-
-
-// SetBasicInformationVendorID sets the value of the basicInformationVendorID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationvendorid
-func (m_ MTRDeviceAttestationDeviceInfo) SetBasicInformationVendorID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBasicInformationVendorID:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/certificatedeclaration
-func (m_ MTRDeviceAttestationDeviceInfo) CertificateDeclaration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificateDeclaration"))
-	return rv
-}
-
-
-// SetCertificateDeclaration sets the value of the certificateDeclaration property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/certificatedeclaration
-func (m_ MTRDeviceAttestationDeviceInfo) SetCertificateDeclaration(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificateDeclaration:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/productid
 func (m_ MTRDeviceAttestationDeviceInfo) ProductID() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
@@ -257,18 +257,18 @@ func (m_ MTRDeviceAttestationDeviceInfo) SetProductID(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationproductid
-func (m_ MTRDeviceAttestationDeviceInfo) BasicInformationProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("basicInformationProductID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/vendorid
+func (m_ MTRDeviceAttestationDeviceInfo) VendorID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
 
-// SetBasicInformationProductID sets the value of the basicInformationProductID property.
+// SetVendorID sets the value of the vendorID property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationproductid
-func (m_ MTRDeviceAttestationDeviceInfo) SetBasicInformationProductID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBasicInformationProductID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/vendorid
+func (m_ MTRDeviceAttestationDeviceInfo) SetVendorID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 
 

@@ -79,22 +79,22 @@ func NewMultiArrayShapeConstraint() MultiArrayShapeConstraint {
 }
 
 
-// The type of the shape constraint.
+// The type for the multi array.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/type
-func (m_ MultiArrayShapeConstraint) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/datatype
+func (m_ MultiArrayShapeConstraint) DataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dataType"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
-// The type of the shape constraint.
+// SetDataType sets the value of the dataType property.
+// The type for the multi array.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/type
-func (m_ MultiArrayShapeConstraint) SetType(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/datatype
+func (m_ MultiArrayShapeConstraint) SetDataType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDataType:"), value)
 }
 
 // The shape of the multi array.
@@ -133,24 +133,6 @@ func (m_ MultiArrayShapeConstraint) SetShapeConstraint(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShapeConstraint:"), value)
 }
 
-// The type for the multi array.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/datatype
-func (m_ MultiArrayShapeConstraint) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dataType"))
-	return rv
-}
-
-
-// SetDataType sets the value of the dataType property.
-// The type for the multi array.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/datatype
-func (m_ MultiArrayShapeConstraint) SetDataType(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDataType:"), value)
-}
-
 // Array of allowed shapes for a multiarray feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/enumeratedshapes
@@ -185,6 +167,24 @@ func (m_ MultiArrayShapeConstraint) SizeRangeForDimension() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/sizerangefordimension
 func (m_ MultiArrayShapeConstraint) SetSizeRangeForDimension(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSizeRangeForDimension:"), value)
+}
+
+// The type of the shape constraint.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/type
+func (m_ MultiArrayShapeConstraint) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The type of the shape constraint.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/type
+func (m_ MultiArrayShapeConstraint) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 
 

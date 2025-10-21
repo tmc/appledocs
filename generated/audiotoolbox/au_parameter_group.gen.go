@@ -81,6 +81,22 @@ func NewParameterGroup() ParameterGroup {
 }
 
 
+// Returns a flat array of all parameters in the group, including those in child groups.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/allParameters
+func (p_ ParameterGroup) AllParameters() []Parameter {
+	rv := objc.Send[[]Parameter](p_.ID, objc.Sel("allParameters"))
+	return rv
+}
+
+// The group’s child nodes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/children
+func (p_ ParameterGroup) Children() []ParameterNode {
+	rv := objc.Send[[]ParameterNode](p_.ID, objc.Sel("children"))
+	return rv
+}
+
 // A non-localized, permanent name for the parameter node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
@@ -97,22 +113,6 @@ func (p_ ParameterGroup) Identifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
 func (p_ ParameterGroup) SetIdentifier(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
-}
-
-// Returns a flat array of all parameters in the group, including those in child groups.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/allParameters
-func (p_ ParameterGroup) AllParameters() []Parameter {
-	rv := objc.Send[[]Parameter](p_.ID, objc.Sel("allParameters"))
-	return rv
-}
-
-// The group’s child nodes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/children
-func (p_ ParameterGroup) Children() []ParameterNode {
-	rv := objc.Send[[]ParameterNode](p_.ID, objc.Sel("children"))
-	return rv
 }
 
 

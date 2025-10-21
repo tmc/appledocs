@@ -115,24 +115,6 @@ func (p_ PHLivePhotoView) StopPlaybackAnimated(animated bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("stopPlaybackAnimated:"), animated)
 }
 
-// A Boolean value that determines whether the view plays the audio content of its Live Photo.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/ismuted
-func (p_ PHLivePhotoView) IsMuted() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isMuted"))
-	return rv
-}
-
-
-// SetIsMuted sets the value of the isMuted property.
-// A Boolean value that determines whether the view plays the audio content of its Live Photo.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/ismuted
-func (p_ PHLivePhotoView) SetIsMuted(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMuted:"), value)
-}
-
 // The audio gain to apply to the Live Photo’s movie content during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/audioVolume
@@ -252,6 +234,24 @@ func (p_ PHLivePhotoView) LivePhotoBadgeView() unsafe.Pointer {
 func (p_ PHLivePhotoView) PlaybackGestureRecognizer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackGestureRecognizer"))
 	return rv
+}
+
+// A Boolean value that determines whether the view plays the audio content of its Live Photo.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/ismuted
+func (p_ PHLivePhotoView) IsMuted() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isMuted"))
+	return rv
+}
+
+
+// SetIsMuted sets the value of the isMuted property.
+// A Boolean value that determines whether the view plays the audio content of its Live Photo.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/ismuted
+func (p_ PHLivePhotoView) SetIsMuted(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMuted:"), value)
 }
 
 

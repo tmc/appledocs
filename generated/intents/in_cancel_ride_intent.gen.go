@@ -94,6 +94,14 @@ func NewINCancelRideIntentWithRideIdentifier(rideIdentifier string) INCancelRide
 }
 
 
+// The unique identifier that you assigned to the ride.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INCancelRideIntent/rideIdentifier
+func (i_ INCancelRideIntent) RideIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
+	return rv
+}
+
 // A user activity object for canceling the ride request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/useractivityforcancelinginapplication
@@ -110,14 +118,6 @@ func (i_ INCancelRideIntent) UserActivityForCancelingInApplication() unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/useractivityforcancelinginapplication
 func (i_ INCancelRideIntent) SetUserActivityForCancelingInApplication(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivityForCancelingInApplication:"), value)
-}
-
-// The unique identifier that you assigned to the ride.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INCancelRideIntent/rideIdentifier
-func (i_ INCancelRideIntent) RideIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
-	return rv
 }
 
 

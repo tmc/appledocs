@@ -88,369 +88,6 @@ func (w_ WebViewConfiguration) SetURLSchemeHandlerForURLScheme(urlSchemeHandler 
 	objc.Send[objc.ID](w_.ID, objc.Sel("setURLSchemeHandler:forURLScheme:"), urlSchemeHandler, objc.String(urlScheme))
 }
 
-// Deprecated property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediaplaybackrequiresuseraction
-func (w_ WebViewConfiguration) MediaPlaybackRequiresUserAction() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("mediaPlaybackRequiresUserAction"))
-	return rv
-}
-
-
-// SetMediaPlaybackRequiresUserAction sets the value of the mediaPlaybackRequiresUserAction property.
-// Deprecated property.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediaplaybackrequiresuseraction
-func (w_ WebViewConfiguration) SetMediaPlaybackRequiresUserAction(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaPlaybackRequiresUserAction:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller
-func (w_ WebViewConfiguration) WebExtensionController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("webExtensionController"))
-	return rv
-}
-
-
-// SetWebExtensionController sets the value of the webExtensionController property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller
-func (w_ WebViewConfiguration) SetWebExtensionController(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setWebExtensionController:"), value)
-}
-
-// A Boolean value that determines whether a web view allows scaling of the webpage.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/ignoresviewportscalelimits
-func (w_ WebViewConfiguration) IgnoresViewportScaleLimits() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("ignoresViewportScaleLimits"))
-	return rv
-}
-
-
-// SetIgnoresViewportScaleLimits sets the value of the ignoresViewportScaleLimits property.
-// A Boolean value that determines whether a web view allows scaling of the webpage.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/ignoresviewportscalelimits
-func (w_ WebViewConfiguration) SetIgnoresViewportScaleLimits(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIgnoresViewportScaleLimits:"), value)
-}
-
-// A Boolean value that indicates whether the web view suppresses content rendering until the content is fully loaded into memory.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/suppressesincrementalrendering
-func (w_ WebViewConfiguration) SuppressesIncrementalRendering() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("suppressesIncrementalRendering"))
-	return rv
-}
-
-
-// SetSuppressesIncrementalRendering sets the value of the suppressesIncrementalRendering property.
-// A Boolean value that indicates whether the web view suppresses content rendering until the content is fully loaded into memory.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/suppressesincrementalrendering
-func (w_ WebViewConfiguration) SetSuppressesIncrementalRendering(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setSuppressesIncrementalRendering:"), value)
-}
-
-// A Boolean value that indicates whether HTML5 videos play inline or use the native full-screen controller.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsinlinemediaplayback
-func (w_ WebViewConfiguration) AllowsInlineMediaPlayback() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("allowsInlineMediaPlayback"))
-	return rv
-}
-
-
-// SetAllowsInlineMediaPlayback sets the value of the allowsInlineMediaPlayback property.
-// A Boolean value that indicates whether HTML5 videos play inline or use the native full-screen controller.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsinlinemediaplayback
-func (w_ WebViewConfiguration) SetAllowsInlineMediaPlayback(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsInlineMediaPlayback:"), value)
-}
-
-// A Boolean value that indicates whether HTML5 videos can play Picture in Picture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowspictureinpicturemediaplayback
-func (w_ WebViewConfiguration) AllowsPictureInPictureMediaPlayback() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("allowsPictureInPictureMediaPlayback"))
-	return rv
-}
-
-
-// SetAllowsPictureInPictureMediaPlayback sets the value of the allowsPictureInPictureMediaPlayback property.
-// A Boolean value that indicates whether HTML5 videos can play Picture in Picture.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowspictureinpicturemediaplayback
-func (w_ WebViewConfiguration) SetAllowsPictureInPictureMediaPlayback(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsPictureInPictureMediaPlayback:"), value)
-}
-
-// The types of data detectors to apply to the web view’s content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/datadetectortypes
-func (w_ WebViewConfiguration) DataDetectorTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("dataDetectorTypes"))
-	return rv
-}
-
-
-// SetDataDetectorTypes sets the value of the dataDetectorTypes property.
-// The types of data detectors to apply to the web view’s content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/datadetectortypes
-func (w_ WebViewConfiguration) SetDataDetectorTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDataDetectorTypes:"), value)
-}
-
-// A Boolean value that indicates whether the web view should automatically upgrade supported HTTP requests to HTTPS.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/upgradeknownhoststohttps
-func (w_ WebViewConfiguration) UpgradeKnownHostsToHTTPS() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("upgradeKnownHostsToHTTPS"))
-	return rv
-}
-
-
-// SetUpgradeKnownHostsToHTTPS sets the value of the upgradeKnownHostsToHTTPS property.
-// A Boolean value that indicates whether the web view should automatically upgrade supported HTTP requests to HTTPS.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/upgradeknownhoststohttps
-func (w_ WebViewConfiguration) SetUpgradeKnownHostsToHTTPS(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setUpgradeKnownHostsToHTTPS:"), value)
-}
-
-// A Boolean value that indicates whether the web view allows media playback over AirPlay.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsairplayformediaplayback
-func (w_ WebViewConfiguration) AllowsAirPlayForMediaPlayback() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("allowsAirPlayForMediaPlayback"))
-	return rv
-}
-
-
-// SetAllowsAirPlayForMediaPlayback sets the value of the allowsAirPlayForMediaPlayback property.
-// A Boolean value that indicates whether the web view allows media playback over AirPlay.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsairplayformediaplayback
-func (w_ WebViewConfiguration) SetAllowsAirPlayForMediaPlayback(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsAirPlayForMediaPlayback:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/showssystemscreentimeblockingview
-func (w_ WebViewConfiguration) ShowsSystemScreenTimeBlockingView() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("showsSystemScreenTimeBlockingView"))
-	return rv
-}
-
-
-// SetShowsSystemScreenTimeBlockingView sets the value of the showsSystemScreenTimeBlockingView property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/showssystemscreentimeblockingview
-func (w_ WebViewConfiguration) SetShowsSystemScreenTimeBlockingView(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setShowsSystemScreenTimeBlockingView:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsinlinepredictions
-func (w_ WebViewConfiguration) AllowsInlinePredictions() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("allowsInlinePredictions"))
-	return rv
-}
-
-
-// SetAllowsInlinePredictions sets the value of the allowsInlinePredictions property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsinlinepredictions
-func (w_ WebViewConfiguration) SetAllowsInlinePredictions(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsInlinePredictions:"), value)
-}
-
-// The level of granularity with which the user can interactively select web view content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/selectiongranularity
-func (w_ WebViewConfiguration) SelectionGranularity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("selectionGranularity"))
-	return rv
-}
-
-
-// SetSelectionGranularity sets the value of the selectionGranularity property.
-// The level of granularity with which the user can interactively select web view content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/selectiongranularity
-func (w_ WebViewConfiguration) SetSelectionGranularity(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setSelectionGranularity:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/writingtoolsbehavior
-func (w_ WebViewConfiguration) WritingToolsBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("writingToolsBehavior"))
-	return rv
-}
-
-
-// SetWritingToolsBehavior sets the value of the writingToolsBehavior property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/writingtoolsbehavior
-func (w_ WebViewConfiguration) SetWritingToolsBehavior(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setWritingToolsBehavior:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/supportsadaptiveimageglyph
-func (w_ WebViewConfiguration) SupportsAdaptiveImageGlyph() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("supportsAdaptiveImageGlyph"))
-	return rv
-}
-
-
-// SetSupportsAdaptiveImageGlyph sets the value of the supportsAdaptiveImageGlyph property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/supportsadaptiveimageglyph
-func (w_ WebViewConfiguration) SetSupportsAdaptiveImageGlyph(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setSupportsAdaptiveImageGlyph:"), value)
-}
-
-// A Boolean value that indicates whether HTML5 videos require the user to start playing them (
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/requiresuseractionformediaplayback
-func (w_ WebViewConfiguration) RequiresUserActionForMediaPlayback() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("requiresUserActionForMediaPlayback"))
-	return rv
-}
-
-
-// SetRequiresUserActionForMediaPlayback sets the value of the requiresUserActionForMediaPlayback property.
-// A Boolean value that indicates whether HTML5 videos require the user to start playing them (
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/requiresuseractionformediaplayback
-func (w_ WebViewConfiguration) SetRequiresUserActionForMediaPlayback(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setRequiresUserActionForMediaPlayback:"), value)
-}
-
-// The directionality of user interface elements.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/userinterfacedirectionpolicy
-func (w_ WebViewConfiguration) UserInterfaceDirectionPolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("userInterfaceDirectionPolicy"))
-	return rv
-}
-
-
-// SetUserInterfaceDirectionPolicy sets the value of the userInterfaceDirectionPolicy property.
-// The directionality of user interface elements.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/userinterfacedirectionpolicy
-func (w_ WebViewConfiguration) SetUserInterfaceDirectionPolicy(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setUserInterfaceDirectionPolicy:"), value)
-}
-
-// Deprecated property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediaplaybackallowsairplay
-func (w_ WebViewConfiguration) MediaPlaybackAllowsAirPlay() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("mediaPlaybackAllowsAirPlay"))
-	return rv
-}
-
-
-// SetMediaPlaybackAllowsAirPlay sets the value of the mediaPlaybackAllowsAirPlay property.
-// Deprecated property.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediaplaybackallowsairplay
-func (w_ WebViewConfiguration) SetMediaPlaybackAllowsAirPlay(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaPlaybackAllowsAirPlay:"), value)
-}
-
-// The app name that appears in the user agent string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/applicationnameforuseragent
-func (w_ WebViewConfiguration) ApplicationNameForUserAgent() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("applicationNameForUserAgent"))
-	return rv
-}
-
-
-// SetApplicationNameForUserAgent sets the value of the applicationNameForUserAgent property.
-// The app name that appears in the user agent string.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/applicationnameforuseragent
-func (w_ WebViewConfiguration) SetApplicationNameForUserAgent(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationNameForUserAgent:"), objc.String(value))
-}
-
-// The default preferences to use when loading and rendering content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/defaultwebpagepreferences
-func (w_ WebViewConfiguration) DefaultWebpagePreferences() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("defaultWebpagePreferences"))
-	return rv
-}
-
-
-// SetDefaultWebpagePreferences sets the value of the defaultWebpagePreferences property.
-// The default preferences to use when loading and rendering content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/defaultwebpagepreferences
-func (w_ WebViewConfiguration) SetDefaultWebpagePreferences(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultWebpagePreferences:"), value)
-}
-
-// The media types that require a user gesture to begin playing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediatypesrequiringuseractionforplayback
-func (w_ WebViewConfiguration) MediaTypesRequiringUserActionForPlayback() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("mediaTypesRequiringUserActionForPlayback"))
-	return rv
-}
-
-
-// SetMediaTypesRequiringUserActionForPlayback sets the value of the mediaTypesRequiringUserActionForPlayback property.
-// The media types that require a user gesture to begin playing.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediatypesrequiringuseractionforplayback
-func (w_ WebViewConfiguration) SetMediaTypesRequiringUserActionForPlayback(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaTypesRequiringUserActionForPlayback:"), value)
-}
-
-// The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
-func (w_ WebViewConfiguration) UserContentController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("userContentController"))
-	return rv
-}
-
-
-// SetUserContentController sets the value of the userContentController property.
-// The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
-func (w_ WebViewConfiguration) SetUserContentController(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setUserContentController:"), value)
-}
-
 // A Boolean value that indicates whether the web view limits navigation to pages within the app’s domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/limitsNavigationsToAppBoundDomains
@@ -521,6 +158,369 @@ func (w_ WebViewConfiguration) WebsiteDataStore() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/websiteDataStore
 func (w_ WebViewConfiguration) SetWebsiteDataStore(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWebsiteDataStore:"), value)
+}
+
+// A Boolean value that indicates whether the web view allows media playback over AirPlay.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsairplayformediaplayback
+func (w_ WebViewConfiguration) AllowsAirPlayForMediaPlayback() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("allowsAirPlayForMediaPlayback"))
+	return rv
+}
+
+
+// SetAllowsAirPlayForMediaPlayback sets the value of the allowsAirPlayForMediaPlayback property.
+// A Boolean value that indicates whether the web view allows media playback over AirPlay.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsairplayformediaplayback
+func (w_ WebViewConfiguration) SetAllowsAirPlayForMediaPlayback(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsAirPlayForMediaPlayback:"), value)
+}
+
+// A Boolean value that indicates whether HTML5 videos play inline or use the native full-screen controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsinlinemediaplayback
+func (w_ WebViewConfiguration) AllowsInlineMediaPlayback() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("allowsInlineMediaPlayback"))
+	return rv
+}
+
+
+// SetAllowsInlineMediaPlayback sets the value of the allowsInlineMediaPlayback property.
+// A Boolean value that indicates whether HTML5 videos play inline or use the native full-screen controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsinlinemediaplayback
+func (w_ WebViewConfiguration) SetAllowsInlineMediaPlayback(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsInlineMediaPlayback:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsinlinepredictions
+func (w_ WebViewConfiguration) AllowsInlinePredictions() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("allowsInlinePredictions"))
+	return rv
+}
+
+
+// SetAllowsInlinePredictions sets the value of the allowsInlinePredictions property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowsinlinepredictions
+func (w_ WebViewConfiguration) SetAllowsInlinePredictions(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsInlinePredictions:"), value)
+}
+
+// A Boolean value that indicates whether HTML5 videos can play Picture in Picture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowspictureinpicturemediaplayback
+func (w_ WebViewConfiguration) AllowsPictureInPictureMediaPlayback() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("allowsPictureInPictureMediaPlayback"))
+	return rv
+}
+
+
+// SetAllowsPictureInPictureMediaPlayback sets the value of the allowsPictureInPictureMediaPlayback property.
+// A Boolean value that indicates whether HTML5 videos can play Picture in Picture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/allowspictureinpicturemediaplayback
+func (w_ WebViewConfiguration) SetAllowsPictureInPictureMediaPlayback(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsPictureInPictureMediaPlayback:"), value)
+}
+
+// The app name that appears in the user agent string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/applicationnameforuseragent
+func (w_ WebViewConfiguration) ApplicationNameForUserAgent() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("applicationNameForUserAgent"))
+	return rv
+}
+
+
+// SetApplicationNameForUserAgent sets the value of the applicationNameForUserAgent property.
+// The app name that appears in the user agent string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/applicationnameforuseragent
+func (w_ WebViewConfiguration) SetApplicationNameForUserAgent(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationNameForUserAgent:"), objc.String(value))
+}
+
+// The types of data detectors to apply to the web view’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/datadetectortypes
+func (w_ WebViewConfiguration) DataDetectorTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("dataDetectorTypes"))
+	return rv
+}
+
+
+// SetDataDetectorTypes sets the value of the dataDetectorTypes property.
+// The types of data detectors to apply to the web view’s content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/datadetectortypes
+func (w_ WebViewConfiguration) SetDataDetectorTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDataDetectorTypes:"), value)
+}
+
+// The default preferences to use when loading and rendering content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/defaultwebpagepreferences
+func (w_ WebViewConfiguration) DefaultWebpagePreferences() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("defaultWebpagePreferences"))
+	return rv
+}
+
+
+// SetDefaultWebpagePreferences sets the value of the defaultWebpagePreferences property.
+// The default preferences to use when loading and rendering content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/defaultwebpagepreferences
+func (w_ WebViewConfiguration) SetDefaultWebpagePreferences(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultWebpagePreferences:"), value)
+}
+
+// A Boolean value that determines whether a web view allows scaling of the webpage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/ignoresviewportscalelimits
+func (w_ WebViewConfiguration) IgnoresViewportScaleLimits() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("ignoresViewportScaleLimits"))
+	return rv
+}
+
+
+// SetIgnoresViewportScaleLimits sets the value of the ignoresViewportScaleLimits property.
+// A Boolean value that determines whether a web view allows scaling of the webpage.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/ignoresviewportscalelimits
+func (w_ WebViewConfiguration) SetIgnoresViewportScaleLimits(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIgnoresViewportScaleLimits:"), value)
+}
+
+// Deprecated property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediaplaybackallowsairplay
+func (w_ WebViewConfiguration) MediaPlaybackAllowsAirPlay() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("mediaPlaybackAllowsAirPlay"))
+	return rv
+}
+
+
+// SetMediaPlaybackAllowsAirPlay sets the value of the mediaPlaybackAllowsAirPlay property.
+// Deprecated property.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediaplaybackallowsairplay
+func (w_ WebViewConfiguration) SetMediaPlaybackAllowsAirPlay(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaPlaybackAllowsAirPlay:"), value)
+}
+
+// Deprecated property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediaplaybackrequiresuseraction
+func (w_ WebViewConfiguration) MediaPlaybackRequiresUserAction() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("mediaPlaybackRequiresUserAction"))
+	return rv
+}
+
+
+// SetMediaPlaybackRequiresUserAction sets the value of the mediaPlaybackRequiresUserAction property.
+// Deprecated property.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediaplaybackrequiresuseraction
+func (w_ WebViewConfiguration) SetMediaPlaybackRequiresUserAction(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaPlaybackRequiresUserAction:"), value)
+}
+
+// The media types that require a user gesture to begin playing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediatypesrequiringuseractionforplayback
+func (w_ WebViewConfiguration) MediaTypesRequiringUserActionForPlayback() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("mediaTypesRequiringUserActionForPlayback"))
+	return rv
+}
+
+
+// SetMediaTypesRequiringUserActionForPlayback sets the value of the mediaTypesRequiringUserActionForPlayback property.
+// The media types that require a user gesture to begin playing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/mediatypesrequiringuseractionforplayback
+func (w_ WebViewConfiguration) SetMediaTypesRequiringUserActionForPlayback(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaTypesRequiringUserActionForPlayback:"), value)
+}
+
+// A Boolean value that indicates whether HTML5 videos require the user to start playing them (
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/requiresuseractionformediaplayback
+func (w_ WebViewConfiguration) RequiresUserActionForMediaPlayback() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("requiresUserActionForMediaPlayback"))
+	return rv
+}
+
+
+// SetRequiresUserActionForMediaPlayback sets the value of the requiresUserActionForMediaPlayback property.
+// A Boolean value that indicates whether HTML5 videos require the user to start playing them (
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/requiresuseractionformediaplayback
+func (w_ WebViewConfiguration) SetRequiresUserActionForMediaPlayback(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setRequiresUserActionForMediaPlayback:"), value)
+}
+
+// The level of granularity with which the user can interactively select web view content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/selectiongranularity
+func (w_ WebViewConfiguration) SelectionGranularity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("selectionGranularity"))
+	return rv
+}
+
+
+// SetSelectionGranularity sets the value of the selectionGranularity property.
+// The level of granularity with which the user can interactively select web view content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/selectiongranularity
+func (w_ WebViewConfiguration) SetSelectionGranularity(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSelectionGranularity:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/showssystemscreentimeblockingview
+func (w_ WebViewConfiguration) ShowsSystemScreenTimeBlockingView() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("showsSystemScreenTimeBlockingView"))
+	return rv
+}
+
+
+// SetShowsSystemScreenTimeBlockingView sets the value of the showsSystemScreenTimeBlockingView property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/showssystemscreentimeblockingview
+func (w_ WebViewConfiguration) SetShowsSystemScreenTimeBlockingView(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setShowsSystemScreenTimeBlockingView:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/supportsadaptiveimageglyph
+func (w_ WebViewConfiguration) SupportsAdaptiveImageGlyph() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("supportsAdaptiveImageGlyph"))
+	return rv
+}
+
+
+// SetSupportsAdaptiveImageGlyph sets the value of the supportsAdaptiveImageGlyph property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/supportsadaptiveimageglyph
+func (w_ WebViewConfiguration) SetSupportsAdaptiveImageGlyph(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSupportsAdaptiveImageGlyph:"), value)
+}
+
+// A Boolean value that indicates whether the web view suppresses content rendering until the content is fully loaded into memory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/suppressesincrementalrendering
+func (w_ WebViewConfiguration) SuppressesIncrementalRendering() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("suppressesIncrementalRendering"))
+	return rv
+}
+
+
+// SetSuppressesIncrementalRendering sets the value of the suppressesIncrementalRendering property.
+// A Boolean value that indicates whether the web view suppresses content rendering until the content is fully loaded into memory.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/suppressesincrementalrendering
+func (w_ WebViewConfiguration) SetSuppressesIncrementalRendering(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSuppressesIncrementalRendering:"), value)
+}
+
+// A Boolean value that indicates whether the web view should automatically upgrade supported HTTP requests to HTTPS.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/upgradeknownhoststohttps
+func (w_ WebViewConfiguration) UpgradeKnownHostsToHTTPS() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("upgradeKnownHostsToHTTPS"))
+	return rv
+}
+
+
+// SetUpgradeKnownHostsToHTTPS sets the value of the upgradeKnownHostsToHTTPS property.
+// A Boolean value that indicates whether the web view should automatically upgrade supported HTTP requests to HTTPS.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/upgradeknownhoststohttps
+func (w_ WebViewConfiguration) SetUpgradeKnownHostsToHTTPS(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setUpgradeKnownHostsToHTTPS:"), value)
+}
+
+// The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
+func (w_ WebViewConfiguration) UserContentController() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("userContentController"))
+	return rv
+}
+
+
+// SetUserContentController sets the value of the userContentController property.
+// The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
+func (w_ WebViewConfiguration) SetUserContentController(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setUserContentController:"), value)
+}
+
+// The directionality of user interface elements.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/userinterfacedirectionpolicy
+func (w_ WebViewConfiguration) UserInterfaceDirectionPolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("userInterfaceDirectionPolicy"))
+	return rv
+}
+
+
+// SetUserInterfaceDirectionPolicy sets the value of the userInterfaceDirectionPolicy property.
+// The directionality of user interface elements.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/userinterfacedirectionpolicy
+func (w_ WebViewConfiguration) SetUserInterfaceDirectionPolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setUserInterfaceDirectionPolicy:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller
+func (w_ WebViewConfiguration) WebExtensionController() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("webExtensionController"))
+	return rv
+}
+
+
+// SetWebExtensionController sets the value of the webExtensionController property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller
+func (w_ WebViewConfiguration) SetWebExtensionController(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWebExtensionController:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/writingtoolsbehavior
+func (w_ WebViewConfiguration) WritingToolsBehavior() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("writingToolsBehavior"))
+	return rv
+}
+
+
+// SetWritingToolsBehavior sets the value of the writingToolsBehavior property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/writingtoolsbehavior
+func (w_ WebViewConfiguration) SetWritingToolsBehavior(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWritingToolsBehavior:"), value)
 }
 
 

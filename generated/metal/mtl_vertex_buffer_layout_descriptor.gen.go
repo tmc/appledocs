@@ -78,13 +78,6 @@ func NewVertexBufferLayoutDescriptor() VertexBufferLayoutDescriptor {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlbufferlayoutstridedynamic
-func (v_ VertexBufferLayoutDescriptor) MTLBufferLayoutStrideDynamic() int {
-	rv := objc.Send[int](v_.ID, objc.Sel("MTLBufferLayoutStrideDynamic"))
-	return rv
-}
-
 // The circumstances under which the vertex and its attributes are presented to the vertex function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptor/stepFunction
@@ -137,6 +130,13 @@ func (v_ VertexBufferLayoutDescriptor) Stride() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptor/stride
 func (v_ VertexBufferLayoutDescriptor) SetStride(value uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStride:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlbufferlayoutstridedynamic
+func (v_ VertexBufferLayoutDescriptor) MTLBufferLayoutStrideDynamic() int {
+	rv := objc.Send[int](v_.ID, objc.Sel("MTLBufferLayoutStrideDynamic"))
+	return rv
 }
 
 

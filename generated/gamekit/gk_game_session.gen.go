@@ -187,24 +187,6 @@ func (g_ GameSession) SetConnectionStateCompletionHandler(state unsafe.Pointer, 
 	objc.Send[objc.ID](g_.ID, objc.Sel("setConnectionState:completionHandler:"), state, completionHandler)
 }
 
-// The delegate for the event handler.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-func (g_ GameSession) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The delegate for the event handler.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-func (g_ GameSession) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
-}
-
 // An array containing all of the currently badged players.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSession/badgedPlayers
@@ -267,6 +249,24 @@ func (g_ GameSession) Players() []CloudPlayer {
 func (g_ GameSession) Title() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("title"))
 	return rv
+}
+
+// The delegate for the event handler.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
+func (g_ GameSession) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate for the event handler.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
+func (g_ GameSession) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

@@ -77,18 +77,18 @@ func NewMTRApplicationBasicClusterApplicationStruct() MTRApplicationBasicCluster
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/catalogvendorid-16o17
-func (m_ MTRApplicationBasicClusterApplicationStruct) CatalogVendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("catalogVendorID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/applicationid-1jzu
+func (m_ MTRApplicationBasicClusterApplicationStruct) ApplicationID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("applicationID"))
 	return rv
 }
 
 
-// SetCatalogVendorID sets the value of the catalogVendorID property.
+// SetApplicationID sets the value of the applicationID property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/catalogvendorid-16o17
-func (m_ MTRApplicationBasicClusterApplicationStruct) SetCatalogVendorID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCatalogVendorID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/applicationid-1jzu
+func (m_ MTRApplicationBasicClusterApplicationStruct) SetApplicationID(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationID:"), objc.String(value))
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRApplicationBasicClusterApplicationStruct) SetApplicationId(value str
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/applicationid-1jzu
-func (m_ MTRApplicationBasicClusterApplicationStruct) ApplicationID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("applicationID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/catalogvendorid-16o17
+func (m_ MTRApplicationBasicClusterApplicationStruct) CatalogVendorID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("catalogVendorID"))
 	return rv
 }
 
 
-// SetApplicationID sets the value of the applicationID property.
+// SetCatalogVendorID sets the value of the catalogVendorID property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/applicationid-1jzu
-func (m_ MTRApplicationBasicClusterApplicationStruct) SetApplicationID(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationID:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/catalogvendorid-16o17
+func (m_ MTRApplicationBasicClusterApplicationStruct) SetCatalogVendorID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCatalogVendorID:"), value)
 }
 
 //

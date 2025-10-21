@@ -77,18 +77,18 @@ func NewMTRUnitTestingClusterNestedStruct() MTRUnitTestingClusterNestedStruct {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstruct/c
-func (m_ MTRUnitTestingClusterNestedStruct) C() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("c"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstruct/a
+func (m_ MTRUnitTestingClusterNestedStruct) A() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("a"))
 	return rv
 }
 
 
-// SetC sets the value of the c property.
+// SetA sets the value of the a property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstruct/c
-func (m_ MTRUnitTestingClusterNestedStruct) SetC(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstruct/a
+func (m_ MTRUnitTestingClusterNestedStruct) SetA(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRUnitTestingClusterNestedStruct) SetB(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstruct/a
-func (m_ MTRUnitTestingClusterNestedStruct) A() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("a"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstruct/c
+func (m_ MTRUnitTestingClusterNestedStruct) C() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("c"))
 	return rv
 }
 
 
-// SetA sets the value of the a property.
+// SetC sets the value of the c property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstruct/a
-func (m_ MTRUnitTestingClusterNestedStruct) SetA(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstruct/c
+func (m_ MTRUnitTestingClusterNestedStruct) SetC(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)
 }
 
 

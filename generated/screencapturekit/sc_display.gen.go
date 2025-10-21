@@ -81,22 +81,20 @@ func NewDisplay() Display {
 }
 
 
-// The width of the display in points.
+// The Core Graphics display identifier.
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/width
-func (d_ Display) Width() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("width"))
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/displayID
+func (d_ Display) DisplayID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("displayID"))
 	return rv
 }
 
-
-// SetWidth sets the value of the width property.
-// The width of the display in points.
-
+// The frame of the display.
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/width
-func (d_ Display) SetWidth(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setWidth:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/frame
+func (d_ Display) Frame() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](d_.ID, objc.Sel("frame"))
+	return rv
 }
 
 // The height of the display in points.
@@ -117,20 +115,22 @@ func (d_ Display) SetHeight(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setHeight:"), value)
 }
 
-// The Core Graphics display identifier.
+// The width of the display in points.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/displayID
-func (d_ Display) DisplayID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("displayID"))
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/width
+func (d_ Display) Width() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("width"))
 	return rv
 }
 
-// The frame of the display.
+
+// SetWidth sets the value of the width property.
+// The width of the display in points.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/frame
-func (d_ Display) Frame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](d_.ID, objc.Sel("frame"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/width
+func (d_ Display) SetWidth(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setWidth:"), value)
 }
 
 

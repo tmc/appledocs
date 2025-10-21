@@ -77,21 +77,6 @@ func NewMTREthernetNetworkDiagnosticsClusterResetCountsParams() MTREthernetNetwo
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/timedinvoketimeoutms
-func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/timedinvoketimeoutms
-func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/serversideprocessingtimeout
 func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,6 +89,21 @@ func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) ServerSideProces
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/serversideprocessingtimeout
 func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/timedinvoketimeoutms
+func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/timedinvoketimeoutms
+func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

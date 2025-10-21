@@ -311,60 +311,6 @@ func (u_ UTType) IsSupertypeOfType(type_ unsafe.Pointer) bool {
 	return rv
 }
 
-// A Boolean value that indicates whether the system generates the type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdynamic
-func (u_ UTType) IsDynamic() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("isDynamic"))
-	return rv
-}
-
-
-// SetIsDynamic sets the value of the isDynamic property.
-// A Boolean value that indicates whether the system generates the type.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdynamic
-func (u_ UTType) SetIsDynamic(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDynamic:"), value)
-}
-
-// A Boolean value that indicates whether the system declares the type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdeclared
-func (u_ UTType) IsDeclared() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("isDeclared"))
-	return rv
-}
-
-
-// SetIsDeclared sets the value of the isDeclared property.
-// A Boolean value that indicates whether the system declares the type.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdeclared
-func (u_ UTType) SetIsDeclared(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDeclared:"), value)
-}
-
-// A Boolean value that indicates whether the type is in the public domain.
-//
-// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/ispublic
-func (u_ UTType) IsPublic() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("isPublic"))
-	return rv
-}
-
-
-// SetIsPublic sets the value of the isPublic property.
-// A Boolean value that indicates whether the type is in the public domain.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/ispublic
-func (u_ UTType) SetIsPublic(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPublic:"), value)
-}
-
 // A type representing the @c SHCustomCatalog file format with the .shazamcatalog extension
 //
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTType-c.class/SHCustomCatalogContentType
@@ -467,6 +413,60 @@ func (u_ UTType) Tags() unsafe.Pointer {
 func (u_ UTType) Version() foundation.Number {
 	rv := objc.Send[foundation.Number](u_.ID, objc.Sel("version"))
 	return rv
+}
+
+// A Boolean value that indicates whether the system declares the type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdeclared
+func (u_ UTType) IsDeclared() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isDeclared"))
+	return rv
+}
+
+
+// SetIsDeclared sets the value of the isDeclared property.
+// A Boolean value that indicates whether the system declares the type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdeclared
+func (u_ UTType) SetIsDeclared(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDeclared:"), value)
+}
+
+// A Boolean value that indicates whether the system generates the type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdynamic
+func (u_ UTType) IsDynamic() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isDynamic"))
+	return rv
+}
+
+
+// SetIsDynamic sets the value of the isDynamic property.
+// A Boolean value that indicates whether the system generates the type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdynamic
+func (u_ UTType) SetIsDynamic(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDynamic:"), value)
+}
+
+// A Boolean value that indicates whether the type is in the public domain.
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/ispublic
+func (u_ UTType) IsPublic() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isPublic"))
+	return rv
+}
+
+
+// SetIsPublic sets the value of the isPublic property.
+// A Boolean value that indicates whether the type is in the public domain.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/ispublic
+func (u_ UTType) SetIsPublic(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPublic:"), value)
 }
 
 

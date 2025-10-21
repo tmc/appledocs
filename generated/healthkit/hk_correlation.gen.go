@@ -81,11 +81,11 @@ func NewHKCorrelation() HKCorrelation {
 }
 
 
-// The type of food that the HealthKit object represents.
+// The type for this correlation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype
-func (h_ HKCorrelation) HKMetadataKeyFoodType() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyFoodType"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelation/correlationType
+func (h_ HKCorrelation) CorrelationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("correlationType"))
 	return rv
 }
 
@@ -107,19 +107,19 @@ func (h_ HKCorrelation) SetObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setObjects:"), value)
 }
 
+// The type of food that the HealthKit object represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype
+func (h_ HKCorrelation) HKMetadataKeyFoodType() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyFoodType"))
+	return rv
+}
+
 // The key path for accessing the object’s correlation inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcorrelation
 func (h_ HKCorrelation) HKPredicateKeyPathCorrelation() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCorrelation"))
-	return rv
-}
-
-// The type for this correlation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelation/correlationType
-func (h_ HKCorrelation) CorrelationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("correlationType"))
 	return rv
 }
 

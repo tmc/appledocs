@@ -78,75 +78,6 @@ func NewAuthorizationAppleIDCredential() AuthorizationAppleIDCredential {
 }
 
 
-// A JSON Web Token (JWT) that securely communicates information about the user to the app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
-func (a_ AuthorizationAppleIDCredential) IdentityToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("identityToken"))
-	return rv
-}
-
-
-// SetIdentityToken sets the value of the identityToken property.
-// A JSON Web Token (JWT) that securely communicates information about the user to the app.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
-func (a_ AuthorizationAppleIDCredential) SetIdentityToken(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
-}
-
-// The contact information the user authorized your app to access.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizedscopes
-func (a_ AuthorizationAppleIDCredential) AuthorizedScopes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizedScopes"))
-	return rv
-}
-
-
-// SetAuthorizedScopes sets the value of the authorizedScopes property.
-// The contact information the user authorized your app to access.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizedscopes
-func (a_ AuthorizationAppleIDCredential) SetAuthorizedScopes(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizedScopes:"), value)
-}
-
-// A token that the app uses to interact with the server.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
-func (a_ AuthorizationAppleIDCredential) AuthorizationCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationCode"))
-	return rv
-}
-
-
-// SetAuthorizationCode sets the value of the authorizationCode property.
-// A token that the app uses to interact with the server.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
-func (a_ AuthorizationAppleIDCredential) SetAuthorizationCode(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationCode:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/useragerange
-func (a_ AuthorizationAppleIDCredential) UserAgeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("userAgeRange"))
-	return rv
-}
-
-
-// SetUserAgeRange sets the value of the userAgeRange property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/useragerange
-func (a_ AuthorizationAppleIDCredential) SetUserAgeRange(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUserAgeRange:"), value)
-}
-
 // The user’s email address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/email
@@ -185,6 +116,75 @@ func (a_ AuthorizationAppleIDCredential) State() string {
 func (a_ AuthorizationAppleIDCredential) User() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("user"))
 	return rv
+}
+
+// A token that the app uses to interact with the server.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
+func (a_ AuthorizationAppleIDCredential) AuthorizationCode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationCode"))
+	return rv
+}
+
+
+// SetAuthorizationCode sets the value of the authorizationCode property.
+// A token that the app uses to interact with the server.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
+func (a_ AuthorizationAppleIDCredential) SetAuthorizationCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationCode:"), value)
+}
+
+// The contact information the user authorized your app to access.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizedscopes
+func (a_ AuthorizationAppleIDCredential) AuthorizedScopes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizedScopes"))
+	return rv
+}
+
+
+// SetAuthorizedScopes sets the value of the authorizedScopes property.
+// The contact information the user authorized your app to access.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizedscopes
+func (a_ AuthorizationAppleIDCredential) SetAuthorizedScopes(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizedScopes:"), value)
+}
+
+// A JSON Web Token (JWT) that securely communicates information about the user to the app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
+func (a_ AuthorizationAppleIDCredential) IdentityToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("identityToken"))
+	return rv
+}
+
+
+// SetIdentityToken sets the value of the identityToken property.
+// A JSON Web Token (JWT) that securely communicates information about the user to the app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
+func (a_ AuthorizationAppleIDCredential) SetIdentityToken(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/useragerange
+func (a_ AuthorizationAppleIDCredential) UserAgeRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("userAgeRange"))
+	return rv
+}
+
+
+// SetUserAgeRange sets the value of the userAgeRange property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/useragerange
+func (a_ AuthorizationAppleIDCredential) SetUserAgeRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUserAgeRange:"), value)
 }
 
 

@@ -81,42 +81,6 @@ func NewMovieErrorLog() MovieErrorLog {
 }
 
 
-// The events in the movie error log.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/events
-func (m_ MovieErrorLog) Events() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("events"))
-	return rv
-}
-
-
-// SetEvents sets the value of the events property.
-// The events in the movie error log.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/events
-func (m_ MovieErrorLog) SetEvents(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEvents:"), value)
-}
-
-// A Boolean value that indicates whether the route button is visible in the volume view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
-func (m_ MovieErrorLog) ShowsRouteButton() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
-	return rv
-}
-
-
-// SetShowsRouteButton sets the value of the showsRouteButton property.
-// A Boolean value that indicates whether the route button is visible in the volume view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
-func (m_ MovieErrorLog) SetShowsRouteButton(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
-}
-
 // The bounds, in points, of the content area for the full size image associated with the media item artwork.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
@@ -133,6 +97,24 @@ func (m_ MovieErrorLog) ImageCropRect() coregraphics.CGRect {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
 func (m_ MovieErrorLog) SetImageCropRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageCropRect:"), value)
+}
+
+// The events in the movie error log.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/events
+func (m_ MovieErrorLog) Events() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("events"))
+	return rv
+}
+
+
+// SetEvents sets the value of the events property.
+// The events in the movie error log.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/events
+func (m_ MovieErrorLog) SetEvents(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEvents:"), value)
 }
 
 // A textual version of the web server error log.
@@ -169,6 +151,24 @@ func (m_ MovieErrorLog) ExtendedLogDataStringEncoding() uint {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/extendedlogdatastringencoding
 func (m_ MovieErrorLog) SetExtendedLogDataStringEncoding(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLogDataStringEncoding:"), value)
+}
+
+// A Boolean value that indicates whether the route button is visible in the volume view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MovieErrorLog) ShowsRouteButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
+	return rv
+}
+
+
+// SetShowsRouteButton sets the value of the showsRouteButton property.
+// A Boolean value that indicates whether the route button is visible in the volume view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MovieErrorLog) SetShowsRouteButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
 }
 
 

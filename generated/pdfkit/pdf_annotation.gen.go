@@ -187,129 +187,6 @@ func (p_ PDFAnnotation) ValueForAnnotationKey(key unsafe.Pointer) objc.ID {
 	return rv
 }
 
-// A Boolean value that indicates whether the annotation divides the text widget’s bounds into equally spaced segments, such as in a form entry field.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/hascomb
-func (p_ PDFAnnotation) HasComb() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("hasComb"))
-	return rv
-}
-
-
-// SetHasComb sets the value of the hasComb property.
-// A Boolean value that indicates whether the annotation divides the text widget’s bounds into equally spaced segments, such as in a form entry field.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/hascomb
-func (p_ PDFAnnotation) SetHasComb(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setHasComb:"), value)
-}
-
-// A Boolean value that indicates whether the choice widget annotation is a list or a pop-up menu.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/islistchoice
-func (p_ PDFAnnotation) IsListChoice() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isListChoice"))
-	return rv
-}
-
-
-// SetIsListChoice sets the value of the isListChoice property.
-// A Boolean value that indicates whether the choice widget annotation is a list or a pop-up menu.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/islistchoice
-func (p_ PDFAnnotation) SetIsListChoice(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsListChoice:"), value)
-}
-
-// A Boolean value that indicates whether the text widget annotation displays multiple lines.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ismultiline
-func (p_ PDFAnnotation) IsMultiline() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isMultiline"))
-	return rv
-}
-
-
-// SetIsMultiline sets the value of the isMultiline property.
-// A Boolean value that indicates whether the text widget annotation displays multiple lines.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ismultiline
-func (p_ PDFAnnotation) SetIsMultiline(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMultiline:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isactivatabletextfield
-func (p_ PDFAnnotation) IsActivatableTextField() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isActivatableTextField"))
-	return rv
-}
-
-
-// SetIsActivatableTextField sets the value of the isActivatableTextField property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isactivatabletextfield
-func (p_ PDFAnnotation) SetIsActivatableTextField(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsActivatableTextField:"), value)
-}
-
-// A Boolean value that indicates whether the annotation is in a highlighted state, such as when the mouse is down on a link annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ishighlighted
-func (p_ PDFAnnotation) IsHighlighted() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isHighlighted"))
-	return rv
-}
-
-
-// SetIsHighlighted sets the value of the isHighlighted property.
-// A Boolean value that indicates whether the annotation is in a highlighted state, such as when the mouse is down on a link annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ishighlighted
-func (p_ PDFAnnotation) SetIsHighlighted(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHighlighted:"), value)
-}
-
-// A Boolean value that determines whether the widget is editable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isreadonly
-func (p_ PDFAnnotation) IsReadOnly() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isReadOnly"))
-	return rv
-}
-
-
-// SetIsReadOnly sets the value of the isReadOnly property.
-// A Boolean value that determines whether the widget is editable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isreadonly
-func (p_ PDFAnnotation) SetIsReadOnly(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
-}
-
-// A Boolean value that indicates whether the pop-up annotation is in an opened state, displaying its text content, or in a closed state, displaying an icon.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isopen
-func (p_ PDFAnnotation) IsOpen() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isOpen"))
-	return rv
-}
-
-
-// SetIsOpen sets the value of the isOpen property.
-// A Boolean value that indicates whether the pop-up annotation is in an opened state, displaying its text content, or in a closed state, displaying an icon.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isopen
-func (p_ PDFAnnotation) SetIsOpen(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOpen:"), value)
-}
-
 // An object that represents an action for a PDF element, such as a link annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/action
@@ -1205,6 +1082,129 @@ func (p_ PDFAnnotation) WidgetStringValue() string {
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/widgetStringValue
 func (p_ PDFAnnotation) SetWidgetStringValue(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetStringValue:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the annotation divides the text widget’s bounds into equally spaced segments, such as in a form entry field.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/hascomb
+func (p_ PDFAnnotation) HasComb() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("hasComb"))
+	return rv
+}
+
+
+// SetHasComb sets the value of the hasComb property.
+// A Boolean value that indicates whether the annotation divides the text widget’s bounds into equally spaced segments, such as in a form entry field.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/hascomb
+func (p_ PDFAnnotation) SetHasComb(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHasComb:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isactivatabletextfield
+func (p_ PDFAnnotation) IsActivatableTextField() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isActivatableTextField"))
+	return rv
+}
+
+
+// SetIsActivatableTextField sets the value of the isActivatableTextField property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isactivatabletextfield
+func (p_ PDFAnnotation) SetIsActivatableTextField(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsActivatableTextField:"), value)
+}
+
+// A Boolean value that indicates whether the annotation is in a highlighted state, such as when the mouse is down on a link annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ishighlighted
+func (p_ PDFAnnotation) IsHighlighted() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isHighlighted"))
+	return rv
+}
+
+
+// SetIsHighlighted sets the value of the isHighlighted property.
+// A Boolean value that indicates whether the annotation is in a highlighted state, such as when the mouse is down on a link annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ishighlighted
+func (p_ PDFAnnotation) SetIsHighlighted(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHighlighted:"), value)
+}
+
+// A Boolean value that indicates whether the choice widget annotation is a list or a pop-up menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/islistchoice
+func (p_ PDFAnnotation) IsListChoice() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isListChoice"))
+	return rv
+}
+
+
+// SetIsListChoice sets the value of the isListChoice property.
+// A Boolean value that indicates whether the choice widget annotation is a list or a pop-up menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/islistchoice
+func (p_ PDFAnnotation) SetIsListChoice(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsListChoice:"), value)
+}
+
+// A Boolean value that indicates whether the text widget annotation displays multiple lines.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ismultiline
+func (p_ PDFAnnotation) IsMultiline() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isMultiline"))
+	return rv
+}
+
+
+// SetIsMultiline sets the value of the isMultiline property.
+// A Boolean value that indicates whether the text widget annotation displays multiple lines.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ismultiline
+func (p_ PDFAnnotation) SetIsMultiline(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMultiline:"), value)
+}
+
+// A Boolean value that indicates whether the pop-up annotation is in an opened state, displaying its text content, or in a closed state, displaying an icon.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isopen
+func (p_ PDFAnnotation) IsOpen() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isOpen"))
+	return rv
+}
+
+
+// SetIsOpen sets the value of the isOpen property.
+// A Boolean value that indicates whether the pop-up annotation is in an opened state, displaying its text content, or in a closed state, displaying an icon.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isopen
+func (p_ PDFAnnotation) SetIsOpen(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOpen:"), value)
+}
+
+// A Boolean value that determines whether the widget is editable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isreadonly
+func (p_ PDFAnnotation) IsReadOnly() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isReadOnly"))
+	return rv
+}
+
+
+// SetIsReadOnly sets the value of the isReadOnly property.
+// A Boolean value that determines whether the widget is editable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/isreadonly
+func (p_ PDFAnnotation) SetIsReadOnly(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
 }
 
 

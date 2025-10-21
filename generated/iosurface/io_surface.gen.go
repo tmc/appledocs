@@ -226,21 +226,6 @@ func (s_ Surface) WidthOfPlaneAtIndex(planeIndex uint) int {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/iosurface/iosurface/isinuse
-func (s_ Surface) IsInUse() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isInUse"))
-	return rv
-}
-
-
-// SetIsInUse sets the value of the isInUse property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/iosurface/iosurface/isinuse
-func (s_ Surface) SetIsInUse(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsInUse:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/allocationSize
 func (s_ Surface) AllocationSize() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("allocationSize"))
@@ -336,6 +321,21 @@ func (s_ Surface) SurfaceID() unsafe.Pointer {
 func (s_ Surface) Width() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("width"))
 	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iosurface/iosurface/isinuse
+func (s_ Surface) IsInUse() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isInUse"))
+	return rv
+}
+
+
+// SetIsInUse sets the value of the isInUse property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iosurface/iosurface/isinuse
+func (s_ Surface) SetIsInUse(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsInUse:"), value)
 }
 
 

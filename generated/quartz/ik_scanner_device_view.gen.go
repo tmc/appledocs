@@ -81,42 +81,6 @@ func NewIKScannerDeviceView() IKScannerDeviceView {
 }
 
 
-// The URL of the application to use for post processing of the scan.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/postprocessapplication
-func (i_ IKScannerDeviceView) PostProcessApplication() foundation.URL {
-	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("postProcessApplication"))
-	return rv
-}
-
-
-// SetPostProcessApplication sets the value of the postProcessApplication property.
-// The URL of the application to use for post processing of the scan.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/postprocessapplication
-func (i_ IKScannerDeviceView) SetPostProcessApplication(value foundation.URL) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPostProcessApplication:"), value)
-}
-
-// The display mode used by the device view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/mode
-func (i_ IKScannerDeviceView) Mode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mode"))
-	return rv
-}
-
-
-// SetMode sets the value of the mode property.
-// The display mode used by the device view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/mode
-func (i_ IKScannerDeviceView) SetMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMode:"), value)
-}
-
 // The scanner device delegate
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/delegate
@@ -135,58 +99,22 @@ func (i_ IKScannerDeviceView) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
 
-// Allows customization of the “Overview” label.
+// Determines whether the downloads directory control is displayed.
 //
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/overviewcontrollabel
-func (i_ IKScannerDeviceView) OverviewControlLabel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("overviewControlLabel"))
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/displaysdownloadsdirectorycontrol
+func (i_ IKScannerDeviceView) DisplaysDownloadsDirectoryControl() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("displaysDownloadsDirectoryControl"))
 	return rv
 }
 
 
-// SetOverviewControlLabel sets the value of the overviewControlLabel property.
-// Allows customization of the “Overview” label.
+// SetDisplaysDownloadsDirectoryControl sets the value of the displaysDownloadsDirectoryControl property.
+// Determines whether the downloads directory control is displayed.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/overviewcontrollabel
-func (i_ IKScannerDeviceView) SetOverviewControlLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setOverviewControlLabel:"), objc.String(value))
-}
-
-// Allows customization of the “Scan” label.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scancontrollabel
-func (i_ IKScannerDeviceView) ScanControlLabel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("scanControlLabel"))
-	return rv
-}
-
-
-// SetScanControlLabel sets the value of the scanControlLabel property.
-// Allows customization of the “Scan” label.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scancontrollabel
-func (i_ IKScannerDeviceView) SetScanControlLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setScanControlLabel:"), objc.String(value))
-}
-
-// The directory where scans are saved.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/downloadsdirectory
-func (i_ IKScannerDeviceView) DownloadsDirectory() foundation.URL {
-	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("downloadsDirectory"))
-	return rv
-}
-
-
-// SetDownloadsDirectory sets the value of the downloadsDirectory property.
-// The directory where scans are saved.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/downloadsdirectory
-func (i_ IKScannerDeviceView) SetDownloadsDirectory(value foundation.URL) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadsDirectory:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/displaysdownloadsdirectorycontrol
+func (i_ IKScannerDeviceView) SetDisplaysDownloadsDirectoryControl(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplaysDownloadsDirectoryControl:"), value)
 }
 
 // Specifies whether the post processing application control is displayed.
@@ -207,24 +135,6 @@ func (i_ IKScannerDeviceView) SetDisplaysPostProcessApplicationControl(value boo
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplaysPostProcessApplicationControl:"), value)
 }
 
-// The device used for scanning
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scannerdevice
-func (i_ IKScannerDeviceView) ScannerDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("scannerDevice"))
-	return rv
-}
-
-
-// SetScannerDevice sets the value of the scannerDevice property.
-// The device used for scanning
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scannerdevice
-func (i_ IKScannerDeviceView) SetScannerDevice(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setScannerDevice:"), value)
-}
-
 // Returns the document name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/documentname
@@ -243,40 +153,22 @@ func (i_ IKScannerDeviceView) SetDocumentName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentName:"), objc.String(value))
 }
 
-// Determines how the scanned content is provided to the delegate.
+// The directory where scans are saved.
 //
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/transfermode
-func (i_ IKScannerDeviceView) TransferMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transferMode"))
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/downloadsdirectory
+func (i_ IKScannerDeviceView) DownloadsDirectory() foundation.URL {
+	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("downloadsDirectory"))
 	return rv
 }
 
 
-// SetTransferMode sets the value of the transferMode property.
-// Determines how the scanned content is provided to the delegate.
+// SetDownloadsDirectory sets the value of the downloadsDirectory property.
+// The directory where scans are saved.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/transfermode
-func (i_ IKScannerDeviceView) SetTransferMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTransferMode:"), value)
-}
-
-// Determines whether the downloads directory control is displayed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/displaysdownloadsdirectorycontrol
-func (i_ IKScannerDeviceView) DisplaysDownloadsDirectoryControl() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("displaysDownloadsDirectoryControl"))
-	return rv
-}
-
-
-// SetDisplaysDownloadsDirectoryControl sets the value of the displaysDownloadsDirectoryControl property.
-// Determines whether the downloads directory control is displayed.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/displaysdownloadsdirectorycontrol
-func (i_ IKScannerDeviceView) SetDisplaysDownloadsDirectoryControl(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplaysDownloadsDirectoryControl:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/downloadsdirectory
+func (i_ IKScannerDeviceView) SetDownloadsDirectory(value foundation.URL) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadsDirectory:"), value)
 }
 
 // The property that determines whether the scanner view uses the advanced display mode.
@@ -313,6 +205,114 @@ func (i_ IKScannerDeviceView) HasDisplayModeSimple() bool {
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/hasdisplaymodesimple
 func (i_ IKScannerDeviceView) SetHasDisplayModeSimple(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHasDisplayModeSimple:"), value)
+}
+
+// The display mode used by the device view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/mode
+func (i_ IKScannerDeviceView) Mode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mode"))
+	return rv
+}
+
+
+// SetMode sets the value of the mode property.
+// The display mode used by the device view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/mode
+func (i_ IKScannerDeviceView) SetMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMode:"), value)
+}
+
+// Allows customization of the “Overview” label.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/overviewcontrollabel
+func (i_ IKScannerDeviceView) OverviewControlLabel() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("overviewControlLabel"))
+	return rv
+}
+
+
+// SetOverviewControlLabel sets the value of the overviewControlLabel property.
+// Allows customization of the “Overview” label.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/overviewcontrollabel
+func (i_ IKScannerDeviceView) SetOverviewControlLabel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setOverviewControlLabel:"), objc.String(value))
+}
+
+// The URL of the application to use for post processing of the scan.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/postprocessapplication
+func (i_ IKScannerDeviceView) PostProcessApplication() foundation.URL {
+	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("postProcessApplication"))
+	return rv
+}
+
+
+// SetPostProcessApplication sets the value of the postProcessApplication property.
+// The URL of the application to use for post processing of the scan.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/postprocessapplication
+func (i_ IKScannerDeviceView) SetPostProcessApplication(value foundation.URL) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPostProcessApplication:"), value)
+}
+
+// Allows customization of the “Scan” label.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scancontrollabel
+func (i_ IKScannerDeviceView) ScanControlLabel() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("scanControlLabel"))
+	return rv
+}
+
+
+// SetScanControlLabel sets the value of the scanControlLabel property.
+// Allows customization of the “Scan” label.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scancontrollabel
+func (i_ IKScannerDeviceView) SetScanControlLabel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setScanControlLabel:"), objc.String(value))
+}
+
+// The device used for scanning
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scannerdevice
+func (i_ IKScannerDeviceView) ScannerDevice() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("scannerDevice"))
+	return rv
+}
+
+
+// SetScannerDevice sets the value of the scannerDevice property.
+// The device used for scanning
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scannerdevice
+func (i_ IKScannerDeviceView) SetScannerDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setScannerDevice:"), value)
+}
+
+// Determines how the scanned content is provided to the delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/transfermode
+func (i_ IKScannerDeviceView) TransferMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transferMode"))
+	return rv
+}
+
+
+// SetTransferMode sets the value of the transferMode property.
+// Determines how the scanned content is provided to the delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/transfermode
+func (i_ IKScannerDeviceView) SetTransferMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransferMode:"), value)
 }
 
 

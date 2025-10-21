@@ -98,22 +98,22 @@ func (c_ CKAllowedSharingOptions) SetAllowedParticipantAccessOptions(value unsaf
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedParticipantAccessOptions:"), value)
 }
 
-// Default value is
+// The permission option the system uses to control whether a user can grant read-only or write access.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsparticipantstoinviteothers
-func (c_ CKAllowedSharingOptions) AllowsParticipantsToInviteOthers() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("allowsParticipantsToInviteOthers"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantpermissionoptions
+func (c_ CKAllowedSharingOptions) AllowedParticipantPermissionOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allowedParticipantPermissionOptions"))
 	return rv
 }
 
 
-// SetAllowsParticipantsToInviteOthers sets the value of the allowsParticipantsToInviteOthers property.
-// Default value is
+// SetAllowedParticipantPermissionOptions sets the value of the allowedParticipantPermissionOptions property.
+// The permission option the system uses to control whether a user can grant read-only or write access.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsparticipantstoinviteothers
-func (c_ CKAllowedSharingOptions) SetAllowsParticipantsToInviteOthers(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsParticipantsToInviteOthers:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantpermissionoptions
+func (c_ CKAllowedSharingOptions) SetAllowedParticipantPermissionOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedParticipantPermissionOptions:"), value)
 }
 
 // Default value is
@@ -134,22 +134,22 @@ func (c_ CKAllowedSharingOptions) SetAllowsAccessRequests(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsAccessRequests:"), value)
 }
 
-// The permission option the system uses to control whether a user can grant read-only or write access.
+// Default value is
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantpermissionoptions
-func (c_ CKAllowedSharingOptions) AllowedParticipantPermissionOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allowedParticipantPermissionOptions"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsparticipantstoinviteothers
+func (c_ CKAllowedSharingOptions) AllowsParticipantsToInviteOthers() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("allowsParticipantsToInviteOthers"))
 	return rv
 }
 
 
-// SetAllowedParticipantPermissionOptions sets the value of the allowedParticipantPermissionOptions property.
-// The permission option the system uses to control whether a user can grant read-only or write access.
+// SetAllowsParticipantsToInviteOthers sets the value of the allowsParticipantsToInviteOthers property.
+// Default value is
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantpermissionoptions
-func (c_ CKAllowedSharingOptions) SetAllowedParticipantPermissionOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedParticipantPermissionOptions:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsparticipantstoinviteothers
+func (c_ CKAllowedSharingOptions) SetAllowsParticipantsToInviteOthers(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsParticipantsToInviteOthers:"), value)
 }
 
 

@@ -80,37 +80,12 @@ func NewGCStylus() GCStylus {
 }
 
 
+// Gets the haptics profile for the stylus, if supported.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylustip-1rhuw
-func (g_ GCStylus) GCInputStylusTip() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("GCInputStylusTip"))
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCStylus/haptics
+func (g_ GCStylus) Haptics() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("haptics"))
 	return rv
-}
-
-
-// SetGCInputStylusTip sets the value of the GCInputStylusTip property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylustip-1rhuw
-func (g_ GCStylus) SetGCInputStylusTip(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusTip:"), objc.String(value))
-}
-
-// Gets the input profile for the stylus.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcstylus/input
-func (g_ GCStylus) Input() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("input"))
-	return rv
-}
-
-
-// SetInput sets the value of the input property.
-// Gets the input profile for the stylus.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcstylus/input
-func (g_ GCStylus) SetInput(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setInput:"), value)
 }
 
 //
@@ -143,12 +118,37 @@ func (g_ GCStylus) SetGCInputStylusSecondaryButton(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusSecondaryButton:"), objc.String(value))
 }
 
-// Gets the haptics profile for the stylus, if supported.
 //
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCStylus/haptics
-func (g_ GCStylus) Haptics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("haptics"))
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylustip-1rhuw
+func (g_ GCStylus) GCInputStylusTip() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("GCInputStylusTip"))
 	return rv
+}
+
+
+// SetGCInputStylusTip sets the value of the GCInputStylusTip property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylustip-1rhuw
+func (g_ GCStylus) SetGCInputStylusTip(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusTip:"), objc.String(value))
+}
+
+// Gets the input profile for the stylus.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcstylus/input
+func (g_ GCStylus) Input() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("input"))
+	return rv
+}
+
+
+// SetInput sets the value of the input property.
+// Gets the input profile for the stylus.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcstylus/input
+func (g_ GCStylus) SetInput(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setInput:"), value)
 }
 
 

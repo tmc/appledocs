@@ -116,24 +116,6 @@ func (p_ PlayerView) SetMagnificationCenteredAtPoint(magnification float64, poin
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMagnification:centeredAtPoint:"), magnification, point)
 }
 
-// A Boolean value that indicates whether the current player item’s first video frame is ready for display.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/isreadyfordisplay
-func (p_ PlayerView) IsReadyForDisplay() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isReadyForDisplay"))
-	return rv
-}
-
-
-// SetIsReadyForDisplay sets the value of the isReadyForDisplay property.
-// A Boolean value that indicates whether the current player item’s first video frame is ready for display.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/isreadyfordisplay
-func (p_ PlayerView) SetIsReadyForDisplay(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadyForDisplay:"), value)
-}
-
 // An action pop-up button menu that the player view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/actionPopUpButtonMenu
@@ -503,6 +485,24 @@ func (p_ PlayerView) VideoGravity() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoGravity
 func (p_ PlayerView) SetVideoGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoGravity:"), value)
+}
+
+// A Boolean value that indicates whether the current player item’s first video frame is ready for display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/isreadyfordisplay
+func (p_ PlayerView) IsReadyForDisplay() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isReadyForDisplay"))
+	return rv
+}
+
+
+// SetIsReadyForDisplay sets the value of the isReadyForDisplay property.
+// A Boolean value that indicates whether the current player item’s first video frame is ready for display.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/isreadyfordisplay
+func (p_ PlayerView) SetIsReadyForDisplay(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadyForDisplay:"), value)
 }
 
 

@@ -77,18 +77,18 @@ func NewMTRGeneralCommissioningClusterCommissioningCompleteResponseParams() MTRG
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/debugtext
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) DebugText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetDebugText sets the value of the debugText property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/debugtext
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetDebugText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetE
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) DebugText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/timedinvoketimeoutms
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetDebugText sets the value of the debugText property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetDebugText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/timedinvoketimeoutms
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

@@ -80,6 +80,29 @@ func NewNEFilterManager() NEFilterManager {
 }
 
 
+// The domain for errors resulting from calls to the filter manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltererrordomain
+func (n_ NEFilterManager) NEFilterErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterErrorDomain"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/disableencrypteddnssettings
+func (n_ NEFilterManager) DisableEncryptedDNSSettings() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("disableEncryptedDNSSettings"))
+	return rv
+}
+
+
+// SetDisableEncryptedDNSSettings sets the value of the disableEncryptedDNSSettings property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/disableencrypteddnssettings
+func (n_ NEFilterManager) SetDisableEncryptedDNSSettings(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDisableEncryptedDNSSettings:"), value)
+}
+
 // The grade of the filter, which determines when it acts relative to other filters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/grade-swift.property
@@ -98,45 +121,22 @@ func (n_ NEFilterManager) SetGrade(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setGrade:"), value)
 }
 
+// A Boolean used to toggle the enabled state of the filter.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/disableencrypteddnssettings
-func (n_ NEFilterManager) DisableEncryptedDNSSettings() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("disableEncryptedDNSSettings"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/isenabled
+func (n_ NEFilterManager) IsEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
 	return rv
 }
 
 
-// SetDisableEncryptedDNSSettings sets the value of the disableEncryptedDNSSettings property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/disableencrypteddnssettings
-func (n_ NEFilterManager) SetDisableEncryptedDNSSettings(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDisableEncryptedDNSSettings:"), value)
-}
-
-// A
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/providerconfiguration
-func (n_ NEFilterManager) ProviderConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("providerConfiguration"))
-	return rv
-}
-
-
-// SetProviderConfiguration sets the value of the providerConfiguration property.
-// A
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean used to toggle the enabled state of the filter.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/providerconfiguration
-func (n_ NEFilterManager) SetProviderConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
-}
-
-// The domain for errors resulting from calls to the filter manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltererrordomain
-func (n_ NEFilterManager) NEFilterErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterErrorDomain"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/isenabled
+func (n_ NEFilterManager) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 // A string containing a description of the filter configuration.
@@ -157,22 +157,22 @@ func (n_ NEFilterManager) SetLocalizedDescription(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
 
-// A Boolean used to toggle the enabled state of the filter.
+// A
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/isenabled
-func (n_ NEFilterManager) IsEnabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/providerconfiguration
+func (n_ NEFilterManager) ProviderConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("providerConfiguration"))
 	return rv
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
-// A Boolean used to toggle the enabled state of the filter.
+// SetProviderConfiguration sets the value of the providerConfiguration property.
+// A
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/isenabled
-func (n_ NEFilterManager) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/providerconfiguration
+func (n_ NEFilterManager) SetProviderConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
 }
 
 

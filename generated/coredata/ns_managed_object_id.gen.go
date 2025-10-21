@@ -90,24 +90,6 @@ func (m_ ManagedObjectID) URIRepresentation() foundation.URL {
 	return rv
 }
 
-// A Boolean value that indicates whether the object ID is temporary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectid/istemporaryid
-func (m_ ManagedObjectID) IsTemporaryID() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isTemporaryID"))
-	return rv
-}
-
-
-// SetIsTemporaryID sets the value of the isTemporaryID property.
-// A Boolean value that indicates whether the object ID is temporary.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectid/istemporaryid
-func (m_ ManagedObjectID) SetIsTemporaryID(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsTemporaryID:"), value)
-}
-
 // The entity description associated with the object ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/entity
@@ -130,6 +112,24 @@ func (m_ ManagedObjectID) TemporaryID() bool {
 func (m_ ManagedObjectID) PersistentStore() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("persistentStore"))
 	return rv
+}
+
+// A Boolean value that indicates whether the object ID is temporary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectid/istemporaryid
+func (m_ ManagedObjectID) IsTemporaryID() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isTemporaryID"))
+	return rv
+}
+
+
+// SetIsTemporaryID sets the value of the isTemporaryID property.
+// A Boolean value that indicates whether the object ID is temporary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectid/istemporaryid
+func (m_ ManagedObjectID) SetIsTemporaryID(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsTemporaryID:"), value)
 }
 
 

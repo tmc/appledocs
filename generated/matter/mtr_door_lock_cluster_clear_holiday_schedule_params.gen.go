@@ -77,18 +77,18 @@ func NewMTRDoorLockClusterClearHolidayScheduleParams() MTRDoorLockClusterClearHo
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearholidayscheduleparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterClearHolidayScheduleParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearholidayscheduleparams/holidayindex
+func (m_ MTRDoorLockClusterClearHolidayScheduleParams) HolidayIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holidayIndex"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetHolidayIndex sets the value of the holidayIndex property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearholidayscheduleparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterClearHolidayScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearholidayscheduleparams/holidayindex
+func (m_ MTRDoorLockClusterClearHolidayScheduleParams) SetHolidayIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHolidayIndex:"), value)
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRDoorLockClusterClearHolidayScheduleParams) SetServerSideProcessingTi
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearholidayscheduleparams/holidayindex
-func (m_ MTRDoorLockClusterClearHolidayScheduleParams) HolidayIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holidayIndex"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearholidayscheduleparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterClearHolidayScheduleParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetHolidayIndex sets the value of the holidayIndex property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearholidayscheduleparams/holidayindex
-func (m_ MTRDoorLockClusterClearHolidayScheduleParams) SetHolidayIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHolidayIndex:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearholidayscheduleparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterClearHolidayScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

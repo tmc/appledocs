@@ -155,60 +155,6 @@ func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvid
 }
 
 
-// Indicator of whether or not the destination clamps.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isclamped
-func (r_ RenderDestination) IsClamped() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isClamped"))
-	return rv
-}
-
-
-// SetIsClamped sets the value of the isClamped property.
-// Indicator of whether or not the destination clamps.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isclamped
-func (r_ RenderDestination) SetIsClamped(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsClamped:"), value)
-}
-
-// Indicator of whether the destination is flipped.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isflipped
-func (r_ RenderDestination) IsFlipped() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isFlipped"))
-	return rv
-}
-
-
-// SetIsFlipped sets the value of the isFlipped property.
-// Indicator of whether the destination is flipped.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isflipped
-func (r_ RenderDestination) SetIsFlipped(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsFlipped:"), value)
-}
-
-// Indicator of whether or not the destination dithers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isdithered
-func (r_ RenderDestination) IsDithered() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("isDithered"))
-	return rv
-}
-
-
-// SetIsDithered sets the value of the isDithered property.
-// Indicator of whether or not the destination dithers.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isdithered
-func (r_ RenderDestination) SetIsDithered(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDithered:"), value)
-}
-
 // The render destination’s representation of alpha (transparency) values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/alphaMode
@@ -367,6 +313,60 @@ func (r_ RenderDestination) SetFlipped(value bool) {
 func (r_ RenderDestination) Width() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("width"))
 	return rv
+}
+
+// Indicator of whether or not the destination clamps.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isclamped
+func (r_ RenderDestination) IsClamped() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isClamped"))
+	return rv
+}
+
+
+// SetIsClamped sets the value of the isClamped property.
+// Indicator of whether or not the destination clamps.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isclamped
+func (r_ RenderDestination) SetIsClamped(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsClamped:"), value)
+}
+
+// Indicator of whether or not the destination dithers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isdithered
+func (r_ RenderDestination) IsDithered() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isDithered"))
+	return rv
+}
+
+
+// SetIsDithered sets the value of the isDithered property.
+// Indicator of whether or not the destination dithers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isdithered
+func (r_ RenderDestination) SetIsDithered(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDithered:"), value)
+}
+
+// Indicator of whether the destination is flipped.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isflipped
+func (r_ RenderDestination) IsFlipped() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isFlipped"))
+	return rv
+}
+
+
+// SetIsFlipped sets the value of the isFlipped property.
+// Indicator of whether the destination is flipped.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isflipped
+func (r_ RenderDestination) SetIsFlipped(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsFlipped:"), value)
 }
 
 

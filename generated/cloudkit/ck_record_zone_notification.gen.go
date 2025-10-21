@@ -81,40 +81,12 @@ func NewCKRecordZoneNotification() CKRecordZoneNotification {
 }
 
 
-// A Boolean value that indicates whether the push notification includes the content available flag.
+// The ID of the record zone that has changes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-func (c_ CKRecordZoneNotification) ShouldSendContentAvailable() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("shouldSendContentAvailable"))
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneNotification/recordZoneID
+func (c_ CKRecordZoneNotification) RecordZoneID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneID"))
 	return rv
-}
-
-
-// SetShouldSendContentAvailable sets the value of the shouldSendContentAvailable property.
-// A Boolean value that indicates whether the push notification includes the content available flag.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-func (c_ CKRecordZoneNotification) SetShouldSendContentAvailable(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
-}
-
-// The type of event that generates the notification.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
-func (c_ CKRecordZoneNotification) NotificationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
-	return rv
-}
-
-
-// SetNotificationType sets the value of the notificationType property.
-// The type of event that generates the notification.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
-func (c_ CKRecordZoneNotification) SetNotificationType(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationType:"), value)
 }
 
 // A Boolean value that indicates whether the system removes some push notification content before delivery.
@@ -135,6 +107,24 @@ func (c_ CKRecordZoneNotification) SetIsPruned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
 }
 
+// The type of event that generates the notification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
+func (c_ CKRecordZoneNotification) NotificationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
+	return rv
+}
+
+
+// SetNotificationType sets the value of the notificationType property.
+// The type of event that generates the notification.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
+func (c_ CKRecordZoneNotification) SetNotificationType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationType:"), value)
+}
+
 // The type of database for the record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzonenotification/databasescope
@@ -153,6 +143,24 @@ func (c_ CKRecordZoneNotification) SetDatabaseScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDatabaseScope:"), value)
 }
 
+// A Boolean value that indicates whether the push notification includes the content available flag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
+func (c_ CKRecordZoneNotification) ShouldSendContentAvailable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("shouldSendContentAvailable"))
+	return rv
+}
+
+
+// SetShouldSendContentAvailable sets the value of the shouldSendContentAvailable property.
+// A Boolean value that indicates whether the push notification includes the content available flag.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
+func (c_ CKRecordZoneNotification) SetShouldSendContentAvailable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
+}
+
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
@@ -169,14 +177,6 @@ func (c_ CKRecordZoneNotification) NotificationInfo() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
 func (c_ CKRecordZoneNotification) SetNotificationInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
-}
-
-// The ID of the record zone that has changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneNotification/recordZoneID
-func (c_ CKRecordZoneNotification) RecordZoneID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneID"))
-	return rv
 }
 
 

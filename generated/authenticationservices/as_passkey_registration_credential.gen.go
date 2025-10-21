@@ -80,42 +80,6 @@ func NewPasskeyRegistrationCredential() PasskeyRegistrationCredential {
 }
 
 
-// The identifier for this credential.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/credentialid
-func (p_ PasskeyRegistrationCredential) CredentialID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("credentialID"))
-	return rv
-}
-
-
-// SetCredentialID sets the value of the credentialID property.
-// The identifier for this credential.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/credentialid
-func (p_ PasskeyRegistrationCredential) SetCredentialID(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCredentialID:"), value)
-}
-
-// The relying party associated with this passkey.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/relyingparty
-func (p_ PasskeyRegistrationCredential) RelyingParty() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("relyingParty"))
-	return rv
-}
-
-
-// SetRelyingParty sets the value of the relyingParty property.
-// The relying party associated with this passkey.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/relyingparty
-func (p_ PasskeyRegistrationCredential) SetRelyingParty(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), objc.String(value))
-}
-
 // The attestation object for this passkey.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/attestationobject
@@ -152,6 +116,24 @@ func (p_ PasskeyRegistrationCredential) SetClientDataHash(value unsafe.Pointer) 
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClientDataHash:"), value)
 }
 
+// The identifier for this credential.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/credentialid
+func (p_ PasskeyRegistrationCredential) CredentialID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("credentialID"))
+	return rv
+}
+
+
+// SetCredentialID sets the value of the credentialID property.
+// The identifier for this credential.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/credentialid
+func (p_ PasskeyRegistrationCredential) SetCredentialID(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCredentialID:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/extensionoutput-2lf9m
 func (p_ PasskeyRegistrationCredential) ExtensionOutput() unsafe.Pointer {
@@ -165,6 +147,24 @@ func (p_ PasskeyRegistrationCredential) ExtensionOutput() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/extensionoutput-2lf9m
 func (p_ PasskeyRegistrationCredential) SetExtensionOutput(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setExtensionOutput:"), value)
+}
+
+// The relying party associated with this passkey.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/relyingparty
+func (p_ PasskeyRegistrationCredential) RelyingParty() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("relyingParty"))
+	return rv
+}
+
+
+// SetRelyingParty sets the value of the relyingParty property.
+// The relying party associated with this passkey.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/relyingparty
+func (p_ PasskeyRegistrationCredential) SetRelyingParty(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), objc.String(value))
 }
 
 

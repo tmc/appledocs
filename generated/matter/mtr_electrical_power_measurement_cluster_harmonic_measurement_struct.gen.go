@@ -77,21 +77,6 @@ func NewMTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct() MTRElect
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/order
-func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Order() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("order"))
-	return rv
-}
-
-
-// SetOrder sets the value of the order property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/order
-func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetOrder(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOrder:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/measurement
 func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Measurement() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("measurement"))
@@ -104,6 +89,21 @@ func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Measurem
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/measurement
 func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetMeasurement(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasurement:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/order
+func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Order() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("order"))
+	return rv
+}
+
+
+// SetOrder sets the value of the order property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/order
+func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetOrder(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOrder:"), value)
 }
 
 

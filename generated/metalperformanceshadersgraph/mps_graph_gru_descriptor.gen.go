@@ -81,22 +81,40 @@ func NewGraphGRUDescriptor() GraphGRUDescriptor {
 }
 
 
-// A parameter that defines the time direction of the input sequence.
+// A parameter that enables the GRU layer to support training.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/reverse
-func (g_ GraphGRUDescriptor) Reverse() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("reverse"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/training
+func (g_ GraphGRUDescriptor) Training() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("training"))
 	return rv
 }
 
 
-// SetReverse sets the value of the reverse property.
-// A parameter that defines the time direction of the input sequence.
+// SetTraining sets the value of the training property.
+// A parameter that enables the GRU layer to support training.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/reverse
-func (g_ GraphGRUDescriptor) SetReverse(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setReverse:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/training
+func (g_ GraphGRUDescriptor) SetTraining(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTraining:"), value)
+}
+
+// A parameter that defines the activation function to use with the update-gate of the GRU operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/updateGateActivation
+func (g_ GraphGRUDescriptor) UpdateGateActivation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("updateGateActivation"))
+	return rv
+}
+
+
+// SetUpdateGateActivation sets the value of the updateGateActivation property.
+// A parameter that defines the activation function to use with the update-gate of the GRU operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/updateGateActivation
+func (g_ GraphGRUDescriptor) SetUpdateGateActivation(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUpdateGateActivation:"), value)
 }
 
 // A parameter that defines a bidirectional GRU layer.
@@ -117,24 +135,6 @@ func (g_ GraphGRUDescriptor) SetBidirectional(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBidirectional:"), value)
 }
 
-// A parameter that defines the activation function to use with the output-gate of the GRU operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/outputgateactivation
-func (g_ GraphGRUDescriptor) OutputGateActivation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputGateActivation"))
-	return rv
-}
-
-
-// SetOutputGateActivation sets the value of the outputGateActivation property.
-// A parameter that defines the activation function to use with the output-gate of the GRU operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/outputgateactivation
-func (g_ GraphGRUDescriptor) SetOutputGateActivation(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputGateActivation:"), value)
-}
-
 // A parameter that chooses between two variants for the final output computation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/flipz
@@ -153,22 +153,22 @@ func (g_ GraphGRUDescriptor) SetFlipZ(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setFlipZ:"), value)
 }
 
-// A parameter that controls the internal order of the GRU gates.
+// A parameter that defines the activation function to use with the output-gate of the GRU operation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/resetgatefirst
-func (g_ GraphGRUDescriptor) ResetGateFirst() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("resetGateFirst"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/outputgateactivation
+func (g_ GraphGRUDescriptor) OutputGateActivation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputGateActivation"))
 	return rv
 }
 
 
-// SetResetGateFirst sets the value of the resetGateFirst property.
-// A parameter that controls the internal order of the GRU gates.
+// SetOutputGateActivation sets the value of the outputGateActivation property.
+// A parameter that defines the activation function to use with the output-gate of the GRU operation.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/resetgatefirst
-func (g_ GraphGRUDescriptor) SetResetGateFirst(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setResetGateFirst:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/outputgateactivation
+func (g_ GraphGRUDescriptor) SetOutputGateActivation(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputGateActivation:"), value)
 }
 
 // A parameter that chooses between two variants for the reset gate computation.
@@ -207,40 +207,40 @@ func (g_ GraphGRUDescriptor) SetResetGateActivation(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResetGateActivation:"), value)
 }
 
-// A parameter that enables the GRU layer to support training.
+// A parameter that controls the internal order of the GRU gates.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/training
-func (g_ GraphGRUDescriptor) Training() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("training"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/resetgatefirst
+func (g_ GraphGRUDescriptor) ResetGateFirst() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("resetGateFirst"))
 	return rv
 }
 
 
-// SetTraining sets the value of the training property.
-// A parameter that enables the GRU layer to support training.
+// SetResetGateFirst sets the value of the resetGateFirst property.
+// A parameter that controls the internal order of the GRU gates.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/training
-func (g_ GraphGRUDescriptor) SetTraining(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setTraining:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/resetgatefirst
+func (g_ GraphGRUDescriptor) SetResetGateFirst(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setResetGateFirst:"), value)
 }
 
-// A parameter that defines the activation function to use with the update-gate of the GRU operation.
+// A parameter that defines the time direction of the input sequence.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/updateGateActivation
-func (g_ GraphGRUDescriptor) UpdateGateActivation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("updateGateActivation"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/reverse
+func (g_ GraphGRUDescriptor) Reverse() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("reverse"))
 	return rv
 }
 
 
-// SetUpdateGateActivation sets the value of the updateGateActivation property.
-// A parameter that defines the activation function to use with the update-gate of the GRU operation.
+// SetReverse sets the value of the reverse property.
+// A parameter that defines the time direction of the input sequence.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/updateGateActivation
-func (g_ GraphGRUDescriptor) SetUpdateGateActivation(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setUpdateGateActivation:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/reverse
+func (g_ GraphGRUDescriptor) SetReverse(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setReverse:"), value)
 }
 
 

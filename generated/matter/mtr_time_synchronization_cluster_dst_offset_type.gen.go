@@ -93,21 +93,6 @@ func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetOffset(value foundation.
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validuntil
-func (m_ MTRTimeSynchronizationClusterDstOffsetType) ValidUntil() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validUntil"))
-	return rv
-}
-
-
-// SetValidUntil sets the value of the validUntil property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validuntil
-func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetValidUntil(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValidUntil:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validstarting
 func (m_ MTRTimeSynchronizationClusterDstOffsetType) ValidStarting() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validStarting"))
@@ -120,6 +105,21 @@ func (m_ MTRTimeSynchronizationClusterDstOffsetType) ValidStarting() foundation.
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validstarting
 func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetValidStarting(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValidStarting:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validuntil
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) ValidUntil() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validUntil"))
+	return rv
+}
+
+
+// SetValidUntil sets the value of the validUntil property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validuntil
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetValidUntil(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValidUntil:"), value)
 }
 
 

@@ -77,21 +77,6 @@ func NewMTRGroupKeyManagementClusterGroupKeyMapStruct() MTRGroupKeyManagementClu
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupId"))
-	return rv
-}
-
-
-// SetGroupId sets the value of the groupId property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupId(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/fabricindex
 func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) FabricIndex() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
@@ -104,6 +89,21 @@ func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) FabricIndex() foundation
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/fabricindex
 func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetFabricIndex(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupId() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupId"))
+	return rv
+}
+
+
+// SetGroupId sets the value of the groupId property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
 
 //

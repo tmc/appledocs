@@ -81,42 +81,6 @@ func NewAudioPlayerNode() AudioPlayerNode {
 }
 
 
-// The maximum render pipeline latency downstream of the node, in seconds.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency
-func (a_ AudioPlayerNode) OutputPresentationLatency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputPresentationLatency"))
-	return rv
-}
-
-
-// SetOutputPresentationLatency sets the value of the outputPresentationLatency property.
-// The maximum render pipeline latency downstream of the node, in seconds.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency
-func (a_ AudioPlayerNode) SetOutputPresentationLatency(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputPresentationLatency:"), value)
-}
-
-// A Boolean value that indicates whether the player is playing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayernode/isplaying
-func (a_ AudioPlayerNode) IsPlaying() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isPlaying"))
-	return rv
-}
-
-
-// SetIsPlaying sets the value of the isPlaying property.
-// A Boolean value that indicates whether the player is playing.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayernode/isplaying
-func (a_ AudioPlayerNode) SetIsPlaying(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlaying:"), value)
-}
-
 // The most recent render time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/lastrendertime
@@ -151,6 +115,42 @@ func (a_ AudioPlayerNode) Latency() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/latency
 func (a_ AudioPlayerNode) SetLatency(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLatency:"), value)
+}
+
+// The maximum render pipeline latency downstream of the node, in seconds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency
+func (a_ AudioPlayerNode) OutputPresentationLatency() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputPresentationLatency"))
+	return rv
+}
+
+
+// SetOutputPresentationLatency sets the value of the outputPresentationLatency property.
+// The maximum render pipeline latency downstream of the node, in seconds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency
+func (a_ AudioPlayerNode) SetOutputPresentationLatency(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputPresentationLatency:"), value)
+}
+
+// A Boolean value that indicates whether the player is playing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayernode/isplaying
+func (a_ AudioPlayerNode) IsPlaying() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isPlaying"))
+	return rv
+}
+
+
+// SetIsPlaying sets the value of the isPlaying property.
+// A Boolean value that indicates whether the player is playing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayernode/isplaying
+func (a_ AudioPlayerNode) SetIsPlaying(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlaying:"), value)
 }
 
 

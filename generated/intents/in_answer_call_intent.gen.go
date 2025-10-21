@@ -77,21 +77,6 @@ func NewINAnswerCallIntent() INAnswerCallIntent {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/callidentifier
-func (i_ INAnswerCallIntent) CallIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("callIdentifier"))
-	return rv
-}
-
-
-// SetCallIdentifier sets the value of the callIdentifier property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/callidentifier
-func (i_ INAnswerCallIntent) SetCallIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCallIdentifier:"), objc.String(value))
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/audioroute
 func (i_ INAnswerCallIntent) AudioRoute() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("audioRoute"))
@@ -104,6 +89,21 @@ func (i_ INAnswerCallIntent) AudioRoute() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/audioroute
 func (i_ INAnswerCallIntent) SetAudioRoute(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioRoute:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/callidentifier
+func (i_ INAnswerCallIntent) CallIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("callIdentifier"))
+	return rv
+}
+
+
+// SetCallIdentifier sets the value of the callIdentifier property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/callidentifier
+func (i_ INAnswerCallIntent) SetCallIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallIdentifier:"), objc.String(value))
 }
 
 

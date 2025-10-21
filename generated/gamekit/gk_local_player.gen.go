@@ -81,6 +81,48 @@ func NewLocalPlayer() LocalPlayer {
 }
 
 
+// A Boolean value that indicates whether a local player has signed in to Game Center.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/isAuthenticated
+func (l_ LocalPlayer) Authenticated() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("authenticated"))
+	return rv
+}
+
+// A Boolean value that indicates whether the player can join multiplayer games.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/isMultiplayerGamingRestricted
+func (l_ LocalPlayer) MultiplayerGamingRestricted() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("multiplayerGamingRestricted"))
+	return rv
+}
+
+// A Boolean value that indicates whether the player can use personalized communication on the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/isPersonalizedCommunicationRestricted
+func (l_ LocalPlayer) PersonalizedCommunicationRestricted() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("personalizedCommunicationRestricted"))
+	return rv
+}
+
+// A Boolean value that indicates whether a local player has signed in to Game Center.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isauthenticated
+func (l_ LocalPlayer) IsAuthenticated() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("isAuthenticated"))
+	return rv
+}
+
+
+// SetIsAuthenticated sets the value of the isAuthenticated property.
+// A Boolean value that indicates whether a local player has signed in to Game Center.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isauthenticated
+func (l_ LocalPlayer) SetIsAuthenticated(value bool) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIsAuthenticated:"), value)
+}
+
 // A Boolean value that indicates whether the player can join multiplayer games.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/ismultiplayergamingrestricted
@@ -117,42 +159,6 @@ func (l_ LocalPlayer) SetIsPersonalizedCommunicationRestricted(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsPersonalizedCommunicationRestricted:"), value)
 }
 
-// A Boolean value that indicates whether a local player has signed in to Game Center.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isauthenticated
-func (l_ LocalPlayer) IsAuthenticated() bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("isAuthenticated"))
-	return rv
-}
-
-
-// SetIsAuthenticated sets the value of the isAuthenticated property.
-// A Boolean value that indicates whether a local player has signed in to Game Center.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isauthenticated
-func (l_ LocalPlayer) SetIsAuthenticated(value bool) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setIsAuthenticated:"), value)
-}
-
-// A Boolean value that indicates whether the local player is underage.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isunderage
-func (l_ LocalPlayer) IsUnderage() bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("isUnderage"))
-	return rv
-}
-
-
-// SetIsUnderage sets the value of the isUnderage property.
-// A Boolean value that indicates whether the local player is underage.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isunderage
-func (l_ LocalPlayer) SetIsUnderage(value bool) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setIsUnderage:"), value)
-}
-
 // A Boolean value that indicates whether your game presents the friends request view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/ispresentingfriendrequestviewcontroller
@@ -171,28 +177,22 @@ func (l_ LocalPlayer) SetIsPresentingFriendRequestViewController(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsPresentingFriendRequestViewController:"), value)
 }
 
-// A Boolean value that indicates whether a local player has signed in to Game Center.
+// A Boolean value that indicates whether the local player is underage.
 //
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/isAuthenticated
-func (l_ LocalPlayer) Authenticated() bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("authenticated"))
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isunderage
+func (l_ LocalPlayer) IsUnderage() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("isUnderage"))
 	return rv
 }
 
-// A Boolean value that indicates whether the player can join multiplayer games.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/isMultiplayerGamingRestricted
-func (l_ LocalPlayer) MultiplayerGamingRestricted() bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("multiplayerGamingRestricted"))
-	return rv
-}
 
-// A Boolean value that indicates whether the player can use personalized communication on the device.
+// SetIsUnderage sets the value of the isUnderage property.
+// A Boolean value that indicates whether the local player is underage.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/isPersonalizedCommunicationRestricted
-func (l_ LocalPlayer) PersonalizedCommunicationRestricted() bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("personalizedCommunicationRestricted"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isunderage
+func (l_ LocalPlayer) SetIsUnderage(value bool) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIsUnderage:"), value)
 }
 
 

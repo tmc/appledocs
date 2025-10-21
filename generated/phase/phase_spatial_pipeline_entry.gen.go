@@ -80,6 +80,24 @@ func NewPHASESpatialPipelineEntry() PHASESpatialPipelineEntry {
 }
 
 
+// A parameter that gradually updates the amount of audio signal that passes through to the output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipelineEntry/sendLevelMetaParameterDefinition
+func (p_ PHASESpatialPipelineEntry) SendLevelMetaParameterDefinition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sendLevelMetaParameterDefinition"))
+	return rv
+}
+
+
+// SetSendLevelMetaParameterDefinition sets the value of the sendLevelMetaParameterDefinition property.
+// A parameter that gradually updates the amount of audio signal that passes through to the output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipelineEntry/sendLevelMetaParameterDefinition
+func (p_ PHASESpatialPipelineEntry) SetSendLevelMetaParameterDefinition(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevelMetaParameterDefinition:"), value)
+}
+
 // An object that adds sound layers for environmental effects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
@@ -96,24 +114,6 @@ func (p_ PHASESpatialPipelineEntry) SpatialPipeline() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
 func (p_ PHASESpatialPipelineEntry) SetSpatialPipeline(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSpatialPipeline:"), value)
-}
-
-// The amount of audio signal to add to the output.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
-func (p_ PHASESpatialPipelineEntry) SendLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sendLevel"))
-	return rv
-}
-
-
-// SetSendLevel sets the value of the sendLevel property.
-// The amount of audio signal to add to the output.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
-func (p_ PHASESpatialPipelineEntry) SetSendLevel(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevel:"), value)
 }
 
 // Audio layers for environmental effects to add to the output.
@@ -134,22 +134,22 @@ func (p_ PHASESpatialPipelineEntry) SetEntries(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEntries:"), value)
 }
 
-// A parameter that gradually updates the amount of audio signal that passes through to the output.
+// The amount of audio signal to add to the output.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipelineEntry/sendLevelMetaParameterDefinition
-func (p_ PHASESpatialPipelineEntry) SendLevelMetaParameterDefinition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sendLevelMetaParameterDefinition"))
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
+func (p_ PHASESpatialPipelineEntry) SendLevel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sendLevel"))
 	return rv
 }
 
 
-// SetSendLevelMetaParameterDefinition sets the value of the sendLevelMetaParameterDefinition property.
-// A parameter that gradually updates the amount of audio signal that passes through to the output.
+// SetSendLevel sets the value of the sendLevel property.
+// The amount of audio signal to add to the output.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipelineEntry/sendLevelMetaParameterDefinition
-func (p_ PHASESpatialPipelineEntry) SetSendLevelMetaParameterDefinition(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevelMetaParameterDefinition:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
+func (p_ PHASESpatialPipelineEntry) SetSendLevel(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevel:"), value)
 }
 
 

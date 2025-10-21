@@ -77,18 +77,33 @@ func NewMTRColorControlClusterMoveColorTemperatureParams() MTRColorControlCluste
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/optionsoverride
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperaturemaximummireds
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) ColorTemperatureMaximumMireds() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("colorTemperatureMaximumMireds"))
 	return rv
 }
 
 
-// SetOptionsOverride sets the value of the optionsOverride property.
+// SetColorTemperatureMaximumMireds sets the value of the colorTemperatureMaximumMireds property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/optionsoverride
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetOptionsOverride(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperaturemaximummireds
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetColorTemperatureMaximumMireds(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperatureMaximumMireds:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperatureminimummireds
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) ColorTemperatureMinimumMireds() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("colorTemperatureMinimumMireds"))
+	return rv
+}
+
+
+// SetColorTemperatureMinimumMireds sets the value of the colorTemperatureMinimumMireds property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperatureminimummireds
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetColorTemperatureMinimumMireds(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperatureMinimumMireds:"), value)
 }
 
 //
@@ -107,21 +122,6 @@ func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetMoveMode(value fou
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperaturemaximummireds
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) ColorTemperatureMaximumMireds() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("colorTemperatureMaximumMireds"))
-	return rv
-}
-
-
-// SetColorTemperatureMaximumMireds sets the value of the colorTemperatureMaximumMireds property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperaturemaximummireds
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetColorTemperatureMaximumMireds(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperatureMaximumMireds:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/optionsmask
 func (m_ MTRColorControlClusterMoveColorTemperatureParams) OptionsMask() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
@@ -137,18 +137,18 @@ func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetOptionsMask(value 
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/optionsoverride
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) OptionsOverride() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetOptionsOverride sets the value of the optionsOverride property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/optionsoverride
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetOptionsOverride(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
 //
@@ -182,18 +182,18 @@ func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetServerSideProcessi
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperatureminimummireds
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) ColorTemperatureMinimumMireds() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("colorTemperatureMinimumMireds"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/timedinvoketimeoutms
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetColorTemperatureMinimumMireds sets the value of the colorTemperatureMinimumMireds property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperatureminimummireds
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetColorTemperatureMinimumMireds(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperatureMinimumMireds:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/timedinvoketimeoutms
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

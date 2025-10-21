@@ -77,21 +77,6 @@ func NewMTRDoorLockClusterLockDoorParams() MTRDoorLockClusterLockDoorParams {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterLockDoorParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterLockDoorParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/pincode
 func (m_ MTRDoorLockClusterLockDoorParams) PinCode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pinCode"))
@@ -104,6 +89,21 @@ func (m_ MTRDoorLockClusterLockDoorParams) PinCode() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/pincode
 func (m_ MTRDoorLockClusterLockDoorParams) SetPinCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinCode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterLockDoorParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterLockDoorParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

@@ -77,18 +77,18 @@ func NewMTRApplicationLauncherClusterLaunchAppParams() MTRApplicationLauncherClu
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/serversideprocessingtimeout
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/application
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) Application() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("application"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+// SetApplication sets the value of the application property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/serversideprocessingtimeout
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/application
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetApplication(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
 }
 
 //
@@ -107,6 +107,21 @@ func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetData(value unsafe.Poin
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/serversideprocessingtimeout
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/serversideprocessingtimeout
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/timedinvoketimeoutms
 func (m_ MTRApplicationLauncherClusterLaunchAppParams) TimedInvokeTimeoutMs() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
@@ -119,21 +134,6 @@ func (m_ MTRApplicationLauncherClusterLaunchAppParams) TimedInvokeTimeoutMs() fo
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/timedinvoketimeoutms
 func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/application
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) Application() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("application"))
-	return rv
-}
-
-
-// SetApplication sets the value of the application property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/application
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetApplication(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
 }
 
 

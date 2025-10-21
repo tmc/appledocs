@@ -165,14 +165,6 @@ func (a_ AudioFile) WriteFromBufferError(buffer unsafe.Pointer, outError unsafe.
 	return rv
 }
 
-// A string that indicates the audio file type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofiletypekey
-func (a_ AudioFile) AVAudioFileTypeKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioFileTypeKey"))
-	return rv
-}
-
 // The on-disk format of the file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/fileFormat
@@ -228,6 +220,14 @@ func (a_ AudioFile) ProcessingFormat() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/url
 func (a_ AudioFile) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("url"))
+	return rv
+}
+
+// A string that indicates the audio file type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofiletypekey
+func (a_ AudioFile) AVAudioFileTypeKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioFileTypeKey"))
 	return rv
 }
 

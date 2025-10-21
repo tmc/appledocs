@@ -176,42 +176,6 @@ func (p_ PHASESoundEvent) StopAndInvalidate() {
 
 // A Boolean value that indicates whether the sound loops or stops on its own.
 //
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/isindefinite
-func (p_ PHASESoundEvent) IsIndefinite() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isIndefinite"))
-	return rv
-}
-
-
-// SetIsIndefinite sets the value of the isIndefinite property.
-// A Boolean value that indicates whether the sound loops or stops on its own.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/isindefinite
-func (p_ PHASESoundEvent) SetIsIndefinite(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndefinite:"), value)
-}
-
-// An option that determines whether the node’s audio plays in a loop.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasesamplernodedefinition/playbackmode
-func (p_ PHASESoundEvent) PlaybackMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackMode"))
-	return rv
-}
-
-
-// SetPlaybackMode sets the value of the playbackMode property.
-// An option that determines whether the node’s audio plays in a loop.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasesamplernodedefinition/playbackmode
-func (p_ PHASESoundEvent) SetPlaybackMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackMode:"), value)
-}
-
-// A Boolean value that indicates whether the sound loops or stops on its own.
-//
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/isIndefinite
 func (p_ PHASESoundEvent) Indefinite() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("indefinite"))
@@ -263,6 +227,42 @@ func (p_ PHASESoundEvent) PushStreamNodes() unsafe.Pointer {
 func (p_ PHASESoundEvent) RenderingState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("renderingState"))
 	return rv
+}
+
+// An option that determines whether the node’s audio plays in a loop.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesamplernodedefinition/playbackmode
+func (p_ PHASESoundEvent) PlaybackMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackMode"))
+	return rv
+}
+
+
+// SetPlaybackMode sets the value of the playbackMode property.
+// An option that determines whether the node’s audio plays in a loop.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesamplernodedefinition/playbackmode
+func (p_ PHASESoundEvent) SetPlaybackMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackMode:"), value)
+}
+
+// A Boolean value that indicates whether the sound loops or stops on its own.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/isindefinite
+func (p_ PHASESoundEvent) IsIndefinite() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isIndefinite"))
+	return rv
+}
+
+
+// SetIsIndefinite sets the value of the isIndefinite property.
+// A Boolean value that indicates whether the sound loops or stops on its own.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/isindefinite
+func (p_ PHASESoundEvent) SetIsIndefinite(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndefinite:"), value)
 }
 
 

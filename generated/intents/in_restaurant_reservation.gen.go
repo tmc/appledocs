@@ -93,22 +93,12 @@ func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeRese
 }
 
 
-// The date and time range that defines beginning and end of the restaurant reservation.
+// The name and location of the restaurant.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/reservationduration
-func (i_ INRestaurantReservation) ReservationDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationDuration"))
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INRestaurantReservation/restaurantLocation
+func (i_ INRestaurantReservation) RestaurantLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("restaurantLocation"))
 	return rv
-}
-
-
-// SetReservationDuration sets the value of the reservationDuration property.
-// The date and time range that defines beginning and end of the restaurant reservation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/reservationduration
-func (i_ INRestaurantReservation) SetReservationDuration(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)
 }
 
 // The number of people in the party.
@@ -129,12 +119,22 @@ func (i_ INRestaurantReservation) SetPartySize(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
 }
 
-// The name and location of the restaurant.
+// The date and time range that defines beginning and end of the restaurant reservation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INRestaurantReservation/restaurantLocation
-func (i_ INRestaurantReservation) RestaurantLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("restaurantLocation"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/reservationduration
+func (i_ INRestaurantReservation) ReservationDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationDuration"))
 	return rv
+}
+
+
+// SetReservationDuration sets the value of the reservationDuration property.
+// The date and time range that defines beginning and end of the restaurant reservation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/reservationduration
+func (i_ INRestaurantReservation) SetReservationDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)
 }
 
 

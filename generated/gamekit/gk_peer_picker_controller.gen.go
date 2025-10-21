@@ -96,24 +96,6 @@ func (p_ PeerPickerController) Show() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("show"))
 }
 
-// A Boolean value that indicates whether the picker dialog is visible.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkpeerpickercontroller/isvisible
-func (p_ PeerPickerController) IsVisible() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isVisible"))
-	return rv
-}
-
-
-// SetIsVisible sets the value of the isVisible property.
-// A Boolean value that indicates whether the picker dialog is visible.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkpeerpickercontroller/isvisible
-func (p_ PeerPickerController) SetIsVisible(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsVisible:"), value)
-}
-
 // A mask that determines the types of connections a dialog presents to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/connectionTypesMask
@@ -156,6 +138,24 @@ func (p_ PeerPickerController) SetDelegate(value objc.ID) {
 func (p_ PeerPickerController) Visible() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("visible"))
 	return rv
+}
+
+// A Boolean value that indicates whether the picker dialog is visible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkpeerpickercontroller/isvisible
+func (p_ PeerPickerController) IsVisible() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isVisible"))
+	return rv
+}
+
+
+// SetIsVisible sets the value of the isVisible property.
+// A Boolean value that indicates whether the picker dialog is visible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkpeerpickercontroller/isvisible
+func (p_ PeerPickerController) SetIsVisible(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsVisible:"), value)
 }
 
 

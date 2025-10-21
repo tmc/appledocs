@@ -80,24 +80,6 @@ func NewRecognizedText() RecognizedText {
 }
 
 
-// The top candidate for recognized text.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/string
-func (r_ RecognizedText) String() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("string"))
-	return rv
-}
-
-
-// SetString sets the value of the string property.
-// The top candidate for recognized text.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/string
-func (r_ RecognizedText) SetString(value string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setString:"), objc.String(value))
-}
-
 // A normalized confidence score for the text recognition result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/confidence
@@ -114,6 +96,24 @@ func (r_ RecognizedText) Confidence() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/confidence
 func (r_ RecognizedText) SetConfidence(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setConfidence:"), value)
+}
+
+// The top candidate for recognized text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/string
+func (r_ RecognizedText) String() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("string"))
+	return rv
+}
+
+
+// SetString sets the value of the string property.
+// The top candidate for recognized text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/string
+func (r_ RecognizedText) SetString(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setString:"), objc.String(value))
 }
 
 

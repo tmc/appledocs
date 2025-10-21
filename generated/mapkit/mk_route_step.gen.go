@@ -98,40 +98,22 @@ func (m_ MKRouteStep) SetDistance(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDistance:"), value)
 }
 
-// The transport type of the step.
+// The written instructions for following the path that the step represents.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/transporttype
-func (m_ MKRouteStep) TransportType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transportType"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
+func (m_ MKRouteStep) Instructions() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("instructions"))
 	return rv
 }
 
 
-// SetTransportType sets the value of the transportType property.
-// The transport type of the step.
+// SetInstructions sets the value of the instructions property.
+// The written instructions for following the path that the step represents.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/transporttype
-func (m_ MKRouteStep) SetTransportType(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransportType:"), value)
-}
-
-// The detailed step geometry.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
-func (m_ MKRouteStep) Polyline() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("polyline"))
-	return rv
-}
-
-
-// SetPolyline sets the value of the polyline property.
-// The detailed step geometry.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
-func (m_ MKRouteStep) SetPolyline(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPolyline:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
+func (m_ MKRouteStep) SetInstructions(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstructions:"), objc.String(value))
 }
 
 // Additional notices that apply to the step.
@@ -152,22 +134,40 @@ func (m_ MKRouteStep) SetNotice(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotice:"), objc.String(value))
 }
 
-// The written instructions for following the path that the step represents.
+// The detailed step geometry.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
-func (m_ MKRouteStep) Instructions() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("instructions"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
+func (m_ MKRouteStep) Polyline() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("polyline"))
 	return rv
 }
 
 
-// SetInstructions sets the value of the instructions property.
-// The written instructions for following the path that the step represents.
+// SetPolyline sets the value of the polyline property.
+// The detailed step geometry.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
-func (m_ MKRouteStep) SetInstructions(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstructions:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
+func (m_ MKRouteStep) SetPolyline(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPolyline:"), value)
+}
+
+// The transport type of the step.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/transporttype
+func (m_ MKRouteStep) TransportType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transportType"))
+	return rv
+}
+
+
+// SetTransportType sets the value of the transportType property.
+// The transport type of the step.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/transporttype
+func (m_ MKRouteStep) SetTransportType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransportType:"), value)
 }
 
 

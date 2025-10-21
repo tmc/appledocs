@@ -112,24 +112,6 @@ func (cc _CaptureEventInteractionClass) DefaultCaptureSoundDisabled() bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("defaultCaptureSoundDisabled"))
 	return rv
 }
-// A Boolean value that indicates whether this capture event interaction is in an enabled state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avcaptureeventinteraction/isenabled
-func (c_ CaptureEventInteraction) IsEnabled() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
-	return rv
-}
-
-
-// SetIsEnabled sets the value of the isEnabled property.
-// A Boolean value that indicates whether this capture event interaction is in an enabled state.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avcaptureeventinteraction/isenabled
-func (c_ CaptureEventInteraction) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
 // A Boolean value that indicates whether the default sound is in a disabled state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/defaultCaptureSoundDisabled
@@ -164,6 +146,24 @@ func (c_ CaptureEventInteraction) Enabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/isEnabled
 func (c_ CaptureEventInteraction) SetEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
+}
+
+// A Boolean value that indicates whether this capture event interaction is in an enabled state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcaptureeventinteraction/isenabled
+func (c_ CaptureEventInteraction) IsEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether this capture event interaction is in an enabled state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcaptureeventinteraction/isenabled
+func (c_ CaptureEventInteraction) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 

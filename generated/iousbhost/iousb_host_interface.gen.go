@@ -99,22 +99,12 @@ func (u_ USBHostInterface) SelectAlternateSettingError(alternateSetting uint, er
 	return rv
 }
 
-// The current idle suspend timeout.
+// The descriptor for the interface.
 //
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
-func (u_ USBHostInterface) IdleTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("idleTimeout"))
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/interfaceDescriptor
+func (u_ USBHostInterface) InterfaceDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("interfaceDescriptor"))
 	return rv
-}
-
-
-// SetIdleTimeout sets the value of the idleTimeout property.
-// The current idle suspend timeout.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
-func (u_ USBHostInterface) SetIdleTimeout(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIdleTimeout:"), value)
 }
 
 // The configuration descriptor for the interface.
@@ -135,12 +125,22 @@ func (u_ USBHostInterface) SetConfigurationDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConfigurationDescriptor:"), value)
 }
 
-// The descriptor for the interface.
+// The current idle suspend timeout.
 //
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/interfaceDescriptor
-func (u_ USBHostInterface) InterfaceDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("interfaceDescriptor"))
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
+func (u_ USBHostInterface) IdleTimeout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("idleTimeout"))
 	return rv
+}
+
+
+// SetIdleTimeout sets the value of the idleTimeout property.
+// The current idle suspend timeout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
+func (u_ USBHostInterface) SetIdleTimeout(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIdleTimeout:"), value)
 }
 
 

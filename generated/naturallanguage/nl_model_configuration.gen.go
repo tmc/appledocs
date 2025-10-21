@@ -94,24 +94,6 @@ func (mc _ModelConfigurationClass) SupportedRevisionsForType(type_ unsafe.Pointe
 	return rv
 }
 
-// A configuration describing the natural language model.
-//
-// [Full Topic]: https://developer.apple.com/documentation/naturallanguage/nlmodel/configuration
-func (m_ ModelConfiguration) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-
-// SetConfiguration sets the value of the configuration property.
-// A configuration describing the natural language model.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/naturallanguage/nlmodel/configuration
-func (m_ ModelConfiguration) SetConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setConfiguration:"), value)
-}
-
 // The language the model supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration/language
@@ -134,6 +116,24 @@ func (m_ ModelConfiguration) Revision() uint {
 func (m_ ModelConfiguration) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
 	return rv
+}
+
+// A configuration describing the natural language model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/naturallanguage/nlmodel/configuration
+func (m_ ModelConfiguration) Configuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("configuration"))
+	return rv
+}
+
+
+// SetConfiguration sets the value of the configuration property.
+// A configuration describing the natural language model.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/naturallanguage/nlmodel/configuration
+func (m_ ModelConfiguration) SetConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setConfiguration:"), value)
 }
 
 

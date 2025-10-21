@@ -77,33 +77,18 @@ func NewMTRNetworkCommissioningClusterReorderNetworkParams() MTRNetworkCommissio
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) Breadcrumb() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+// SetBreadcrumb sets the value of the breadcrumb property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/networkindex
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) NetworkIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("networkIndex"))
-	return rv
-}
-
-
-// SetNetworkIndex sets the value of the networkIndex property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/networkindex
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetNetworkIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkIndex:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetBreadcrumb(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
 //
@@ -122,18 +107,33 @@ func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetNetworkID(value 
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/networkindex
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) NetworkIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("networkIndex"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
+// SetNetworkIndex sets the value of the networkIndex property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetBreadcrumb(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/networkindex
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetNetworkIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/serversideprocessingtimeout
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/serversideprocessingtimeout
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

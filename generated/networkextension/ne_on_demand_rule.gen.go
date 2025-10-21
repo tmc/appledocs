@@ -81,42 +81,6 @@ func NewNEOnDemandRule() NEOnDemandRule {
 }
 
 
-// SSIDs that identify a network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/ssidmatch
-func (n_ NEOnDemandRule) SsidMatch() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("ssidMatch"))
-	return rv
-}
-
-
-// SetSsidMatch sets the value of the ssidMatch property.
-// SSIDs that identify a network.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/ssidmatch
-func (n_ NEOnDemandRule) SetSsidMatch(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSsidMatch:"), objc.String(value))
-}
-
-// DNS server addresses that identify a network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/dnsserveraddressmatch
-func (n_ NEOnDemandRule) DnsServerAddressMatch() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("dnsServerAddressMatch"))
-	return rv
-}
-
-
-// SetDnsServerAddressMatch sets the value of the dnsServerAddressMatch property.
-// DNS server addresses that identify a network.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/dnsserveraddressmatch
-func (n_ NEOnDemandRule) SetDnsServerAddressMatch(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsServerAddressMatch:"), objc.String(value))
-}
-
 // The action of the On Demand Rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/action
@@ -133,24 +97,6 @@ func (n_ NEOnDemandRule) Action() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/action
 func (n_ NEOnDemandRule) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAction:"), value)
-}
-
-// An interface type to identify a network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/interfacetypematch
-func (n_ NEOnDemandRule) InterfaceTypeMatch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("interfaceTypeMatch"))
-	return rv
-}
-
-
-// SetInterfaceTypeMatch sets the value of the interfaceTypeMatch property.
-// An interface type to identify a network.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/interfacetypematch
-func (n_ NEOnDemandRule) SetInterfaceTypeMatch(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setInterfaceTypeMatch:"), value)
 }
 
 // DNS search domains that identify a network.
@@ -171,6 +117,42 @@ func (n_ NEOnDemandRule) SetDnsSearchDomainMatch(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsSearchDomainMatch:"), objc.String(value))
 }
 
+// DNS server addresses that identify a network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/dnsserveraddressmatch
+func (n_ NEOnDemandRule) DnsServerAddressMatch() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("dnsServerAddressMatch"))
+	return rv
+}
+
+
+// SetDnsServerAddressMatch sets the value of the dnsServerAddressMatch property.
+// DNS server addresses that identify a network.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/dnsserveraddressmatch
+func (n_ NEOnDemandRule) SetDnsServerAddressMatch(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsServerAddressMatch:"), objc.String(value))
+}
+
+// An interface type to identify a network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/interfacetypematch
+func (n_ NEOnDemandRule) InterfaceTypeMatch() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("interfaceTypeMatch"))
+	return rv
+}
+
+
+// SetInterfaceTypeMatch sets the value of the interfaceTypeMatch property.
+// An interface type to identify a network.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/interfacetypematch
+func (n_ NEOnDemandRule) SetInterfaceTypeMatch(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setInterfaceTypeMatch:"), value)
+}
+
 // A URL to probe when all other network identifiers match to validate that an expected resource is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/probeurl
@@ -187,6 +169,24 @@ func (n_ NEOnDemandRule) ProbeURL() foundation.URL {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/probeurl
 func (n_ NEOnDemandRule) SetProbeURL(value foundation.URL) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProbeURL:"), value)
+}
+
+// SSIDs that identify a network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/ssidmatch
+func (n_ NEOnDemandRule) SsidMatch() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("ssidMatch"))
+	return rv
+}
+
+
+// SetSsidMatch sets the value of the ssidMatch property.
+// SSIDs that identify a network.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/ssidmatch
+func (n_ NEOnDemandRule) SetSsidMatch(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSsidMatch:"), objc.String(value))
 }
 
 

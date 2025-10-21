@@ -81,6 +81,14 @@ func NewINSendPaymentIntentResponse() INSendPaymentIntentResponse {
 }
 
 
+// The code indicating whether you successfully handled the intent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/code
+func (i_ INSendPaymentIntentResponse) Code() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
+	return rv
+}
+
 // The details of the payment transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintentresponse/paymentrecord
@@ -97,14 +105,6 @@ func (i_ INSendPaymentIntentResponse) PaymentRecord() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintentresponse/paymentrecord
 func (i_ INSendPaymentIntentResponse) SetPaymentRecord(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentRecord:"), value)
-}
-
-// The code indicating whether you successfully handled the intent.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/code
-func (i_ INSendPaymentIntentResponse) Code() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
-	return rv
 }
 
 

@@ -80,24 +80,6 @@ func NewVertexAttribute() VertexAttribute {
 }
 
 
-// A Boolean value that indicates whether this vertex attribute represents patch data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchdata
-func (v_ VertexAttribute) IsPatchData() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("isPatchData"))
-	return rv
-}
-
-
-// SetIsPatchData sets the value of the isPatchData property.
-// A Boolean value that indicates whether this vertex attribute represents patch data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchdata
-func (v_ VertexAttribute) SetIsPatchData(value bool) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setIsPatchData:"), value)
-}
-
 // An array that describes the vertex input attributes to a vertex function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunction/vertexattributes
@@ -134,40 +116,22 @@ func (v_ VertexAttribute) SetAttributeIndex(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttributeIndex:"), value)
 }
 
-// The name of the attribute.
+// The data type for the attribute, as declared in Metal shader source code.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/name
-func (v_ VertexAttribute) Name() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/attributetype
+func (v_ VertexAttribute) AttributeType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attributeType"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-// The name of the attribute.
+// SetAttributeType sets the value of the attributeType property.
+// The data type for the attribute, as declared in Metal shader source code.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/name
-func (v_ VertexAttribute) SetName(value string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// A Boolean value that indicates whether this vertex attribute represents control point data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchcontrolpointdata
-func (v_ VertexAttribute) IsPatchControlPointData() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("isPatchControlPointData"))
-	return rv
-}
-
-
-// SetIsPatchControlPointData sets the value of the isPatchControlPointData property.
-// A Boolean value that indicates whether this vertex attribute represents control point data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchcontrolpointdata
-func (v_ VertexAttribute) SetIsPatchControlPointData(value bool) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setIsPatchControlPointData:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/attributetype
+func (v_ VertexAttribute) SetAttributeType(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAttributeType:"), value)
 }
 
 // A Boolean value that indicates whether this vertex attribute is active.
@@ -188,22 +152,58 @@ func (v_ VertexAttribute) SetIsActive(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsActive:"), value)
 }
 
-// The data type for the attribute, as declared in Metal shader source code.
+// A Boolean value that indicates whether this vertex attribute represents control point data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/attributetype
-func (v_ VertexAttribute) AttributeType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attributeType"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchcontrolpointdata
+func (v_ VertexAttribute) IsPatchControlPointData() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isPatchControlPointData"))
 	return rv
 }
 
 
-// SetAttributeType sets the value of the attributeType property.
-// The data type for the attribute, as declared in Metal shader source code.
+// SetIsPatchControlPointData sets the value of the isPatchControlPointData property.
+// A Boolean value that indicates whether this vertex attribute represents control point data.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/attributetype
-func (v_ VertexAttribute) SetAttributeType(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setAttributeType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchcontrolpointdata
+func (v_ VertexAttribute) SetIsPatchControlPointData(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsPatchControlPointData:"), value)
+}
+
+// A Boolean value that indicates whether this vertex attribute represents patch data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchdata
+func (v_ VertexAttribute) IsPatchData() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isPatchData"))
+	return rv
+}
+
+
+// SetIsPatchData sets the value of the isPatchData property.
+// A Boolean value that indicates whether this vertex attribute represents patch data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchdata
+func (v_ VertexAttribute) SetIsPatchData(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsPatchData:"), value)
+}
+
+// The name of the attribute.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/name
+func (v_ VertexAttribute) Name() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the attribute.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/name
+func (v_ VertexAttribute) SetName(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

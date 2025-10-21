@@ -147,60 +147,6 @@ func (a_ AudioUnitBusArray) ObjectAtIndexedSubscript(index uint) unsafe.Pointer 
 	return rv
 }
 
-// An array containing the audio unit’s input connection points.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/inputbusses
-func (a_ AudioUnitBusArray) InputBusses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputBusses"))
-	return rv
-}
-
-
-// SetInputBusses sets the value of the inputBusses property.
-// An array containing the audio unit’s input connection points.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/inputbusses
-func (a_ AudioUnitBusArray) SetInputBusses(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setInputBusses:"), value)
-}
-
-// Determines whether the array can have a variable number of busses.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbusarray/iscountchangeable
-func (a_ AudioUnitBusArray) IsCountChangeable() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isCountChangeable"))
-	return rv
-}
-
-
-// SetIsCountChangeable sets the value of the isCountChangeable property.
-// Determines whether the array can have a variable number of busses.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbusarray/iscountchangeable
-func (a_ AudioUnitBusArray) SetIsCountChangeable(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCountChangeable:"), value)
-}
-
-// An array containing the audio unit’s output connection points.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/outputbusses
-func (a_ AudioUnitBusArray) OutputBusses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputBusses"))
-	return rv
-}
-
-
-// SetOutputBusses sets the value of the outputBusses property.
-// An array containing the audio unit’s output connection points.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/outputbusses
-func (a_ AudioUnitBusArray) SetOutputBusses(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputBusses:"), value)
-}
-
 // Determines whether the bus array is for input or output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/busType
@@ -231,6 +177,60 @@ func (a_ AudioUnitBusArray) CountChangeable() bool {
 func (a_ AudioUnitBusArray) OwnerAudioUnit() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("ownerAudioUnit"))
 	return rv
+}
+
+// An array containing the audio unit’s input connection points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/inputbusses
+func (a_ AudioUnitBusArray) InputBusses() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputBusses"))
+	return rv
+}
+
+
+// SetInputBusses sets the value of the inputBusses property.
+// An array containing the audio unit’s input connection points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/inputbusses
+func (a_ AudioUnitBusArray) SetInputBusses(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setInputBusses:"), value)
+}
+
+// An array containing the audio unit’s output connection points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/outputbusses
+func (a_ AudioUnitBusArray) OutputBusses() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputBusses"))
+	return rv
+}
+
+
+// SetOutputBusses sets the value of the outputBusses property.
+// An array containing the audio unit’s output connection points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/outputbusses
+func (a_ AudioUnitBusArray) SetOutputBusses(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputBusses:"), value)
+}
+
+// Determines whether the array can have a variable number of busses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbusarray/iscountchangeable
+func (a_ AudioUnitBusArray) IsCountChangeable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isCountChangeable"))
+	return rv
+}
+
+
+// SetIsCountChangeable sets the value of the isCountChangeable property.
+// Determines whether the array can have a variable number of busses.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbusarray/iscountchangeable
+func (a_ AudioUnitBusArray) SetIsCountChangeable(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCountChangeable:"), value)
 }
 
 

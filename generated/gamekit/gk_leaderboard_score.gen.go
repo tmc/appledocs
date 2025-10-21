@@ -80,6 +80,24 @@ func NewLeaderboardScore() LeaderboardScore {
 }
 
 
+// An integer value that your game uses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/context
+func (l_ LeaderboardScore) Context() int {
+	rv := objc.Send[int](l_.ID, objc.Sel("context"))
+	return rv
+}
+
+
+// SetContext sets the value of the context property.
+// An integer value that your game uses.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/context
+func (l_ LeaderboardScore) SetContext(value int) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setContext:"), value)
+}
+
 // The ID that Game Center uses for the leaderboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/leaderboardid
@@ -96,24 +114,6 @@ func (l_ LeaderboardScore) LeaderboardID() string {
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/leaderboardid
 func (l_ LeaderboardScore) SetLeaderboardID(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardID:"), objc.String(value))
-}
-
-// The score that the player earns.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/value
-func (l_ LeaderboardScore) Value() int {
-	rv := objc.Send[int](l_.ID, objc.Sel("value"))
-	return rv
-}
-
-
-// SetValue sets the value of the value property.
-// The score that the player earns.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/value
-func (l_ LeaderboardScore) SetValue(value int) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setValue:"), value)
 }
 
 // The player who earns the score.
@@ -134,22 +134,22 @@ func (l_ LeaderboardScore) SetPlayer(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPlayer:"), value)
 }
 
-// An integer value that your game uses.
+// The score that the player earns.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/context
-func (l_ LeaderboardScore) Context() int {
-	rv := objc.Send[int](l_.ID, objc.Sel("context"))
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/value
+func (l_ LeaderboardScore) Value() int {
+	rv := objc.Send[int](l_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetContext sets the value of the context property.
-// An integer value that your game uses.
+// SetValue sets the value of the value property.
+// The score that the player earns.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/context
-func (l_ LeaderboardScore) SetContext(value int) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setContext:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/value
+func (l_ LeaderboardScore) SetValue(value int) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setValue:"), value)
 }
 
 

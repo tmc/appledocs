@@ -78,6 +78,22 @@ func NewMKMapFeatureAnnotation() MKMapFeatureAnnotation {
 }
 
 
+// The type of map feature this annotation represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapFeatureAnnotation/featureType-swift.property
+func (m_ MKMapFeatureAnnotation) FeatureType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("featureType"))
+	return rv
+}
+
+// The icon style of a feature annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapFeatureAnnotation/iconStyle
+func (m_ MKMapFeatureAnnotation) IconStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("iconStyle"))
+	return rv
+}
+
 // The feature annotation’s point of interest category.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapfeatureannotation/pointofinterestcategory
@@ -94,22 +110,6 @@ func (m_ MKMapFeatureAnnotation) PointOfInterestCategory() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapfeatureannotation/pointofinterestcategory
 func (m_ MKMapFeatureAnnotation) SetPointOfInterestCategory(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestCategory:"), value)
-}
-
-// The type of map feature this annotation represents.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapFeatureAnnotation/featureType-swift.property
-func (m_ MKMapFeatureAnnotation) FeatureType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("featureType"))
-	return rv
-}
-
-// The icon style of a feature annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapFeatureAnnotation/iconStyle
-func (m_ MKMapFeatureAnnotation) IconStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("iconStyle"))
-	return rv
 }
 
 

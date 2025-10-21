@@ -77,18 +77,33 @@ func NewMTRSoftwareDiagnosticsClusterThreadMetricsStruct() MTRSoftwareDiagnostic
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/stackfreeminimum
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) StackFreeMinimum() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stackFreeMinimum"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/id
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) Id() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("id"))
 	return rv
 }
 
 
-// SetStackFreeMinimum sets the value of the stackFreeMinimum property.
+// SetId sets the value of the id property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/stackfreeminimum
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) SetStackFreeMinimum(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStackFreeMinimum:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/id
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) SetId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/name
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/name
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //
@@ -107,18 +122,18 @@ func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) SetStackFreeCurrent(v
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/id
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) Id() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("id"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/stackfreeminimum
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) StackFreeMinimum() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stackFreeMinimum"))
 	return rv
 }
 
 
-// SetId sets the value of the id property.
+// SetStackFreeMinimum sets the value of the stackFreeMinimum property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/id
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) SetId(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/stackfreeminimum
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) SetStackFreeMinimum(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStackFreeMinimum:"), value)
 }
 
 //
@@ -134,21 +149,6 @@ func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) StackSize() foundatio
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/stacksize
 func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) SetStackSize(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStackSize:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/name
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetricsstruct/name
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetricsStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

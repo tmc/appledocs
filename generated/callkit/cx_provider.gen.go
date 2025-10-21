@@ -165,22 +165,6 @@ func (c_ CXProvider) SetDelegateQueue(delegate objc.ID, queue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:queue:"), delegate, queue)
 }
 
-// The domain for CallKit errors.
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomain
-func (c_ CXProvider) CXErrorDomain() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomain"))
-	return rv
-}
-
-// The domain for errors that occur during incoming calls.
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomainincomingcall
-func (c_ CXProvider) CXErrorDomainIncomingCall() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainIncomingCall"))
-	return rv
-}
-
 // The configuration of the provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/configuration
@@ -204,6 +188,22 @@ func (c_ CXProvider) SetConfiguration(value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/pendingTransactions
 func (c_ CXProvider) PendingTransactions() []CXTransaction {
 	rv := objc.Send[[]CXTransaction](c_.ID, objc.Sel("pendingTransactions"))
+	return rv
+}
+
+// The domain for CallKit errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomain
+func (c_ CXProvider) CXErrorDomain() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomain"))
+	return rv
+}
+
+// The domain for errors that occur during incoming calls.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomainincomingcall
+func (c_ CXProvider) CXErrorDomainIncomingCall() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainIncomingCall"))
 	return rv
 }
 

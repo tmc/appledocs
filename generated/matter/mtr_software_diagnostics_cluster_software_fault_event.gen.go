@@ -77,18 +77,18 @@ func NewMTRSoftwareDiagnosticsClusterSoftwareFaultEvent() MTRSoftwareDiagnostics
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/faultrecording
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) FaultRecording() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("faultRecording"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
+// SetFaultRecording sets the value of the faultRecording property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/faultrecording
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetFaultRecording(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultRecording:"), value)
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetId(value foundation
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/faultrecording
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) FaultRecording() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("faultRecording"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetFaultRecording sets the value of the faultRecording property.
+// SetName sets the value of the name property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/faultrecording
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetFaultRecording(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultRecording:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

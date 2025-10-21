@@ -128,19 +128,43 @@ func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredError(request unsaf
 	return rv
 }
 
+// A reference to the kernel object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/devicedescriptor
-func (u_ USBHostObject) DeviceDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deviceDescriptor"))
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/ioService
+func (u_ USBHostObject) IoService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("ioService"))
+	return rv
+}
+
+// The queue for servicing input/output requests.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/queue
+func (u_ USBHostObject) Queue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("queue"))
+	return rv
+}
+
+// The default completion timeout for input/output requests.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdefaultcontrolcompletiontimeout
+func (u_ USBHostObject) IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("IOUSBHostDefaultControlCompletionTimeout"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/capabilitydescriptors
+func (u_ USBHostObject) CapabilityDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("capabilityDescriptors"))
 	return rv
 }
 
 
-// SetDeviceDescriptor sets the value of the deviceDescriptor property.
+// SetCapabilityDescriptors sets the value of the capabilityDescriptors property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/devicedescriptor
-func (u_ USBHostObject) SetDeviceDescriptor(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDeviceDescriptor:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/capabilitydescriptors
+func (u_ USBHostObject) SetCapabilityDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCapabilityDescriptors:"), value)
 }
 
 // The device’s bus address.
@@ -162,42 +186,18 @@ func (u_ USBHostObject) SetDeviceAddress(value int) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/capabilitydescriptors
-func (u_ USBHostObject) CapabilityDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("capabilityDescriptors"))
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/devicedescriptor
+func (u_ USBHostObject) DeviceDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deviceDescriptor"))
 	return rv
 }
 
 
-// SetCapabilityDescriptors sets the value of the capabilityDescriptors property.
+// SetDeviceDescriptor sets the value of the deviceDescriptor property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/capabilitydescriptors
-func (u_ USBHostObject) SetCapabilityDescriptors(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCapabilityDescriptors:"), value)
-}
-
-// The default completion timeout for input/output requests.
-//
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdefaultcontrolcompletiontimeout
-func (u_ USBHostObject) IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("IOUSBHostDefaultControlCompletionTimeout"))
-	return rv
-}
-
-// A reference to the kernel object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/ioService
-func (u_ USBHostObject) IoService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("ioService"))
-	return rv
-}
-
-// The queue for servicing input/output requests.
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/queue
-func (u_ USBHostObject) Queue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("queue"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/devicedescriptor
+func (u_ USBHostObject) SetDeviceDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDeviceDescriptor:"), value)
 }
 
 

@@ -77,33 +77,18 @@ func NewMTRControllerFactoryParams() MTRControllerFactoryParams {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/storagedelegate
-func (m_ MTRControllerFactoryParams) StorageDelegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("storageDelegate"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/cdcerts
+func (m_ MTRControllerFactoryParams) CdCerts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cdCerts"))
 	return rv
 }
 
 
-// SetStorageDelegate sets the value of the storageDelegate property.
+// SetCdCerts sets the value of the cdCerts property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/storagedelegate
-func (m_ MTRControllerFactoryParams) SetStorageDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStorageDelegate:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/startserver
-func (m_ MTRControllerFactoryParams) StartServer() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("startServer"))
-	return rv
-}
-
-
-// SetStartServer sets the value of the startServer property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/startserver
-func (m_ MTRControllerFactoryParams) SetStartServer(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartServer:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/cdcerts
+func (m_ MTRControllerFactoryParams) SetCdCerts(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCdCerts:"), value)
 }
 
 //
@@ -122,18 +107,33 @@ func (m_ MTRControllerFactoryParams) SetPaaCerts(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/cdcerts
-func (m_ MTRControllerFactoryParams) CdCerts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cdCerts"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/startserver
+func (m_ MTRControllerFactoryParams) StartServer() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("startServer"))
 	return rv
 }
 
 
-// SetCdCerts sets the value of the cdCerts property.
+// SetStartServer sets the value of the startServer property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/cdcerts
-func (m_ MTRControllerFactoryParams) SetCdCerts(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCdCerts:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/startserver
+func (m_ MTRControllerFactoryParams) SetStartServer(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStartServer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/storagedelegate
+func (m_ MTRControllerFactoryParams) StorageDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("storageDelegate"))
+	return rv
+}
+
+
+// SetStorageDelegate sets the value of the storageDelegate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/storagedelegate
+func (m_ MTRControllerFactoryParams) SetStorageDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStorageDelegate:"), value)
 }
 
 

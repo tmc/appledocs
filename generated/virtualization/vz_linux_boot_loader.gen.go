@@ -95,24 +95,6 @@ func NewVZLinuxBootLoaderWithKernelURL(kernelURL foundation.URL) VZLinuxBootLoad
 }
 
 
-// The guest system to boot when the VM starts.
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/bootloader
-func (v_ VZLinuxBootLoader) BootLoader() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("bootLoader"))
-	return rv
-}
-
-
-// SetBootLoader sets the value of the bootLoader property.
-// The guest system to boot when the VM starts.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/bootloader
-func (v_ VZLinuxBootLoader) SetBootLoader(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setBootLoader:"), value)
-}
-
 // The command-line parameters to pass to the Linux kernel at boot time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/commandLine
@@ -165,6 +147,24 @@ func (v_ VZLinuxBootLoader) KernelURL() foundation.URL {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/kernelURL
 func (v_ VZLinuxBootLoader) SetKernelURL(value foundation.URL) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setKernelURL:"), value)
+}
+
+// The guest system to boot when the VM starts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/bootloader
+func (v_ VZLinuxBootLoader) BootLoader() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("bootLoader"))
+	return rv
+}
+
+
+// SetBootLoader sets the value of the bootLoader property.
+// The guest system to boot when the VM starts.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/bootloader
+func (v_ VZLinuxBootLoader) SetBootLoader(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setBootLoader:"), value)
 }
 
 

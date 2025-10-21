@@ -77,6 +77,36 @@ func NewMTRNetworkCommissioningClusterConnectNetworkResponseParams() MTRNetworkC
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/debugtext
+func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) DebugText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
+	return rv
+}
+
+
+// SetDebugText sets the value of the debugText property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/debugtext
+func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetDebugText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/errorvalue
+func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) ErrorValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorValue"))
+	return rv
+}
+
+
+// SetErrorValue sets the value of the errorValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/errorvalue
+func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetErrorValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorValue:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/networkingstatus
 func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) NetworkingStatus() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("networkingStatus"))
@@ -104,36 +134,6 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) TimedInvoke
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/timedinvoketimeoutms
 func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/errorvalue
-func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) ErrorValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorValue"))
-	return rv
-}
-
-
-// SetErrorValue sets the value of the errorValue property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/errorvalue
-func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetErrorValue(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorValue:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) DebugText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
-	return rv
-}
-
-
-// SetDebugText sets the value of the debugText property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetDebugText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
 }
 
 

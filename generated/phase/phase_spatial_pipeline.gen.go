@@ -93,6 +93,22 @@ func NewPHASESpatialPipelineWithFlags(flags unsafe.Pointer) PHASESpatialPipeline
 }
 
 
+// Audio layers for environmental effects to add to the output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipeline/entries
+func (p_ PHASESpatialPipeline) Entries() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("entries"))
+	return rv
+}
+
+// A collection of environmental effects to include in the output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipeline/flags-swift.property
+func (p_ PHASESpatialPipeline) Flags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("flags"))
+	return rv
+}
+
 // An object that adds sound layers for environmental effects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
@@ -127,22 +143,6 @@ func (p_ PHASESpatialPipeline) SendLevel() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
 func (p_ PHASESpatialPipeline) SetSendLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevel:"), value)
-}
-
-// Audio layers for environmental effects to add to the output.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipeline/entries
-func (p_ PHASESpatialPipeline) Entries() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("entries"))
-	return rv
-}
-
-// A collection of environmental effects to include in the output.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipeline/flags-swift.property
-func (p_ PHASESpatialPipeline) Flags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("flags"))
-	return rv
 }
 
 

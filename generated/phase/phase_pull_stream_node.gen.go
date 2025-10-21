@@ -77,21 +77,6 @@ func NewPHASEPullStreamNode() PHASEPullStreamNode {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasepullstreamnode/renderhandler
-func (p_ PHASEPullStreamNode) RenderHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("renderHandler"))
-	return rv
-}
-
-
-// SetRenderHandler sets the value of the renderHandler property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasepullstreamnode/renderhandler
-func (p_ PHASEPullStreamNode) SetRenderHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRenderHandler:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNode/renderHandler
 func (p_ PHASEPullStreamNode) RenderBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("renderBlock"))
@@ -104,6 +89,21 @@ func (p_ PHASEPullStreamNode) RenderBlock() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNode/renderHandler
 func (p_ PHASEPullStreamNode) SetRenderBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRenderBlock:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepullstreamnode/renderhandler
+func (p_ PHASEPullStreamNode) RenderHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("renderHandler"))
+	return rv
+}
+
+
+// SetRenderHandler sets the value of the renderHandler property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepullstreamnode/renderhandler
+func (p_ PHASEPullStreamNode) SetRenderHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRenderHandler:"), value)
 }
 
 

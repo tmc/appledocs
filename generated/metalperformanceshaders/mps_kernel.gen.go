@@ -80,22 +80,22 @@ func NewKernel() Kernel {
 }
 
 
-// The set of options used to run the kernel.
+// The device on which the kernel will be used.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/options
-func (k_ Kernel) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("options"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/device
+func (k_ Kernel) Device() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("device"))
 	return rv
 }
 
 
-// SetOptions sets the value of the options property.
-// The set of options used to run the kernel.
+// SetDevice sets the value of the device property.
+// The device on which the kernel will be used.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/options
-func (k_ Kernel) SetOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setOptions:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/device
+func (k_ Kernel) SetDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setDevice:"), value)
 }
 
 // The string that identifies the kernel.
@@ -116,22 +116,22 @@ func (k_ Kernel) SetLabel(value string) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
-// The device on which the kernel will be used.
+// The set of options used to run the kernel.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/device
-func (k_ Kernel) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("device"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/options
+func (k_ Kernel) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("options"))
 	return rv
 }
 
 
-// SetDevice sets the value of the device property.
-// The device on which the kernel will be used.
+// SetOptions sets the value of the options property.
+// The set of options used to run the kernel.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/device
-func (k_ Kernel) SetDevice(value unsafe.Pointer) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setDevice:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/options
+func (k_ Kernel) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setOptions:"), value)
 }
 
 

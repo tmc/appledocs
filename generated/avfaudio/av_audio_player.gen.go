@@ -207,42 +207,6 @@ func (a_ AudioPlayer) UpdateMeters() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateMeters"))
 }
 
-// A Boolean value that indicates whether the player is able to generate audio-level metering data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/ismeteringenabled
-func (a_ AudioPlayer) IsMeteringEnabled() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isMeteringEnabled"))
-	return rv
-}
-
-
-// SetIsMeteringEnabled sets the value of the isMeteringEnabled property.
-// A Boolean value that indicates whether the player is able to generate audio-level metering data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/ismeteringenabled
-func (a_ AudioPlayer) SetIsMeteringEnabled(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsMeteringEnabled:"), value)
-}
-
-// A Boolean value that indicates whether the player is currently playing audio.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/isplaying
-func (a_ AudioPlayer) IsPlaying() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isPlaying"))
-	return rv
-}
-
-
-// SetIsPlaying sets the value of the isPlaying property.
-// A Boolean value that indicates whether the player is currently playing audio.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/isplaying
-func (a_ AudioPlayer) SetIsPlaying(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlaying:"), value)
-}
-
 // An array of channel descriptions for the audio player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/channelAssignments
@@ -510,6 +474,42 @@ func (a_ AudioPlayer) Volume() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/volume
 func (a_ AudioPlayer) SetVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVolume:"), value)
+}
+
+// A Boolean value that indicates whether the player is able to generate audio-level metering data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/ismeteringenabled
+func (a_ AudioPlayer) IsMeteringEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isMeteringEnabled"))
+	return rv
+}
+
+
+// SetIsMeteringEnabled sets the value of the isMeteringEnabled property.
+// A Boolean value that indicates whether the player is able to generate audio-level metering data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/ismeteringenabled
+func (a_ AudioPlayer) SetIsMeteringEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsMeteringEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the player is currently playing audio.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/isplaying
+func (a_ AudioPlayer) IsPlaying() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isPlaying"))
+	return rv
+}
+
+
+// SetIsPlaying sets the value of the isPlaying property.
+// A Boolean value that indicates whether the player is currently playing audio.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/isplaying
+func (a_ AudioPlayer) SetIsPlaying(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlaying:"), value)
 }
 
 

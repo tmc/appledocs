@@ -98,6 +98,14 @@ func (g_ GCControllerLiveInput) NextInputState() unsafe.Pointer {
 	return rv
 }
 
+// The live input of a controller without any system-level remapping of the controls.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/unmapped
+func (g_ GCControllerLiveInput) UnmappedInput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("unmappedInput"))
+	return rv
+}
+
 // The input profile for the controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
@@ -150,14 +158,6 @@ func (g_ GCControllerLiveInput) InputStateQueueDepth() int {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput/inputstatequeuedepth
 func (g_ GCControllerLiveInput) SetInputStateQueueDepth(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInputStateQueueDepth:"), value)
-}
-
-// The live input of a controller without any system-level remapping of the controls.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/unmapped
-func (g_ GCControllerLiveInput) UnmappedInput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("unmappedInput"))
-	return rv
 }
 
 

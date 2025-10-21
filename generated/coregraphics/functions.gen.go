@@ -3295,8 +3295,8 @@ func CGContextSetFontSize(c CGContextRef, size float64) {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setLineCap(_:)
-func CGContextSetLineCap(c CGContextRef, cap unsafe.Pointer) {
-	_CGContextSetLineCap(c, cap)
+func CGContextSetLineCap(c CGContextRef, cap_ unsafe.Pointer) {
+	_CGContextSetLineCap(c, cap_)
 	}
 
 

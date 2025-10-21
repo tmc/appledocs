@@ -144,32 +144,6 @@ func (m_ MKMapItem) OpenInMapsWithLaunchOptionsFromSceneCompletionHandler(launch
 	objc.Send[objc.ID](m_.ID, objc.Sel("openInMapsWithLaunchOptions:fromScene:completionHandler:"), launchOptions, scene, completion)
 }
 
-// A constant that indicates the type of a serialized map item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemtypeidentifier
-func (m_ MKMapItem) MKMapItemTypeIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKMapItemTypeIdentifier"))
-	return rv
-}
-
-// The address object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/address
-func (m_ MKMapItem) Address() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("address"))
-	return rv
-}
-
-
-// SetAddress sets the value of the address property.
-// The address object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/address
-func (m_ MKMapItem) SetAddress(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAddress:"), value)
-}
-
 // The address representations object that contains various address representations useful for display purposes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/addressRepresentations
@@ -306,6 +280,32 @@ func (m_ MKMapItem) Url() foundation.URL {
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/url
 func (m_ MKMapItem) SetUrl(value foundation.URL) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
+}
+
+// The address object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/address
+func (m_ MKMapItem) Address() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("address"))
+	return rv
+}
+
+
+// SetAddress sets the value of the address property.
+// The address object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/address
+func (m_ MKMapItem) SetAddress(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAddress:"), value)
+}
+
+// A constant that indicates the type of a serialized map item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemtypeidentifier
+func (m_ MKMapItem) MKMapItemTypeIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKMapItemTypeIdentifier"))
+	return rv
 }
 
 

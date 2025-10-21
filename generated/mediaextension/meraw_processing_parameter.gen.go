@@ -78,22 +78,40 @@ func NewMERAWProcessingParameter() MERAWProcessingParameter {
 }
 
 
-// Provides a list of processing parameters that can be changed by the client of Video Toolbox session to influence processing behavior.
+// A Boolean value that indicates whether the extension enables the parameter.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessor/processingparameters
-func (m_ MERAWProcessingParameter) ProcessingParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("processingParameters"))
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/enabled
+func (m_ MERAWProcessingParameter) Enabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("enabled"))
 	return rv
 }
 
 
-// SetProcessingParameters sets the value of the processingParameters property.
-// Provides a list of processing parameters that can be changed by the client of Video Toolbox session to influence processing behavior.
+// SetEnabled sets the value of the enabled property.
+// A Boolean value that indicates whether the extension enables the parameter.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessor/processingparameters
-func (m_ MERAWProcessingParameter) SetProcessingParameters(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProcessingParameters:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/enabled
+func (m_ MERAWProcessingParameter) SetEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabled:"), value)
+}
+
+// A unique key string identifying the parameter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/key
+func (m_ MERAWProcessingParameter) Key() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("key"))
+	return rv
+}
+
+
+// SetKey sets the value of the key property.
+// A unique key string identifying the parameter.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/key
+func (m_ MERAWProcessingParameter) SetKey(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setKey:"), objc.String(value))
 }
 
 // A localized description of the parameter, suitable for displaying in a tool tip or similar explanatory UI.
@@ -132,40 +150,22 @@ func (m_ MERAWProcessingParameter) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
-// A unique key string identifying the parameter.
+// Provides a list of processing parameters that can be changed by the client of Video Toolbox session to influence processing behavior.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/key
-func (m_ MERAWProcessingParameter) Key() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("key"))
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessor/processingparameters
+func (m_ MERAWProcessingParameter) ProcessingParameters() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("processingParameters"))
 	return rv
 }
 
 
-// SetKey sets the value of the key property.
-// A unique key string identifying the parameter.
+// SetProcessingParameters sets the value of the processingParameters property.
+// Provides a list of processing parameters that can be changed by the client of Video Toolbox session to influence processing behavior.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/key
-func (m_ MERAWProcessingParameter) SetKey(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setKey:"), objc.String(value))
-}
-
-// A Boolean value that indicates whether the extension enables the parameter.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/enabled
-func (m_ MERAWProcessingParameter) Enabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-
-// SetEnabled sets the value of the enabled property.
-// A Boolean value that indicates whether the extension enables the parameter.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/enabled
-func (m_ MERAWProcessingParameter) SetEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabled:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessor/processingparameters
+func (m_ MERAWProcessingParameter) SetProcessingParameters(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProcessingParameters:"), value)
 }
 
 

@@ -80,6 +80,24 @@ func NewSFTranscription() SFTranscription {
 }
 
 
+// The average pause duration between words, measured in seconds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/averagepauseduration
+func (s_ SFTranscription) AveragePauseDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("averagePauseDuration"))
+	return rv
+}
+
+
+// SetAveragePauseDuration sets the value of the averagePauseDuration property.
+// The average pause duration between words, measured in seconds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/averagepauseduration
+func (s_ SFTranscription) SetAveragePauseDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAveragePauseDuration:"), value)
+}
+
 // The entire transcription of utterances, formatted into a single, user-displayable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
@@ -132,24 +150,6 @@ func (s_ SFTranscription) SpeakingRate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/speakingrate
 func (s_ SFTranscription) SetSpeakingRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeakingRate:"), value)
-}
-
-// The average pause duration between words, measured in seconds.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/averagepauseduration
-func (s_ SFTranscription) AveragePauseDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("averagePauseDuration"))
-	return rv
-}
-
-
-// SetAveragePauseDuration sets the value of the averagePauseDuration property.
-// The average pause duration between words, measured in seconds.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/averagepauseduration
-func (s_ SFTranscription) SetAveragePauseDuration(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAveragePauseDuration:"), value)
 }
 
 

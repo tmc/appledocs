@@ -77,18 +77,10 @@ func NewMatrixRandom() MatrixRandom {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/distributiontype
-func (m_ MatrixRandom) DistributionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("distributionType"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandom/destinationDataType
+func (m_ MatrixRandom) DestinationDataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("destinationDataType"))
 	return rv
-}
-
-
-// SetDistributionType sets the value of the distributionType property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/distributiontype
-func (m_ MatrixRandom) SetDistributionType(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDistributionType:"), value)
 }
 
 //
@@ -122,10 +114,18 @@ func (m_ MatrixRandom) SetBatchStart(value int) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandom/destinationDataType
-func (m_ MatrixRandom) DestinationDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("destinationDataType"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/distributiontype
+func (m_ MatrixRandom) DistributionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("distributionType"))
 	return rv
+}
+
+
+// SetDistributionType sets the value of the distributionType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/distributiontype
+func (m_ MatrixRandom) SetDistributionType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDistributionType:"), value)
 }
 
 

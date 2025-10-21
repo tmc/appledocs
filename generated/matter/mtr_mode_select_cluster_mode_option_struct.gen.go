@@ -77,6 +77,21 @@ func NewMTRModeSelectClusterModeOptionStruct() MTRModeSelectClusterModeOptionStr
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
+func (m_ MTRModeSelectClusterModeOptionStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
+func (m_ MTRModeSelectClusterModeOptionStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/mode
 func (m_ MTRModeSelectClusterModeOptionStruct) Mode() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
@@ -104,21 +119,6 @@ func (m_ MTRModeSelectClusterModeOptionStruct) SemanticTags() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/semantictags
 func (m_ MTRModeSelectClusterModeOptionStruct) SetSemanticTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSemanticTags:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
-func (m_ MTRModeSelectClusterModeOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
-	return rv
-}
-
-
-// SetLabel sets the value of the label property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
-func (m_ MTRModeSelectClusterModeOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 

@@ -89,24 +89,6 @@ func (g_ GCDualSenseAdaptiveTrigger) SetModeVibrationWithAmplitudesFrequency(pos
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModeVibrationWithAmplitudes:frequency:"), positionalAmplitudes, frequency)
 }
 
-// The current status of the adaptive trigger and whether it’s applying effects.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.property
-func (g_ GCDualSenseAdaptiveTrigger) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("status"))
-	return rv
-}
-
-
-// SetStatus sets the value of the status property.
-// The current status of the adaptive trigger and whether it’s applying effects.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.property
-func (g_ GCDualSenseAdaptiveTrigger) SetStatus(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setStatus:"), value)
-}
-
 // The position of the trigger’s arm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/armposition
@@ -141,6 +123,24 @@ func (g_ GCDualSenseAdaptiveTrigger) Mode() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.property
 func (g_ GCDualSenseAdaptiveTrigger) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMode:"), value)
+}
+
+// The current status of the adaptive trigger and whether it’s applying effects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.property
+func (g_ GCDualSenseAdaptiveTrigger) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+// The current status of the adaptive trigger and whether it’s applying effects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.property
+func (g_ GCDualSenseAdaptiveTrigger) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setStatus:"), value)
 }
 
 

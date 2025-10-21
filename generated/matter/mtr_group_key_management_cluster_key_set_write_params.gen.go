@@ -77,6 +77,21 @@ func NewMTRGroupKeyManagementClusterKeySetWriteParams() MTRGroupKeyManagementClu
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/groupkeyset
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) GroupKeySet() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupKeySet"))
+	return rv
+}
+
+
+// SetGroupKeySet sets the value of the groupKeySet property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/groupkeyset
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetGroupKeySet(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySet:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/serversideprocessingtimeout
 func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,21 +119,6 @@ func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) TimedInvokeTimeoutMs() f
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/timedinvoketimeoutms
 func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/groupkeyset
-func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) GroupKeySet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupKeySet"))
-	return rv
-}
-
-
-// SetGroupKeySet sets the value of the groupKeySet property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/groupkeyset
-func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetGroupKeySet(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySet:"), value)
 }
 
 

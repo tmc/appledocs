@@ -77,21 +77,6 @@ func NewMTRRVCOperationalStateClusterResumeParams() MTRRVCOperationalStateCluste
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/timedinvoketimeoutms
-func (m_ MTRRVCOperationalStateClusterResumeParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/timedinvoketimeoutms
-func (m_ MTRRVCOperationalStateClusterResumeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/serversideprocessingtimeout
 func (m_ MTRRVCOperationalStateClusterResumeParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,6 +89,21 @@ func (m_ MTRRVCOperationalStateClusterResumeParams) ServerSideProcessingTimeout(
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/serversideprocessingtimeout
 func (m_ MTRRVCOperationalStateClusterResumeParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/timedinvoketimeoutms
+func (m_ MTRRVCOperationalStateClusterResumeParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/timedinvoketimeoutms
+func (m_ MTRRVCOperationalStateClusterResumeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

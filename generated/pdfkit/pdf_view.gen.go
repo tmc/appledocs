@@ -90,36 +90,6 @@ func (p_ PDFView) TakePasswordFrom(sender objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("takePasswordFrom:"), sender)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isinmarkupmode
-func (p_ PDFView) IsInMarkupMode() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isInMarkupMode"))
-	return rv
-}
-
-
-// SetIsInMarkupMode sets the value of the isInMarkupMode property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isinmarkupmode
-func (p_ PDFView) SetIsInMarkupMode(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsInMarkupMode:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isfindinteractionenabled
-func (p_ PDFView) IsFindInteractionEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isFindInteractionEnabled"))
-	return rv
-}
-
-
-// SetIsFindInteractionEnabled sets the value of the isFindInteractionEnabled property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isfindinteractionenabled
-func (p_ PDFView) SetIsFindInteractionEnabled(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFindInteractionEnabled:"), value)
-}
-
 // Returns a object representing the current page and the current point in the view specified in page space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/currentDestination
@@ -245,6 +215,36 @@ func (p_ PDFView) SetPageShadowsEnabled(value bool) {
 func (p_ PDFView) VisiblePages() []PDFPage {
 	rv := objc.Send[[]PDFPage](p_.ID, objc.Sel("visiblePages"))
 	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isfindinteractionenabled
+func (p_ PDFView) IsFindInteractionEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isFindInteractionEnabled"))
+	return rv
+}
+
+
+// SetIsFindInteractionEnabled sets the value of the isFindInteractionEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isfindinteractionenabled
+func (p_ PDFView) SetIsFindInteractionEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFindInteractionEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isinmarkupmode
+func (p_ PDFView) IsInMarkupMode() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isInMarkupMode"))
+	return rv
+}
+
+
+// SetIsInMarkupMode sets the value of the isInMarkupMode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isinmarkupmode
+func (p_ PDFView) SetIsInMarkupMode(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsInMarkupMode:"), value)
 }
 
 

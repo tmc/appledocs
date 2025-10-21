@@ -77,21 +77,6 @@ func NewMTRWindowCoveringClusterGoToTiltPercentageParams() MTRWindowCoveringClus
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltpercentageparams/tiltpercent100thsvalue
-func (m_ MTRWindowCoveringClusterGoToTiltPercentageParams) TiltPercent100thsValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("tiltPercent100thsValue"))
-	return rv
-}
-
-
-// SetTiltPercent100thsValue sets the value of the tiltPercent100thsValue property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltpercentageparams/tiltpercent100thsvalue
-func (m_ MTRWindowCoveringClusterGoToTiltPercentageParams) SetTiltPercent100thsValue(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTiltPercent100thsValue:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltpercentageparams/serversideprocessingtimeout
 func (m_ MTRWindowCoveringClusterGoToTiltPercentageParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,6 +89,21 @@ func (m_ MTRWindowCoveringClusterGoToTiltPercentageParams) ServerSideProcessingT
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltpercentageparams/serversideprocessingtimeout
 func (m_ MTRWindowCoveringClusterGoToTiltPercentageParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltpercentageparams/tiltpercent100thsvalue
+func (m_ MTRWindowCoveringClusterGoToTiltPercentageParams) TiltPercent100thsValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("tiltPercent100thsValue"))
+	return rv
+}
+
+
+// SetTiltPercent100thsValue sets the value of the tiltPercent100thsValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltpercentageparams/tiltpercent100thsvalue
+func (m_ MTRWindowCoveringClusterGoToTiltPercentageParams) SetTiltPercent100thsValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTiltPercent100thsValue:"), value)
 }
 
 //

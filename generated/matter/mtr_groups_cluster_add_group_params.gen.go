@@ -77,18 +77,18 @@ func NewMTRGroupsClusterAddGroupParams() MTRGroupsClusterAddGroupParams {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/groupname
-func (m_ MTRGroupsClusterAddGroupParams) GroupName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("groupName"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/groupid-9do9s
+func (m_ MTRGroupsClusterAddGroupParams) GroupID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupID"))
 	return rv
 }
 
 
-// SetGroupName sets the value of the groupName property.
+// SetGroupID sets the value of the groupID property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/groupname
-func (m_ MTRGroupsClusterAddGroupParams) SetGroupName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/groupid-9do9s
+func (m_ MTRGroupsClusterAddGroupParams) SetGroupID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupID:"), value)
 }
 
 //
@@ -107,6 +107,21 @@ func (m_ MTRGroupsClusterAddGroupParams) SetGroupId(value foundation.Number) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/groupname
+func (m_ MTRGroupsClusterAddGroupParams) GroupName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("groupName"))
+	return rv
+}
+
+
+// SetGroupName sets the value of the groupName property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/groupname
+func (m_ MTRGroupsClusterAddGroupParams) SetGroupName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), objc.String(value))
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/serversideprocessingtimeout
 func (m_ MTRGroupsClusterAddGroupParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -119,21 +134,6 @@ func (m_ MTRGroupsClusterAddGroupParams) ServerSideProcessingTimeout() foundatio
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/serversideprocessingtimeout
 func (m_ MTRGroupsClusterAddGroupParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/groupid-9do9s
-func (m_ MTRGroupsClusterAddGroupParams) GroupID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupID"))
-	return rv
-}
-
-
-// SetGroupID sets the value of the groupID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/groupid-9do9s
-func (m_ MTRGroupsClusterAddGroupParams) SetGroupID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupID:"), value)
 }
 
 //

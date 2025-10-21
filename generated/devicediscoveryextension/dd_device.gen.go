@@ -94,42 +94,6 @@ func NewDDDeviceWithDisplayNameCategoryProtocolTypeIdentifier(displayName string
 }
 
 
-// A dictionary of metadata for the device that the extension communicates with over the local network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/devicediscoveryextension/dddevice/txtrecord
-func (d_ DDDevice) TxtRecord() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("txtRecord"))
-	return rv
-}
-
-
-// SetTxtRecord sets the value of the txtRecord property.
-// A dictionary of metadata for the device that the extension communicates with over the local network.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/devicediscoveryextension/dddevice/txtrecord
-func (d_ DDDevice) SetTxtRecord(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setTxtRecord:"), value)
-}
-
-// The manner in which the system applies your app’s device discovery extension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/devicediscoveryextension/dddevice/protocol-swift.property
-func (d_ DDDevice) `protocol`() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("`protocol`"))
-	return rv
-}
-
-
-// Set`protocol` sets the value of the `protocol` property.
-// The manner in which the system applies your app’s device discovery extension.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/devicediscoveryextension/dddevice/protocol-swift.property
-func (d_ DDDevice) Set`protocol`(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("set`protocol`:"), value)
-}
-
 // An identifier to communicate with the device through Bluetooth wireless technology.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/bluetoothIdentifier
@@ -497,6 +461,24 @@ func (d_ DDDevice) WifiAwareVendorName() string {
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareVendorName
 func (d_ DDDevice) SetWifiAwareVendorName(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareVendorName:"), objc.String(value))
+}
+
+// A dictionary of metadata for the device that the extension communicates with over the local network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/devicediscoveryextension/dddevice/txtrecord
+func (d_ DDDevice) TxtRecord() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("txtRecord"))
+	return rv
+}
+
+
+// SetTxtRecord sets the value of the txtRecord property.
+// A dictionary of metadata for the device that the extension communicates with over the local network.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/devicediscoveryextension/dddevice/txtrecord
+func (d_ DDDevice) SetTxtRecord(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTxtRecord:"), value)
 }
 
 

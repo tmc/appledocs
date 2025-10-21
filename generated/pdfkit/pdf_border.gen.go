@@ -79,168 +79,6 @@ func NewPDFBorder() PDFBorder {
 }
 
 
-// The font the annotation uses to display text.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/font
-func (p_ PDFBorder) Font() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("font"))
-	return rv
-}
-
-
-// SetFont sets the value of the font property.
-// The font the annotation uses to display text.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/font
-func (p_ PDFBorder) SetFont(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFont:"), value)
-}
-
-// Returns the textual content (if any) associated with the annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
-func (p_ PDFBorder) Contents() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("contents"))
-	return rv
-}
-
-
-// SetContents sets the value of the contents property.
-// Returns the textual content (if any) associated with the annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
-func (p_ PDFBorder) SetContents(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), objc.String(value))
-}
-
-// Returns the bounding box for the annotation in page space.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/bounds
-func (p_ PDFBorder) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("bounds"))
-	return rv
-}
-
-
-// SetBounds sets the value of the bounds property.
-// Returns the bounding box for the annotation in page space.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/bounds
-func (p_ PDFBorder) SetBounds(value coregraphics.CGRect) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setBounds:"), value)
-}
-
-// Sets the border style for the annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/border
-func (p_ PDFBorder) Border() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("border"))
-	return rv
-}
-
-
-// SetBorder sets the value of the border property.
-// Sets the border style for the annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/border
-func (p_ PDFBorder) SetBorder(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setBorder:"), value)
-}
-
-// The alignment of the free text and text widget annotation’s text content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/alignment
-func (p_ PDFBorder) Alignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("alignment"))
-	return rv
-}
-
-
-// SetAlignment sets the value of the alignment property.
-// The alignment of the free text and text widget annotation’s text content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/alignment
-func (p_ PDFBorder) SetAlignment(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAlignment:"), value)
-}
-
-// Sets the stroke color for the annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFBorder) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("color"))
-	return rv
-}
-
-
-// SetColor sets the value of the color property.
-// Sets the stroke color for the annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFBorder) SetColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setColor:"), value)
-}
-
-// Returns a Boolean value that indicates whether the annotation has an appearance stream associated with it.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/hasappearancestream
-func (p_ PDFBorder) HasAppearanceStream() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("hasAppearanceStream"))
-	return rv
-}
-
-
-// SetHasAppearanceStream sets the value of the hasAppearanceStream property.
-// Returns a Boolean value that indicates whether the annotation has an appearance stream associated with it.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/hasappearancestream
-func (p_ PDFBorder) SetHasAppearanceStream(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setHasAppearanceStream:"), value)
-}
-
-// The font color the annotation uses to display text.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/fontcolor
-func (p_ PDFBorder) FontColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fontColor"))
-	return rv
-}
-
-
-// SetFontColor sets the value of the fontColor property.
-// The font color the annotation uses to display text.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/fontcolor
-func (p_ PDFBorder) SetFontColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFontColor:"), value)
-}
-
-// A Boolean value that indicates whether the annotation is in a highlighted state, such as when the mouse is down on a link annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ishighlighted
-func (p_ PDFBorder) IsHighlighted() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isHighlighted"))
-	return rv
-}
-
-
-// SetIsHighlighted sets the value of the isHighlighted property.
-// A Boolean value that indicates whether the annotation is in a highlighted state, such as when the mouse is down on a link annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ishighlighted
-func (p_ PDFBorder) SetIsHighlighted(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHighlighted:"), value)
-}
-
 // A dictionary that contains a deep copy of all border properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorder/borderKeyValues
@@ -301,6 +139,168 @@ func (p_ PDFBorder) Style() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorder/style
 func (p_ PDFBorder) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
+}
+
+// The alignment of the free text and text widget annotation’s text content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/alignment
+func (p_ PDFBorder) Alignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("alignment"))
+	return rv
+}
+
+
+// SetAlignment sets the value of the alignment property.
+// The alignment of the free text and text widget annotation’s text content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/alignment
+func (p_ PDFBorder) SetAlignment(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAlignment:"), value)
+}
+
+// Sets the border style for the annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/border
+func (p_ PDFBorder) Border() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("border"))
+	return rv
+}
+
+
+// SetBorder sets the value of the border property.
+// Sets the border style for the annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/border
+func (p_ PDFBorder) SetBorder(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBorder:"), value)
+}
+
+// Returns the bounding box for the annotation in page space.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/bounds
+func (p_ PDFBorder) Bounds() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("bounds"))
+	return rv
+}
+
+
+// SetBounds sets the value of the bounds property.
+// Returns the bounding box for the annotation in page space.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/bounds
+func (p_ PDFBorder) SetBounds(value coregraphics.CGRect) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBounds:"), value)
+}
+
+// Sets the stroke color for the annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
+func (p_ PDFBorder) Color() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("color"))
+	return rv
+}
+
+
+// SetColor sets the value of the color property.
+// Sets the stroke color for the annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
+func (p_ PDFBorder) SetColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setColor:"), value)
+}
+
+// Returns the textual content (if any) associated with the annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
+func (p_ PDFBorder) Contents() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("contents"))
+	return rv
+}
+
+
+// SetContents sets the value of the contents property.
+// Returns the textual content (if any) associated with the annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
+func (p_ PDFBorder) SetContents(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), objc.String(value))
+}
+
+// The font the annotation uses to display text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/font
+func (p_ PDFBorder) Font() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("font"))
+	return rv
+}
+
+
+// SetFont sets the value of the font property.
+// The font the annotation uses to display text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/font
+func (p_ PDFBorder) SetFont(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFont:"), value)
+}
+
+// The font color the annotation uses to display text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/fontcolor
+func (p_ PDFBorder) FontColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fontColor"))
+	return rv
+}
+
+
+// SetFontColor sets the value of the fontColor property.
+// The font color the annotation uses to display text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/fontcolor
+func (p_ PDFBorder) SetFontColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFontColor:"), value)
+}
+
+// Returns a Boolean value that indicates whether the annotation has an appearance stream associated with it.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/hasappearancestream
+func (p_ PDFBorder) HasAppearanceStream() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("hasAppearanceStream"))
+	return rv
+}
+
+
+// SetHasAppearanceStream sets the value of the hasAppearanceStream property.
+// Returns a Boolean value that indicates whether the annotation has an appearance stream associated with it.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/hasappearancestream
+func (p_ PDFBorder) SetHasAppearanceStream(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHasAppearanceStream:"), value)
+}
+
+// A Boolean value that indicates whether the annotation is in a highlighted state, such as when the mouse is down on a link annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ishighlighted
+func (p_ PDFBorder) IsHighlighted() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isHighlighted"))
+	return rv
+}
+
+
+// SetIsHighlighted sets the value of the isHighlighted property.
+// A Boolean value that indicates whether the annotation is in a highlighted state, such as when the mouse is down on a link annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/ishighlighted
+func (p_ PDFBorder) SetIsHighlighted(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHighlighted:"), value)
 }
 
 

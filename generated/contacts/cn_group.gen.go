@@ -104,22 +104,6 @@ func (cc _CNGroupClass) PredicateForSubgroupsInGroupWithIdentifier(parentGroupId
 	return rv
 }
 
-// The name of the group.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupnamekey
-func (c_ CNGroup) CNGroupNameKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupNameKey"))
-	return rv
-}
-
-// The identifier of the group.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupidentifierkey
-func (c_ CNGroup) CNGroupIdentifierKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupIdentifierKey"))
-	return rv
-}
-
 // The unique identifier for a group on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/identifier
@@ -133,6 +117,22 @@ func (c_ CNGroup) Identifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/name
 func (c_ CNGroup) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+	return rv
+}
+
+// The identifier of the group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupidentifierkey
+func (c_ CNGroup) CNGroupIdentifierKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupIdentifierKey"))
+	return rv
+}
+
+// The name of the group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupnamekey
+func (c_ CNGroup) CNGroupNameKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupNameKey"))
 	return rv
 }
 

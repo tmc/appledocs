@@ -77,33 +77,18 @@ func NewMTRDeviceControllerStartupParams() MTRDeviceControllerStartupParams {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru1s
-func (m_ MTRDeviceControllerStartupParams) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/caseauthenticatedtags
+func (m_ MTRDeviceControllerStartupParams) CaseAuthenticatedTags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("caseAuthenticatedTags"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
+// SetCaseAuthenticatedTags sets the value of the caseAuthenticatedTags property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru1s
-func (m_ MTRDeviceControllerStartupParams) SetVendorID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwxr
-func (m_ MTRDeviceControllerStartupParams) NodeId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeId"))
-	return rv
-}
-
-
-// SetNodeId sets the value of the nodeId property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwxr
-func (m_ MTRDeviceControllerStartupParams) SetNodeId(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeId:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/caseauthenticatedtags
+func (m_ MTRDeviceControllerStartupParams) SetCaseAuthenticatedTags(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseAuthenticatedTags:"), value)
 }
 
 //
@@ -122,96 +107,18 @@ func (m_ MTRDeviceControllerStartupParams) SetFabricID(value foundation.Number) 
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalkeypair
-func (m_ MTRDeviceControllerStartupParams) OperationalKeypair() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalKeypair"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/fabricid-1cm7v
+func (m_ MTRDeviceControllerStartupParams) FabricId() uint64 {
+	rv := objc.Send[uint64](m_.ID, objc.Sel("fabricId"))
 	return rv
 }
 
 
-// SetOperationalKeypair sets the value of the operationalKeypair property.
+// SetFabricId sets the value of the fabricId property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalkeypair
-func (m_ MTRDeviceControllerStartupParams) SetOperationalKeypair(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalKeypair:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nocsigner
-func (m_ MTRDeviceControllerStartupParams) NocSigner() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nocSigner"))
-	return rv
-}
-
-
-// SetNocSigner sets the value of the nocSigner property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nocsigner
-func (m_ MTRDeviceControllerStartupParams) SetNocSigner(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNocSigner:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru0w
-func (m_ MTRDeviceControllerStartupParams) VendorId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorId"))
-	return rv
-}
-
-
-// SetVendorId sets the value of the vendorId property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru0w
-func (m_ MTRDeviceControllerStartupParams) SetVendorId(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorId:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/rootcertificate
-func (m_ MTRDeviceControllerStartupParams) RootCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootCertificate"))
-	return rv
-}
-
-
-// SetRootCertificate sets the value of the rootCertificate property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/rootcertificate
-func (m_ MTRDeviceControllerStartupParams) SetRootCertificate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
-}
-
-// Node id for this controller.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwwv
-func (m_ MTRDeviceControllerStartupParams) NodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeID"))
-	return rv
-}
-
-
-// SetNodeID sets the value of the nodeID property.
-// Node id for this controller.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwwv
-func (m_ MTRDeviceControllerStartupParams) SetNodeID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/caseauthenticatedtags
-func (m_ MTRDeviceControllerStartupParams) CaseAuthenticatedTags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("caseAuthenticatedTags"))
-	return rv
-}
-
-
-// SetCaseAuthenticatedTags sets the value of the caseAuthenticatedTags property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/caseauthenticatedtags
-func (m_ MTRDeviceControllerStartupParams) SetCaseAuthenticatedTags(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseAuthenticatedTags:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/fabricid-1cm7v
+func (m_ MTRDeviceControllerStartupParams) SetFabricId(value uint64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricId:"), value)
 }
 
 //
@@ -245,33 +152,51 @@ func (m_ MTRDeviceControllerStartupParams) SetIpk(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuerqueue
-func (m_ MTRDeviceControllerStartupParams) OperationalCertificateIssuerQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificateIssuerQueue"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nocsigner
+func (m_ MTRDeviceControllerStartupParams) NocSigner() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nocSigner"))
 	return rv
 }
 
 
-// SetOperationalCertificateIssuerQueue sets the value of the operationalCertificateIssuerQueue property.
+// SetNocSigner sets the value of the nocSigner property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuerqueue
-func (m_ MTRDeviceControllerStartupParams) SetOperationalCertificateIssuerQueue(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificateIssuerQueue:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nocsigner
+func (m_ MTRDeviceControllerStartupParams) SetNocSigner(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNocSigner:"), value)
 }
 
+// Node id for this controller.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuer
-func (m_ MTRDeviceControllerStartupParams) OperationalCertificateIssuer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificateIssuer"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwwv
+func (m_ MTRDeviceControllerStartupParams) NodeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeID"))
 	return rv
 }
 
 
-// SetOperationalCertificateIssuer sets the value of the operationalCertificateIssuer property.
+// SetNodeID sets the value of the nodeID property.
+// Node id for this controller.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuer
-func (m_ MTRDeviceControllerStartupParams) SetOperationalCertificateIssuer(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificateIssuer:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwwv
+func (m_ MTRDeviceControllerStartupParams) SetNodeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwxr
+func (m_ MTRDeviceControllerStartupParams) NodeId() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeId"))
+	return rv
+}
+
+
+// SetNodeId sets the value of the nodeId property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwxr
+func (m_ MTRDeviceControllerStartupParams) SetNodeId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeId:"), value)
 }
 
 //
@@ -290,18 +215,93 @@ func (m_ MTRDeviceControllerStartupParams) SetOperationalCertificate(value unsaf
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/fabricid-1cm7v
-func (m_ MTRDeviceControllerStartupParams) FabricId() uint64 {
-	rv := objc.Send[uint64](m_.ID, objc.Sel("fabricId"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuer
+func (m_ MTRDeviceControllerStartupParams) OperationalCertificateIssuer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificateIssuer"))
 	return rv
 }
 
 
-// SetFabricId sets the value of the fabricId property.
+// SetOperationalCertificateIssuer sets the value of the operationalCertificateIssuer property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/fabricid-1cm7v
-func (m_ MTRDeviceControllerStartupParams) SetFabricId(value uint64) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricId:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuer
+func (m_ MTRDeviceControllerStartupParams) SetOperationalCertificateIssuer(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificateIssuer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuerqueue
+func (m_ MTRDeviceControllerStartupParams) OperationalCertificateIssuerQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificateIssuerQueue"))
+	return rv
+}
+
+
+// SetOperationalCertificateIssuerQueue sets the value of the operationalCertificateIssuerQueue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuerqueue
+func (m_ MTRDeviceControllerStartupParams) SetOperationalCertificateIssuerQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificateIssuerQueue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalkeypair
+func (m_ MTRDeviceControllerStartupParams) OperationalKeypair() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalKeypair"))
+	return rv
+}
+
+
+// SetOperationalKeypair sets the value of the operationalKeypair property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalkeypair
+func (m_ MTRDeviceControllerStartupParams) SetOperationalKeypair(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalKeypair:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/rootcertificate
+func (m_ MTRDeviceControllerStartupParams) RootCertificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootCertificate"))
+	return rv
+}
+
+
+// SetRootCertificate sets the value of the rootCertificate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/rootcertificate
+func (m_ MTRDeviceControllerStartupParams) SetRootCertificate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru1s
+func (m_ MTRDeviceControllerStartupParams) VendorID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+	return rv
+}
+
+
+// SetVendorID sets the value of the vendorID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru1s
+func (m_ MTRDeviceControllerStartupParams) SetVendorID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru0w
+func (m_ MTRDeviceControllerStartupParams) VendorId() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorId"))
+	return rv
+}
+
+
+// SetVendorId sets the value of the vendorId property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru0w
+func (m_ MTRDeviceControllerStartupParams) SetVendorId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorId:"), value)
 }
 
 

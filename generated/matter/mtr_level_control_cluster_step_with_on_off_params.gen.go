@@ -107,21 +107,6 @@ func (m_ MTRLevelControlClusterStepWithOnOffParams) SetOptionsOverride(value fou
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterStepWithOnOffParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterStepWithOnOffParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/serversideprocessingtimeout
 func (m_ MTRLevelControlClusterStepWithOnOffParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -152,21 +137,6 @@ func (m_ MTRLevelControlClusterStepWithOnOffParams) SetStepMode(value foundation
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/transitiontime
-func (m_ MTRLevelControlClusterStepWithOnOffParams) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
-	return rv
-}
-
-
-// SetTransitionTime sets the value of the transitionTime property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/transitiontime
-func (m_ MTRLevelControlClusterStepWithOnOffParams) SetTransitionTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/stepsize
 func (m_ MTRLevelControlClusterStepWithOnOffParams) StepSize() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stepSize"))
@@ -179,6 +149,36 @@ func (m_ MTRLevelControlClusterStepWithOnOffParams) StepSize() foundation.Number
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/stepsize
 func (m_ MTRLevelControlClusterStepWithOnOffParams) SetStepSize(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStepSize:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/timedinvoketimeoutms
+func (m_ MTRLevelControlClusterStepWithOnOffParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/timedinvoketimeoutms
+func (m_ MTRLevelControlClusterStepWithOnOffParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/transitiontime
+func (m_ MTRLevelControlClusterStepWithOnOffParams) TransitionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+	return rv
+}
+
+
+// SetTransitionTime sets the value of the transitionTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepwithonoffparams/transitiontime
+func (m_ MTRLevelControlClusterStepWithOnOffParams) SetTransitionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 
 

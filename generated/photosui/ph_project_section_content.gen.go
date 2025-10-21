@@ -80,42 +80,6 @@ func NewPHProjectSectionContent() PHProjectSectionContent {
 }
 
 
-// An array containing PHProjectionSessionContent objects.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/sectioncontents
-func (p_ PHProjectSectionContent) SectionContents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sectionContents"))
-	return rv
-}
-
-
-// SetSectionContents sets the value of the sectionContents property.
-// An array containing PHProjectionSessionContent objects.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/sectioncontents
-func (p_ PHProjectSectionContent) SetSectionContents(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSectionContents:"), value)
-}
-
-// The optional section title.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/title
-func (p_ PHProjectSectionContent) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
-	return rv
-}
-
-
-// SetTitle sets the value of the title property.
-// The optional section title.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/title
-func (p_ PHProjectSectionContent) SetTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
-}
-
 // The aspect ratio of the full content layout, defined as width over height.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSectionContent/aspectRatio
@@ -154,6 +118,42 @@ func (p_ PHProjectSectionContent) Elements() []PHProjectElement {
 func (p_ PHProjectSectionContent) NumberOfColumns() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfColumns"))
 	return rv
+}
+
+// An array containing PHProjectionSessionContent objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/sectioncontents
+func (p_ PHProjectSectionContent) SectionContents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sectionContents"))
+	return rv
+}
+
+
+// SetSectionContents sets the value of the sectionContents property.
+// An array containing PHProjectionSessionContent objects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/sectioncontents
+func (p_ PHProjectSectionContent) SetSectionContents(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSectionContents:"), value)
+}
+
+// The optional section title.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/title
+func (p_ PHProjectSectionContent) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The optional section title.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/title
+func (p_ PHProjectSectionContent) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

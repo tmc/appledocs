@@ -109,24 +109,6 @@ func (p_ PHASEDucker) Deactivate() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("deactivate"))
 }
 
-// A Boolean value that determines whether the ducker reduces sound.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phaseducker/isactive
-func (p_ PHASEDucker) IsActive() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isActive"))
-	return rv
-}
-
-
-// SetIsActive sets the value of the isActive property.
-// A Boolean value that determines whether the ducker reduces sound.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phaseducker/isactive
-func (p_ PHASEDucker) SetIsActive(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsActive:"), value)
-}
-
 // A mathematical curve that shapes transition progress as sound reduction begins.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/attackCurve
@@ -197,6 +179,24 @@ func (p_ PHASEDucker) SourceGroups() unsafe.Pointer {
 func (p_ PHASEDucker) TargetGroups() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("targetGroups"))
 	return rv
+}
+
+// A Boolean value that determines whether the ducker reduces sound.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseducker/isactive
+func (p_ PHASEDucker) IsActive() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// A Boolean value that determines whether the ducker reduces sound.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseducker/isactive
+func (p_ PHASEDucker) SetIsActive(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsActive:"), value)
 }
 
 

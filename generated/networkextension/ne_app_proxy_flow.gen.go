@@ -119,29 +119,6 @@ func (n_ NEAppProxyFlow) SetMetadata(parameters unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMetadata:"), parameters)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/interface
-func (n_ NEAppProxyFlow) Interface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("interface"))
-	return rv
-}
-
-
-// SetInterface sets the value of the interface property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/interface
-func (n_ NEAppProxyFlow) SetInterface(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setInterface:"), value)
-}
-
-// The domain used for app proxy errors.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyerrordomain
-func (n_ NEAppProxyFlow) NEAppProxyErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEAppProxyErrorDomain"))
-	return rv
-}
-
 // A Boolean value that indicates whether the flow has a binding to a specific interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/isBound
@@ -182,6 +159,29 @@ func (n_ NEAppProxyFlow) SetNetworkInterface(value unsafe.Pointer) {
 func (n_ NEAppProxyFlow) RemoteHostname() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("remoteHostname"))
 	return rv
+}
+
+// The domain used for app proxy errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyerrordomain
+func (n_ NEAppProxyFlow) NEAppProxyErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEAppProxyErrorDomain"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/interface
+func (n_ NEAppProxyFlow) Interface() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("interface"))
+	return rv
+}
+
+
+// SetInterface sets the value of the interface property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/interface
+func (n_ NEAppProxyFlow) SetInterface(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setInterface:"), value)
 }
 
 

@@ -77,21 +77,6 @@ func NewMTREventRequestPath() MTREventRequestPath {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/event
-func (m_ MTREventRequestPath) Event() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("event"))
-	return rv
-}
-
-
-// SetEvent sets the value of the event property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/event
-func (m_ MTREventRequestPath) SetEvent(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEvent:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/cluster
 func (m_ MTREventRequestPath) Cluster() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
@@ -119,6 +104,21 @@ func (m_ MTREventRequestPath) Endpoint() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/endpoint
 func (m_ MTREventRequestPath) SetEndpoint(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/event
+func (m_ MTREventRequestPath) Event() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("event"))
+	return rv
+}
+
+
+// SetEvent sets the value of the event property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/event
+func (m_ MTREventRequestPath) SetEvent(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEvent:"), value)
 }
 
 

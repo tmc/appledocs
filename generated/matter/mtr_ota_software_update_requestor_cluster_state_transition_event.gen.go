@@ -78,36 +78,6 @@ func NewMTROtaSoftwareUpdateRequestorClusterStateTransitionEvent() MTROtaSoftwar
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/previousstate
-func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) PreviousState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("previousState"))
-	return rv
-}
-
-
-// SetPreviousState sets the value of the previousState property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/previousstate
-func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) SetPreviousState(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousState:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/targetsoftwareversion
-func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) TargetSoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetSoftwareVersion"))
-	return rv
-}
-
-
-// SetTargetSoftwareVersion sets the value of the targetSoftwareVersion property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/targetsoftwareversion
-func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) SetTargetSoftwareVersion(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetSoftwareVersion:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/newstate
 func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) NewState() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
@@ -123,6 +93,21 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) SetNewState(v
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/previousstate
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) PreviousState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("previousState"))
+	return rv
+}
+
+
+// SetPreviousState sets the value of the previousState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/previousstate
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) SetPreviousState(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousState:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/reason
 func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) Reason() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("reason"))
@@ -135,6 +120,21 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) Reason() foun
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/reason
 func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) SetReason(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReason:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/targetsoftwareversion
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) TargetSoftwareVersion() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetSoftwareVersion"))
+	return rv
+}
+
+
+// SetTargetSoftwareVersion sets the value of the targetSoftwareVersion property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/targetsoftwareversion
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) SetTargetSoftwareVersion(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetSoftwareVersion:"), value)
 }
 
 

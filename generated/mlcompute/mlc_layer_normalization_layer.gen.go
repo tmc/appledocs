@@ -79,42 +79,6 @@ func NewCLayerNormalizationLayer() CLayerNormalizationLayer {
 }
 
 
-// The gamma tensor parameter you use for optimizer updates.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/gammaparameter
-func (c_ CLayerNormalizationLayer) GammaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gammaParameter"))
-	return rv
-}
-
-
-// SetGammaParameter sets the value of the gammaParameter property.
-// The gamma tensor parameter you use for optimizer updates.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/gammaparameter
-func (c_ CLayerNormalizationLayer) SetGammaParameter(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGammaParameter:"), value)
-}
-
-// The variance epsilon you use for numerical stability.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/varianceepsilon
-func (c_ CLayerNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("varianceEpsilon"))
-	return rv
-}
-
-
-// SetVarianceEpsilon sets the value of the varianceEpsilon property.
-// The variance epsilon you use for numerical stability.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/varianceepsilon
-func (c_ CLayerNormalizationLayer) SetVarianceEpsilon(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
-}
-
 // The beta tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/beta
@@ -133,22 +97,22 @@ func (c_ CLayerNormalizationLayer) SetBeta(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
 }
 
-// The shape of the axes where normalization occurs.
+// The beta tensor parameter you use for optimizer updates.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/normalizedshape-8ujvv
-func (c_ CLayerNormalizationLayer) NormalizedShape() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("normalizedShape"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/betaparameter
+func (c_ CLayerNormalizationLayer) BetaParameter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("betaParameter"))
 	return rv
 }
 
 
-// SetNormalizedShape sets the value of the normalizedShape property.
-// The shape of the axes where normalization occurs.
+// SetBetaParameter sets the value of the betaParameter property.
+// The beta tensor parameter you use for optimizer updates.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/normalizedshape-8ujvv
-func (c_ CLayerNormalizationLayer) SetNormalizedShape(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNormalizedShape:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/betaparameter
+func (c_ CLayerNormalizationLayer) SetBetaParameter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
 }
 
 // The gamma tensor.
@@ -169,22 +133,58 @@ func (c_ CLayerNormalizationLayer) SetGamma(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
 }
 
-// The beta tensor parameter you use for optimizer updates.
+// The gamma tensor parameter you use for optimizer updates.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/betaparameter
-func (c_ CLayerNormalizationLayer) BetaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("betaParameter"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/gammaparameter
+func (c_ CLayerNormalizationLayer) GammaParameter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gammaParameter"))
 	return rv
 }
 
 
-// SetBetaParameter sets the value of the betaParameter property.
-// The beta tensor parameter you use for optimizer updates.
+// SetGammaParameter sets the value of the gammaParameter property.
+// The gamma tensor parameter you use for optimizer updates.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/betaparameter
-func (c_ CLayerNormalizationLayer) SetBetaParameter(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/gammaparameter
+func (c_ CLayerNormalizationLayer) SetGammaParameter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGammaParameter:"), value)
+}
+
+// The shape of the axes where normalization occurs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/normalizedshape-8ujvv
+func (c_ CLayerNormalizationLayer) NormalizedShape() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("normalizedShape"))
+	return rv
+}
+
+
+// SetNormalizedShape sets the value of the normalizedShape property.
+// The shape of the axes where normalization occurs.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/normalizedshape-8ujvv
+func (c_ CLayerNormalizationLayer) SetNormalizedShape(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNormalizedShape:"), value)
+}
+
+// The variance epsilon you use for numerical stability.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/varianceepsilon
+func (c_ CLayerNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("varianceEpsilon"))
+	return rv
+}
+
+
+// SetVarianceEpsilon sets the value of the varianceEpsilon property.
+// The variance epsilon you use for numerical stability.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/varianceepsilon
+func (c_ CLayerNormalizationLayer) SetVarianceEpsilon(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
 }
 
 

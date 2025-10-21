@@ -93,36 +93,6 @@ func (m_ MTRTestClusterClusterSimpleStruct) SetA(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/h
-func (m_ MTRTestClusterClusterSimpleStruct) H() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("h"))
-	return rv
-}
-
-
-// SetH sets the value of the h property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/h
-func (m_ MTRTestClusterClusterSimpleStruct) SetH(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setH:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/f
-func (m_ MTRTestClusterClusterSimpleStruct) F() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("f"))
-	return rv
-}
-
-
-// SetF sets the value of the f property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/f
-func (m_ MTRTestClusterClusterSimpleStruct) SetF(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setF:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/b
 func (m_ MTRTestClusterClusterSimpleStruct) B() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("b"))
@@ -138,33 +108,18 @@ func (m_ MTRTestClusterClusterSimpleStruct) SetB(value foundation.Number) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/g
-func (m_ MTRTestClusterClusterSimpleStruct) G() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("g"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/c
+func (m_ MTRTestClusterClusterSimpleStruct) C() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("c"))
 	return rv
 }
 
 
-// SetG sets the value of the g property.
+// SetC sets the value of the c property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/g
-func (m_ MTRTestClusterClusterSimpleStruct) SetG(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setG:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/e
-func (m_ MTRTestClusterClusterSimpleStruct) E() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("e"))
-	return rv
-}
-
-
-// SetE sets the value of the e property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/e
-func (m_ MTRTestClusterClusterSimpleStruct) SetE(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/c
+func (m_ MTRTestClusterClusterSimpleStruct) SetC(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)
 }
 
 //
@@ -183,18 +138,63 @@ func (m_ MTRTestClusterClusterSimpleStruct) SetD(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/c
-func (m_ MTRTestClusterClusterSimpleStruct) C() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("c"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/e
+func (m_ MTRTestClusterClusterSimpleStruct) E() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("e"))
 	return rv
 }
 
 
-// SetC sets the value of the c property.
+// SetE sets the value of the e property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/c
-func (m_ MTRTestClusterClusterSimpleStruct) SetC(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/e
+func (m_ MTRTestClusterClusterSimpleStruct) SetE(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/f
+func (m_ MTRTestClusterClusterSimpleStruct) F() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("f"))
+	return rv
+}
+
+
+// SetF sets the value of the f property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/f
+func (m_ MTRTestClusterClusterSimpleStruct) SetF(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setF:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/g
+func (m_ MTRTestClusterClusterSimpleStruct) G() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("g"))
+	return rv
+}
+
+
+// SetG sets the value of the g property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/g
+func (m_ MTRTestClusterClusterSimpleStruct) SetG(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setG:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/h
+func (m_ MTRTestClusterClusterSimpleStruct) H() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("h"))
+	return rv
+}
+
+
+// SetH sets the value of the h property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/h
+func (m_ MTRTestClusterClusterSimpleStruct) SetH(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setH:"), value)
 }
 
 

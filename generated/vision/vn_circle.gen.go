@@ -78,22 +78,22 @@ func NewCircle() Circle {
 }
 
 
-// The circle’s radius.
+// The circle’s center point.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/radius
-func (c_ Circle) Radius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("radius"))
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/center
+func (c_ Circle) Center() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("center"))
 	return rv
 }
 
 
-// SetRadius sets the value of the radius property.
-// The circle’s radius.
+// SetCenter sets the value of the center property.
+// The circle’s center point.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/radius
-func (c_ Circle) SetRadius(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRadius:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/center
+func (c_ Circle) SetCenter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCenter:"), value)
 }
 
 // The circle’s diameter.
@@ -114,22 +114,22 @@ func (c_ Circle) SetDiameter(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDiameter:"), value)
 }
 
-// The circle’s center point.
+// The circle’s radius.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/center
-func (c_ Circle) Center() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("center"))
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/radius
+func (c_ Circle) Radius() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("radius"))
 	return rv
 }
 
 
-// SetCenter sets the value of the center property.
-// The circle’s center point.
+// SetRadius sets the value of the radius property.
+// The circle’s radius.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/center
-func (c_ Circle) SetCenter(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCenter:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/radius
+func (c_ Circle) SetRadius(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRadius:"), value)
 }
 
 

@@ -81,6 +81,14 @@ func NewDetectFaceCaptureQualityRequest() DetectFaceCaptureQualityRequest {
 }
 
 
+// The results of the face-capture quality request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectFaceCaptureQualityRequest/results
+func (d_ DetectFaceCaptureQualityRequest) Results() []FaceObservation {
+	rv := objc.Send[[]FaceObservation](d_.ID, objc.Sel("results"))
+	return rv
+}
+
 // A constant for specifying revision 1 of the face capture detection request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequestrevision1
@@ -113,14 +121,6 @@ func (d_ DetectFaceCaptureQualityRequest) FaceCaptureQuality() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/facecapturequality-bjg5
 func (d_ DetectFaceCaptureQualityRequest) SetFaceCaptureQuality(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFaceCaptureQuality:"), value)
-}
-
-// The results of the face-capture quality request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectFaceCaptureQualityRequest/results
-func (d_ DetectFaceCaptureQualityRequest) Results() []FaceObservation {
-	rv := objc.Send[[]FaceObservation](d_.ID, objc.Sel("results"))
-	return rv
 }
 
 

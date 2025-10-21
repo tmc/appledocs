@@ -77,48 +77,18 @@ func NewMTROTASoftwareUpdateProviderClusterQueryImageResponseParams() MTROTASoft
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/metadataforrequestor
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) MetadataForRequestor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadataForRequestor"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/delayedactiontime
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) DelayedActionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("delayedActionTime"))
 	return rv
 }
 
 
-// SetMetadataForRequestor sets the value of the metadataForRequestor property.
+// SetDelayedActionTime sets the value of the delayedActionTime property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/metadataforrequestor
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetMetadataForRequestor(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadataForRequestor:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/status
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
-	return rv
-}
-
-
-// SetStatus sets the value of the status property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/status
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetStatus(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/softwareversion
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
-	return rv
-}
-
-
-// SetSoftwareVersion sets the value of the softwareVersion property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/softwareversion
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetSoftwareVersion(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/delayedactiontime
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetDelayedActionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDelayedActionTime:"), value)
 }
 
 //
@@ -137,48 +107,33 @@ func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetImageUR
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/timedinvoketimeoutms
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/metadataforrequestor
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) MetadataForRequestor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadataForRequestor"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetMetadataForRequestor sets the value of the metadataForRequestor property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/timedinvoketimeoutms
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/metadataforrequestor
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetMetadataForRequestor(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadataForRequestor:"), value)
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/userconsentneeded
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) UserConsentNeeded() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userConsentNeeded"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/softwareversion
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SoftwareVersion() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
 	return rv
 }
 
 
-// SetUserConsentNeeded sets the value of the userConsentNeeded property.
+// SetSoftwareVersion sets the value of the softwareVersion property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/userconsentneeded
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetUserConsentNeeded(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUserConsentNeeded:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/delayedactiontime
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) DelayedActionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("delayedActionTime"))
-	return rv
-}
-
-
-// SetDelayedActionTime sets the value of the delayedActionTime property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/delayedactiontime
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetDelayedActionTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDelayedActionTime:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/softwareversion
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetSoftwareVersion(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 
 //
@@ -197,6 +152,36 @@ func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetSoftwar
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/status
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/status
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/timedinvoketimeoutms
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/timedinvoketimeoutms
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/updatetoken
 func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) UpdateToken() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("updateToken"))
@@ -209,6 +194,21 @@ func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) UpdateToke
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/updatetoken
 func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetUpdateToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdateToken:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/userconsentneeded
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) UserConsentNeeded() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userConsentNeeded"))
+	return rv
+}
+
+
+// SetUserConsentNeeded sets the value of the userConsentNeeded property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/userconsentneeded
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetUserConsentNeeded(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUserConsentNeeded:"), value)
 }
 
 

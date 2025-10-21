@@ -78,24 +78,6 @@ func NewMXSignpostIntervalData() MXSignpostIntervalData {
 }
 
 
-// The data captured for a custom metric.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostmetric/signpostintervaldata
-func (m_ MXSignpostIntervalData) SignpostIntervalData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signpostIntervalData"))
-	return rv
-}
-
-
-// SetSignpostIntervalData sets the value of the signpostIntervalData property.
-// The data captured for a custom metric.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostmetric/signpostintervaldata
-func (m_ MXSignpostIntervalData) SetSignpostIntervalData(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSignpostIntervalData:"), value)
-}
-
 // The average memory used during the logged intervals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/averagememory
@@ -112,6 +94,24 @@ func (m_ MXSignpostIntervalData) AverageMemory() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/averagememory
 func (m_ MXSignpostIntervalData) SetAverageMemory(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAverageMemory:"), value)
+}
+
+// The total amount of CPU time used during the logged intervals.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativecputime
+func (m_ MXSignpostIntervalData) CumulativeCPUTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeCPUTime"))
+	return rv
+}
+
+
+// SetCumulativeCPUTime sets the value of the cumulativeCPUTime property.
+// The total amount of CPU time used during the logged intervals.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativecputime
+func (m_ MXSignpostIntervalData) SetCumulativeCPUTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeCPUTime:"), value)
 }
 
 // The ratio of the total time spent hitching to the total time spent animating during the logged intervals.
@@ -168,22 +168,22 @@ func (m_ MXSignpostIntervalData) SetHistogrammedSignpostDuration(value unsafe.Po
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHistogrammedSignpostDuration:"), value)
 }
 
-// The total amount of CPU time used during the logged intervals.
+// The data captured for a custom metric.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativecputime
-func (m_ MXSignpostIntervalData) CumulativeCPUTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeCPUTime"))
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostmetric/signpostintervaldata
+func (m_ MXSignpostIntervalData) SignpostIntervalData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signpostIntervalData"))
 	return rv
 }
 
 
-// SetCumulativeCPUTime sets the value of the cumulativeCPUTime property.
-// The total amount of CPU time used during the logged intervals.
+// SetSignpostIntervalData sets the value of the signpostIntervalData property.
+// The data captured for a custom metric.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativecputime
-func (m_ MXSignpostIntervalData) SetCumulativeCPUTime(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeCPUTime:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostmetric/signpostintervaldata
+func (m_ MXSignpostIntervalData) SetSignpostIntervalData(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSignpostIntervalData:"), value)
 }
 
 

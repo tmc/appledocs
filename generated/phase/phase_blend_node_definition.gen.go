@@ -114,24 +114,6 @@ func (p_ PHASEBlendNodeDefinition) AddRangeWithEnvelopeSubtree(envelope unsafe.P
 	objc.Send[objc.ID](p_.ID, objc.Sel("addRangeWithEnvelope:subtree:"), envelope, subtree)
 }
 
-// An object that combines spatial audio layers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phaseblendnodedefinition/spatialmixerdefinitionfordistance
-func (p_ PHASEBlendNodeDefinition) SpatialMixerDefinitionForDistance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("spatialMixerDefinitionForDistance"))
-	return rv
-}
-
-
-// SetSpatialMixerDefinitionForDistance sets the value of the spatialMixerDefinitionForDistance property.
-// An object that combines spatial audio layers.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phaseblendnodedefinition/spatialmixerdefinitionfordistance
-func (p_ PHASEBlendNodeDefinition) SetSpatialMixerDefinitionForDistance(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSpatialMixerDefinitionForDistance:"), value)
-}
-
 // The meta parameter definition that caps the blend range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseblendnodedefinition/blendparameterdefinition
@@ -148,6 +130,24 @@ func (p_ PHASEBlendNodeDefinition) BlendParameterDefinition() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseblendnodedefinition/blendparameterdefinition
 func (p_ PHASEBlendNodeDefinition) SetBlendParameterDefinition(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBlendParameterDefinition:"), value)
+}
+
+// An object that combines spatial audio layers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseblendnodedefinition/spatialmixerdefinitionfordistance
+func (p_ PHASEBlendNodeDefinition) SpatialMixerDefinitionForDistance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("spatialMixerDefinitionForDistance"))
+	return rv
+}
+
+
+// SetSpatialMixerDefinitionForDistance sets the value of the spatialMixerDefinitionForDistance property.
+// An object that combines spatial audio layers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseblendnodedefinition/spatialmixerdefinitionfordistance
+func (p_ PHASEBlendNodeDefinition) SetSpatialMixerDefinitionForDistance(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSpatialMixerDefinitionForDistance:"), value)
 }
 
 

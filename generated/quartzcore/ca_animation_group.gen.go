@@ -81,42 +81,6 @@ func NewAnimationGroup() AnimationGroup {
 }
 
 
-// Determines if the animation is removed from the target layer’s animations upon completion.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caanimation/isremovedoncompletion
-func (a_ AnimationGroup) IsRemovedOnCompletion() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isRemovedOnCompletion"))
-	return rv
-}
-
-
-// SetIsRemovedOnCompletion sets the value of the isRemovedOnCompletion property.
-// Determines if the animation is removed from the target layer’s animations upon completion.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caanimation/isremovedoncompletion
-func (a_ AnimationGroup) SetIsRemovedOnCompletion(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRemovedOnCompletion:"), value)
-}
-
-// Specifies the receiver’s delegate object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caanimation/delegate
-func (a_ AnimationGroup) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// Specifies the receiver’s delegate object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caanimation/delegate
-func (a_ AnimationGroup) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
-}
-
 // An array of objects to be evaluated in the time space of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimationGroup/animations
@@ -143,6 +107,42 @@ func (a_ AnimationGroup) SetAnimations(value []Animation) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAnimations:"), nsArray)
+}
+
+// Specifies the receiver’s delegate object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caanimation/delegate
+func (a_ AnimationGroup) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// Specifies the receiver’s delegate object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caanimation/delegate
+func (a_ AnimationGroup) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// Determines if the animation is removed from the target layer’s animations upon completion.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caanimation/isremovedoncompletion
+func (a_ AnimationGroup) IsRemovedOnCompletion() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isRemovedOnCompletion"))
+	return rv
+}
+
+
+// SetIsRemovedOnCompletion sets the value of the isRemovedOnCompletion property.
+// Determines if the animation is removed from the target layer’s animations upon completion.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caanimation/isremovedoncompletion
+func (a_ AnimationGroup) SetIsRemovedOnCompletion(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRemovedOnCompletion:"), value)
 }
 
 

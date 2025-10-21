@@ -78,42 +78,6 @@ func NewPDFAppearanceCharacteristics() PDFAppearanceCharacteristics {
 }
 
 
-// The border color of the widget annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/bordercolor
-func (p_ PDFAppearanceCharacteristics) BorderColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("borderColor"))
-	return rv
-}
-
-
-// SetBorderColor sets the value of the borderColor property.
-// The border color of the widget annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/bordercolor
-func (p_ PDFAppearanceCharacteristics) SetBorderColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setBorderColor:"), value)
-}
-
-// The string value of the widget annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/widgetstringvalue
-func (p_ PDFAppearanceCharacteristics) WidgetStringValue() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("widgetStringValue"))
-	return rv
-}
-
-
-// SetWidgetStringValue sets the value of the widgetStringValue property.
-// The string value of the widget annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/widgetstringvalue
-func (p_ PDFAppearanceCharacteristics) SetWidgetStringValue(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetStringValue:"), objc.String(value))
-}
-
 // The color of the widget’s background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/backgroundcolor
@@ -132,60 +96,6 @@ func (p_ PDFAppearanceCharacteristics) SetBackgroundColor(value unsafe.Pointer) 
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
-// The number of degrees, in multiples of 90, that the widget annotation rotates counterclockwise relative to the page.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/rotation
-func (p_ PDFAppearanceCharacteristics) Rotation() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("rotation"))
-	return rv
-}
-
-
-// SetRotation sets the value of the rotation property.
-// The number of degrees, in multiples of 90, that the widget annotation rotates counterclockwise relative to the page.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/rotation
-func (p_ PDFAppearanceCharacteristics) SetRotation(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRotation:"), value)
-}
-
-// The type of button widget annotation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/controltype
-func (p_ PDFAppearanceCharacteristics) ControlType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("controlType"))
-	return rv
-}
-
-
-// SetControlType sets the value of the controlType property.
-// The type of button widget annotation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/controltype
-func (p_ PDFAppearanceCharacteristics) SetControlType(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setControlType:"), value)
-}
-
-// The text that the button widget annotation displays when the user isn’t interacting with it.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/caption
-func (p_ PDFAppearanceCharacteristics) Caption() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("caption"))
-	return rv
-}
-
-
-// SetCaption sets the value of the caption property.
-// The text that the button widget annotation displays when the user isn’t interacting with it.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/caption
-func (p_ PDFAppearanceCharacteristics) SetCaption(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCaption:"), objc.String(value))
-}
-
 // The widget identifier for form annotation actions and behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/fieldname
@@ -202,24 +112,6 @@ func (p_ PDFAppearanceCharacteristics) FieldName() string {
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/fieldname
 func (p_ PDFAppearanceCharacteristics) SetFieldName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFieldName:"), objc.String(value))
-}
-
-// The text that the widget annotation displays when the user hovers the pointer over it.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/rollovercaption
-func (p_ PDFAppearanceCharacteristics) RolloverCaption() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("rolloverCaption"))
-	return rv
-}
-
-
-// SetRolloverCaption sets the value of the rolloverCaption property.
-// The text that the widget annotation displays when the user hovers the pointer over it.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/rollovercaption
-func (p_ PDFAppearanceCharacteristics) SetRolloverCaption(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRolloverCaption:"), objc.String(value))
 }
 
 // A Boolean value that determines whether the widget is editable.
@@ -258,6 +150,42 @@ func (p_ PDFAppearanceCharacteristics) SetWidgetDefaultStringValue(value string)
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetDefaultStringValue:"), objc.String(value))
 }
 
+// The type of widget annotation, such as button, choice, or text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/widgetfieldtype
+func (p_ PDFAppearanceCharacteristics) WidgetFieldType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("widgetFieldType"))
+	return rv
+}
+
+
+// SetWidgetFieldType sets the value of the widgetFieldType property.
+// The type of widget annotation, such as button, choice, or text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/widgetfieldtype
+func (p_ PDFAppearanceCharacteristics) SetWidgetFieldType(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetFieldType:"), value)
+}
+
+// The string value of the widget annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/widgetstringvalue
+func (p_ PDFAppearanceCharacteristics) WidgetStringValue() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("widgetStringValue"))
+	return rv
+}
+
+
+// SetWidgetStringValue sets the value of the widgetStringValue property.
+// The string value of the widget annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/widgetstringvalue
+func (p_ PDFAppearanceCharacteristics) SetWidgetStringValue(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetStringValue:"), objc.String(value))
+}
+
 // A dictionary that contains a deep copy of the appearance characteristic key-value pairs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/appearancecharacteristicskeyvalues
@@ -274,6 +202,60 @@ func (p_ PDFAppearanceCharacteristics) AppearanceCharacteristicsKeyValues() unsa
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/appearancecharacteristicskeyvalues
 func (p_ PDFAppearanceCharacteristics) SetAppearanceCharacteristicsKeyValues(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAppearanceCharacteristicsKeyValues:"), value)
+}
+
+// The border color of the widget annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/bordercolor
+func (p_ PDFAppearanceCharacteristics) BorderColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("borderColor"))
+	return rv
+}
+
+
+// SetBorderColor sets the value of the borderColor property.
+// The border color of the widget annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/bordercolor
+func (p_ PDFAppearanceCharacteristics) SetBorderColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBorderColor:"), value)
+}
+
+// The text that the button widget annotation displays when the user isn’t interacting with it.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/caption
+func (p_ PDFAppearanceCharacteristics) Caption() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("caption"))
+	return rv
+}
+
+
+// SetCaption sets the value of the caption property.
+// The text that the button widget annotation displays when the user isn’t interacting with it.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/caption
+func (p_ PDFAppearanceCharacteristics) SetCaption(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCaption:"), objc.String(value))
+}
+
+// The type of button widget annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/controltype
+func (p_ PDFAppearanceCharacteristics) ControlType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("controlType"))
+	return rv
+}
+
+
+// SetControlType sets the value of the controlType property.
+// The type of button widget annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/controltype
+func (p_ PDFAppearanceCharacteristics) SetControlType(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setControlType:"), value)
 }
 
 // The text that the button widget annotation displays when the user holds down on it.
@@ -294,22 +276,40 @@ func (p_ PDFAppearanceCharacteristics) SetDownCaption(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDownCaption:"), objc.String(value))
 }
 
-// The type of widget annotation, such as button, choice, or text.
+// The text that the widget annotation displays when the user hovers the pointer over it.
 //
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/widgetfieldtype
-func (p_ PDFAppearanceCharacteristics) WidgetFieldType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("widgetFieldType"))
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/rollovercaption
+func (p_ PDFAppearanceCharacteristics) RolloverCaption() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("rolloverCaption"))
 	return rv
 }
 
 
-// SetWidgetFieldType sets the value of the widgetFieldType property.
-// The type of widget annotation, such as button, choice, or text.
+// SetRolloverCaption sets the value of the rolloverCaption property.
+// The text that the widget annotation displays when the user hovers the pointer over it.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/widgetfieldtype
-func (p_ PDFAppearanceCharacteristics) SetWidgetFieldType(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetFieldType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/rollovercaption
+func (p_ PDFAppearanceCharacteristics) SetRolloverCaption(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRolloverCaption:"), objc.String(value))
+}
+
+// The number of degrees, in multiples of 90, that the widget annotation rotates counterclockwise relative to the page.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/rotation
+func (p_ PDFAppearanceCharacteristics) Rotation() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("rotation"))
+	return rv
+}
+
+
+// SetRotation sets the value of the rotation property.
+// The number of degrees, in multiples of 90, that the widget annotation rotates counterclockwise relative to the page.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics/rotation
+func (p_ PDFAppearanceCharacteristics) SetRotation(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRotation:"), value)
 }
 
 

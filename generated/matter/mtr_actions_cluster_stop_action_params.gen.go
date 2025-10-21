@@ -77,21 +77,6 @@ func NewMTRActionsClusterStopActionParams() MTRActionsClusterStopActionParams {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstopactionparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterStopActionParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstopactionparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterStopActionParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstopactionparams/actionid
 func (m_ MTRActionsClusterStopActionParams) ActionID() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
@@ -119,6 +104,21 @@ func (m_ MTRActionsClusterStopActionParams) InvokeID() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstopactionparams/invokeid
 func (m_ MTRActionsClusterStopActionParams) SetInvokeID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstopactionparams/serversideprocessingtimeout
+func (m_ MTRActionsClusterStopActionParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstopactionparams/serversideprocessingtimeout
+func (m_ MTRActionsClusterStopActionParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

@@ -80,24 +80,6 @@ func NewKey() Key {
 }
 
 
-// The applicable scope of the machine learning key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
-func (k_ Key) Scope() string {
-	rv := objc.Send[string](k_.ID, objc.Sel("scope"))
-	return rv
-}
-
-
-// SetScope sets the value of the scope property.
-// The applicable scope of the machine learning key.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
-func (k_ Key) SetScope(value string) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setScope:"), objc.String(value))
-}
-
 // The name of the machine learning key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/name
@@ -114,6 +96,24 @@ func (k_ Key) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/name
 func (k_ Key) SetName(value string) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// The applicable scope of the machine learning key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
+func (k_ Key) Scope() string {
+	rv := objc.Send[string](k_.ID, objc.Sel("scope"))
+	return rv
+}
+
+
+// SetScope sets the value of the scope property.
+// The applicable scope of the machine learning key.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
+func (k_ Key) SetScope(value string) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setScope:"), objc.String(value))
 }
 
 

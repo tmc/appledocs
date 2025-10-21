@@ -82,14 +82,6 @@ func NewQRCodeFeature() QRCodeFeature {
 }
 
 
-// A detector that searches for Quick Response codes (a type of 2D barcode) in a still image or video, returning
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypeqrcode
-func (q_ QRCodeFeature) CIDetectorTypeQRCode() string {
-	rv := objc.Send[string](q_.ID, objc.Sel("CIDetectorTypeQRCode"))
-	return rv
-}
-
 // The image coordinate of the lower-left corner of the detected QR code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/bottomLeft-swift.property
@@ -143,6 +135,14 @@ func (q_ QRCodeFeature) TopLeft() coregraphics.CGPoint {
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/topRight-swift.property
 func (q_ QRCodeFeature) TopRight() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](q_.ID, objc.Sel("topRight"))
+	return rv
+}
+
+// A detector that searches for Quick Response codes (a type of 2D barcode) in a still image or video, returning
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypeqrcode
+func (q_ QRCodeFeature) CIDetectorTypeQRCode() string {
+	rv := objc.Send[string](q_.ID, objc.Sel("CIDetectorTypeQRCode"))
 	return rv
 }
 

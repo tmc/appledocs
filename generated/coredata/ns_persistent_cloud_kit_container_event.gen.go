@@ -78,58 +78,20 @@ func NewPersistentCloudKitContainerEvent() PersistentCloudKitContainerEvent {
 }
 
 
-// A unique identifier for the event in a container.
+// An error that indicates why an operation fails.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
-func (p_ PersistentCloudKitContainerEvent) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/error
+func (p_ PersistentCloudKitContainerEvent) Error() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("error"))
 	return rv
 }
 
-
-// SetIdentifier sets the value of the identifier property.
-// A unique identifier for the event in a container.
-
+// A Boolean value that indicates whether the operation the event represents is successful.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
-func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
-}
-
-// The associated store identifier in the container for the event.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
-func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("storeIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/succeeded
+func (p_ PersistentCloudKitContainerEvent) Succeeded() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("succeeded"))
 	return rv
-}
-
-
-// SetStoreIdentifier sets the value of the storeIdentifier property.
-// The associated store identifier in the container for the event.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
-func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStoreIdentifier:"), objc.String(value))
-}
-
-// The start date of the operation that the event represents.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
-func (p_ PersistentCloudKitContainerEvent) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startDate"))
-	return rv
-}
-
-
-// SetStartDate sets the value of the startDate property.
-// The start date of the operation that the event represents.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
-func (p_ PersistentCloudKitContainerEvent) SetStartDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
 }
 
 // The end date of the operation that the event represents.
@@ -150,6 +112,60 @@ func (p_ PersistentCloudKitContainerEvent) SetEndDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndDate:"), value)
 }
 
+// A unique identifier for the event in a container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
+func (p_ PersistentCloudKitContainerEvent) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A unique identifier for the event in a container.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
+func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+// The start date of the operation that the event represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
+func (p_ PersistentCloudKitContainerEvent) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+// SetStartDate sets the value of the startDate property.
+// The start date of the operation that the event represents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
+func (p_ PersistentCloudKitContainerEvent) SetStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
+}
+
+// The associated store identifier in the container for the event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
+func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("storeIdentifier"))
+	return rv
+}
+
+
+// SetStoreIdentifier sets the value of the storeIdentifier property.
+// The associated store identifier in the container for the event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
+func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStoreIdentifier:"), objc.String(value))
+}
+
 // The type of event, either setup, import, or export.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/type
@@ -166,22 +182,6 @@ func (p_ PersistentCloudKitContainerEvent) Type() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/type
 func (p_ PersistentCloudKitContainerEvent) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
-}
-
-// An error that indicates why an operation fails.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/error
-func (p_ PersistentCloudKitContainerEvent) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("error"))
-	return rv
-}
-
-// A Boolean value that indicates whether the operation the event represents is successful.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/succeeded
-func (p_ PersistentCloudKitContainerEvent) Succeeded() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("succeeded"))
-	return rv
 }
 
 

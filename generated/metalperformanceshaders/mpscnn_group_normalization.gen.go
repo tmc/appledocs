@@ -86,21 +86,6 @@ func NewCNNGroupNormalizationWithDeviceDataSource(device objc.ID, dataSource obj
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/epsilon
-func (c_ CNNGroupNormalization) Epsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("epsilon"))
-	return rv
-}
-
-
-// SetEpsilon sets the value of the epsilon property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/epsilon
-func (c_ CNNGroupNormalization) SetEpsilon(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEpsilon:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/datasource
 func (c_ CNNGroupNormalization) DataSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dataSource"))
@@ -113,6 +98,21 @@ func (c_ CNNGroupNormalization) DataSource() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/datasource
 func (c_ CNNGroupNormalization) SetDataSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataSource:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/epsilon
+func (c_ CNNGroupNormalization) Epsilon() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("epsilon"))
+	return rv
+}
+
+
+// SetEpsilon sets the value of the epsilon property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/epsilon
+func (c_ CNNGroupNormalization) SetEpsilon(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEpsilon:"), value)
 }
 
 

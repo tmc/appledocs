@@ -78,22 +78,22 @@ func NewHKQuantitySeriesSampleBuilder() HKQuantitySeriesSampleBuilder {
 }
 
 
-// The starting date and time for the sample.
+// The device providing the data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
-func (h_ HKQuantitySeriesSampleBuilder) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("startDate"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/device
+func (h_ HKQuantitySeriesSampleBuilder) Device() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("device"))
 	return rv
 }
 
 
-// SetStartDate sets the value of the startDate property.
-// The starting date and time for the sample.
+// SetDevice sets the value of the device property.
+// The device providing the data.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
-func (h_ HKQuantitySeriesSampleBuilder) SetStartDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/device
+func (h_ HKQuantitySeriesSampleBuilder) SetDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDevice:"), value)
 }
 
 // The quantity type for the series.
@@ -114,22 +114,22 @@ func (h_ HKQuantitySeriesSampleBuilder) SetQuantityType(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setQuantityType:"), value)
 }
 
-// The device providing the data.
+// The starting date and time for the sample.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/device
-func (h_ HKQuantitySeriesSampleBuilder) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("device"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
+func (h_ HKQuantitySeriesSampleBuilder) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 
-// SetDevice sets the value of the device property.
-// The device providing the data.
+// SetStartDate sets the value of the startDate property.
+// The starting date and time for the sample.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/device
-func (h_ HKQuantitySeriesSampleBuilder) SetDevice(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setDevice:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
+func (h_ HKQuantitySeriesSampleBuilder) SetStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 
 

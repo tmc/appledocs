@@ -120,6 +120,22 @@ func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRol
 	return rv
 }
 
+// A value that indicates the quality of the face capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/faceCaptureQuality-2o4xv
+func (f_ FaceObservation) FaceCaptureQuality() foundation.Number {
+	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("faceCaptureQuality"))
+	return rv
+}
+
+// The facial features of the detected face.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/landmarks
+func (f_ FaceObservation) Landmarks() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("landmarks"))
+	return rv
+}
+
 // The results of the face-capture quality request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest/results
@@ -136,6 +152,24 @@ func (f_ FaceObservation) Results() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest/results
 func (f_ FaceObservation) SetResults(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setResults:"), value)
+}
+
+// The pitch angle of a face in radians.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/pitch
+func (f_ FaceObservation) Pitch() foundation.Number {
+	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("pitch"))
+	return rv
+}
+
+
+// SetPitch sets the value of the pitch property.
+// The pitch angle of a face in radians.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/pitch
+func (f_ FaceObservation) SetPitch(value foundation.Number) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPitch:"), value)
 }
 
 // The roll angle of a face in radians.
@@ -172,40 +206,6 @@ func (f_ FaceObservation) Yaw() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/yaw
 func (f_ FaceObservation) SetYaw(value foundation.Number) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setYaw:"), value)
-}
-
-// The pitch angle of a face in radians.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/pitch
-func (f_ FaceObservation) Pitch() foundation.Number {
-	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("pitch"))
-	return rv
-}
-
-
-// SetPitch sets the value of the pitch property.
-// The pitch angle of a face in radians.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/pitch
-func (f_ FaceObservation) SetPitch(value foundation.Number) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setPitch:"), value)
-}
-
-// A value that indicates the quality of the face capture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/faceCaptureQuality-2o4xv
-func (f_ FaceObservation) FaceCaptureQuality() foundation.Number {
-	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("faceCaptureQuality"))
-	return rv
-}
-
-// The facial features of the detected face.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/landmarks
-func (f_ FaceObservation) Landmarks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("landmarks"))
-	return rv
 }
 
 

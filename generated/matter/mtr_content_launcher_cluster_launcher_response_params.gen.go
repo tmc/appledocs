@@ -92,21 +92,6 @@ func (m_ MTRContentLauncherClusterLauncherResponseParams) SetData(value string) 
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/timedinvoketimeoutms
-func (m_ MTRContentLauncherClusterLauncherResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/timedinvoketimeoutms
-func (m_ MTRContentLauncherClusterLauncherResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/status
 func (m_ MTRContentLauncherClusterLauncherResponseParams) Status() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
@@ -119,6 +104,21 @@ func (m_ MTRContentLauncherClusterLauncherResponseParams) Status() foundation.Nu
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/status
 func (m_ MTRContentLauncherClusterLauncherResponseParams) SetStatus(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/timedinvoketimeoutms
+func (m_ MTRContentLauncherClusterLauncherResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/timedinvoketimeoutms
+func (m_ MTRContentLauncherClusterLauncherResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

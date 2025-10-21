@@ -130,24 +130,6 @@ func (m_ MIDIPlayer) Stop() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stop"))
 }
 
-// A Boolean value that indicates whether the sequence is playing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmidiplayer/isplaying
-func (m_ MIDIPlayer) IsPlaying() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isPlaying"))
-	return rv
-}
-
-
-// SetIsPlaying sets the value of the isPlaying property.
-// A Boolean value that indicates whether the sequence is playing.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmidiplayer/isplaying
-func (m_ MIDIPlayer) SetIsPlaying(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPlaying:"), value)
-}
-
 // The current playback position, in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/currentPosition
@@ -198,6 +180,24 @@ func (m_ MIDIPlayer) Rate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/rate
 func (m_ MIDIPlayer) SetRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
+}
+
+// A Boolean value that indicates whether the sequence is playing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmidiplayer/isplaying
+func (m_ MIDIPlayer) IsPlaying() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isPlaying"))
+	return rv
+}
+
+
+// SetIsPlaying sets the value of the isPlaying property.
+// A Boolean value that indicates whether the sequence is playing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmidiplayer/isplaying
+func (m_ MIDIPlayer) SetIsPlaying(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPlaying:"), value)
 }
 
 

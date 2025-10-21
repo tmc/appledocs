@@ -2196,24 +2196,6 @@ func (f_ Filter) ViewForUIConfigurationExcludedKeys(inUIConfiguration objc.ID, i
 	return rv
 }
 
-// A Boolean value that determines whether the filter is enabled. Animatable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifilter-swift.class/isenabled
-func (f_ Filter) IsEnabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
-	return rv
-}
-
-
-// SetIsEnabled sets the value of the isEnabled property.
-// A Boolean value that determines whether the filter is enabled. Animatable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifilter-swift.class/isenabled
-func (f_ Filter) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
 // A dictionary of key-value pairs that describe the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/attributes
@@ -2280,6 +2262,24 @@ func (f_ Filter) OutputImage() unsafe.Pointer {
 func (f_ Filter) OutputKeys() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("outputKeys"))
 	return rv
+}
+
+// A Boolean value that determines whether the filter is enabled. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifilter-swift.class/isenabled
+func (f_ Filter) IsEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that determines whether the filter is enabled. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifilter-swift.class/isenabled
+func (f_ Filter) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 

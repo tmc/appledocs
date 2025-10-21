@@ -92,21 +92,6 @@ func (m_ MTRColorControlClusterMoveHueParams) SetMoveMode(value foundation.Numbe
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/rate
-func (m_ MTRColorControlClusterMoveHueParams) Rate() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rate"))
-	return rv
-}
-
-
-// SetRate sets the value of the rate property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/rate
-func (m_ MTRColorControlClusterMoveHueParams) SetRate(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/optionsmask
 func (m_ MTRColorControlClusterMoveHueParams) OptionsMask() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
@@ -122,21 +107,6 @@ func (m_ MTRColorControlClusterMoveHueParams) SetOptionsMask(value foundation.Nu
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterMoveHueParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterMoveHueParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/optionsoverride
 func (m_ MTRColorControlClusterMoveHueParams) OptionsOverride() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
@@ -149,6 +119,36 @@ func (m_ MTRColorControlClusterMoveHueParams) OptionsOverride() foundation.Numbe
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/optionsoverride
 func (m_ MTRColorControlClusterMoveHueParams) SetOptionsOverride(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/rate
+func (m_ MTRColorControlClusterMoveHueParams) Rate() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rate"))
+	return rv
+}
+
+
+// SetRate sets the value of the rate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/rate
+func (m_ MTRColorControlClusterMoveHueParams) SetRate(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/serversideprocessingtimeout
+func (m_ MTRColorControlClusterMoveHueParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovehueparams/serversideprocessingtimeout
+func (m_ MTRColorControlClusterMoveHueParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

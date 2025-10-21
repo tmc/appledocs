@@ -76,21 +76,6 @@ func NewFileProviderKnownFolderLocation() FileProviderKnownFolderLocation {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
-func (f_ FileProviderKnownFolderLocation) DocumentsLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("documentsLocation"))
-	return rv
-}
-
-
-// SetDocumentsLocation sets the value of the documentsLocation property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
-func (f_ FileProviderKnownFolderLocation) SetDocumentsLocation(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentsLocation:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
 func (f_ FileProviderKnownFolderLocation) DesktopLocation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("desktopLocation"))
@@ -103,6 +88,21 @@ func (f_ FileProviderKnownFolderLocation) DesktopLocation() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
 func (f_ FileProviderKnownFolderLocation) SetDesktopLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesktopLocation:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
+func (f_ FileProviderKnownFolderLocation) DocumentsLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("documentsLocation"))
+	return rv
+}
+
+
+// SetDocumentsLocation sets the value of the documentsLocation property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
+func (f_ FileProviderKnownFolderLocation) SetDocumentsLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentsLocation:"), value)
 }
 
 

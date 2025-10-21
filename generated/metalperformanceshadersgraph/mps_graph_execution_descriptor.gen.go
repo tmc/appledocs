@@ -113,22 +113,22 @@ func (g_ GraphExecutionDescriptor) SetCompilationDescriptor(value unsafe.Pointer
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompilationDescriptor:"), value)
 }
 
-// The flag that blocks the execution call until the entire execution is complete.
+// The handler that graph calls at the completion of the execution.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/waituntilcompleted
-func (g_ GraphExecutionDescriptor) WaitUntilCompleted() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("waitUntilCompleted"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/completionhandler
+func (g_ GraphExecutionDescriptor) CompletionHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("completionHandler"))
 	return rv
 }
 
 
-// SetWaitUntilCompleted sets the value of the waitUntilCompleted property.
-// The flag that blocks the execution call until the entire execution is complete.
+// SetCompletionHandler sets the value of the completionHandler property.
+// The handler that graph calls at the completion of the execution.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/waituntilcompleted
-func (g_ GraphExecutionDescriptor) SetWaitUntilCompleted(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setWaitUntilCompleted:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/completionhandler
+func (g_ GraphExecutionDescriptor) SetCompletionHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setCompletionHandler:"), value)
 }
 
 // The handler that graph calls when it schedules the execution.
@@ -149,22 +149,22 @@ func (g_ GraphExecutionDescriptor) SetScheduledHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setScheduledHandler:"), value)
 }
 
-// The handler that graph calls at the completion of the execution.
+// The flag that blocks the execution call until the entire execution is complete.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/completionhandler
-func (g_ GraphExecutionDescriptor) CompletionHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("completionHandler"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/waituntilcompleted
+func (g_ GraphExecutionDescriptor) WaitUntilCompleted() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("waitUntilCompleted"))
 	return rv
 }
 
 
-// SetCompletionHandler sets the value of the completionHandler property.
-// The handler that graph calls at the completion of the execution.
+// SetWaitUntilCompleted sets the value of the waitUntilCompleted property.
+// The flag that blocks the execution call until the entire execution is complete.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/completionhandler
-func (g_ GraphExecutionDescriptor) SetCompletionHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setCompletionHandler:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/waituntilcompleted
+func (g_ GraphExecutionDescriptor) SetWaitUntilCompleted(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setWaitUntilCompleted:"), value)
 }
 
 

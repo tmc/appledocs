@@ -77,21 +77,6 @@ func NewMTRBridgedDeviceBasicInformationClusterProductAppearanceStruct() MTRBrid
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/primarycolor
-func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) PrimaryColor() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("primaryColor"))
-	return rv
-}
-
-
-// SetPrimaryColor sets the value of the primaryColor property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/primarycolor
-func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimaryColor:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/finish
 func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) Finish() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("finish"))
@@ -104,6 +89,21 @@ func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) Finish(
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/finish
 func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) SetFinish(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFinish:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/primarycolor
+func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) PrimaryColor() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("primaryColor"))
+	return rv
+}
+
+
+// SetPrimaryColor sets the value of the primaryColor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/primarycolor
+func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimaryColor:"), value)
 }
 
 

@@ -80,6 +80,24 @@ func NewTKTokenDriver() TKTokenDriver {
 }
 
 
+// The token driver delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenDriver/delegate
+func (t_ TKTokenDriver) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The token driver delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenDriver/delegate
+func (t_ TKTokenDriver) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
 // Additional configuration information for the token instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
@@ -114,24 +132,6 @@ func (t_ TKTokenDriver) KeychainItems() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/keychainitems
 func (t_ TKTokenDriver) SetKeychainItems(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setKeychainItems:"), value)
-}
-
-// The token driver delegate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenDriver/delegate
-func (t_ TKTokenDriver) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The token driver delegate.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenDriver/delegate
-func (t_ TKTokenDriver) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

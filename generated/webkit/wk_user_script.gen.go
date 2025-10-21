@@ -105,24 +105,6 @@ func NewUserScriptWithSourceInjectionTimeForMainFrameOnlyInContentWorld(source s
 }
 
 
-// A Boolean value that indicates whether to inject the script into the main frame or all frames.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkuserscript/isformainframeonly
-func (u_ UserScript) IsForMainFrameOnly() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("isForMainFrameOnly"))
-	return rv
-}
-
-
-// SetIsForMainFrameOnly sets the value of the isForMainFrameOnly property.
-// A Boolean value that indicates whether to inject the script into the main frame or all frames.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkuserscript/isformainframeonly
-func (u_ UserScript) SetIsForMainFrameOnly(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIsForMainFrameOnly:"), value)
-}
-
 // The time at which to inject the script into the webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKUserScript/injectionTime
@@ -145,6 +127,24 @@ func (u_ UserScript) ForMainFrameOnly() bool {
 func (u_ UserScript) Source() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("source"))
 	return rv
+}
+
+// A Boolean value that indicates whether to inject the script into the main frame or all frames.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkuserscript/isformainframeonly
+func (u_ UserScript) IsForMainFrameOnly() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isForMainFrameOnly"))
+	return rv
+}
+
+
+// SetIsForMainFrameOnly sets the value of the isForMainFrameOnly property.
+// A Boolean value that indicates whether to inject the script into the main frame or all frames.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkuserscript/isformainframeonly
+func (u_ UserScript) SetIsForMainFrameOnly(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsForMainFrameOnly:"), value)
 }
 
 

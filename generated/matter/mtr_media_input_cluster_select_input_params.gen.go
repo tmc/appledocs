@@ -77,21 +77,6 @@ func NewMTRMediaInputClusterSelectInputParams() MTRMediaInputClusterSelectInputP
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/serversideprocessingtimeout
-func (m_ MTRMediaInputClusterSelectInputParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/serversideprocessingtimeout
-func (m_ MTRMediaInputClusterSelectInputParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/index
 func (m_ MTRMediaInputClusterSelectInputParams) Index() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("index"))
@@ -104,6 +89,21 @@ func (m_ MTRMediaInputClusterSelectInputParams) Index() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/index
 func (m_ MTRMediaInputClusterSelectInputParams) SetIndex(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/serversideprocessingtimeout
+func (m_ MTRMediaInputClusterSelectInputParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/serversideprocessingtimeout
+func (m_ MTRMediaInputClusterSelectInputParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

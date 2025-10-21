@@ -80,6 +80,14 @@ func NewLeaderboard() Leaderboard {
 }
 
 
+// The date and time a recurring leaderboard occurrence starts accepting scores.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboard/startDate
+func (l_ Leaderboard) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("startDate"))
+	return rv
+}
+
 // The identifier of the game activity associated with this leaderboard, as configured by the developer in App Store Connect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/activityidentifier
@@ -96,60 +104,6 @@ func (l_ Leaderboard) ActivityIdentifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/activityidentifier
 func (l_ Leaderboard) SetActivityIdentifier(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActivityIdentifier:"), objc.String(value))
-}
-
-// The description of this Leaderboard as configured by the developer in App Store Connect.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboarddescription
-func (l_ Leaderboard) LeaderboardDescription() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("leaderboardDescription"))
-	return rv
-}
-
-
-// SetLeaderboardDescription sets the value of the leaderboardDescription property.
-// The description of this Leaderboard as configured by the developer in App Store Connect.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboarddescription
-func (l_ Leaderboard) SetLeaderboardDescription(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardDescription:"), objc.String(value))
-}
-
-// The type of leaderboard, classic or recurring.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/type
-func (l_ Leaderboard) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// SetType sets the value of the type property.
-// The type of leaderboard, classic or recurring.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/type
-func (l_ Leaderboard) SetType(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setType:"), value)
-}
-
-// The release state of the leaderboard in App Store Connect.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/releasestate
-func (l_ Leaderboard) ReleaseState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("releaseState"))
-	return rv
-}
-
-
-// SetReleaseState sets the value of the releaseState property.
-// The release state of the leaderboard in App Store Connect.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/releasestate
-func (l_ Leaderboard) SetReleaseState(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setReleaseState:"), value)
 }
 
 // The properties when associating this leaderboard with a game activity, as configured by the developer in App Store Connect.
@@ -170,58 +124,22 @@ func (l_ Leaderboard) SetActivityProperties(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActivityProperties:"), objc.String(value))
 }
 
-// The identifier for the group the leaderboard belongs to.
+// The ID that Game Center uses to identify this leaderboard.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/groupidentifier
-func (l_ Leaderboard) GroupIdentifier() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("groupIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/baseleaderboardid
+func (l_ Leaderboard) BaseLeaderboardID() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("baseLeaderboardID"))
 	return rv
 }
 
 
-// SetGroupIdentifier sets the value of the groupIdentifier property.
-// The identifier for the group the leaderboard belongs to.
+// SetBaseLeaderboardID sets the value of the baseLeaderboardID property.
+// The ID that Game Center uses to identify this leaderboard.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/groupidentifier
-func (l_ Leaderboard) SetGroupIdentifier(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
-}
-
-// The date and time the next recurring leaderboard occurrence starts accepting scores.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/nextstartdate
-func (l_ Leaderboard) NextStartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("nextStartDate"))
-	return rv
-}
-
-
-// SetNextStartDate sets the value of the nextStartDate property.
-// The date and time the next recurring leaderboard occurrence starts accepting scores.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/nextstartdate
-func (l_ Leaderboard) SetNextStartDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setNextStartDate:"), value)
-}
-
-// A Boolean value that indicates whether the current leaderboard isn’t visible in Game Center views.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/ishidden
-func (l_ Leaderboard) IsHidden() bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("isHidden"))
-	return rv
-}
-
-
-// SetIsHidden sets the value of the isHidden property.
-// A Boolean value that indicates whether the current leaderboard isn’t visible in Game Center views.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/ishidden
-func (l_ Leaderboard) SetIsHidden(value bool) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setIsHidden:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/baseleaderboardid
+func (l_ Leaderboard) SetBaseLeaderboardID(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setBaseLeaderboardID:"), objc.String(value))
 }
 
 // The duration from the start date that a recurring leaderboard occurrence accepts scores.
@@ -242,6 +160,96 @@ func (l_ Leaderboard) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDuration:"), value)
 }
 
+// The identifier for the group the leaderboard belongs to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/groupidentifier
+func (l_ Leaderboard) GroupIdentifier() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("groupIdentifier"))
+	return rv
+}
+
+
+// SetGroupIdentifier sets the value of the groupIdentifier property.
+// The identifier for the group the leaderboard belongs to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/groupidentifier
+func (l_ Leaderboard) SetGroupIdentifier(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the current leaderboard isn’t visible in Game Center views.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/ishidden
+func (l_ Leaderboard) IsHidden() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// A Boolean value that indicates whether the current leaderboard isn’t visible in Game Center views.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/ishidden
+func (l_ Leaderboard) SetIsHidden(value bool) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// The description of this Leaderboard as configured by the developer in App Store Connect.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboarddescription
+func (l_ Leaderboard) LeaderboardDescription() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("leaderboardDescription"))
+	return rv
+}
+
+
+// SetLeaderboardDescription sets the value of the leaderboardDescription property.
+// The description of this Leaderboard as configured by the developer in App Store Connect.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboarddescription
+func (l_ Leaderboard) SetLeaderboardDescription(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardDescription:"), objc.String(value))
+}
+
+// The date and time the next recurring leaderboard occurrence starts accepting scores.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/nextstartdate
+func (l_ Leaderboard) NextStartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("nextStartDate"))
+	return rv
+}
+
+
+// SetNextStartDate sets the value of the nextStartDate property.
+// The date and time the next recurring leaderboard occurrence starts accepting scores.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/nextstartdate
+func (l_ Leaderboard) SetNextStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setNextStartDate:"), value)
+}
+
+// The release state of the leaderboard in App Store Connect.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/releasestate
+func (l_ Leaderboard) ReleaseState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("releaseState"))
+	return rv
+}
+
+
+// SetReleaseState sets the value of the releaseState property.
+// The release state of the leaderboard in App Store Connect.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/releasestate
+func (l_ Leaderboard) SetReleaseState(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setReleaseState:"), value)
+}
+
 // The localized title for the leaderboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/title
@@ -260,30 +268,22 @@ func (l_ Leaderboard) SetTitle(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
-// The ID that Game Center uses to identify this leaderboard.
+// The type of leaderboard, classic or recurring.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/baseleaderboardid
-func (l_ Leaderboard) BaseLeaderboardID() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("baseLeaderboardID"))
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/type
+func (l_ Leaderboard) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetBaseLeaderboardID sets the value of the baseLeaderboardID property.
-// The ID that Game Center uses to identify this leaderboard.
+// SetType sets the value of the type property.
+// The type of leaderboard, classic or recurring.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/baseleaderboardid
-func (l_ Leaderboard) SetBaseLeaderboardID(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setBaseLeaderboardID:"), objc.String(value))
-}
-
-// The date and time a recurring leaderboard occurrence starts accepting scores.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboard/startDate
-func (l_ Leaderboard) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("startDate"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/type
+func (l_ Leaderboard) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setType:"), value)
 }
 
 

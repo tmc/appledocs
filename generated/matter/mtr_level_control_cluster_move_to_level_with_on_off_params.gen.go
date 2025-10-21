@@ -77,21 +77,6 @@ func NewMTRLevelControlClusterMoveToLevelWithOnOffParams() MTRLevelControlCluste
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsoverride
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
-	return rv
-}
-
-
-// SetOptionsOverride sets the value of the optionsOverride property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsoverride
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetOptionsOverride(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/level
 func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) Level() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("level"))
@@ -107,33 +92,33 @@ func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetLevel(value founda
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/transitiontime
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsmask
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) OptionsMask() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
 	return rv
 }
 
 
-// SetTransitionTime sets the value of the transitionTime property.
+// SetOptionsMask sets the value of the optionsMask property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/transitiontime
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetTransitionTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsmask
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetOptionsMask(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsoverride
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) OptionsOverride() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetOptionsOverride sets the value of the optionsOverride property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsoverride
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetOptionsOverride(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
 //
@@ -152,18 +137,33 @@ func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetServerSideProcessi
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsmask
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/timedinvoketimeoutms
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetOptionsMask sets the value of the optionsMask property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsmask
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetOptionsMask(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/timedinvoketimeoutms
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/transitiontime
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) TransitionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+	return rv
+}
+
+
+// SetTransitionTime sets the value of the transitionTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/transitiontime
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetTransitionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 
 

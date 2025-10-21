@@ -78,6 +78,60 @@ func NewNEVPNIKEv2SecurityAssociationParameters() NEVPNIKEv2SecurityAssociationP
 }
 
 
+// The Diffie Hellman group used by the Security Association.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/diffiehellmangroup
+func (n_ NEVPNIKEv2SecurityAssociationParameters) DiffieHellmanGroup() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("diffieHellmanGroup"))
+	return rv
+}
+
+
+// SetDiffieHellmanGroup sets the value of the diffieHellmanGroup property.
+// The Diffie Hellman group used by the Security Association.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/diffiehellmangroup
+func (n_ NEVPNIKEv2SecurityAssociationParameters) SetDiffieHellmanGroup(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDiffieHellmanGroup:"), value)
+}
+
+// The algorithm used by the Security Association to encrypt and decrypt data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/encryptionalgorithm
+func (n_ NEVPNIKEv2SecurityAssociationParameters) EncryptionAlgorithm() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("encryptionAlgorithm"))
+	return rv
+}
+
+
+// SetEncryptionAlgorithm sets the value of the encryptionAlgorithm property.
+// The algorithm used by the Security Association to encrypt and decrypt data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/encryptionalgorithm
+func (n_ NEVPNIKEv2SecurityAssociationParameters) SetEncryptionAlgorithm(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setEncryptionAlgorithm:"), value)
+}
+
+// The algorithm used by the Security Association to verify the integrity of data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/integrityalgorithm
+func (n_ NEVPNIKEv2SecurityAssociationParameters) IntegrityAlgorithm() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("integrityAlgorithm"))
+	return rv
+}
+
+
+// SetIntegrityAlgorithm sets the value of the integrityAlgorithm property.
+// The algorithm used by the Security Association to verify the integrity of data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/integrityalgorithm
+func (n_ NEVPNIKEv2SecurityAssociationParameters) SetIntegrityAlgorithm(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIntegrityAlgorithm:"), value)
+}
+
 // The duration of the lifetime of the Security Association, in minutes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/lifetimeminutes
@@ -114,24 +168,6 @@ func (n_ NEVPNIKEv2SecurityAssociationParameters) SetPostQuantumKeyExchangeMetho
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPostQuantumKeyExchangeMethods:"), value)
 }
 
-// The algorithm used by the Security Association to verify the integrity of data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/integrityalgorithm
-func (n_ NEVPNIKEv2SecurityAssociationParameters) IntegrityAlgorithm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("integrityAlgorithm"))
-	return rv
-}
-
-
-// SetIntegrityAlgorithm sets the value of the integrityAlgorithm property.
-// The algorithm used by the Security Association to verify the integrity of data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/integrityalgorithm
-func (n_ NEVPNIKEv2SecurityAssociationParameters) SetIntegrityAlgorithm(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIntegrityAlgorithm:"), value)
-}
-
 // An
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/childsecurityassociationparameters
@@ -150,24 +186,6 @@ func (n_ NEVPNIKEv2SecurityAssociationParameters) SetChildSecurityAssociationPar
 	objc.Send[objc.ID](n_.ID, objc.Sel("setChildSecurityAssociationParameters:"), value)
 }
 
-// The Diffie Hellman group used by the Security Association.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/diffiehellmangroup
-func (n_ NEVPNIKEv2SecurityAssociationParameters) DiffieHellmanGroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("diffieHellmanGroup"))
-	return rv
-}
-
-
-// SetDiffieHellmanGroup sets the value of the diffieHellmanGroup property.
-// The Diffie Hellman group used by the Security Association.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/diffiehellmangroup
-func (n_ NEVPNIKEv2SecurityAssociationParameters) SetDiffieHellmanGroup(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDiffieHellmanGroup:"), value)
-}
-
 // An
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/ikesecurityassociationparameters
@@ -184,24 +202,6 @@ func (n_ NEVPNIKEv2SecurityAssociationParameters) IkeSecurityAssociationParamete
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/ikesecurityassociationparameters
 func (n_ NEVPNIKEv2SecurityAssociationParameters) SetIkeSecurityAssociationParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIkeSecurityAssociationParameters:"), value)
-}
-
-// The algorithm used by the Security Association to encrypt and decrypt data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/encryptionalgorithm
-func (n_ NEVPNIKEv2SecurityAssociationParameters) EncryptionAlgorithm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("encryptionAlgorithm"))
-	return rv
-}
-
-
-// SetEncryptionAlgorithm sets the value of the encryptionAlgorithm property.
-// The algorithm used by the Security Association to encrypt and decrypt data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters/encryptionalgorithm
-func (n_ NEVPNIKEv2SecurityAssociationParameters) SetEncryptionAlgorithm(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setEncryptionAlgorithm:"), value)
 }
 
 

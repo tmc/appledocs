@@ -127,62 +127,6 @@ func (n_ NERelayManager) SaveToPreferencesWithCompletionHandler(completionHandle
 	objc.Send[objc.ID](n_.ID, objc.Sel("saveToPreferencesWithCompletionHandler:"), completionHandler)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isuitoggleenabled
-func (n_ NERelayManager) IsUIToggleEnabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isUIToggleEnabled"))
-	return rv
-}
-
-
-// SetIsUIToggleEnabled sets the value of the isUIToggleEnabled property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isuitoggleenabled
-func (n_ NERelayManager) SetIsUIToggleEnabled(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIsUIToggleEnabled:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isdnsfailoverallowed
-func (n_ NERelayManager) IsDNSFailoverAllowed() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isDNSFailoverAllowed"))
-	return rv
-}
-
-
-// SetIsDNSFailoverAllowed sets the value of the isDNSFailoverAllowed property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isdnsfailoverallowed
-func (n_ NERelayManager) SetIsDNSFailoverAllowed(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIsDNSFailoverAllowed:"), value)
-}
-
-// The domain for errors resulting from calls to the relay manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelayerrordomain
-func (n_ NERelayManager) NERelayErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NERelayErrorDomain"))
-	return rv
-}
-
-// A Boolean used to toggle the enabled state of the relay configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isenabled
-func (n_ NERelayManager) IsEnabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
-	return rv
-}
-
-
-// SetIsEnabled sets the value of the isEnabled property.
-// A Boolean used to toggle the enabled state of the relay configuration.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isenabled
-func (n_ NERelayManager) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
 // A list of domain strings used to determine which connections won’t use the relay configuration contained in this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/excludedDomains
@@ -409,6 +353,62 @@ func (n_ NERelayManager) SetRelays(value []NERelay) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRelays:"), nsArray)
+}
+
+// The domain for errors resulting from calls to the relay manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelayerrordomain
+func (n_ NERelayManager) NERelayErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NERelayErrorDomain"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isdnsfailoverallowed
+func (n_ NERelayManager) IsDNSFailoverAllowed() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isDNSFailoverAllowed"))
+	return rv
+}
+
+
+// SetIsDNSFailoverAllowed sets the value of the isDNSFailoverAllowed property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isdnsfailoverallowed
+func (n_ NERelayManager) SetIsDNSFailoverAllowed(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsDNSFailoverAllowed:"), value)
+}
+
+// A Boolean used to toggle the enabled state of the relay configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isenabled
+func (n_ NERelayManager) IsEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean used to toggle the enabled state of the relay configuration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isenabled
+func (n_ NERelayManager) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isuitoggleenabled
+func (n_ NERelayManager) IsUIToggleEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isUIToggleEnabled"))
+	return rv
+}
+
+
+// SetIsUIToggleEnabled sets the value of the isUIToggleEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isuitoggleenabled
+func (n_ NERelayManager) SetIsUIToggleEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsUIToggleEnabled:"), value)
 }
 
 

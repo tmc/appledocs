@@ -80,42 +80,6 @@ func NewProductDiscount() ProductDiscount {
 }
 
 
-// The object containing introductory price information for the product.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/introductoryprice
-func (p_ ProductDiscount) IntroductoryPrice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("introductoryPrice"))
-	return rv
-}
-
-
-// SetIntroductoryPrice sets the value of the introductoryPrice property.
-// The object containing introductory price information for the product.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/introductoryprice
-func (p_ ProductDiscount) SetIntroductoryPrice(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIntroductoryPrice:"), value)
-}
-
-// An array of subscription offers available for the auto-renewable subscription.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/discounts
-func (p_ ProductDiscount) Discounts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("discounts"))
-	return rv
-}
-
-
-// SetDiscounts sets the value of the discounts property.
-// An array of subscription offers available for the auto-renewable subscription.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/discounts
-func (p_ ProductDiscount) SetDiscounts(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDiscounts:"), value)
-}
-
 // A string used to uniquely identify a discount offer for a product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/identifier
@@ -170,6 +134,42 @@ func (p_ ProductDiscount) SubscriptionPeriod() unsafe.Pointer {
 func (p_ ProductDiscount) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
 	return rv
+}
+
+// An array of subscription offers available for the auto-renewable subscription.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/discounts
+func (p_ ProductDiscount) Discounts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("discounts"))
+	return rv
+}
+
+
+// SetDiscounts sets the value of the discounts property.
+// An array of subscription offers available for the auto-renewable subscription.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/discounts
+func (p_ ProductDiscount) SetDiscounts(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDiscounts:"), value)
+}
+
+// The object containing introductory price information for the product.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/introductoryprice
+func (p_ ProductDiscount) IntroductoryPrice() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("introductoryPrice"))
+	return rv
+}
+
+
+// SetIntroductoryPrice sets the value of the introductoryPrice property.
+// The object containing introductory price information for the product.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/introductoryprice
+func (p_ ProductDiscount) SetIntroductoryPrice(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIntroductoryPrice:"), value)
 }
 
 

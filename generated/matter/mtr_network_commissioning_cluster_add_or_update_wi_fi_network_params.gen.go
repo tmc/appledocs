@@ -77,6 +77,21 @@ func NewMTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams() MTRNetworkC
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Breadcrumb() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+	return rv
+}
+
+
+// SetBreadcrumb sets the value of the breadcrumb property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetBreadcrumb(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/credentials
 func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Credentials() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("credentials"))
@@ -89,21 +104,6 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Credentials
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/credentials
 func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetCredentials(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentials:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/ssid
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Ssid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("ssid"))
-	return rv
-}
-
-
-// SetSsid sets the value of the ssid property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/ssid
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetSsid(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSsid:"), value)
 }
 
 //
@@ -122,18 +122,18 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetServerSi
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/ssid
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Ssid() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("ssid"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
+// SetSsid sets the value of the ssid property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetBreadcrumb(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/ssid
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetSsid(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSsid:"), value)
 }
 
 //

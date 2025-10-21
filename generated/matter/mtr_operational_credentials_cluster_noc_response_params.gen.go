@@ -77,36 +77,6 @@ func NewMTROperationalCredentialsClusterNOCResponseParams() MTROperationalCreden
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/fabricindex
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
-	return rv
-}
-
-
-// SetFabricIndex sets the value of the fabricIndex property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/fabricindex
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetFabricIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/debugtext
 func (m_ MTROperationalCredentialsClusterNOCResponseParams) DebugText() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
@@ -122,6 +92,21 @@ func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetDebugText(value s
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/fabricindex
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/fabricindex
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/statuscode
 func (m_ MTROperationalCredentialsClusterNOCResponseParams) StatusCode() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("statusCode"))
@@ -134,6 +119,21 @@ func (m_ MTROperationalCredentialsClusterNOCResponseParams) StatusCode() foundat
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/statuscode
 func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetStatusCode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/timedinvoketimeoutms
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/timedinvoketimeoutms
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

@@ -77,6 +77,21 @@ func NewMTRActionsClusterEndpointListStruct() MTRActionsClusterEndpointListStruc
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/endpointlistid
+func (m_ MTRActionsClusterEndpointListStruct) EndpointListID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpointListID"))
+	return rv
+}
+
+
+// SetEndpointListID sets the value of the endpointListID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/endpointlistid
+func (m_ MTRActionsClusterEndpointListStruct) SetEndpointListID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpointListID:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/endpoints
 func (m_ MTRActionsClusterEndpointListStruct) Endpoints() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endpoints"))
@@ -89,21 +104,6 @@ func (m_ MTRActionsClusterEndpointListStruct) Endpoints() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/endpoints
 func (m_ MTRActionsClusterEndpointListStruct) SetEndpoints(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoints:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/type
-func (m_ MTRActionsClusterEndpointListStruct) Type() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// SetType sets the value of the type property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/type
-func (m_ MTRActionsClusterEndpointListStruct) SetType(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 
 //
@@ -122,18 +122,18 @@ func (m_ MTRActionsClusterEndpointListStruct) SetName(value string) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/endpointlistid
-func (m_ MTRActionsClusterEndpointListStruct) EndpointListID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpointListID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/type
+func (m_ MTRActionsClusterEndpointListStruct) Type() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetEndpointListID sets the value of the endpointListID property.
+// SetType sets the value of the type property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/endpointlistid
-func (m_ MTRActionsClusterEndpointListStruct) SetEndpointListID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpointListID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/type
+func (m_ MTRActionsClusterEndpointListStruct) SetType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 
 

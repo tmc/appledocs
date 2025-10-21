@@ -80,22 +80,22 @@ func NewHKAttachment() HKAttachment {
 }
 
 
-// Additional data associated with the attachment in the HealthKit store.
+// The type of data stored in the attached file.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/metadata
-func (h_ HKAttachment) Metadata() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/contenttype
+func (h_ HKAttachment) ContentType() UTType {
+	rv := objc.Send[UTType](h_.ID, objc.Sel("contentType"))
 	return rv
 }
 
 
-// SetMetadata sets the value of the metadata property.
-// Additional data associated with the attachment in the HealthKit store.
+// SetContentType sets the value of the contentType property.
+// The type of data stored in the attached file.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/metadata
-func (h_ HKAttachment) SetMetadata(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/contenttype
+func (h_ HKAttachment) SetContentType(value UTType) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setContentType:"), value)
 }
 
 // The attachment’s creation date.
@@ -116,42 +116,6 @@ func (h_ HKAttachment) SetCreationDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCreationDate:"), value)
 }
 
-// The type of data stored in the attached file.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/contenttype
-func (h_ HKAttachment) ContentType() UTType {
-	rv := objc.Send[UTType](h_.ID, objc.Sel("contentType"))
-	return rv
-}
-
-
-// SetContentType sets the value of the contentType property.
-// The type of data stored in the attached file.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/contenttype
-func (h_ HKAttachment) SetContentType(value UTType) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setContentType:"), value)
-}
-
-// The attachment’s size (in bytes).
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/size
-func (h_ HKAttachment) Size() int {
-	rv := objc.Send[int](h_.ID, objc.Sel("size"))
-	return rv
-}
-
-
-// SetSize sets the value of the size property.
-// The attachment’s size (in bytes).
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/size
-func (h_ HKAttachment) SetSize(value int) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSize:"), value)
-}
-
 // The universally unique identifier for the attached file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/identifier
@@ -170,6 +134,24 @@ func (h_ HKAttachment) SetIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), value)
 }
 
+// Additional data associated with the attachment in the HealthKit store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/metadata
+func (h_ HKAttachment) Metadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// SetMetadata sets the value of the metadata property.
+// Additional data associated with the attachment in the HealthKit store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/metadata
+func (h_ HKAttachment) SetMetadata(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+}
+
 // The name of the attached file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/name
@@ -186,6 +168,24 @@ func (h_ HKAttachment) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/name
 func (h_ HKAttachment) SetName(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// The attachment’s size (in bytes).
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/size
+func (h_ HKAttachment) Size() int {
+	rv := objc.Send[int](h_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// SetSize sets the value of the size property.
+// The attachment’s size (in bytes).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/size
+func (h_ HKAttachment) SetSize(value int) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSize:"), value)
 }
 
 

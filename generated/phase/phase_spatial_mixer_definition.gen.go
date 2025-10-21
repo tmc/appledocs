@@ -81,24 +81,6 @@ func NewPHASESpatialMixerDefinition() PHASESpatialMixerDefinition {
 }
 
 
-// A data set that directs sound such that it’s louder when directed at the listener.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/sourcedirectivitymodelparameters
-func (p_ PHASESpatialMixerDefinition) SourceDirectivityModelParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sourceDirectivityModelParameters"))
-	return rv
-}
-
-
-// SetSourceDirectivityModelParameters sets the value of the sourceDirectivityModelParameters property.
-// A data set that directs sound such that it’s louder when directed at the listener.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/sourcedirectivitymodelparameters
-func (p_ PHASESpatialMixerDefinition) SetSourceDirectivityModelParameters(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSourceDirectivityModelParameters:"), value)
-}
-
 // An effect that changes sound as it carries over a distance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/distanceModelParameters
@@ -141,6 +123,24 @@ func (p_ PHASESpatialMixerDefinition) SetListenerDirectivityModelParameters(valu
 func (p_ PHASESpatialMixerDefinition) SpatialPipeline() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("spatialPipeline"))
 	return rv
+}
+
+// A data set that directs sound such that it’s louder when directed at the listener.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/sourcedirectivitymodelparameters
+func (p_ PHASESpatialMixerDefinition) SourceDirectivityModelParameters() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sourceDirectivityModelParameters"))
+	return rv
+}
+
+
+// SetSourceDirectivityModelParameters sets the value of the sourceDirectivityModelParameters property.
+// A data set that directs sound such that it’s louder when directed at the listener.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/sourcedirectivitymodelparameters
+func (p_ PHASESpatialMixerDefinition) SetSourceDirectivityModelParameters(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSourceDirectivityModelParameters:"), value)
 }
 
 

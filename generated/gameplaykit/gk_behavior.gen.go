@@ -213,6 +213,14 @@ func (b_ Behavior) WeightForGoal(goal unsafe.Pointer) unsafe.Pointer {
 	return rv
 }
 
+// The number of goals in the behavior.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/goalCount
+func (b_ Behavior) GoalCount() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("goalCount"))
+	return rv
+}
+
 // A weighted collection of goals that influence the agent’s movement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
@@ -229,14 +237,6 @@ func (b_ Behavior) Behavior() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
 func (b_ Behavior) SetBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBehavior:"), value)
-}
-
-// The number of goals in the behavior.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/goalCount
-func (b_ Behavior) GoalCount() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("goalCount"))
-	return rv
 }
 
 

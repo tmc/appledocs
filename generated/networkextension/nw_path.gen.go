@@ -80,6 +80,24 @@ func NewNWPath() NWPath {
 }
 
 
+// A Boolean that indicates whether or not the path uses a constrained interface, such as when using low-data mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwpath/isconstrained
+func (n_ NWPath) IsConstrained() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isConstrained"))
+	return rv
+}
+
+
+// SetIsConstrained sets the value of the isConstrained property.
+// A Boolean that indicates whether or not the path uses a constrained interface, such as when using low-data mode.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwpath/isconstrained
+func (n_ NWPath) SetIsConstrained(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsConstrained:"), value)
+}
+
 // A Boolean that indicates whether or not the path uses an expensive interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwpath/isexpensive
@@ -114,24 +132,6 @@ func (n_ NWPath) Status() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwpath/status
 func (n_ NWPath) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setStatus:"), value)
-}
-
-// A Boolean that indicates whether or not the path uses a constrained interface, such as when using low-data mode.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwpath/isconstrained
-func (n_ NWPath) IsConstrained() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isConstrained"))
-	return rv
-}
-
-
-// SetIsConstrained sets the value of the isConstrained property.
-// A Boolean that indicates whether or not the path uses a constrained interface, such as when using low-data mode.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwpath/isconstrained
-func (n_ NWPath) SetIsConstrained(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIsConstrained:"), value)
 }
 
 

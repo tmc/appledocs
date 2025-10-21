@@ -77,21 +77,6 @@ func NewMTRDoorLockClusterCredentialStruct() MTRDoorLockClusterCredentialStruct 
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialtype
-func (m_ MTRDoorLockClusterCredentialStruct) CredentialType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("credentialType"))
-	return rv
-}
-
-
-// SetCredentialType sets the value of the credentialType property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialtype
-func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialType(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialType:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialindex
 func (m_ MTRDoorLockClusterCredentialStruct) CredentialIndex() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("credentialIndex"))
@@ -104,6 +89,21 @@ func (m_ MTRDoorLockClusterCredentialStruct) CredentialIndex() foundation.Number
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialindex
 func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialIndex(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialtype
+func (m_ MTRDoorLockClusterCredentialStruct) CredentialType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("credentialType"))
+	return rv
+}
+
+
+// SetCredentialType sets the value of the credentialType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialtype
+func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialType:"), value)
 }
 
 

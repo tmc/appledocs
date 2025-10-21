@@ -78,21 +78,6 @@ func NewMTRMediaPlaybackClusterPlaybackPosition() MTRMediaPlaybackClusterPlaybac
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/updatedat
-func (m_ MTRMediaPlaybackClusterPlaybackPosition) UpdatedAt() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("updatedAt"))
-	return rv
-}
-
-
-// SetUpdatedAt sets the value of the updatedAt property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/updatedat
-func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetUpdatedAt(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdatedAt:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/position
 func (m_ MTRMediaPlaybackClusterPlaybackPosition) Position() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("position"))
@@ -105,6 +90,21 @@ func (m_ MTRMediaPlaybackClusterPlaybackPosition) Position() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/position
 func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetPosition(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPosition:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/updatedat
+func (m_ MTRMediaPlaybackClusterPlaybackPosition) UpdatedAt() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("updatedAt"))
+	return rv
+}
+
+
+// SetUpdatedAt sets the value of the updatedAt property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/updatedat
+func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetUpdatedAt(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdatedAt:"), value)
 }
 
 

@@ -77,21 +77,6 @@ func NewMTRElectricalEnergyMeasurementClusterMeasurementAccuracyStruct() MTRElec
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustermeasurementaccuracystruct/minmeasuredvalue
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyStruct) MinMeasuredValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minMeasuredValue"))
-	return rv
-}
-
-
-// SetMinMeasuredValue sets the value of the minMeasuredValue property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustermeasurementaccuracystruct/minmeasuredvalue
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyStruct) SetMinMeasuredValue(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMinMeasuredValue:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustermeasurementaccuracystruct/accuracyranges
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyStruct) AccuracyRanges() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("accuracyRanges"))
@@ -149,6 +134,21 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyStruct) Measure
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustermeasurementaccuracystruct/measurementtype
 func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyStruct) SetMeasurementType(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasurementType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustermeasurementaccuracystruct/minmeasuredvalue
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyStruct) MinMeasuredValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minMeasuredValue"))
+	return rv
+}
+
+
+// SetMinMeasuredValue sets the value of the minMeasuredValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustermeasurementaccuracystruct/minmeasuredvalue
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyStruct) SetMinMeasuredValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMinMeasuredValue:"), value)
 }
 
 

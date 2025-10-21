@@ -94,24 +94,6 @@ func NewSFUniversalLinkWithWebpageURL(url foundation.URL) SFUniversalLink {
 }
 
 
-// A flag that indicates whether the universal link is enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfuniversallink/isenabled
-func (s_ SFUniversalLink) IsEnabled() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
-	return rv
-}
-
-
-// SetIsEnabled sets the value of the isEnabled property.
-// A flag that indicates whether the universal link is enabled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfuniversallink/isenabled
-func (s_ SFUniversalLink) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
 // The URL to the app that can open this universal link.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFUniversalLink/applicationURL
@@ -144,6 +126,24 @@ func (s_ SFUniversalLink) SetEnabled(value bool) {
 func (s_ SFUniversalLink) WebpageURL() foundation.URL {
 	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("webpageURL"))
 	return rv
+}
+
+// A flag that indicates whether the universal link is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfuniversallink/isenabled
+func (s_ SFUniversalLink) IsEnabled() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A flag that indicates whether the universal link is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfuniversallink/isenabled
+func (s_ SFUniversalLink) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 

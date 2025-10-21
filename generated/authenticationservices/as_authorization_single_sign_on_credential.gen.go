@@ -78,22 +78,12 @@ func NewAuthorizationSingleSignOnCredential() AuthorizationSingleSignOnCredentia
 }
 
 
-// An arbitrary string that your app provided to the request that generated this credential.
+// The contact information the user authorized your app to access.
 //
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
-func (a_ AuthorizationSingleSignOnCredential) State() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("state"))
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnCredential/authorizedScopes
+func (a_ AuthorizationSingleSignOnCredential) AuthorizedScopes() []string {
+	rv := objc.Send[[]string](a_.ID, objc.Sel("authorizedScopes"))
 	return rv
-}
-
-
-// SetState sets the value of the state property.
-// An arbitrary string that your app provided to the request that generated this credential.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
-func (a_ AuthorizationSingleSignOnCredential) SetState(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
 }
 
 // An access token used to get an identity token.
@@ -150,12 +140,22 @@ func (a_ AuthorizationSingleSignOnCredential) SetIdentityToken(value unsafe.Poin
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
 }
 
-// The contact information the user authorized your app to access.
+// An arbitrary string that your app provided to the request that generated this credential.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnCredential/authorizedScopes
-func (a_ AuthorizationSingleSignOnCredential) AuthorizedScopes() []string {
-	rv := objc.Send[[]string](a_.ID, objc.Sel("authorizedScopes"))
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
+func (a_ AuthorizationSingleSignOnCredential) State() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("state"))
 	return rv
+}
+
+
+// SetState sets the value of the state property.
+// An arbitrary string that your app provided to the request that generated this credential.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
+func (a_ AuthorizationSingleSignOnCredential) SetState(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
 }
 
 

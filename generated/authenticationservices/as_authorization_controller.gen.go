@@ -88,42 +88,6 @@ func (a_ AuthorizationController) Cancel() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("cancel"))
 }
 
-// The authorization requests that the controller manages.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationController) AuthorizationRequests() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationRequests"))
-	return rv
-}
-
-
-// SetAuthorizationRequests sets the value of the authorizationRequests property.
-// The authorization requests that the controller manages.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationController) SetAuthorizationRequests(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
-}
-
-// A delegate that the authorization controller informs about the success or failure of an authorization attempt.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
-func (a_ AuthorizationController) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// A delegate that the authorization controller informs about the success or failure of an authorization attempt.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
-func (a_ AuthorizationController) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
-}
-
 // An array of custom authorization methods for the user to choose.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/customAuthorizationMethods
@@ -168,6 +132,42 @@ func (a_ AuthorizationController) PresentationContextProvider() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/presentationContextProvider
 func (a_ AuthorizationController) SetPresentationContextProvider(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
+}
+
+// The authorization requests that the controller manages.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
+func (a_ AuthorizationController) AuthorizationRequests() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationRequests"))
+	return rv
+}
+
+
+// SetAuthorizationRequests sets the value of the authorizationRequests property.
+// The authorization requests that the controller manages.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
+func (a_ AuthorizationController) SetAuthorizationRequests(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
+}
+
+// A delegate that the authorization controller informs about the success or failure of an authorization attempt.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
+func (a_ AuthorizationController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// A delegate that the authorization controller informs about the success or failure of an authorization attempt.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
+func (a_ AuthorizationController) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

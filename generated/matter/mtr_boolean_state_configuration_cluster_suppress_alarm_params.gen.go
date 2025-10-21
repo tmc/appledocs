@@ -77,6 +77,21 @@ func NewMTRBooleanStateConfigurationClusterSuppressAlarmParams() MTRBooleanState
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/alarmstosuppress
+func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) AlarmsToSuppress() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmsToSuppress"))
+	return rv
+}
+
+
+// SetAlarmsToSuppress sets the value of the alarmsToSuppress property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/alarmstosuppress
+func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetAlarmsToSuppress(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsToSuppress:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/serversideprocessingtimeout
 func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,21 +119,6 @@ func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) TimedInvokeTime
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/timedinvoketimeoutms
 func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/alarmstosuppress
-func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) AlarmsToSuppress() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmsToSuppress"))
-	return rv
-}
-
-
-// SetAlarmsToSuppress sets the value of the alarmsToSuppress property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/alarmstosuppress
-func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetAlarmsToSuppress(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsToSuppress:"), value)
 }
 
 

@@ -80,24 +80,6 @@ func NewPaymentTransaction() PaymentTransaction {
 }
 
 
-// The transaction that was restored by the App Store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymenttransaction/original
-func (p_ PaymentTransaction) Original() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("original"))
-	return rv
-}
-
-
-// SetOriginal sets the value of the original property.
-// The transaction that was restored by the App Store.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymenttransaction/original
-func (p_ PaymentTransaction) SetOriginal(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOriginal:"), value)
-}
-
 // An array of download objects representing the downloadable content associated with the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentTransaction/downloads
@@ -160,6 +142,24 @@ func (p_ PaymentTransaction) TransactionReceipt() unsafe.Pointer {
 func (p_ PaymentTransaction) TransactionState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionState"))
 	return rv
+}
+
+// The transaction that was restored by the App Store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymenttransaction/original
+func (p_ PaymentTransaction) Original() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("original"))
+	return rv
+}
+
+
+// SetOriginal sets the value of the original property.
+// The transaction that was restored by the App Store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymenttransaction/original
+func (p_ PaymentTransaction) SetOriginal(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOriginal:"), value)
 }
 
 

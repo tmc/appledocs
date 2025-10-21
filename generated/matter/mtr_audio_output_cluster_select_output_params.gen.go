@@ -77,21 +77,6 @@ func NewMTRAudioOutputClusterSelectOutputParams() MTRAudioOutputClusterSelectOut
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/timedinvoketimeoutms
-func (m_ MTRAudioOutputClusterSelectOutputParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/timedinvoketimeoutms
-func (m_ MTRAudioOutputClusterSelectOutputParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/index
 func (m_ MTRAudioOutputClusterSelectOutputParams) Index() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("index"))
@@ -119,6 +104,21 @@ func (m_ MTRAudioOutputClusterSelectOutputParams) ServerSideProcessingTimeout() 
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/serversideprocessingtimeout
 func (m_ MTRAudioOutputClusterSelectOutputParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/timedinvoketimeoutms
+func (m_ MTRAudioOutputClusterSelectOutputParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/timedinvoketimeoutms
+func (m_ MTRAudioOutputClusterSelectOutputParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

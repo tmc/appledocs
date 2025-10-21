@@ -106,24 +106,6 @@ func (e_ EmitterCell) ShouldArchiveValueForKey(key string) bool {
 	return rv
 }
 
-// A Boolean value indicating whether or not cells from this emitter are rendered.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caemittercell/isenabled
-func (e_ EmitterCell) IsEnabled() bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("isEnabled"))
-	return rv
-}
-
-
-// SetIsEnabled sets the value of the isEnabled property.
-// A Boolean value indicating whether or not cells from this emitter are rendered.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caemittercell/isenabled
-func (e_ EmitterCell) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
 // The amount by which the alpha component of the cell can vary. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/alphaRange
@@ -762,6 +744,24 @@ func (e_ EmitterCell) ZAcceleration() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/zAcceleration
 func (e_ EmitterCell) SetZAcceleration(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setZAcceleration:"), value)
+}
+
+// A Boolean value indicating whether or not cells from this emitter are rendered.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caemittercell/isenabled
+func (e_ EmitterCell) IsEnabled() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value indicating whether or not cells from this emitter are rendered.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caemittercell/isenabled
+func (e_ EmitterCell) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 

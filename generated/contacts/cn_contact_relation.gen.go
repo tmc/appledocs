@@ -80,6 +80,40 @@ func NewCNContactRelation() CNContactRelation {
 }
 
 
+// The name of the related contact.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactrelation/name
+func (c_ CNContactRelation) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the related contact.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactrelation/name
+func (c_ CNContactRelation) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// The label for the contact’s assistant.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationassistant
+func (c_ CNContactRelation) CNLabelContactRelationAssistant() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAssistant"))
+	return rv
+}
+
+// The label for the contact’s brother.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrother
+func (c_ CNContactRelation) CNLabelContactRelationBrother() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrother"))
+	return rv
+}
+
 // The label for the contact’s child.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationchild
@@ -93,46 +127,6 @@ func (c_ CNContactRelation) CNLabelContactRelationChild() string {
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughter
 func (c_ CNContactRelation) CNLabelContactRelationDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationDaughter"))
-	return rv
-}
-
-// The label for the contact’s parent.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparent
-func (c_ CNContactRelation) CNLabelContactRelationParent() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParent"))
-	return rv
-}
-
-// The label for the contact’s mother.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmother
-func (c_ CNContactRelation) CNLabelContactRelationMother() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMother"))
-	return rv
-}
-
-// The label for the contact’s spouse.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationspouse
-func (c_ CNContactRelation) CNLabelContactRelationSpouse() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSpouse"))
-	return rv
-}
-
-// The label for the contact’s manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmanager
-func (c_ CNContactRelation) CNLabelContactRelationManager() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationManager"))
-	return rv
-}
-
-// The label for the contact’s son.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationson
-func (c_ CNContactRelation) CNLabelContactRelationSon() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSon"))
 	return rv
 }
 
@@ -152,6 +146,38 @@ func (c_ CNContactRelation) CNLabelContactRelationFriend() string {
 	return rv
 }
 
+// The label for the contact’s manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmanager
+func (c_ CNContactRelation) CNLabelContactRelationManager() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationManager"))
+	return rv
+}
+
+// The label for the contact’s mother.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmother
+func (c_ CNContactRelation) CNLabelContactRelationMother() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMother"))
+	return rv
+}
+
+// The label for the contact’s parent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparent
+func (c_ CNContactRelation) CNLabelContactRelationParent() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParent"))
+	return rv
+}
+
+// The label for the contact’s partner.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationpartner
+func (c_ CNContactRelation) CNLabelContactRelationPartner() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationPartner"))
+	return rv
+}
+
 // The label for the contact’s sister.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsister
@@ -160,45 +186,19 @@ func (c_ CNContactRelation) CNLabelContactRelationSister() string {
 	return rv
 }
 
-// The label for the contact’s assistant.
+// The label for the contact’s son.
 //
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationassistant
-func (c_ CNContactRelation) CNLabelContactRelationAssistant() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAssistant"))
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationson
+func (c_ CNContactRelation) CNLabelContactRelationSon() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSon"))
 	return rv
 }
 
-// The label for the contact’s brother.
+// The label for the contact’s spouse.
 //
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrother
-func (c_ CNContactRelation) CNLabelContactRelationBrother() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrother"))
-	return rv
-}
-
-// The name of the related contact.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactrelation/name
-func (c_ CNContactRelation) Name() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-// The name of the related contact.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactrelation/name
-func (c_ CNContactRelation) SetName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// The label for the contact’s partner.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationpartner
-func (c_ CNContactRelation) CNLabelContactRelationPartner() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationPartner"))
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationspouse
+func (c_ CNContactRelation) CNLabelContactRelationSpouse() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSpouse"))
 	return rv
 }
 

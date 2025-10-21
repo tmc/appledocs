@@ -40,7 +40,7 @@ type IPersistentStoreCoordinator interface {
 	FinishDeferredLightweightMigrationTask(error_ unsafe.Pointer) bool
 	ImportStoreWithIdentifierFromExternalRecordsDirectoryToURLOptionsWithTypeError(storeIdentifier string, externalRecordsURL foundation.URL, destinationURL foundation.URL, options objc.ID, storeType string, error_ unsafe.Pointer) unsafe.Pointer
 	ManagedObjectIDForURIRepresentation(url foundation.URL) unsafe.Pointer
-	ManagedObjectIDFromUTF8StringLength(utf8string unsafe.Pointer, len uint) unsafe.Pointer
+	ManagedObjectIDFromUTF8StringLength(utf8string unsafe.Pointer, len_ uint) unsafe.Pointer
 	MetadataForPersistentStore(store unsafe.Pointer) unsafe.Pointer
 	MigratePersistentStoreToURLOptionsWithTypeError(store unsafe.Pointer, URL foundation.URL, options objc.ID, storeType string, error_ unsafe.Pointer) unsafe.Pointer
 	PerformBlock(block unsafe.Pointer)
@@ -233,8 +233,8 @@ func (p_ PersistentStoreCoordinator) ManagedObjectIDForURIRepresentation(url fou
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/managedObjectIDFromUTF8String:length:
-func (p_ PersistentStoreCoordinator) ManagedObjectIDFromUTF8StringLength(utf8string unsafe.Pointer, len uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectIDFromUTF8String:length:"), utf8string, len)
+func (p_ PersistentStoreCoordinator) ManagedObjectIDFromUTF8StringLength(utf8string unsafe.Pointer, len_ uint) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectIDFromUTF8String:length:"), utf8string, len_)
 	return rv
 }
 
@@ -313,6 +313,56 @@ func (p_ PersistentStoreCoordinator) URLForPersistentStore(store unsafe.Pointer)
 	return rv
 }
 
+// The coordinator’s managed object model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/managedObjectModel
+func (p_ PersistentStoreCoordinator) ManagedObjectModel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectModel"))
+	return rv
+}
+
+// The coordinator’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/name
+func (p_ PersistentStoreCoordinator) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The coordinator’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/name
+func (p_ PersistentStoreCoordinator) SetName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// The coordinator’s registered store types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/registeredStoreTypes
+func (p_ PersistentStoreCoordinator) RegisteredStoreTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("registeredStoreTypes"))
+	return rv
+}
+
+// The key you use to specify your Core Spotlight delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightexporter
+func (p_ PersistentStoreCoordinator) NSCoreDataCoreSpotlightExporter() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
+	return rv
+}
+
+// The key you use to enable persistent history tracking.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytrackingkey
+func (p_ PersistentStoreCoordinator) NSPersistentHistoryTrackingKey() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("NSPersistentHistoryTrackingKey"))
+	return rv
+}
+
 // The coordinator’s persistent stores.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstorecoordinator/persistentstores
@@ -347,61 +397,11 @@ func (p_ PersistentStoreCoordinator) NSStoreTypeKey() string {
 	return rv
 }
 
-// The key you use to specify your Core Spotlight delegate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightexporter
-func (p_ PersistentStoreCoordinator) NSCoreDataCoreSpotlightExporter() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
-	return rv
-}
-
-// The key you use to enable persistent history tracking.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytrackingkey
-func (p_ PersistentStoreCoordinator) NSPersistentHistoryTrackingKey() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("NSPersistentHistoryTrackingKey"))
-	return rv
-}
-
 // A key that provides the store’s UUID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstoreuuidkey
 func (p_ PersistentStoreCoordinator) NSStoreUUIDKey() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("NSStoreUUIDKey"))
-	return rv
-}
-
-// The coordinator’s managed object model.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/managedObjectModel
-func (p_ PersistentStoreCoordinator) ManagedObjectModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectModel"))
-	return rv
-}
-
-// The coordinator’s name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/name
-func (p_ PersistentStoreCoordinator) Name() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-// The coordinator’s name.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/name
-func (p_ PersistentStoreCoordinator) SetName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// The coordinator’s registered store types.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/registeredStoreTypes
-func (p_ PersistentStoreCoordinator) RegisteredStoreTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("registeredStoreTypes"))
 	return rv
 }
 

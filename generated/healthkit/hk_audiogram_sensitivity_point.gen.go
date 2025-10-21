@@ -78,6 +78,24 @@ func NewHKAudiogramSensitivityPoint() HKAudiogramSensitivityPoint {
 }
 
 
+// The frequency tested in the hearing test.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/frequency
+func (h_ HKAudiogramSensitivityPoint) Frequency() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("frequency"))
+	return rv
+}
+
+
+// SetFrequency sets the value of the frequency property.
+// The frequency tested in the hearing test.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/frequency
+func (h_ HKAudiogramSensitivityPoint) SetFrequency(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setFrequency:"), value)
+}
+
 // The sensitivity of the left ear.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/leftearsensitivity
@@ -127,24 +145,6 @@ func (h_ HKAudiogramSensitivityPoint) Tests() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/tests
 func (h_ HKAudiogramSensitivityPoint) SetTests(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setTests:"), value)
-}
-
-// The frequency tested in the hearing test.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/frequency
-func (h_ HKAudiogramSensitivityPoint) Frequency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("frequency"))
-	return rv
-}
-
-
-// SetFrequency sets the value of the frequency property.
-// The frequency tested in the hearing test.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/frequency
-func (h_ HKAudiogramSensitivityPoint) SetFrequency(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setFrequency:"), value)
 }
 
 

@@ -77,18 +77,18 @@ func NewMTRChannelClusterChangeChannelParams() MTRChannelClusterChangeChannelPar
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterChangeChannelParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/match
+func (m_ MTRChannelClusterChangeChannelParams) Match() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("match"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetMatch sets the value of the match property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterChangeChannelParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/match
+func (m_ MTRChannelClusterChangeChannelParams) SetMatch(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMatch:"), objc.String(value))
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRChannelClusterChangeChannelParams) SetServerSideProcessingTimeout(va
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/match
-func (m_ MTRChannelClusterChangeChannelParams) Match() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("match"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/timedinvoketimeoutms
+func (m_ MTRChannelClusterChangeChannelParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetMatch sets the value of the match property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/match
-func (m_ MTRChannelClusterChangeChannelParams) SetMatch(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMatch:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/timedinvoketimeoutms
+func (m_ MTRChannelClusterChangeChannelParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

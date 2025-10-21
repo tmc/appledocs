@@ -118,24 +118,6 @@ func NewCKQuerySubscriptionWithRecordTypePredicateSubscriptionIDOptions(recordTy
 }
 
 
-// The configuration for a subscription’s push notifications.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKQuerySubscription) NotificationInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
-	return rv
-}
-
-
-// SetNotificationInfo sets the value of the notificationInfo property.
-// The configuration for a subscription’s push notifications.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKQuerySubscription) SetNotificationInfo(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
-}
-
 // The matching criteria to apply to records.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/predicate
@@ -176,6 +158,24 @@ func (c_ CKQuerySubscription) ZoneID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/zoneID
 func (c_ CKQuerySubscription) SetZoneID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneID:"), value)
+}
+
+// The configuration for a subscription’s push notifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
+func (c_ CKQuerySubscription) NotificationInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+	return rv
+}
+
+
+// SetNotificationInfo sets the value of the notificationInfo property.
+// The configuration for a subscription’s push notifications.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
+func (c_ CKQuerySubscription) SetNotificationInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 
 

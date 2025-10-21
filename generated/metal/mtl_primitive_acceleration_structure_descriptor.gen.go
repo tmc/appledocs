@@ -81,40 +81,22 @@ func NewPrimitiveAccelerationStructureDescriptor() PrimitiveAccelerationStructur
 }
 
 
-// The start time for the range of motion that the keyframe data describes.
+// An array that contains the individual pieces of geometry that compose the acceleration structure.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstarttime
-func (p_ PrimitiveAccelerationStructureDescriptor) MotionStartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("motionStartTime"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/geometrydescriptors
+func (p_ PrimitiveAccelerationStructureDescriptor) GeometryDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("geometryDescriptors"))
 	return rv
 }
 
 
-// SetMotionStartTime sets the value of the motionStartTime property.
-// The start time for the range of motion that the keyframe data describes.
+// SetGeometryDescriptors sets the value of the geometryDescriptors property.
+// An array that contains the individual pieces of geometry that compose the acceleration structure.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstarttime
-func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionStartTime(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionStartTime:"), value)
-}
-
-// The end time for the range of motion that the keyframe data describes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendtime
-func (p_ PrimitiveAccelerationStructureDescriptor) MotionEndTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("motionEndTime"))
-	return rv
-}
-
-
-// SetMotionEndTime sets the value of the motionEndTime property.
-// The end time for the range of motion that the keyframe data describes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendtime
-func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionEndTime(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionEndTime:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/geometrydescriptors
+func (p_ PrimitiveAccelerationStructureDescriptor) SetGeometryDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGeometryDescriptors:"), value)
 }
 
 // The mode to use when handling timestamps after the end time.
@@ -135,22 +117,22 @@ func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionEndBorderMode(value 
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionEndBorderMode:"), value)
 }
 
-// An array that contains the individual pieces of geometry that compose the acceleration structure.
+// The end time for the range of motion that the keyframe data describes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/geometrydescriptors
-func (p_ PrimitiveAccelerationStructureDescriptor) GeometryDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("geometryDescriptors"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendtime
+func (p_ PrimitiveAccelerationStructureDescriptor) MotionEndTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("motionEndTime"))
 	return rv
 }
 
 
-// SetGeometryDescriptors sets the value of the geometryDescriptors property.
-// An array that contains the individual pieces of geometry that compose the acceleration structure.
+// SetMotionEndTime sets the value of the motionEndTime property.
+// The end time for the range of motion that the keyframe data describes.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/geometrydescriptors
-func (p_ PrimitiveAccelerationStructureDescriptor) SetGeometryDescriptors(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGeometryDescriptors:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendtime
+func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionEndTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionEndTime:"), value)
 }
 
 // The number of keyframes in the geometry data.
@@ -187,6 +169,24 @@ func (p_ PrimitiveAccelerationStructureDescriptor) MotionStartBorderMode() unsaf
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstartbordermode
 func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionStartBorderMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionStartBorderMode:"), value)
+}
+
+// The start time for the range of motion that the keyframe data describes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstarttime
+func (p_ PrimitiveAccelerationStructureDescriptor) MotionStartTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("motionStartTime"))
+	return rv
+}
+
+
+// SetMotionStartTime sets the value of the motionStartTime property.
+// The start time for the range of motion that the keyframe data describes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstarttime
+func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionStartTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionStartTime:"), value)
 }
 
 

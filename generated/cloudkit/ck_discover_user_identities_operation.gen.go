@@ -94,6 +94,49 @@ func NewCKDiscoverUserIdentitiesOperationWithUserIdentityLookupInfos(userIdentit
 }
 
 
+// The lookup info for discovering user identities.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityLookupInfos
+func (c_ CKDiscoverUserIdentitiesOperation) UserIdentityLookupInfos() []CKUserIdentityLookupInfo {
+	rv := objc.Send[[]CKUserIdentityLookupInfo](c_.ID, objc.Sel("userIdentityLookupInfos"))
+	return rv
+}
+
+
+// SetUserIdentityLookupInfos sets the value of the userIdentityLookupInfos property.
+// The lookup info for discovering user identities.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityLookupInfos
+func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityLookupInfos(value []CKUserIdentityLookupInfo) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityLookupInfos:"), nsArray)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiesresultblock
+func (c_ CKDiscoverUserIdentitiesOperation) DiscoverUserIdentitiesResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("discoverUserIdentitiesResultBlock"))
+	return rv
+}
+
+
+// SetDiscoverUserIdentitiesResultBlock sets the value of the discoverUserIdentitiesResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiesresultblock
+func (c_ CKDiscoverUserIdentitiesOperation) SetDiscoverUserIdentitiesResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverUserIdentitiesResultBlock:"), value)
+}
+
 // The block to execute after the operation’s main task is completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
@@ -128,49 +171,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) QualityOfService() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
 func (c_ CKDiscoverUserIdentitiesOperation) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiesresultblock
-func (c_ CKDiscoverUserIdentitiesOperation) DiscoverUserIdentitiesResultBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("discoverUserIdentitiesResultBlock"))
-	return rv
-}
-
-
-// SetDiscoverUserIdentitiesResultBlock sets the value of the discoverUserIdentitiesResultBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiesresultblock
-func (c_ CKDiscoverUserIdentitiesOperation) SetDiscoverUserIdentitiesResultBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverUserIdentitiesResultBlock:"), value)
-}
-
-// The lookup info for discovering user identities.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityLookupInfos
-func (c_ CKDiscoverUserIdentitiesOperation) UserIdentityLookupInfos() []CKUserIdentityLookupInfo {
-	rv := objc.Send[[]CKUserIdentityLookupInfo](c_.ID, objc.Sel("userIdentityLookupInfos"))
-	return rv
-}
-
-
-// SetUserIdentityLookupInfos sets the value of the userIdentityLookupInfos property.
-// The lookup info for discovering user identities.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityLookupInfos
-func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityLookupInfos(value []CKUserIdentityLookupInfo) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityLookupInfos:"), nsArray)
 }
 
 

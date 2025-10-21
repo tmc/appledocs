@@ -206,96 +206,6 @@ func (m_ MultiArray) TransferToMultiArray(destinationMultiArray unsafe.Pointer) 
 	objc.Send[objc.ID](m_.ID, objc.Sel("transferToMultiArray:"), destinationMultiArray)
 }
 
-// A dictionary of input feature descriptions, which the model keys by the input’s name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
-func (m_ MultiArray) InputDescriptionsByName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("inputDescriptionsByName"))
-	return rv
-}
-
-
-// SetInputDescriptionsByName sets the value of the inputDescriptionsByName property.
-// A dictionary of input feature descriptions, which the model keys by the input’s name.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
-func (m_ MultiArray) SetInputDescriptionsByName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInputDescriptionsByName:"), objc.String(value))
-}
-
-// The constraints on a multidimensional array feature.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-func (m_ MultiArray) MultiArrayConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("multiArrayConstraint"))
-	return rv
-}
-
-
-// SetMultiArrayConstraint sets the value of the multiArrayConstraint property.
-// The constraints on a multidimensional array feature.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-func (m_ MultiArray) SetMultiArrayConstraint(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMultiArrayConstraint:"), value)
-}
-
-// The constraint on the shape of the multiarray.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint
-func (m_ MultiArray) ShapeConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("shapeConstraint"))
-	return rv
-}
-
-
-// SetShapeConstraint sets the value of the shapeConstraint property.
-// The constraint on the shape of the multiarray.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint
-func (m_ MultiArray) SetShapeConstraint(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShapeConstraint:"), value)
-}
-
-// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
-func (m_ MultiArray) ModelDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modelDescription"))
-	return rv
-}
-
-
-// SetModelDescription sets the value of the modelDescription property.
-// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
-func (m_ MultiArray) SetModelDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDescription:"), value)
-}
-
-// A dictionary of output feature descriptions, which the model keys by the output’s name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
-func (m_ MultiArray) OutputDescriptionsByName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("outputDescriptionsByName"))
-	return rv
-}
-
-
-// SetOutputDescriptionsByName sets the value of the outputDescriptionsByName property.
-// A dictionary of output feature descriptions, which the model keys by the output’s name.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
-func (m_ MultiArray) SetOutputDescriptionsByName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOutputDescriptionsByName:"), objc.String(value))
-}
-
 // The total number of elements in the multiarray.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/count
@@ -334,6 +244,96 @@ func (m_ MultiArray) Shape() []foundation.Number {
 func (m_ MultiArray) Strides() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](m_.ID, objc.Sel("strides"))
 	return rv
+}
+
+// The constraints on a multidimensional array feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
+func (m_ MultiArray) MultiArrayConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("multiArrayConstraint"))
+	return rv
+}
+
+
+// SetMultiArrayConstraint sets the value of the multiArrayConstraint property.
+// The constraints on a multidimensional array feature.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
+func (m_ MultiArray) SetMultiArrayConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMultiArrayConstraint:"), value)
+}
+
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
+func (m_ MultiArray) ModelDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modelDescription"))
+	return rv
+}
+
+
+// SetModelDescription sets the value of the modelDescription property.
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
+func (m_ MultiArray) SetModelDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDescription:"), value)
+}
+
+// A dictionary of input feature descriptions, which the model keys by the input’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
+func (m_ MultiArray) InputDescriptionsByName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("inputDescriptionsByName"))
+	return rv
+}
+
+
+// SetInputDescriptionsByName sets the value of the inputDescriptionsByName property.
+// A dictionary of input feature descriptions, which the model keys by the input’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
+func (m_ MultiArray) SetInputDescriptionsByName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInputDescriptionsByName:"), objc.String(value))
+}
+
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
+func (m_ MultiArray) OutputDescriptionsByName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("outputDescriptionsByName"))
+	return rv
+}
+
+
+// SetOutputDescriptionsByName sets the value of the outputDescriptionsByName property.
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
+func (m_ MultiArray) SetOutputDescriptionsByName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOutputDescriptionsByName:"), objc.String(value))
+}
+
+// The constraint on the shape of the multiarray.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint
+func (m_ MultiArray) ShapeConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("shapeConstraint"))
+	return rv
+}
+
+
+// SetShapeConstraint sets the value of the shapeConstraint property.
+// The constraint on the shape of the multiarray.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint
+func (m_ MultiArray) SetShapeConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShapeConstraint:"), value)
 }
 
 

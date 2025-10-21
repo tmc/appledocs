@@ -81,24 +81,6 @@ func NewINSearchForAccountsIntent() INSearchForAccountsIntent {
 }
 
 
-// The name of an organization attached to the account.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/organizationname
-func (i_ INSearchForAccountsIntent) OrganizationName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("organizationName"))
-	return rv
-}
-
-
-// SetOrganizationName sets the value of the organizationName property.
-// The name of an organization attached to the account.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/organizationname
-func (i_ INSearchForAccountsIntent) SetOrganizationName(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setOrganizationName:"), value)
-}
-
 // The nickname that the user assigned to the account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/accountnickname
@@ -117,24 +99,6 @@ func (i_ INSearchForAccountsIntent) SetAccountNickname(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAccountNickname:"), value)
 }
 
-// The balance type requested by the user.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/requestedbalancetype
-func (i_ INSearchForAccountsIntent) RequestedBalanceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("requestedBalanceType"))
-	return rv
-}
-
-
-// SetRequestedBalanceType sets the value of the requestedBalanceType property.
-// The balance type requested by the user.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/requestedbalancetype
-func (i_ INSearchForAccountsIntent) SetRequestedBalanceType(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRequestedBalanceType:"), value)
-}
-
 // The type of the account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/accounttype
@@ -151,6 +115,42 @@ func (i_ INSearchForAccountsIntent) AccountType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/accounttype
 func (i_ INSearchForAccountsIntent) SetAccountType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAccountType:"), value)
+}
+
+// The name of an organization attached to the account.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/organizationname
+func (i_ INSearchForAccountsIntent) OrganizationName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("organizationName"))
+	return rv
+}
+
+
+// SetOrganizationName sets the value of the organizationName property.
+// The name of an organization attached to the account.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/organizationname
+func (i_ INSearchForAccountsIntent) SetOrganizationName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setOrganizationName:"), value)
+}
+
+// The balance type requested by the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/requestedbalancetype
+func (i_ INSearchForAccountsIntent) RequestedBalanceType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("requestedBalanceType"))
+	return rv
+}
+
+
+// SetRequestedBalanceType sets the value of the requestedBalanceType property.
+// The balance type requested by the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/requestedbalancetype
+func (i_ INSearchForAccountsIntent) SetRequestedBalanceType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRequestedBalanceType:"), value)
 }
 
 

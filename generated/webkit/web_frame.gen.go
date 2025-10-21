@@ -145,112 +145,12 @@ func (w_ WebFrame) StopLoading() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("stopLoading"))
 }
 
-// The web frame’s view object.
+// The committed data source.
 //
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/frameview
-func (w_ WebFrame) FrameView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("frameView"))
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WebFrame/dataSource
+func (w_ WebFrame) DataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("dataSource"))
 	return rv
-}
-
-
-// SetFrameView sets the value of the frameView property.
-// The web frame’s view object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/frameview
-func (w_ WebFrame) SetFrameView(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameView:"), value)
-}
-
-// The view object that manages the web frame.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/webview
-func (w_ WebFrame) WebView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("webView"))
-	return rv
-}
-
-
-// SetWebView sets the value of the webView property.
-// The view object that manages the web frame.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/webview
-func (w_ WebFrame) SetWebView(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setWebView:"), value)
-}
-
-// The web view’s DOM frame element.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/frameelement
-func (w_ WebFrame) FrameElement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("frameElement"))
-	return rv
-}
-
-
-// SetFrameElement sets the value of the frameElement property.
-// The web view’s DOM frame element.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/frameelement
-func (w_ WebFrame) SetFrameElement(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameElement:"), value)
-}
-
-// The JavaScript window object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/windowobject
-func (w_ WebFrame) WindowObject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowObject"))
-	return rv
-}
-
-
-// SetWindowObject sets the value of the windowObject property.
-// The JavaScript window object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/windowobject
-func (w_ WebFrame) SetWindowObject(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowObject:"), value)
-}
-
-// The frame’s global JavaScript execution context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/javascriptcontext
-func (w_ WebFrame) JavaScriptContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("javaScriptContext"))
-	return rv
-}
-
-
-// SetJavaScriptContext sets the value of the javaScriptContext property.
-// The frame’s global JavaScript execution context.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/javascriptcontext
-func (w_ WebFrame) SetJavaScriptContext(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setJavaScriptContext:"), value)
-}
-
-// The provisional data source, or
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/provisionaldatasource
-func (w_ WebFrame) ProvisionalDataSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("provisionalDataSource"))
-	return rv
-}
-
-
-// SetProvisionalDataSource sets the value of the provisionalDataSource property.
-// The provisional data source, or
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/provisionaldatasource
-func (w_ WebFrame) SetProvisionalDataSource(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setProvisionalDataSource:"), value)
 }
 
 // The frames of the web frame’s immediate children.
@@ -271,24 +171,6 @@ func (w_ WebFrame) SetChildFrames(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setChildFrames:"), value)
 }
 
-// The web frame’s name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/name
-func (w_ WebFrame) Name() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-// The web frame’s name.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/name
-func (w_ WebFrame) SetName(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
 // The web frame’s DOM document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/domdocument
@@ -305,6 +187,42 @@ func (w_ WebFrame) DomDocument() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/domdocument
 func (w_ WebFrame) SetDomDocument(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDomDocument:"), value)
+}
+
+// The web view’s DOM frame element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/frameelement
+func (w_ WebFrame) FrameElement() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("frameElement"))
+	return rv
+}
+
+
+// SetFrameElement sets the value of the frameElement property.
+// The web view’s DOM frame element.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/frameelement
+func (w_ WebFrame) SetFrameElement(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameElement:"), value)
+}
+
+// The web frame’s view object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/frameview
+func (w_ WebFrame) FrameView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("frameView"))
+	return rv
+}
+
+
+// SetFrameView sets the value of the frameView property.
+// The web frame’s view object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/frameview
+func (w_ WebFrame) SetFrameView(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameView:"), value)
 }
 
 // The global JavaScript execution context for bridging between the WebKit and JavaScriptCore C API.
@@ -325,6 +243,42 @@ func (w_ WebFrame) SetGlobalContext(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setGlobalContext:"), value)
 }
 
+// The frame’s global JavaScript execution context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/javascriptcontext
+func (w_ WebFrame) JavaScriptContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("javaScriptContext"))
+	return rv
+}
+
+
+// SetJavaScriptContext sets the value of the javaScriptContext property.
+// The frame’s global JavaScript execution context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/javascriptcontext
+func (w_ WebFrame) SetJavaScriptContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setJavaScriptContext:"), value)
+}
+
+// The web frame’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/name
+func (w_ WebFrame) Name() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The web frame’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/name
+func (w_ WebFrame) SetName(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
 // The web frame’s parent web frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/parent
@@ -343,12 +297,58 @@ func (w_ WebFrame) SetParent(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setParent:"), value)
 }
 
-// The committed data source.
+// The provisional data source, or
 //
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WebFrame/dataSource
-func (w_ WebFrame) DataSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("dataSource"))
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/provisionaldatasource
+func (w_ WebFrame) ProvisionalDataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("provisionalDataSource"))
 	return rv
+}
+
+
+// SetProvisionalDataSource sets the value of the provisionalDataSource property.
+// The provisional data source, or
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/provisionaldatasource
+func (w_ WebFrame) SetProvisionalDataSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setProvisionalDataSource:"), value)
+}
+
+// The view object that manages the web frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/webview
+func (w_ WebFrame) WebView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("webView"))
+	return rv
+}
+
+
+// SetWebView sets the value of the webView property.
+// The view object that manages the web frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/webview
+func (w_ WebFrame) SetWebView(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWebView:"), value)
+}
+
+// The JavaScript window object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/windowobject
+func (w_ WebFrame) WindowObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowObject"))
+	return rv
+}
+
+
+// SetWindowObject sets the value of the windowObject property.
+// The JavaScript window object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/windowobject
+func (w_ WebFrame) SetWindowObject(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowObject:"), value)
 }
 
 

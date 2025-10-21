@@ -77,18 +77,18 @@ func NewMTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent() MTRWiFiNetwork
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/status
-func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/associationfailure
+func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) AssociationFailure() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("associationFailure"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
+// SetAssociationFailure sets the value of the associationFailure property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/status
-func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetStatus(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/associationfailure
+func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetAssociationFailure(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAssociationFailure:"), value)
 }
 
 //
@@ -107,18 +107,18 @@ func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetAssociation
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/associationfailure
-func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) AssociationFailure() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("associationFailure"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/status
+func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetAssociationFailure sets the value of the associationFailure property.
+// SetStatus sets the value of the status property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/associationfailure
-func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetAssociationFailure(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAssociationFailure:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/status
+func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
 

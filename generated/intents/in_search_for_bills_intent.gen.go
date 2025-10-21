@@ -94,6 +94,22 @@ func NewINSearchForBillsIntentWithBillPayeePaymentDateRangeBillTypeStatusDueDate
 }
 
 
+// The type of the bill.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/billType
+func (i_ INSearchForBillsIntent) BillType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("billType"))
+	return rv
+}
+
+// The range of due dates in which to search for bills.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/dueDateRange
+func (i_ INSearchForBillsIntent) DueDateRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dueDateRange"))
+	return rv
+}
+
 // The recipient of the payment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/billpayee
@@ -146,22 +162,6 @@ func (i_ INSearchForBillsIntent) Status() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/status
 func (i_ INSearchForBillsIntent) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStatus:"), value)
-}
-
-// The type of the bill.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/billType
-func (i_ INSearchForBillsIntent) BillType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("billType"))
-	return rv
-}
-
-// The range of due dates in which to search for bills.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/dueDateRange
-func (i_ INSearchForBillsIntent) DueDateRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dueDateRange"))
-	return rv
 }
 
 

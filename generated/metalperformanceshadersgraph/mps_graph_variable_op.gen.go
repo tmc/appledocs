@@ -79,6 +79,14 @@ func NewGraphVariableOp() GraphVariableOp {
 }
 
 
+// The shape of the variable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphVariableOp/shape
+func (g_ GraphVariableOp) Shape() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("shape"))
+	return rv
+}
+
 // The data type of the variable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphvariableop/datatype
@@ -95,14 +103,6 @@ func (g_ GraphVariableOp) DataType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphvariableop/datatype
 func (g_ GraphVariableOp) SetDataType(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
-}
-
-// The shape of the variable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphVariableOp/shape
-func (g_ GraphVariableOp) Shape() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("shape"))
-	return rv
 }
 
 

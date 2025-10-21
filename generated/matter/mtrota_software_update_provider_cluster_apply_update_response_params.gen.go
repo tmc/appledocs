@@ -77,21 +77,6 @@ func NewMTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams() MTROTASof
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/delayedactiontime
-func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) DelayedActionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("delayedActionTime"))
-	return rv
-}
-
-
-// SetDelayedActionTime sets the value of the delayedActionTime property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/delayedactiontime
-func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) SetDelayedActionTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDelayedActionTime:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/action
 func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) Action() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("action"))
@@ -104,6 +89,21 @@ func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) Action() 
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/action
 func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) SetAction(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAction:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/delayedactiontime
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) DelayedActionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("delayedActionTime"))
+	return rv
+}
+
+
+// SetDelayedActionTime sets the value of the delayedActionTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/delayedactiontime
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) SetDelayedActionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDelayedActionTime:"), value)
 }
 
 //

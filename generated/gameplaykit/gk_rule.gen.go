@@ -152,6 +152,24 @@ func (r_ Rule) PerformActionWithSystem(system unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("performActionWithSystem:"), system)
 }
 
+// The importance of the rule relative to others in a rule system’s agenda.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/salience
+func (r_ Rule) Salience() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("salience"))
+	return rv
+}
+
+
+// SetSalience sets the value of the salience property.
+// The importance of the rule relative to others in a rule system’s agenda.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/salience
+func (r_ Rule) SetSalience(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setSalience:"), value)
+}
+
 // The list of facts claimed by the rule system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrulesystem/facts
@@ -186,24 +204,6 @@ func (r_ Rule) State() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrulesystem/state
 func (r_ Rule) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setState:"), value)
-}
-
-// The importance of the rule relative to others in a rule system’s agenda.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/salience
-func (r_ Rule) Salience() int {
-	rv := objc.Send[int](r_.ID, objc.Sel("salience"))
-	return rv
-}
-
-
-// SetSalience sets the value of the salience property.
-// The importance of the rule relative to others in a rule system’s agenda.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/salience
-func (r_ Rule) SetSalience(value int) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setSalience:"), value)
 }
 
 

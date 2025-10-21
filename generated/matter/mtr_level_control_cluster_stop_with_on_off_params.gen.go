@@ -92,21 +92,6 @@ func (m_ MTRLevelControlClusterStopWithOnOffParams) SetOptionsMask(value foundat
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterStopWithOnOffParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterStopWithOnOffParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/optionsoverride
 func (m_ MTRLevelControlClusterStopWithOnOffParams) OptionsOverride() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
@@ -119,6 +104,21 @@ func (m_ MTRLevelControlClusterStopWithOnOffParams) OptionsOverride() foundation
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/optionsoverride
 func (m_ MTRLevelControlClusterStopWithOnOffParams) SetOptionsOverride(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/serversideprocessingtimeout
+func (m_ MTRLevelControlClusterStopWithOnOffParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/serversideprocessingtimeout
+func (m_ MTRLevelControlClusterStopWithOnOffParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //

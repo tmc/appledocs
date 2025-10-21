@@ -81,22 +81,12 @@ func NewThumbnailRepresentation() ThumbnailRepresentation {
 }
 
 
-// A thumbnail in the form of an AppKit image object.
+// A thumbnail in the form of a Core Graphics image object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/nsimage
-func (t_ ThumbnailRepresentation) NsImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("nsImage"))
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailRepresentation/cgImage
+func (t_ ThumbnailRepresentation) CGImage() CGImageRef {
+	rv := objc.Send[CGImageRef](t_.ID, objc.Sel("CGImage"))
 	return rv
-}
-
-
-// SetNsImage sets the value of the nsImage property.
-// A thumbnail in the form of an AppKit image object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/nsimage
-func (t_ ThumbnailRepresentation) SetNsImage(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setNsImage:"), value)
 }
 
 // The rectangle within the thumbnail image of the document that represents its contents.
@@ -117,22 +107,22 @@ func (t_ ThumbnailRepresentation) SetContentRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContentRect:"), value)
 }
 
-// A thumbnail in the form of a UIKit image object.
+// A thumbnail in the form of an AppKit image object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/uiimage
-func (t_ ThumbnailRepresentation) UiImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("uiImage"))
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/nsimage
+func (t_ ThumbnailRepresentation) NsImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("nsImage"))
 	return rv
 }
 
 
-// SetUiImage sets the value of the uiImage property.
-// A thumbnail in the form of a UIKit image object.
+// SetNsImage sets the value of the nsImage property.
+// A thumbnail in the form of an AppKit image object.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/uiimage
-func (t_ ThumbnailRepresentation) SetUiImage(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setUiImage:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/nsimage
+func (t_ ThumbnailRepresentation) SetNsImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setNsImage:"), value)
 }
 
 // The type of thumbnail.
@@ -153,12 +143,22 @@ func (t_ ThumbnailRepresentation) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setType:"), value)
 }
 
-// A thumbnail in the form of a Core Graphics image object.
+// A thumbnail in the form of a UIKit image object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailRepresentation/cgImage
-func (t_ ThumbnailRepresentation) CGImage() CGImageRef {
-	rv := objc.Send[CGImageRef](t_.ID, objc.Sel("CGImage"))
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/uiimage
+func (t_ ThumbnailRepresentation) UiImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("uiImage"))
 	return rv
+}
+
+
+// SetUiImage sets the value of the uiImage property.
+// A thumbnail in the form of a UIKit image object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/uiimage
+func (t_ ThumbnailRepresentation) SetUiImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setUiImage:"), value)
 }
 
 

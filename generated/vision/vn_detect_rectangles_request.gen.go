@@ -81,50 +81,6 @@ func NewDetectRectanglesRequest() DetectRectanglesRequest {
 }
 
 
-// A float specifying the number of degrees a rectangle corner angle can deviate from 90°.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/quadraturetolerance
-func (d_ DetectRectanglesRequest) QuadratureTolerance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("quadratureTolerance"))
-	return rv
-}
-
-
-// SetQuadratureTolerance sets the value of the quadratureTolerance property.
-// A float specifying the number of degrees a rectangle corner angle can deviate from 90°.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/quadraturetolerance
-func (d_ DetectRectanglesRequest) SetQuadratureTolerance(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setQuadratureTolerance:"), value)
-}
-
-// The results of the request to detect rectangles.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/results
-func (d_ DetectRectanglesRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
-	return rv
-}
-
-
-// SetResults sets the value of the results property.
-// The results of the request to detect rectangles.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/results
-func (d_ DetectRectanglesRequest) SetResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
-}
-
-// A constant for specifying revision 1 of the rectangle detection request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequestrevision1
-func (d_ DetectRectanglesRequest) VNDetectRectanglesRequestRevision1() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectRectanglesRequestRevision1"))
-	return rv
-}
-
 // A specifying the maximum aspect ratio of the rectangle to detect, defined as the shorter dimension over the longer dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/maximumAspectRatio
@@ -213,6 +169,50 @@ func (d_ DetectRectanglesRequest) MinimumSize() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumSize
 func (d_ DetectRectanglesRequest) SetMinimumSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumSize:"), value)
+}
+
+// A float specifying the number of degrees a rectangle corner angle can deviate from 90°.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/quadraturetolerance
+func (d_ DetectRectanglesRequest) QuadratureTolerance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("quadratureTolerance"))
+	return rv
+}
+
+
+// SetQuadratureTolerance sets the value of the quadratureTolerance property.
+// A float specifying the number of degrees a rectangle corner angle can deviate from 90°.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/quadraturetolerance
+func (d_ DetectRectanglesRequest) SetQuadratureTolerance(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setQuadratureTolerance:"), value)
+}
+
+// The results of the request to detect rectangles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/results
+func (d_ DetectRectanglesRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the request to detect rectangles.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/results
+func (d_ DetectRectanglesRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+// A constant for specifying revision 1 of the rectangle detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequestrevision1
+func (d_ DetectRectanglesRequest) VNDetectRectanglesRequestRevision1() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectRectanglesRequestRevision1"))
+	return rv
 }
 
 

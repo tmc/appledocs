@@ -92,18 +92,18 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetBreadcrumb(
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/serversideprocessingtimeout
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+// SetCountryCode sets the value of the countryCode property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/serversideprocessingtimeout
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetCountryCode(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
 }
 
 //
@@ -122,6 +122,21 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetNewRegulato
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/serversideprocessingtimeout
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/serversideprocessingtimeout
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/timedinvoketimeoutms
 func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) TimedInvokeTimeoutMs() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
@@ -134,21 +149,6 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) TimedInvokeTim
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/timedinvoketimeoutms
 func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
-	return rv
-}
-
-
-// SetCountryCode sets the value of the countryCode property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetCountryCode(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
 }
 
 

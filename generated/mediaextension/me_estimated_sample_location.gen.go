@@ -78,6 +78,22 @@ func NewMEEstimatedSampleLocation() MEEstimatedSampleLocation {
 }
 
 
+// The byte source to use to read the data for the sample.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/byteSource
+func (m_ MEEstimatedSampleLocation) ByteSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("byteSource"))
+	return rv
+}
+
+// The estimated starting file offset and size in bytes of the sample.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/estimatedSampleLocation
+func (m_ MEEstimatedSampleLocation) EstimatedSampleLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("estimatedSampleLocation"))
+	return rv
+}
+
 // The starting file offset and size in bytes of the data necessary to provide an accurate sample location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/meestimatedsamplelocation/refinementdatalocation
@@ -94,22 +110,6 @@ func (m_ MEEstimatedSampleLocation) RefinementDataLocation() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/meestimatedsamplelocation/refinementdatalocation
 func (m_ MEEstimatedSampleLocation) SetRefinementDataLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRefinementDataLocation:"), value)
-}
-
-// The byte source to use to read the data for the sample.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/byteSource
-func (m_ MEEstimatedSampleLocation) ByteSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("byteSource"))
-	return rv
-}
-
-// The estimated starting file offset and size in bytes of the sample.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/estimatedSampleLocation
-func (m_ MEEstimatedSampleLocation) EstimatedSampleLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("estimatedSampleLocation"))
-	return rv
 }
 
 

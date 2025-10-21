@@ -78,21 +78,6 @@ func NewMTRSoftwareDiagnosticsClusterThreadMetrics() MTRSoftwareDiagnosticsClust
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stacksize
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackSize() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stackSize"))
-	return rv
-}
-
-
-// SetStackSize sets the value of the stackSize property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stacksize
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackSize(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStackSize:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/id
 func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) Id() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("id"))
@@ -105,21 +90,6 @@ func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) Id() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/id
 func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetId(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stackfreecurrent
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackFreeCurrent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stackFreeCurrent"))
-	return rv
-}
-
-
-// SetStackFreeCurrent sets the value of the stackFreeCurrent property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stackfreecurrent
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackFreeCurrent(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStackFreeCurrent:"), value)
 }
 
 //
@@ -138,6 +108,21 @@ func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetName(value string) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stackfreecurrent
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackFreeCurrent() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stackFreeCurrent"))
+	return rv
+}
+
+
+// SetStackFreeCurrent sets the value of the stackFreeCurrent property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stackfreecurrent
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackFreeCurrent(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStackFreeCurrent:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stackfreeminimum
 func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackFreeMinimum() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stackFreeMinimum"))
@@ -150,6 +135,21 @@ func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackFreeMinimum() foundati
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stackfreeminimum
 func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackFreeMinimum(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStackFreeMinimum:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stacksize
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackSize() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stackSize"))
+	return rv
+}
+
+
+// SetStackSize sets the value of the stackSize property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stacksize
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackSize(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStackSize:"), value)
 }
 
 

@@ -77,21 +77,6 @@ func NewMTROnOffClusterOffParams() MTROnOffClusterOffParams {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffparams/timedinvoketimeoutms
-func (m_ MTROnOffClusterOffParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffparams/timedinvoketimeoutms
-func (m_ MTROnOffClusterOffParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffparams/serversideprocessingtimeout
 func (m_ MTROnOffClusterOffParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,6 +89,21 @@ func (m_ MTROnOffClusterOffParams) ServerSideProcessingTimeout() foundation.Numb
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffparams/serversideprocessingtimeout
 func (m_ MTROnOffClusterOffParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffparams/timedinvoketimeoutms
+func (m_ MTROnOffClusterOffParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffparams/timedinvoketimeoutms
+func (m_ MTROnOffClusterOffParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

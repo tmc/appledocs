@@ -80,6 +80,14 @@ func NewSFContentBlockerState() SFContentBlockerState {
 
 // A Boolean value that indicates whether the content blocker is enabled.
 //
+// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFContentBlockerState/isEnabled
+func (s_ SFContentBlockerState) Enabled() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("enabled"))
+	return rv
+}
+
+// A Boolean value that indicates whether the content blocker is enabled.
+//
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfcontentblockerstate/isenabled
 func (s_ SFContentBlockerState) IsEnabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
@@ -94,14 +102,6 @@ func (s_ SFContentBlockerState) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfcontentblockerstate/isenabled
 func (s_ SFContentBlockerState) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
-// A Boolean value that indicates whether the content blocker is enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFContentBlockerState/isEnabled
-func (s_ SFContentBlockerState) Enabled() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("enabled"))
-	return rv
 }
 
 

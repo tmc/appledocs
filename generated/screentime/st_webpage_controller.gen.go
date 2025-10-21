@@ -81,6 +81,50 @@ func NewSTWebpageController() STWebpageController {
 }
 
 
+// The URL for the webpage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/url
+func (s_ STWebpageController) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("URL"))
+	return rv
+}
+
+
+// SetURL sets the value of the URL property.
+// The URL for the webpage.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/url
+func (s_ STWebpageController) SetURL(value foundation.URL) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setURL:"), value)
+}
+
+// A Boolean that indicates whether a parent or guardian has blocked the URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/urlIsBlocked
+func (s_ STWebpageController) URLIsBlocked() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("URLIsBlocked"))
+	return rv
+}
+
+// An optional identifier for the current browsing profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/profileidentifier
+func (s_ STWebpageController) ProfileIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("profileIdentifier"))
+	return rv
+}
+
+
+// SetProfileIdentifier sets the value of the profileIdentifier property.
+// An optional identifier for the current browsing profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/profileidentifier
+func (s_ STWebpageController) SetProfileIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setProfileIdentifier:"), value)
+}
+
 // A Boolean that indicates whether the webpage controller is not recording web
 //
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/suppressusagerecording
@@ -117,24 +161,6 @@ func (s_ STWebpageController) SetUrlIsPictureInPicture(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setUrlIsPictureInPicture:"), value)
 }
 
-// An optional identifier for the current browsing profile.
-//
-// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/profileidentifier
-func (s_ STWebpageController) ProfileIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("profileIdentifier"))
-	return rv
-}
-
-
-// SetProfileIdentifier sets the value of the profileIdentifier property.
-// An optional identifier for the current browsing profile.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/profileidentifier
-func (s_ STWebpageController) SetProfileIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setProfileIdentifier:"), value)
-}
-
 // A Boolean that indicates whether there are one or more videos currently
 //
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisplayingvideo
@@ -151,32 +177,6 @@ func (s_ STWebpageController) UrlIsPlayingVideo() bool {
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisplayingvideo
 func (s_ STWebpageController) SetUrlIsPlayingVideo(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setUrlIsPlayingVideo:"), value)
-}
-
-// The URL for the webpage.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/url
-func (s_ STWebpageController) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("URL"))
-	return rv
-}
-
-
-// SetURL sets the value of the URL property.
-// The URL for the webpage.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/url
-func (s_ STWebpageController) SetURL(value foundation.URL) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setURL:"), value)
-}
-
-// A Boolean that indicates whether a parent or guardian has blocked the URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/urlIsBlocked
-func (s_ STWebpageController) URLIsBlocked() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("URLIsBlocked"))
-	return rv
 }
 
 

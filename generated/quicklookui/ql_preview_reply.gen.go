@@ -122,24 +122,6 @@ func NewPreviewReplyWithFileURL(fileURL foundation.URL) PreviewReply {
 }
 
 
-// The title for the system to display with the preview.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
-func (p_ PreviewReply) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
-	return rv
-}
-
-
-// SetTitle sets the value of the title property.
-// The title for the system to display with the preview.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
-func (p_ PreviewReply) SetTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
-}
-
 // The attachments for a preview reply that provide additional data for the system to display the preview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/attachments
@@ -174,6 +156,24 @@ func (p_ PreviewReply) StringEncoding() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/stringEncoding-1k9kb
 func (p_ PreviewReply) SetStringEncoding(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStringEncoding:"), value)
+}
+
+// The title for the system to display with the preview.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
+func (p_ PreviewReply) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title for the system to display with the preview.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
+func (p_ PreviewReply) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

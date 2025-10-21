@@ -92,36 +92,6 @@ func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetDayOfWeekForSequence(va
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/numberoftransitionsforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) NumberOfTransitionsForSequence() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("numberOfTransitionsForSequence"))
-	return rv
-}
-
-
-// SetNumberOfTransitionsForSequence sets the value of the numberOfTransitionsForSequence property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/numberoftransitionsforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetNumberOfTransitionsForSequence(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfTransitionsForSequence:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/transitions
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) Transitions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transitions"))
-	return rv
-}
-
-
-// SetTransitions sets the value of the transitions property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/transitions
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetTransitions(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitions:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/modeforsequence
 func (m_ MTRThermostatClusterSetWeeklyScheduleParams) ModeForSequence() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("modeForSequence"))
@@ -134,6 +104,21 @@ func (m_ MTRThermostatClusterSetWeeklyScheduleParams) ModeForSequence() foundati
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/modeforsequence
 func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetModeForSequence(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeForSequence:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/numberoftransitionsforsequence
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) NumberOfTransitionsForSequence() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("numberOfTransitionsForSequence"))
+	return rv
+}
+
+
+// SetNumberOfTransitionsForSequence sets the value of the numberOfTransitionsForSequence property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/numberoftransitionsforsequence
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetNumberOfTransitionsForSequence(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfTransitionsForSequence:"), value)
 }
 
 //
@@ -164,6 +149,21 @@ func (m_ MTRThermostatClusterSetWeeklyScheduleParams) TimedInvokeTimeoutMs() fou
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/timedinvoketimeoutms
 func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/transitions
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) Transitions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transitions"))
+	return rv
+}
+
+
+// SetTransitions sets the value of the transitions property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/transitions
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetTransitions(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitions:"), value)
 }
 
 

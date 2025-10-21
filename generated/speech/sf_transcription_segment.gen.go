@@ -80,22 +80,40 @@ func NewSFTranscriptionSegment() SFTranscriptionSegment {
 }
 
 
-// The number of seconds it took for the user to speak the utterance represented by the segment.
+// The entire transcription of utterances, formatted into a single, user-displayable string.
 //
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/duration
-func (s_ SFTranscriptionSegment) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("duration"))
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
+func (s_ SFTranscriptionSegment) FormattedString() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("formattedString"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
-// The number of seconds it took for the user to speak the utterance represented by the segment.
+// SetFormattedString sets the value of the formattedString property.
+// The entire transcription of utterances, formatted into a single, user-displayable string.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/duration
-func (s_ SFTranscriptionSegment) SetDuration(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDuration:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
+func (s_ SFTranscriptionSegment) SetFormattedString(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), objc.String(value))
+}
+
+// An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
+func (s_ SFTranscriptionSegment) Segments() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segments"))
+	return rv
+}
+
+
+// SetSegments sets the value of the segments property.
+// An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
+func (s_ SFTranscriptionSegment) SetSegments(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSegments:"), value)
 }
 
 // An array of alternate interpretations of the utterance in the transcription segment.
@@ -114,6 +132,78 @@ func (s_ SFTranscriptionSegment) AlternativeSubstrings() string {
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/alternativesubstrings
 func (s_ SFTranscriptionSegment) SetAlternativeSubstrings(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternativeSubstrings:"), objc.String(value))
+}
+
+// The level of confidence the speech recognizer has in its recognition of the speech transcribed for the segment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/confidence
+func (s_ SFTranscriptionSegment) Confidence() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("confidence"))
+	return rv
+}
+
+
+// SetConfidence sets the value of the confidence property.
+// The level of confidence the speech recognizer has in its recognition of the speech transcribed for the segment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/confidence
+func (s_ SFTranscriptionSegment) SetConfidence(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setConfidence:"), value)
+}
+
+// The number of seconds it took for the user to speak the utterance represented by the segment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/duration
+func (s_ SFTranscriptionSegment) Duration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// SetDuration sets the value of the duration property.
+// The number of seconds it took for the user to speak the utterance represented by the segment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/duration
+func (s_ SFTranscriptionSegment) SetDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDuration:"), value)
+}
+
+// The string representation of the utterance in the transcription segment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substring
+func (s_ SFTranscriptionSegment) Substring() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("substring"))
+	return rv
+}
+
+
+// SetSubstring sets the value of the substring property.
+// The string representation of the utterance in the transcription segment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substring
+func (s_ SFTranscriptionSegment) SetSubstring(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSubstring:"), objc.String(value))
+}
+
+// The range information for the transcription segment’s substring, relative to the overall transcription.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substringrange
+func (s_ SFTranscriptionSegment) SubstringRange() Range {
+	rv := objc.Send[Range](s_.ID, objc.Sel("substringRange"))
+	return rv
+}
+
+
+// SetSubstringRange sets the value of the substringRange property.
+// The range information for the transcription segment’s substring, relative to the overall transcription.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substringrange
+func (s_ SFTranscriptionSegment) SetSubstringRange(value Range) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSubstringRange:"), value)
 }
 
 // The start time of the segment in the processed audio stream.
@@ -150,96 +240,6 @@ func (s_ SFTranscriptionSegment) VoiceAnalytics() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/voiceanalytics
 func (s_ SFTranscriptionSegment) SetVoiceAnalytics(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceAnalytics:"), value)
-}
-
-// The string representation of the utterance in the transcription segment.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substring
-func (s_ SFTranscriptionSegment) Substring() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("substring"))
-	return rv
-}
-
-
-// SetSubstring sets the value of the substring property.
-// The string representation of the utterance in the transcription segment.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substring
-func (s_ SFTranscriptionSegment) SetSubstring(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSubstring:"), objc.String(value))
-}
-
-// The level of confidence the speech recognizer has in its recognition of the speech transcribed for the segment.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/confidence
-func (s_ SFTranscriptionSegment) Confidence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("confidence"))
-	return rv
-}
-
-
-// SetConfidence sets the value of the confidence property.
-// The level of confidence the speech recognizer has in its recognition of the speech transcribed for the segment.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/confidence
-func (s_ SFTranscriptionSegment) SetConfidence(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setConfidence:"), value)
-}
-
-// The range information for the transcription segment’s substring, relative to the overall transcription.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substringrange
-func (s_ SFTranscriptionSegment) SubstringRange() Range {
-	rv := objc.Send[Range](s_.ID, objc.Sel("substringRange"))
-	return rv
-}
-
-
-// SetSubstringRange sets the value of the substringRange property.
-// The range information for the transcription segment’s substring, relative to the overall transcription.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substringrange
-func (s_ SFTranscriptionSegment) SetSubstringRange(value Range) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSubstringRange:"), value)
-}
-
-// An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
-func (s_ SFTranscriptionSegment) Segments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segments"))
-	return rv
-}
-
-
-// SetSegments sets the value of the segments property.
-// An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
-func (s_ SFTranscriptionSegment) SetSegments(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSegments:"), value)
-}
-
-// The entire transcription of utterances, formatted into a single, user-displayable string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
-func (s_ SFTranscriptionSegment) FormattedString() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("formattedString"))
-	return rv
-}
-
-
-// SetFormattedString sets the value of the formattedString property.
-// The entire transcription of utterances, formatted into a single, user-displayable string.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
-func (s_ SFTranscriptionSegment) SetFormattedString(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), objc.String(value))
 }
 
 

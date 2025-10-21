@@ -79,24 +79,6 @@ func NewMKImageryMapConfiguration() MKImageryMapConfiguration {
 }
 
 
-// The characteristics of the map view, including the map type and features the map displays.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
-func (m_ MKImageryMapConfiguration) PreferredConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredConfiguration"))
-	return rv
-}
-
-
-// SetPreferredConfiguration sets the value of the preferredConfiguration property.
-// The characteristics of the map view, including the map type and features the map displays.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
-func (m_ MKImageryMapConfiguration) SetPreferredConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
-}
-
 // A value that indicates whether the map’s pitch button is visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
@@ -113,6 +95,24 @@ func (m_ MKImageryMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
 func (m_ MKImageryMapConfiguration) SetPitchButtonVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchButtonVisibility:"), value)
+}
+
+// The characteristics of the map view, including the map type and features the map displays.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
+func (m_ MKImageryMapConfiguration) PreferredConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredConfiguration"))
+	return rv
+}
+
+
+// SetPreferredConfiguration sets the value of the preferredConfiguration property.
+// The characteristics of the map view, including the map type and features the map displays.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
+func (m_ MKImageryMapConfiguration) SetPreferredConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
 // A Boolean value that indicates whether the map displays the user tracking button.

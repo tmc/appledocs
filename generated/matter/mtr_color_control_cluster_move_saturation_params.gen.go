@@ -77,21 +77,6 @@ func NewMTRColorControlClusterMoveSaturationParams() MTRColorControlClusterMoveS
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/rate
-func (m_ MTRColorControlClusterMoveSaturationParams) Rate() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rate"))
-	return rv
-}
-
-
-// SetRate sets the value of the rate property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/rate
-func (m_ MTRColorControlClusterMoveSaturationParams) SetRate(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/movemode
 func (m_ MTRColorControlClusterMoveSaturationParams) MoveMode() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("moveMode"))
@@ -104,36 +89,6 @@ func (m_ MTRColorControlClusterMoveSaturationParams) MoveMode() foundation.Numbe
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/movemode
 func (m_ MTRColorControlClusterMoveSaturationParams) SetMoveMode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMoveMode:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveSaturationParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveSaturationParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/optionsoverride
-func (m_ MTRColorControlClusterMoveSaturationParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
-	return rv
-}
-
-
-// SetOptionsOverride sets the value of the optionsOverride property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/optionsoverride
-func (m_ MTRColorControlClusterMoveSaturationParams) SetOptionsOverride(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
 //
@@ -152,6 +107,36 @@ func (m_ MTRColorControlClusterMoveSaturationParams) SetOptionsMask(value founda
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/optionsoverride
+func (m_ MTRColorControlClusterMoveSaturationParams) OptionsOverride() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+	return rv
+}
+
+
+// SetOptionsOverride sets the value of the optionsOverride property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/optionsoverride
+func (m_ MTRColorControlClusterMoveSaturationParams) SetOptionsOverride(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/rate
+func (m_ MTRColorControlClusterMoveSaturationParams) Rate() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rate"))
+	return rv
+}
+
+
+// SetRate sets the value of the rate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/rate
+func (m_ MTRColorControlClusterMoveSaturationParams) SetRate(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/serversideprocessingtimeout
 func (m_ MTRColorControlClusterMoveSaturationParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -164,6 +149,21 @@ func (m_ MTRColorControlClusterMoveSaturationParams) ServerSideProcessingTimeout
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/serversideprocessingtimeout
 func (m_ MTRColorControlClusterMoveSaturationParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/timedinvoketimeoutms
+func (m_ MTRColorControlClusterMoveSaturationParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovesaturationparams/timedinvoketimeoutms
+func (m_ MTRColorControlClusterMoveSaturationParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

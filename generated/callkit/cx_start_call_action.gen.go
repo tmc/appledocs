@@ -114,24 +114,6 @@ func (c_ CXStartCallAction) FulfillWithDateStarted(dateStarted unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateStarted:"), dateStarted)
 }
 
-// A Boolean value that indicates whether the call is a video call.
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxstartcallaction/isvideo
-func (c_ CXStartCallAction) IsVideo() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isVideo"))
-	return rv
-}
-
-
-// SetIsVideo sets the value of the isVideo property.
-// A Boolean value that indicates whether the call is a video call.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxstartcallaction/isvideo
-func (c_ CXStartCallAction) SetIsVideo(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideo:"), value)
-}
-
 // The identifier for the call recipient.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/contactIdentifier
@@ -184,6 +166,24 @@ func (c_ CXStartCallAction) Video() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/isVideo
 func (c_ CXStartCallAction) SetVideo(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideo:"), value)
+}
+
+// A Boolean value that indicates whether the call is a video call.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxstartcallaction/isvideo
+func (c_ CXStartCallAction) IsVideo() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isVideo"))
+	return rv
+}
+
+
+// SetIsVideo sets the value of the isVideo property.
+// A Boolean value that indicates whether the call is a video call.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxstartcallaction/isvideo
+func (c_ CXStartCallAction) SetIsVideo(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideo:"), value)
 }
 
 

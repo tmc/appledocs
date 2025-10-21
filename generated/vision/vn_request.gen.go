@@ -148,24 +148,6 @@ func (r_ Request) SupportedComputeStageDevicesAndReturnError(error_ unsafe.Point
 	return rv
 }
 
-// The collection of compute devices per stage that a request supports.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/supportedcomputestagedevices
-func (r_ Request) SupportedComputeStageDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("supportedComputeStageDevices"))
-	return rv
-}
-
-
-// SetSupportedComputeStageDevices sets the value of the supportedComputeStageDevices property.
-// The collection of compute devices per stage that a request supports.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/supportedcomputestagedevices
-func (r_ Request) SetSupportedComputeStageDevices(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setSupportedComputeStageDevices:"), value)
-}
-
 // The completion handler the system invokes after the request finishes processing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/completionHandler
@@ -258,6 +240,24 @@ func (r_ Request) UsesCPUOnly() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/usesCPUOnly
 func (r_ Request) SetUsesCPUOnly(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUsesCPUOnly:"), value)
+}
+
+// The collection of compute devices per stage that a request supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/supportedcomputestagedevices
+func (r_ Request) SupportedComputeStageDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("supportedComputeStageDevices"))
+	return rv
+}
+
+
+// SetSupportedComputeStageDevices sets the value of the supportedComputeStageDevices property.
+// The collection of compute devices per stage that a request supports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/supportedcomputestagedevices
+func (r_ Request) SetSupportedComputeStageDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setSupportedComputeStageDevices:"), value)
 }
 
 

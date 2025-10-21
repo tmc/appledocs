@@ -717,6 +717,14 @@ func (h_ HKUnit) UnitRaisedToPower(power int) unsafe.Pointer {
 	return rv
 }
 
+// A string representation of the unit object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/unitString
+func (h_ HKUnit) UnitString() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("unitString"))
+	return rv
+}
+
 // The molecular mass of blood glucose, typically used to create mole units for blood glucose.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkunitmolarmassbloodglucose
@@ -733,14 +741,6 @@ func (h_ HKUnit) HKUnitMolarMassBloodGlucose() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkunitmolarmassbloodglucose
 func (h_ HKUnit) SetHKUnitMolarMassBloodGlucose(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setHKUnitMolarMassBloodGlucose:"), value)
-}
-
-// A string representation of the unit object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/unitString
-func (h_ HKUnit) UnitString() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("unitString"))
-	return rv
 }
 
 

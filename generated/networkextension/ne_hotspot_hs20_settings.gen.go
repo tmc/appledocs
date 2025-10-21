@@ -96,24 +96,6 @@ func (n_ NEHotspotHS20Settings) SetDomainName(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDomainName:"), objc.String(value))
 }
 
-// An array of Roaming Consortium Organization (RCO) identifiers used for Wi-Fi Hotspot 2.0 negotiation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/roamingconsortiumois
-func (n_ NEHotspotHS20Settings) RoamingConsortiumOIs() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("roamingConsortiumOIs"))
-	return rv
-}
-
-
-// SetRoamingConsortiumOIs sets the value of the roamingConsortiumOIs property.
-// An array of Roaming Consortium Organization (RCO) identifiers used for Wi-Fi Hotspot 2.0 negotiation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/roamingconsortiumois
-func (n_ NEHotspotHS20Settings) SetRoamingConsortiumOIs(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRoamingConsortiumOIs:"), objc.String(value))
-}
-
 // A Boolean value indicating whether or not roaming is enabled on a Hotspot 2.0 Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/isroamingenabled
@@ -130,6 +112,24 @@ func (n_ NEHotspotHS20Settings) IsRoamingEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/isroamingenabled
 func (n_ NEHotspotHS20Settings) SetIsRoamingEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsRoamingEnabled:"), value)
+}
+
+// An array of Mobile Country Code (MCC) and Mobile Network Code (MNC) pairs used for Wi-Fi Hotspot 2.0 negotiation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/mccandmncs
+func (n_ NEHotspotHS20Settings) MccAndMNCs() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("mccAndMNCs"))
+	return rv
+}
+
+
+// SetMccAndMNCs sets the value of the mccAndMNCs property.
+// An array of Mobile Country Code (MCC) and Mobile Network Code (MNC) pairs used for Wi-Fi Hotspot 2.0 negotiation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/mccandmncs
+func (n_ NEHotspotHS20Settings) SetMccAndMNCs(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMccAndMNCs:"), objc.String(value))
 }
 
 // An array of Network Access Identifier (NAI) realm name strings used for Wi-Fi Hotspot 2.0 negotiation.
@@ -150,22 +150,22 @@ func (n_ NEHotspotHS20Settings) SetNaiRealmNames(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNaiRealmNames:"), objc.String(value))
 }
 
-// An array of Mobile Country Code (MCC) and Mobile Network Code (MNC) pairs used for Wi-Fi Hotspot 2.0 negotiation.
+// An array of Roaming Consortium Organization (RCO) identifiers used for Wi-Fi Hotspot 2.0 negotiation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/mccandmncs
-func (n_ NEHotspotHS20Settings) MccAndMNCs() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("mccAndMNCs"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/roamingconsortiumois
+func (n_ NEHotspotHS20Settings) RoamingConsortiumOIs() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("roamingConsortiumOIs"))
 	return rv
 }
 
 
-// SetMccAndMNCs sets the value of the mccAndMNCs property.
-// An array of Mobile Country Code (MCC) and Mobile Network Code (MNC) pairs used for Wi-Fi Hotspot 2.0 negotiation.
+// SetRoamingConsortiumOIs sets the value of the roamingConsortiumOIs property.
+// An array of Roaming Consortium Organization (RCO) identifiers used for Wi-Fi Hotspot 2.0 negotiation.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/mccandmncs
-func (n_ NEHotspotHS20Settings) SetMccAndMNCs(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMccAndMNCs:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/roamingconsortiumois
+func (n_ NEHotspotHS20Settings) SetRoamingConsortiumOIs(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRoamingConsortiumOIs:"), objc.String(value))
 }
 
 

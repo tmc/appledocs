@@ -82,6 +82,14 @@ func NewVZVirtioConsoleDeviceConfiguration() VZVirtioConsoleDeviceConfiguration 
 
 
 
+// The list of Virtio port configurations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsoleDeviceConfiguration/ports
+func (v_ VZVirtioConsoleDeviceConfiguration) Ports() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("ports"))
+	return rv
+}
+
 // The array of console devices that you expose to the guest operating system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/consoledevices
@@ -98,14 +106,6 @@ func (v_ VZVirtioConsoleDeviceConfiguration) ConsoleDevices() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/consoledevices
 func (v_ VZVirtioConsoleDeviceConfiguration) SetConsoleDevices(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), value)
-}
-
-// The list of Virtio port configurations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsoleDeviceConfiguration/ports
-func (v_ VZVirtioConsoleDeviceConfiguration) Ports() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("ports"))
-	return rv
 }
 
 

@@ -79,76 +79,40 @@ func NewCInstanceNormalizationLayer() CInstanceNormalizationLayer {
 }
 
 
-// The running variance tensor.
+// The beta tensor.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/variance
-func (c_ CInstanceNormalizationLayer) Variance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("variance"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/beta
+func (c_ CInstanceNormalizationLayer) Beta() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
 	return rv
 }
 
 
-// SetVariance sets the value of the variance property.
-// The running variance tensor.
+// SetBeta sets the value of the beta property.
+// The beta tensor.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/variance
-func (c_ CInstanceNormalizationLayer) SetVariance(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVariance:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/beta
+func (c_ CInstanceNormalizationLayer) SetBeta(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
 }
 
-// The variance epsilon you use for numerical stability.
+// The beta tensor parameter you use for optimizer updates.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/varianceepsilon
-func (c_ CInstanceNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("varianceEpsilon"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/betaparameter
+func (c_ CInstanceNormalizationLayer) BetaParameter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("betaParameter"))
 	return rv
 }
 
 
-// SetVarianceEpsilon sets the value of the varianceEpsilon property.
-// The variance epsilon you use for numerical stability.
+// SetBetaParameter sets the value of the betaParameter property.
+// The beta tensor parameter you use for optimizer updates.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/varianceepsilon
-func (c_ CInstanceNormalizationLayer) SetVarianceEpsilon(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
-}
-
-// The gamma tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gamma
-func (c_ CInstanceNormalizationLayer) Gamma() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gamma"))
-	return rv
-}
-
-
-// SetGamma sets the value of the gamma property.
-// The gamma tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gamma
-func (c_ CInstanceNormalizationLayer) SetGamma(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
-}
-
-// The momentum value for the running mean and variance computation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/momentum
-func (c_ CInstanceNormalizationLayer) Momentum() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("momentum"))
-	return rv
-}
-
-
-// SetMomentum sets the value of the momentum property.
-// The momentum value for the running mean and variance computation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/momentum
-func (c_ CInstanceNormalizationLayer) SetMomentum(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMomentum:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/betaparameter
+func (c_ CInstanceNormalizationLayer) SetBetaParameter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
 }
 
 // The number of feature channels.
@@ -167,6 +131,24 @@ func (c_ CInstanceNormalizationLayer) FeatureChannelCount() int {
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/featurechannelcount
 func (c_ CInstanceNormalizationLayer) SetFeatureChannelCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureChannelCount:"), value)
+}
+
+// The gamma tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gamma
+func (c_ CInstanceNormalizationLayer) Gamma() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gamma"))
+	return rv
+}
+
+
+// SetGamma sets the value of the gamma property.
+// The gamma tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gamma
+func (c_ CInstanceNormalizationLayer) SetGamma(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
 }
 
 // The gamma tensor parameter you use for optimizer updates.
@@ -205,40 +187,58 @@ func (c_ CInstanceNormalizationLayer) SetMean(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMean:"), value)
 }
 
-// The beta tensor.
+// The momentum value for the running mean and variance computation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/beta
-func (c_ CInstanceNormalizationLayer) Beta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/momentum
+func (c_ CInstanceNormalizationLayer) Momentum() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("momentum"))
 	return rv
 }
 
 
-// SetBeta sets the value of the beta property.
-// The beta tensor.
+// SetMomentum sets the value of the momentum property.
+// The momentum value for the running mean and variance computation.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/beta
-func (c_ CInstanceNormalizationLayer) SetBeta(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/momentum
+func (c_ CInstanceNormalizationLayer) SetMomentum(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMomentum:"), value)
 }
 
-// The beta tensor parameter you use for optimizer updates.
+// The running variance tensor.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/betaparameter
-func (c_ CInstanceNormalizationLayer) BetaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("betaParameter"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/variance
+func (c_ CInstanceNormalizationLayer) Variance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("variance"))
 	return rv
 }
 
 
-// SetBetaParameter sets the value of the betaParameter property.
-// The beta tensor parameter you use for optimizer updates.
+// SetVariance sets the value of the variance property.
+// The running variance tensor.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/betaparameter
-func (c_ CInstanceNormalizationLayer) SetBetaParameter(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/variance
+func (c_ CInstanceNormalizationLayer) SetVariance(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVariance:"), value)
+}
+
+// The variance epsilon you use for numerical stability.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/varianceepsilon
+func (c_ CInstanceNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("varianceEpsilon"))
+	return rv
+}
+
+
+// SetVarianceEpsilon sets the value of the varianceEpsilon property.
+// The variance epsilon you use for numerical stability.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/varianceepsilon
+func (c_ CInstanceNormalizationLayer) SetVarianceEpsilon(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
 }
 
 

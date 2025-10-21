@@ -78,24 +78,6 @@ func NewPHVideoRequestOptions() PHVideoRequestOptions {
 }
 
 
-// A Boolean value that specifies whether Photos can download the requested video from iCloud.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/isnetworkaccessallowed
-func (p_ PHVideoRequestOptions) IsNetworkAccessAllowed() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
-	return rv
-}
-
-
-// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
-// A Boolean value that specifies whether Photos can download the requested video from iCloud.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/isnetworkaccessallowed
-func (p_ PHVideoRequestOptions) SetIsNetworkAccessAllowed(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
-}
-
 // A mode specifying the requested video quality and delivery priority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/deliveryMode
@@ -166,6 +148,24 @@ func (p_ PHVideoRequestOptions) Version() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/version
 func (p_ PHVideoRequestOptions) SetVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
+}
+
+// A Boolean value that specifies whether Photos can download the requested video from iCloud.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/isnetworkaccessallowed
+func (p_ PHVideoRequestOptions) IsNetworkAccessAllowed() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
+	return rv
+}
+
+
+// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
+// A Boolean value that specifies whether Photos can download the requested video from iCloud.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/isnetworkaccessallowed
+func (p_ PHVideoRequestOptions) SetIsNetworkAccessAllowed(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
 }
 
 

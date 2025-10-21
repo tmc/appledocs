@@ -79,42 +79,6 @@ func NewPHImageRequestOptions() PHImageRequestOptions {
 }
 
 
-// A Boolean value that determines whether Photos processes the image request synchronously.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phimagerequestoptions/issynchronous
-func (p_ PHImageRequestOptions) IsSynchronous() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isSynchronous"))
-	return rv
-}
-
-
-// SetIsSynchronous sets the value of the isSynchronous property.
-// A Boolean value that determines whether Photos processes the image request synchronously.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phimagerequestoptions/issynchronous
-func (p_ PHImageRequestOptions) SetIsSynchronous(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSynchronous:"), value)
-}
-
-// A Boolean value that specifies whether Photos can download the requested image from iCloud.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phimagerequestoptions/isnetworkaccessallowed
-func (p_ PHImageRequestOptions) IsNetworkAccessAllowed() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
-	return rv
-}
-
-
-// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
-// A Boolean value that specifies whether Photos can download the requested image from iCloud.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phimagerequestoptions/isnetworkaccessallowed
-func (p_ PHImageRequestOptions) SetIsNetworkAccessAllowed(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/allowSecondaryDegradedImage
 func (p_ PHImageRequestOptions) AllowSecondaryDegradedImage() bool {
@@ -254,6 +218,42 @@ func (p_ PHImageRequestOptions) Version() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/version
 func (p_ PHImageRequestOptions) SetVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
+}
+
+// A Boolean value that specifies whether Photos can download the requested image from iCloud.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phimagerequestoptions/isnetworkaccessallowed
+func (p_ PHImageRequestOptions) IsNetworkAccessAllowed() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
+	return rv
+}
+
+
+// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
+// A Boolean value that specifies whether Photos can download the requested image from iCloud.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phimagerequestoptions/isnetworkaccessallowed
+func (p_ PHImageRequestOptions) SetIsNetworkAccessAllowed(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
+}
+
+// A Boolean value that determines whether Photos processes the image request synchronously.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phimagerequestoptions/issynchronous
+func (p_ PHImageRequestOptions) IsSynchronous() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isSynchronous"))
+	return rv
+}
+
+
+// SetIsSynchronous sets the value of the isSynchronous property.
+// A Boolean value that determines whether Photos processes the image request synchronously.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phimagerequestoptions/issynchronous
+func (p_ PHImageRequestOptions) SetIsSynchronous(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSynchronous:"), value)
 }
 
 

@@ -430,72 +430,6 @@ func (w_ WebView) TakeSnapshotWithConfigurationCompletionHandler(snapshotConfigu
 	objc.Send[objc.ID](w_.ID, objc.Sel("takeSnapshotWithConfiguration:completionHandler:"), snapshotConfiguration, completionHandler)
 }
 
-// A Boolean value that indicates whether the view is currently loading content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isloading
-func (w_ WebView) IsLoading() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("isLoading"))
-	return rv
-}
-
-
-// SetIsLoading sets the value of the isLoading property.
-// A Boolean value that indicates whether the view is currently loading content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isloading
-func (w_ WebView) SetIsLoading(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIsLoading:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isfindinteractionenabled
-func (w_ WebView) IsFindInteractionEnabled() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("isFindInteractionEnabled"))
-	return rv
-}
-
-
-// SetIsFindInteractionEnabled sets the value of the isFindInteractionEnabled property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isfindinteractionenabled
-func (w_ WebView) SetIsFindInteractionEnabled(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIsFindInteractionEnabled:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/iswritingtoolsactive
-func (w_ WebView) IsWritingToolsActive() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("isWritingToolsActive"))
-	return rv
-}
-
-
-// SetIsWritingToolsActive sets the value of the isWritingToolsActive property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/iswritingtoolsactive
-func (w_ WebView) SetIsWritingToolsActive(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIsWritingToolsActive:"), value)
-}
-
-// A Boolean value that indicates whether you can inspect the view with Safari Web Inspector.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isinspectable
-func (w_ WebView) IsInspectable() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("isInspectable"))
-	return rv
-}
-
-
-// SetIsInspectable sets the value of the isInspectable property.
-// A Boolean value that indicates whether you can inspect the view with Safari Web Inspector.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isinspectable
-func (w_ WebView) SetIsInspectable(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIsInspectable:"), value)
-}
-
 // A Boolean value that indicates whether horizontal swipe gestures trigger backward and forward page navigation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/allowsBackForwardNavigationGestures
@@ -902,6 +836,72 @@ func (w_ WebView) SetUnderPageBackgroundColor(value unsafe.Pointer) {
 func (w_ WebView) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("URL"))
 	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isfindinteractionenabled
+func (w_ WebView) IsFindInteractionEnabled() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isFindInteractionEnabled"))
+	return rv
+}
+
+
+// SetIsFindInteractionEnabled sets the value of the isFindInteractionEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isfindinteractionenabled
+func (w_ WebView) SetIsFindInteractionEnabled(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsFindInteractionEnabled:"), value)
+}
+
+// A Boolean value that indicates whether you can inspect the view with Safari Web Inspector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isinspectable
+func (w_ WebView) IsInspectable() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isInspectable"))
+	return rv
+}
+
+
+// SetIsInspectable sets the value of the isInspectable property.
+// A Boolean value that indicates whether you can inspect the view with Safari Web Inspector.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isinspectable
+func (w_ WebView) SetIsInspectable(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsInspectable:"), value)
+}
+
+// A Boolean value that indicates whether the view is currently loading content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isloading
+func (w_ WebView) IsLoading() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isLoading"))
+	return rv
+}
+
+
+// SetIsLoading sets the value of the isLoading property.
+// A Boolean value that indicates whether the view is currently loading content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isloading
+func (w_ WebView) SetIsLoading(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsLoading:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/iswritingtoolsactive
+func (w_ WebView) IsWritingToolsActive() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isWritingToolsActive"))
+	return rv
+}
+
+
+// SetIsWritingToolsActive sets the value of the isWritingToolsActive property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/iswritingtoolsactive
+func (w_ WebView) SetIsWritingToolsActive(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsWritingToolsActive:"), value)
 }
 
 

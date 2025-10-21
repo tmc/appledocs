@@ -94,24 +94,6 @@ func NewHKSampleQueryWithQueryDescriptorsLimitSortDescriptorsResultsHandler(quer
 }
 
 
-// The sort descriptors that specify the order of the results returned by this query.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
-func (h_ HKSampleQuery) SortDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sortDescriptors"))
-	return rv
-}
-
-
-// SetSortDescriptors sets the value of the sortDescriptors property.
-// The sort descriptors that specify the order of the results returned by this query.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
-func (h_ HKSampleQuery) SetSortDescriptors(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
-}
-
 // A value indicating that the query returns all the matching samples in the HealthKit store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit
@@ -136,6 +118,24 @@ func (h_ HKSampleQuery) Limit() int {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/limit
 func (h_ HKSampleQuery) SetLimit(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLimit:"), value)
+}
+
+// The sort descriptors that specify the order of the results returned by this query.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
+func (h_ HKSampleQuery) SortDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sortDescriptors"))
+	return rv
+}
+
+
+// SetSortDescriptors sets the value of the sortDescriptors property.
+// The sort descriptors that specify the order of the results returned by this query.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
+func (h_ HKSampleQuery) SetSortDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 
 

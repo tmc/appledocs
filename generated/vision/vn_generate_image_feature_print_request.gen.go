@@ -81,12 +81,22 @@ func NewGenerateImageFeaturePrintRequest() GenerateImageFeaturePrintRequest {
 }
 
 
-// A constant for specifying the first revision of the feature-print request.
+// An optional setting that tells the algorithm how to scale an input image before generating the feature print.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision1
-func (g_ GenerateImageFeaturePrintRequest) VNGenerateImageFeaturePrintRequestRevision1() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateImageFeaturePrintRequestRevision1"))
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/imagecropandscaleoption
+func (g_ GenerateImageFeaturePrintRequest) ImageCropAndScaleOption() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("imageCropAndScaleOption"))
 	return rv
+}
+
+
+// SetImageCropAndScaleOption sets the value of the imageCropAndScaleOption property.
+// An optional setting that tells the algorithm how to scale an input image before generating the feature print.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/imagecropandscaleoption
+func (g_ GenerateImageFeaturePrintRequest) SetImageCropAndScaleOption(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setImageCropAndScaleOption:"), value)
 }
 
 // The results of the feature print request.
@@ -107,22 +117,12 @@ func (g_ GenerateImageFeaturePrintRequest) SetResults(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 
-// An optional setting that tells the algorithm how to scale an input image before generating the feature print.
+// A constant for specifying the first revision of the feature-print request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/imagecropandscaleoption
-func (g_ GenerateImageFeaturePrintRequest) ImageCropAndScaleOption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("imageCropAndScaleOption"))
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision1
+func (g_ GenerateImageFeaturePrintRequest) VNGenerateImageFeaturePrintRequestRevision1() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateImageFeaturePrintRequestRevision1"))
 	return rv
-}
-
-
-// SetImageCropAndScaleOption sets the value of the imageCropAndScaleOption property.
-// An optional setting that tells the algorithm how to scale an input image before generating the feature print.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/imagecropandscaleoption
-func (g_ GenerateImageFeaturePrintRequest) SetImageCropAndScaleOption(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setImageCropAndScaleOption:"), value)
 }
 
 

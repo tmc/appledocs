@@ -77,18 +77,18 @@ func NewMTRDeviceControllerParameters() MTRDeviceControllerParameters {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/shouldadvertiseoperational
-func (m_ MTRDeviceControllerParameters) ShouldAdvertiseOperational() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("shouldAdvertiseOperational"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/certificationdeclarationcertificates
+func (m_ MTRDeviceControllerParameters) CertificationDeclarationCertificates() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificationDeclarationCertificates"))
 	return rv
 }
 
 
-// SetShouldAdvertiseOperational sets the value of the shouldAdvertiseOperational property.
+// SetCertificationDeclarationCertificates sets the value of the certificationDeclarationCertificates property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/shouldadvertiseoperational
-func (m_ MTRDeviceControllerParameters) SetShouldAdvertiseOperational(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldAdvertiseOperational:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/certificationdeclarationcertificates
+func (m_ MTRDeviceControllerParameters) SetCertificationDeclarationCertificates(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclarationCertificates:"), value)
 }
 
 //
@@ -107,18 +107,33 @@ func (m_ MTRDeviceControllerParameters) SetConcurrentSubscriptionEstablishmentsA
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/certificationdeclarationcertificates
-func (m_ MTRDeviceControllerParameters) CertificationDeclarationCertificates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificationDeclarationCertificates"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/productattestationauthoritycertificates
+func (m_ MTRDeviceControllerParameters) ProductAttestationAuthorityCertificates() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
 	return rv
 }
 
 
-// SetCertificationDeclarationCertificates sets the value of the certificationDeclarationCertificates property.
+// SetProductAttestationAuthorityCertificates sets the value of the productAttestationAuthorityCertificates property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/certificationdeclarationcertificates
-func (m_ MTRDeviceControllerParameters) SetCertificationDeclarationCertificates(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclarationCertificates:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/productattestationauthoritycertificates
+func (m_ MTRDeviceControllerParameters) SetProductAttestationAuthorityCertificates(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductAttestationAuthorityCertificates:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/shouldadvertiseoperational
+func (m_ MTRDeviceControllerParameters) ShouldAdvertiseOperational() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldAdvertiseOperational"))
+	return rv
+}
+
+
+// SetShouldAdvertiseOperational sets the value of the shouldAdvertiseOperational property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/shouldadvertiseoperational
+func (m_ MTRDeviceControllerParameters) SetShouldAdvertiseOperational(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldAdvertiseOperational:"), value)
 }
 
 // Sets the storage behavior configuration - see MTRDeviceStorageBehaviorConfiguration.h for details
@@ -137,21 +152,6 @@ func (m_ MTRDeviceControllerParameters) StorageBehaviorConfiguration() unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/storagebehaviorconfiguration
 func (m_ MTRDeviceControllerParameters) SetStorageBehaviorConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStorageBehaviorConfiguration:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/productattestationauthoritycertificates
-func (m_ MTRDeviceControllerParameters) ProductAttestationAuthorityCertificates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
-	return rv
-}
-
-
-// SetProductAttestationAuthorityCertificates sets the value of the productAttestationAuthorityCertificates property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/productattestationauthoritycertificates
-func (m_ MTRDeviceControllerParameters) SetProductAttestationAuthorityCertificates(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductAttestationAuthorityCertificates:"), value)
 }
 
 

@@ -96,6 +96,24 @@ func (t_ TKSmartCard) EndSession() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("endSession"))
 }
 
+// User-specified information. This property is automatically set to if the Smart Card is removed or another object begins a session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/context
+func (t_ TKSmartCard) Context() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("context"))
+	return rv
+}
+
+
+// SetContext sets the value of the context property.
+// User-specified information. This property is automatically set to if the Smart Card is removed or another object begins a session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/context
+func (t_ TKSmartCard) SetContext(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setContext:"), value)
+}
+
 // The protocols allowed for communication with the Smart Card.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/allowedprotocols
@@ -114,40 +132,22 @@ func (t_ TKSmartCard) SetAllowedProtocols(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedProtocols:"), value)
 }
 
-// Whether to use extended length APDU.
+// The CLA byte used for APDU transmission.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/useextendedlength
-func (t_ TKSmartCard) UseExtendedLength() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("useExtendedLength"))
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/cla
+func (t_ TKSmartCard) Cla() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("cla"))
 	return rv
 }
 
 
-// SetUseExtendedLength sets the value of the useExtendedLength property.
-// Whether to use extended length APDU.
+// SetCla sets the value of the cla property.
+// The CLA byte used for APDU transmission.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/useextendedlength
-func (t_ TKSmartCard) SetUseExtendedLength(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setUseExtendedLength:"), value)
-}
-
-// The slot in which the Smart Card is inserted.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/slot
-func (t_ TKSmartCard) Slot() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("slot"))
-	return rv
-}
-
-
-// SetSlot sets the value of the slot property.
-// The slot in which the Smart Card is inserted.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/slot
-func (t_ TKSmartCard) SetSlot(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSlot:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/cla
+func (t_ TKSmartCard) SetCla(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCla:"), value)
 }
 
 // The protocol used for communication with the Smart Card. Returns
@@ -186,22 +186,40 @@ func (t_ TKSmartCard) SetIsSensitive(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSensitive:"), value)
 }
 
-// The CLA byte used for APDU transmission.
+// Whether the Smart Card is valid and accessible from its slot.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/cla
-func (t_ TKSmartCard) Cla() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("cla"))
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/isvalid
+func (t_ TKSmartCard) IsValid() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isValid"))
 	return rv
 }
 
 
-// SetCla sets the value of the cla property.
-// The CLA byte used for APDU transmission.
+// SetIsValid sets the value of the isValid property.
+// Whether the Smart Card is valid and accessible from its slot.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/cla
-func (t_ TKSmartCard) SetCla(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCla:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/isvalid
+func (t_ TKSmartCard) SetIsValid(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsValid:"), value)
+}
+
+// The slot in which the Smart Card is inserted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/slot
+func (t_ TKSmartCard) Slot() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("slot"))
+	return rv
+}
+
+
+// SetSlot sets the value of the slot property.
+// The slot in which the Smart Card is inserted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/slot
+func (t_ TKSmartCard) SetSlot(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSlot:"), value)
 }
 
 // Whether to use command chaining of APDU with a data field longer than 255 bytes.
@@ -222,40 +240,22 @@ func (t_ TKSmartCard) SetUseCommandChaining(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUseCommandChaining:"), value)
 }
 
-// Whether the Smart Card is valid and accessible from its slot.
+// Whether to use extended length APDU.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/isvalid
-func (t_ TKSmartCard) IsValid() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("isValid"))
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/useextendedlength
+func (t_ TKSmartCard) UseExtendedLength() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("useExtendedLength"))
 	return rv
 }
 
 
-// SetIsValid sets the value of the isValid property.
-// Whether the Smart Card is valid and accessible from its slot.
+// SetUseExtendedLength sets the value of the useExtendedLength property.
+// Whether to use extended length APDU.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/isvalid
-func (t_ TKSmartCard) SetIsValid(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIsValid:"), value)
-}
-
-// User-specified information. This property is automatically set to if the Smart Card is removed or another object begins a session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/context
-func (t_ TKSmartCard) Context() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("context"))
-	return rv
-}
-
-
-// SetContext sets the value of the context property.
-// User-specified information. This property is automatically set to if the Smart Card is removed or another object begins a session.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/context
-func (t_ TKSmartCard) SetContext(value objc.ID) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setContext:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/useextendedlength
+func (t_ TKSmartCard) SetUseExtendedLength(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setUseExtendedLength:"), value)
 }
 
 

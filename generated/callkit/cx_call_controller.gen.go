@@ -117,19 +117,19 @@ func (c_ CXCallController) RequestTransactionWithActionCompletion(action unsafe.
 	objc.Send[objc.ID](c_.ID, objc.Sel("requestTransactionWithAction:completion:"), action, completion)
 }
 
-// Domain for errors when requesting a transaction from a call controller.
-//
-// [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomainrequesttransaction
-func (c_ CXCallController) CXErrorDomainRequestTransaction() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainRequestTransaction"))
-	return rv
-}
-
 // Returns an observer for active calls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/callObserver
 func (c_ CXCallController) CallObserver() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("callObserver"))
+	return rv
+}
+
+// Domain for errors when requesting a transaction from a call controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomainrequesttransaction
+func (c_ CXCallController) CXErrorDomainRequestTransaction() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainRequestTransaction"))
 	return rv
 }
 

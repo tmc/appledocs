@@ -150,24 +150,6 @@ func (uc _UNNotificationSoundClass) DefaultRingtoneSound() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("defaultRingtoneSound"))
 	return rv
 }
-// The sound that plays when the system delivers the notification.
-//
-// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent/sound
-func (u_ UNNotificationSound) Sound() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("sound"))
-	return rv
-}
-
-
-// SetSound sets the value of the sound property.
-// The sound that plays when the system delivers the notification.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent/sound
-func (u_ UNNotificationSound) SetSound(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSound:"), value)
-}
-
 // Returns an object representing the default sound for notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/default
@@ -189,6 +171,24 @@ func (u_ UNNotificationSound) DefaultCriticalSound() unsafe.Pointer {
 func (u_ UNNotificationSound) DefaultRingtoneSound() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("defaultRingtoneSound"))
 	return rv
+}
+
+// The sound that plays when the system delivers the notification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent/sound
+func (u_ UNNotificationSound) Sound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("sound"))
+	return rv
+}
+
+
+// SetSound sets the value of the sound property.
+// The sound that plays when the system delivers the notification.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent/sound
+func (u_ UNNotificationSound) SetSound(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSound:"), value)
 }
 
 

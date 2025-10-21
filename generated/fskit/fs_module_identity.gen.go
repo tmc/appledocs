@@ -79,24 +79,6 @@ func NewFSModuleIdentity() FSModuleIdentity {
 }
 
 
-// A Boolean value that indicates if the module is enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/isenabled
-func (f_ FSModuleIdentity) IsEnabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
-	return rv
-}
-
-
-// SetIsEnabled sets the value of the isEnabled property.
-// A Boolean value that indicates if the module is enabled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/isenabled
-func (f_ FSModuleIdentity) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
 // The module’s bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity/bundleIdentifier
@@ -119,6 +101,24 @@ func (f_ FSModuleIdentity) Enabled() bool {
 func (f_ FSModuleIdentity) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
 	return rv
+}
+
+// A Boolean value that indicates if the module is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/isenabled
+func (f_ FSModuleIdentity) IsEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates if the module is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/isenabled
+func (f_ FSModuleIdentity) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 

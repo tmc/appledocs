@@ -78,24 +78,6 @@ func NewAccountAuthenticationModificationController() AccountAuthenticationModif
 }
 
 
-// An object that provides a presentation context for the account modification request’s user interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider
-func (a_ AccountAuthenticationModificationController) PresentationContextProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presentationContextProvider"))
-	return rv
-}
-
-
-// SetPresentationContextProvider sets the value of the presentationContextProvider property.
-// An object that provides a presentation context for the account modification request’s user interface.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider
-func (a_ AccountAuthenticationModificationController) SetPresentationContextProvider(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
-}
-
 // An object that receives notifications about the request’s status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/delegate
@@ -112,6 +94,24 @@ func (a_ AccountAuthenticationModificationController) Delegate() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/delegate
 func (a_ AccountAuthenticationModificationController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// An object that provides a presentation context for the account modification request’s user interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider
+func (a_ AccountAuthenticationModificationController) PresentationContextProvider() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presentationContextProvider"))
+	return rv
+}
+
+
+// SetPresentationContextProvider sets the value of the presentationContextProvider property.
+// An object that provides a presentation context for the account modification request’s user interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider
+func (a_ AccountAuthenticationModificationController) SetPresentationContextProvider(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
 
 

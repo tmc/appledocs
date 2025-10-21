@@ -109,24 +109,6 @@ func (o_ OverlayAppClipConfiguration) SetAdditionalValueForKey(value objc.ID, ke
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAdditionalValue:forKey:"), value, objc.String(key))
 }
 
-// An overlay’s attributes; for example, its position on the screen.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayAppClipConfiguration) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-
-// SetConfiguration sets the value of the configuration property.
-// An overlay’s attributes; for example, its position on the screen.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayAppClipConfiguration) SetConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setConfiguration:"), value)
-}
-
 // A token you use to represent an ad campaign and measure its effectiveness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/campaignToken
@@ -215,6 +197,24 @@ func (o_ OverlayAppClipConfiguration) ProviderToken() string {
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/providerToken
 func (o_ OverlayAppClipConfiguration) SetProviderToken(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setProviderToken:"), objc.String(value))
+}
+
+// An overlay’s attributes; for example, its position on the screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
+func (o_ OverlayAppClipConfiguration) Configuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("configuration"))
+	return rv
+}
+
+
+// SetConfiguration sets the value of the configuration property.
+// An overlay’s attributes; for example, its position on the screen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
+func (o_ OverlayAppClipConfiguration) SetConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setConfiguration:"), value)
 }
 
 

@@ -77,21 +77,6 @@ func NewMTRBasicInformationClusterProductAppearanceStruct() MTRBasicInformationC
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
-func (m_ MTRBasicInformationClusterProductAppearanceStruct) PrimaryColor() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("primaryColor"))
-	return rv
-}
-
-
-// SetPrimaryColor sets the value of the primaryColor property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
-func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimaryColor:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/finish
 func (m_ MTRBasicInformationClusterProductAppearanceStruct) Finish() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("finish"))
@@ -104,6 +89,21 @@ func (m_ MTRBasicInformationClusterProductAppearanceStruct) Finish() foundation.
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/finish
 func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetFinish(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFinish:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) PrimaryColor() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("primaryColor"))
+	return rv
+}
+
+
+// SetPrimaryColor sets the value of the primaryColor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimaryColor:"), value)
 }
 
 

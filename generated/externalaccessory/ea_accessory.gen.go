@@ -80,42 +80,6 @@ func NewEAAccessory() EAAccessory {
 }
 
 
-// The object that acts as the delegate of the accessory.
-//
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/delegate
-func (e_ EAAccessory) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The object that acts as the delegate of the accessory.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/delegate
-func (e_ EAAccessory) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setDelegate:"), value)
-}
-
-// A Boolean value indicating whether the accessory is currently connected to the iOS-based device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/isconnected
-func (e_ EAAccessory) IsConnected() bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("isConnected"))
-	return rv
-}
-
-
-// SetIsConnected sets the value of the isConnected property.
-// A Boolean value indicating whether the accessory is currently connected to the iOS-based device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/isconnected
-func (e_ EAAccessory) SetIsConnected(value bool) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setIsConnected:"), value)
-}
-
 // The accessory’s unique ID for connecting to the iOS-based device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/connectionID
@@ -193,6 +157,42 @@ func (e_ EAAccessory) ProtocolStrings() []string {
 func (e_ EAAccessory) SerialNumber() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("serialNumber"))
 	return rv
+}
+
+// The object that acts as the delegate of the accessory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/delegate
+func (e_ EAAccessory) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The object that acts as the delegate of the accessory.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/delegate
+func (e_ EAAccessory) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// A Boolean value indicating whether the accessory is currently connected to the iOS-based device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/isconnected
+func (e_ EAAccessory) IsConnected() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("isConnected"))
+	return rv
+}
+
+
+// SetIsConnected sets the value of the isConnected property.
+// A Boolean value indicating whether the accessory is currently connected to the iOS-based device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/isconnected
+func (e_ EAAccessory) SetIsConnected(value bool) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setIsConnected:"), value)
 }
 
 

@@ -77,51 +77,6 @@ func NewMTRNetworkCommissioningClusterThreadInterfaceScanResultStruct() MTRNetwo
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/lqi
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Lqi() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lqi"))
-	return rv
-}
-
-
-// SetLqi sets the value of the lqi property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/lqi
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetLqi(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLqi:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/networkname
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) NetworkName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
-	return rv
-}
-
-
-// SetNetworkName sets the value of the networkName property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/networkname
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetNetworkName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/rssi
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Rssi() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rssi"))
-	return rv
-}
-
-
-// SetRssi sets the value of the rssi property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/rssi
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetRssi(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRssi:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/channel
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Channel() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("channel"))
@@ -152,6 +107,51 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetExten
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/extendedpanid
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) ExtendedPanId() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("extendedPanId"))
+	return rv
+}
+
+
+// SetExtendedPanId sets the value of the extendedPanId property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/extendedpanid
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetExtendedPanId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanId:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/lqi
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Lqi() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lqi"))
+	return rv
+}
+
+
+// SetLqi sets the value of the lqi property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/lqi
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetLqi(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLqi:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/networkname
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) NetworkName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
+	return rv
+}
+
+
+// SetNetworkName sets the value of the networkName property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/networkname
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetNetworkName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/panid
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) PanId() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("panId"))
@@ -167,18 +167,18 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetPanId
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/extendedpanid
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) ExtendedPanId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("extendedPanId"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/rssi
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Rssi() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rssi"))
 	return rv
 }
 
 
-// SetExtendedPanId sets the value of the extendedPanId property.
+// SetRssi sets the value of the rssi property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/extendedpanid
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetExtendedPanId(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanId:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/rssi
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetRssi(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRssi:"), value)
 }
 
 //

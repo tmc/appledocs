@@ -81,24 +81,6 @@ func NewImageThresholdBinary() ImageThresholdBinary {
 }
 
 
-// The color transform used to initialize the threshold filter.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/transform
-func (i_ ImageThresholdBinary) Transform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transform"))
-	return rv
-}
-
-
-// SetTransform sets the value of the transform property.
-// The color transform used to initialize the threshold filter.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/transform
-func (i_ ImageThresholdBinary) SetTransform(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTransform:"), value)
-}
-
 // The maximum value used to initialize the threshold filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/maximumvalue
@@ -133,6 +115,24 @@ func (i_ ImageThresholdBinary) ThresholdValue() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/thresholdvalue
 func (i_ ImageThresholdBinary) SetThresholdValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setThresholdValue:"), value)
+}
+
+// The color transform used to initialize the threshold filter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/transform
+func (i_ ImageThresholdBinary) Transform() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transform"))
+	return rv
+}
+
+
+// SetTransform sets the value of the transform property.
+// The color transform used to initialize the threshold filter.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/transform
+func (i_ ImageThresholdBinary) SetTransform(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransform:"), value)
 }
 
 

@@ -77,21 +77,6 @@ func NewMTROperationalCredentialsClusterAttestationResponseParams() MTROperation
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/signature
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) Signature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signature"))
-	return rv
-}
-
-
-// SetSignature sets the value of the signature property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/signature
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetSignature(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSignature:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationelements
 func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationElements() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationElements"))
@@ -119,6 +104,21 @@ func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationS
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationsignature
 func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationSignature(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationSignature:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/signature
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) Signature() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signature"))
+	return rv
+}
+
+
+// SetSignature sets the value of the signature property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/signature
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetSignature(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSignature:"), value)
 }
 
 //

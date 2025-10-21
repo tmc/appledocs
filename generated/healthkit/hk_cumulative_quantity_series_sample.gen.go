@@ -79,14 +79,6 @@ func NewHKCumulativeQuantitySeriesSample() HKCumulativeQuantitySeriesSample {
 }
 
 
-// The key path for accessing the sum of a quantity series inside a predicate format string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathsum
-func (h_ HKCumulativeQuantitySeriesSample) HKPredicateKeyPathSum() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathSum"))
-	return rv
-}
-
 // The sum of all the quantities in the series.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantityseriessample/sum
@@ -103,6 +95,14 @@ func (h_ HKCumulativeQuantitySeriesSample) Sum() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantityseriessample/sum
 func (h_ HKCumulativeQuantitySeriesSample) SetSum(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSum:"), value)
+}
+
+// The key path for accessing the sum of a quantity series inside a predicate format string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathsum
+func (h_ HKCumulativeQuantitySeriesSample) HKPredicateKeyPathSum() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathSum"))
+	return rv
 }
 
 

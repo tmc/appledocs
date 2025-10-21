@@ -80,58 +80,12 @@ func NewBackForwardList() BackForwardList {
 }
 
 
-// The array of items that precede the current item.
+// The array of items that follow the current item.
 //
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backlist
-func (b_ BackForwardList) BackList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backList"))
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardList/forwardList
+func (b_ BackForwardList) ForwardList() []BackForwardListItem {
+	rv := objc.Send[[]BackForwardListItem](b_.ID, objc.Sel("forwardList"))
 	return rv
-}
-
-
-// SetBackList sets the value of the backList property.
-// The array of items that precede the current item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backlist
-func (b_ BackForwardList) SetBackList(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setBackList:"), value)
-}
-
-// The web view’s back-forward list.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/backforwardlist
-func (b_ BackForwardList) BackForwardList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backForwardList"))
-	return rv
-}
-
-
-// SetBackForwardList sets the value of the backForwardList property.
-// The web view’s back-forward list.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/backforwardlist
-func (b_ BackForwardList) SetBackForwardList(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setBackForwardList:"), value)
-}
-
-// The current item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/currentitem
-func (b_ BackForwardList) CurrentItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("currentItem"))
-	return rv
-}
-
-
-// SetCurrentItem sets the value of the currentItem property.
-// The current item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/currentitem
-func (b_ BackForwardList) SetCurrentItem(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setCurrentItem:"), value)
 }
 
 // The item immediately preceding the current item, if any.
@@ -152,6 +106,42 @@ func (b_ BackForwardList) SetBackItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackItem:"), value)
 }
 
+// The array of items that precede the current item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backlist
+func (b_ BackForwardList) BackList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backList"))
+	return rv
+}
+
+
+// SetBackList sets the value of the backList property.
+// The array of items that precede the current item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backlist
+func (b_ BackForwardList) SetBackList(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setBackList:"), value)
+}
+
+// The current item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/currentitem
+func (b_ BackForwardList) CurrentItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("currentItem"))
+	return rv
+}
+
+
+// SetCurrentItem sets the value of the currentItem property.
+// The current item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/currentitem
+func (b_ BackForwardList) SetCurrentItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setCurrentItem:"), value)
+}
+
 // The item immediately following the current item, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/forwarditem
@@ -170,12 +160,22 @@ func (b_ BackForwardList) SetForwardItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setForwardItem:"), value)
 }
 
-// The array of items that follow the current item.
+// The web view’s back-forward list.
 //
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardList/forwardList
-func (b_ BackForwardList) ForwardList() []BackForwardListItem {
-	rv := objc.Send[[]BackForwardListItem](b_.ID, objc.Sel("forwardList"))
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/backforwardlist
+func (b_ BackForwardList) BackForwardList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backForwardList"))
 	return rv
+}
+
+
+// SetBackForwardList sets the value of the backForwardList property.
+// The web view’s back-forward list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/backforwardlist
+func (b_ BackForwardList) SetBackForwardList(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setBackForwardList:"), value)
 }
 
 

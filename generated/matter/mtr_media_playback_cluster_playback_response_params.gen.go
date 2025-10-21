@@ -77,21 +77,6 @@ func NewMTRMediaPlaybackClusterPlaybackResponseParams() MTRMediaPlaybackClusterP
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
-	return rv
-}
-
-
-// SetStatus sets the value of the status property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetStatus(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
 func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("data"))
@@ -104,6 +89,21 @@ func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() string {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
 func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetData(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
 //

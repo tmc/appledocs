@@ -76,6 +76,21 @@ func NewMTRAttributeReport() MTRAttributeReport {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/error
+func (m_ MTRAttributeReport) Error() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// SetError sets the value of the error property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/error
+func (m_ MTRAttributeReport) SetError(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setError:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/path
 func (m_ MTRAttributeReport) Path() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("path"))
@@ -103,21 +118,6 @@ func (m_ MTRAttributeReport) Value() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/value
 func (m_ MTRAttributeReport) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/error
-func (m_ MTRAttributeReport) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("error"))
-	return rv
-}
-
-
-// SetError sets the value of the error property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/error
-func (m_ MTRAttributeReport) SetError(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setError:"), value)
 }
 
 

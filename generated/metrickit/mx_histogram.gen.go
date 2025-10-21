@@ -80,22 +80,20 @@ func NewMXHistogram() MXHistogram {
 }
 
 
-// The value of the starting measurement for the bucket.
+// An enumerator for the buckets containing the data in the histogram.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart
-func (m_ MXHistogram) BucketStart() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketStart"))
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogram/bucketEnumerator
+func (m_ MXHistogram) BucketEnumerator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketEnumerator"))
 	return rv
 }
 
-
-// SetBucketStart sets the value of the bucketStart property.
-// The value of the starting measurement for the bucket.
-
+// The total number of buckets in the histogram.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart
-func (m_ MXHistogram) SetBucketStart(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketStart:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogram/totalBucketCount
+func (m_ MXHistogram) TotalBucketCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("totalBucketCount"))
+	return rv
 }
 
 // Error domain for error values from app metrics.
@@ -124,20 +122,22 @@ func (m_ MXHistogram) SetBucketEnd(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketEnd:"), value)
 }
 
-// An enumerator for the buckets containing the data in the histogram.
+// The value of the starting measurement for the bucket.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogram/bucketEnumerator
-func (m_ MXHistogram) BucketEnumerator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketEnumerator"))
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart
+func (m_ MXHistogram) BucketStart() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketStart"))
 	return rv
 }
 
-// The total number of buckets in the histogram.
+
+// SetBucketStart sets the value of the bucketStart property.
+// The value of the starting measurement for the bucket.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogram/totalBucketCount
-func (m_ MXHistogram) TotalBucketCount() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("totalBucketCount"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart
+func (m_ MXHistogram) SetBucketStart(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketStart:"), value)
 }
 
 

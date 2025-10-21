@@ -81,24 +81,6 @@ func NewDetectTextRectanglesRequest() DetectTextRectanglesRequest {
 }
 
 
-// The results of the request to detect text rectangles.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/results
-func (d_ DetectTextRectanglesRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
-	return rv
-}
-
-
-// SetResults sets the value of the results property.
-// The results of the request to detect text rectangles.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/results
-func (d_ DetectTextRectanglesRequest) SetResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
-}
-
 // A Boolean value that indicates whether the request detects character bounding boxes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/reportcharacterboxes
@@ -115,6 +97,24 @@ func (d_ DetectTextRectanglesRequest) ReportCharacterBoxes() bool {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/reportcharacterboxes
 func (d_ DetectTextRectanglesRequest) SetReportCharacterBoxes(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setReportCharacterBoxes:"), value)
+}
+
+// The results of the request to detect text rectangles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/results
+func (d_ DetectTextRectanglesRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the request to detect text rectangles.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/results
+func (d_ DetectTextRectanglesRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
 // A constant for specifying revision 1 of the text rectangles detection request.

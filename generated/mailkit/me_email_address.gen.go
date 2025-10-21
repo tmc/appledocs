@@ -86,6 +86,13 @@ func NewMEEmailAddressWithRawString(rawString string) MEEmailAddress {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/addressString
+func (m_ MEEmailAddress) AddressString() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("addressString"))
+	return rv
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/meemailaddress/rawstring
 func (m_ MEEmailAddress) RawString() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("rawString"))
@@ -98,13 +105,6 @@ func (m_ MEEmailAddress) RawString() string {
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/meemailaddress/rawstring
 func (m_ MEEmailAddress) SetRawString(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRawString:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/addressString
-func (m_ MEEmailAddress) AddressString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("addressString"))
-	return rv
 }
 
 

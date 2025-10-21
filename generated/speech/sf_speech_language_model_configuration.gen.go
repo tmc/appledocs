@@ -118,21 +118,6 @@ func NewSFSpeechLanguageModelConfigurationWithLanguageModelVocabularyWeight(lang
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/customizedlanguagemodel
-func (s_ SFSpeechLanguageModelConfiguration) CustomizedLanguageModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("customizedLanguageModel"))
-	return rv
-}
-
-
-// SetCustomizedLanguageModel sets the value of the customizedLanguageModel property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/customizedlanguagemodel
-func (s_ SFSpeechLanguageModelConfiguration) SetCustomizedLanguageModel(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizedLanguageModel:"), value)
-}
-
 // The location of a compiled language model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/Configuration/languageModel
@@ -155,6 +140,21 @@ func (s_ SFSpeechLanguageModelConfiguration) Vocabulary() foundation.URL {
 func (s_ SFSpeechLanguageModelConfiguration) Weight() foundation.Number {
 	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("weight"))
 	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/customizedlanguagemodel
+func (s_ SFSpeechLanguageModelConfiguration) CustomizedLanguageModel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("customizedLanguageModel"))
+	return rv
+}
+
+
+// SetCustomizedLanguageModel sets the value of the customizedLanguageModel property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/customizedlanguagemodel
+func (s_ SFSpeechLanguageModelConfiguration) SetCustomizedLanguageModel(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizedLanguageModel:"), value)
 }
 
 

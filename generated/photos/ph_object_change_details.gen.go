@@ -98,24 +98,6 @@ func (p_ PHObjectChangeDetails) SetChangedIndexes(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedIndexes:"), value)
 }
 
-// An object that reflects the original state of the asset or collection it represents.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectbeforechanges
-func (p_ PHObjectChangeDetails) ObjectBeforeChanges() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectBeforeChanges"))
-	return rv
-}
-
-
-// SetObjectBeforeChanges sets the value of the objectBeforeChanges property.
-// An object that reflects the original state of the asset or collection it represents.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectbeforechanges
-func (p_ PHObjectChangeDetails) SetObjectBeforeChanges(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectBeforeChanges:"), value)
-}
-
 // A Boolean value that indicates whether the asset’s photo or video content has changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/assetcontentchanged
@@ -150,6 +132,24 @@ func (p_ PHObjectChangeDetails) ObjectAfterChanges() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectafterchanges
 func (p_ PHObjectChangeDetails) SetObjectAfterChanges(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectAfterChanges:"), value)
+}
+
+// An object that reflects the original state of the asset or collection it represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectbeforechanges
+func (p_ PHObjectChangeDetails) ObjectBeforeChanges() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectBeforeChanges"))
+	return rv
+}
+
+
+// SetObjectBeforeChanges sets the value of the objectBeforeChanges property.
+// An object that reflects the original state of the asset or collection it represents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectbeforechanges
+func (p_ PHObjectChangeDetails) SetObjectBeforeChanges(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectBeforeChanges:"), value)
 }
 
 // A Boolean value that indicates whether the object has been deleted from the Photos library.

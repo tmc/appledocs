@@ -83,8 +83,8 @@ func NewLocationSourceInformation() LocationSourceInformation {
 // A Boolean value that indicates whether the system receives the location from an external accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isProducedByAccessory
-func (l_ LocationSourceInformation) IsProducedByAccessory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("isProducedByAccessory"))
+func (l_ LocationSourceInformation) IsProducedByAccessory() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("isProducedByAccessory"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (l_ LocationSourceInformation) IsProducedByAccessory() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isProducedByAccessory
-func (l_ LocationSourceInformation) SetIsProducedByAccessory(value unsafe.Pointer) {
+func (l_ LocationSourceInformation) SetIsProducedByAccessory(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsProducedByAccessory:"), value)
 }
 
 // A Boolean value that indicates whether the system generates the location using on-device software simulation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isSimulatedBySoftware
-func (l_ LocationSourceInformation) IsSimulatedBySoftware() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("isSimulatedBySoftware"))
+func (l_ LocationSourceInformation) IsSimulatedBySoftware() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("isSimulatedBySoftware"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (l_ LocationSourceInformation) IsSimulatedBySoftware() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isSimulatedBySoftware
-func (l_ LocationSourceInformation) SetIsSimulatedBySoftware(value unsafe.Pointer) {
+func (l_ LocationSourceInformation) SetIsSimulatedBySoftware(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsSimulatedBySoftware:"), value)
 }
 

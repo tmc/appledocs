@@ -81,24 +81,6 @@ func NewPDFAnnotationLine() PDFAnnotationLine {
 }
 
 
-// Sets the border style.
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
-func (p_ PDFAnnotationLine) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
-	return rv
-}
-
-
-// SetStyle sets the value of the style property.
-// Sets the border style.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
-func (p_ PDFAnnotationLine) SetStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
-}
-
 // Sets the stroke color for the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
@@ -133,6 +115,24 @@ func (p_ PDFAnnotationLine) LineWidth() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/linewidth
 func (p_ PDFAnnotationLine) SetLineWidth(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLineWidth:"), value)
+}
+
+// Sets the border style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
+func (p_ PDFAnnotationLine) Style() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
+	return rv
+}
+
+
+// SetStyle sets the value of the style property.
+// Sets the border style.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
+func (p_ PDFAnnotationLine) SetStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
 
 

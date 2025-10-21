@@ -78,6 +78,14 @@ func NewStageInputOutputDescriptor() StageInputOutputDescriptor {
 }
 
 
+// An array that describes where and how to fetch data for the function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStageInputOutputDescriptor/attributes
+func (s_ StageInputOutputDescriptor) Attributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("attributes"))
+	return rv
+}
+
 // The location of the index buffer for a compute function using indexed thread addressing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor/indexbufferindex
@@ -130,14 +138,6 @@ func (s_ StageInputOutputDescriptor) Layouts() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor/layouts
 func (s_ StageInputOutputDescriptor) SetLayouts(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLayouts:"), value)
-}
-
-// An array that describes where and how to fetch data for the function.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStageInputOutputDescriptor/attributes
-func (s_ StageInputOutputDescriptor) Attributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("attributes"))
-	return rv
 }
 
 

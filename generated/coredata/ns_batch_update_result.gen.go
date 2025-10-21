@@ -79,6 +79,14 @@ func NewBatchUpdateResult() BatchUpdateResult {
 }
 
 
+// The type of result that Core Data returns from the request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateResult/resultType
+func (b_ BatchUpdateResult) ResultType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
+	return rv
+}
+
 // The result of a batch-update request, either the number of updated objects, the identifiers of the updated objects, or a status value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchupdateresult/result
@@ -95,14 +103,6 @@ func (b_ BatchUpdateResult) Result() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchupdateresult/result
 func (b_ BatchUpdateResult) SetResult(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResult:"), value)
-}
-
-// The type of result that Core Data returns from the request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateResult/resultType
-func (b_ BatchUpdateResult) ResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
-	return rv
 }
 
 

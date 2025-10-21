@@ -77,6 +77,21 @@ func NewMTRAudioOutputClusterRenameOutputParams() MTRAudioOutputClusterRenameOut
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/index
+func (m_ MTRAudioOutputClusterRenameOutputParams) Index() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("index"))
+	return rv
+}
+
+
+// SetIndex sets the value of the index property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/index
+func (m_ MTRAudioOutputClusterRenameOutputParams) SetIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/name
 func (m_ MTRAudioOutputClusterRenameOutputParams) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
@@ -119,21 +134,6 @@ func (m_ MTRAudioOutputClusterRenameOutputParams) TimedInvokeTimeoutMs() foundat
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/timedinvoketimeoutms
 func (m_ MTRAudioOutputClusterRenameOutputParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/index
-func (m_ MTRAudioOutputClusterRenameOutputParams) Index() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("index"))
-	return rv
-}
-
-
-// SetIndex sets the value of the index property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/index
-func (m_ MTRAudioOutputClusterRenameOutputParams) SetIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
 
 

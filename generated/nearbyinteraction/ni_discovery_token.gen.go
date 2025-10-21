@@ -80,6 +80,14 @@ func NewNIDiscoveryToken() NIDiscoveryToken {
 }
 
 
+// A protocol object that describes the nearby interaction capabilities of a person’s device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIDiscoveryToken/deviceCapabilities
+func (n_ NIDiscoveryToken) DeviceCapabilities() objc.ID {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("deviceCapabilities"))
+	return rv
+}
+
 // The configuration run by the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/configuration
@@ -96,24 +104,6 @@ func (n_ NIDiscoveryToken) Configuration() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/configuration
 func (n_ NIDiscoveryToken) SetConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setConfiguration:"), value)
-}
-
-// A temporary, random identifier for a device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/discoverytoken
-func (n_ NIDiscoveryToken) DiscoveryToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("discoveryToken"))
-	return rv
-}
-
-
-// SetDiscoveryToken sets the value of the discoveryToken property.
-// A temporary, random identifier for a device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/discoverytoken
-func (n_ NIDiscoveryToken) SetDiscoveryToken(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDiscoveryToken:"), value)
 }
 
 // The dispatch queue on which the session invokes delegate callbacks.
@@ -134,12 +124,22 @@ func (n_ NIDiscoveryToken) SetDelegateQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegateQueue:"), value)
 }
 
-// A protocol object that describes the nearby interaction capabilities of a person’s device.
+// A temporary, random identifier for a device.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIDiscoveryToken/deviceCapabilities
-func (n_ NIDiscoveryToken) DeviceCapabilities() objc.ID {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("deviceCapabilities"))
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/discoverytoken
+func (n_ NIDiscoveryToken) DiscoveryToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("discoveryToken"))
 	return rv
+}
+
+
+// SetDiscoveryToken sets the value of the discoveryToken property.
+// A temporary, random identifier for a device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/discoverytoken
+func (n_ NIDiscoveryToken) SetDiscoveryToken(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDiscoveryToken:"), value)
 }
 
 

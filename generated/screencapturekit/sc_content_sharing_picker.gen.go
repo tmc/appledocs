@@ -85,22 +85,12 @@ func (cc _ContentSharingPickerClass) SharedPicker() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedPicker"))
 	return rv
 }
-// A Boolean value that indicates if the picker is active.
+// The system-provided picker UI instance for capturing display and audio content from someone’s Mac.
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/isactive
-func (c_ ContentSharingPicker) IsActive() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isActive"))
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPicker/shared
+func (c_ ContentSharingPicker) SharedPicker() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sharedPicker"))
 	return rv
-}
-
-
-// SetIsActive sets the value of the isActive property.
-// A Boolean value that indicates if the picker is active.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/isactive
-func (c_ ContentSharingPicker) SetIsActive(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsActive:"), value)
 }
 
 // Sets the configuration for the content capture picker for all streams, providing allowed selection modes and content excluded from selection.
@@ -139,6 +129,24 @@ func (c_ ContentSharingPicker) SetDefaultConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultConfiguration:"), value)
 }
 
+// A Boolean value that indicates if the picker is active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/isactive
+func (c_ ContentSharingPicker) IsActive() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// A Boolean value that indicates if the picker is active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/isactive
+func (c_ ContentSharingPicker) SetIsActive(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsActive:"), value)
+}
+
 // The maximum number of streams the content capture picker allows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/maximumstreamcount-2kuaa
@@ -155,14 +163,6 @@ func (c_ ContentSharingPicker) MaximumStreamCount() int {
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/maximumstreamcount-2kuaa
 func (c_ ContentSharingPicker) SetMaximumStreamCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumStreamCount:"), value)
-}
-
-// The system-provided picker UI instance for capturing display and audio content from someone’s Mac.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPicker/shared
-func (c_ ContentSharingPicker) SharedPicker() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sharedPicker"))
-	return rv
 }
 
 

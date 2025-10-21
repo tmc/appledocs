@@ -92,63 +92,18 @@ func (mc _MTRSetupPayloadClass) SetupPayloadWithOnboardingPayloadError(onboardin
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppincode
-func (m_ MTRSetupPayload) SetUpPINCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("setUpPINCode"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/commissioningflow
+func (m_ MTRSetupPayload) CommissioningFlow() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("commissioningFlow"))
 	return rv
 }
 
 
-// SetSetUpPINCode sets the value of the setUpPINCode property.
+// SetCommissioningFlow sets the value of the commissioningFlow property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppincode
-func (m_ MTRSetupPayload) SetSetUpPINCode(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSetUpPINCode:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/discriminator
-func (m_ MTRSetupPayload) Discriminator() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("discriminator"))
-	return rv
-}
-
-
-// SetDiscriminator sets the value of the discriminator property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/discriminator
-func (m_ MTRSetupPayload) SetDiscriminator(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppasscode
-func (m_ MTRSetupPayload) SetupPasscode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("setupPasscode"))
-	return rv
-}
-
-
-// SetSetupPasscode sets the value of the setupPasscode property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppasscode
-func (m_ MTRSetupPayload) SetSetupPasscode(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSetupPasscode:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorelements
-func (m_ MTRSetupPayload) VendorElements() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("vendorElements"))
-	return rv
-}
-
-
-// SetVendorElements sets the value of the vendorElements property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorelements
-func (m_ MTRSetupPayload) SetVendorElements(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorElements:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/commissioningflow
+func (m_ MTRSetupPayload) SetCommissioningFlow(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningFlow:"), value)
 }
 
 //
@@ -167,6 +122,21 @@ func (m_ MTRSetupPayload) SetDiscoveryCapabilities(value unsafe.Pointer) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/discriminator
+func (m_ MTRSetupPayload) Discriminator() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("discriminator"))
+	return rv
+}
+
+
+// SetDiscriminator sets the value of the discriminator property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/discriminator
+func (m_ MTRSetupPayload) SetDiscriminator(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/hasshortdiscriminator
 func (m_ MTRSetupPayload) HasShortDiscriminator() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasShortDiscriminator"))
@@ -182,18 +152,18 @@ func (m_ MTRSetupPayload) SetHasShortDiscriminator(value bool) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorid
-func (m_ MTRSetupPayload) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/productid
+func (m_ MTRSetupPayload) ProductID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
+// SetProductID sets the value of the productID property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorid
-func (m_ MTRSetupPayload) SetVendorID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/productid
+func (m_ MTRSetupPayload) SetProductID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
 //
@@ -227,18 +197,63 @@ func (m_ MTRSetupPayload) SetSerialNumber(value string) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/productid
-func (m_ MTRSetupPayload) ProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppincode
+func (m_ MTRSetupPayload) SetUpPINCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("setUpPINCode"))
 	return rv
 }
 
 
-// SetProductID sets the value of the productID property.
+// SetSetUpPINCode sets the value of the setUpPINCode property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/productid
-func (m_ MTRSetupPayload) SetProductID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppincode
+func (m_ MTRSetupPayload) SetSetUpPINCode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSetUpPINCode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppasscode
+func (m_ MTRSetupPayload) SetupPasscode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("setupPasscode"))
+	return rv
+}
+
+
+// SetSetupPasscode sets the value of the setupPasscode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppasscode
+func (m_ MTRSetupPayload) SetSetupPasscode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSetupPasscode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorelements
+func (m_ MTRSetupPayload) VendorElements() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("vendorElements"))
+	return rv
+}
+
+
+// SetVendorElements sets the value of the vendorElements property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorelements
+func (m_ MTRSetupPayload) SetVendorElements(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorElements:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorid
+func (m_ MTRSetupPayload) VendorID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+	return rv
+}
+
+
+// SetVendorID sets the value of the vendorID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorid
+func (m_ MTRSetupPayload) SetVendorID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 
 //
@@ -254,21 +269,6 @@ func (m_ MTRSetupPayload) Version() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/version
 func (m_ MTRSetupPayload) SetVersion(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVersion:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/commissioningflow
-func (m_ MTRSetupPayload) CommissioningFlow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("commissioningFlow"))
-	return rv
-}
-
-
-// SetCommissioningFlow sets the value of the commissioningFlow property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/commissioningflow
-func (m_ MTRSetupPayload) SetCommissioningFlow(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningFlow:"), value)
 }
 
 

@@ -77,21 +77,6 @@ func NewMTRApplicationLauncherClusterApplicationEPStruct() MTRApplicationLaunche
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationepstruct/endpoint
-func (m_ MTRApplicationLauncherClusterApplicationEPStruct) Endpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
-	return rv
-}
-
-
-// SetEndpoint sets the value of the endpoint property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationepstruct/endpoint
-func (m_ MTRApplicationLauncherClusterApplicationEPStruct) SetEndpoint(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationepstruct/application
 func (m_ MTRApplicationLauncherClusterApplicationEPStruct) Application() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("application"))
@@ -104,6 +89,21 @@ func (m_ MTRApplicationLauncherClusterApplicationEPStruct) Application() unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationepstruct/application
 func (m_ MTRApplicationLauncherClusterApplicationEPStruct) SetApplication(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationepstruct/endpoint
+func (m_ MTRApplicationLauncherClusterApplicationEPStruct) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+	return rv
+}
+
+
+// SetEndpoint sets the value of the endpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationepstruct/endpoint
+func (m_ MTRApplicationLauncherClusterApplicationEPStruct) SetEndpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
 

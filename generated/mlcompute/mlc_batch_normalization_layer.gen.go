@@ -79,6 +79,24 @@ func NewCBatchNormalizationLayer() CBatchNormalizationLayer {
 }
 
 
+// The beta tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/beta
+func (c_ CBatchNormalizationLayer) Beta() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
+	return rv
+}
+
+
+// SetBeta sets the value of the beta property.
+// The beta tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/beta
+func (c_ CBatchNormalizationLayer) SetBeta(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
+}
+
 // The beta tensor parameter you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/betaparameter
@@ -97,22 +115,22 @@ func (c_ CBatchNormalizationLayer) SetBetaParameter(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
 }
 
-// The mean tensor.
+// The number of feature channels.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/mean
-func (c_ CBatchNormalizationLayer) Mean() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mean"))
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/featurechannelcount
+func (c_ CBatchNormalizationLayer) FeatureChannelCount() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("featureChannelCount"))
 	return rv
 }
 
 
-// SetMean sets the value of the mean property.
-// The mean tensor.
+// SetFeatureChannelCount sets the value of the featureChannelCount property.
+// The number of feature channels.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/mean
-func (c_ CBatchNormalizationLayer) SetMean(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMean:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/featurechannelcount
+func (c_ CBatchNormalizationLayer) SetFeatureChannelCount(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureChannelCount:"), value)
 }
 
 // The gamma tensor.
@@ -133,24 +151,6 @@ func (c_ CBatchNormalizationLayer) SetGamma(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
 }
 
-// The beta tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/beta
-func (c_ CBatchNormalizationLayer) Beta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
-	return rv
-}
-
-
-// SetBeta sets the value of the beta property.
-// The beta tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/beta
-func (c_ CBatchNormalizationLayer) SetBeta(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
-}
-
 // The gamma tensor parameter you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/gammaparameter
@@ -167,6 +167,24 @@ func (c_ CBatchNormalizationLayer) GammaParameter() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/gammaparameter
 func (c_ CBatchNormalizationLayer) SetGammaParameter(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGammaParameter:"), value)
+}
+
+// The mean tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/mean
+func (c_ CBatchNormalizationLayer) Mean() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mean"))
+	return rv
+}
+
+
+// SetMean sets the value of the mean property.
+// The mean tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/mean
+func (c_ CBatchNormalizationLayer) SetMean(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMean:"), value)
 }
 
 // The value you use for the running mean and variance computation.
@@ -203,24 +221,6 @@ func (c_ CBatchNormalizationLayer) Variance() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/variance
 func (c_ CBatchNormalizationLayer) SetVariance(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVariance:"), value)
-}
-
-// The number of feature channels.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/featurechannelcount
-func (c_ CBatchNormalizationLayer) FeatureChannelCount() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("featureChannelCount"))
-	return rv
-}
-
-
-// SetFeatureChannelCount sets the value of the featureChannelCount property.
-// The number of feature channels.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/featurechannelcount
-func (c_ CBatchNormalizationLayer) SetFeatureChannelCount(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureChannelCount:"), value)
 }
 
 // The variance epsilon you use for numerical stability.

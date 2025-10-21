@@ -80,6 +80,32 @@ func NewCKSubscription() CKSubscription {
 }
 
 
+// The configuration for a subscription’s push notifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property
+func (c_ CKSubscription) NotificationInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+	return rv
+}
+
+
+// SetNotificationInfo sets the value of the notificationInfo property.
+// The configuration for a subscription’s push notifications.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property
+func (c_ CKSubscription) SetNotificationInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
+}
+
+// The behavior that a subscription provides.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/subscriptionType-swift.property
+func (c_ CKSubscription) SubscriptionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionType"))
+	return rv
+}
+
 // The names of fields to include in the push notification’s payload.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
@@ -114,32 +140,6 @@ func (c_ CKSubscription) SubscriptionID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptionid-6fp3j
 func (c_ CKSubscription) SetSubscriptionID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionID:"), value)
-}
-
-// The configuration for a subscription’s push notifications.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property
-func (c_ CKSubscription) NotificationInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
-	return rv
-}
-
-
-// SetNotificationInfo sets the value of the notificationInfo property.
-// The configuration for a subscription’s push notifications.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property
-func (c_ CKSubscription) SetNotificationInfo(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
-}
-
-// The behavior that a subscription provides.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/subscriptionType-swift.property
-func (c_ CKSubscription) SubscriptionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionType"))
-	return rv
 }
 
 

@@ -92,6 +92,21 @@ func (m_ MTRThreadOperationalDataset) SetChannel(value unsafe.Pointer) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channelnumber
+func (m_ MTRThreadOperationalDataset) ChannelNumber() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("channelNumber"))
+	return rv
+}
+
+
+// SetChannelNumber sets the value of the channelNumber property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channelnumber
+func (m_ MTRThreadOperationalDataset) SetChannelNumber(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelNumber:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/extendedpanid
 func (m_ MTRThreadOperationalDataset) ExtendedPANID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("extendedPANID"))
@@ -104,6 +119,21 @@ func (m_ MTRThreadOperationalDataset) ExtendedPANID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/extendedpanid
 func (m_ MTRThreadOperationalDataset) SetExtendedPANID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPANID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/masterkey
+func (m_ MTRThreadOperationalDataset) MasterKey() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("masterKey"))
+	return rv
+}
+
+
+// SetMasterKey sets the value of the masterKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/masterkey
+func (m_ MTRThreadOperationalDataset) SetMasterKey(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMasterKey:"), value)
 }
 
 //
@@ -134,36 +164,6 @@ func (m_ MTRThreadOperationalDataset) PanID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/panid
 func (m_ MTRThreadOperationalDataset) SetPanID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPanID:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/masterkey
-func (m_ MTRThreadOperationalDataset) MasterKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("masterKey"))
-	return rv
-}
-
-
-// SetMasterKey sets the value of the masterKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/masterkey
-func (m_ MTRThreadOperationalDataset) SetMasterKey(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMasterKey:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channelnumber
-func (m_ MTRThreadOperationalDataset) ChannelNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("channelNumber"))
-	return rv
-}
-
-
-// SetChannelNumber sets the value of the channelNumber property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channelnumber
-func (m_ MTRThreadOperationalDataset) SetChannelNumber(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelNumber:"), value)
 }
 
 //

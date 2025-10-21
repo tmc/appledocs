@@ -82,24 +82,6 @@ func NewEmitterLayer() EmitterLayer {
 }
 
 
-// The angle, in radians, defining a cone around the emission angle. Animatable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caemittercell/emissionrange
-func (e_ EmitterLayer) EmissionRange() float64 {
-	rv := objc.Send[float64](e_.ID, objc.Sel("emissionRange"))
-	return rv
-}
-
-
-// SetEmissionRange sets the value of the emissionRange property.
-// The angle, in radians, defining a cone around the emission angle. Animatable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caemittercell/emissionrange
-func (e_ EmitterLayer) SetEmissionRange(value float64) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setEmissionRange:"), value)
-}
-
 // Defines a multiplier that is applied to the cell-defined birth rate. Animatable
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/birthRate
@@ -378,6 +360,24 @@ func (e_ EmitterLayer) Velocity() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/velocity
 func (e_ EmitterLayer) SetVelocity(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVelocity:"), value)
+}
+
+// The angle, in radians, defining a cone around the emission angle. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caemittercell/emissionrange
+func (e_ EmitterLayer) EmissionRange() float64 {
+	rv := objc.Send[float64](e_.ID, objc.Sel("emissionRange"))
+	return rv
+}
+
+
+// SetEmissionRange sets the value of the emissionRange property.
+// The angle, in radians, defining a cone around the emission angle. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caemittercell/emissionrange
+func (e_ EmitterLayer) SetEmissionRange(value float64) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEmissionRange:"), value)
 }
 
 

@@ -96,6 +96,21 @@ func (s_ State) SetIsTemporary(value bool) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/label
+func (s_ State) Label() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/label
+func (s_ State) SetLabel(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/readcount
 func (s_ State) ReadCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("readCount"))
@@ -138,21 +153,6 @@ func (s_ State) ResourceCount() int {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/resourcecount
 func (s_ State) SetResourceCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setResourceCount:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/label
-func (s_ State) Label() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("label"))
-	return rv
-}
-
-
-// SetLabel sets the value of the label property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/label
-func (s_ State) SetLabel(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 

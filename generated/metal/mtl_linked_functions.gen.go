@@ -88,96 +88,6 @@ func (lc _LinkedFunctionsClass) LinkedFunctions() unsafe.Pointer {
 	return rv
 }
 
-// The set of constant values assigned to the function constants.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/constantvalues
-func (l_ LinkedFunctions) ConstantValues() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("constantValues"))
-	return rv
-}
-
-
-// SetConstantValues sets the value of the constantValues property.
-// The set of constant values assigned to the function constants.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/constantvalues
-func (l_ LinkedFunctions) SetConstantValues(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setConstantValues:"), value)
-}
-
-// Flags specifying how Metal should create the new function object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/options
-func (l_ LinkedFunctions) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("options"))
-	return rv
-}
-
-
-// SetOptions sets the value of the options property.
-// Flags specifying how Metal should create the new function object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/options
-func (l_ LinkedFunctions) SetOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setOptions:"), value)
-}
-
-// The name of the function to fetch from the library.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/name
-func (l_ LinkedFunctions) Name() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-// The name of the function to fetch from the library.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/name
-func (l_ LinkedFunctions) SetName(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// The binary archives to search for a previously-compiled version of this function.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/binaryarchives
-func (l_ LinkedFunctions) BinaryArchives() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("binaryArchives"))
-	return rv
-}
-
-
-// SetBinaryArchives sets the value of the binaryArchives property.
-// The binary archives to search for a previously-compiled version of this function.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/binaryarchives
-func (l_ LinkedFunctions) SetBinaryArchives(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setBinaryArchives:"), value)
-}
-
-// A new name for the created function object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/specializedname
-func (l_ LinkedFunctions) SpecializedName() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("specializedName"))
-	return rv
-}
-
-
-// SetSpecializedName sets the value of the specializedName property.
-// A new name for the created function object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/specializedname
-func (l_ LinkedFunctions) SetSpecializedName(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setSpecializedName:"), objc.String(value))
-}
-
 // An array of function objects already compiled to a binary representation to link.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLinkedFunctions/binaryFunctions
@@ -278,6 +188,96 @@ func (l_ LinkedFunctions) SetPrivateFunctions(value []objc.ID) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPrivateFunctions:"), nsArray)
+}
+
+// The binary archives to search for a previously-compiled version of this function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/binaryarchives
+func (l_ LinkedFunctions) BinaryArchives() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("binaryArchives"))
+	return rv
+}
+
+
+// SetBinaryArchives sets the value of the binaryArchives property.
+// The binary archives to search for a previously-compiled version of this function.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/binaryarchives
+func (l_ LinkedFunctions) SetBinaryArchives(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setBinaryArchives:"), value)
+}
+
+// The set of constant values assigned to the function constants.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/constantvalues
+func (l_ LinkedFunctions) ConstantValues() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("constantValues"))
+	return rv
+}
+
+
+// SetConstantValues sets the value of the constantValues property.
+// The set of constant values assigned to the function constants.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/constantvalues
+func (l_ LinkedFunctions) SetConstantValues(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setConstantValues:"), value)
+}
+
+// The name of the function to fetch from the library.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/name
+func (l_ LinkedFunctions) Name() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the function to fetch from the library.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/name
+func (l_ LinkedFunctions) SetName(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// Flags specifying how Metal should create the new function object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/options
+func (l_ LinkedFunctions) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// Flags specifying how Metal should create the new function object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/options
+func (l_ LinkedFunctions) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setOptions:"), value)
+}
+
+// A new name for the created function object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/specializedname
+func (l_ LinkedFunctions) SpecializedName() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("specializedName"))
+	return rv
+}
+
+
+// SetSpecializedName sets the value of the specializedName property.
+// A new name for the created function object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/specializedname
+func (l_ LinkedFunctions) SetSpecializedName(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setSpecializedName:"), objc.String(value))
 }
 
 

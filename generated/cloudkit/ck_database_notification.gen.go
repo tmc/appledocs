@@ -99,24 +99,6 @@ func (c_ CKDatabaseNotification) SetDatabaseScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDatabaseScope:"), value)
 }
 
-// The type of event that generates the notification.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
-func (c_ CKDatabaseNotification) NotificationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
-	return rv
-}
-
-
-// SetNotificationType sets the value of the notificationType property.
-// The type of event that generates the notification.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
-func (c_ CKDatabaseNotification) SetNotificationType(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationType:"), value)
-}
-
 // A Boolean value that indicates whether the system removes some push notification content before delivery.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
@@ -133,6 +115,24 @@ func (c_ CKDatabaseNotification) IsPruned() bool {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
 func (c_ CKDatabaseNotification) SetIsPruned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
+}
+
+// The type of event that generates the notification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
+func (c_ CKDatabaseNotification) NotificationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
+	return rv
+}
+
+
+// SetNotificationType sets the value of the notificationType property.
+// The type of event that generates the notification.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
+func (c_ CKDatabaseNotification) SetNotificationType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationType:"), value)
 }
 
 // A Boolean value that indicates whether the push notification includes the content available flag.

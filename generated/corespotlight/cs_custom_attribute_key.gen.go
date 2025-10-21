@@ -105,22 +105,44 @@ func NewCSCustomAttributeKeyWithKeyNameSearchableSearchableByDefaultUniqueMultiV
 }
 
 
-// A Boolean value that indicates if duplicate custom attribute values should be treated as the same value to save storage space.
+// A Boolean value that indicates if the custom attribute is likely to have multiple values, such as arrays, associated with it.
 //
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/isunique
-func (c_ CSCustomAttributeKey) IsUnique() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isUnique"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isMultiValued
+func (c_ CSCustomAttributeKey) MultiValued() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("multiValued"))
 	return rv
 }
 
-
-// SetIsUnique sets the value of the isUnique property.
-// A Boolean value that indicates if duplicate custom attribute values should be treated as the same value to save storage space.
-
+// A Boolean value that indicates if the custom attribute can be specified as a search term.
 //
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/isunique
-func (c_ CSCustomAttributeKey) SetIsUnique(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsUnique:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isSearchable
+func (c_ CSCustomAttributeKey) Searchable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("searchable"))
+	return rv
+}
+
+// A Boolean value that indicates if the custom attribute should be searchable by default.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isSearchableByDefault
+func (c_ CSCustomAttributeKey) SearchableByDefault() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("searchableByDefault"))
+	return rv
+}
+
+// A Boolean value that indicates if duplicate custom attribute values should be treated as the same value to save storage space.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isUnique
+func (c_ CSCustomAttributeKey) Unique() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("unique"))
+	return rv
+}
+
+// The name of the custom attribute key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/keyName
+func (c_ CSCustomAttributeKey) KeyName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("keyName"))
+	return rv
 }
 
 // A Boolean value that indicates if the custom attribute is likely to have multiple values, such as arrays, associated with it.
@@ -177,44 +199,22 @@ func (c_ CSCustomAttributeKey) SetIsSearchableByDefault(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSearchableByDefault:"), value)
 }
 
-// A Boolean value that indicates if the custom attribute is likely to have multiple values, such as arrays, associated with it.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isMultiValued
-func (c_ CSCustomAttributeKey) MultiValued() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("multiValued"))
-	return rv
-}
-
-// A Boolean value that indicates if the custom attribute can be specified as a search term.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isSearchable
-func (c_ CSCustomAttributeKey) Searchable() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("searchable"))
-	return rv
-}
-
-// A Boolean value that indicates if the custom attribute should be searchable by default.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isSearchableByDefault
-func (c_ CSCustomAttributeKey) SearchableByDefault() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("searchableByDefault"))
-	return rv
-}
-
 // A Boolean value that indicates if duplicate custom attribute values should be treated as the same value to save storage space.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isUnique
-func (c_ CSCustomAttributeKey) Unique() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("unique"))
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/isunique
+func (c_ CSCustomAttributeKey) IsUnique() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isUnique"))
 	return rv
 }
 
-// The name of the custom attribute key.
+
+// SetIsUnique sets the value of the isUnique property.
+// A Boolean value that indicates if duplicate custom attribute values should be treated as the same value to save storage space.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/keyName
-func (c_ CSCustomAttributeKey) KeyName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("keyName"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/isunique
+func (c_ CSCustomAttributeKey) SetIsUnique(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsUnique:"), value)
 }
 
 

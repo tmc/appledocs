@@ -81,24 +81,6 @@ func NewSequence() Sequence {
 }
 
 
-// The underlying type of the sequence’s elements.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
-func (s_ Sequence) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// SetType sets the value of the type property.
-// The underlying type of the sequence’s elements.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
-func (s_ Sequence) SetType(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setType:"), value)
-}
-
 // An array of 64-bit integers in the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
@@ -133,6 +115,24 @@ func (s_ Sequence) StringValues() string {
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
 func (s_ Sequence) SetStringValues(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), objc.String(value))
+}
+
+// The underlying type of the sequence’s elements.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
+func (s_ Sequence) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The underlying type of the sequence’s elements.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
+func (s_ Sequence) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setType:"), value)
 }
 
 

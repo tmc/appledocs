@@ -80,6 +80,21 @@ func NewRNNMatrixTrainingLayer() RNNMatrixTrainingLayer {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/accumulateweightgradients
+func (r_ RNNMatrixTrainingLayer) AccumulateWeightGradients() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("accumulateWeightGradients"))
+	return rv
+}
+
+
+// SetAccumulateWeightGradients sets the value of the accumulateWeightGradients property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/accumulateweightgradients
+func (r_ RNNMatrixTrainingLayer) SetAccumulateWeightGradients(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setAccumulateWeightGradients:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/inputfeaturechannels
 func (r_ RNNMatrixTrainingLayer) InputFeatureChannels() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("inputFeatureChannels"))
@@ -92,6 +107,21 @@ func (r_ RNNMatrixTrainingLayer) InputFeatureChannels() int {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/inputfeaturechannels
 func (r_ RNNMatrixTrainingLayer) SetInputFeatureChannels(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInputFeatureChannels:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/outputfeaturechannels
+func (r_ RNNMatrixTrainingLayer) OutputFeatureChannels() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("outputFeatureChannels"))
+	return rv
+}
+
+
+// SetOutputFeatureChannels sets the value of the outputFeatureChannels property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/outputfeaturechannels
+func (r_ RNNMatrixTrainingLayer) SetOutputFeatureChannels(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setOutputFeatureChannels:"), value)
 }
 
 //
@@ -137,36 +167,6 @@ func (r_ RNNMatrixTrainingLayer) TrainingStateIsTemporary() bool {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/trainingstateistemporary
 func (r_ RNNMatrixTrainingLayer) SetTrainingStateIsTemporary(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTrainingStateIsTemporary:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/outputfeaturechannels
-func (r_ RNNMatrixTrainingLayer) OutputFeatureChannels() int {
-	rv := objc.Send[int](r_.ID, objc.Sel("outputFeatureChannels"))
-	return rv
-}
-
-
-// SetOutputFeatureChannels sets the value of the outputFeatureChannels property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/outputfeaturechannels
-func (r_ RNNMatrixTrainingLayer) SetOutputFeatureChannels(value int) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setOutputFeatureChannels:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/accumulateweightgradients
-func (r_ RNNMatrixTrainingLayer) AccumulateWeightGradients() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("accumulateWeightGradients"))
-	return rv
-}
-
-
-// SetAccumulateWeightGradients sets the value of the accumulateWeightGradients property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/accumulateweightgradients
-func (r_ RNNMatrixTrainingLayer) SetAccumulateWeightGradients(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setAccumulateWeightGradients:"), value)
 }
 
 

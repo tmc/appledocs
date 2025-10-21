@@ -5,9 +5,6 @@ import (
 	"unsafe"
 )
 
-// AuthorizationRef is a CoreGraphics opaque type.
-type AuthorizationRef unsafe.Pointer
-
 // CFAllocatorRef is a CoreGraphics opaque type.
 type CFAllocatorRef unsafe.Pointer
 
@@ -40,39 +37,6 @@ type CFRunLoopSourceRef unsafe.Pointer
 
 // CFStringRef is a CoreGraphics opaque type.
 type CFStringRef unsafe.Pointer
-
-// SCBondInterfaceRef is a CoreGraphics opaque type.
-type SCBondInterfaceRef unsafe.Pointer
-
-// SCBondStatusRef is a CoreGraphics opaque type.
-type SCBondStatusRef unsafe.Pointer
-
-// SCDynamicStoreRef is a CoreGraphics opaque type.
-type SCDynamicStoreRef unsafe.Pointer
-
-// SCNetworkConnectionRef is a CoreGraphics opaque type.
-type SCNetworkConnectionRef unsafe.Pointer
-
-// SCNetworkInterfaceRef is a CoreGraphics opaque type.
-type SCNetworkInterfaceRef unsafe.Pointer
-
-// SCNetworkProtocolRef is a CoreGraphics opaque type.
-type SCNetworkProtocolRef unsafe.Pointer
-
-// SCNetworkReachabilityRef is a CoreGraphics opaque type.
-type SCNetworkReachabilityRef unsafe.Pointer
-
-// SCNetworkServiceRef is a CoreGraphics opaque type.
-type SCNetworkServiceRef unsafe.Pointer
-
-// SCNetworkSetRef is a CoreGraphics opaque type.
-type SCNetworkSetRef unsafe.Pointer
-
-// SCPreferencesRef is a CoreGraphics opaque type.
-type SCPreferencesRef unsafe.Pointer
-
-// SCVLANInterfaceRef is a CoreGraphics opaque type.
-type SCVLANInterfaceRef unsafe.Pointer
 
 
 

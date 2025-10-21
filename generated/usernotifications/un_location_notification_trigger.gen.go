@@ -100,6 +100,14 @@ func (uc _UNLocationNotificationTriggerClass) TriggerWithRegionRepeats(region un
 	return rv
 }
 
+// The region used to determine when the system sends the notification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNLocationNotificationTrigger/region
+func (u_ UNLocationNotificationTrigger) Region() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("region"))
+	return rv
+}
+
 // A Boolean indicating that notifications are generated upon entry into the region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
@@ -134,14 +142,6 @@ func (u_ UNLocationNotificationTrigger) NotifyOnExit() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
 func (u_ UNLocationNotificationTrigger) SetNotifyOnExit(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNotifyOnExit:"), value)
-}
-
-// The region used to determine when the system sends the notification.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNLocationNotificationTrigger/region
-func (u_ UNLocationNotificationTrigger) Region() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("region"))
-	return rv
 }
 
 

@@ -115,40 +115,30 @@ func (vc _VZNetworkBlockDeviceStorageDeviceAttachmentClass) ValidateURLError(URL
 	return rv
 }
 
-// The timeout value in seconds for the connection between the client and server.
+// The object that receives messages about changes to the network block device attachment.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/timeout
-func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) Timeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("timeout"))
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/delegate
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetTimeout sets the value of the timeout property.
-// The timeout value in seconds for the connection between the client and server.
+// SetDelegate sets the value of the delegate property.
+// The object that receives messages about changes to the network block device attachment.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/timeout
-func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetTimeout(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeout:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/delegate
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setDelegate:"), value)
 }
 
-// The URL that refers to the NBD server to which the NBD client will connect.
+// Returns a Boolean value that indicates whether the underlying disk attachment network is in a read-only state.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/url
-func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) Url() foundation.URL {
-	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("url"))
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/isForcedReadOnly
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) ForcedReadOnly() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("forcedReadOnly"))
 	return rv
-}
-
-
-// SetUrl sets the value of the url property.
-// The URL that refers to the NBD server to which the NBD client will connect.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/url
-func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetUrl(value foundation.URL) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setUrl:"), value)
 }
 
 // Returns a Boolean value that indicates whether the underlying disk attachment network is in a read-only state.
@@ -187,30 +177,40 @@ func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetSynchronizationMode(val
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSynchronizationMode:"), value)
 }
 
-// The object that receives messages about changes to the network block device attachment.
+// The timeout value in seconds for the connection between the client and server.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/delegate
-func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](v_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/timeout
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) Timeout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("timeout"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
-// The object that receives messages about changes to the network block device attachment.
+// SetTimeout sets the value of the timeout property.
+// The timeout value in seconds for the connection between the client and server.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/delegate
-func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setDelegate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/timeout
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetTimeout(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeout:"), value)
 }
 
-// Returns a Boolean value that indicates whether the underlying disk attachment network is in a read-only state.
+// The URL that refers to the NBD server to which the NBD client will connect.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/isForcedReadOnly
-func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) ForcedReadOnly() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("forcedReadOnly"))
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/url
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("url"))
 	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL that refers to the NBD server to which the NBD client will connect.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/url
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUrl:"), value)
 }
 
 

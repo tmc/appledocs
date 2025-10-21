@@ -77,18 +77,33 @@ func NewMTRAccessControlClusterAccessControlExtensionChangedEvent() MTRAccessCon
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/fabricindex
-func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminnodeid
+func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) AdminNodeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("adminNodeID"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
+// SetAdminNodeID sets the value of the adminNodeID property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/fabricindex
-func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetFabricIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminnodeid
+func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetAdminNodeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminNodeID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminpasscodeid
+func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) AdminPasscodeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("adminPasscodeID"))
+	return rv
+}
+
+
+// SetAdminPasscodeID sets the value of the adminPasscodeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminpasscodeid
+func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetAdminPasscodeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminPasscodeID:"), value)
 }
 
 //
@@ -107,18 +122,18 @@ func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetChangeTyp
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminnodeid
-func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) AdminNodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("adminNodeID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/fabricindex
+func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetAdminNodeID sets the value of the adminNodeID property.
+// SetFabricIndex sets the value of the fabricIndex property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminnodeid
-func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetAdminNodeID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminNodeID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/fabricindex
+func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
 //
@@ -134,21 +149,6 @@ func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) LatestValue(
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/latestvalue
 func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetLatestValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLatestValue:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminpasscodeid
-func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) AdminPasscodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("adminPasscodeID"))
-	return rv
-}
-
-
-// SetAdminPasscodeID sets the value of the adminPasscodeID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminpasscodeid
-func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetAdminPasscodeID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminPasscodeID:"), value)
 }
 
 

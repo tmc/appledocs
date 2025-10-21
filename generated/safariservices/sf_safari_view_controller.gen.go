@@ -127,24 +127,6 @@ func (sc _SFSafariViewControllerClass) PrewarmConnectionsToURLs(URLs unsafe.Poin
 	return rv
 }
 
-// An object you use to send tap event attribution data to the browser for Private Click Measurement.
-//
-// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class/eventattribution
-func (s_ SFSafariViewController) EventAttribution() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("eventAttribution"))
-	return rv
-}
-
-
-// SetEventAttribution sets the value of the eventAttribution property.
-// An object you use to send tap event attribution data to the browser for Private Click Measurement.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class/eventattribution
-func (s_ SFSafariViewController) SetEventAttribution(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setEventAttribution:"), value)
-}
-
 // A copy of the Safari view controller’s initialized configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/configuration-swift.property
@@ -223,6 +205,24 @@ func (s_ SFSafariViewController) PreferredControlTintColor() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredControlTintColor
 func (s_ SFSafariViewController) SetPreferredControlTintColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredControlTintColor:"), value)
+}
+
+// An object you use to send tap event attribution data to the browser for Private Click Measurement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class/eventattribution
+func (s_ SFSafariViewController) EventAttribution() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("eventAttribution"))
+	return rv
+}
+
+
+// SetEventAttribution sets the value of the eventAttribution property.
+// An object you use to send tap event attribution data to the browser for Private Click Measurement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class/eventattribution
+func (s_ SFSafariViewController) SetEventAttribution(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setEventAttribution:"), value)
 }
 
 

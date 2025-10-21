@@ -80,22 +80,22 @@ func NewNWUDPSession() NWUDPSession {
 }
 
 
-// The maximum size of a datagram to be written currently.
+// The current evaluated path for the session’s
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/maximumdatagramlength
-func (n_ NWUDPSession) MaximumDatagramLength() int {
-	rv := objc.Send[int](n_.ID, objc.Sel("maximumDatagramLength"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/currentpath
+func (n_ NWUDPSession) CurrentPath() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("currentPath"))
 	return rv
 }
 
 
-// SetMaximumDatagramLength sets the value of the maximumDatagramLength property.
-// The maximum size of a datagram to be written currently.
+// SetCurrentPath sets the value of the currentPath property.
+// The current evaluated path for the session’s
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/maximumdatagramlength
-func (n_ NWUDPSession) SetMaximumDatagramLength(value int) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumDatagramLength:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/currentpath
+func (n_ NWUDPSession) SetCurrentPath(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setCurrentPath:"), value)
 }
 
 // The destination endpoint with which this session was created.
@@ -152,6 +152,24 @@ func (n_ NWUDPSession) SetIsViable(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsViable:"), value)
 }
 
+// The maximum size of a datagram to be written currently.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/maximumdatagramlength
+func (n_ NWUDPSession) MaximumDatagramLength() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("maximumDatagramLength"))
+	return rv
+}
+
+
+// SetMaximumDatagramLength sets the value of the maximumDatagramLength property.
+// The maximum size of a datagram to be written currently.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/maximumdatagramlength
+func (n_ NWUDPSession) SetMaximumDatagramLength(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumDatagramLength:"), value)
+}
+
 // The currently targeted remote endpoint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/resolvedendpoint
@@ -186,24 +204,6 @@ func (n_ NWUDPSession) State() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/state
 func (n_ NWUDPSession) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setState:"), value)
-}
-
-// The current evaluated path for the session’s
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/currentpath
-func (n_ NWUDPSession) CurrentPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("currentPath"))
-	return rv
-}
-
-
-// SetCurrentPath sets the value of the currentPath property.
-// The current evaluated path for the session’s
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/currentpath
-func (n_ NWUDPSession) SetCurrentPath(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setCurrentPath:"), value)
 }
 
 

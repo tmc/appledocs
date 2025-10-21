@@ -123,60 +123,6 @@ func (p_ ParameterNode) TokenByAddingParameterRecordingObserver(observer unsafe.
 	return rv
 }
 
-// The callback for parameter value changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueobserver
-func (p_ ParameterNode) ImplementorValueObserver() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorValueObserver"))
-	return rv
-}
-
-
-// SetImplementorValueObserver sets the value of the implementorValueObserver property.
-// The callback for parameter value changes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueobserver
-func (p_ ParameterNode) SetImplementorValueObserver(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorValueObserver:"), value)
-}
-
-// The callback for refreshing known stale values in a parameter tree.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueprovider
-func (p_ ParameterNode) ImplementorValueProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorValueProvider"))
-	return rv
-}
-
-
-// SetImplementorValueProvider sets the value of the implementorValueProvider property.
-// The callback for refreshing known stale values in a parameter tree.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueprovider
-func (p_ ParameterNode) SetImplementorValueProvider(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorValueProvider:"), value)
-}
-
-// The callback for providing a string representation of a parameter value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorstringfromvaluecallback
-func (p_ ParameterNode) ImplementorStringFromValueCallback() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorStringFromValueCallback"))
-	return rv
-}
-
-
-// SetImplementorStringFromValueCallback sets the value of the implementorStringFromValueCallback property.
-// The callback for providing a string representation of a parameter value.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorstringfromvaluecallback
-func (p_ ParameterNode) SetImplementorStringFromValueCallback(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorStringFromValueCallback:"), value)
-}
-
 // A localized display name for the parameter node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/displayName
@@ -235,6 +181,60 @@ func (p_ ParameterNode) SetImplementorValueFromStringCallback(value unsafe.Point
 func (p_ ParameterNode) KeyPath() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("keyPath"))
 	return rv
+}
+
+// The callback for providing a string representation of a parameter value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorstringfromvaluecallback
+func (p_ ParameterNode) ImplementorStringFromValueCallback() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorStringFromValueCallback"))
+	return rv
+}
+
+
+// SetImplementorStringFromValueCallback sets the value of the implementorStringFromValueCallback property.
+// The callback for providing a string representation of a parameter value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorstringfromvaluecallback
+func (p_ ParameterNode) SetImplementorStringFromValueCallback(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorStringFromValueCallback:"), value)
+}
+
+// The callback for parameter value changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueobserver
+func (p_ ParameterNode) ImplementorValueObserver() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorValueObserver"))
+	return rv
+}
+
+
+// SetImplementorValueObserver sets the value of the implementorValueObserver property.
+// The callback for parameter value changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueobserver
+func (p_ ParameterNode) SetImplementorValueObserver(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorValueObserver:"), value)
+}
+
+// The callback for refreshing known stale values in a parameter tree.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueprovider
+func (p_ ParameterNode) ImplementorValueProvider() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorValueProvider"))
+	return rv
+}
+
+
+// SetImplementorValueProvider sets the value of the implementorValueProvider property.
+// The callback for refreshing known stale values in a parameter tree.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueprovider
+func (p_ ParameterNode) SetImplementorValueProvider(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorValueProvider:"), value)
 }
 
 

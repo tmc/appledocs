@@ -99,24 +99,6 @@ func (i_ INSnoozeTasksIntent) SetAll(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAll:"), value)
 }
 
-// An array of tasks to snooze.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/tasks
-func (i_ INSnoozeTasksIntent) Tasks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tasks"))
-	return rv
-}
-
-
-// SetTasks sets the value of the tasks property.
-// An array of tasks to snooze.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/tasks
-func (i_ INSnoozeTasksIntent) SetTasks(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTasks:"), value)
-}
-
 // The next time after the current time that triggers a task to snooze.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/nexttriggertime
@@ -133,6 +115,24 @@ func (i_ INSnoozeTasksIntent) NextTriggerTime() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/nexttriggertime
 func (i_ INSnoozeTasksIntent) SetNextTriggerTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNextTriggerTime:"), value)
+}
+
+// An array of tasks to snooze.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/tasks
+func (i_ INSnoozeTasksIntent) Tasks() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tasks"))
+	return rv
+}
+
+
+// SetTasks sets the value of the tasks property.
+// An array of tasks to snooze.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/tasks
+func (i_ INSnoozeTasksIntent) SetTasks(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTasks:"), value)
 }
 
 

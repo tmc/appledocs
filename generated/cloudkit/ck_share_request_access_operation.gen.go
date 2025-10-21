@@ -90,42 +90,6 @@ func NewCKShareRequestAccessOperationWithShareURLs(shareURLs unsafe.Pointer) CKS
 }
 
 
-// A block called once for each share URL processed by the server.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/pershareaccessrequestresultblock
-func (c_ CKShareRequestAccessOperation) PerShareAccessRequestResultBlock() foundation.URL {
-	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("perShareAccessRequestResultBlock"))
-	return rv
-}
-
-
-// SetPerShareAccessRequestResultBlock sets the value of the perShareAccessRequestResultBlock property.
-// A block called once for each share URL processed by the server.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/pershareaccessrequestresultblock
-func (c_ CKShareRequestAccessOperation) SetPerShareAccessRequestResultBlock(value foundation.URL) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareAccessRequestResultBlock:"), value)
-}
-
-// A block called when the entire share access request operation completes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/shareaccessrequestresultblock
-func (c_ CKShareRequestAccessOperation) ShareAccessRequestResultBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("shareAccessRequestResultBlock"))
-	return rv
-}
-
-
-// SetShareAccessRequestResultBlock sets the value of the shareAccessRequestResultBlock property.
-// A block called when the entire share access request operation completes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/shareaccessrequestresultblock
-func (c_ CKShareRequestAccessOperation) SetShareAccessRequestResultBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShareAccessRequestResultBlock:"), value)
-}
-
 // A completion block called once for each processed share URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/perShareAccessRequestCompletionBlock
@@ -188,6 +152,42 @@ func (c_ CKShareRequestAccessOperation) SetShareURLs(value []foundation.URL) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareURLs:"), nsArray)
+}
+
+// A block called once for each share URL processed by the server.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/pershareaccessrequestresultblock
+func (c_ CKShareRequestAccessOperation) PerShareAccessRequestResultBlock() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("perShareAccessRequestResultBlock"))
+	return rv
+}
+
+
+// SetPerShareAccessRequestResultBlock sets the value of the perShareAccessRequestResultBlock property.
+// A block called once for each share URL processed by the server.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/pershareaccessrequestresultblock
+func (c_ CKShareRequestAccessOperation) SetPerShareAccessRequestResultBlock(value foundation.URL) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareAccessRequestResultBlock:"), value)
+}
+
+// A block called when the entire share access request operation completes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/shareaccessrequestresultblock
+func (c_ CKShareRequestAccessOperation) ShareAccessRequestResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("shareAccessRequestResultBlock"))
+	return rv
+}
+
+
+// SetShareAccessRequestResultBlock sets the value of the shareAccessRequestResultBlock property.
+// A block called when the entire share access request operation completes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/shareaccessrequestresultblock
+func (c_ CKShareRequestAccessOperation) SetShareAccessRequestResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShareAccessRequestResultBlock:"), value)
 }
 
 

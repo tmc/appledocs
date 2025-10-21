@@ -92,6 +92,13 @@ func (u_ USBHostCIEndpointStateMachine) ProcessDoorbellError(doorbell unsafe.Poi
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine/controllerInterface
+func (u_ USBHostCIEndpointStateMachine) ControllerInterface() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerInterface"))
+	return rv
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/currenttransfermessage
 func (u_ USBHostCIEndpointStateMachine) CurrentTransferMessage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("currentTransferMessage"))
@@ -149,13 +156,6 @@ func (u_ USBHostCIEndpointStateMachine) EndpointState() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/endpointstate
 func (u_ USBHostCIEndpointStateMachine) SetEndpointState(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEndpointState:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine/controllerInterface
-func (u_ USBHostCIEndpointStateMachine) ControllerInterface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerInterface"))
-	return rv
 }
 
 

@@ -107,24 +107,6 @@ func NewGameCenterViewControllerWithPlayer(player unsafe.Pointer) GameCenterView
 }
 
 
-// The delegate for the event handler.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-func (g_ GameCenterViewController) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The delegate for the event handler.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-func (g_ GameCenterViewController) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
-}
-
 // The view controller’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller/gamecenterdelegate
@@ -141,6 +123,24 @@ func (g_ GameCenterViewController) GameCenterDelegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller/gamecenterdelegate
 func (g_ GameCenterViewController) SetGameCenterDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGameCenterDelegate:"), value)
+}
+
+// The delegate for the event handler.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
+func (g_ GameCenterViewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate for the event handler.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
+func (g_ GameCenterViewController) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

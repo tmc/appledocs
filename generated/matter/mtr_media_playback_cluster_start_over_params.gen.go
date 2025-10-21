@@ -77,21 +77,6 @@ func NewMTRMediaPlaybackClusterStartOverParams() MTRMediaPlaybackClusterStartOve
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstartoverparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterStartOverParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstartoverparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterStartOverParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstartoverparams/serversideprocessingtimeout
 func (m_ MTRMediaPlaybackClusterStartOverParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,6 +89,21 @@ func (m_ MTRMediaPlaybackClusterStartOverParams) ServerSideProcessingTimeout() f
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstartoverparams/serversideprocessingtimeout
 func (m_ MTRMediaPlaybackClusterStartOverParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstartoverparams/timedinvoketimeoutms
+func (m_ MTRMediaPlaybackClusterStartOverParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstartoverparams/timedinvoketimeoutms
+func (m_ MTRMediaPlaybackClusterStartOverParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

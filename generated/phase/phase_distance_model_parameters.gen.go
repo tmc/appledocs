@@ -80,24 +80,6 @@ func NewPHASEDistanceModelParameters() PHASEDistanceModelParameters {
 }
 
 
-// An effect that changes sound as it carries over a distance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
-func (p_ PHASEDistanceModelParameters) DistanceModelParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("distanceModelParameters"))
-	return rv
-}
-
-
-// SetDistanceModelParameters sets the value of the distanceModelParameters property.
-// An effect that changes sound as it carries over a distance.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
-func (p_ PHASEDistanceModelParameters) SetDistanceModelParameters(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDistanceModelParameters:"), value)
-}
-
 // A distance over which the framework fades out the mixer’s sound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelParameters/fadeOutParameters
@@ -114,6 +96,24 @@ func (p_ PHASEDistanceModelParameters) FadeOutParameters() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelParameters/fadeOutParameters
 func (p_ PHASEDistanceModelParameters) SetFadeOutParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFadeOutParameters:"), value)
+}
+
+// An effect that changes sound as it carries over a distance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
+func (p_ PHASEDistanceModelParameters) DistanceModelParameters() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("distanceModelParameters"))
+	return rv
+}
+
+
+// SetDistanceModelParameters sets the value of the distanceModelParameters property.
+// An effect that changes sound as it carries over a distance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
+func (p_ PHASEDistanceModelParameters) SetDistanceModelParameters(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDistanceModelParameters:"), value)
 }
 
 

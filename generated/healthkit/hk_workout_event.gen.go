@@ -80,6 +80,32 @@ func NewHKWorkoutEvent() HKWorkoutEvent {
 }
 
 
+// The type of workout event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEvent/type
+func (h_ HKWorkoutEvent) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("type"))
+	return rv
+}
+
+// The time when the transition occurred.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
+func (h_ HKWorkoutEvent) Date() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("date"))
+	return rv
+}
+
+
+// SetDate sets the value of the date property.
+// The time when the transition occurred.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
+func (h_ HKWorkoutEvent) SetDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDate:"), value)
+}
+
 // The time and duration of the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval
@@ -116,37 +142,11 @@ func (h_ HKWorkoutEvent) SetMetadata(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
-// The time when the transition occurred.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
-func (h_ HKWorkoutEvent) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("date"))
-	return rv
-}
-
-
-// SetDate sets the value of the date property.
-// The time when the transition occurred.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
-func (h_ HKWorkoutEvent) SetDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setDate:"), value)
-}
-
 // The workout type identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
 func (h_ HKWorkoutEvent) HKWorkoutTypeIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
-	return rv
-}
-
-// The type of workout event.
-//
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEvent/type
-func (h_ HKWorkoutEvent) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("type"))
 	return rv
 }
 

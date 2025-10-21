@@ -81,40 +81,94 @@ func NewMTL4IndirectInstanceAccelerationStructureDescriptor() MTL4IndirectInstan
 }
 
 
-// Associates a buffer reference containing the number of motion transforms in the motion transform buffer, formatted as a
+// Provides a reference to a buffer containing the number of instances in the instance descriptor buffer, formatted as a
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformcountbuffer
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) MotionTransformCountBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("motionTransformCountBuffer"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancecountbuffer
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) InstanceCountBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("instanceCountBuffer"))
 	return rv
 }
 
 
-// SetMotionTransformCountBuffer sets the value of the motionTransformCountBuffer property.
-// Associates a buffer reference containing the number of motion transforms in the motion transform buffer, formatted as a
+// SetInstanceCountBuffer sets the value of the instanceCountBuffer property.
+// Provides a reference to a buffer containing the number of instances in the instance descriptor buffer, formatted as a
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformcountbuffer
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformCountBuffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMotionTransformCountBuffer:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancecountbuffer
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetInstanceCountBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceCountBuffer:"), value)
 }
 
-// A buffer containing transformation information for instance motion keyframes, formatted according
+// Assigns a reference to a buffer containing instance descriptors for acceleration structures to reference.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformbuffer
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) MotionTransformBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("motionTransformBuffer"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptorbuffer
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) InstanceDescriptorBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("instanceDescriptorBuffer"))
 	return rv
 }
 
 
-// SetMotionTransformBuffer sets the value of the motionTransformBuffer property.
-// A buffer containing transformation information for instance motion keyframes, formatted according
+// SetInstanceDescriptorBuffer sets the value of the instanceDescriptorBuffer property.
+// Assigns a reference to a buffer containing instance descriptors for acceleration structures to reference.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformbuffer
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformBuffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMotionTransformBuffer:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptorbuffer
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetInstanceDescriptorBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceDescriptorBuffer:"), value)
+}
+
+// Sets the stride, in bytes, between instance descriptors in the instance descriptor buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptorstride
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) InstanceDescriptorStride() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("instanceDescriptorStride"))
+	return rv
+}
+
+
+// SetInstanceDescriptorStride sets the value of the instanceDescriptorStride property.
+// Sets the stride, in bytes, between instance descriptors in the instance descriptor buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptorstride
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetInstanceDescriptorStride(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceDescriptorStride:"), value)
+}
+
+// Controls the type of instance descriptor that the instance descriptor buffer references.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptortype
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) InstanceDescriptorType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("instanceDescriptorType"))
+	return rv
+}
+
+
+// SetInstanceDescriptorType sets the value of the instanceDescriptorType property.
+// Controls the type of instance descriptor that the instance descriptor buffer references.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptortype
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetInstanceDescriptorType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceDescriptorType:"), value)
+}
+
+// Specifies the layout for the transformation matrices in the instance descriptor buffer and the motion transformation matrix buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancetransformationmatrixlayout
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) InstanceTransformationMatrixLayout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("instanceTransformationMatrixLayout"))
+	return rv
+}
+
+
+// SetInstanceTransformationMatrixLayout sets the value of the instanceTransformationMatrixLayout property.
+// Specifies the layout for the transformation matrices in the instance descriptor buffer and the motion transformation matrix buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancetransformationmatrixlayout
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetInstanceTransformationMatrixLayout(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceTransformationMatrixLayout:"), value)
 }
 
 // Controls the maximum number of instance descriptors the instance descriptor buffer can reference.
@@ -153,94 +207,40 @@ func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetMaxMotionTransf
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxMotionTransformCount:"), value)
 }
 
-// Sets the type of motion transforms, either as a matrix or individual components.
+// A buffer containing transformation information for instance motion keyframes, formatted according
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformtype
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) MotionTransformType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("motionTransformType"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformbuffer
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) MotionTransformBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("motionTransformBuffer"))
 	return rv
 }
 
 
-// SetMotionTransformType sets the value of the motionTransformType property.
-// Sets the type of motion transforms, either as a matrix or individual components.
+// SetMotionTransformBuffer sets the value of the motionTransformBuffer property.
+// A buffer containing transformation information for instance motion keyframes, formatted according
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformtype
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformType(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMotionTransformType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformbuffer
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMotionTransformBuffer:"), value)
 }
 
-// Specifies the layout for the transformation matrices in the instance descriptor buffer and the motion transformation matrix buffer.
+// Associates a buffer reference containing the number of motion transforms in the motion transform buffer, formatted as a
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancetransformationmatrixlayout
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) InstanceTransformationMatrixLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("instanceTransformationMatrixLayout"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformcountbuffer
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) MotionTransformCountBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("motionTransformCountBuffer"))
 	return rv
 }
 
 
-// SetInstanceTransformationMatrixLayout sets the value of the instanceTransformationMatrixLayout property.
-// Specifies the layout for the transformation matrices in the instance descriptor buffer and the motion transformation matrix buffer.
+// SetMotionTransformCountBuffer sets the value of the motionTransformCountBuffer property.
+// Associates a buffer reference containing the number of motion transforms in the motion transform buffer, formatted as a
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancetransformationmatrixlayout
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetInstanceTransformationMatrixLayout(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceTransformationMatrixLayout:"), value)
-}
-
-// Sets the stride, in bytes, between instance descriptors in the instance descriptor buffer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptorstride
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) InstanceDescriptorStride() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("instanceDescriptorStride"))
-	return rv
-}
-
-
-// SetInstanceDescriptorStride sets the value of the instanceDescriptorStride property.
-// Sets the stride, in bytes, between instance descriptors in the instance descriptor buffer.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptorstride
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetInstanceDescriptorStride(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceDescriptorStride:"), value)
-}
-
-// Provides a reference to a buffer containing the number of instances in the instance descriptor buffer, formatted as a
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancecountbuffer
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) InstanceCountBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("instanceCountBuffer"))
-	return rv
-}
-
-
-// SetInstanceCountBuffer sets the value of the instanceCountBuffer property.
-// Provides a reference to a buffer containing the number of instances in the instance descriptor buffer, formatted as a
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancecountbuffer
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetInstanceCountBuffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceCountBuffer:"), value)
-}
-
-// Controls the type of instance descriptor that the instance descriptor buffer references.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptortype
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) InstanceDescriptorType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("instanceDescriptorType"))
-	return rv
-}
-
-
-// SetInstanceDescriptorType sets the value of the instanceDescriptorType property.
-// Controls the type of instance descriptor that the instance descriptor buffer references.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptortype
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetInstanceDescriptorType(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceDescriptorType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformcountbuffer
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformCountBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMotionTransformCountBuffer:"), value)
 }
 
 // Sets the stride for motion transform.
@@ -261,22 +261,22 @@ func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetMotionTransform
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMotionTransformStride:"), value)
 }
 
-// Assigns a reference to a buffer containing instance descriptors for acceleration structures to reference.
+// Sets the type of motion transforms, either as a matrix or individual components.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptorbuffer
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) InstanceDescriptorBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("instanceDescriptorBuffer"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformtype
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) MotionTransformType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("motionTransformType"))
 	return rv
 }
 
 
-// SetInstanceDescriptorBuffer sets the value of the instanceDescriptorBuffer property.
-// Assigns a reference to a buffer containing instance descriptors for acceleration structures to reference.
+// SetMotionTransformType sets the value of the motionTransformType property.
+// Sets the type of motion transforms, either as a matrix or individual components.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptorbuffer
-func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetInstanceDescriptorBuffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceDescriptorBuffer:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/motiontransformtype
+func (m_ MTL4IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMotionTransformType:"), value)
 }
 
 

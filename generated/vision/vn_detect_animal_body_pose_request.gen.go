@@ -79,22 +79,22 @@ func NewDetectAnimalBodyPoseRequest() DetectAnimalBodyPoseRequest {
 }
 
 
-// Retrieves the joint group names the request supports.
+// The animal body pose the request observes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/supportedjointsgroupnames
-func (d_ DetectAnimalBodyPoseRequest) SupportedJointsGroupNames() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointsGroupNames"))
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/results
+func (d_ DetectAnimalBodyPoseRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetSupportedJointsGroupNames sets the value of the supportedJointsGroupNames property.
-// Retrieves the joint group names the request supports.
+// SetResults sets the value of the results property.
+// The animal body pose the request observes.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/supportedjointsgroupnames
-func (d_ DetectAnimalBodyPoseRequest) SetSupportedJointsGroupNames(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointsGroupNames:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/results
+func (d_ DetectAnimalBodyPoseRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
 // Retrieves the joint names the request supports.
@@ -115,22 +115,22 @@ func (d_ DetectAnimalBodyPoseRequest) SetSupportedJointNames(value unsafe.Pointe
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointNames:"), value)
 }
 
-// The animal body pose the request observes.
+// Retrieves the joint group names the request supports.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/results
-func (d_ DetectAnimalBodyPoseRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/supportedjointsgroupnames
+func (d_ DetectAnimalBodyPoseRequest) SupportedJointsGroupNames() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointsGroupNames"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
-// The animal body pose the request observes.
+// SetSupportedJointsGroupNames sets the value of the supportedJointsGroupNames property.
+// Retrieves the joint group names the request supports.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/results
-func (d_ DetectAnimalBodyPoseRequest) SetResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/supportedjointsgroupnames
+func (d_ DetectAnimalBodyPoseRequest) SetSupportedJointsGroupNames(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointsGroupNames:"), value)
 }
 
 

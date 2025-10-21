@@ -88,24 +88,6 @@ func (u_ UserContentController) RemoveScriptMessageHandlerForNameContentWorld(na
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeScriptMessageHandlerForName:contentWorld:"), objc.String(name), contentWorld)
 }
 
-// The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
-func (u_ UserContentController) UserContentController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("userContentController"))
-	return rv
-}
-
-
-// SetUserContentController sets the value of the userContentController property.
-// The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
-func (u_ UserContentController) SetUserContentController(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setUserContentController:"), value)
-}
-
 // The user scripts associated with the user content controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkusercontentcontroller/userscripts
@@ -122,6 +104,24 @@ func (u_ UserContentController) UserScripts() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkusercontentcontroller/userscripts
 func (u_ UserContentController) SetUserScripts(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUserScripts:"), value)
+}
+
+// The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
+func (u_ UserContentController) UserContentController() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("userContentController"))
+	return rv
+}
+
+
+// SetUserContentController sets the value of the userContentController property.
+// The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
+func (u_ UserContentController) SetUserContentController(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUserContentController:"), value)
 }
 
 

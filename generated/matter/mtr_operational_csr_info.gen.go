@@ -91,6 +91,21 @@ func (m_ MTROperationalCSRInfo) SetAttestationSignature(value unsafe.Pointer) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csr
+func (m_ MTROperationalCSRInfo) Csr() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("csr"))
+	return rv
+}
+
+
+// SetCsr sets the value of the csr property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csr
+func (m_ MTROperationalCSRInfo) SetCsr(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCsr:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csrelementstlv
 func (m_ MTROperationalCSRInfo) CsrElementsTLV() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("csrElementsTLV"))
@@ -118,21 +133,6 @@ func (m_ MTROperationalCSRInfo) CsrNonce() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csrnonce
 func (m_ MTROperationalCSRInfo) SetCsrNonce(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCsrNonce:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csr
-func (m_ MTROperationalCSRInfo) Csr() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("csr"))
-	return rv
-}
-
-
-// SetCsr sets the value of the csr property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csr
-func (m_ MTROperationalCSRInfo) SetCsr(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCsr:"), value)
 }
 
 

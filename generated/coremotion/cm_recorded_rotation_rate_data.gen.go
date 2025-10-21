@@ -79,6 +79,14 @@ func NewRecordedRotationRateData() RecordedRotationRateData {
 }
 
 
+// The time when the gyroscope measured the rotation data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedRotationRateData/startDate
+func (r_ RecordedRotationRateData) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("startDate"))
+	return rv
+}
+
 // The rotation rate as measured by the device’s gyroscope.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
@@ -95,14 +103,6 @@ func (r_ RecordedRotationRateData) RotationRate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
 func (r_ RecordedRotationRateData) SetRotationRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationRate:"), value)
-}
-
-// The time when the gyroscope measured the rotation data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedRotationRateData/startDate
-func (r_ RecordedRotationRateData) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("startDate"))
-	return rv
 }
 
 

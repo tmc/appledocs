@@ -80,18 +80,33 @@ func NewIndirectInstanceAccelerationStructureDescriptor() IndirectInstanceAccele
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformbufferoffset
-func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformBufferOffset() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("motionTransformBufferOffset"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancecountbuffer
+func (i_ IndirectInstanceAccelerationStructureDescriptor) InstanceCountBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("instanceCountBuffer"))
 	return rv
 }
 
 
-// SetMotionTransformBufferOffset sets the value of the motionTransformBufferOffset property.
+// SetInstanceCountBuffer sets the value of the instanceCountBuffer property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformbufferoffset
-func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformBufferOffset(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformBufferOffset:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancecountbuffer
+func (i_ IndirectInstanceAccelerationStructureDescriptor) SetInstanceCountBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceCountBuffer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancecountbufferoffset
+func (i_ IndirectInstanceAccelerationStructureDescriptor) InstanceCountBufferOffset() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("instanceCountBufferOffset"))
+	return rv
+}
+
+
+// SetInstanceCountBufferOffset sets the value of the instanceCountBufferOffset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancecountbufferoffset
+func (i_ IndirectInstanceAccelerationStructureDescriptor) SetInstanceCountBufferOffset(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceCountBufferOffset:"), value)
 }
 
 //
@@ -110,18 +125,18 @@ func (i_ IndirectInstanceAccelerationStructureDescriptor) SetInstanceDescriptorB
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformtype
-func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("motionTransformType"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancedescriptorbufferoffset
+func (i_ IndirectInstanceAccelerationStructureDescriptor) InstanceDescriptorBufferOffset() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("instanceDescriptorBufferOffset"))
 	return rv
 }
 
 
-// SetMotionTransformType sets the value of the motionTransformType property.
+// SetInstanceDescriptorBufferOffset sets the value of the instanceDescriptorBufferOffset property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformtype
-func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformType(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancedescriptorbufferoffset
+func (i_ IndirectInstanceAccelerationStructureDescriptor) SetInstanceDescriptorBufferOffset(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceDescriptorBufferOffset:"), value)
 }
 
 //
@@ -155,51 +170,6 @@ func (i_ IndirectInstanceAccelerationStructureDescriptor) SetInstanceDescriptorT
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancecountbuffer
-func (i_ IndirectInstanceAccelerationStructureDescriptor) InstanceCountBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("instanceCountBuffer"))
-	return rv
-}
-
-
-// SetInstanceCountBuffer sets the value of the instanceCountBuffer property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancecountbuffer
-func (i_ IndirectInstanceAccelerationStructureDescriptor) SetInstanceCountBuffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceCountBuffer:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancedescriptorbufferoffset
-func (i_ IndirectInstanceAccelerationStructureDescriptor) InstanceDescriptorBufferOffset() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("instanceDescriptorBufferOffset"))
-	return rv
-}
-
-
-// SetInstanceDescriptorBufferOffset sets the value of the instanceDescriptorBufferOffset property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancedescriptorbufferoffset
-func (i_ IndirectInstanceAccelerationStructureDescriptor) SetInstanceDescriptorBufferOffset(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceDescriptorBufferOffset:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformcountbufferoffset
-func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformCountBufferOffset() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("motionTransformCountBufferOffset"))
-	return rv
-}
-
-
-// SetMotionTransformCountBufferOffset sets the value of the motionTransformCountBufferOffset property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformcountbufferoffset
-func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformCountBufferOffset(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformCountBufferOffset:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancetransformationmatrixlayout
 func (i_ IndirectInstanceAccelerationStructureDescriptor) InstanceTransformationMatrixLayout() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("instanceTransformationMatrixLayout"))
@@ -212,51 +182,6 @@ func (i_ IndirectInstanceAccelerationStructureDescriptor) InstanceTransformation
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancetransformationmatrixlayout
 func (i_ IndirectInstanceAccelerationStructureDescriptor) SetInstanceTransformationMatrixLayout(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceTransformationMatrixLayout:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformcountbuffer
-func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformCountBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("motionTransformCountBuffer"))
-	return rv
-}
-
-
-// SetMotionTransformCountBuffer sets the value of the motionTransformCountBuffer property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformcountbuffer
-func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformCountBuffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformCountBuffer:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/maxmotiontransformcount
-func (i_ IndirectInstanceAccelerationStructureDescriptor) MaxMotionTransformCount() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("maxMotionTransformCount"))
-	return rv
-}
-
-
-// SetMaxMotionTransformCount sets the value of the maxMotionTransformCount property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/maxmotiontransformcount
-func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMaxMotionTransformCount(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMaxMotionTransformCount:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformstride
-func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformStride() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("motionTransformStride"))
-	return rv
-}
-
-
-// SetMotionTransformStride sets the value of the motionTransformStride property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformstride
-func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformStride(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformStride:"), value)
 }
 
 //
@@ -275,6 +200,21 @@ func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMaxInstanceCount(va
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/maxmotiontransformcount
+func (i_ IndirectInstanceAccelerationStructureDescriptor) MaxMotionTransformCount() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("maxMotionTransformCount"))
+	return rv
+}
+
+
+// SetMaxMotionTransformCount sets the value of the maxMotionTransformCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/maxmotiontransformcount
+func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMaxMotionTransformCount(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMaxMotionTransformCount:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformbuffer
 func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformBuffer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("motionTransformBuffer"))
@@ -290,18 +230,78 @@ func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformBuff
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancecountbufferoffset
-func (i_ IndirectInstanceAccelerationStructureDescriptor) InstanceCountBufferOffset() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("instanceCountBufferOffset"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformbufferoffset
+func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformBufferOffset() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("motionTransformBufferOffset"))
 	return rv
 }
 
 
-// SetInstanceCountBufferOffset sets the value of the instanceCountBufferOffset property.
+// SetMotionTransformBufferOffset sets the value of the motionTransformBufferOffset property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/instancecountbufferoffset
-func (i_ IndirectInstanceAccelerationStructureDescriptor) SetInstanceCountBufferOffset(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceCountBufferOffset:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformbufferoffset
+func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformBufferOffset(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformBufferOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformcountbuffer
+func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformCountBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("motionTransformCountBuffer"))
+	return rv
+}
+
+
+// SetMotionTransformCountBuffer sets the value of the motionTransformCountBuffer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformcountbuffer
+func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformCountBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformCountBuffer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformcountbufferoffset
+func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformCountBufferOffset() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("motionTransformCountBufferOffset"))
+	return rv
+}
+
+
+// SetMotionTransformCountBufferOffset sets the value of the motionTransformCountBufferOffset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformcountbufferoffset
+func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformCountBufferOffset(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformCountBufferOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformstride
+func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformStride() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("motionTransformStride"))
+	return rv
+}
+
+
+// SetMotionTransformStride sets the value of the motionTransformStride property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformstride
+func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformStride(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformStride:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformtype
+func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("motionTransformType"))
+	return rv
+}
+
+
+// SetMotionTransformType sets the value of the motionTransformType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformtype
+func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformType:"), value)
 }
 
 

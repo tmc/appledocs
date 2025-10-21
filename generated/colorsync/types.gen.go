@@ -29,17 +29,5 @@ type CFURLRef unsafe.Pointer
 // CFUUIDRef is a CoreGraphics opaque type.
 type CFUUIDRef unsafe.Pointer
 
-// ColorSyncCMMRef is a CoreGraphics opaque type.
-type ColorSyncCMMRef unsafe.Pointer
-
-// ColorSyncMutableProfileRef is a CoreGraphics opaque type.
-type ColorSyncMutableProfileRef unsafe.Pointer
-
-// ColorSyncProfileRef is a CoreGraphics opaque type.
-type ColorSyncProfileRef unsafe.Pointer
-
-// ColorSyncTransformRef is a CoreGraphics opaque type.
-type ColorSyncTransformRef unsafe.Pointer
-
 
 

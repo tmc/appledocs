@@ -76,21 +76,6 @@ func NewMTRAsyncCallbackQueueWorkItem() MTRAsyncCallbackQueueWorkItem {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrasynccallbackqueueworkitem/readyhandler
-func (m_ MTRAsyncCallbackQueueWorkItem) ReadyHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readyHandler"))
-	return rv
-}
-
-
-// SetReadyHandler sets the value of the readyHandler property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrasynccallbackqueueworkitem/readyhandler
-func (m_ MTRAsyncCallbackQueueWorkItem) SetReadyHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReadyHandler:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrasynccallbackqueueworkitem/cancelhandler
 func (m_ MTRAsyncCallbackQueueWorkItem) CancelHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cancelHandler"))
@@ -103,6 +88,21 @@ func (m_ MTRAsyncCallbackQueueWorkItem) CancelHandler() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrasynccallbackqueueworkitem/cancelhandler
 func (m_ MTRAsyncCallbackQueueWorkItem) SetCancelHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCancelHandler:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrasynccallbackqueueworkitem/readyhandler
+func (m_ MTRAsyncCallbackQueueWorkItem) ReadyHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readyHandler"))
+	return rv
+}
+
+
+// SetReadyHandler sets the value of the readyHandler property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrasynccallbackqueueworkitem/readyhandler
+func (m_ MTRAsyncCallbackQueueWorkItem) SetReadyHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReadyHandler:"), value)
 }
 
 

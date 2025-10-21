@@ -79,24 +79,6 @@ func NewChangeLanguageOptionCommandEvent() ChangeLanguageOptionCommandEvent {
 }
 
 
-// The extent of the language setting change.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptioncommandevent/setting
-func (c_ ChangeLanguageOptionCommandEvent) Setting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("setting"))
-	return rv
-}
-
-
-// SetSetting sets the value of the setting property.
-// The extent of the language setting change.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptioncommandevent/setting
-func (c_ ChangeLanguageOptionCommandEvent) SetSetting(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSetting:"), value)
-}
-
 // The requested language option to change.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptioncommandevent/languageoption
@@ -113,6 +95,24 @@ func (c_ ChangeLanguageOptionCommandEvent) LanguageOption() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptioncommandevent/languageoption
 func (c_ ChangeLanguageOptionCommandEvent) SetLanguageOption(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLanguageOption:"), value)
+}
+
+// The extent of the language setting change.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptioncommandevent/setting
+func (c_ ChangeLanguageOptionCommandEvent) Setting() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("setting"))
+	return rv
+}
+
+
+// SetSetting sets the value of the setting property.
+// The extent of the language setting change.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptioncommandevent/setting
+func (c_ ChangeLanguageOptionCommandEvent) SetSetting(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSetting:"), value)
 }
 
 

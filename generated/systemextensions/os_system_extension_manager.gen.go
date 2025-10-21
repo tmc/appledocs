@@ -95,6 +95,14 @@ func (o_ OSSystemExtensionManager) SubmitRequest(request unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("submitRequest:"), request)
 }
 
+// The shared instance of the extension manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/shared
+func (o_ OSSystemExtensionManager) SharedManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sharedManager"))
+	return rv
+}
+
 // A delegate to receive updates about the progress of a request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/delegate
@@ -111,14 +119,6 @@ func (o_ OSSystemExtensionManager) Delegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/delegate
 func (o_ OSSystemExtensionManager) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
-}
-
-// The shared instance of the extension manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/shared
-func (o_ OSSystemExtensionManager) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sharedManager"))
-	return rv
 }
 
 

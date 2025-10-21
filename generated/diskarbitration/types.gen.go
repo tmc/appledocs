@@ -26,14 +26,5 @@ type CFURLRef unsafe.Pointer
 // DAApprovalSessionRef is a CoreGraphics opaque type.
 type DAApprovalSessionRef unsafe.Pointer
 
-// DADiskRef is a CoreGraphics opaque type.
-type DADiskRef unsafe.Pointer
-
-// DADissenterRef is a CoreGraphics opaque type.
-type DADissenterRef unsafe.Pointer
-
-// DASessionRef is a CoreGraphics opaque type.
-type DASessionRef unsafe.Pointer
-
 
 

@@ -80,22 +80,20 @@ func NewNINearbyObject() NINearbyObject {
 }
 
 
-// An angle in radians that indicates the azimuthal direction to the nearby object.
+// A unique identifier for a peer device in the session.
 //
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
-func (n_ NINearbyObject) HorizontalAngle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("horizontalAngle"))
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/discoveryToken
+func (n_ NINearbyObject) DiscoveryToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("discoveryToken"))
 	return rv
 }
 
-
-// SetHorizontalAngle sets the value of the horizontalAngle property.
-// An angle in radians that indicates the azimuthal direction to the nearby object.
-
+// The estimation of a nearby object’s vertical position as it relates to the user’s device.
 //
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
-func (n_ NINearbyObject) SetHorizontalAngle(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setHorizontalAngle:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/verticalDirectionEstimate-swift.property
+func (n_ NINearbyObject) VerticalDirectionEstimate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("verticalDirectionEstimate"))
+	return rv
 }
 
 // A vector that points from the user’s device in the direction of the peer device.
@@ -134,20 +132,22 @@ func (n_ NINearbyObject) SetDistance(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDistance:"), value)
 }
 
-// A unique identifier for a peer device in the session.
+// An angle in radians that indicates the azimuthal direction to the nearby object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/discoveryToken
-func (n_ NINearbyObject) DiscoveryToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("discoveryToken"))
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
+func (n_ NINearbyObject) HorizontalAngle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("horizontalAngle"))
 	return rv
 }
 
-// The estimation of a nearby object’s vertical position as it relates to the user’s device.
+
+// SetHorizontalAngle sets the value of the horizontalAngle property.
+// An angle in radians that indicates the azimuthal direction to the nearby object.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/verticalDirectionEstimate-swift.property
-func (n_ NINearbyObject) VerticalDirectionEstimate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("verticalDirectionEstimate"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
+func (n_ NINearbyObject) SetHorizontalAngle(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setHorizontalAngle:"), value)
 }
 
 

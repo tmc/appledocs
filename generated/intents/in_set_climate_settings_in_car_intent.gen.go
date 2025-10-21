@@ -81,78 +81,6 @@ func NewINSetClimateSettingsInCarIntent() INSetClimateSettingsInCarIntent {
 }
 
 
-// The specific temperature to set for the climate control system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/temperature
-func (i_ INSetClimateSettingsInCarIntent) Temperature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("temperature"))
-	return rv
-}
-
-
-// SetTemperature sets the value of the temperature property.
-// The specific temperature to set for the climate control system.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/temperature
-func (i_ INSetClimateSettingsInCarIntent) SetTemperature(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTemperature:"), value)
-}
-
-// A Boolean value indicating whether to enable automatic mode for the climate control system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableautomode-31bzq
-func (i_ INSetClimateSettingsInCarIntent) EnableAutoMode() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("enableAutoMode"))
-	return rv
-}
-
-
-// SetEnableAutoMode sets the value of the enableAutoMode property.
-// A Boolean value indicating whether to enable automatic mode for the climate control system.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableautomode-31bzq
-func (i_ INSetClimateSettingsInCarIntent) SetEnableAutoMode(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableAutoMode:"), value)
-}
-
-// An integer value indicating the desired fan speed position.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/fanspeedindex-wz49
-func (i_ INSetClimateSettingsInCarIntent) FanSpeedIndex() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("fanSpeedIndex"))
-	return rv
-}
-
-
-// SetFanSpeedIndex sets the value of the fanSpeedIndex property.
-// An integer value indicating the desired fan speed position.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/fanspeedindex-wz49
-func (i_ INSetClimateSettingsInCarIntent) SetFanSpeedIndex(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setFanSpeedIndex:"), value)
-}
-
-// A Boolean value indicating whether to turn on the climate control system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableclimatecontrol-4y9iz
-func (i_ INSetClimateSettingsInCarIntent) EnableClimateControl() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("enableClimateControl"))
-	return rv
-}
-
-
-// SetEnableClimateControl sets the value of the enableClimateControl property.
-// A Boolean value indicating whether to turn on the climate control system.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableclimatecontrol-4y9iz
-func (i_ INSetClimateSettingsInCarIntent) SetEnableClimateControl(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableClimateControl:"), value)
-}
-
 // The air circulation mode for the climate control system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/aircirculationmode
@@ -169,60 +97,6 @@ func (i_ INSetClimateSettingsInCarIntent) AirCirculationMode() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/aircirculationmode
 func (i_ INSetClimateSettingsInCarIntent) SetAirCirculationMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAirCirculationMode:"), value)
-}
-
-// A Boolean value indicating whether to turn on the air conditioner system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableairconditioner-9q3dr
-func (i_ INSetClimateSettingsInCarIntent) EnableAirConditioner() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("enableAirConditioner"))
-	return rv
-}
-
-
-// SetEnableAirConditioner sets the value of the enableAirConditioner property.
-// A Boolean value indicating whether to turn on the air conditioner system.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableairconditioner-9q3dr
-func (i_ INSetClimateSettingsInCarIntent) SetEnableAirConditioner(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableAirConditioner:"), value)
-}
-
-// A Boolean value indicating whether to turn on the cabin fan system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enablefan-5srs9
-func (i_ INSetClimateSettingsInCarIntent) EnableFan() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("enableFan"))
-	return rv
-}
-
-
-// SetEnableFan sets the value of the enableFan property.
-// A Boolean value indicating whether to turn on the cabin fan system.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enablefan-5srs9
-func (i_ INSetClimateSettingsInCarIntent) SetEnableFan(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableFan:"), value)
-}
-
-// A relative fan speed setting.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/relativefanspeedsetting
-func (i_ INSetClimateSettingsInCarIntent) RelativeFanSpeedSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("relativeFanSpeedSetting"))
-	return rv
-}
-
-
-// SetRelativeFanSpeedSetting sets the value of the relativeFanSpeedSetting property.
-// A relative fan speed setting.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/relativefanspeedsetting
-func (i_ INSetClimateSettingsInCarIntent) SetRelativeFanSpeedSetting(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRelativeFanSpeedSetting:"), value)
 }
 
 // A name that identifies the user’s car.
@@ -243,22 +117,112 @@ func (i_ INSetClimateSettingsInCarIntent) SetCarName(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 
-// A relative temperature setting.
+// The seat position to have its climate settings modified.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/relativetemperaturesetting
-func (i_ INSetClimateSettingsInCarIntent) RelativeTemperatureSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("relativeTemperatureSetting"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/climatezone
+func (i_ INSetClimateSettingsInCarIntent) ClimateZone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("climateZone"))
 	return rv
 }
 
 
-// SetRelativeTemperatureSetting sets the value of the relativeTemperatureSetting property.
-// A relative temperature setting.
+// SetClimateZone sets the value of the climateZone property.
+// The seat position to have its climate settings modified.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/relativetemperaturesetting
-func (i_ INSetClimateSettingsInCarIntent) SetRelativeTemperatureSetting(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRelativeTemperatureSetting:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/climatezone
+func (i_ INSetClimateSettingsInCarIntent) SetClimateZone(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setClimateZone:"), value)
+}
+
+// A Boolean value indicating whether to turn on the air conditioner system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableairconditioner-9q3dr
+func (i_ INSetClimateSettingsInCarIntent) EnableAirConditioner() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("enableAirConditioner"))
+	return rv
+}
+
+
+// SetEnableAirConditioner sets the value of the enableAirConditioner property.
+// A Boolean value indicating whether to turn on the air conditioner system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableairconditioner-9q3dr
+func (i_ INSetClimateSettingsInCarIntent) SetEnableAirConditioner(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableAirConditioner:"), value)
+}
+
+// A Boolean value indicating whether to enable automatic mode for the climate control system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableautomode-31bzq
+func (i_ INSetClimateSettingsInCarIntent) EnableAutoMode() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("enableAutoMode"))
+	return rv
+}
+
+
+// SetEnableAutoMode sets the value of the enableAutoMode property.
+// A Boolean value indicating whether to enable automatic mode for the climate control system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableautomode-31bzq
+func (i_ INSetClimateSettingsInCarIntent) SetEnableAutoMode(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableAutoMode:"), value)
+}
+
+// A Boolean value indicating whether to turn on the climate control system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableclimatecontrol-4y9iz
+func (i_ INSetClimateSettingsInCarIntent) EnableClimateControl() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("enableClimateControl"))
+	return rv
+}
+
+
+// SetEnableClimateControl sets the value of the enableClimateControl property.
+// A Boolean value indicating whether to turn on the climate control system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enableclimatecontrol-4y9iz
+func (i_ INSetClimateSettingsInCarIntent) SetEnableClimateControl(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableClimateControl:"), value)
+}
+
+// A Boolean value indicating whether to turn on the cabin fan system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enablefan-5srs9
+func (i_ INSetClimateSettingsInCarIntent) EnableFan() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("enableFan"))
+	return rv
+}
+
+
+// SetEnableFan sets the value of the enableFan property.
+// A Boolean value indicating whether to turn on the cabin fan system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/enablefan-5srs9
+func (i_ INSetClimateSettingsInCarIntent) SetEnableFan(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableFan:"), value)
+}
+
+// An integer value indicating the desired fan speed position.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/fanspeedindex-wz49
+func (i_ INSetClimateSettingsInCarIntent) FanSpeedIndex() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("fanSpeedIndex"))
+	return rv
+}
+
+
+// SetFanSpeedIndex sets the value of the fanSpeedIndex property.
+// An integer value indicating the desired fan speed position.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/fanspeedindex-wz49
+func (i_ INSetClimateSettingsInCarIntent) SetFanSpeedIndex(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFanSpeedIndex:"), value)
 }
 
 // A floating-point value indicating the requested fan speed specified as a percentage of the maximum speed.
@@ -279,22 +243,58 @@ func (i_ INSetClimateSettingsInCarIntent) SetFanSpeedPercentage(value unsafe.Poi
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFanSpeedPercentage:"), value)
 }
 
-// The seat position to have its climate settings modified.
+// A relative fan speed setting.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/climatezone
-func (i_ INSetClimateSettingsInCarIntent) ClimateZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("climateZone"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/relativefanspeedsetting
+func (i_ INSetClimateSettingsInCarIntent) RelativeFanSpeedSetting() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("relativeFanSpeedSetting"))
 	return rv
 }
 
 
-// SetClimateZone sets the value of the climateZone property.
-// The seat position to have its climate settings modified.
+// SetRelativeFanSpeedSetting sets the value of the relativeFanSpeedSetting property.
+// A relative fan speed setting.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/climatezone
-func (i_ INSetClimateSettingsInCarIntent) SetClimateZone(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setClimateZone:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/relativefanspeedsetting
+func (i_ INSetClimateSettingsInCarIntent) SetRelativeFanSpeedSetting(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRelativeFanSpeedSetting:"), value)
+}
+
+// A relative temperature setting.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/relativetemperaturesetting
+func (i_ INSetClimateSettingsInCarIntent) RelativeTemperatureSetting() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("relativeTemperatureSetting"))
+	return rv
+}
+
+
+// SetRelativeTemperatureSetting sets the value of the relativeTemperatureSetting property.
+// A relative temperature setting.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/relativetemperaturesetting
+func (i_ INSetClimateSettingsInCarIntent) SetRelativeTemperatureSetting(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRelativeTemperatureSetting:"), value)
+}
+
+// The specific temperature to set for the climate control system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/temperature
+func (i_ INSetClimateSettingsInCarIntent) Temperature() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("temperature"))
+	return rv
+}
+
+
+// SetTemperature sets the value of the temperature property.
+// The specific temperature to set for the climate control system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/temperature
+func (i_ INSetClimateSettingsInCarIntent) SetTemperature(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTemperature:"), value)
 }
 
 

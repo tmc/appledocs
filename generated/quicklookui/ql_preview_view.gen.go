@@ -113,6 +113,24 @@ func (p_ PreviewView) Close() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("close"))
 }
 
+// A Boolean value that determines whether the preview starts automatically.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/autostarts
+func (p_ PreviewView) Autostarts() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("autostarts"))
+	return rv
+}
+
+
+// SetAutostarts sets the value of the autostarts property.
+// A Boolean value that determines whether the preview starts automatically.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/autostarts
+func (p_ PreviewView) SetAutostarts(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAutostarts:"), value)
+}
+
 // The current display state of the
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/displaystate
@@ -129,24 +147,6 @@ func (p_ PreviewView) DisplayState() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/displaystate
 func (p_ PreviewView) SetDisplayState(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplayState:"), value)
-}
-
-// A Boolean value that determines whether the preview should close when its window closes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/shouldclosewithwindow
-func (p_ PreviewView) ShouldCloseWithWindow() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("shouldCloseWithWindow"))
-	return rv
-}
-
-
-// SetShouldCloseWithWindow sets the value of the shouldCloseWithWindow property.
-// A Boolean value that determines whether the preview should close when its window closes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/shouldclosewithwindow
-func (p_ PreviewView) SetShouldCloseWithWindow(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldCloseWithWindow:"), value)
 }
 
 // The item to preview.
@@ -167,22 +167,22 @@ func (p_ PreviewView) SetPreviewItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreviewItem:"), value)
 }
 
-// A Boolean value that determines whether the preview starts automatically.
+// A Boolean value that determines whether the preview should close when its window closes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/autostarts
-func (p_ PreviewView) Autostarts() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("autostarts"))
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/shouldclosewithwindow
+func (p_ PreviewView) ShouldCloseWithWindow() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("shouldCloseWithWindow"))
 	return rv
 }
 
 
-// SetAutostarts sets the value of the autostarts property.
-// A Boolean value that determines whether the preview starts automatically.
+// SetShouldCloseWithWindow sets the value of the shouldCloseWithWindow property.
+// A Boolean value that determines whether the preview should close when its window closes.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/autostarts
-func (p_ PreviewView) SetAutostarts(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAutostarts:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/shouldclosewithwindow
+func (p_ PreviewView) SetShouldCloseWithWindow(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldCloseWithWindow:"), value)
 }
 
 

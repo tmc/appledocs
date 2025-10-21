@@ -81,114 +81,6 @@ func NewMKMarkerAnnotationView() MKMarkerAnnotationView {
 }
 
 
-// The display priority of the annotation view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/displaypriority
-func (m_ MKMarkerAnnotationView) DisplayPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("displayPriority"))
-	return rv
-}
-
-
-// SetDisplayPriority sets the value of the displayPriority property.
-// The display priority of the annotation view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/displaypriority
-func (m_ MKMarkerAnnotationView) SetDisplayPriority(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayPriority:"), value)
-}
-
-// A Boolean that indicates whether the marker animates into position onscreen.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/animateswhenadded
-func (m_ MKMarkerAnnotationView) AnimatesWhenAdded() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("animatesWhenAdded"))
-	return rv
-}
-
-
-// SetAnimatesWhenAdded sets the value of the animatesWhenAdded property.
-// A Boolean that indicates whether the marker animates into position onscreen.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/animateswhenadded
-func (m_ MKMarkerAnnotationView) SetAnimatesWhenAdded(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAnimatesWhenAdded:"), value)
-}
-
-// The visibility of the title text rendered beneath the marker balloon.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/titlevisibility
-func (m_ MKMarkerAnnotationView) TitleVisibility() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("titleVisibility"))
-	return rv
-}
-
-
-// SetTitleVisibility sets the value of the titleVisibility property.
-// The visibility of the title text rendered beneath the marker balloon.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/titlevisibility
-func (m_ MKMarkerAnnotationView) SetTitleVisibility(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitleVisibility:"), value)
-}
-
-// An image to display when the user selects the marker.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
-func (m_ MKMarkerAnnotationView) SelectedGlyphImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("selectedGlyphImage"))
-	return rv
-}
-
-
-// SetSelectedGlyphImage sets the value of the selectedGlyphImage property.
-// An image to display when the user selects the marker.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
-func (m_ MKMarkerAnnotationView) SetSelectedGlyphImage(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedGlyphImage:"), value)
-}
-
-// The visibility of the subtitle text rendered beneath the marker balloon.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/subtitlevisibility
-func (m_ MKMarkerAnnotationView) SubtitleVisibility() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("subtitleVisibility"))
-	return rv
-}
-
-
-// SetSubtitleVisibility sets the value of the subtitleVisibility property.
-// The visibility of the subtitle text rendered beneath the marker balloon.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/subtitlevisibility
-func (m_ MKMarkerAnnotationView) SetSubtitleVisibility(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitleVisibility:"), value)
-}
-
-// The text to display in the marker balloon.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
-func (m_ MKMarkerAnnotationView) GlyphText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("glyphText"))
-	return rv
-}
-
-
-// SetGlyphText sets the value of the glyphText property.
-// The text to display in the marker balloon.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
-func (m_ MKMarkerAnnotationView) SetGlyphText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphText:"), objc.String(value))
-}
-
 // An image to display in the marker balloon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphImage
@@ -241,6 +133,114 @@ func (m_ MKMarkerAnnotationView) MarkerTintColor() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/markerTintColor
 func (m_ MKMarkerAnnotationView) SetMarkerTintColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMarkerTintColor:"), value)
+}
+
+// The display priority of the annotation view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/displaypriority
+func (m_ MKMarkerAnnotationView) DisplayPriority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("displayPriority"))
+	return rv
+}
+
+
+// SetDisplayPriority sets the value of the displayPriority property.
+// The display priority of the annotation view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/displaypriority
+func (m_ MKMarkerAnnotationView) SetDisplayPriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayPriority:"), value)
+}
+
+// A Boolean that indicates whether the marker animates into position onscreen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/animateswhenadded
+func (m_ MKMarkerAnnotationView) AnimatesWhenAdded() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("animatesWhenAdded"))
+	return rv
+}
+
+
+// SetAnimatesWhenAdded sets the value of the animatesWhenAdded property.
+// A Boolean that indicates whether the marker animates into position onscreen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/animateswhenadded
+func (m_ MKMarkerAnnotationView) SetAnimatesWhenAdded(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAnimatesWhenAdded:"), value)
+}
+
+// The text to display in the marker balloon.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
+func (m_ MKMarkerAnnotationView) GlyphText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("glyphText"))
+	return rv
+}
+
+
+// SetGlyphText sets the value of the glyphText property.
+// The text to display in the marker balloon.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
+func (m_ MKMarkerAnnotationView) SetGlyphText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphText:"), objc.String(value))
+}
+
+// An image to display when the user selects the marker.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
+func (m_ MKMarkerAnnotationView) SelectedGlyphImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("selectedGlyphImage"))
+	return rv
+}
+
+
+// SetSelectedGlyphImage sets the value of the selectedGlyphImage property.
+// An image to display when the user selects the marker.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
+func (m_ MKMarkerAnnotationView) SetSelectedGlyphImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedGlyphImage:"), value)
+}
+
+// The visibility of the subtitle text rendered beneath the marker balloon.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/subtitlevisibility
+func (m_ MKMarkerAnnotationView) SubtitleVisibility() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("subtitleVisibility"))
+	return rv
+}
+
+
+// SetSubtitleVisibility sets the value of the subtitleVisibility property.
+// The visibility of the subtitle text rendered beneath the marker balloon.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/subtitlevisibility
+func (m_ MKMarkerAnnotationView) SetSubtitleVisibility(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitleVisibility:"), value)
+}
+
+// The visibility of the title text rendered beneath the marker balloon.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/titlevisibility
+func (m_ MKMarkerAnnotationView) TitleVisibility() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("titleVisibility"))
+	return rv
+}
+
+
+// SetTitleVisibility sets the value of the titleVisibility property.
+// The visibility of the title text rendered beneath the marker balloon.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/titlevisibility
+func (m_ MKMarkerAnnotationView) SetTitleVisibility(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitleVisibility:"), value)
 }
 
 

@@ -433,148 +433,6 @@ func (m_ MKMapView) ViewForOverlay(overlay objc.ID) unsafe.Pointer {
 	return rv
 }
 
-// A Boolean value that indicates whether the map uses the camera’s heading information.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isrotateenabled
-func (m_ MKMapView) IsRotateEnabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isRotateEnabled"))
-	return rv
-}
-
-
-// SetIsRotateEnabled sets the value of the isRotateEnabled property.
-// A Boolean value that indicates whether the map uses the camera’s heading information.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isrotateenabled
-func (m_ MKMapView) SetIsRotateEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRotateEnabled:"), value)
-}
-
-// A Boolean value that determines whether the user may use pinch gestures to zoom in and out of the map.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/iszoomenabled
-func (m_ MKMapView) IsZoomEnabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isZoomEnabled"))
-	return rv
-}
-
-
-// SetIsZoomEnabled sets the value of the isZoomEnabled property.
-// A Boolean value that determines whether the user may use pinch gestures to zoom in and out of the map.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/iszoomenabled
-func (m_ MKMapView) SetIsZoomEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsZoomEnabled:"), value)
-}
-
-// The default reuse identifier for the annotation view representing a cluster of annotations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapviewdefaultclusterannotationviewreuseidentifier
-func (m_ MKMapView) MKMapViewDefaultClusterAnnotationViewReuseIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKMapViewDefaultClusterAnnotationViewReuseIdentifier"))
-	return rv
-}
-
-// The appearance of the receiver, in an `NSAppearance` object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/appearance
-func (m_ MKMapView) Appearance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("appearance"))
-	return rv
-}
-
-
-// SetAppearance sets the value of the appearance property.
-// The appearance of the receiver, in an `NSAppearance` object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/appearance
-func (m_ MKMapView) SetAppearance(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAppearance:"), value)
-}
-
-// A Boolean value that determines whether the user may scroll around the map.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isscrollenabled
-func (m_ MKMapView) IsScrollEnabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isScrollEnabled"))
-	return rv
-}
-
-
-// SetIsScrollEnabled sets the value of the isScrollEnabled property.
-// A Boolean value that determines whether the user may scroll around the map.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isscrollenabled
-func (m_ MKMapView) SetIsScrollEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsScrollEnabled:"), value)
-}
-
-// A Boolean value that indicates whether the user’s location is visible in the map view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isuserlocationvisible
-func (m_ MKMapView) IsUserLocationVisible() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isUserLocationVisible"))
-	return rv
-}
-
-
-// SetIsUserLocationVisible sets the value of the isUserLocationVisible property.
-// A Boolean value that indicates whether the user’s location is visible in the map view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isuserlocationvisible
-func (m_ MKMapView) SetIsUserLocationVisible(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUserLocationVisible:"), value)
-}
-
-// A Boolean value that indicates whether the map uses the camera’s pitch information.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/ispitchenabled
-func (m_ MKMapView) IsPitchEnabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isPitchEnabled"))
-	return rv
-}
-
-
-// SetIsPitchEnabled sets the value of the isPitchEnabled property.
-// A Boolean value that indicates whether the map uses the camera’s pitch information.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/ispitchenabled
-func (m_ MKMapView) SetIsPitchEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPitchEnabled:"), value)
-}
-
-// The default reuse identifier for your map’s annotation views.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapviewdefaultannotationviewreuseidentifier
-func (m_ MKMapView) MKMapViewDefaultAnnotationViewReuseIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKMapViewDefaultAnnotationViewReuseIdentifier"))
-	return rv
-}
-
-// The appearance that will be used when the receiver is drawn onscreen, in an `NSAppearance` object. (read-only)
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/effectiveAppearance
-func (m_ MKMapView) EffectiveAppearance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("effectiveAppearance"))
-	return rv
-}
-
-
-// SetEffectiveAppearance sets the value of the effectiveAppearance property.
-// The appearance that will be used when the receiver is drawn onscreen, in an `NSAppearance` object. (read-only)
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/effectiveAppearance
-func (m_ MKMapView) SetEffectiveAppearance(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectiveAppearance:"), value)
-}
-
 // The visible rectangle where the map is displaying annotation views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/annotationVisibleRect
@@ -1109,6 +967,148 @@ func (m_ MKMapView) VisibleMapRect() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/visibleMapRect
 func (m_ MKMapView) SetVisibleMapRect(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVisibleMapRect:"), value)
+}
+
+// The appearance of the receiver, in an `NSAppearance` object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/appearance
+func (m_ MKMapView) Appearance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("appearance"))
+	return rv
+}
+
+
+// SetAppearance sets the value of the appearance property.
+// The appearance of the receiver, in an `NSAppearance` object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/appearance
+func (m_ MKMapView) SetAppearance(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAppearance:"), value)
+}
+
+// The appearance that will be used when the receiver is drawn onscreen, in an `NSAppearance` object. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/effectiveAppearance
+func (m_ MKMapView) EffectiveAppearance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("effectiveAppearance"))
+	return rv
+}
+
+
+// SetEffectiveAppearance sets the value of the effectiveAppearance property.
+// The appearance that will be used when the receiver is drawn onscreen, in an `NSAppearance` object. (read-only)
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/effectiveAppearance
+func (m_ MKMapView) SetEffectiveAppearance(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectiveAppearance:"), value)
+}
+
+// A Boolean value that indicates whether the map uses the camera’s pitch information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/ispitchenabled
+func (m_ MKMapView) IsPitchEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isPitchEnabled"))
+	return rv
+}
+
+
+// SetIsPitchEnabled sets the value of the isPitchEnabled property.
+// A Boolean value that indicates whether the map uses the camera’s pitch information.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/ispitchenabled
+func (m_ MKMapView) SetIsPitchEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPitchEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the map uses the camera’s heading information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isrotateenabled
+func (m_ MKMapView) IsRotateEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isRotateEnabled"))
+	return rv
+}
+
+
+// SetIsRotateEnabled sets the value of the isRotateEnabled property.
+// A Boolean value that indicates whether the map uses the camera’s heading information.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isrotateenabled
+func (m_ MKMapView) SetIsRotateEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRotateEnabled:"), value)
+}
+
+// A Boolean value that determines whether the user may scroll around the map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isscrollenabled
+func (m_ MKMapView) IsScrollEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isScrollEnabled"))
+	return rv
+}
+
+
+// SetIsScrollEnabled sets the value of the isScrollEnabled property.
+// A Boolean value that determines whether the user may scroll around the map.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isscrollenabled
+func (m_ MKMapView) SetIsScrollEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsScrollEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the user’s location is visible in the map view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isuserlocationvisible
+func (m_ MKMapView) IsUserLocationVisible() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isUserLocationVisible"))
+	return rv
+}
+
+
+// SetIsUserLocationVisible sets the value of the isUserLocationVisible property.
+// A Boolean value that indicates whether the user’s location is visible in the map view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isuserlocationvisible
+func (m_ MKMapView) SetIsUserLocationVisible(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUserLocationVisible:"), value)
+}
+
+// A Boolean value that determines whether the user may use pinch gestures to zoom in and out of the map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/iszoomenabled
+func (m_ MKMapView) IsZoomEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isZoomEnabled"))
+	return rv
+}
+
+
+// SetIsZoomEnabled sets the value of the isZoomEnabled property.
+// A Boolean value that determines whether the user may use pinch gestures to zoom in and out of the map.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/iszoomenabled
+func (m_ MKMapView) SetIsZoomEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsZoomEnabled:"), value)
+}
+
+// The default reuse identifier for your map’s annotation views.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapviewdefaultannotationviewreuseidentifier
+func (m_ MKMapView) MKMapViewDefaultAnnotationViewReuseIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKMapViewDefaultAnnotationViewReuseIdentifier"))
+	return rv
+}
+
+// The default reuse identifier for the annotation view representing a cluster of annotations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapviewdefaultclusterannotationviewreuseidentifier
+func (m_ MKMapView) MKMapViewDefaultClusterAnnotationViewReuseIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKMapViewDefaultClusterAnnotationViewReuseIdentifier"))
+	return rv
 }
 
 

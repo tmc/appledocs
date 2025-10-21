@@ -78,24 +78,6 @@ func NewMXBackgroundExitData() MXBackgroundExitData {
 }
 
 
-// The metrics for the background app exits.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/backgroundexitdata
-func (m_ MXBackgroundExitData) BackgroundExitData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("backgroundExitData"))
-	return rv
-}
-
-
-// SetBackgroundExitData sets the value of the backgroundExitData property.
-// The metrics for the background app exits.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/backgroundexitdata
-func (m_ MXBackgroundExitData) SetBackgroundExitData(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBackgroundExitData:"), value)
-}
-
 // The number of times the app exited abnormally from the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeAbnormalExitCount
@@ -174,6 +156,24 @@ func (m_ MXBackgroundExitData) CumulativeNormalAppExitCount() uint {
 func (m_ MXBackgroundExitData) CumulativeSuspendedWithLockedFileExitCount() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeSuspendedWithLockedFileExitCount"))
 	return rv
+}
+
+// The metrics for the background app exits.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/backgroundexitdata
+func (m_ MXBackgroundExitData) BackgroundExitData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("backgroundExitData"))
+	return rv
+}
+
+
+// SetBackgroundExitData sets the value of the backgroundExitData property.
+// The metrics for the background app exits.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/backgroundexitdata
+func (m_ MXBackgroundExitData) SetBackgroundExitData(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBackgroundExitData:"), value)
 }
 
 

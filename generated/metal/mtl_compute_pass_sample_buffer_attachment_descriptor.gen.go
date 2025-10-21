@@ -80,22 +80,22 @@ func NewComputePassSampleBufferAttachmentDescriptor() ComputePassSampleBufferAtt
 }
 
 
-// A specialized memory buffer that the GPU uses to store its counter data during a compute pass.
+// An index within a counter sample buffer that tells the GPU where to store counter data from the start of a compute pass.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepasssamplebufferattachmentdescriptor/samplebuffer
-func (c_ ComputePassSampleBufferAttachmentDescriptor) SampleBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBuffer"))
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptor/startOfEncoderSampleIndex
+func (c_ ComputePassSampleBufferAttachmentDescriptor) StartOfEncoderSampleIndex() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("startOfEncoderSampleIndex"))
 	return rv
 }
 
 
-// SetSampleBuffer sets the value of the sampleBuffer property.
-// A specialized memory buffer that the GPU uses to store its counter data during a compute pass.
+// SetStartOfEncoderSampleIndex sets the value of the startOfEncoderSampleIndex property.
+// An index within a counter sample buffer that tells the GPU where to store counter data from the start of a compute pass.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepasssamplebufferattachmentdescriptor/samplebuffer
-func (c_ ComputePassSampleBufferAttachmentDescriptor) SetSampleBuffer(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBuffer:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptor/startOfEncoderSampleIndex
+func (c_ ComputePassSampleBufferAttachmentDescriptor) SetStartOfEncoderSampleIndex(value uint) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStartOfEncoderSampleIndex:"), value)
 }
 
 // An index within a counter sample buffer that tells the GPU where to store counter data from the end of a compute pass.
@@ -116,22 +116,22 @@ func (c_ ComputePassSampleBufferAttachmentDescriptor) SetEndOfEncoderSampleIndex
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEndOfEncoderSampleIndex:"), value)
 }
 
-// An index within a counter sample buffer that tells the GPU where to store counter data from the start of a compute pass.
+// A specialized memory buffer that the GPU uses to store its counter data during a compute pass.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptor/startOfEncoderSampleIndex
-func (c_ ComputePassSampleBufferAttachmentDescriptor) StartOfEncoderSampleIndex() uint {
-	rv := objc.Send[uint](c_.ID, objc.Sel("startOfEncoderSampleIndex"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepasssamplebufferattachmentdescriptor/samplebuffer
+func (c_ ComputePassSampleBufferAttachmentDescriptor) SampleBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBuffer"))
 	return rv
 }
 
 
-// SetStartOfEncoderSampleIndex sets the value of the startOfEncoderSampleIndex property.
-// An index within a counter sample buffer that tells the GPU where to store counter data from the start of a compute pass.
+// SetSampleBuffer sets the value of the sampleBuffer property.
+// A specialized memory buffer that the GPU uses to store its counter data during a compute pass.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptor/startOfEncoderSampleIndex
-func (c_ ComputePassSampleBufferAttachmentDescriptor) SetStartOfEncoderSampleIndex(value uint) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStartOfEncoderSampleIndex:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepasssamplebufferattachmentdescriptor/samplebuffer
+func (c_ ComputePassSampleBufferAttachmentDescriptor) SetSampleBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBuffer:"), value)
 }
 
 

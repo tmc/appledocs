@@ -8,11 +8,5 @@ import (
 // CFStringRef is a CoreGraphics opaque type.
 type CFStringRef unsafe.Pointer
 
-// IOBluetoothDeviceSelectorControllerRef is a CoreGraphics opaque type.
-type IOBluetoothDeviceSelectorControllerRef unsafe.Pointer
-
-// IOBluetoothPairingControllerRef is a CoreGraphics opaque type.
-type IOBluetoothPairingControllerRef unsafe.Pointer
-
 
 

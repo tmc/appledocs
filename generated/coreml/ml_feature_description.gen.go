@@ -80,78 +80,6 @@ func NewFeatureDescription() FeatureDescription {
 }
 
 
-// Description of the state features.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/statedescriptionsbyname
-func (f_ FeatureDescription) StateDescriptionsByName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("stateDescriptionsByName"))
-	return rv
-}
-
-
-// SetStateDescriptionsByName sets the value of the stateDescriptionsByName property.
-// Description of the state features.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/statedescriptionsbyname
-func (f_ FeatureDescription) SetStateDescriptionsByName(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setStateDescriptionsByName:"), objc.String(value))
-}
-
-// A dictionary of input feature descriptions, which the model keys by the input’s name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
-func (f_ FeatureDescription) InputDescriptionsByName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("inputDescriptionsByName"))
-	return rv
-}
-
-
-// SetInputDescriptionsByName sets the value of the inputDescriptionsByName property.
-// A dictionary of input feature descriptions, which the model keys by the input’s name.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
-func (f_ FeatureDescription) SetInputDescriptionsByName(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setInputDescriptionsByName:"), objc.String(value))
-}
-
-// A dictionary of output feature descriptions, which the model keys by the output’s name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
-func (f_ FeatureDescription) OutputDescriptionsByName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("outputDescriptionsByName"))
-	return rv
-}
-
-
-// SetOutputDescriptionsByName sets the value of the outputDescriptionsByName property.
-// A dictionary of output feature descriptions, which the model keys by the output’s name.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
-func (f_ FeatureDescription) SetOutputDescriptionsByName(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputDescriptionsByName:"), objc.String(value))
-}
-
-// A Boolean value that indicates whether this feature is optional.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/isoptional
-func (f_ FeatureDescription) IsOptional() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isOptional"))
-	return rv
-}
-
-
-// SetIsOptional sets the value of the isOptional property.
-// A Boolean value that indicates whether this feature is optional.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/isoptional
-func (f_ FeatureDescription) SetIsOptional(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsOptional:"), value)
-}
-
 // The constraint for a dictionary feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/dictionaryConstraint
@@ -214,6 +142,78 @@ func (f_ FeatureDescription) StateConstraint() unsafe.Pointer {
 func (f_ FeatureDescription) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("type"))
 	return rv
+}
+
+// A Boolean value that indicates whether this feature is optional.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/isoptional
+func (f_ FeatureDescription) IsOptional() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isOptional"))
+	return rv
+}
+
+
+// SetIsOptional sets the value of the isOptional property.
+// A Boolean value that indicates whether this feature is optional.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/isoptional
+func (f_ FeatureDescription) SetIsOptional(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsOptional:"), value)
+}
+
+// A dictionary of input feature descriptions, which the model keys by the input’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
+func (f_ FeatureDescription) InputDescriptionsByName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("inputDescriptionsByName"))
+	return rv
+}
+
+
+// SetInputDescriptionsByName sets the value of the inputDescriptionsByName property.
+// A dictionary of input feature descriptions, which the model keys by the input’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
+func (f_ FeatureDescription) SetInputDescriptionsByName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setInputDescriptionsByName:"), objc.String(value))
+}
+
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
+func (f_ FeatureDescription) OutputDescriptionsByName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("outputDescriptionsByName"))
+	return rv
+}
+
+
+// SetOutputDescriptionsByName sets the value of the outputDescriptionsByName property.
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
+func (f_ FeatureDescription) SetOutputDescriptionsByName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputDescriptionsByName:"), objc.String(value))
+}
+
+// Description of the state features.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/statedescriptionsbyname
+func (f_ FeatureDescription) StateDescriptionsByName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("stateDescriptionsByName"))
+	return rv
+}
+
+
+// SetStateDescriptionsByName sets the value of the stateDescriptionsByName property.
+// Description of the state features.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/statedescriptionsbyname
+func (f_ FeatureDescription) SetStateDescriptionsByName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setStateDescriptionsByName:"), objc.String(value))
 }
 
 

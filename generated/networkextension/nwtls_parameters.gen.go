@@ -78,22 +78,22 @@ func NewNWTLSParameters() NWTLSParameters {
 }
 
 
-// The set of allowed cipher suites when negotiating TLS.
+// The maximum allowed
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/sslciphersuites
-func (n_ NWTLSParameters) SslCipherSuites() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sslCipherSuites"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/maximumsslprotocolversion
+func (n_ NWTLSParameters) MaximumSSLProtocolVersion() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("maximumSSLProtocolVersion"))
 	return rv
 }
 
 
-// SetSslCipherSuites sets the value of the sslCipherSuites property.
-// The set of allowed cipher suites when negotiating TLS.
+// SetMaximumSSLProtocolVersion sets the value of the maximumSSLProtocolVersion property.
+// The maximum allowed
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/sslciphersuites
-func (n_ NWTLSParameters) SetSslCipherSuites(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSslCipherSuites:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/maximumsslprotocolversion
+func (n_ NWTLSParameters) SetMaximumSSLProtocolVersion(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumSSLProtocolVersion:"), value)
 }
 
 // The minimum allowed
@@ -114,22 +114,22 @@ func (n_ NWTLSParameters) SetMinimumSSLProtocolVersion(value int) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumSSLProtocolVersion:"), value)
 }
 
-// The maximum allowed
+// The set of allowed cipher suites when negotiating TLS.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/maximumsslprotocolversion
-func (n_ NWTLSParameters) MaximumSSLProtocolVersion() int {
-	rv := objc.Send[int](n_.ID, objc.Sel("maximumSSLProtocolVersion"))
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/sslciphersuites
+func (n_ NWTLSParameters) SslCipherSuites() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sslCipherSuites"))
 	return rv
 }
 
 
-// SetMaximumSSLProtocolVersion sets the value of the maximumSSLProtocolVersion property.
-// The maximum allowed
+// SetSslCipherSuites sets the value of the sslCipherSuites property.
+// The set of allowed cipher suites when negotiating TLS.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/maximumsslprotocolversion
-func (n_ NWTLSParameters) SetMaximumSSLProtocolVersion(value int) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumSSLProtocolVersion:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/sslciphersuites
+func (n_ NWTLSParameters) SetSslCipherSuites(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSslCipherSuites:"), value)
 }
 
 // The Session ID to use for the associated TCP connection.

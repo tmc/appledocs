@@ -77,36 +77,6 @@ func NewMTRDoorLockClusterClearWeekDayScheduleParams() MTRDoorLockClusterClearWe
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/weekdayindex
-func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) WeekDayIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("weekDayIndex"))
-	return rv
-}
-
-
-// SetWeekDayIndex sets the value of the weekDayIndex property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/weekdayindex
-func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) SetWeekDayIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setWeekDayIndex:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/serversideprocessingtimeout
 func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -122,6 +92,21 @@ func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) SetServerSideProcessingTi
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/userindex
 func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) UserIndex() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
@@ -134,6 +119,21 @@ func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) UserIndex() foundation.Nu
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/userindex
 func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) SetUserIndex(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/weekdayindex
+func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) WeekDayIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("weekDayIndex"))
+	return rv
+}
+
+
+// SetWeekDayIndex sets the value of the weekDayIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearweekdayscheduleparams/weekdayindex
+func (m_ MTRDoorLockClusterClearWeekDayScheduleParams) SetWeekDayIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setWeekDayIndex:"), value)
 }
 
 

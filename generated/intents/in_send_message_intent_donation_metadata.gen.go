@@ -78,21 +78,6 @@ func NewINSendMessageIntentDonationMetadata() INSendMessageIntentDonationMetadat
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentdonationmetadata/isreplytocurrentuser
-func (i_ INSendMessageIntentDonationMetadata) IsReplyToCurrentUser() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("isReplyToCurrentUser"))
-	return rv
-}
-
-
-// SetIsReplyToCurrentUser sets the value of the isReplyToCurrentUser property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentdonationmetadata/isreplytocurrentuser
-func (i_ INSendMessageIntentDonationMetadata) SetIsReplyToCurrentUser(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIsReplyToCurrentUser:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/isReplyToCurrentUser
 func (i_ INSendMessageIntentDonationMetadata) ReplyToCurrentUser() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("replyToCurrentUser"))
@@ -150,6 +135,21 @@ func (i_ INSendMessageIntentDonationMetadata) RecipientCount() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/recipientCount
 func (i_ INSendMessageIntentDonationMetadata) SetRecipientCount(value uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipientCount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentdonationmetadata/isreplytocurrentuser
+func (i_ INSendMessageIntentDonationMetadata) IsReplyToCurrentUser() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isReplyToCurrentUser"))
+	return rv
+}
+
+
+// SetIsReplyToCurrentUser sets the value of the isReplyToCurrentUser property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentdonationmetadata/isreplytocurrentuser
+func (i_ INSendMessageIntentDonationMetadata) SetIsReplyToCurrentUser(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsReplyToCurrentUser:"), value)
 }
 
 

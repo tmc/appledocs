@@ -237,8 +237,8 @@ func MIDIClientDispose(client unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDestinationCreateWithProtocol(_:_:_:_:_:)
-func MIDIDestinationCreateWithProtocol(client unsafe.Pointer, name unsafe.Pointer, protocol unsafe.Pointer, outDest unsafe.Pointer, readBlock unsafe.Pointer) unsafe.Pointer {
-	return _MIDIDestinationCreateWithProtocol(client, name, protocol, outDest, readBlock)
+func MIDIDestinationCreateWithProtocol(client unsafe.Pointer, name unsafe.Pointer, protocol_ unsafe.Pointer, outDest unsafe.Pointer, readBlock unsafe.Pointer) unsafe.Pointer {
+	return _MIDIDestinationCreateWithProtocol(client, name, protocol_, outDest, readBlock)
 	}
 
 
@@ -339,8 +339,8 @@ func MIDIDeviceListGetNumberOfDevices(devList unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceNewEntity(_:_:_:_:_:_:_:)
-func MIDIDeviceNewEntity(device unsafe.Pointer, name unsafe.Pointer, protocol unsafe.Pointer, embedded unsafe.Pointer, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer, newEntity unsafe.Pointer) unsafe.Pointer {
-	return _MIDIDeviceNewEntity(device, name, protocol, embedded, numSourceEndpoints, numDestinationEndpoints, newEntity)
+func MIDIDeviceNewEntity(device unsafe.Pointer, name unsafe.Pointer, protocol_ unsafe.Pointer, embedded unsafe.Pointer, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer, newEntity unsafe.Pointer) unsafe.Pointer {
+	return _MIDIDeviceNewEntity(device, name, protocol_, embedded, numSourceEndpoints, numDestinationEndpoints, newEntity)
 	}
 
 
@@ -489,8 +489,8 @@ func MIDIEventListForEachEvent(evtlist unsafe.Pointer, visitor unsafe.Pointer, v
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEventListInit(_:_:)
-func MIDIEventListInit(evtlist unsafe.Pointer, protocol unsafe.Pointer) unsafe.Pointer {
-	return _MIDIEventListInit(evtlist, protocol)
+func MIDIEventListInit(evtlist unsafe.Pointer, protocol_ unsafe.Pointer) unsafe.Pointer {
+	return _MIDIEventListInit(evtlist, protocol_)
 	}
 
 
@@ -643,8 +643,8 @@ func MIDIGetSource(sourceIndex0 unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIInputPortCreateWithProtocol(_:_:_:_:_:)
-func MIDIInputPortCreateWithProtocol(client unsafe.Pointer, portName unsafe.Pointer, protocol unsafe.Pointer, outPort unsafe.Pointer, receiveBlock unsafe.Pointer) unsafe.Pointer {
-	return _MIDIInputPortCreateWithProtocol(client, portName, protocol, outPort, receiveBlock)
+func MIDIInputPortCreateWithProtocol(client unsafe.Pointer, portName unsafe.Pointer, protocol_ unsafe.Pointer, outPort unsafe.Pointer, receiveBlock unsafe.Pointer) unsafe.Pointer {
+	return _MIDIInputPortCreateWithProtocol(client, portName, protocol_, outPort, receiveBlock)
 	}
 
 
@@ -857,8 +857,8 @@ func MIDISetupToData(setup unsafe.Pointer, outData unsafe.Pointer) unsafe.Pointe
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISourceCreateWithProtocol(_:_:_:_:)
-func MIDISourceCreateWithProtocol(client unsafe.Pointer, name unsafe.Pointer, protocol unsafe.Pointer, outSrc unsafe.Pointer) unsafe.Pointer {
-	return _MIDISourceCreateWithProtocol(client, name, protocol, outSrc)
+func MIDISourceCreateWithProtocol(client unsafe.Pointer, name unsafe.Pointer, protocol_ unsafe.Pointer, outSrc unsafe.Pointer) unsafe.Pointer {
+	return _MIDISourceCreateWithProtocol(client, name, protocol_, outSrc)
 	}
 
 

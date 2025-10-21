@@ -80,42 +80,6 @@ func NewRenderPassAttachmentDescriptor() RenderPassAttachmentDescriptor {
 }
 
 
-// The action performed by this attachment at the start of a rendering pass for a render command encoder.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/loadaction
-func (r_ RenderPassAttachmentDescriptor) LoadAction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("loadAction"))
-	return rv
-}
-
-
-// SetLoadAction sets the value of the loadAction property.
-// The action performed by this attachment at the start of a rendering pass for a render command encoder.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/loadaction
-func (r_ RenderPassAttachmentDescriptor) SetLoadAction(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLoadAction:"), value)
-}
-
-// The action performed by this attachment at the end of a rendering pass for a render command encoder.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/storeaction
-func (r_ RenderPassAttachmentDescriptor) StoreAction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("storeAction"))
-	return rv
-}
-
-
-// SetStoreAction sets the value of the storeAction property.
-// The action performed by this attachment at the end of a rendering pass for a render command encoder.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/storeaction
-func (r_ RenderPassAttachmentDescriptor) SetStoreAction(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setStoreAction:"), value)
-}
-
 // The depth plane of the texture used for rendering to the attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor/depthPlane
@@ -276,6 +240,42 @@ func (r_ RenderPassAttachmentDescriptor) Texture() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor/texture
 func (r_ RenderPassAttachmentDescriptor) SetTexture(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTexture:"), value)
+}
+
+// The action performed by this attachment at the start of a rendering pass for a render command encoder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/loadaction
+func (r_ RenderPassAttachmentDescriptor) LoadAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("loadAction"))
+	return rv
+}
+
+
+// SetLoadAction sets the value of the loadAction property.
+// The action performed by this attachment at the start of a rendering pass for a render command encoder.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/loadaction
+func (r_ RenderPassAttachmentDescriptor) SetLoadAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLoadAction:"), value)
+}
+
+// The action performed by this attachment at the end of a rendering pass for a render command encoder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/storeaction
+func (r_ RenderPassAttachmentDescriptor) StoreAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("storeAction"))
+	return rv
+}
+
+
+// SetStoreAction sets the value of the storeAction property.
+// The action performed by this attachment at the end of a rendering pass for a render command encoder.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/storeaction
+func (r_ RenderPassAttachmentDescriptor) SetStoreAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setStoreAction:"), value)
 }
 
 

@@ -78,6 +78,24 @@ func NewSubscriber() Subscriber {
 }
 
 
+// A delegate that receives updates on the subscriber information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/delegate
+func (s_ Subscriber) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// A delegate that receives updates on the subscriber information.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/delegate
+func (s_ Subscriber) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+}
+
 // A data object containing authorization information about the subscriber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
@@ -114,14 +132,6 @@ func (s_ Subscriber) SetIdentifier(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
-// The name of the notification indicating that the carrier token is available.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscribertokenrefreshed
-func (s_ Subscriber) CTSubscriberTokenRefreshed() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
-	return rv
-}
-
 // A Boolean property that indicates whether a SIM is present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/issiminserted
@@ -140,22 +150,12 @@ func (s_ Subscriber) SetIsSIMInserted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSIMInserted:"), value)
 }
 
-// A delegate that receives updates on the subscriber information.
+// The name of the notification indicating that the carrier token is available.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/delegate
-func (s_ Subscriber) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscribertokenrefreshed
+func (s_ Subscriber) CTSubscriberTokenRefreshed() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
 	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// A delegate that receives updates on the subscriber information.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/delegate
-func (s_ Subscriber) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

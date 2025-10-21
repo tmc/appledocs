@@ -81,37 +81,22 @@ func NewCKFetchSubscriptionsOperation() CKFetchSubscriptionsOperation {
 }
 
 
-// The block to execute after the operation’s main task is completed.
+// The block to execute with the fetch results.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-func (c_ CKFetchSubscriptionsOperation) CompletionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/fetchsubscriptioncompletionblock-6hhpi
+func (c_ CKFetchSubscriptionsOperation) FetchSubscriptionCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchSubscriptionCompletionBlock"))
 	return rv
 }
 
 
-// SetCompletionBlock sets the value of the completionBlock property.
-// The block to execute after the operation’s main task is completed.
+// SetFetchSubscriptionCompletionBlock sets the value of the fetchSubscriptionCompletionBlock property.
+// The block to execute with the fetch results.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-func (c_ CKFetchSubscriptionsOperation) SetCompletionBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/persubscriptionresultblock
-func (c_ CKFetchSubscriptionsOperation) PerSubscriptionResultBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perSubscriptionResultBlock"))
-	return rv
-}
-
-
-// SetPerSubscriptionResultBlock sets the value of the perSubscriptionResultBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/persubscriptionresultblock
-func (c_ CKFetchSubscriptionsOperation) SetPerSubscriptionResultBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPerSubscriptionResultBlock:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/fetchsubscriptioncompletionblock-6hhpi
+func (c_ CKFetchSubscriptionsOperation) SetFetchSubscriptionCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchSubscriptionCompletionBlock:"), value)
 }
 
 //
@@ -127,6 +112,21 @@ func (c_ CKFetchSubscriptionsOperation) FetchSubscriptionsResultBlock() unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/fetchsubscriptionsresultblock
 func (c_ CKFetchSubscriptionsOperation) SetFetchSubscriptionsResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchSubscriptionsResultBlock:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/persubscriptionresultblock
+func (c_ CKFetchSubscriptionsOperation) PerSubscriptionResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perSubscriptionResultBlock"))
+	return rv
+}
+
+
+// SetPerSubscriptionResultBlock sets the value of the perSubscriptionResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/persubscriptionresultblock
+func (c_ CKFetchSubscriptionsOperation) SetPerSubscriptionResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerSubscriptionResultBlock:"), value)
 }
 
 // The IDs of the subscriptions to fetch.
@@ -147,22 +147,22 @@ func (c_ CKFetchSubscriptionsOperation) SetSubscriptionIDs(value unsafe.Pointer)
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionIDs:"), value)
 }
 
-// The block to execute with the fetch results.
+// The block to execute after the operation’s main task is completed.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/fetchsubscriptioncompletionblock-6hhpi
-func (c_ CKFetchSubscriptionsOperation) FetchSubscriptionCompletionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchSubscriptionCompletionBlock"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKFetchSubscriptionsOperation) CompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
 }
 
 
-// SetFetchSubscriptionCompletionBlock sets the value of the fetchSubscriptionCompletionBlock property.
-// The block to execute with the fetch results.
+// SetCompletionBlock sets the value of the completionBlock property.
+// The block to execute after the operation’s main task is completed.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/fetchsubscriptioncompletionblock-6hhpi
-func (c_ CKFetchSubscriptionsOperation) SetFetchSubscriptionCompletionBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchSubscriptionCompletionBlock:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKFetchSubscriptionsOperation) SetCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }
 
 

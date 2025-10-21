@@ -93,6 +93,22 @@ func NewPreviewReplyAttachmentWithDataContentType(data unsafe.Pointer, contentTy
 }
 
 
+// The content type of the preview attachment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/contentType
+func (p_ PreviewReplyAttachment) ContentType() UTType {
+	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
+	return rv
+}
+
+// The data of the preview attachment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/data
+func (p_ PreviewReplyAttachment) Data() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("data"))
+	return rv
+}
+
 // The attachments for a preview reply that provide additional data for the system to display the preview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments
@@ -109,22 +125,6 @@ func (p_ PreviewReplyAttachment) Attachments() string {
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments
 func (p_ PreviewReplyAttachment) SetAttachments(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttachments:"), objc.String(value))
-}
-
-// The content type of the preview attachment.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/contentType
-func (p_ PreviewReplyAttachment) ContentType() UTType {
-	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
-	return rv
-}
-
-// The data of the preview attachment.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/data
-func (p_ PreviewReplyAttachment) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("data"))
-	return rv
 }
 
 

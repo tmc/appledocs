@@ -77,6 +77,21 @@ func NewMTRActionsClusterDisableActionWithDurationParams() MTRActionsClusterDisa
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/actionid
+func (m_ MTRActionsClusterDisableActionWithDurationParams) ActionID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+	return rv
+}
+
+
+// SetActionID sets the value of the actionID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/actionid
+func (m_ MTRActionsClusterDisableActionWithDurationParams) SetActionID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/duration
 func (m_ MTRActionsClusterDisableActionWithDurationParams) Duration() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
@@ -89,6 +104,21 @@ func (m_ MTRActionsClusterDisableActionWithDurationParams) Duration() foundation
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/duration
 func (m_ MTRActionsClusterDisableActionWithDurationParams) SetDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/invokeid
+func (m_ MTRActionsClusterDisableActionWithDurationParams) InvokeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+	return rv
+}
+
+
+// SetInvokeID sets the value of the invokeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/invokeid
+func (m_ MTRActionsClusterDisableActionWithDurationParams) SetInvokeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
 //
@@ -119,36 +149,6 @@ func (m_ MTRActionsClusterDisableActionWithDurationParams) TimedInvokeTimeoutMs(
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/timedinvoketimeoutms
 func (m_ MTRActionsClusterDisableActionWithDurationParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/actionid
-func (m_ MTRActionsClusterDisableActionWithDurationParams) ActionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
-	return rv
-}
-
-
-// SetActionID sets the value of the actionID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/actionid
-func (m_ MTRActionsClusterDisableActionWithDurationParams) SetActionID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/invokeid
-func (m_ MTRActionsClusterDisableActionWithDurationParams) InvokeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
-	return rv
-}
-
-
-// SetInvokeID sets the value of the invokeID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterdisableactionwithdurationparams/invokeid
-func (m_ MTRActionsClusterDisableActionWithDurationParams) SetInvokeID(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
 

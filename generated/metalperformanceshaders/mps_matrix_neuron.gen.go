@@ -79,6 +79,21 @@ func NewMatrixNeuron() MatrixNeuron {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/alpha
+func (m_ MatrixNeuron) Alpha() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("alpha"))
+	return rv
+}
+
+
+// SetAlpha sets the value of the alpha property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/alpha
+func (m_ MatrixNeuron) SetAlpha(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAlpha:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/sourceinputfeaturechannels
 func (m_ MatrixNeuron) SourceInputFeatureChannels() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("sourceInputFeatureChannels"))
@@ -106,21 +121,6 @@ func (m_ MatrixNeuron) SourceNumberOfFeatureVectors() int {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/sourcenumberoffeaturevectors
 func (m_ MatrixNeuron) SetSourceNumberOfFeatureVectors(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceNumberOfFeatureVectors:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/alpha
-func (m_ MatrixNeuron) Alpha() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("alpha"))
-	return rv
-}
-
-
-// SetAlpha sets the value of the alpha property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/alpha
-func (m_ MatrixNeuron) SetAlpha(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAlpha:"), value)
 }
 
 

@@ -79,78 +79,6 @@ func NewMKMapItemIdentifier() MKMapItemIdentifier {
 }
 
 
-// The point-of-interest category for the map item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/pointofinterestcategory
-func (m_ MKMapItemIdentifier) PointOfInterestCategory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestCategory"))
-	return rv
-}
-
-
-// SetPointOfInterestCategory sets the value of the pointOfInterestCategory property.
-// The point-of-interest category for the map item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/pointofinterestcategory
-func (m_ MKMapItemIdentifier) SetPointOfInterestCategory(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestCategory:"), value)
-}
-
-// The descriptive name associated with the map item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/name
-func (m_ MKMapItemIdentifier) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-// The descriptive name associated with the map item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/name
-func (m_ MKMapItemIdentifier) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// The time zone of the specified location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/timezone
-func (m_ MKMapItemIdentifier) TimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeZone"))
-	return rv
-}
-
-
-// SetTimeZone sets the value of the timeZone property.
-// The time zone of the specified location.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/timezone
-func (m_ MKMapItemIdentifier) SetTimeZone(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeZone:"), value)
-}
-
-// The phone number associated with a business at the specified location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/phonenumber
-func (m_ MKMapItemIdentifier) PhoneNumber() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("phoneNumber"))
-	return rv
-}
-
-
-// SetPhoneNumber sets the value of the phoneNumber property.
-// The phone number associated with a business at the specified location.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/phonenumber
-func (m_ MKMapItemIdentifier) SetPhoneNumber(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPhoneNumber:"), objc.String(value))
-}
-
 // A set of alternative identifiers for a place.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/alternateidentifiers
@@ -167,24 +95,6 @@ func (m_ MKMapItemIdentifier) AlternateIdentifiers() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/alternateidentifiers
 func (m_ MKMapItemIdentifier) SetAlternateIdentifiers(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlternateIdentifiers:"), value)
-}
-
-// The URL associated with the specified location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/url
-func (m_ MKMapItemIdentifier) Url() foundation.URL {
-	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("url"))
-	return rv
-}
-
-
-// SetUrl sets the value of the url property.
-// The URL associated with the specified location.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/url
-func (m_ MKMapItemIdentifier) SetUrl(value foundation.URL) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
 
 // A unique identifier for a place.
@@ -223,6 +133,42 @@ func (m_ MKMapItemIdentifier) SetIsCurrentLocation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCurrentLocation:"), value)
 }
 
+// The descriptive name associated with the map item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/name
+func (m_ MKMapItemIdentifier) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The descriptive name associated with the map item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/name
+func (m_ MKMapItemIdentifier) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// The phone number associated with a business at the specified location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/phonenumber
+func (m_ MKMapItemIdentifier) PhoneNumber() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("phoneNumber"))
+	return rv
+}
+
+
+// SetPhoneNumber sets the value of the phoneNumber property.
+// The phone number associated with a business at the specified location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/phonenumber
+func (m_ MKMapItemIdentifier) SetPhoneNumber(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPhoneNumber:"), objc.String(value))
+}
+
 // The placemark object containing the location information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/placemark
@@ -239,6 +185,60 @@ func (m_ MKMapItemIdentifier) Placemark() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/placemark
 func (m_ MKMapItemIdentifier) SetPlacemark(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlacemark:"), value)
+}
+
+// The point-of-interest category for the map item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/pointofinterestcategory
+func (m_ MKMapItemIdentifier) PointOfInterestCategory() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestCategory"))
+	return rv
+}
+
+
+// SetPointOfInterestCategory sets the value of the pointOfInterestCategory property.
+// The point-of-interest category for the map item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/pointofinterestcategory
+func (m_ MKMapItemIdentifier) SetPointOfInterestCategory(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestCategory:"), value)
+}
+
+// The time zone of the specified location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/timezone
+func (m_ MKMapItemIdentifier) TimeZone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeZone"))
+	return rv
+}
+
+
+// SetTimeZone sets the value of the timeZone property.
+// The time zone of the specified location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/timezone
+func (m_ MKMapItemIdentifier) SetTimeZone(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeZone:"), value)
+}
+
+// The URL associated with the specified location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/url
+func (m_ MKMapItemIdentifier) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL associated with the specified location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/url
+func (m_ MKMapItemIdentifier) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
 
 

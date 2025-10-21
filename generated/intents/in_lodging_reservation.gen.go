@@ -97,6 +97,24 @@ func (i_ INLodgingReservation) SetLodgingBusinessLocation(value unsafe.Pointer) 
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLodgingBusinessLocation:"), value)
 }
 
+// The number of adults staying at the lodging location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofadults-6fsnq
+func (i_ INLodgingReservation) NumberOfAdults() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("numberOfAdults"))
+	return rv
+}
+
+
+// SetNumberOfAdults sets the value of the numberOfAdults property.
+// The number of adults staying at the lodging location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofadults-6fsnq
+func (i_ INLodgingReservation) SetNumberOfAdults(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfAdults:"), value)
+}
+
 // The number of children staying at the lodging location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofchildren-1dm3g
@@ -131,24 +149,6 @@ func (i_ INLodgingReservation) ReservationDuration() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/reservationduration
 func (i_ INLodgingReservation) SetReservationDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)
-}
-
-// The number of adults staying at the lodging location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofadults-6fsnq
-func (i_ INLodgingReservation) NumberOfAdults() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("numberOfAdults"))
-	return rv
-}
-
-
-// SetNumberOfAdults sets the value of the numberOfAdults property.
-// The number of adults staying at the lodging location.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofadults-6fsnq
-func (i_ INLodgingReservation) SetNumberOfAdults(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfAdults:"), value)
 }
 
 

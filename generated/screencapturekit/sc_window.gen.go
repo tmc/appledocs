@@ -81,22 +81,12 @@ func NewWindow() Window {
 }
 
 
-// The string that displays in a window’s title bar.
+// A Boolean value that indicates if the window is currently streaming.
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/title
-func (w_ Window) Title() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("title"))
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCWindow/isActive
+func (w_ Window) Active() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("active"))
 	return rv
-}
-
-
-// SetTitle sets the value of the title property.
-// The string that displays in a window’s title bar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/title
-func (w_ Window) SetTitle(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // A rectangle the represents the frame of the window within a display.
@@ -117,40 +107,22 @@ func (w_ Window) SetFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrame:"), value)
 }
 
-// The Core Graphics window identifier.
+// A Boolean value that indicates if the window is currently streaming.
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/windowid
-func (w_ Window) WindowID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowID"))
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/isactive
+func (w_ Window) IsActive() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isActive"))
 	return rv
 }
 
 
-// SetWindowID sets the value of the windowID property.
-// The Core Graphics window identifier.
+// SetIsActive sets the value of the isActive property.
+// A Boolean value that indicates if the window is currently streaming.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/windowid
-func (w_ Window) SetWindowID(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowID:"), value)
-}
-
-// The app that owns the window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/owningapplication
-func (w_ Window) OwningApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("owningApplication"))
-	return rv
-}
-
-
-// SetOwningApplication sets the value of the owningApplication property.
-// The app that owns the window.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/owningapplication
-func (w_ Window) SetOwningApplication(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setOwningApplication:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/isactive
+func (w_ Window) SetIsActive(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsActive:"), value)
 }
 
 // A Boolean value that indicates whether the window is on screen.
@@ -171,6 +143,60 @@ func (w_ Window) SetIsOnScreen(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsOnScreen:"), value)
 }
 
+// The app that owns the window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/owningapplication
+func (w_ Window) OwningApplication() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("owningApplication"))
+	return rv
+}
+
+
+// SetOwningApplication sets the value of the owningApplication property.
+// The app that owns the window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/owningapplication
+func (w_ Window) SetOwningApplication(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setOwningApplication:"), value)
+}
+
+// The string that displays in a window’s title bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/title
+func (w_ Window) Title() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The string that displays in a window’s title bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/title
+func (w_ Window) SetTitle(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+// The Core Graphics window identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/windowid
+func (w_ Window) WindowID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowID"))
+	return rv
+}
+
+
+// SetWindowID sets the value of the windowID property.
+// The Core Graphics window identifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/windowid
+func (w_ Window) SetWindowID(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowID:"), value)
+}
+
 // The layer of the window relative to other windows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/windowlayer
@@ -187,32 +213,6 @@ func (w_ Window) WindowLayer() int {
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/windowlayer
 func (w_ Window) SetWindowLayer(value int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowLayer:"), value)
-}
-
-// A Boolean value that indicates if the window is currently streaming.
-//
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/isactive
-func (w_ Window) IsActive() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("isActive"))
-	return rv
-}
-
-
-// SetIsActive sets the value of the isActive property.
-// A Boolean value that indicates if the window is currently streaming.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/isactive
-func (w_ Window) SetIsActive(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIsActive:"), value)
-}
-
-// A Boolean value that indicates if the window is currently streaming.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCWindow/isActive
-func (w_ Window) Active() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("active"))
-	return rv
 }
 
 

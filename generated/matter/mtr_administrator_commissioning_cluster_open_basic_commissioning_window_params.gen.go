@@ -77,6 +77,21 @@ func NewMTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams()
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/commissioningtimeout
+func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) CommissioningTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("commissioningTimeout"))
+	return rv
+}
+
+
+// SetCommissioningTimeout sets the value of the commissioningTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/commissioningtimeout
+func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetCommissioningTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningTimeout:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/serversideprocessingtimeout
 func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,21 +119,6 @@ func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams)
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/timedinvoketimeoutms
 func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/commissioningtimeout
-func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) CommissioningTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("commissioningTimeout"))
-	return rv
-}
-
-
-// SetCommissioningTimeout sets the value of the commissioningTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/commissioningtimeout
-func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetCommissioningTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningTimeout:"), value)
 }
 
 

@@ -106,6 +106,22 @@ func NewPHASEAmbientMixerDefinitionWithChannelLayoutOrientationIdentifier(layout
 }
 
 
+// The channel layout of input audio.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAmbientMixerDefinition/inputChannelLayout
+func (p_ PHASEAmbientMixerDefinition) InputChannelLayout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("inputChannelLayout"))
+	return rv
+}
+
+// A quaternion that describes the orientation of the speaker layout relative to the scene origin.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAmbientMixerDefinition/orientation
+func (p_ PHASEAmbientMixerDefinition) Orientation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("orientation"))
+	return rv
+}
+
 // A matrix, in local coordinates, that determines the object’s pose in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseobject/transform
@@ -122,22 +138,6 @@ func (p_ PHASEAmbientMixerDefinition) Transform() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseobject/transform
 func (p_ PHASEAmbientMixerDefinition) SetTransform(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransform:"), value)
-}
-
-// The channel layout of input audio.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAmbientMixerDefinition/inputChannelLayout
-func (p_ PHASEAmbientMixerDefinition) InputChannelLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("inputChannelLayout"))
-	return rv
-}
-
-// A quaternion that describes the orientation of the speaker layout relative to the scene origin.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAmbientMixerDefinition/orientation
-func (p_ PHASEAmbientMixerDefinition) Orientation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("orientation"))
-	return rv
 }
 
 

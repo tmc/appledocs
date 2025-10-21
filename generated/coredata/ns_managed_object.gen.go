@@ -182,164 +182,6 @@ func (m_ ManagedObject) WillTurnIntoFault() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("willTurnIntoFault"))
 }
 
-// A Boolean value that indicates whether the managed object is a fault.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isfault
-func (m_ ManagedObject) IsFault() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isFault"))
-	return rv
-}
-
-
-// SetIsFault sets the value of the isFault property.
-// A Boolean value that indicates whether the managed object is a fault.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isfault
-func (m_ ManagedObject) SetIsFault(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsFault:"), value)
-}
-
-// The error key for the value that failed to validate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationvalueerrorkey
-func (m_ ManagedObject) NSValidationValueErrorKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationValueErrorKey"))
-	return rv
-}
-
-// A Boolean value that indicates whether the managed object will be deleted during the next save.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isdeleted
-func (m_ ManagedObject) IsDeleted() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isDeleted"))
-	return rv
-}
-
-
-// SetIsDeleted sets the value of the isDeleted property.
-// A Boolean value that indicates whether the managed object will be deleted during the next save.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isdeleted
-func (m_ ManagedObject) SetIsDeleted(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeleted:"), value)
-}
-
-// A textual representation of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (m_ ManagedObject) Description() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("description"))
-	return rv
-}
-
-
-// SetDescription sets the value of the description property.
-// A textual representation of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (m_ ManagedObject) SetDescription(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDescription:"), objc.String(value))
-}
-
-// The error key for the object that failed to validate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationobjecterrorkey
-func (m_ ManagedObject) NSValidationObjectErrorKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationObjectErrorKey"))
-	return rv
-}
-
-// The error key for the predicate that failed to validate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationpredicateerrorkey
-func (m_ ManagedObject) NSValidationPredicateErrorKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationPredicateErrorKey"))
-	return rv
-}
-
-// A Boolean value that indicates whether the managed object has unsaved changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isupdated
-func (m_ ManagedObject) IsUpdated() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdated"))
-	return rv
-}
-
-
-// SetIsUpdated sets the value of the isUpdated property.
-// A Boolean value that indicates whether the managed object has unsaved changes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isupdated
-func (m_ ManagedObject) SetIsUpdated(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdated:"), value)
-}
-
-// Returns the class object for the receiver’s superclass.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/superclass
-func (m_ ManagedObject) Superclass() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("superclass"))
-	return rv
-}
-
-
-// SetSuperclass sets the value of the superclass property.
-// Returns the class object for the receiver’s superclass.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/superclass
-func (m_ ManagedObject) SetSuperclass(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSuperclass:"), value)
-}
-
-// A Boolean value that indicates whether the managed object has been inserted in a managed object context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isinserted
-func (m_ ManagedObject) IsInserted() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isInserted"))
-	return rv
-}
-
-
-// SetIsInserted sets the value of the isInserted property.
-// A Boolean value that indicates whether the managed object has been inserted in a managed object context.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isinserted
-func (m_ ManagedObject) SetIsInserted(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsInserted:"), value)
-}
-
-// Returns an integer that can be used as a table address in a hash table structure.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-func (m_ ManagedObject) Hash() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("hash"))
-	return rv
-}
-
-
-// SetHash sets the value of the hash property.
-// Returns an integer that can be used as a table address in a hash table structure.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-func (m_ ManagedObject) SetHash(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHash:"), value)
-}
-
-// The error key for the attribute that failed to validate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationkeyerrorkey
-func (m_ ManagedObject) NSValidationKeyErrorKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationKeyErrorKey"))
-	return rv
-}
-
 // The entity description of the managed object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/entity-swift.property
@@ -418,6 +260,164 @@ func (m_ ManagedObject) ManagedObjectContext() unsafe.Pointer {
 func (m_ ManagedObject) ObjectID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectID"))
 	return rv
+}
+
+// A Boolean value that indicates whether the managed object will be deleted during the next save.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isdeleted
+func (m_ ManagedObject) IsDeleted() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isDeleted"))
+	return rv
+}
+
+
+// SetIsDeleted sets the value of the isDeleted property.
+// A Boolean value that indicates whether the managed object will be deleted during the next save.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isdeleted
+func (m_ ManagedObject) SetIsDeleted(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeleted:"), value)
+}
+
+// A Boolean value that indicates whether the managed object is a fault.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isfault
+func (m_ ManagedObject) IsFault() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isFault"))
+	return rv
+}
+
+
+// SetIsFault sets the value of the isFault property.
+// A Boolean value that indicates whether the managed object is a fault.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isfault
+func (m_ ManagedObject) SetIsFault(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsFault:"), value)
+}
+
+// A Boolean value that indicates whether the managed object has been inserted in a managed object context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isinserted
+func (m_ ManagedObject) IsInserted() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isInserted"))
+	return rv
+}
+
+
+// SetIsInserted sets the value of the isInserted property.
+// A Boolean value that indicates whether the managed object has been inserted in a managed object context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isinserted
+func (m_ ManagedObject) SetIsInserted(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsInserted:"), value)
+}
+
+// A Boolean value that indicates whether the managed object has unsaved changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isupdated
+func (m_ ManagedObject) IsUpdated() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdated"))
+	return rv
+}
+
+
+// SetIsUpdated sets the value of the isUpdated property.
+// A Boolean value that indicates whether the managed object has unsaved changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isupdated
+func (m_ ManagedObject) SetIsUpdated(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdated:"), value)
+}
+
+// The error key for the attribute that failed to validate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationkeyerrorkey
+func (m_ ManagedObject) NSValidationKeyErrorKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationKeyErrorKey"))
+	return rv
+}
+
+// The error key for the object that failed to validate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationobjecterrorkey
+func (m_ ManagedObject) NSValidationObjectErrorKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationObjectErrorKey"))
+	return rv
+}
+
+// The error key for the predicate that failed to validate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationpredicateerrorkey
+func (m_ ManagedObject) NSValidationPredicateErrorKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationPredicateErrorKey"))
+	return rv
+}
+
+// The error key for the value that failed to validate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationvalueerrorkey
+func (m_ ManagedObject) NSValidationValueErrorKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationValueErrorKey"))
+	return rv
+}
+
+// A textual representation of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
+func (m_ ManagedObject) Description() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("description"))
+	return rv
+}
+
+
+// SetDescription sets the value of the description property.
+// A textual representation of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
+func (m_ ManagedObject) SetDescription(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDescription:"), objc.String(value))
+}
+
+// Returns an integer that can be used as a table address in a hash table structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
+func (m_ ManagedObject) Hash() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("hash"))
+	return rv
+}
+
+
+// SetHash sets the value of the hash property.
+// Returns an integer that can be used as a table address in a hash table structure.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
+func (m_ ManagedObject) SetHash(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHash:"), value)
+}
+
+// Returns the class object for the receiver’s superclass.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/superclass
+func (m_ ManagedObject) Superclass() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("superclass"))
+	return rv
+}
+
+
+// SetSuperclass sets the value of the superclass property.
+// Returns the class object for the receiver’s superclass.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/superclass
+func (m_ ManagedObject) SetSuperclass(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSuperclass:"), value)
 }
 
 

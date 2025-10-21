@@ -178,42 +178,6 @@ func (v_ VolumeView) VolumeThumbRectForBoundsVolumeSliderRectValue(bounds coregr
 	return rv
 }
 
-// A Boolean value that indicates whether the wireless route is active.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/iswirelessrouteactive
-func (v_ VolumeView) IsWirelessRouteActive() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("isWirelessRouteActive"))
-	return rv
-}
-
-
-// SetIsWirelessRouteActive sets the value of the isWirelessRouteActive property.
-// A Boolean value that indicates whether the wireless route is active.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/iswirelessrouteactive
-func (v_ VolumeView) SetIsWirelessRouteActive(value bool) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setIsWirelessRouteActive:"), value)
-}
-
-// A Boolean value indicating wireless routes are available.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/arewirelessroutesavailable
-func (v_ VolumeView) AreWirelessRoutesAvailable() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("areWirelessRoutesAvailable"))
-	return rv
-}
-
-
-// SetAreWirelessRoutesAvailable sets the value of the areWirelessRoutesAvailable property.
-// A Boolean value indicating wireless routes are available.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/arewirelessroutesavailable
-func (v_ VolumeView) SetAreWirelessRoutesAvailable(value bool) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setAreWirelessRoutesAvailable:"), value)
-}
-
 // A Boolean value indicating wireless routes are available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/areWirelessRoutesAvailable
@@ -282,6 +246,42 @@ func (v_ VolumeView) VolumeWarningSliderImage() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeWarningSliderImage
 func (v_ VolumeView) SetVolumeWarningSliderImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVolumeWarningSliderImage:"), value)
+}
+
+// A Boolean value indicating wireless routes are available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/arewirelessroutesavailable
+func (v_ VolumeView) AreWirelessRoutesAvailable() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("areWirelessRoutesAvailable"))
+	return rv
+}
+
+
+// SetAreWirelessRoutesAvailable sets the value of the areWirelessRoutesAvailable property.
+// A Boolean value indicating wireless routes are available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/arewirelessroutesavailable
+func (v_ VolumeView) SetAreWirelessRoutesAvailable(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAreWirelessRoutesAvailable:"), value)
+}
+
+// A Boolean value that indicates whether the wireless route is active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/iswirelessrouteactive
+func (v_ VolumeView) IsWirelessRouteActive() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isWirelessRouteActive"))
+	return rv
+}
+
+
+// SetIsWirelessRouteActive sets the value of the isWirelessRouteActive property.
+// A Boolean value that indicates whether the wireless route is active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/iswirelessrouteactive
+func (v_ VolumeView) SetIsWirelessRouteActive(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsWirelessRouteActive:"), value)
 }
 
 

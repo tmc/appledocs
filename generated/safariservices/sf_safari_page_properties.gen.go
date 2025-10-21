@@ -83,32 +83,6 @@ func NewSFSafariPageProperties() SFSafariPageProperties {
 
 // A Boolean value that indicates whether the page is currently active.
 //
-// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafaripageproperties/isactive
-func (s_ SFSafariPageProperties) IsActive() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isActive"))
-	return rv
-}
-
-
-// SetIsActive sets the value of the isActive property.
-// A Boolean value that indicates whether the page is currently active.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafaripageproperties/isactive
-func (s_ SFSafariPageProperties) SetIsActive(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsActive:"), value)
-}
-
-// A string the system uses as a key in a user info dictionary to identify a profile identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfextensionprofilekey
-func (s_ SFSafariPageProperties) SFExtensionProfileKey() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("SFExtensionProfileKey"))
-	return rv
-}
-
-// A Boolean value that indicates whether the page is currently active.
-//
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPageProperties/isActive
 func (s_ SFSafariPageProperties) Active() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("active"))
@@ -137,6 +111,32 @@ func (s_ SFSafariPageProperties) Url() foundation.URL {
 func (s_ SFSafariPageProperties) UsesPrivateBrowsing() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("usesPrivateBrowsing"))
 	return rv
+}
+
+// A string the system uses as a key in a user info dictionary to identify a profile identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfextensionprofilekey
+func (s_ SFSafariPageProperties) SFExtensionProfileKey() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("SFExtensionProfileKey"))
+	return rv
+}
+
+// A Boolean value that indicates whether the page is currently active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafaripageproperties/isactive
+func (s_ SFSafariPageProperties) IsActive() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// A Boolean value that indicates whether the page is currently active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafaripageproperties/isactive
+func (s_ SFSafariPageProperties) SetIsActive(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsActive:"), value)
 }
 
 

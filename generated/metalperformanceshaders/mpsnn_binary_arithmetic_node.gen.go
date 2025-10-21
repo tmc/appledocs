@@ -80,93 +80,18 @@ func NewBinaryArithmeticNode() BinaryArithmeticNode {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondaryscale
-func (b_ BinaryArithmeticNode) SecondaryScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("secondaryScale"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/bias
+func (b_ BinaryArithmeticNode) Bias() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bias"))
 	return rv
 }
 
 
-// SetSecondaryScale sets the value of the secondaryScale property.
+// SetBias sets the value of the bias property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondaryscale
-func (b_ BinaryArithmeticNode) SetSecondaryScale(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setSecondaryScale:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondarystrideinpixelsy
-func (b_ BinaryArithmeticNode) SecondaryStrideInPixelsY() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("secondaryStrideInPixelsY"))
-	return rv
-}
-
-
-// SetSecondaryStrideInPixelsY sets the value of the secondaryStrideInPixelsY property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondarystrideinpixelsy
-func (b_ BinaryArithmeticNode) SetSecondaryStrideInPixelsY(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setSecondaryStrideInPixelsY:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/minimumvalue
-func (b_ BinaryArithmeticNode) MinimumValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("minimumValue"))
-	return rv
-}
-
-
-// SetMinimumValue sets the value of the minimumValue property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/minimumvalue
-func (b_ BinaryArithmeticNode) SetMinimumValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setMinimumValue:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primarystrideinpixelsy
-func (b_ BinaryArithmeticNode) PrimaryStrideInPixelsY() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("primaryStrideInPixelsY"))
-	return rv
-}
-
-
-// SetPrimaryStrideInPixelsY sets the value of the primaryStrideInPixelsY property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primarystrideinpixelsy
-func (b_ BinaryArithmeticNode) SetPrimaryStrideInPixelsY(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setPrimaryStrideInPixelsY:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primaryscale
-func (b_ BinaryArithmeticNode) PrimaryScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("primaryScale"))
-	return rv
-}
-
-
-// SetPrimaryScale sets the value of the primaryScale property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primaryscale
-func (b_ BinaryArithmeticNode) SetPrimaryScale(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setPrimaryScale:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondarystrideinfeaturechannels
-func (b_ BinaryArithmeticNode) SecondaryStrideInFeatureChannels() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("secondaryStrideInFeatureChannels"))
-	return rv
-}
-
-
-// SetSecondaryStrideInFeatureChannels sets the value of the secondaryStrideInFeatureChannels property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondarystrideinfeaturechannels
-func (b_ BinaryArithmeticNode) SetSecondaryStrideInFeatureChannels(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setSecondaryStrideInFeatureChannels:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/bias
+func (b_ BinaryArithmeticNode) SetBias(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setBias:"), value)
 }
 
 //
@@ -185,18 +110,33 @@ func (b_ BinaryArithmeticNode) SetMaximumValue(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primarystrideinpixelsx
-func (b_ BinaryArithmeticNode) PrimaryStrideInPixelsX() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("primaryStrideInPixelsX"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/minimumvalue
+func (b_ BinaryArithmeticNode) MinimumValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("minimumValue"))
 	return rv
 }
 
 
-// SetPrimaryStrideInPixelsX sets the value of the primaryStrideInPixelsX property.
+// SetMinimumValue sets the value of the minimumValue property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primarystrideinpixelsx
-func (b_ BinaryArithmeticNode) SetPrimaryStrideInPixelsX(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setPrimaryStrideInPixelsX:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/minimumvalue
+func (b_ BinaryArithmeticNode) SetMinimumValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setMinimumValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primaryscale
+func (b_ BinaryArithmeticNode) PrimaryScale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("primaryScale"))
+	return rv
+}
+
+
+// SetPrimaryScale sets the value of the primaryScale property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primaryscale
+func (b_ BinaryArithmeticNode) SetPrimaryScale(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setPrimaryScale:"), value)
 }
 
 //
@@ -215,6 +155,66 @@ func (b_ BinaryArithmeticNode) SetPrimaryStrideInFeatureChannels(value int) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primarystrideinpixelsx
+func (b_ BinaryArithmeticNode) PrimaryStrideInPixelsX() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("primaryStrideInPixelsX"))
+	return rv
+}
+
+
+// SetPrimaryStrideInPixelsX sets the value of the primaryStrideInPixelsX property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primarystrideinpixelsx
+func (b_ BinaryArithmeticNode) SetPrimaryStrideInPixelsX(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setPrimaryStrideInPixelsX:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primarystrideinpixelsy
+func (b_ BinaryArithmeticNode) PrimaryStrideInPixelsY() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("primaryStrideInPixelsY"))
+	return rv
+}
+
+
+// SetPrimaryStrideInPixelsY sets the value of the primaryStrideInPixelsY property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primarystrideinpixelsy
+func (b_ BinaryArithmeticNode) SetPrimaryStrideInPixelsY(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setPrimaryStrideInPixelsY:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondaryscale
+func (b_ BinaryArithmeticNode) SecondaryScale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("secondaryScale"))
+	return rv
+}
+
+
+// SetSecondaryScale sets the value of the secondaryScale property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondaryscale
+func (b_ BinaryArithmeticNode) SetSecondaryScale(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setSecondaryScale:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondarystrideinfeaturechannels
+func (b_ BinaryArithmeticNode) SecondaryStrideInFeatureChannels() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("secondaryStrideInFeatureChannels"))
+	return rv
+}
+
+
+// SetSecondaryStrideInFeatureChannels sets the value of the secondaryStrideInFeatureChannels property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondarystrideinfeaturechannels
+func (b_ BinaryArithmeticNode) SetSecondaryStrideInFeatureChannels(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setSecondaryStrideInFeatureChannels:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondarystrideinpixelsx
 func (b_ BinaryArithmeticNode) SecondaryStrideInPixelsX() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("secondaryStrideInPixelsX"))
@@ -230,18 +230,18 @@ func (b_ BinaryArithmeticNode) SetSecondaryStrideInPixelsX(value int) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/bias
-func (b_ BinaryArithmeticNode) Bias() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bias"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondarystrideinpixelsy
+func (b_ BinaryArithmeticNode) SecondaryStrideInPixelsY() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("secondaryStrideInPixelsY"))
 	return rv
 }
 
 
-// SetBias sets the value of the bias property.
+// SetSecondaryStrideInPixelsY sets the value of the secondaryStrideInPixelsY property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/bias
-func (b_ BinaryArithmeticNode) SetBias(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setBias:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondarystrideinpixelsy
+func (b_ BinaryArithmeticNode) SetSecondaryStrideInPixelsY(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setSecondaryStrideInPixelsY:"), value)
 }
 
 

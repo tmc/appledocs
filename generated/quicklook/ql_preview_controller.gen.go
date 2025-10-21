@@ -90,37 +90,12 @@ func (p_ PreviewController) RefreshCurrentPreviewItem() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("refreshCurrentPreviewItem"))
 }
 
+// The item displaying in the Quick Look preview controller.
 //
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewitem/previewitemtitle
-func (p_ PreviewController) PreviewItemTitle() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("previewItemTitle"))
+// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewController/currentPreviewItem
+func (p_ PreviewController) CurrentPreviewItem() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("currentPreviewItem"))
 	return rv
-}
-
-
-// SetPreviewItemTitle sets the value of the previewItemTitle property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewitem/previewitemtitle
-func (p_ PreviewController) SetPreviewItemTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreviewItemTitle:"), objc.String(value))
-}
-
-// The preview controller’s delegate object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/delegate
-func (p_ PreviewController) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The preview controller’s delegate object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/delegate
-func (p_ PreviewController) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
 // The index within the preview item navigation list of the item displaying in the Quick Look preview controller.
@@ -159,12 +134,37 @@ func (p_ PreviewController) SetDataSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDataSource:"), value)
 }
 
-// The item displaying in the Quick Look preview controller.
+// The preview controller’s delegate object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewController/currentPreviewItem
-func (p_ PreviewController) CurrentPreviewItem() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("currentPreviewItem"))
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/delegate
+func (p_ PreviewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The preview controller’s delegate object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/delegate
+func (p_ PreviewController) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewitem/previewitemtitle
+func (p_ PreviewController) PreviewItemTitle() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("previewItemTitle"))
+	return rv
+}
+
+
+// SetPreviewItemTitle sets the value of the previewItemTitle property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewitem/previewitemtitle
+func (p_ PreviewController) SetPreviewItemTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreviewItemTitle:"), objc.String(value))
 }
 
 

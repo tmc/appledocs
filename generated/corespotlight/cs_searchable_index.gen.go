@@ -193,24 +193,6 @@ func (c_ CSSearchableIndex) IndexSearchableItemsCompletionHandler(items unsafe.P
 	objc.Send[objc.ID](c_.ID, objc.Sel("indexSearchableItems:completionHandler:"), items, completionHandler)
 }
 
-// A Boolean value that indicates whether the activity should be added to the on-device index.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
-func (c_ CSSearchableIndex) IsEligibleForSearch() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isEligibleForSearch"))
-	return rv
-}
-
-
-// SetIsEligibleForSearch sets the value of the isEligibleForSearch property.
-// A Boolean value that indicates whether the activity should be added to the on-device index.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
-func (c_ CSSearchableIndex) SetIsEligibleForSearch(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEligibleForSearch:"), value)
-}
-
 // The delegate object that can handle index-management tasks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/indexDelegate
@@ -227,6 +209,24 @@ func (c_ CSSearchableIndex) IndexDelegate() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/indexDelegate
 func (c_ CSSearchableIndex) SetIndexDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexDelegate:"), value)
+}
+
+// A Boolean value that indicates whether the activity should be added to the on-device index.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
+func (c_ CSSearchableIndex) IsEligibleForSearch() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEligibleForSearch"))
+	return rv
+}
+
+
+// SetIsEligibleForSearch sets the value of the isEligibleForSearch property.
+// A Boolean value that indicates whether the activity should be added to the on-device index.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
+func (c_ CSSearchableIndex) SetIsEligibleForSearch(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEligibleForSearch:"), value)
 }
 
 

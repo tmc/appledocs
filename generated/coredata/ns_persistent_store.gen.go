@@ -127,96 +127,6 @@ func (p_ PersistentStore) LoadMetadata(error_ unsafe.Pointer) bool {
 	return rv
 }
 
-// The spotlight exporter associated with this persistent store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/corespotlightexporter
-func (p_ PersistentStore) CoreSpotlightExporter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("coreSpotlightExporter"))
-	return rv
-}
-
-
-// SetCoreSpotlightExporter sets the value of the coreSpotlightExporter property.
-// The spotlight exporter associated with this persistent store.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/corespotlightexporter
-func (p_ PersistentStore) SetCoreSpotlightExporter(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCoreSpotlightExporter:"), value)
-}
-
-// The unique identifier for the persistent store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-func (p_ PersistentStore) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// SetIdentifier sets the value of the identifier property.
-// The unique identifier for the persistent store.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-func (p_ PersistentStore) SetIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
-}
-
-// The name of the managed object model configuration that creates the persistent store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/configurationname
-func (p_ PersistentStore) ConfigurationName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("configurationName"))
-	return rv
-}
-
-
-// SetConfigurationName sets the value of the configurationName property.
-// The name of the managed object model configuration that creates the persistent store.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/configurationname
-func (p_ PersistentStore) SetConfigurationName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setConfigurationName:"), objc.String(value))
-}
-
-// The URL for the persistent store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/url
-func (p_ PersistentStore) Url() foundation.URL {
-	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
-	return rv
-}
-
-
-// SetUrl sets the value of the url property.
-// The URL for the persistent store.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/url
-func (p_ PersistentStore) SetUrl(value foundation.URL) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
-}
-
-// A Boolean value that indicates whether the persistent store is read-only.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/isreadonly
-func (p_ PersistentStore) IsReadOnly() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isReadOnly"))
-	return rv
-}
-
-
-// SetIsReadOnly sets the value of the isReadOnly property.
-// A Boolean value that indicates whether the persistent store is read-only.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/isreadonly
-func (p_ PersistentStore) SetIsReadOnly(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
-}
-
 // A Boolean value that indicates whether the persistent store is read-only.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/isReadOnly
@@ -275,6 +185,96 @@ func (p_ PersistentStore) PersistentStoreCoordinator() unsafe.Pointer {
 func (p_ PersistentStore) Type() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
+}
+
+// The name of the managed object model configuration that creates the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/configurationname
+func (p_ PersistentStore) ConfigurationName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("configurationName"))
+	return rv
+}
+
+
+// SetConfigurationName sets the value of the configurationName property.
+// The name of the managed object model configuration that creates the persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/configurationname
+func (p_ PersistentStore) SetConfigurationName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setConfigurationName:"), objc.String(value))
+}
+
+// The spotlight exporter associated with this persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/corespotlightexporter
+func (p_ PersistentStore) CoreSpotlightExporter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("coreSpotlightExporter"))
+	return rv
+}
+
+
+// SetCoreSpotlightExporter sets the value of the coreSpotlightExporter property.
+// The spotlight exporter associated with this persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/corespotlightexporter
+func (p_ PersistentStore) SetCoreSpotlightExporter(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCoreSpotlightExporter:"), value)
+}
+
+// The unique identifier for the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
+func (p_ PersistentStore) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The unique identifier for the persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
+func (p_ PersistentStore) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the persistent store is read-only.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/isreadonly
+func (p_ PersistentStore) IsReadOnly() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isReadOnly"))
+	return rv
+}
+
+
+// SetIsReadOnly sets the value of the isReadOnly property.
+// A Boolean value that indicates whether the persistent store is read-only.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/isreadonly
+func (p_ PersistentStore) SetIsReadOnly(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
+}
+
+// The URL for the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/url
+func (p_ PersistentStore) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL for the persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/url
+func (p_ PersistentStore) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 
 

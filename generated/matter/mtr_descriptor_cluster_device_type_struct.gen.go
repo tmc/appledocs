@@ -77,21 +77,6 @@ func NewMTRDescriptorClusterDeviceTypeStruct() MTRDescriptorClusterDeviceTypeStr
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
-func (m_ MTRDescriptorClusterDeviceTypeStruct) Type() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// SetType sets the value of the type property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
-func (m_ MTRDescriptorClusterDeviceTypeStruct) SetType(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/devicetype
 func (m_ MTRDescriptorClusterDeviceTypeStruct) DeviceType() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("deviceType"))
@@ -119,6 +104,21 @@ func (m_ MTRDescriptorClusterDeviceTypeStruct) Revision() foundation.Number {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/revision
 func (m_ MTRDescriptorClusterDeviceTypeStruct) SetRevision(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevision:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
+func (m_ MTRDescriptorClusterDeviceTypeStruct) Type() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
+func (m_ MTRDescriptorClusterDeviceTypeStruct) SetType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 
 

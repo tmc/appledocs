@@ -81,21 +81,6 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest() Authorizat
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/appid
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AppID() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("appID"))
-	return rv
-}
-
-
-// SetAppID sets the value of the appID property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/appid
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAppID(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAppID:"), objc.String(value))
-}
-
 // An array of allowed credentials.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/allowedcredentials
@@ -112,6 +97,21 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AllowedCre
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/allowedcredentials
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAllowedCredentials(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowedCredentials:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/appid
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AppID() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("appID"))
+	return rv
+}
+
+
+// SetAppID sets the value of the appID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/appid
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAppID(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAppID:"), objc.String(value))
 }
 
 

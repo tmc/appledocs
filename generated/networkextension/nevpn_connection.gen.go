@@ -114,28 +114,6 @@ func (n_ NEVPNConnection) StopVPNTunnel() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("stopVPNTunnel"))
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionpassword
-func (n_ NEVPNConnection) NEVPNConnectionStartOptionPassword() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionStartOptionPassword"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionusername
-func (n_ NEVPNConnection) NEVPNConnectionStartOptionUsername() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionStartOptionUsername"))
-	return rv
-}
-
-// The domain for errors resulting from VPN connection calls.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionerrordomain
-func (n_ NEVPNConnection) NEVPNConnectionErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionErrorDomain"))
-	return rv
-}
-
 // The date and time when the connection status changed to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection/connectedDate
@@ -156,6 +134,28 @@ func (n_ NEVPNConnection) Manager() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection/status
 func (n_ NEVPNConnection) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("status"))
+	return rv
+}
+
+// The domain for errors resulting from VPN connection calls.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionerrordomain
+func (n_ NEVPNConnection) NEVPNConnectionErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionErrorDomain"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionpassword
+func (n_ NEVPNConnection) NEVPNConnectionStartOptionPassword() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionStartOptionPassword"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionusername
+func (n_ NEVPNConnection) NEVPNConnectionStartOptionUsername() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionStartOptionUsername"))
 	return rv
 }
 

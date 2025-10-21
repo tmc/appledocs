@@ -78,21 +78,6 @@ func NewMTROtaSoftwareUpdateRequestorClusterProviderLocation() MTROtaSoftwareUpd
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/fabricindex
-func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
-	return rv
-}
-
-
-// SetFabricIndex sets the value of the fabricIndex property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/fabricindex
-func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) SetFabricIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/endpoint
 func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) Endpoint() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
@@ -105,6 +90,21 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) Endpoint() founda
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/endpoint
 func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) SetEndpoint(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/fabricindex
+func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/fabricindex
+func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
 //

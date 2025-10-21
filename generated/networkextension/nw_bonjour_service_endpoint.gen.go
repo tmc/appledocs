@@ -100,6 +100,22 @@ func (nc _NWBonjourServiceEndpointClass) EndpointWithNameTypeDomain(name string,
 	return rv
 }
 
+// The endpoint’s Bonjour service domain, such as .
+//
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/domain
+func (n_ NWBonjourServiceEndpoint) Domain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("domain"))
+	return rv
+}
+
+// The endpoint’s Bonjour service type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/type
+func (n_ NWBonjourServiceEndpoint) Type() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("type"))
+	return rv
+}
+
 // The endpoint’s Bonjour service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwbonjourserviceendpoint/name
@@ -116,22 +132,6 @@ func (n_ NWBonjourServiceEndpoint) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwbonjourserviceendpoint/name
 func (n_ NWBonjourServiceEndpoint) SetName(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// The endpoint’s Bonjour service domain, such as .
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/domain
-func (n_ NWBonjourServiceEndpoint) Domain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("domain"))
-	return rv
-}
-
-// The endpoint’s Bonjour service type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/type
-func (n_ NWBonjourServiceEndpoint) Type() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("type"))
-	return rv
 }
 
 

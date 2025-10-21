@@ -76,18 +76,18 @@ func NewMTRContentLauncherClusterStyleInformationStruct() MTRContentLauncherClus
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/imageurl-8jrvl
-func (m_ MTRContentLauncherClusterStyleInformationStruct) ImageUrl() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("imageUrl"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/color
+func (m_ MTRContentLauncherClusterStyleInformationStruct) Color() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("color"))
 	return rv
 }
 
 
-// SetImageUrl sets the value of the imageUrl property.
+// SetColor sets the value of the color property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/imageurl-8jrvl
-func (m_ MTRContentLauncherClusterStyleInformationStruct) SetImageUrl(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setImageUrl:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/color
+func (m_ MTRContentLauncherClusterStyleInformationStruct) SetColor(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setColor:"), objc.String(value))
 }
 
 //
@@ -106,18 +106,18 @@ func (m_ MTRContentLauncherClusterStyleInformationStruct) SetImageURL(value stri
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/color
-func (m_ MTRContentLauncherClusterStyleInformationStruct) Color() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("color"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/imageurl-8jrvl
+func (m_ MTRContentLauncherClusterStyleInformationStruct) ImageUrl() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("imageUrl"))
 	return rv
 }
 
 
-// SetColor sets the value of the color property.
+// SetImageUrl sets the value of the imageUrl property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/color
-func (m_ MTRContentLauncherClusterStyleInformationStruct) SetColor(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setColor:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/imageurl-8jrvl
+func (m_ MTRContentLauncherClusterStyleInformationStruct) SetImageUrl(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImageUrl:"), objc.String(value))
 }
 
 //

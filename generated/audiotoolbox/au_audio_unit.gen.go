@@ -286,327 +286,6 @@ func (a_ AudioUnit) TokenByAddingRenderObserver(observer unsafe.Pointer) int {
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey
-func (a_ AudioUnit) KAUPresetNameKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetNameKey"))
-	return rv
-}
-
-
-// SetKAUPresetNameKey sets the value of the kAUPresetNameKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey
-func (a_ AudioUnit) SetKAUPresetNameKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetNameKey:"), objc.String(value))
-}
-
-// Communicates to an audio unit that it is rendering offline.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrenderingoffline
-func (a_ AudioUnit) IsRenderingOffline() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isRenderingOffline"))
-	return rv
-}
-
-
-// SetIsRenderingOffline sets the value of the isRenderingOffline property.
-// Communicates to an audio unit that it is rendering offline.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrenderingoffline
-func (a_ AudioUnit) SetIsRenderingOffline(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRenderingOffline:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey
-func (a_ AudioUnit) KAUPresetDataKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetDataKey"))
-	return rv
-}
-
-
-// SetKAUPresetDataKey sets the value of the kAUPresetDataKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey
-func (a_ AudioUnit) SetKAUPresetDataKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetDataKey:"), objc.String(value))
-}
-
-// Specifies whether an audio unit responds to MIDI events.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/ismusicdeviceoreffect
-func (a_ AudioUnit) IsMusicDeviceOrEffect() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isMusicDeviceOrEffect"))
-	return rv
-}
-
-
-// SetIsMusicDeviceOrEffect sets the value of the isMusicDeviceOrEffect property.
-// Specifies whether an audio unit responds to MIDI events.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/ismusicdeviceoreffect
-func (a_ AudioUnit) SetIsMusicDeviceOrEffect(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsMusicDeviceOrEffect:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs
-func (a_ AudioUnit) KAUPresetExternalFileRefs() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetExternalFileRefs"))
-	return rv
-}
-
-
-// SetKAUPresetExternalFileRefs sets the value of the kAUPresetExternalFileRefs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs
-func (a_ AudioUnit) SetKAUPresetExternalFileRefs(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetExternalFileRefs:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrunning
-func (a_ AudioUnit) IsRunning() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
-	return rv
-}
-
-
-// SetIsRunning sets the value of the isRunning property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrunning
-func (a_ AudioUnit) SetIsRunning(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
-}
-
-// A flag enabling audio output from the unit.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isoutputenabled
-func (a_ AudioUnit) IsOutputEnabled() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isOutputEnabled"))
-	return rv
-}
-
-
-// SetIsOutputEnabled sets the value of the isOutputEnabled property.
-// A flag enabling audio output from the unit.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isoutputenabled
-func (a_ AudioUnit) SetIsOutputEnabled(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsOutputEnabled:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey
-func (a_ AudioUnit) KAUPresetElementNameKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetElementNameKey"))
-	return rv
-}
-
-
-// SetKAUPresetElementNameKey sets the value of the kAUPresetElementNameKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey
-func (a_ AudioUnit) SetKAUPresetElementNameKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetElementNameKey:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey
-func (a_ AudioUnit) KAUPresetSubtypeKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetSubtypeKey"))
-	return rv
-}
-
-
-// SetKAUPresetSubtypeKey sets the value of the kAUPresetSubtypeKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey
-func (a_ AudioUnit) SetKAUPresetSubtypeKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetSubtypeKey:"), objc.String(value))
-}
-
-// If present, distinguishes a global preset that is set on the global scope from a part-based preset that is set on the part scope. The value of this key is defined by the audio unit it applies to.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey
-func (a_ AudioUnit) KAUPresetPartKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetPartKey"))
-	return rv
-}
-
-
-// SetKAUPresetPartKey sets the value of the kAUPresetPartKey property.
-// If present, distinguishes a global preset that is set on the global scope from a part-based preset that is set on the part scope. The value of this key is defined by the audio unit it applies to.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey
-func (a_ AudioUnit) SetKAUPresetPartKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetPartKey:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey
-func (a_ AudioUnit) KAUPresetMASDataKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetMASDataKey"))
-	return rv
-}
-
-
-// SetKAUPresetMASDataKey sets the value of the kAUPresetMASDataKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey
-func (a_ AudioUnit) SetKAUPresetMASDataKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetMASDataKey:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey
-func (a_ AudioUnit) KAUPresetVersionKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVersionKey"))
-	return rv
-}
-
-
-// SetKAUPresetVersionKey sets the value of the kAUPresetVersionKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey
-func (a_ AudioUnit) SetKAUPresetVersionKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVersionKey:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey
-func (a_ AudioUnit) KAUPresetRenderQualityKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetRenderQualityKey"))
-	return rv
-}
-
-
-// SetKAUPresetRenderQualityKey sets the value of the kAUPresetRenderQualityKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey
-func (a_ AudioUnit) SetKAUPresetRenderQualityKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetRenderQualityKey:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey
-func (a_ AudioUnit) KAUPresetCPULoadKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetCPULoadKey"))
-	return rv
-}
-
-
-// SetKAUPresetCPULoadKey sets the value of the kAUPresetCPULoadKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey
-func (a_ AudioUnit) SetKAUPresetCPULoadKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetCPULoadKey:"), objc.String(value))
-}
-
-// A flag enabling audio input from the unit.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isinputenabled
-func (a_ AudioUnit) IsInputEnabled() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isInputEnabled"))
-	return rv
-}
-
-
-// SetIsInputEnabled sets the value of the isInputEnabled property.
-// A flag enabling audio input from the unit.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isinputenabled
-func (a_ AudioUnit) SetIsInputEnabled(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsInputEnabled:"), value)
-}
-
-// VST state from a VST “bank.”
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey
-func (a_ AudioUnit) KAUPresetVSTDataKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVSTDataKey"))
-	return rv
-}
-
-
-// SetKAUPresetVSTDataKey sets the value of the kAUPresetVSTDataKey property.
-// VST state from a VST “bank.”
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey
-func (a_ AudioUnit) SetKAUPresetVSTDataKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVSTDataKey:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey
-func (a_ AudioUnit) KAUPresetTypeKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetTypeKey"))
-	return rv
-}
-
-
-// SetKAUPresetTypeKey sets the value of the kAUPresetTypeKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey
-func (a_ AudioUnit) SetKAUPresetTypeKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetTypeKey:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey
-func (a_ AudioUnit) KAUPresetManufacturerKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetManufacturerKey"))
-	return rv
-}
-
-
-// SetKAUPresetManufacturerKey sets the value of the kAUPresetManufacturerKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey
-func (a_ AudioUnit) SetKAUPresetManufacturerKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetManufacturerKey:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey
-func (a_ AudioUnit) KAUPresetNumberKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetNumberKey"))
-	return rv
-}
-
-
-// SetKAUPresetNumberKey sets the value of the kAUPresetNumberKey property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey
-func (a_ AudioUnit) SetKAUPresetNumberKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetNumberKey:"), objc.String(value))
-}
-
-// VST state from a VST “preset.”
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey
-func (a_ AudioUnit) KAUPresetVSTPresetKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVSTPresetKey"))
-	return rv
-}
-
-
-// SetKAUPresetVSTPresetKey sets the value of the kAUPresetVSTPresetKey property.
-// VST state from a VST “preset.”
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey
-func (a_ AudioUnit) SetKAUPresetVSTPresetKey(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVSTPresetKey:"), objc.String(value))
-}
-
 // Special read-only property for KVO.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/allParameterValues
@@ -1297,6 +976,327 @@ func (a_ AudioUnit) UserPresets() []AudioUnitPreset {
 func (a_ AudioUnit) VirtualMIDICableCount() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("virtualMIDICableCount"))
 	return rv
+}
+
+// A flag enabling audio input from the unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isinputenabled
+func (a_ AudioUnit) IsInputEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isInputEnabled"))
+	return rv
+}
+
+
+// SetIsInputEnabled sets the value of the isInputEnabled property.
+// A flag enabling audio input from the unit.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isinputenabled
+func (a_ AudioUnit) SetIsInputEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsInputEnabled:"), value)
+}
+
+// Specifies whether an audio unit responds to MIDI events.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/ismusicdeviceoreffect
+func (a_ AudioUnit) IsMusicDeviceOrEffect() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isMusicDeviceOrEffect"))
+	return rv
+}
+
+
+// SetIsMusicDeviceOrEffect sets the value of the isMusicDeviceOrEffect property.
+// Specifies whether an audio unit responds to MIDI events.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/ismusicdeviceoreffect
+func (a_ AudioUnit) SetIsMusicDeviceOrEffect(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsMusicDeviceOrEffect:"), value)
+}
+
+// A flag enabling audio output from the unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isoutputenabled
+func (a_ AudioUnit) IsOutputEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isOutputEnabled"))
+	return rv
+}
+
+
+// SetIsOutputEnabled sets the value of the isOutputEnabled property.
+// A flag enabling audio output from the unit.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isoutputenabled
+func (a_ AudioUnit) SetIsOutputEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsOutputEnabled:"), value)
+}
+
+// Communicates to an audio unit that it is rendering offline.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrenderingoffline
+func (a_ AudioUnit) IsRenderingOffline() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isRenderingOffline"))
+	return rv
+}
+
+
+// SetIsRenderingOffline sets the value of the isRenderingOffline property.
+// Communicates to an audio unit that it is rendering offline.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrenderingoffline
+func (a_ AudioUnit) SetIsRenderingOffline(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRenderingOffline:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrunning
+func (a_ AudioUnit) IsRunning() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
+	return rv
+}
+
+
+// SetIsRunning sets the value of the isRunning property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrunning
+func (a_ AudioUnit) SetIsRunning(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey
+func (a_ AudioUnit) KAUPresetCPULoadKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetCPULoadKey"))
+	return rv
+}
+
+
+// SetKAUPresetCPULoadKey sets the value of the kAUPresetCPULoadKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey
+func (a_ AudioUnit) SetKAUPresetCPULoadKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetCPULoadKey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey
+func (a_ AudioUnit) KAUPresetDataKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetDataKey"))
+	return rv
+}
+
+
+// SetKAUPresetDataKey sets the value of the kAUPresetDataKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey
+func (a_ AudioUnit) SetKAUPresetDataKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetDataKey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey
+func (a_ AudioUnit) KAUPresetElementNameKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetElementNameKey"))
+	return rv
+}
+
+
+// SetKAUPresetElementNameKey sets the value of the kAUPresetElementNameKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey
+func (a_ AudioUnit) SetKAUPresetElementNameKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetElementNameKey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs
+func (a_ AudioUnit) KAUPresetExternalFileRefs() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetExternalFileRefs"))
+	return rv
+}
+
+
+// SetKAUPresetExternalFileRefs sets the value of the kAUPresetExternalFileRefs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs
+func (a_ AudioUnit) SetKAUPresetExternalFileRefs(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetExternalFileRefs:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey
+func (a_ AudioUnit) KAUPresetMASDataKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetMASDataKey"))
+	return rv
+}
+
+
+// SetKAUPresetMASDataKey sets the value of the kAUPresetMASDataKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey
+func (a_ AudioUnit) SetKAUPresetMASDataKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetMASDataKey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey
+func (a_ AudioUnit) KAUPresetManufacturerKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetManufacturerKey"))
+	return rv
+}
+
+
+// SetKAUPresetManufacturerKey sets the value of the kAUPresetManufacturerKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey
+func (a_ AudioUnit) SetKAUPresetManufacturerKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetManufacturerKey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey
+func (a_ AudioUnit) KAUPresetNameKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetNameKey"))
+	return rv
+}
+
+
+// SetKAUPresetNameKey sets the value of the kAUPresetNameKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey
+func (a_ AudioUnit) SetKAUPresetNameKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetNameKey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey
+func (a_ AudioUnit) KAUPresetNumberKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetNumberKey"))
+	return rv
+}
+
+
+// SetKAUPresetNumberKey sets the value of the kAUPresetNumberKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey
+func (a_ AudioUnit) SetKAUPresetNumberKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetNumberKey:"), objc.String(value))
+}
+
+// If present, distinguishes a global preset that is set on the global scope from a part-based preset that is set on the part scope. The value of this key is defined by the audio unit it applies to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey
+func (a_ AudioUnit) KAUPresetPartKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetPartKey"))
+	return rv
+}
+
+
+// SetKAUPresetPartKey sets the value of the kAUPresetPartKey property.
+// If present, distinguishes a global preset that is set on the global scope from a part-based preset that is set on the part scope. The value of this key is defined by the audio unit it applies to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey
+func (a_ AudioUnit) SetKAUPresetPartKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetPartKey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey
+func (a_ AudioUnit) KAUPresetRenderQualityKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetRenderQualityKey"))
+	return rv
+}
+
+
+// SetKAUPresetRenderQualityKey sets the value of the kAUPresetRenderQualityKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey
+func (a_ AudioUnit) SetKAUPresetRenderQualityKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetRenderQualityKey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey
+func (a_ AudioUnit) KAUPresetSubtypeKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetSubtypeKey"))
+	return rv
+}
+
+
+// SetKAUPresetSubtypeKey sets the value of the kAUPresetSubtypeKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey
+func (a_ AudioUnit) SetKAUPresetSubtypeKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetSubtypeKey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey
+func (a_ AudioUnit) KAUPresetTypeKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetTypeKey"))
+	return rv
+}
+
+
+// SetKAUPresetTypeKey sets the value of the kAUPresetTypeKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey
+func (a_ AudioUnit) SetKAUPresetTypeKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetTypeKey:"), objc.String(value))
+}
+
+// VST state from a VST “bank.”
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey
+func (a_ AudioUnit) KAUPresetVSTDataKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVSTDataKey"))
+	return rv
+}
+
+
+// SetKAUPresetVSTDataKey sets the value of the kAUPresetVSTDataKey property.
+// VST state from a VST “bank.”
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey
+func (a_ AudioUnit) SetKAUPresetVSTDataKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVSTDataKey:"), objc.String(value))
+}
+
+// VST state from a VST “preset.”
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey
+func (a_ AudioUnit) KAUPresetVSTPresetKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVSTPresetKey"))
+	return rv
+}
+
+
+// SetKAUPresetVSTPresetKey sets the value of the kAUPresetVSTPresetKey property.
+// VST state from a VST “preset.”
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey
+func (a_ AudioUnit) SetKAUPresetVSTPresetKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVSTPresetKey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey
+func (a_ AudioUnit) KAUPresetVersionKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVersionKey"))
+	return rv
+}
+
+
+// SetKAUPresetVersionKey sets the value of the kAUPresetVersionKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey
+func (a_ AudioUnit) SetKAUPresetVersionKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVersionKey:"), objc.String(value))
 }
 
 

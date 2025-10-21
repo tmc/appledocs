@@ -78,24 +78,6 @@ func NewSFSpeechRecognitionMetadata() SFSpeechRecognitionMetadata {
 }
 
 
-// An analysis of the transcription segment’s vocal properties.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/voiceanalytics
-func (s_ SFSpeechRecognitionMetadata) VoiceAnalytics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voiceAnalytics"))
-	return rv
-}
-
-
-// SetVoiceAnalytics sets the value of the voiceAnalytics property.
-// An analysis of the transcription segment’s vocal properties.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/voiceanalytics
-func (s_ SFSpeechRecognitionMetadata) SetVoiceAnalytics(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceAnalytics:"), value)
-}
-
 // The average pause duration between words, measured in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/averagepauseduration
@@ -112,24 +94,6 @@ func (s_ SFSpeechRecognitionMetadata) AveragePauseDuration() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/averagepauseduration
 func (s_ SFSpeechRecognitionMetadata) SetAveragePauseDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAveragePauseDuration:"), value)
-}
-
-// The start timestamp of speech in the audio.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechstarttimestamp
-func (s_ SFSpeechRecognitionMetadata) SpeechStartTimestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechStartTimestamp"))
-	return rv
-}
-
-
-// SetSpeechStartTimestamp sets the value of the speechStartTimestamp property.
-// The start timestamp of speech in the audio.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechstarttimestamp
-func (s_ SFSpeechRecognitionMetadata) SetSpeechStartTimestamp(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechStartTimestamp:"), value)
 }
 
 // The number of words spoken per minute.
@@ -166,6 +130,42 @@ func (s_ SFSpeechRecognitionMetadata) SpeechDuration() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechduration
 func (s_ SFSpeechRecognitionMetadata) SetSpeechDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechDuration:"), value)
+}
+
+// The start timestamp of speech in the audio.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechstarttimestamp
+func (s_ SFSpeechRecognitionMetadata) SpeechStartTimestamp() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechStartTimestamp"))
+	return rv
+}
+
+
+// SetSpeechStartTimestamp sets the value of the speechStartTimestamp property.
+// The start timestamp of speech in the audio.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechstarttimestamp
+func (s_ SFSpeechRecognitionMetadata) SetSpeechStartTimestamp(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechStartTimestamp:"), value)
+}
+
+// An analysis of the transcription segment’s vocal properties.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/voiceanalytics
+func (s_ SFSpeechRecognitionMetadata) VoiceAnalytics() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voiceAnalytics"))
+	return rv
+}
+
+
+// SetVoiceAnalytics sets the value of the voiceAnalytics property.
+// An analysis of the transcription segment’s vocal properties.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/voiceanalytics
+func (s_ SFSpeechRecognitionMetadata) SetVoiceAnalytics(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceAnalytics:"), value)
 }
 
 

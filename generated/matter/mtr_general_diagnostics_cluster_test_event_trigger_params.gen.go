@@ -77,36 +77,6 @@ func NewMTRGeneralDiagnosticsClusterTestEventTriggerParams() MTRGeneralDiagnosti
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/eventtrigger
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) EventTrigger() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("eventTrigger"))
-	return rv
-}
-
-
-// SetEventTrigger sets the value of the eventTrigger property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/eventtrigger
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetEventTrigger(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEventTrigger:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/timedinvoketimeoutms
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/timedinvoketimeoutms
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/enablekey
 func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) EnableKey() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("enableKey"))
@@ -122,6 +92,21 @@ func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetEnableKey(value 
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/eventtrigger
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) EventTrigger() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("eventTrigger"))
+	return rv
+}
+
+
+// SetEventTrigger sets the value of the eventTrigger property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/eventtrigger
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetEventTrigger(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEventTrigger:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/serversideprocessingtimeout
 func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -134,6 +119,21 @@ func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) ServerSideProcessin
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/serversideprocessingtimeout
 func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/timedinvoketimeoutms
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/timedinvoketimeoutms
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

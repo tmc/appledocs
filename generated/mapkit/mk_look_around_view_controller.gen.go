@@ -80,22 +80,22 @@ func NewMKLookAroundViewController() MKLookAroundViewController {
 }
 
 
-// The filter used to determine the points of interest shown on the map.
+// A value that indicates the badge’s position on the LookAround view.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/pointofinterestfilter
-func (m_ MKLookAroundViewController) PointOfInterestFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/badgeposition
+func (m_ MKLookAroundViewController) BadgePosition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("badgePosition"))
 	return rv
 }
 
 
-// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
-// The filter used to determine the points of interest shown on the map.
+// SetBadgePosition sets the value of the badgePosition property.
+// A value that indicates the badge’s position on the LookAround view.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/pointofinterestfilter
-func (m_ MKLookAroundViewController) SetPointOfInterestFilter(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/badgeposition
+func (m_ MKLookAroundViewController) SetBadgePosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBadgePosition:"), value)
 }
 
 // An object you provide to receive events related to the user’s interaction with the LookAround view controller.
@@ -116,22 +116,40 @@ func (m_ MKLookAroundViewController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
 
-// A value that indicates the badge’s position on the LookAround view.
+// A Boolean value that indicates whether the map’s navigation controls are visible.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/badgeposition
-func (m_ MKLookAroundViewController) BadgePosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("badgePosition"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/isnavigationenabled
+func (m_ MKLookAroundViewController) IsNavigationEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isNavigationEnabled"))
 	return rv
 }
 
 
-// SetBadgePosition sets the value of the badgePosition property.
-// A value that indicates the badge’s position on the LookAround view.
+// SetIsNavigationEnabled sets the value of the isNavigationEnabled property.
+// A Boolean value that indicates whether the map’s navigation controls are visible.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/badgeposition
-func (m_ MKLookAroundViewController) SetBadgePosition(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBadgePosition:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/isnavigationenabled
+func (m_ MKLookAroundViewController) SetIsNavigationEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsNavigationEnabled:"), value)
+}
+
+// The filter used to determine the points of interest shown on the map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/pointofinterestfilter
+func (m_ MKLookAroundViewController) PointOfInterestFilter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+	return rv
+}
+
+
+// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
+// The filter used to determine the points of interest shown on the map.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/pointofinterestfilter
+func (m_ MKLookAroundViewController) SetPointOfInterestFilter(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
 // The LookAround scene.
@@ -168,24 +186,6 @@ func (m_ MKLookAroundViewController) ShowsRoadLabels() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/showsroadlabels
 func (m_ MKLookAroundViewController) SetShowsRoadLabels(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRoadLabels:"), value)
-}
-
-// A Boolean value that indicates whether the map’s navigation controls are visible.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/isnavigationenabled
-func (m_ MKLookAroundViewController) IsNavigationEnabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isNavigationEnabled"))
-	return rv
-}
-
-
-// SetIsNavigationEnabled sets the value of the isNavigationEnabled property.
-// A Boolean value that indicates whether the map’s navigation controls are visible.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/isnavigationenabled
-func (m_ MKLookAroundViewController) SetIsNavigationEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsNavigationEnabled:"), value)
 }
 
 

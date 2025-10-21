@@ -77,6 +77,21 @@ func NewMTROperationalCredentialsClusterRemoveFabricParams() MTROperationalCrede
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/fabricindex
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/fabricindex
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/serversideprocessingtimeout
 func (m_ MTROperationalCredentialsClusterRemoveFabricParams) ServerSideProcessingTimeout() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
@@ -104,21 +119,6 @@ func (m_ MTROperationalCredentialsClusterRemoveFabricParams) TimedInvokeTimeoutM
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/timedinvoketimeoutms
 func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/fabricindex
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
-	return rv
-}
-
-
-// SetFabricIndex sets the value of the fabricIndex property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/fabricindex
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetFabricIndex(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
 

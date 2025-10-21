@@ -94,22 +94,20 @@ func NewEKVirtualConferenceURLDescriptorWithTitleURL(title string, URL foundatio
 }
 
 
-// An array that contains objects with details about where to join the virtual conference.
+// The user-visible name of a room where virtual conferences take place, such as Personal Room or Team Room.
 //
-// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/urldescriptors
-func (e_ EKVirtualConferenceURLDescriptor) UrlDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("urlDescriptors"))
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceURLDescriptor/title
+func (e_ EKVirtualConferenceURLDescriptor) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 
-
-// SetUrlDescriptors sets the value of the urlDescriptors property.
-// An array that contains objects with details about where to join the virtual conference.
-
+// The URL that users open to join a virtual conference.
 //
-// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/urldescriptors
-func (e_ EKVirtualConferenceURLDescriptor) SetUrlDescriptors(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setUrlDescriptors:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceURLDescriptor/url
+func (e_ EKVirtualConferenceURLDescriptor) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("URL"))
+	return rv
 }
 
 // Additional information about the conference that users may find helpful.
@@ -130,20 +128,22 @@ func (e_ EKVirtualConferenceURLDescriptor) SetConferenceDetails(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setConferenceDetails:"), objc.String(value))
 }
 
-// The user-visible name of a room where virtual conferences take place, such as Personal Room or Team Room.
+// An array that contains objects with details about where to join the virtual conference.
 //
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceURLDescriptor/title
-func (e_ EKVirtualConferenceURLDescriptor) Title() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("title"))
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/urldescriptors
+func (e_ EKVirtualConferenceURLDescriptor) UrlDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("urlDescriptors"))
 	return rv
 }
 
-// The URL that users open to join a virtual conference.
+
+// SetUrlDescriptors sets the value of the urlDescriptors property.
+// An array that contains objects with details about where to join the virtual conference.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceURLDescriptor/url
-func (e_ EKVirtualConferenceURLDescriptor) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("URL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/urldescriptors
+func (e_ EKVirtualConferenceURLDescriptor) SetUrlDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setUrlDescriptors:"), value)
 }
 
 

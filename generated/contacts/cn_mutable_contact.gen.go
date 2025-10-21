@@ -81,14 +81,6 @@ func NewCNMutableContact() CNMutableContact {
 }
 
 
-// Exception thrown when an accessed property was not fetched.
-//
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactpropertynotfetchedexceptionname
-func (c_ CNMutableContact) CNContactPropertyNotFetchedExceptionName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNContactPropertyNotFetchedExceptionName"))
-	return rv
-}
-
 // A date component for the Gregorian birthday of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/birthday
@@ -653,6 +645,14 @@ func (c_ CNMutableContact) SetUrlAddresses(value []CNLabeledValue) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlAddresses:"), nsArray)
+}
+
+// Exception thrown when an accessed property was not fetched.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactpropertynotfetchedexceptionname
+func (c_ CNMutableContact) CNContactPropertyNotFetchedExceptionName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNContactPropertyNotFetchedExceptionName"))
+	return rv
 }
 
 

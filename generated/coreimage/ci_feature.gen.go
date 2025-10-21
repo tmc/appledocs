@@ -81,19 +81,19 @@ func NewFeature() Feature {
 }
 
 
-// A Core Image feature type for rectangular object.
+// The rectangle that holds discovered feature.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle
-func (f_ Feature) CIFeatureTypeRectangle() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeRectangle"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/bounds
+func (f_ Feature) Bounds() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](f_.ID, objc.Sel("bounds"))
 	return rv
 }
 
-// A Core Image feature type for text.
+// The type of feature that was discovered.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypetext
-func (f_ Feature) CIFeatureTypeText() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeText"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/type
+func (f_ Feature) Type() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -113,19 +113,19 @@ func (f_ Feature) CIFeatureTypeQRCode() string {
 	return rv
 }
 
-// The rectangle that holds discovered feature.
+// A Core Image feature type for rectangular object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/bounds
-func (f_ Feature) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](f_.ID, objc.Sel("bounds"))
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle
+func (f_ Feature) CIFeatureTypeRectangle() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeRectangle"))
 	return rv
 }
 
-// The type of feature that was discovered.
+// A Core Image feature type for text.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/type
-func (f_ Feature) Type() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("type"))
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypetext
+func (f_ Feature) CIFeatureTypeText() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeText"))
 	return rv
 }
 

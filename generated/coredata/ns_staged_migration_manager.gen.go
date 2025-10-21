@@ -80,14 +80,6 @@ func NewStagedMigrationManager() StagedMigrationManager {
 }
 
 
-// The key for specifying your staged migration manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstorestagedmigrationmanageroptionkey
-func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKey() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("NSPersistentStoreStagedMigrationManagerOptionKey"))
-	return rv
-}
-
 // The container that provides access to the migrating persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager/container
@@ -101,6 +93,14 @@ func (s_ StagedMigrationManager) Container() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager/stages
 func (s_ StagedMigrationManager) Stages() []MigrationStage {
 	rv := objc.Send[[]MigrationStage](s_.ID, objc.Sel("stages"))
+	return rv
+}
+
+// The key for specifying your staged migration manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstorestagedmigrationmanageroptionkey
+func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKey() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("NSPersistentStoreStagedMigrationManagerOptionKey"))
 	return rv
 }
 

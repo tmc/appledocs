@@ -78,14 +78,6 @@ func NewMXAverage() MXAverage {
 }
 
 
-// Error domain for error values from app metrics.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXAverage) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
-	return rv
-}
-
 // The value of the average.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAverage/averageMeasurement
@@ -107,6 +99,14 @@ func (m_ MXAverage) SampleCount() int {
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAverage/standardDeviation
 func (m_ MXAverage) StandardDeviation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("standardDeviation"))
+	return rv
+}
+
+// Error domain for error values from app metrics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
+func (m_ MXAverage) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

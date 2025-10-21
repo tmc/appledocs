@@ -89,122 +89,6 @@ func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch 
 	return rv
 }
 
-// An array of persistent stores specified for the fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (f_ FetchRequestExpression) AffectedStores() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("affectedStores"))
-	return rv
-}
-
-
-// SetAffectedStores sets the value of the affectedStores property.
-// An array of persistent stores specified for the fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (f_ FetchRequestExpression) SetAffectedStores(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
-}
-
-// The fetch offset of the fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (f_ FetchRequestExpression) FetchOffset() int {
-	rv := objc.Send[int](f_.ID, objc.Sel("fetchOffset"))
-	return rv
-}
-
-
-// SetFetchOffset sets the value of the fetchOffset property.
-// The fetch offset of the fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (f_ FetchRequestExpression) SetFetchOffset(value int) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
-}
-
-// This constant specifies the fetch request expression type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpressiontype
-func (f_ FetchRequestExpression) NSFetchRequestExpressionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("NSFetchRequestExpressionType"))
-	return rv
-}
-
-// The fetch limit of the fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (f_ FetchRequestExpression) FetchLimit() int {
-	rv := objc.Send[int](f_.ID, objc.Sel("fetchLimit"))
-	return rv
-}
-
-
-// SetFetchLimit sets the value of the fetchLimit property.
-// The fetch limit of the fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (f_ FetchRequestExpression) SetFetchLimit(value int) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
-}
-
-// Returns a Boolean value that indicates whether the receiver represents a count-only fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpression/iscountonlyrequest
-func (f_ FetchRequestExpression) IsCountOnlyRequest() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isCountOnlyRequest"))
-	return rv
-}
-
-
-// SetIsCountOnlyRequest sets the value of the isCountOnlyRequest property.
-// Returns a Boolean value that indicates whether the receiver represents a count-only fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpression/iscountonlyrequest
-func (f_ FetchRequestExpression) SetIsCountOnlyRequest(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsCountOnlyRequest:"), value)
-}
-
-// The batch size of the objects specified in the fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (f_ FetchRequestExpression) FetchBatchSize() int {
-	rv := objc.Send[int](f_.ID, objc.Sel("fetchBatchSize"))
-	return rv
-}
-
-
-// SetFetchBatchSize sets the value of the fetchBatchSize property.
-// The batch size of the objects specified in the fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (f_ FetchRequestExpression) SetFetchBatchSize(value int) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
-}
-
-// The predicate of the fetch request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchRequestExpression) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("predicate"))
-	return rv
-}
-
-
-// SetPredicate sets the value of the predicate property.
-// The predicate of the fetch request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchRequestExpression) SetPredicate(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
-}
-
 // The expression for the receiver’s managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/contextExpression
@@ -226,6 +110,122 @@ func (f_ FetchRequestExpression) CountOnlyRequest() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/requestExpression
 func (f_ FetchRequestExpression) RequestExpression() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("requestExpression"))
+	return rv
+}
+
+// An array of persistent stores specified for the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
+func (f_ FetchRequestExpression) AffectedStores() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("affectedStores"))
+	return rv
+}
+
+
+// SetAffectedStores sets the value of the affectedStores property.
+// An array of persistent stores specified for the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
+func (f_ FetchRequestExpression) SetAffectedStores(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
+}
+
+// The batch size of the objects specified in the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
+func (f_ FetchRequestExpression) FetchBatchSize() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("fetchBatchSize"))
+	return rv
+}
+
+
+// SetFetchBatchSize sets the value of the fetchBatchSize property.
+// The batch size of the objects specified in the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
+func (f_ FetchRequestExpression) SetFetchBatchSize(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
+}
+
+// The fetch limit of the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
+func (f_ FetchRequestExpression) FetchLimit() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("fetchLimit"))
+	return rv
+}
+
+
+// SetFetchLimit sets the value of the fetchLimit property.
+// The fetch limit of the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
+func (f_ FetchRequestExpression) SetFetchLimit(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
+}
+
+// The fetch offset of the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
+func (f_ FetchRequestExpression) FetchOffset() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("fetchOffset"))
+	return rv
+}
+
+
+// SetFetchOffset sets the value of the fetchOffset property.
+// The fetch offset of the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
+func (f_ FetchRequestExpression) SetFetchOffset(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
+}
+
+// The predicate of the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
+func (f_ FetchRequestExpression) Predicate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("predicate"))
+	return rv
+}
+
+
+// SetPredicate sets the value of the predicate property.
+// The predicate of the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
+func (f_ FetchRequestExpression) SetPredicate(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
+}
+
+// Returns a Boolean value that indicates whether the receiver represents a count-only fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpression/iscountonlyrequest
+func (f_ FetchRequestExpression) IsCountOnlyRequest() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isCountOnlyRequest"))
+	return rv
+}
+
+
+// SetIsCountOnlyRequest sets the value of the isCountOnlyRequest property.
+// Returns a Boolean value that indicates whether the receiver represents a count-only fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpression/iscountonlyrequest
+func (f_ FetchRequestExpression) SetIsCountOnlyRequest(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsCountOnlyRequest:"), value)
+}
+
+// This constant specifies the fetch request expression type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpressiontype
+func (f_ FetchRequestExpression) NSFetchRequestExpressionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("NSFetchRequestExpressionType"))
 	return rv
 }
 

@@ -118,6 +118,14 @@ func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationMod
 	return rv
 }
 
+// The entity mappings for the mapping model, keyed by name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/entityMappingsByName
+func (m_ MappingModel) EntityMappingsByName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entityMappingsByName"))
+	return rv
+}
+
 // The entity mappings for the mapping model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmappingmodel/entitymappings
@@ -134,14 +142,6 @@ func (m_ MappingModel) EntityMappings() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmappingmodel/entitymappings
 func (m_ MappingModel) SetEntityMappings(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntityMappings:"), value)
-}
-
-// The entity mappings for the mapping model, keyed by name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/entityMappingsByName
-func (m_ MappingModel) EntityMappingsByName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entityMappingsByName"))
-	return rv
 }
 
 

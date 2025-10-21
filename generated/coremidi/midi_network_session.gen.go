@@ -100,6 +100,66 @@ func (m_ MIDINetworkSession) RemoveConnection(connection unsafe.Pointer) bool {
 
 // A Boolean value that determines whether the session is enabled.
 //
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/isEnabled
+func (m_ MIDINetworkSession) Enabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("enabled"))
+	return rv
+}
+
+
+// SetEnabled sets the value of the enabled property.
+// A Boolean value that determines whether the session is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/isEnabled
+func (m_ MIDINetworkSession) SetEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabled:"), value)
+}
+
+// The session’s UDP port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/networkPort
+func (m_ MIDINetworkSession) NetworkPort() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("networkPort"))
+	return rv
+}
+
+// Indicates that the list of contacts changed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworknotificationcontactsdidchange
+func (m_ MIDINetworkSession) MIDINetworkNotificationContactsDidChange() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkNotificationContactsDidChange"))
+	return rv
+}
+
+// Indicates that other aspects of the session changed, such as the connection list, connection policy, and so on.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworknotificationsessiondidchange
+func (m_ MIDINetworkSession) MIDINetworkNotificationSessionDidChange() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkNotificationSessionDidChange"))
+	return rv
+}
+
+// The policy that determines who can connect to this session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/connectionpolicy
+func (m_ MIDINetworkSession) ConnectionPolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("connectionPolicy"))
+	return rv
+}
+
+
+// SetConnectionPolicy sets the value of the connectionPolicy property.
+// The policy that determines who can connect to this session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/connectionpolicy
+func (m_ MIDINetworkSession) SetConnectionPolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setConnectionPolicy:"), value)
+}
+
+// A Boolean value that determines whether the session is enabled.
+//
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/isenabled
 func (m_ MIDINetworkSession) IsEnabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
@@ -150,66 +210,6 @@ func (m_ MIDINetworkSession) NetworkName() string {
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkname
 func (m_ MIDINetworkSession) SetNetworkName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
-}
-
-// Indicates that other aspects of the session changed, such as the connection list, connection policy, and so on.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworknotificationsessiondidchange
-func (m_ MIDINetworkSession) MIDINetworkNotificationSessionDidChange() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkNotificationSessionDidChange"))
-	return rv
-}
-
-// Indicates that the list of contacts changed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworknotificationcontactsdidchange
-func (m_ MIDINetworkSession) MIDINetworkNotificationContactsDidChange() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkNotificationContactsDidChange"))
-	return rv
-}
-
-// The policy that determines who can connect to this session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/connectionpolicy
-func (m_ MIDINetworkSession) ConnectionPolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("connectionPolicy"))
-	return rv
-}
-
-
-// SetConnectionPolicy sets the value of the connectionPolicy property.
-// The policy that determines who can connect to this session.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/connectionpolicy
-func (m_ MIDINetworkSession) SetConnectionPolicy(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setConnectionPolicy:"), value)
-}
-
-// A Boolean value that determines whether the session is enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/isEnabled
-func (m_ MIDINetworkSession) Enabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-
-// SetEnabled sets the value of the enabled property.
-// A Boolean value that determines whether the session is enabled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/isEnabled
-func (m_ MIDINetworkSession) SetEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabled:"), value)
-}
-
-// The session’s UDP port.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/networkPort
-func (m_ MIDINetworkSession) NetworkPort() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("networkPort"))
-	return rv
 }
 
 

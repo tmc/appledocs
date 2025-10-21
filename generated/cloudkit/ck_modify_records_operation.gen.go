@@ -81,6 +81,123 @@ func NewCKModifyRecordsOperation() CKModifyRecordsOperation {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/perRecordDeleteBlock-7gaqj
+func (c_ CKModifyRecordsOperation) PerRecordDeleteBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordDeleteBlock"))
+	return rv
+}
+
+
+// SetPerRecordDeleteBlock sets the value of the perRecordDeleteBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/perRecordDeleteBlock-7gaqj
+func (c_ CKModifyRecordsOperation) SetPerRecordDeleteBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordDeleteBlock:"), value)
+}
+
+// A token that tracks local changes to records.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
+func (c_ CKModifyRecordsOperation) ClientChangeTokenData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("clientChangeTokenData"))
+	return rv
+}
+
+
+// SetClientChangeTokenData sets the value of the clientChangeTokenData property.
+// A token that tracks local changes to records.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
+func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setClientChangeTokenData:"), value)
+}
+
+// A Boolean value that indicates whether the entire operation fails when CloudKit can’t update one or more records in a record zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/isatomic
+func (c_ CKModifyRecordsOperation) IsAtomic() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isAtomic"))
+	return rv
+}
+
+
+// SetIsAtomic sets the value of the isAtomic property.
+// A Boolean value that indicates whether the entire operation fails when CloudKit can’t update one or more records in a record zone.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/isatomic
+func (c_ CKModifyRecordsOperation) SetIsAtomic(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAtomic:"), value)
+}
+
+// The closure to execute after CloudKit modifies all of the records.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordscompletionblock
+func (c_ CKModifyRecordsOperation) ModifyRecordsCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifyRecordsCompletionBlock"))
+	return rv
+}
+
+
+// SetModifyRecordsCompletionBlock sets the value of the modifyRecordsCompletionBlock property.
+// The closure to execute after CloudKit modifies all of the records.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordscompletionblock
+func (c_ CKModifyRecordsOperation) SetModifyRecordsCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModifyRecordsCompletionBlock:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordsresultblock
+func (c_ CKModifyRecordsOperation) ModifyRecordsResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifyRecordsResultBlock"))
+	return rv
+}
+
+
+// SetModifyRecordsResultBlock sets the value of the modifyRecordsResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordsresultblock
+func (c_ CKModifyRecordsOperation) SetModifyRecordsResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModifyRecordsResultBlock:"), value)
+}
+
+// The closure to execute when CloudKit saves a record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordcompletionblock
+func (c_ CKModifyRecordsOperation) PerRecordCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordCompletionBlock"))
+	return rv
+}
+
+
+// SetPerRecordCompletionBlock sets the value of the perRecordCompletionBlock property.
+// The closure to execute when CloudKit saves a record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordcompletionblock
+func (c_ CKModifyRecordsOperation) SetPerRecordCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordCompletionBlock:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordsaveblock-7yq9d
+func (c_ CKModifyRecordsOperation) PerRecordSaveBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordSaveBlock"))
+	return rv
+}
+
+
+// SetPerRecordSaveBlock sets the value of the perRecordSaveBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordsaveblock-7yq9d
+func (c_ CKModifyRecordsOperation) SetPerRecordSaveBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordSaveBlock:"), value)
+}
+
 // The IDs of the records to delete permanently from the database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordidstodelete
@@ -117,127 +234,22 @@ func (c_ CKModifyRecordsOperation) SetRecordsToSave(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordsToSave:"), value)
 }
 
-// The closure to execute after CloudKit modifies all of the records.
+// The policy to use when saving changes to records.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordscompletionblock
-func (c_ CKModifyRecordsOperation) ModifyRecordsCompletionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifyRecordsCompletionBlock"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/savepolicy
+func (c_ CKModifyRecordsOperation) SavePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("savePolicy"))
 	return rv
 }
 
 
-// SetModifyRecordsCompletionBlock sets the value of the modifyRecordsCompletionBlock property.
-// The closure to execute after CloudKit modifies all of the records.
+// SetSavePolicy sets the value of the savePolicy property.
+// The policy to use when saving changes to records.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordscompletionblock
-func (c_ CKModifyRecordsOperation) SetModifyRecordsCompletionBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setModifyRecordsCompletionBlock:"), value)
-}
-
-// The closure to execute when CloudKit saves a record.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordcompletionblock
-func (c_ CKModifyRecordsOperation) PerRecordCompletionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordCompletionBlock"))
-	return rv
-}
-
-
-// SetPerRecordCompletionBlock sets the value of the perRecordCompletionBlock property.
-// The closure to execute when CloudKit saves a record.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordcompletionblock
-func (c_ CKModifyRecordsOperation) SetPerRecordCompletionBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordCompletionBlock:"), value)
-}
-
-// A reference to the record’s parent record.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
-func (c_ CKModifyRecordsOperation) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("parent"))
-	return rv
-}
-
-
-// SetParent sets the value of the parent property.
-// A reference to the record’s parent record.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
-func (c_ CKModifyRecordsOperation) SetParent(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setParent:"), value)
-}
-
-// A token that tracks local changes to records.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
-func (c_ CKModifyRecordsOperation) ClientChangeTokenData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("clientChangeTokenData"))
-	return rv
-}
-
-
-// SetClientChangeTokenData sets the value of the clientChangeTokenData property.
-// A token that tracks local changes to records.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
-func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setClientChangeTokenData:"), value)
-}
-
-// The block to execute after the operation’s main task is completed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-func (c_ CKModifyRecordsOperation) CompletionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
-	return rv
-}
-
-
-// SetCompletionBlock sets the value of the completionBlock property.
-// The block to execute after the operation’s main task is completed.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-func (c_ CKModifyRecordsOperation) SetCompletionBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
-}
-
-// A Boolean value that indicates whether the entire operation fails when CloudKit can’t update one or more records in a record zone.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/isatomic
-func (c_ CKModifyRecordsOperation) IsAtomic() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isAtomic"))
-	return rv
-}
-
-
-// SetIsAtomic sets the value of the isAtomic property.
-// A Boolean value that indicates whether the entire operation fails when CloudKit can’t update one or more records in a record zone.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/isatomic
-func (c_ CKModifyRecordsOperation) SetIsAtomic(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAtomic:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordsresultblock
-func (c_ CKModifyRecordsOperation) ModifyRecordsResultBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifyRecordsResultBlock"))
-	return rv
-}
-
-
-// SetModifyRecordsResultBlock sets the value of the modifyRecordsResultBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordsresultblock
-func (c_ CKModifyRecordsOperation) SetModifyRecordsResultBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setModifyRecordsResultBlock:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/savepolicy
+func (c_ CKModifyRecordsOperation) SetSavePolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSavePolicy:"), value)
 }
 
 // The ownership behavior for the records.
@@ -258,52 +270,40 @@ func (c_ CKModifyRecordsOperation) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
 }
 
+// A reference to the record’s parent record.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordsaveblock-7yq9d
-func (c_ CKModifyRecordsOperation) PerRecordSaveBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordSaveBlock"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
+func (c_ CKModifyRecordsOperation) Parent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("parent"))
 	return rv
 }
 
 
-// SetPerRecordSaveBlock sets the value of the perRecordSaveBlock property.
+// SetParent sets the value of the parent property.
+// A reference to the record’s parent record.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordsaveblock-7yq9d
-func (c_ CKModifyRecordsOperation) SetPerRecordSaveBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordSaveBlock:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
+func (c_ CKModifyRecordsOperation) SetParent(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setParent:"), value)
 }
 
-// The policy to use when saving changes to records.
+// The block to execute after the operation’s main task is completed.
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/savepolicy
-func (c_ CKModifyRecordsOperation) SavePolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("savePolicy"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKModifyRecordsOperation) CompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
 }
 
 
-// SetSavePolicy sets the value of the savePolicy property.
-// The policy to use when saving changes to records.
+// SetCompletionBlock sets the value of the completionBlock property.
+// The block to execute after the operation’s main task is completed.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/savepolicy
-func (c_ CKModifyRecordsOperation) SetSavePolicy(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSavePolicy:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/perRecordDeleteBlock-7gaqj
-func (c_ CKModifyRecordsOperation) PerRecordDeleteBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordDeleteBlock"))
-	return rv
-}
-
-
-// SetPerRecordDeleteBlock sets the value of the perRecordDeleteBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/perRecordDeleteBlock-7gaqj
-func (c_ CKModifyRecordsOperation) SetPerRecordDeleteBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordDeleteBlock:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKModifyRecordsOperation) SetCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }
 
 

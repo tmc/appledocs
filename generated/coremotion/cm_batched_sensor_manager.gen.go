@@ -136,36 +136,6 @@ func (b_ BatchedSensorManager) StopDeviceMotionUpdates() {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isaccelerometeractive
-func (b_ BatchedSensorManager) IsAccelerometerActive() bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("isAccelerometerActive"))
-	return rv
-}
-
-
-// SetIsAccelerometerActive sets the value of the isAccelerometerActive property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isaccelerometeractive
-func (b_ BatchedSensorManager) SetIsAccelerometerActive(value bool) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIsAccelerometerActive:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isdevicemotionactive
-func (b_ BatchedSensorManager) IsDeviceMotionActive() bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("isDeviceMotionActive"))
-	return rv
-}
-
-
-// SetIsDeviceMotionActive sets the value of the isDeviceMotionActive property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isdevicemotionactive
-func (b_ BatchedSensorManager) SetIsDeviceMotionActive(value bool) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIsDeviceMotionActive:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/accelerometerBatch
 func (b_ BatchedSensorManager) AccelerometerBatch() []AccelerometerData {
 	rv := objc.Send[[]AccelerometerData](b_.ID, objc.Sel("accelerometerBatch"))
@@ -226,6 +196,36 @@ func (b_ BatchedSensorManager) DeviceMotionActive() bool {
 func (b_ BatchedSensorManager) DeviceMotionSupported() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("deviceMotionSupported"))
 	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isaccelerometeractive
+func (b_ BatchedSensorManager) IsAccelerometerActive() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isAccelerometerActive"))
+	return rv
+}
+
+
+// SetIsAccelerometerActive sets the value of the isAccelerometerActive property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isaccelerometeractive
+func (b_ BatchedSensorManager) SetIsAccelerometerActive(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsAccelerometerActive:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isdevicemotionactive
+func (b_ BatchedSensorManager) IsDeviceMotionActive() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isDeviceMotionActive"))
+	return rv
+}
+
+
+// SetIsDeviceMotionActive sets the value of the isDeviceMotionActive property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isdevicemotionactive
+func (b_ BatchedSensorManager) SetIsDeviceMotionActive(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsDeviceMotionActive:"), value)
 }
 
 

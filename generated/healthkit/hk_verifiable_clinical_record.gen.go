@@ -81,22 +81,12 @@ func NewHKVerifiableClinicalRecord() HKVerifiableClinicalRecord {
 }
 
 
-// A human-readable description of the card’s contents.
+// A raw representation of the record’s data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/itemnames
-func (h_ HKVerifiableClinicalRecord) ItemNames() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("itemNames"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecord/dataRepresentation
+func (h_ HKVerifiableClinicalRecord) DataRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("dataRepresentation"))
 	return rv
-}
-
-
-// SetItemNames sets the value of the itemNames property.
-// A human-readable description of the card’s contents.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/itemnames
-func (h_ HKVerifiableClinicalRecord) SetItemNames(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setItemNames:"), objc.String(value))
 }
 
 // The date when the card expires.
@@ -117,22 +107,22 @@ func (h_ HKVerifiableClinicalRecord) SetExpirationDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
 }
 
-// Data about the person whose clinical data the card contains.
+// The date when the issuer created the card.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/subject
-func (h_ HKVerifiableClinicalRecord) Subject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("subject"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueddate
+func (h_ HKVerifiableClinicalRecord) IssuedDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("issuedDate"))
 	return rv
 }
 
 
-// SetSubject sets the value of the subject property.
-// Data about the person whose clinical data the card contains.
+// SetIssuedDate sets the value of the issuedDate property.
+// The date when the issuer created the card.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/subject
-func (h_ HKVerifiableClinicalRecord) SetSubject(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSubject:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueddate
+func (h_ HKVerifiableClinicalRecord) SetIssuedDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuedDate:"), value)
 }
 
 // An identifier that represents the card’s issuer.
@@ -153,58 +143,22 @@ func (h_ HKVerifiableClinicalRecord) SetIssuerIdentifier(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuerIdentifier:"), objc.String(value))
 }
 
-// The date when the issuer created the card.
+// A human-readable description of the card’s contents.
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueddate
-func (h_ HKVerifiableClinicalRecord) IssuedDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("issuedDate"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/itemnames
+func (h_ HKVerifiableClinicalRecord) ItemNames() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("itemNames"))
 	return rv
 }
 
 
-// SetIssuedDate sets the value of the issuedDate property.
-// The date when the issuer created the card.
+// SetItemNames sets the value of the itemNames property.
+// A human-readable description of the card’s contents.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueddate
-func (h_ HKVerifiableClinicalRecord) SetIssuedDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuedDate:"), value)
-}
-
-// A date relevant to this record, such as when the issuer administered a vaccine or performed a test.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/relevantdate
-func (h_ HKVerifiableClinicalRecord) RelevantDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("relevantDate"))
-	return rv
-}
-
-
-// SetRelevantDate sets the value of the relevantDate property.
-// A date relevant to this record, such as when the issuer administered a vaccine or performed a test.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/relevantdate
-func (h_ HKVerifiableClinicalRecord) SetRelevantDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setRelevantDate:"), value)
-}
-
-// An array of strings representing the types of records contained in the card.
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
-func (h_ HKVerifiableClinicalRecord) RecordTypes() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("recordTypes"))
-	return rv
-}
-
-
-// SetRecordTypes sets the value of the recordTypes property.
-// An array of strings representing the types of records contained in the card.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
-func (h_ HKVerifiableClinicalRecord) SetRecordTypes(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/itemnames
+func (h_ HKVerifiableClinicalRecord) SetItemNames(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setItemNames:"), objc.String(value))
 }
 
 // A raw representation of the SMART Health Card’s contents.
@@ -225,6 +179,42 @@ func (h_ HKVerifiableClinicalRecord) SetJwsRepresentation(value unsafe.Pointer) 
 	objc.Send[objc.ID](h_.ID, objc.Sel("setJwsRepresentation:"), value)
 }
 
+// An array of strings representing the types of records contained in the card.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
+func (h_ HKVerifiableClinicalRecord) RecordTypes() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("recordTypes"))
+	return rv
+}
+
+
+// SetRecordTypes sets the value of the recordTypes property.
+// An array of strings representing the types of records contained in the card.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
+func (h_ HKVerifiableClinicalRecord) SetRecordTypes(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), objc.String(value))
+}
+
+// A date relevant to this record, such as when the issuer administered a vaccine or performed a test.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/relevantdate
+func (h_ HKVerifiableClinicalRecord) RelevantDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("relevantDate"))
+	return rv
+}
+
+
+// SetRelevantDate sets the value of the relevantDate property.
+// A date relevant to this record, such as when the issuer administered a vaccine or performed a test.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/relevantdate
+func (h_ HKVerifiableClinicalRecord) SetRelevantDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRelevantDate:"), value)
+}
+
 // The source for the verifiable clinical record
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/sourcetype
@@ -243,12 +233,22 @@ func (h_ HKVerifiableClinicalRecord) SetSourceType(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceType:"), value)
 }
 
-// A raw representation of the record’s data.
+// Data about the person whose clinical data the card contains.
 //
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecord/dataRepresentation
-func (h_ HKVerifiableClinicalRecord) DataRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("dataRepresentation"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/subject
+func (h_ HKVerifiableClinicalRecord) Subject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("subject"))
 	return rv
+}
+
+
+// SetSubject sets the value of the subject property.
+// Data about the person whose clinical data the card contains.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/subject
+func (h_ HKVerifiableClinicalRecord) SetSubject(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSubject:"), value)
 }
 
 

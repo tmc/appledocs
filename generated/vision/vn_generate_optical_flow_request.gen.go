@@ -81,38 +81,22 @@ func NewGenerateOpticalFlowRequest() GenerateOpticalFlowRequest {
 }
 
 
-// A constant for specifying revision 2 of the optical flow generation request.
+// The accuracy level for computing optical flow.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision2
-func (g_ GenerateOpticalFlowRequest) VNGenerateOpticalFlowRequestRevision2() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateOpticalFlowRequestRevision2"))
-	return rv
-}
-
-// The results of the request to generate optical flow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/results
-func (g_ GenerateOpticalFlowRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.property
+func (g_ GenerateOpticalFlowRequest) ComputationAccuracy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("computationAccuracy"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
-// The results of the request to generate optical flow.
+// SetComputationAccuracy sets the value of the computationAccuracy property.
+// The accuracy level for computing optical flow.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/results
-func (g_ GenerateOpticalFlowRequest) SetResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
-}
-
-// A constant for specifying revision 1 of the optical flow generation request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision1
-func (g_ GenerateOpticalFlowRequest) VNGenerateOpticalFlowRequestRevision1() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateOpticalFlowRequestRevision1"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.property
+func (g_ GenerateOpticalFlowRequest) SetComputationAccuracy(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setComputationAccuracy:"), value)
 }
 
 // A Boolean value that indicates whether to keep the raw pixel buffer coming from the machine learning network.
@@ -151,22 +135,38 @@ func (g_ GenerateOpticalFlowRequest) SetOutputPixelFormat(value unsafe.Pointer) 
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputPixelFormat:"), value)
 }
 
-// The accuracy level for computing optical flow.
+// The results of the request to generate optical flow.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.property
-func (g_ GenerateOpticalFlowRequest) ComputationAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("computationAccuracy"))
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/results
+func (g_ GenerateOpticalFlowRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetComputationAccuracy sets the value of the computationAccuracy property.
-// The accuracy level for computing optical flow.
+// SetResults sets the value of the results property.
+// The results of the request to generate optical flow.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.property
-func (g_ GenerateOpticalFlowRequest) SetComputationAccuracy(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setComputationAccuracy:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/results
+func (g_ GenerateOpticalFlowRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
+}
+
+// A constant for specifying revision 1 of the optical flow generation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision1
+func (g_ GenerateOpticalFlowRequest) VNGenerateOpticalFlowRequestRevision1() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateOpticalFlowRequestRevision1"))
+	return rv
+}
+
+// A constant for specifying revision 2 of the optical flow generation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision2
+func (g_ GenerateOpticalFlowRequest) VNGenerateOpticalFlowRequestRevision2() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateOpticalFlowRequestRevision2"))
+	return rv
 }
 
 

@@ -80,22 +80,22 @@ func NewSFSpeechRecognitionResult() SFSpeechRecognitionResult {
 }
 
 
-// An object that contains the metadata results for a speech recognition request.
+// The transcription with the highest confidence level.
 //
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/speechrecognitionmetadata
-func (s_ SFSpeechRecognitionResult) SpeechRecognitionMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechRecognitionMetadata"))
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/besttranscription
+func (s_ SFSpeechRecognitionResult) BestTranscription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("bestTranscription"))
 	return rv
 }
 
 
-// SetSpeechRecognitionMetadata sets the value of the speechRecognitionMetadata property.
-// An object that contains the metadata results for a speech recognition request.
+// SetBestTranscription sets the value of the bestTranscription property.
+// The transcription with the highest confidence level.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/speechrecognitionmetadata
-func (s_ SFSpeechRecognitionResult) SetSpeechRecognitionMetadata(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechRecognitionMetadata:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/besttranscription
+func (s_ SFSpeechRecognitionResult) SetBestTranscription(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setBestTranscription:"), value)
 }
 
 // A Boolean value that indicates whether speech recognition is complete and whether the transcriptions are final.
@@ -116,6 +116,24 @@ func (s_ SFSpeechRecognitionResult) SetIsFinal(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsFinal:"), value)
 }
 
+// An object that contains the metadata results for a speech recognition request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/speechrecognitionmetadata
+func (s_ SFSpeechRecognitionResult) SpeechRecognitionMetadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechRecognitionMetadata"))
+	return rv
+}
+
+
+// SetSpeechRecognitionMetadata sets the value of the speechRecognitionMetadata property.
+// An object that contains the metadata results for a speech recognition request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/speechrecognitionmetadata
+func (s_ SFSpeechRecognitionResult) SetSpeechRecognitionMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechRecognitionMetadata:"), value)
+}
+
 // An array of potential transcriptions, sorted in descending order of confidence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/transcriptions
@@ -132,24 +150,6 @@ func (s_ SFSpeechRecognitionResult) Transcriptions() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/transcriptions
 func (s_ SFSpeechRecognitionResult) SetTranscriptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTranscriptions:"), value)
-}
-
-// The transcription with the highest confidence level.
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/besttranscription
-func (s_ SFSpeechRecognitionResult) BestTranscription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("bestTranscription"))
-	return rv
-}
-
-
-// SetBestTranscription sets the value of the bestTranscription property.
-// The transcription with the highest confidence level.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/besttranscription
-func (s_ SFSpeechRecognitionResult) SetBestTranscription(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setBestTranscription:"), value)
 }
 
 

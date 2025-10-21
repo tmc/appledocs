@@ -79,6 +79,42 @@ func NewNEFilterFlow() NEFilterFlow {
 }
 
 
+// The initial direction of the flow: incoming or outgoing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/direction
+func (n_ NEFilterFlow) Direction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("direction"))
+	return rv
+}
+
+
+// SetDirection sets the value of the direction property.
+// The initial direction of the flow: incoming or outgoing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/direction
+func (n_ NEFilterFlow) SetDirection(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDirection:"), value)
+}
+
+// The unique identifier of the flow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/identifier
+func (n_ NEFilterFlow) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The unique identifier of the flow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/identifier
+func (n_ NEFilterFlow) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentifier:"), value)
+}
+
 // The audit token of the source application of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappaudittoken
@@ -113,6 +149,24 @@ func (n_ NEFilterFlow) SourceAppIdentifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappidentifier
 func (n_ NEFilterFlow) SetSourceAppIdentifier(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppIdentifier:"), objc.String(value))
+}
+
+// A byte string that uniquely identifies the binary for each build of the app that is the source of the flow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappuniqueidentifier
+func (n_ NEFilterFlow) SourceAppUniqueIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sourceAppUniqueIdentifier"))
+	return rv
+}
+
+
+// SetSourceAppUniqueIdentifier sets the value of the sourceAppUniqueIdentifier property.
+// A byte string that uniquely identifies the binary for each build of the app that is the source of the flow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappuniqueidentifier
+func (n_ NEFilterFlow) SetSourceAppUniqueIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppUniqueIdentifier:"), value)
 }
 
 // The short version string of the app that is the source of the flow.
@@ -151,42 +205,6 @@ func (n_ NEFilterFlow) SetSourceProcessAuditToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceProcessAuditToken:"), value)
 }
 
-// The initial direction of the flow: incoming or outgoing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/direction
-func (n_ NEFilterFlow) Direction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("direction"))
-	return rv
-}
-
-
-// SetDirection sets the value of the direction property.
-// The initial direction of the flow: incoming or outgoing.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/direction
-func (n_ NEFilterFlow) SetDirection(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDirection:"), value)
-}
-
-// A byte string that uniquely identifies the binary for each build of the app that is the source of the flow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappuniqueidentifier
-func (n_ NEFilterFlow) SourceAppUniqueIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sourceAppUniqueIdentifier"))
-	return rv
-}
-
-
-// SetSourceAppUniqueIdentifier sets the value of the sourceAppUniqueIdentifier property.
-// A byte string that uniquely identifies the binary for each build of the app that is the source of the flow.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappuniqueidentifier
-func (n_ NEFilterFlow) SetSourceAppUniqueIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppUniqueIdentifier:"), value)
-}
-
 // The flow’s HTTP URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/url
@@ -203,24 +221,6 @@ func (n_ NEFilterFlow) Url() foundation.URL {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/url
 func (n_ NEFilterFlow) SetUrl(value foundation.URL) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUrl:"), value)
-}
-
-// The unique identifier of the flow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/identifier
-func (n_ NEFilterFlow) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// SetIdentifier sets the value of the identifier property.
-// The unique identifier of the flow.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/identifier
-func (n_ NEFilterFlow) SetIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // The maximum number of bytes to pass or peek for a flow.

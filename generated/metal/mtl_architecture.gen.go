@@ -78,6 +78,86 @@ func NewArchitecture() Architecture {
 }
 
 
+// The name of a GPU device’s architecture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArchitecture/name
+func (a_ Architecture) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
+	return rv
+}
+
+// The architectural details of the GPU device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/architecture
+func (a_ Architecture) Architecture() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("architecture"))
+	return rv
+}
+
+
+// SetArchitecture sets the value of the architecture property.
+// The architectural details of the GPU device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/architecture
+func (a_ Architecture) SetArchitecture(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setArchitecture:"), value)
+}
+
+// A Boolean value that indicates whether a GPU device doesn’t have a connection to a display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/isheadless
+func (a_ Architecture) IsHeadless() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isHeadless"))
+	return rv
+}
+
+
+// SetIsHeadless sets the value of the isHeadless property.
+// A Boolean value that indicates whether a GPU device doesn’t have a connection to a display.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/isheadless
+func (a_ Architecture) SetIsHeadless(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsHeadless:"), value)
+}
+
+// A Boolean value that indicates whether the GPU lowers its performance to conserve energy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/islowpower
+func (a_ Architecture) IsLowPower() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isLowPower"))
+	return rv
+}
+
+
+// SetIsLowPower sets the value of the isLowPower property.
+// A Boolean value that indicates whether the GPU lowers its performance to conserve energy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/islowpower
+func (a_ Architecture) SetIsLowPower(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsLowPower:"), value)
+}
+
+// A Boolean value that indicates whether the GPU is removable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/isremovable
+func (a_ Architecture) IsRemovable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isRemovable"))
+	return rv
+}
+
+
+// SetIsRemovable sets the value of the isRemovable property.
+// A Boolean value that indicates whether the GPU is removable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/isremovable
+func (a_ Architecture) SetIsRemovable(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRemovable:"), value)
+}
+
 // The physical location of the GPU relative to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/location
@@ -94,24 +174,6 @@ func (a_ Architecture) Location() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/location
 func (a_ Architecture) SetLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocation:"), value)
-}
-
-// The total number of GPUs in the peer group, if applicable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/peercount
-func (a_ Architecture) PeerCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("peerCount"))
-	return rv
-}
-
-
-// SetPeerCount sets the value of the peerCount property.
-// The total number of GPUs in the peer group, if applicable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/peercount
-func (a_ Architecture) SetPeerCount(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPeerCount:"), value)
 }
 
 // A specific GPU position based on its general location.
@@ -132,22 +194,22 @@ func (a_ Architecture) SetLocationNumber(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocationNumber:"), value)
 }
 
-// A Boolean value that indicates whether a GPU device doesn’t have a connection to a display.
+// The total number of GPUs in the peer group, if applicable.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/isheadless
-func (a_ Architecture) IsHeadless() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isHeadless"))
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/peercount
+func (a_ Architecture) PeerCount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("peerCount"))
 	return rv
 }
 
 
-// SetIsHeadless sets the value of the isHeadless property.
-// A Boolean value that indicates whether a GPU device doesn’t have a connection to a display.
+// SetPeerCount sets the value of the peerCount property.
+// The total number of GPUs in the peer group, if applicable.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/isheadless
-func (a_ Architecture) SetIsHeadless(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsHeadless:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/peercount
+func (a_ Architecture) SetPeerCount(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPeerCount:"), value)
 }
 
 // The peer group ID the GPU belongs to, if applicable.
@@ -202,68 +264,6 @@ func (a_ Architecture) RegistryID() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/registryid
 func (a_ Architecture) SetRegistryID(value uint64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRegistryID:"), value)
-}
-
-// The architectural details of the GPU device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/architecture
-func (a_ Architecture) Architecture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("architecture"))
-	return rv
-}
-
-
-// SetArchitecture sets the value of the architecture property.
-// The architectural details of the GPU device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/architecture
-func (a_ Architecture) SetArchitecture(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setArchitecture:"), value)
-}
-
-// A Boolean value that indicates whether the GPU is removable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/isremovable
-func (a_ Architecture) IsRemovable() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isRemovable"))
-	return rv
-}
-
-
-// SetIsRemovable sets the value of the isRemovable property.
-// A Boolean value that indicates whether the GPU is removable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/isremovable
-func (a_ Architecture) SetIsRemovable(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRemovable:"), value)
-}
-
-// A Boolean value that indicates whether the GPU lowers its performance to conserve energy.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/islowpower
-func (a_ Architecture) IsLowPower() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isLowPower"))
-	return rv
-}
-
-
-// SetIsLowPower sets the value of the isLowPower property.
-// A Boolean value that indicates whether the GPU lowers its performance to conserve energy.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/islowpower
-func (a_ Architecture) SetIsLowPower(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsLowPower:"), value)
-}
-
-// The name of a GPU device’s architecture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArchitecture/name
-func (a_ Architecture) Name() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("name"))
-	return rv
 }
 
 

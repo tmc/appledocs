@@ -81,42 +81,6 @@ func NewTransition() Transition {
 }
 
 
-// The text to be rendered by the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/catextlayer/string
-func (t_ Transition) String() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("string"))
-	return rv
-}
-
-
-// SetString sets the value of the string property.
-// The text to be rendered by the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/catextlayer/string
-func (t_ Transition) SetString(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
-}
-
-// The background color of the receiver. Animatable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (t_ Transition) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
-	return rv
-}
-
-
-// SetBackgroundColor sets the value of the backgroundColor property.
-// The background color of the receiver. Animatable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (t_ Transition) SetBackgroundColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
-}
-
 // Indicates the end point of the receiver as a fraction of the entire transition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/endProgress
@@ -205,6 +169,42 @@ func (t_ Transition) Type() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/type
 func (t_ Transition) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setType:"), value)
+}
+
+// The background color of the receiver. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
+func (t_ Transition) BackgroundColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+	return rv
+}
+
+
+// SetBackgroundColor sets the value of the backgroundColor property.
+// The background color of the receiver. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
+func (t_ Transition) SetBackgroundColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
+}
+
+// The text to be rendered by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/catextlayer/string
+func (t_ Transition) String() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("string"))
+	return rv
+}
+
+
+// SetString sets the value of the string property.
+// The text to be rendered by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/catextlayer/string
+func (t_ Transition) SetString(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
 }
 
 

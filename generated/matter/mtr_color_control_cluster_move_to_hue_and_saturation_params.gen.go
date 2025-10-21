@@ -107,18 +107,18 @@ func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsMask(valu
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/optionsoverride
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) OptionsOverride() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetOptionsOverride sets the value of the optionsOverride property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/optionsoverride
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsOverride(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
 //
@@ -152,18 +152,18 @@ func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetServerSideProces
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/optionsoverride
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/timedinvoketimeoutms
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetOptionsOverride sets the value of the optionsOverride property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/optionsoverride
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsOverride(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/timedinvoketimeoutms
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //

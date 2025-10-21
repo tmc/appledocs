@@ -79,18 +79,33 @@ func NewImageNode() ImageNode {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator
-func (i_ ImageNode) ImageAllocator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageAllocator"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/exportfromgraph
+func (i_ ImageNode) ExportFromGraph() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("exportFromGraph"))
 	return rv
 }
 
 
-// SetImageAllocator sets the value of the imageAllocator property.
+// SetExportFromGraph sets the value of the exportFromGraph property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator
-func (i_ ImageNode) SetImageAllocator(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAllocator:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/exportfromgraph
+func (i_ ImageNode) SetExportFromGraph(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setExportFromGraph:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/format
+func (i_ ImageNode) Format() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("format"))
+	return rv
+}
+
+
+// SetFormat sets the value of the format property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/format
+func (i_ ImageNode) SetFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFormat:"), value)
 }
 
 //
@@ -109,18 +124,18 @@ func (i_ ImageNode) SetHandle(value unsafe.Pointer) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/exportfromgraph
-func (i_ ImageNode) ExportFromGraph() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("exportFromGraph"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator
+func (i_ ImageNode) ImageAllocator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageAllocator"))
 	return rv
 }
 
 
-// SetExportFromGraph sets the value of the exportFromGraph property.
+// SetImageAllocator sets the value of the imageAllocator property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/exportfromgraph
-func (i_ ImageNode) SetExportFromGraph(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setExportFromGraph:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator
+func (i_ ImageNode) SetImageAllocator(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAllocator:"), value)
 }
 
 //
@@ -151,21 +166,6 @@ func (i_ ImageNode) SynchronizeResource() bool {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/synchronizeresource
 func (i_ ImageNode) SetSynchronizeResource(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSynchronizeResource:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/format
-func (i_ ImageNode) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("format"))
-	return rv
-}
-
-
-// SetFormat sets the value of the format property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/format
-func (i_ ImageNode) SetFormat(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setFormat:"), value)
 }
 
 

@@ -118,68 +118,6 @@ func (p_ PHLivePhotoEditingContext) SaveLivePhotoToOutputOptionsCompletionHandle
 	objc.Send[objc.ID](p_.ID, objc.Sel("saveLivePhotoToOutput:options:completionHandler:"), output, options, handler)
 }
 
-// The domain value for error objects produced by a Live Photo editing context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotoeditingerrordomain
-func (p_ PHLivePhotoEditingContext) PHLivePhotoEditingErrorDomain() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("PHLivePhotoEditingErrorDomain"))
-	return rv
-}
-
-// The unedited Live Photo content of the editing input.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/livephoto
-func (p_ PHLivePhotoEditingContext) LivePhoto() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("livePhoto"))
-	return rv
-}
-
-
-// SetLivePhoto sets the value of the livePhoto property.
-// The unedited Live Photo content of the editing input.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/livephoto
-func (p_ PHLivePhotoEditingContext) SetLivePhoto(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLivePhoto:"), value)
-}
-
-// An object describing the changes made to the asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/adjustmentdata
-func (p_ PHLivePhotoEditingContext) AdjustmentData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("adjustmentData"))
-	return rv
-}
-
-
-// SetAdjustmentData sets the value of the adjustmentData property.
-// An object describing the changes made to the asset.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/adjustmentdata
-func (p_ PHLivePhotoEditingContext) SetAdjustmentData(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
-}
-
-// The output of an asset content editing session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHLivePhotoEditingContext) ContentEditingOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentEditingOutput"))
-	return rv
-}
-
-
-// SetContentEditingOutput sets the value of the contentEditingOutput property.
-// The output of an asset content editing session.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHLivePhotoEditingContext) SetContentEditingOutput(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
-}
-
 // The audio gain to apply to the processed Live Photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoEditingContext/audioVolume
@@ -245,6 +183,68 @@ func (p_ PHLivePhotoEditingContext) Orientation() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoEditingContext/photoTime
 func (p_ PHLivePhotoEditingContext) PhotoTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("photoTime"))
+	return rv
+}
+
+// The output of an asset content editing session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
+func (p_ PHLivePhotoEditingContext) ContentEditingOutput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentEditingOutput"))
+	return rv
+}
+
+
+// SetContentEditingOutput sets the value of the contentEditingOutput property.
+// The output of an asset content editing session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
+func (p_ PHLivePhotoEditingContext) SetContentEditingOutput(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
+}
+
+// The unedited Live Photo content of the editing input.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/livephoto
+func (p_ PHLivePhotoEditingContext) LivePhoto() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("livePhoto"))
+	return rv
+}
+
+
+// SetLivePhoto sets the value of the livePhoto property.
+// The unedited Live Photo content of the editing input.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/livephoto
+func (p_ PHLivePhotoEditingContext) SetLivePhoto(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLivePhoto:"), value)
+}
+
+// An object describing the changes made to the asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/adjustmentdata
+func (p_ PHLivePhotoEditingContext) AdjustmentData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("adjustmentData"))
+	return rv
+}
+
+
+// SetAdjustmentData sets the value of the adjustmentData property.
+// An object describing the changes made to the asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/adjustmentdata
+func (p_ PHLivePhotoEditingContext) SetAdjustmentData(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
+}
+
+// The domain value for error objects produced by a Live Photo editing context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotoeditingerrordomain
+func (p_ PHLivePhotoEditingContext) PHLivePhotoEditingErrorDomain() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("PHLivePhotoEditingErrorDomain"))
 	return rv
 }
 

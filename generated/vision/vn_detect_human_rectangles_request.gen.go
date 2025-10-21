@@ -79,6 +79,24 @@ func NewDetectHumanRectanglesRequest() DetectHumanRectanglesRequest {
 }
 
 
+// A Boolean value that indicates whether the request requires detecting a full body or upper body only to produce a result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanRectanglesRequest/upperBodyOnly
+func (d_ DetectHumanRectanglesRequest) UpperBodyOnly() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("upperBodyOnly"))
+	return rv
+}
+
+
+// SetUpperBodyOnly sets the value of the upperBodyOnly property.
+// A Boolean value that indicates whether the request requires detecting a full body or upper body only to produce a result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanRectanglesRequest/upperBodyOnly
+func (d_ DetectHumanRectanglesRequest) SetUpperBodyOnly(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setUpperBodyOnly:"), value)
+}
+
 // The results of the request to find rectangular regions that contain people in an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/results
@@ -111,24 +129,6 @@ func (d_ DetectHumanRectanglesRequest) VNDetectHumanRectanglesRequestRevision1()
 func (d_ DetectHumanRectanglesRequest) VNDetectHumanRectanglesRequestRevision2() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectHumanRectanglesRequestRevision2"))
 	return rv
-}
-
-// A Boolean value that indicates whether the request requires detecting a full body or upper body only to produce a result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanRectanglesRequest/upperBodyOnly
-func (d_ DetectHumanRectanglesRequest) UpperBodyOnly() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("upperBodyOnly"))
-	return rv
-}
-
-
-// SetUpperBodyOnly sets the value of the upperBodyOnly property.
-// A Boolean value that indicates whether the request requires detecting a full body or upper body only to produce a result.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanRectanglesRequest/upperBodyOnly
-func (d_ DetectHumanRectanglesRequest) SetUpperBodyOnly(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setUpperBodyOnly:"), value)
 }
 
 

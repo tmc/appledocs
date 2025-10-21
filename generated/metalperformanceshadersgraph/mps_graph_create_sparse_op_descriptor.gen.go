@@ -87,24 +87,6 @@ func (gc _GraphCreateSparseOpDescriptorClass) DescriptorWithStorageTypeDataType(
 	return rv
 }
 
-// Defines the datatype of the sparse tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcreatesparseopdescriptor/datatype
-func (g_ GraphCreateSparseOpDescriptor) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataType"))
-	return rv
-}
-
-
-// SetDataType sets the value of the dataType property.
-// Defines the datatype of the sparse tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcreatesparseopdescriptor/datatype
-func (g_ GraphCreateSparseOpDescriptor) SetDataType(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
-}
-
 // Defines the storage format of the sparse tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCreateSparseOpDescriptor/sparseStorageType
@@ -121,6 +103,24 @@ func (g_ GraphCreateSparseOpDescriptor) SparseStorageType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCreateSparseOpDescriptor/sparseStorageType
 func (g_ GraphCreateSparseOpDescriptor) SetSparseStorageType(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSparseStorageType:"), value)
+}
+
+// Defines the datatype of the sparse tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcreatesparseopdescriptor/datatype
+func (g_ GraphCreateSparseOpDescriptor) DataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataType"))
+	return rv
+}
+
+
+// SetDataType sets the value of the dataType property.
+// Defines the datatype of the sparse tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcreatesparseopdescriptor/datatype
+func (g_ GraphCreateSparseOpDescriptor) SetDataType(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
 }
 
 

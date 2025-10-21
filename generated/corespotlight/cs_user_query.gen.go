@@ -138,6 +138,32 @@ func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteraction
 	objc.Send[objc.ID](c_.ID, objc.Sel("userEngagedWithSuggestion:visibleSuggestions:userInteractionType:"), suggestion, visibleSuggestions, userInteractionType)
 }
 
+// The number of suggested items the query found so far.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/foundSuggestionCount
+func (c_ CSUserQuery) FoundSuggestionCount() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("foundSuggestionCount"))
+	return rv
+}
+
+// The block to execute when the query delivers a new batch of matching items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/founditemshandler
+func (c_ CSUserQuery) FoundItemsHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("foundItemsHandler"))
+	return rv
+}
+
+
+// SetFoundItemsHandler sets the value of the foundItemsHandler property.
+// The block to execute when the query delivers a new batch of matching items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/founditemshandler
+func (c_ CSUserQuery) SetFoundItemsHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFoundItemsHandler:"), value)
+}
+
 // The matching results and suggestions for the current query string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csuserquery/responses-swift.property
@@ -172,32 +198,6 @@ func (c_ CSUserQuery) Suggestions() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csuserquery/suggestions-swift.property
 func (c_ CSUserQuery) SetSuggestions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSuggestions:"), value)
-}
-
-// The block to execute when the query delivers a new batch of matching items.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/founditemshandler
-func (c_ CSUserQuery) FoundItemsHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("foundItemsHandler"))
-	return rv
-}
-
-
-// SetFoundItemsHandler sets the value of the foundItemsHandler property.
-// The block to execute when the query delivers a new batch of matching items.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/founditemshandler
-func (c_ CSUserQuery) SetFoundItemsHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFoundItemsHandler:"), value)
-}
-
-// The number of suggested items the query found so far.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/foundSuggestionCount
-func (c_ CSUserQuery) FoundSuggestionCount() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("foundSuggestionCount"))
-	return rv
 }
 
 

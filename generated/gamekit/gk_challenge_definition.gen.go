@@ -86,22 +86,12 @@ func (c_ ChallengeDefinition) HasActiveChallengesWithCompletionHandler(completio
 	objc.Send[objc.ID](c_.ID, objc.Sel("hasActiveChallengesWithCompletionHandler:"), completionHandler)
 }
 
-// Indicates if a challenge can be attempted more than once.
+// The release state of the challenge definition in App Store Connect.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/isrepeatable
-func (c_ ChallengeDefinition) IsRepeatable() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isRepeatable"))
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengeDefinition/releaseState
+func (c_ ChallengeDefinition) ReleaseState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("releaseState"))
 	return rv
-}
-
-
-// SetIsRepeatable sets the value of the isRepeatable property.
-// Indicates if a challenge can be attempted more than once.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/isrepeatable
-func (c_ ChallengeDefinition) SetIsRepeatable(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRepeatable:"), value)
 }
 
 // A more detailed description of the challenge definition.
@@ -122,6 +112,24 @@ func (c_ ChallengeDefinition) SetDetails(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDetails:"), objc.String(value))
 }
 
+// The duration options for the challenge, like
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/durationoptions
+func (c_ ChallengeDefinition) DurationOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("durationOptions"))
+	return rv
+}
+
+
+// SetDurationOptions sets the value of the durationOptions property.
+// The duration options for the challenge, like
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/durationoptions
+func (c_ ChallengeDefinition) SetDurationOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDurationOptions:"), value)
+}
+
 // The group identifier for the challenge definition, if one exists.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/groupidentifier
@@ -138,24 +146,6 @@ func (c_ ChallengeDefinition) GroupIdentifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/groupidentifier
 func (c_ ChallengeDefinition) SetGroupIdentifier(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
-}
-
-// Scores submitted to this leaderboard will also be submitted as scores in this challenge.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/leaderboard
-func (c_ ChallengeDefinition) Leaderboard() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leaderboard"))
-	return rv
-}
-
-
-// SetLeaderboard sets the value of the leaderboard property.
-// Scores submitted to this leaderboard will also be submitted as scores in this challenge.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/leaderboard
-func (c_ ChallengeDefinition) SetLeaderboard(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLeaderboard:"), value)
 }
 
 // The developer defined identifier for a given challenge definition.
@@ -176,22 +166,40 @@ func (c_ ChallengeDefinition) SetIdentifier(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
-// The duration options for the challenge, like
+// Indicates if a challenge can be attempted more than once.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/durationoptions
-func (c_ ChallengeDefinition) DurationOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("durationOptions"))
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/isrepeatable
+func (c_ ChallengeDefinition) IsRepeatable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isRepeatable"))
 	return rv
 }
 
 
-// SetDurationOptions sets the value of the durationOptions property.
-// The duration options for the challenge, like
+// SetIsRepeatable sets the value of the isRepeatable property.
+// Indicates if a challenge can be attempted more than once.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/durationoptions
-func (c_ ChallengeDefinition) SetDurationOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDurationOptions:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/isrepeatable
+func (c_ ChallengeDefinition) SetIsRepeatable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRepeatable:"), value)
+}
+
+// Scores submitted to this leaderboard will also be submitted as scores in this challenge.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/leaderboard
+func (c_ ChallengeDefinition) Leaderboard() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leaderboard"))
+	return rv
+}
+
+
+// SetLeaderboard sets the value of the leaderboard property.
+// Scores submitted to this leaderboard will also be submitted as scores in this challenge.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/leaderboard
+func (c_ ChallengeDefinition) SetLeaderboard(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLeaderboard:"), value)
 }
 
 // A short title for the challenge definition.
@@ -210,14 +218,6 @@ func (c_ ChallengeDefinition) Title() string {
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/title
 func (c_ ChallengeDefinition) SetTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
-}
-
-// The release state of the challenge definition in App Store Connect.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengeDefinition/releaseState
-func (c_ ChallengeDefinition) ReleaseState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("releaseState"))
-	return rv
 }
 
 

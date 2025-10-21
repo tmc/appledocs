@@ -80,22 +80,22 @@ func NewINPersonHandle() INPersonHandle {
 }
 
 
-// The data for the handle.
+// A standard label that describes the meaning of the information.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
-func (i_ INPersonHandle) Value() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("value"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/label
+func (i_ INPersonHandle) Label() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-// The data for the handle.
+// SetLabel sets the value of the label property.
+// A standard label that describes the meaning of the information.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
-func (i_ INPersonHandle) SetValue(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/label
+func (i_ INPersonHandle) SetLabel(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLabel:"), value)
 }
 
 // The type of information contained in the handle.
@@ -116,22 +116,22 @@ func (i_ INPersonHandle) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
 }
 
-// A standard label that describes the meaning of the information.
+// The data for the handle.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/label
-func (i_ INPersonHandle) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("label"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
+func (i_ INPersonHandle) Value() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-// A standard label that describes the meaning of the information.
+// SetValue sets the value of the value property.
+// The data for the handle.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/label
-func (i_ INPersonHandle) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setLabel:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
+func (i_ INPersonHandle) SetValue(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), objc.String(value))
 }
 
 

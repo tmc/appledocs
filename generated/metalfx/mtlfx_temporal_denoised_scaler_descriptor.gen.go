@@ -125,96 +125,6 @@ func (f_ FXTemporalDenoisedScalerDescriptor) NewTemporalDenoisedScalerWithDevice
 	return rv
 }
 
-// A Boolean value indicating whether the scaler evaluates a transparency overlay texture as part of its operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/istransparencyoverlaytextureenabled
-func (f_ FXTemporalDenoisedScalerDescriptor) IsTransparencyOverlayTextureEnabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isTransparencyOverlayTextureEnabled"))
-	return rv
-}
-
-
-// SetIsTransparencyOverlayTextureEnabled sets the value of the isTransparencyOverlayTextureEnabled property.
-// A Boolean value indicating whether the scaler evaluates a transparency overlay texture as part of its operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/istransparencyoverlaytextureenabled
-func (f_ FXTemporalDenoisedScalerDescriptor) SetIsTransparencyOverlayTextureEnabled(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsTransparencyOverlayTextureEnabled:"), value)
-}
-
-// A Boolean value that indicates whether a scaler you create from this descriptor applies a reactive mask.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isreactivemasktextureenabled
-func (f_ FXTemporalDenoisedScalerDescriptor) IsReactiveMaskTextureEnabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isReactiveMaskTextureEnabled"))
-	return rv
-}
-
-
-// SetIsReactiveMaskTextureEnabled sets the value of the isReactiveMaskTextureEnabled property.
-// A Boolean value that indicates whether a scaler you create from this descriptor applies a reactive mask.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isreactivemasktextureenabled
-func (f_ FXTemporalDenoisedScalerDescriptor) SetIsReactiveMaskTextureEnabled(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsReactiveMaskTextureEnabled:"), value)
-}
-
-// A Boolean value indicating whether the scaler evaluates a denoise strength mask texture as part of its operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isdenoisestrengthmasktextureenabled
-func (f_ FXTemporalDenoisedScalerDescriptor) IsDenoiseStrengthMaskTextureEnabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isDenoiseStrengthMaskTextureEnabled"))
-	return rv
-}
-
-
-// SetIsDenoiseStrengthMaskTextureEnabled sets the value of the isDenoiseStrengthMaskTextureEnabled property.
-// A Boolean value indicating whether the scaler evaluates a denoise strength mask texture as part of its operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isdenoisestrengthmasktextureenabled
-func (f_ FXTemporalDenoisedScalerDescriptor) SetIsDenoiseStrengthMaskTextureEnabled(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDenoiseStrengthMaskTextureEnabled:"), value)
-}
-
-// A Boolean value indicating whether the scaler evaluates a specular hit distance texture as part of its operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isspecularhitdistancetextureenabled
-func (f_ FXTemporalDenoisedScalerDescriptor) IsSpecularHitDistanceTextureEnabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isSpecularHitDistanceTextureEnabled"))
-	return rv
-}
-
-
-// SetIsSpecularHitDistanceTextureEnabled sets the value of the isSpecularHitDistanceTextureEnabled property.
-// A Boolean value indicating whether the scaler evaluates a specular hit distance texture as part of its operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isspecularhitdistancetextureenabled
-func (f_ FXTemporalDenoisedScalerDescriptor) SetIsSpecularHitDistanceTextureEnabled(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsSpecularHitDistanceTextureEnabled:"), value)
-}
-
-// A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isautoexposureenabled
-func (f_ FXTemporalDenoisedScalerDescriptor) IsAutoExposureEnabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isAutoExposureEnabled"))
-	return rv
-}
-
-
-// SetIsAutoExposureEnabled sets the value of the isAutoExposureEnabled property.
-// A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isautoexposureenabled
-func (f_ FXTemporalDenoisedScalerDescriptor) SetIsAutoExposureEnabled(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsAutoExposureEnabled:"), value)
-}
-
 // The pixel format of the input color texture for the scaler you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/colorTextureFormat
@@ -609,6 +519,96 @@ func (f_ FXTemporalDenoisedScalerDescriptor) TransparencyOverlayTextureFormat() 
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/transparencyOverlayTextureFormat
 func (f_ FXTemporalDenoisedScalerDescriptor) SetTransparencyOverlayTextureFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTransparencyOverlayTextureFormat:"), value)
+}
+
+// A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isautoexposureenabled
+func (f_ FXTemporalDenoisedScalerDescriptor) IsAutoExposureEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isAutoExposureEnabled"))
+	return rv
+}
+
+
+// SetIsAutoExposureEnabled sets the value of the isAutoExposureEnabled property.
+// A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isautoexposureenabled
+func (f_ FXTemporalDenoisedScalerDescriptor) SetIsAutoExposureEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsAutoExposureEnabled:"), value)
+}
+
+// A Boolean value indicating whether the scaler evaluates a denoise strength mask texture as part of its operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isdenoisestrengthmasktextureenabled
+func (f_ FXTemporalDenoisedScalerDescriptor) IsDenoiseStrengthMaskTextureEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isDenoiseStrengthMaskTextureEnabled"))
+	return rv
+}
+
+
+// SetIsDenoiseStrengthMaskTextureEnabled sets the value of the isDenoiseStrengthMaskTextureEnabled property.
+// A Boolean value indicating whether the scaler evaluates a denoise strength mask texture as part of its operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isdenoisestrengthmasktextureenabled
+func (f_ FXTemporalDenoisedScalerDescriptor) SetIsDenoiseStrengthMaskTextureEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDenoiseStrengthMaskTextureEnabled:"), value)
+}
+
+// A Boolean value that indicates whether a scaler you create from this descriptor applies a reactive mask.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isreactivemasktextureenabled
+func (f_ FXTemporalDenoisedScalerDescriptor) IsReactiveMaskTextureEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isReactiveMaskTextureEnabled"))
+	return rv
+}
+
+
+// SetIsReactiveMaskTextureEnabled sets the value of the isReactiveMaskTextureEnabled property.
+// A Boolean value that indicates whether a scaler you create from this descriptor applies a reactive mask.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isreactivemasktextureenabled
+func (f_ FXTemporalDenoisedScalerDescriptor) SetIsReactiveMaskTextureEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsReactiveMaskTextureEnabled:"), value)
+}
+
+// A Boolean value indicating whether the scaler evaluates a specular hit distance texture as part of its operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isspecularhitdistancetextureenabled
+func (f_ FXTemporalDenoisedScalerDescriptor) IsSpecularHitDistanceTextureEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isSpecularHitDistanceTextureEnabled"))
+	return rv
+}
+
+
+// SetIsSpecularHitDistanceTextureEnabled sets the value of the isSpecularHitDistanceTextureEnabled property.
+// A Boolean value indicating whether the scaler evaluates a specular hit distance texture as part of its operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isspecularhitdistancetextureenabled
+func (f_ FXTemporalDenoisedScalerDescriptor) SetIsSpecularHitDistanceTextureEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsSpecularHitDistanceTextureEnabled:"), value)
+}
+
+// A Boolean value indicating whether the scaler evaluates a transparency overlay texture as part of its operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/istransparencyoverlaytextureenabled
+func (f_ FXTemporalDenoisedScalerDescriptor) IsTransparencyOverlayTextureEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isTransparencyOverlayTextureEnabled"))
+	return rv
+}
+
+
+// SetIsTransparencyOverlayTextureEnabled sets the value of the isTransparencyOverlayTextureEnabled property.
+// A Boolean value indicating whether the scaler evaluates a transparency overlay texture as part of its operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/istransparencyoverlaytextureenabled
+func (f_ FXTemporalDenoisedScalerDescriptor) SetIsTransparencyOverlayTextureEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsTransparencyOverlayTextureEnabled:"), value)
 }
 
 

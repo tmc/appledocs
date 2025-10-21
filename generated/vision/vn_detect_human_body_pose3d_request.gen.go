@@ -81,24 +81,6 @@ func NewDetectHumanBodyPose3DRequest() DetectHumanBodyPose3DRequest {
 }
 
 
-// Returns the joint group names the request supports.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/supportedjointnames
-func (d_ DetectHumanBodyPose3DRequest) SupportedJointNames() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointNames"))
-	return rv
-}
-
-
-// SetSupportedJointNames sets the value of the supportedJointNames property.
-// Returns the joint group names the request supports.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/supportedjointnames
-func (d_ DetectHumanBodyPose3DRequest) SetSupportedJointNames(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointNames:"), value)
-}
-
 // The 3D body pose the request observes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/results
@@ -115,6 +97,24 @@ func (d_ DetectHumanBodyPose3DRequest) Results() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/results
 func (d_ DetectHumanBodyPose3DRequest) SetResults(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+// Returns the joint group names the request supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/supportedjointnames
+func (d_ DetectHumanBodyPose3DRequest) SupportedJointNames() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointNames"))
+	return rv
+}
+
+
+// SetSupportedJointNames sets the value of the supportedJointNames property.
+// Returns the joint group names the request supports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/supportedjointnames
+func (d_ DetectHumanBodyPose3DRequest) SetSupportedJointNames(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointNames:"), value)
 }
 
 // Returns the joint names the request supports.

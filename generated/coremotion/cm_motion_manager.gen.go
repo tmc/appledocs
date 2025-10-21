@@ -201,158 +201,6 @@ func (m_ MotionManager) StopMagnetometerUpdates() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stopMagnetometerUpdates"))
 }
 
-// A Boolean value that indicates whether a magnetometer is available on the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeravailable
-func (m_ MotionManager) IsMagnetometerAvailable() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isMagnetometerAvailable"))
-	return rv
-}
-
-
-// SetIsMagnetometerAvailable sets the value of the isMagnetometerAvailable property.
-// A Boolean value that indicates whether a magnetometer is available on the device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeravailable
-func (m_ MotionManager) SetIsMagnetometerAvailable(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsMagnetometerAvailable:"), value)
-}
-
-// A Boolean value that indicates whether accelerometer updates are currently happening.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeractive
-func (m_ MotionManager) IsAccelerometerActive() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isAccelerometerActive"))
-	return rv
-}
-
-
-// SetIsAccelerometerActive sets the value of the isAccelerometerActive property.
-// A Boolean value that indicates whether accelerometer updates are currently happening.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeractive
-func (m_ MotionManager) SetIsAccelerometerActive(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAccelerometerActive:"), value)
-}
-
-// A Boolean value that determines whether magnetometer updates are currently happening.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeractive
-func (m_ MotionManager) IsMagnetometerActive() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isMagnetometerActive"))
-	return rv
-}
-
-
-// SetIsMagnetometerActive sets the value of the isMagnetometerActive property.
-// A Boolean value that determines whether magnetometer updates are currently happening.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeractive
-func (m_ MotionManager) SetIsMagnetometerActive(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsMagnetometerActive:"), value)
-}
-
-// A Boolean value that determines whether the app is receiving updates from the device-motion service.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionactive
-func (m_ MotionManager) IsDeviceMotionActive() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isDeviceMotionActive"))
-	return rv
-}
-
-
-// SetIsDeviceMotionActive sets the value of the isDeviceMotionActive property.
-// A Boolean value that determines whether the app is receiving updates from the device-motion service.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionactive
-func (m_ MotionManager) SetIsDeviceMotionActive(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeviceMotionActive:"), value)
-}
-
-// A Boolean value that indicates whether a gyroscope is available on the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroavailable
-func (m_ MotionManager) IsGyroAvailable() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isGyroAvailable"))
-	return rv
-}
-
-
-// SetIsGyroAvailable sets the value of the isGyroAvailable property.
-// A Boolean value that indicates whether a gyroscope is available on the device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroavailable
-func (m_ MotionManager) SetIsGyroAvailable(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsGyroAvailable:"), value)
-}
-
-// A Boolean value that indicates whether the device-motion service is available on the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionavailable
-func (m_ MotionManager) IsDeviceMotionAvailable() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isDeviceMotionAvailable"))
-	return rv
-}
-
-
-// SetIsDeviceMotionAvailable sets the value of the isDeviceMotionAvailable property.
-// A Boolean value that indicates whether the device-motion service is available on the device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionavailable
-func (m_ MotionManager) SetIsDeviceMotionAvailable(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeviceMotionAvailable:"), value)
-}
-
-// The error domain for Core Motion.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmerrordomain
-func (m_ MotionManager) CMErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("CMErrorDomain"))
-	return rv
-}
-
-// A Boolean value that indicates whether an accelerometer is available on the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeravailable
-func (m_ MotionManager) IsAccelerometerAvailable() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isAccelerometerAvailable"))
-	return rv
-}
-
-
-// SetIsAccelerometerAvailable sets the value of the isAccelerometerAvailable property.
-// A Boolean value that indicates whether an accelerometer is available on the device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeravailable
-func (m_ MotionManager) SetIsAccelerometerAvailable(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAccelerometerAvailable:"), value)
-}
-
-// A Boolean value that determines whether gyroscope updates are currently happening.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroactive
-func (m_ MotionManager) IsGyroActive() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isGyroActive"))
-	return rv
-}
-
-
-// SetIsGyroActive sets the value of the isGyroActive property.
-// A Boolean value that determines whether gyroscope updates are currently happening.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroactive
-func (m_ MotionManager) SetIsGyroActive(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsGyroActive:"), value)
-}
-
 // The latest sample of accelerometer data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/accelerometerData
@@ -545,6 +393,158 @@ func (m_ MotionManager) ShowsDeviceMovementDisplay() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/showsDeviceMovementDisplay
 func (m_ MotionManager) SetShowsDeviceMovementDisplay(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsDeviceMovementDisplay:"), value)
+}
+
+// The error domain for Core Motion.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmerrordomain
+func (m_ MotionManager) CMErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("CMErrorDomain"))
+	return rv
+}
+
+// A Boolean value that indicates whether accelerometer updates are currently happening.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeractive
+func (m_ MotionManager) IsAccelerometerActive() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isAccelerometerActive"))
+	return rv
+}
+
+
+// SetIsAccelerometerActive sets the value of the isAccelerometerActive property.
+// A Boolean value that indicates whether accelerometer updates are currently happening.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeractive
+func (m_ MotionManager) SetIsAccelerometerActive(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAccelerometerActive:"), value)
+}
+
+// A Boolean value that indicates whether an accelerometer is available on the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeravailable
+func (m_ MotionManager) IsAccelerometerAvailable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isAccelerometerAvailable"))
+	return rv
+}
+
+
+// SetIsAccelerometerAvailable sets the value of the isAccelerometerAvailable property.
+// A Boolean value that indicates whether an accelerometer is available on the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeravailable
+func (m_ MotionManager) SetIsAccelerometerAvailable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAccelerometerAvailable:"), value)
+}
+
+// A Boolean value that determines whether the app is receiving updates from the device-motion service.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionactive
+func (m_ MotionManager) IsDeviceMotionActive() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isDeviceMotionActive"))
+	return rv
+}
+
+
+// SetIsDeviceMotionActive sets the value of the isDeviceMotionActive property.
+// A Boolean value that determines whether the app is receiving updates from the device-motion service.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionactive
+func (m_ MotionManager) SetIsDeviceMotionActive(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeviceMotionActive:"), value)
+}
+
+// A Boolean value that indicates whether the device-motion service is available on the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionavailable
+func (m_ MotionManager) IsDeviceMotionAvailable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isDeviceMotionAvailable"))
+	return rv
+}
+
+
+// SetIsDeviceMotionAvailable sets the value of the isDeviceMotionAvailable property.
+// A Boolean value that indicates whether the device-motion service is available on the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionavailable
+func (m_ MotionManager) SetIsDeviceMotionAvailable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeviceMotionAvailable:"), value)
+}
+
+// A Boolean value that determines whether gyroscope updates are currently happening.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroactive
+func (m_ MotionManager) IsGyroActive() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isGyroActive"))
+	return rv
+}
+
+
+// SetIsGyroActive sets the value of the isGyroActive property.
+// A Boolean value that determines whether gyroscope updates are currently happening.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroactive
+func (m_ MotionManager) SetIsGyroActive(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsGyroActive:"), value)
+}
+
+// A Boolean value that indicates whether a gyroscope is available on the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroavailable
+func (m_ MotionManager) IsGyroAvailable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isGyroAvailable"))
+	return rv
+}
+
+
+// SetIsGyroAvailable sets the value of the isGyroAvailable property.
+// A Boolean value that indicates whether a gyroscope is available on the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroavailable
+func (m_ MotionManager) SetIsGyroAvailable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsGyroAvailable:"), value)
+}
+
+// A Boolean value that determines whether magnetometer updates are currently happening.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeractive
+func (m_ MotionManager) IsMagnetometerActive() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isMagnetometerActive"))
+	return rv
+}
+
+
+// SetIsMagnetometerActive sets the value of the isMagnetometerActive property.
+// A Boolean value that determines whether magnetometer updates are currently happening.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeractive
+func (m_ MotionManager) SetIsMagnetometerActive(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsMagnetometerActive:"), value)
+}
+
+// A Boolean value that indicates whether a magnetometer is available on the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeravailable
+func (m_ MotionManager) IsMagnetometerAvailable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isMagnetometerAvailable"))
+	return rv
+}
+
+
+// SetIsMagnetometerAvailable sets the value of the isMagnetometerAvailable property.
+// A Boolean value that indicates whether a magnetometer is available on the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeravailable
+func (m_ MotionManager) SetIsMagnetometerAvailable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsMagnetometerAvailable:"), value)
 }
 
 

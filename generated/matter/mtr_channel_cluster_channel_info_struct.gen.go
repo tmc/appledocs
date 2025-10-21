@@ -77,6 +77,36 @@ func NewMTRChannelClusterChannelInfoStruct() MTRChannelClusterChannelInfoStruct 
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/affiliatecallsign
+func (m_ MTRChannelClusterChannelInfoStruct) AffiliateCallSign() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("affiliateCallSign"))
+	return rv
+}
+
+
+// SetAffiliateCallSign sets the value of the affiliateCallSign property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/affiliatecallsign
+func (m_ MTRChannelClusterChannelInfoStruct) SetAffiliateCallSign(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/callsign
+func (m_ MTRChannelClusterChannelInfoStruct) CallSign() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("callSign"))
+	return rv
+}
+
+
+// SetCallSign sets the value of the callSign property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/callsign
+func (m_ MTRChannelClusterChannelInfoStruct) SetCallSign(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), objc.String(value))
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/identifier
 func (m_ MTRChannelClusterChannelInfoStruct) Identifier() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
@@ -107,51 +137,6 @@ func (m_ MTRChannelClusterChannelInfoStruct) SetMajorNumber(value foundation.Num
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/callsign
-func (m_ MTRChannelClusterChannelInfoStruct) CallSign() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("callSign"))
-	return rv
-}
-
-
-// SetCallSign sets the value of the callSign property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/callsign
-func (m_ MTRChannelClusterChannelInfoStruct) SetCallSign(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/type
-func (m_ MTRChannelClusterChannelInfoStruct) Type() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// SetType sets the value of the type property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/type
-func (m_ MTRChannelClusterChannelInfoStruct) SetType(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/affiliatecallsign
-func (m_ MTRChannelClusterChannelInfoStruct) AffiliateCallSign() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("affiliateCallSign"))
-	return rv
-}
-
-
-// SetAffiliateCallSign sets the value of the affiliateCallSign property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/affiliatecallsign
-func (m_ MTRChannelClusterChannelInfoStruct) SetAffiliateCallSign(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), objc.String(value))
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/minornumber
 func (m_ MTRChannelClusterChannelInfoStruct) MinorNumber() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minorNumber"))
@@ -179,6 +164,21 @@ func (m_ MTRChannelClusterChannelInfoStruct) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/name
 func (m_ MTRChannelClusterChannelInfoStruct) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/type
+func (m_ MTRChannelClusterChannelInfoStruct) Type() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/type
+func (m_ MTRChannelClusterChannelInfoStruct) SetType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 
 

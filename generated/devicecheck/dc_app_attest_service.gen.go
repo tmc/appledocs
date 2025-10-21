@@ -111,6 +111,22 @@ func (d_ DCAppAttestService) GenerateKeyWithCompletionHandler(completionHandler 
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateKeyWithCompletionHandler:"), completionHandler)
 }
 
+// A Boolean value that indicates whether a particular device provides the App Attest service.
+//
+// [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/isSupported
+func (d_ DCAppAttestService) Supported() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
+	return rv
+}
+
+// The shared App Attest service that you use to validate your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/shared
+func (d_ DCAppAttestService) SharedService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("sharedService"))
+	return rv
+}
+
 // A Boolean value that indicates whether a particular device provides the App
 //
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
@@ -127,22 +143,6 @@ func (d_ DCAppAttestService) IsSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
 func (d_ DCAppAttestService) SetIsSupported(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsSupported:"), value)
-}
-
-// A Boolean value that indicates whether a particular device provides the App Attest service.
-//
-// [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/isSupported
-func (d_ DCAppAttestService) Supported() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
-	return rv
-}
-
-// The shared App Attest service that you use to validate your app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/shared
-func (d_ DCAppAttestService) SharedService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("sharedService"))
-	return rv
 }
 
 

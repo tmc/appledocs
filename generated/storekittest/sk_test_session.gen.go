@@ -248,42 +248,6 @@ func (t_ TestSession) ResolveIssueForTransactionWithIdentifierError(identifier u
 	return rv
 }
 
-// A Boolean value that indicates whether the testing environment enters a billing retry state when an auto-renewable subscription renews.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekittest/sktestsession/shouldenterbillingretryonrenewal
-func (t_ TestSession) ShouldEnterBillingRetryOnRenewal() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("shouldEnterBillingRetryOnRenewal"))
-	return rv
-}
-
-
-// SetShouldEnterBillingRetryOnRenewal sets the value of the shouldEnterBillingRetryOnRenewal property.
-// A Boolean value that indicates whether the testing environment enters a billing retry state when an auto-renewable subscription renews.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekittest/sktestsession/shouldenterbillingretryonrenewal
-func (t_ TestSession) SetShouldEnterBillingRetryOnRenewal(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setShouldEnterBillingRetryOnRenewal:"), value)
-}
-
-// A Boolean value that indicates whether the test environment simulates a billing grace period for auto-renewable subscriptions.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekittest/sktestsession/billinggraceperiodisenabled
-func (t_ TestSession) BillingGracePeriodIsEnabled() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("billingGracePeriodIsEnabled"))
-	return rv
-}
-
-
-// SetBillingGracePeriodIsEnabled sets the value of the billingGracePeriodIsEnabled property.
-// A Boolean value that indicates whether the test environment simulates a billing grace period for auto-renewable subscriptions.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekittest/sktestsession/billinggraceperiodisenabled
-func (t_ TestSession) SetBillingGracePeriodIsEnabled(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setBillingGracePeriodIsEnabled:"), value)
-}
-
 // A Boolean value that determines whether the testing environment simulates an Ask to Buy scenario.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/askToBuyEnabled
@@ -462,6 +426,42 @@ func (t_ TestSession) TimeRate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/timeRate-swift.property
 func (t_ TestSession) SetTimeRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeRate:"), value)
+}
+
+// A Boolean value that indicates whether the test environment simulates a billing grace period for auto-renewable subscriptions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekittest/sktestsession/billinggraceperiodisenabled
+func (t_ TestSession) BillingGracePeriodIsEnabled() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("billingGracePeriodIsEnabled"))
+	return rv
+}
+
+
+// SetBillingGracePeriodIsEnabled sets the value of the billingGracePeriodIsEnabled property.
+// A Boolean value that indicates whether the test environment simulates a billing grace period for auto-renewable subscriptions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekittest/sktestsession/billinggraceperiodisenabled
+func (t_ TestSession) SetBillingGracePeriodIsEnabled(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBillingGracePeriodIsEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the testing environment enters a billing retry state when an auto-renewable subscription renews.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekittest/sktestsession/shouldenterbillingretryonrenewal
+func (t_ TestSession) ShouldEnterBillingRetryOnRenewal() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("shouldEnterBillingRetryOnRenewal"))
+	return rv
+}
+
+
+// SetShouldEnterBillingRetryOnRenewal sets the value of the shouldEnterBillingRetryOnRenewal property.
+// A Boolean value that indicates whether the testing environment enters a billing retry state when an auto-renewable subscription renews.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekittest/sktestsession/shouldenterbillingretryonrenewal
+func (t_ TestSession) SetShouldEnterBillingRetryOnRenewal(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setShouldEnterBillingRetryOnRenewal:"), value)
 }
 
 

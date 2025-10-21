@@ -82,24 +82,6 @@ func NewDetectedObjectObservation() DetectedObjectObservation {
 }
 
 
-// A resulting pixel buffer from a request to generate a segmentation mask for an image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/globalsegmentationmask
-func (d_ DetectedObjectObservation) GlobalSegmentationMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("globalSegmentationMask"))
-	return rv
-}
-
-
-// SetGlobalSegmentationMask sets the value of the globalSegmentationMask property.
-// A resulting pixel buffer from a request to generate a segmentation mask for an image.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/globalsegmentationmask
-func (d_ DetectedObjectObservation) SetGlobalSegmentationMask(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setGlobalSegmentationMask:"), value)
-}
-
 // The bounding box of the object that the request detects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/boundingbox
@@ -116,6 +98,24 @@ func (d_ DetectedObjectObservation) BoundingBox() coregraphics.CGRect {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/boundingbox
 func (d_ DetectedObjectObservation) SetBoundingBox(value coregraphics.CGRect) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBoundingBox:"), value)
+}
+
+// A resulting pixel buffer from a request to generate a segmentation mask for an image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/globalsegmentationmask
+func (d_ DetectedObjectObservation) GlobalSegmentationMask() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("globalSegmentationMask"))
+	return rv
+}
+
+
+// SetGlobalSegmentationMask sets the value of the globalSegmentationMask property.
+// A resulting pixel buffer from a request to generate a segmentation mask for an image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/globalsegmentationmask
+func (d_ DetectedObjectObservation) SetGlobalSegmentationMask(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setGlobalSegmentationMask:"), value)
 }
 
 

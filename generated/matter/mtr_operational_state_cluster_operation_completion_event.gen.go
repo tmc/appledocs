@@ -77,21 +77,6 @@ func NewMTROperationalStateClusterOperationCompletionEvent() MTROperationalState
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/pausedtime
-func (m_ MTROperationalStateClusterOperationCompletionEvent) PausedTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("pausedTime"))
-	return rv
-}
-
-
-// SetPausedTime sets the value of the pausedTime property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/pausedtime
-func (m_ MTROperationalStateClusterOperationCompletionEvent) SetPausedTime(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPausedTime:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/completionerrorcode
 func (m_ MTROperationalStateClusterOperationCompletionEvent) CompletionErrorCode() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("completionErrorCode"))
@@ -104,6 +89,21 @@ func (m_ MTROperationalStateClusterOperationCompletionEvent) CompletionErrorCode
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/completionerrorcode
 func (m_ MTROperationalStateClusterOperationCompletionEvent) SetCompletionErrorCode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCompletionErrorCode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/pausedtime
+func (m_ MTROperationalStateClusterOperationCompletionEvent) PausedTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("pausedTime"))
+	return rv
+}
+
+
+// SetPausedTime sets the value of the pausedTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/pausedtime
+func (m_ MTROperationalStateClusterOperationCompletionEvent) SetPausedTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPausedTime:"), value)
 }
 
 //

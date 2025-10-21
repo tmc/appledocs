@@ -104,76 +104,40 @@ func (t_ TurnBasedMatch) SetLocalizableMessageWithKeyArguments(key string, argum
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLocalizableMessageWithKey:arguments:"), objc.String(key), arguments)
 }
 
-// The maximum size of the exchange data.
+// The exchanges that the local player needs to accept or reject.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchangedatamaximumsize
-func (t_ TurnBasedMatch) ExchangeDataMaximumSize() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("exchangeDataMaximumSize"))
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/activeexchanges
+func (t_ TurnBasedMatch) ActiveExchanges() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("activeExchanges"))
 	return rv
 }
 
 
-// SetExchangeDataMaximumSize sets the value of the exchangeDataMaximumSize property.
-// The maximum size of the exchange data.
+// SetActiveExchanges sets the value of the activeExchanges property.
+// The exchanges that the local player needs to accept or reject.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchangedatamaximumsize
-func (t_ TurnBasedMatch) SetExchangeDataMaximumSize(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setExchangeDataMaximumSize:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/activeexchanges
+func (t_ TurnBasedMatch) SetActiveExchanges(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setActiveExchanges:"), value)
 }
 
-// The players that participate in a turn-based match.
+// The exchange requests that all recipients replied to and the current participant needs to save.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
-func (t_ TurnBasedMatch) Participants() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("participants"))
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/completedexchanges
+func (t_ TurnBasedMatch) CompletedExchanges() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("completedExchanges"))
 	return rv
 }
 
 
-// SetParticipants sets the value of the participants property.
-// The players that participate in a turn-based match.
+// SetCompletedExchanges sets the value of the completedExchanges property.
+// The exchange requests that all recipients replied to and the current participant needs to save.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
-func (t_ TurnBasedMatch) SetParticipants(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setParticipants:"), value)
-}
-
-// The participant whose turn it is.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/currentparticipant
-func (t_ TurnBasedMatch) CurrentParticipant() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("currentParticipant"))
-	return rv
-}
-
-
-// SetCurrentParticipant sets the value of the currentParticipant property.
-// The participant whose turn it is.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/currentparticipant
-func (t_ TurnBasedMatch) SetCurrentParticipant(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentParticipant:"), value)
-}
-
-// The maximum size of the match data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchdatamaximumsize
-func (t_ TurnBasedMatch) MatchDataMaximumSize() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("matchDataMaximumSize"))
-	return rv
-}
-
-
-// SetMatchDataMaximumSize sets the value of the matchDataMaximumSize property.
-// The maximum size of the match data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchdatamaximumsize
-func (t_ TurnBasedMatch) SetMatchDataMaximumSize(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchDataMaximumSize:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/completedexchanges
+func (t_ TurnBasedMatch) SetCompletedExchanges(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletedExchanges:"), value)
 }
 
 // The date that Game Center created the match.
@@ -194,22 +158,40 @@ func (t_ TurnBasedMatch) SetCreationDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCreationDate:"), value)
 }
 
-// A message from the current participant to all other participants when you end a turn, forfeit a match, or end a match.
+// The participant whose turn it is.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/message
-func (t_ TurnBasedMatch) Message() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("message"))
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/currentparticipant
+func (t_ TurnBasedMatch) CurrentParticipant() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("currentParticipant"))
 	return rv
 }
 
 
-// SetMessage sets the value of the message property.
-// A message from the current participant to all other participants when you end a turn, forfeit a match, or end a match.
+// SetCurrentParticipant sets the value of the currentParticipant property.
+// The participant whose turn it is.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/message
-func (t_ TurnBasedMatch) SetMessage(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/currentparticipant
+func (t_ TurnBasedMatch) SetCurrentParticipant(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentParticipant:"), value)
+}
+
+// The maximum size of the exchange data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchangedatamaximumsize
+func (t_ TurnBasedMatch) ExchangeDataMaximumSize() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("exchangeDataMaximumSize"))
+	return rv
+}
+
+
+// SetExchangeDataMaximumSize sets the value of the exchangeDataMaximumSize property.
+// The maximum size of the exchange data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchangedatamaximumsize
+func (t_ TurnBasedMatch) SetExchangeDataMaximumSize(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setExchangeDataMaximumSize:"), value)
 }
 
 // The maximum number of exchanges the local player can initiate.
@@ -230,24 +212,6 @@ func (t_ TurnBasedMatch) SetExchangeMaxInitiatedExchangesPerPlayer(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExchangeMaxInitiatedExchangesPerPlayer:"), value)
 }
 
-// The exchanges that the local player needs to accept or reject.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/activeexchanges
-func (t_ TurnBasedMatch) ActiveExchanges() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("activeExchanges"))
-	return rv
-}
-
-
-// SetActiveExchanges sets the value of the activeExchanges property.
-// The exchanges that the local player needs to accept or reject.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/activeexchanges
-func (t_ TurnBasedMatch) SetActiveExchanges(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setActiveExchanges:"), value)
-}
-
 // The exchange requests that are active or complete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchanges
@@ -264,24 +228,6 @@ func (t_ TurnBasedMatch) Exchanges() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchanges
 func (t_ TurnBasedMatch) SetExchanges(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExchanges:"), value)
-}
-
-// The state of the match, such as whether the match is open or has ended.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.property
-func (t_ TurnBasedMatch) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("status"))
-	return rv
-}
-
-
-// SetStatus sets the value of the status property.
-// The state of the match, such as whether the match is open or has ended.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.property
-func (t_ TurnBasedMatch) SetStatus(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStatus:"), value)
 }
 
 // The game-specific data that you store in Game Center and pass between participants through a match object.
@@ -302,6 +248,24 @@ func (t_ TurnBasedMatch) SetMatchData(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchData:"), value)
 }
 
+// The maximum size of the match data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchdatamaximumsize
+func (t_ TurnBasedMatch) MatchDataMaximumSize() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("matchDataMaximumSize"))
+	return rv
+}
+
+
+// SetMatchDataMaximumSize sets the value of the matchDataMaximumSize property.
+// The maximum size of the match data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchdatamaximumsize
+func (t_ TurnBasedMatch) SetMatchDataMaximumSize(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchDataMaximumSize:"), value)
+}
+
 // A unique identifier for the turn-based match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchid
@@ -320,22 +284,58 @@ func (t_ TurnBasedMatch) SetMatchID(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchID:"), objc.String(value))
 }
 
-// The exchange requests that all recipients replied to and the current participant needs to save.
+// A message from the current participant to all other participants when you end a turn, forfeit a match, or end a match.
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/completedexchanges
-func (t_ TurnBasedMatch) CompletedExchanges() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("completedExchanges"))
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/message
+func (t_ TurnBasedMatch) Message() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("message"))
 	return rv
 }
 
 
-// SetCompletedExchanges sets the value of the completedExchanges property.
-// The exchange requests that all recipients replied to and the current participant needs to save.
+// SetMessage sets the value of the message property.
+// A message from the current participant to all other participants when you end a turn, forfeit a match, or end a match.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/completedexchanges
-func (t_ TurnBasedMatch) SetCompletedExchanges(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletedExchanges:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/message
+func (t_ TurnBasedMatch) SetMessage(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
+}
+
+// The players that participate in a turn-based match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
+func (t_ TurnBasedMatch) Participants() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("participants"))
+	return rv
+}
+
+
+// SetParticipants sets the value of the participants property.
+// The players that participate in a turn-based match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
+func (t_ TurnBasedMatch) SetParticipants(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setParticipants:"), value)
+}
+
+// The state of the match, such as whether the match is open or has ended.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.property
+func (t_ TurnBasedMatch) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+// The state of the match, such as whether the match is open or has ended.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.property
+func (t_ TurnBasedMatch) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStatus:"), value)
 }
 
 

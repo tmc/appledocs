@@ -81,14 +81,6 @@ func NewDetectFaceRectanglesRequest() DetectFaceRectanglesRequest {
 }
 
 
-// A constant for specifying revision 2 of the face rectangles detection request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision2
-func (d_ DetectFaceRectanglesRequest) VNDetectFaceRectanglesRequestRevision2() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceRectanglesRequestRevision2"))
-	return rv
-}
-
 // The results of the face detection request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest/results
@@ -112,6 +104,14 @@ func (d_ DetectFaceRectanglesRequest) SetResults(value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision1
 func (d_ DetectFaceRectanglesRequest) VNDetectFaceRectanglesRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceRectanglesRequestRevision1"))
+	return rv
+}
+
+// A constant for specifying revision 2 of the face rectangles detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision2
+func (d_ DetectFaceRectanglesRequest) VNDetectFaceRectanglesRequestRevision2() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceRectanglesRequestRevision2"))
 	return rv
 }
 

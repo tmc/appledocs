@@ -81,40 +81,58 @@ func NewAttributeDescription() AttributeDescription {
 }
 
 
-// The name of the transformer to use for the attribute value.
+// A Boolean value that determines whether to encrypt the attribute’s value.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-func (a_ AttributeDescription) ValueTransformerName() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("valueTransformerName"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
+func (a_ AttributeDescription) AllowsCloudEncryption() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowsCloudEncryption"))
 	return rv
 }
 
 
-// SetValueTransformerName sets the value of the valueTransformerName property.
-// The name of the transformer to use for the attribute value.
+// SetAllowsCloudEncryption sets the value of the allowsCloudEncryption property.
+// A Boolean value that determines whether to encrypt the attribute’s value.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-func (a_ AttributeDescription) SetValueTransformerName(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
+func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsCloudEncryption:"), value)
 }
 
-// The attribute’s type.
+// A Boolean value that indicates whether the attribute allows external binary storage.
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
-func (a_ AttributeDescription) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("type"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsExternalBinaryDataStorage
+func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowsExternalBinaryDataStorage"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
+// SetAllowsExternalBinaryDataStorage sets the value of the allowsExternalBinaryDataStorage property.
+// A Boolean value that indicates whether the attribute allows external binary storage.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsExternalBinaryDataStorage
+func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsExternalBinaryDataStorage:"), value)
+}
+
+// The attribute’s type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
+func (a_ AttributeDescription) AttributeType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("attributeType"))
+	return rv
+}
+
+
+// SetAttributeType sets the value of the attributeType property.
 // The attribute’s type.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
-func (a_ AttributeDescription) SetType(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
+func (a_ AttributeDescription) SetAttributeType(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeType:"), value)
 }
 
 // The class name that represents the attribute’s value.
@@ -171,6 +189,42 @@ func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool) 
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreservesValueInHistoryOnDeletion:"), value)
 }
 
+// The attribute’s type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
+func (a_ AttributeDescription) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The attribute’s type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
+func (a_ AttributeDescription) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
+}
+
+// The name of the transformer to use for the attribute value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
+func (a_ AttributeDescription) ValueTransformerName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("valueTransformerName"))
+	return rv
+}
+
+
+// SetValueTransformerName sets the value of the valueTransformerName property.
+// The name of the transformer to use for the attribute value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
+func (a_ AttributeDescription) SetValueTransformerName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), objc.String(value))
+}
+
 // The version hash for the attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
@@ -187,60 +241,6 @@ func (a_ AttributeDescription) VersionHash() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
 func (a_ AttributeDescription) SetVersionHash(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersionHash:"), value)
-}
-
-// A Boolean value that determines whether to encrypt the attribute’s value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
-func (a_ AttributeDescription) AllowsCloudEncryption() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("allowsCloudEncryption"))
-	return rv
-}
-
-
-// SetAllowsCloudEncryption sets the value of the allowsCloudEncryption property.
-// A Boolean value that determines whether to encrypt the attribute’s value.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
-func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsCloudEncryption:"), value)
-}
-
-// A Boolean value that indicates whether the attribute allows external binary storage.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsExternalBinaryDataStorage
-func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("allowsExternalBinaryDataStorage"))
-	return rv
-}
-
-
-// SetAllowsExternalBinaryDataStorage sets the value of the allowsExternalBinaryDataStorage property.
-// A Boolean value that indicates whether the attribute allows external binary storage.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsExternalBinaryDataStorage
-func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsExternalBinaryDataStorage:"), value)
-}
-
-// The attribute’s type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
-func (a_ AttributeDescription) AttributeType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("attributeType"))
-	return rv
-}
-
-
-// SetAttributeType sets the value of the attributeType property.
-// The attribute’s type.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
-func (a_ AttributeDescription) SetAttributeType(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeType:"), value)
 }
 
 

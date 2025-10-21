@@ -82,96 +82,6 @@ func NewGraphStencilOpDescriptor() GraphStencilOpDescriptor {
 }
 
 
-// The property that defines padding values for spatial dimensions.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/explicitpadding
-func (g_ GraphStencilOpDescriptor) ExplicitPadding() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("explicitPadding"))
-	return rv
-}
-
-
-// SetExplicitPadding sets the value of the explicitPadding property.
-// The property that defines padding values for spatial dimensions.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/explicitpadding
-func (g_ GraphStencilOpDescriptor) SetExplicitPadding(value foundation.Number) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setExplicitPadding:"), value)
-}
-
-// The reduction mode to use within the stencil window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/reductionmode
-func (g_ GraphStencilOpDescriptor) ReductionMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("reductionMode"))
-	return rv
-}
-
-
-// SetReductionMode sets the value of the reductionMode property.
-// The reduction mode to use within the stencil window.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/reductionmode
-func (g_ GraphStencilOpDescriptor) SetReductionMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setReductionMode:"), value)
-}
-
-// The property that defines dilation rates for spatial dimensions.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/dilationrates
-func (g_ GraphStencilOpDescriptor) DilationRates() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("dilationRates"))
-	return rv
-}
-
-
-// SetDilationRates sets the value of the dilationRates property.
-// The property that defines dilation rates for spatial dimensions.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/dilationrates
-func (g_ GraphStencilOpDescriptor) SetDilationRates(value foundation.Number) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRates:"), value)
-}
-
-// The property that defines what kind of padding to apply to the stencil operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/paddingstyle
-func (g_ GraphStencilOpDescriptor) PaddingStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("paddingStyle"))
-	return rv
-}
-
-
-// SetPaddingStyle sets the value of the paddingStyle property.
-// The property that defines what kind of padding to apply to the stencil operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/paddingstyle
-func (g_ GraphStencilOpDescriptor) SetPaddingStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
-}
-
-// An array of length four that determines from which offset to start reading the input tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/offsets
-func (g_ GraphStencilOpDescriptor) Offsets() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("offsets"))
-	return rv
-}
-
-
-// SetOffsets sets the value of the offsets property.
-// An array of length four that determines from which offset to start reading the input tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/offsets
-func (g_ GraphStencilOpDescriptor) SetOffsets(value foundation.Number) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setOffsets:"), value)
-}
-
 // The property that determines which values to use for padding the input tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/boundaryMode
@@ -224,6 +134,96 @@ func (g_ GraphStencilOpDescriptor) Strides() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/strides
 func (g_ GraphStencilOpDescriptor) SetStrides(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrides:"), value)
+}
+
+// The property that defines dilation rates for spatial dimensions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/dilationrates
+func (g_ GraphStencilOpDescriptor) DilationRates() foundation.Number {
+	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("dilationRates"))
+	return rv
+}
+
+
+// SetDilationRates sets the value of the dilationRates property.
+// The property that defines dilation rates for spatial dimensions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/dilationrates
+func (g_ GraphStencilOpDescriptor) SetDilationRates(value foundation.Number) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRates:"), value)
+}
+
+// The property that defines padding values for spatial dimensions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/explicitpadding
+func (g_ GraphStencilOpDescriptor) ExplicitPadding() foundation.Number {
+	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("explicitPadding"))
+	return rv
+}
+
+
+// SetExplicitPadding sets the value of the explicitPadding property.
+// The property that defines padding values for spatial dimensions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/explicitpadding
+func (g_ GraphStencilOpDescriptor) SetExplicitPadding(value foundation.Number) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setExplicitPadding:"), value)
+}
+
+// An array of length four that determines from which offset to start reading the input tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/offsets
+func (g_ GraphStencilOpDescriptor) Offsets() foundation.Number {
+	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("offsets"))
+	return rv
+}
+
+
+// SetOffsets sets the value of the offsets property.
+// An array of length four that determines from which offset to start reading the input tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/offsets
+func (g_ GraphStencilOpDescriptor) SetOffsets(value foundation.Number) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOffsets:"), value)
+}
+
+// The property that defines what kind of padding to apply to the stencil operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/paddingstyle
+func (g_ GraphStencilOpDescriptor) PaddingStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("paddingStyle"))
+	return rv
+}
+
+
+// SetPaddingStyle sets the value of the paddingStyle property.
+// The property that defines what kind of padding to apply to the stencil operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/paddingstyle
+func (g_ GraphStencilOpDescriptor) SetPaddingStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
+}
+
+// The reduction mode to use within the stencil window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/reductionmode
+func (g_ GraphStencilOpDescriptor) ReductionMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("reductionMode"))
+	return rv
+}
+
+
+// SetReductionMode sets the value of the reductionMode property.
+// The reduction mode to use within the stencil window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/reductionmode
+func (g_ GraphStencilOpDescriptor) SetReductionMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setReductionMode:"), value)
 }
 
 

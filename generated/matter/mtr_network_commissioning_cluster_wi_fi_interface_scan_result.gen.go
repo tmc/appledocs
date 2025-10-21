@@ -78,48 +78,18 @@ func NewMTRNetworkCommissioningClusterWiFiInterfaceScanResult() MTRNetworkCommis
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/security
-func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Security() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("security"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/bssid
+func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Bssid() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bssid"))
 	return rv
 }
 
 
-// SetSecurity sets the value of the security property.
+// SetBssid sets the value of the bssid property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/security
-func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetSecurity(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSecurity:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/rssi
-func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Rssi() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rssi"))
-	return rv
-}
-
-
-// SetRssi sets the value of the rssi property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/rssi
-func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetRssi(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRssi:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/wifiband
-func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) WiFiBand() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("wiFiBand"))
-	return rv
-}
-
-
-// SetWiFiBand sets the value of the wiFiBand property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/wifiband
-func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetWiFiBand(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setWiFiBand:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/bssid
+func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetBssid(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBssid:"), value)
 }
 
 //
@@ -138,6 +108,36 @@ func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetChannel(value
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/rssi
+func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Rssi() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rssi"))
+	return rv
+}
+
+
+// SetRssi sets the value of the rssi property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/rssi
+func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetRssi(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRssi:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/security
+func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Security() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("security"))
+	return rv
+}
+
+
+// SetSecurity sets the value of the security property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/security
+func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetSecurity(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSecurity:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/ssid
 func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Ssid() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("ssid"))
@@ -153,18 +153,18 @@ func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetSsid(value un
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/bssid
-func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Bssid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bssid"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/wifiband
+func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) WiFiBand() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("wiFiBand"))
 	return rv
 }
 
 
-// SetBssid sets the value of the bssid property.
+// SetWiFiBand sets the value of the wiFiBand property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/bssid
-func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetBssid(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBssid:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/wifiband
+func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetWiFiBand(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setWiFiBand:"), value)
 }
 
 

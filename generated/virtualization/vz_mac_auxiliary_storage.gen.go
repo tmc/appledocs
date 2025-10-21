@@ -118,22 +118,12 @@ func NewVZMacAuxiliaryStorageWithURL(URL foundation.URL) VZMacAuxiliaryStorage {
 }
 
 
-// The Mac auxiliary storage.
+// The URL of the auxiliary storage on the local file system.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/auxiliarystorage
-func (v_ VZMacAuxiliaryStorage) AuxiliaryStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("auxiliaryStorage"))
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacAuxiliaryStorage/url
+func (v_ VZMacAuxiliaryStorage) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("URL"))
 	return rv
-}
-
-
-// SetAuxiliaryStorage sets the value of the auxiliaryStorage property.
-// The Mac auxiliary storage.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/auxiliarystorage
-func (v_ VZMacAuxiliaryStorage) SetAuxiliaryStorage(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setAuxiliaryStorage:"), value)
 }
 
 // This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
@@ -154,6 +144,24 @@ func (v_ VZMacAuxiliaryStorage) SetMostFeaturefulSupportedConfiguration(value un
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMostFeaturefulSupportedConfiguration:"), value)
 }
 
+// The Mac auxiliary storage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/auxiliarystorage
+func (v_ VZMacAuxiliaryStorage) AuxiliaryStorage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("auxiliaryStorage"))
+	return rv
+}
+
+
+// SetAuxiliaryStorage sets the value of the auxiliaryStorage property.
+// The Mac auxiliary storage.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/auxiliarystorage
+func (v_ VZMacAuxiliaryStorage) SetAuxiliaryStorage(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAuxiliaryStorage:"), value)
+}
+
 // The Mac hardware model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
@@ -170,14 +178,6 @@ func (v_ VZMacAuxiliaryStorage) HardwareModel() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
 func (v_ VZMacAuxiliaryStorage) SetHardwareModel(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)
-}
-
-// The URL of the auxiliary storage on the local file system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacAuxiliaryStorage/url
-func (v_ VZMacAuxiliaryStorage) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("URL"))
-	return rv
 }
 
 

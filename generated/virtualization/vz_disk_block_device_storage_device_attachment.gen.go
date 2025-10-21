@@ -99,24 +99,6 @@ func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SetFileHandle(value unsafe.Po
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFileHandle:"), value)
 }
 
-// The value that defines how the disk synchronizes with the underlying storage when the guest operating system flushes data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment/synchronizationmode
-func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SynchronizationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("synchronizationMode"))
-	return rv
-}
-
-
-// SetSynchronizationMode sets the value of the synchronizationMode property.
-// The value that defines how the disk synchronizes with the underlying storage when the guest operating system flushes data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment/synchronizationmode
-func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SetSynchronizationMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setSynchronizationMode:"), value)
-}
-
 // A Boolean value that indicates whether this disk attachment is read-only; otherwise, if the file handle allows writes, the device can write data into it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment/isreadonly
@@ -133,6 +115,24 @@ func (v_ VZDiskBlockDeviceStorageDeviceAttachment) IsReadOnly() bool {
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment/isreadonly
 func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SetIsReadOnly(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsReadOnly:"), value)
+}
+
+// The value that defines how the disk synchronizes with the underlying storage when the guest operating system flushes data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment/synchronizationmode
+func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SynchronizationMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("synchronizationMode"))
+	return rv
+}
+
+
+// SetSynchronizationMode sets the value of the synchronizationMode property.
+// The value that defines how the disk synchronizes with the underlying storage when the guest operating system flushes data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment/synchronizationmode
+func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SetSynchronizationMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSynchronizationMode:"), value)
 }
 
 

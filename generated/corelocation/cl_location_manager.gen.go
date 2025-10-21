@@ -368,56 +368,6 @@ func (l_ LocationManager) StopUpdatingLocation() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("stopUpdatingLocation"))
 }
 
-// A value representing an unlimited amount of time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corelocation/cltimeintervalmax
-func (l_ LocationManager) CLTimeIntervalMax() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("CLTimeIntervalMax"))
-	return rv
-}
-
-// A constant indicating that all movement should be reported.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corelocation/kcldistancefilternone
-func (l_ LocationManager) KCLDistanceFilterNone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("kCLDistanceFilterNone"))
-	return rv
-}
-
-// A constant indicating that all header values should be reported.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corelocation/kclheadingfilternone
-func (l_ LocationManager) KCLHeadingFilterNone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("kCLHeadingFilterNone"))
-	return rv
-}
-
-// A Boolean value that indicates whether a widget is eligible to receive location updates.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corelocation/cllocationmanager/isauthorizedforwidgetupdates
-func (l_ LocationManager) IsAuthorizedForWidgetUpdates() bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("isAuthorizedForWidgetUpdates"))
-	return rv
-}
-
-
-// SetIsAuthorizedForWidgetUpdates sets the value of the isAuthorizedForWidgetUpdates property.
-// A Boolean value that indicates whether a widget is eligible to receive location updates.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/corelocation/cllocationmanager/isauthorizedforwidgetupdates
-func (l_ LocationManager) SetIsAuthorizedForWidgetUpdates(value bool) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setIsAuthorizedForWidgetUpdates:"), value)
-}
-
-// A constant indicating the maximum distance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/corelocation/cllocationdistancemax
-func (l_ LocationManager) CLLocationDistanceMax() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("CLLocationDistanceMax"))
-	return rv
-}
-
 // A value that indicates the level of location accuracy the app has permission to use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/accuracyAuthorization
@@ -650,6 +600,56 @@ func (l_ LocationManager) ShowsBackgroundLocationIndicator() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator
 func (l_ LocationManager) SetShowsBackgroundLocationIndicator(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShowsBackgroundLocationIndicator:"), value)
+}
+
+// A constant indicating the maximum distance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/cllocationdistancemax
+func (l_ LocationManager) CLLocationDistanceMax() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("CLLocationDistanceMax"))
+	return rv
+}
+
+// A Boolean value that indicates whether a widget is eligible to receive location updates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/cllocationmanager/isauthorizedforwidgetupdates
+func (l_ LocationManager) IsAuthorizedForWidgetUpdates() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("isAuthorizedForWidgetUpdates"))
+	return rv
+}
+
+
+// SetIsAuthorizedForWidgetUpdates sets the value of the isAuthorizedForWidgetUpdates property.
+// A Boolean value that indicates whether a widget is eligible to receive location updates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/cllocationmanager/isauthorizedforwidgetupdates
+func (l_ LocationManager) SetIsAuthorizedForWidgetUpdates(value bool) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIsAuthorizedForWidgetUpdates:"), value)
+}
+
+// A value representing an unlimited amount of time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/cltimeintervalmax
+func (l_ LocationManager) CLTimeIntervalMax() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("CLTimeIntervalMax"))
+	return rv
+}
+
+// A constant indicating that all movement should be reported.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/kcldistancefilternone
+func (l_ LocationManager) KCLDistanceFilterNone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("kCLDistanceFilterNone"))
+	return rv
+}
+
+// A constant indicating that all header values should be reported.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/kclheadingfilternone
+func (l_ LocationManager) KCLHeadingFilterNone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("kCLHeadingFilterNone"))
+	return rv
 }
 
 

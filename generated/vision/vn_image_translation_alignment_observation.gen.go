@@ -82,14 +82,6 @@ func NewImageTranslationAlignmentObservation() ImageTranslationAlignmentObservat
 }
 
 
-// A constant for specifying revision 1 of the translational image registration request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequestrevision1
-func (i_ ImageTranslationAlignmentObservation) VNTranslationalImageRegistrationRequestRevision1() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("VNTranslationalImageRegistrationRequestRevision1"))
-	return rv
-}
-
 // The alignment transform to align the floating image with the reference image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation/alignmenttransform
@@ -106,6 +98,14 @@ func (i_ ImageTranslationAlignmentObservation) AlignmentTransform() coregraphics
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation/alignmenttransform
 func (i_ ImageTranslationAlignmentObservation) SetAlignmentTransform(value coregraphics.CGAffineTransform) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAlignmentTransform:"), value)
+}
+
+// A constant for specifying revision 1 of the translational image registration request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequestrevision1
+func (i_ ImageTranslationAlignmentObservation) VNTranslationalImageRegistrationRequestRevision1() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("VNTranslationalImageRegistrationRequestRevision1"))
+	return rv
 }
 
 

@@ -77,18 +77,18 @@ func NewMTRChannelClusterChangeChannelByNumberParams() MTRChannelClusterChangeCh
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterChangeChannelByNumberParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/majornumber
+func (m_ MTRChannelClusterChangeChannelByNumberParams) MajorNumber() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("majorNumber"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// SetMajorNumber sets the value of the majorNumber property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterChangeChannelByNumberParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/majornumber
+func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMajorNumber(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMajorNumber:"), value)
 }
 
 //
@@ -122,18 +122,18 @@ func (m_ MTRChannelClusterChangeChannelByNumberParams) SetServerSideProcessingTi
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/majornumber
-func (m_ MTRChannelClusterChangeChannelByNumberParams) MajorNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("majorNumber"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/timedinvoketimeoutms
+func (m_ MTRChannelClusterChangeChannelByNumberParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetMajorNumber sets the value of the majorNumber property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/majornumber
-func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMajorNumber(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMajorNumber:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/timedinvoketimeoutms
+func (m_ MTRChannelClusterChangeChannelByNumberParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

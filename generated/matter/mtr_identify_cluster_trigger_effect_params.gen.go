@@ -77,21 +77,6 @@ func NewMTRIdentifyClusterTriggerEffectParams() MTRIdentifyClusterTriggerEffectP
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/timedinvoketimeoutms
-func (m_ MTRIdentifyClusterTriggerEffectParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/timedinvoketimeoutms
-func (m_ MTRIdentifyClusterTriggerEffectParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectidentifier
 func (m_ MTRIdentifyClusterTriggerEffectParams) EffectIdentifier() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectIdentifier"))
@@ -104,6 +89,21 @@ func (m_ MTRIdentifyClusterTriggerEffectParams) EffectIdentifier() foundation.Nu
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectidentifier
 func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectIdentifier(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectIdentifier:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectvariant
+func (m_ MTRIdentifyClusterTriggerEffectParams) EffectVariant() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectVariant"))
+	return rv
+}
+
+
+// SetEffectVariant sets the value of the effectVariant property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectvariant
+func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectVariant(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectVariant:"), value)
 }
 
 //
@@ -122,18 +122,18 @@ func (m_ MTRIdentifyClusterTriggerEffectParams) SetServerSideProcessingTimeout(v
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectvariant
-func (m_ MTRIdentifyClusterTriggerEffectParams) EffectVariant() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectVariant"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/timedinvoketimeoutms
+func (m_ MTRIdentifyClusterTriggerEffectParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetEffectVariant sets the value of the effectVariant property.
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectvariant
-func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectVariant(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectVariant:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/timedinvoketimeoutms
+func (m_ MTRIdentifyClusterTriggerEffectParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

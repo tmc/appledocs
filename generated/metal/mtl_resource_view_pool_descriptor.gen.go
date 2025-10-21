@@ -78,24 +78,6 @@ func NewResourceViewPoolDescriptor() ResourceViewPoolDescriptor {
 }
 
 
-// Configures the number of resource views with which Metal creates the resource view pool.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourceviewpooldescriptor/resourceviewcount
-func (r_ ResourceViewPoolDescriptor) ResourceViewCount() int {
-	rv := objc.Send[int](r_.ID, objc.Sel("resourceViewCount"))
-	return rv
-}
-
-
-// SetResourceViewCount sets the value of the resourceViewCount property.
-// Configures the number of resource views with which Metal creates the resource view pool.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourceviewpooldescriptor/resourceviewcount
-func (r_ ResourceViewPoolDescriptor) SetResourceViewCount(value int) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setResourceViewCount:"), value)
-}
-
 // Assigns an optional label you to the resource view pool for debugging purposes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceViewPoolDescriptor/label
@@ -112,6 +94,24 @@ func (r_ ResourceViewPoolDescriptor) Label() string {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceViewPoolDescriptor/label
 func (r_ ResourceViewPoolDescriptor) SetLabel(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+// Configures the number of resource views with which Metal creates the resource view pool.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourceviewpooldescriptor/resourceviewcount
+func (r_ ResourceViewPoolDescriptor) ResourceViewCount() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("resourceViewCount"))
+	return rv
+}
+
+
+// SetResourceViewCount sets the value of the resourceViewCount property.
+// Configures the number of resource views with which Metal creates the resource view pool.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourceviewpooldescriptor/resourceviewcount
+func (r_ ResourceViewPoolDescriptor) SetResourceViewCount(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setResourceViewCount:"), value)
 }
 
 

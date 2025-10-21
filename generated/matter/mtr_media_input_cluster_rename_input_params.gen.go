@@ -77,36 +77,6 @@ func NewMTRMediaInputClusterRenameInputParams() MTRMediaInputClusterRenameInputP
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/timedinvoketimeoutms
-func (m_ MTRMediaInputClusterRenameInputParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/timedinvoketimeoutms
-func (m_ MTRMediaInputClusterRenameInputParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/serversideprocessingtimeout
-func (m_ MTRMediaInputClusterRenameInputParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/serversideprocessingtimeout
-func (m_ MTRMediaInputClusterRenameInputParams) SetServerSideProcessingTimeout(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/index
 func (m_ MTRMediaInputClusterRenameInputParams) Index() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("index"))
@@ -134,6 +104,36 @@ func (m_ MTRMediaInputClusterRenameInputParams) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/name
 func (m_ MTRMediaInputClusterRenameInputParams) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/serversideprocessingtimeout
+func (m_ MTRMediaInputClusterRenameInputParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/serversideprocessingtimeout
+func (m_ MTRMediaInputClusterRenameInputParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/timedinvoketimeoutms
+func (m_ MTRMediaInputClusterRenameInputParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/timedinvoketimeoutms
+func (m_ MTRMediaInputClusterRenameInputParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 

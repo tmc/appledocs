@@ -77,6 +77,21 @@ func NewMTRNetworkCommissioningClusterScanNetworksResponseParams() MTRNetworkCom
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/debugtext
+func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) DebugText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
+	return rv
+}
+
+
+// SetDebugText sets the value of the debugText property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/debugtext
+func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetDebugText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/networkingstatus
 func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) NetworkingStatus() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("networkingStatus"))
@@ -89,21 +104,6 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) NetworkingSta
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/networkingstatus
 func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetNetworkingStatus(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkingStatus:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
-	return rv
-}
-
-
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //
@@ -122,6 +122,21 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetThreadScan
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/timedinvoketimeoutms
+func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/timedinvoketimeoutms
+func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/wifiscanresults
 func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) WiFiScanResults() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("wiFiScanResults"))
@@ -134,21 +149,6 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) WiFiScanResul
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/wifiscanresults
 func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetWiFiScanResults(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWiFiScanResults:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) DebugText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
-	return rv
-}
-
-
-// SetDebugText sets the value of the debugText property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetDebugText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
 }
 
 

@@ -17,27 +17,6 @@ type CFDataRef unsafe.Pointer
 // CFDictionaryRef is a CoreGraphics opaque type.
 type CFDictionaryRef unsafe.Pointer
 
-// CFHTTPAuthenticationRef is a CoreGraphics opaque type.
-type CFHTTPAuthenticationRef unsafe.Pointer
-
-// CFHTTPMessageRef is a CoreGraphics opaque type.
-type CFHTTPMessageRef unsafe.Pointer
-
-// CFHostRef is a CoreGraphics opaque type.
-type CFHostRef unsafe.Pointer
-
-// CFNetDiagnosticRef is a CoreGraphics opaque type.
-type CFNetDiagnosticRef unsafe.Pointer
-
-// CFNetServiceBrowserRef is a CoreGraphics opaque type.
-type CFNetServiceBrowserRef unsafe.Pointer
-
-// CFNetServiceMonitorRef is a CoreGraphics opaque type.
-type CFNetServiceMonitorRef unsafe.Pointer
-
-// CFNetServiceRef is a CoreGraphics opaque type.
-type CFNetServiceRef unsafe.Pointer
-
 // CFReadStreamRef is a CoreGraphics opaque type.
 type CFReadStreamRef unsafe.Pointer
 

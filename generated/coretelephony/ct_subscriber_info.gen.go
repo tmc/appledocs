@@ -88,24 +88,6 @@ func (sc _SubscriberInfoClass) Subscriber() unsafe.Pointer {
 	return rv
 }
 
-// An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ SubscriberInfo) Identifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// SetIdentifier sets the value of the identifier property.
-// An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ SubscriberInfo) SetIdentifier(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
-}
-
 // A data object containing authorization information about the subscriber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
@@ -122,6 +104,24 @@ func (s_ SubscriberInfo) CarrierToken() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
 func (s_ SubscriberInfo) SetCarrierToken(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
+}
+
+// An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
+func (s_ SubscriberInfo) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
+func (s_ SubscriberInfo) SetIdentifier(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 

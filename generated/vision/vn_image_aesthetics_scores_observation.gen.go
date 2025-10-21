@@ -79,6 +79,14 @@ func NewImageAestheticsScoresObservation() ImageAestheticsScoresObservation {
 }
 
 
+// A score which incorporates aesthetic score, failure score, and utility labels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageAestheticsScoresObservation/overallScore
+func (i_ ImageAestheticsScoresObservation) OverallScore() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("overallScore"))
+	return rv
+}
+
 // The results of the aesthetics request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncalculateimageaestheticsscoresrequest/results
@@ -113,14 +121,6 @@ func (i_ ImageAestheticsScoresObservation) IsUtility() bool {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnimageaestheticsscoresobservation/isutility
 func (i_ ImageAestheticsScoresObservation) SetIsUtility(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsUtility:"), value)
-}
-
-// A score which incorporates aesthetic score, failure score, and utility labels.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageAestheticsScoresObservation/overallScore
-func (i_ ImageAestheticsScoresObservation) OverallScore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("overallScore"))
-	return rv
 }
 
 

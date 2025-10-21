@@ -80,6 +80,14 @@ func NewPHObject() PHObject {
 }
 
 
+// A unique string that persistently identifies the object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHObject/localIdentifier
+func (p_ PHObject) LocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
+	return rv
+}
+
 // Returns an integer that can be used as a table address in a hash table structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
@@ -96,14 +104,6 @@ func (p_ PHObject) Hash() int {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
 func (p_ PHObject) SetHash(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHash:"), value)
-}
-
-// A unique string that persistently identifies the object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHObject/localIdentifier
-func (p_ PHObject) LocalIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
-	return rv
 }
 
 

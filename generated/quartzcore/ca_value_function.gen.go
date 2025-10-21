@@ -99,22 +99,12 @@ func (vc _ValueFunctionClass) FunctionWithName(name unsafe.Pointer) unsafe.Point
 	return rv
 }
 
-// An optional value function that is applied to interpolated values.
+// Returns the name of the value function.
 //
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/valuefunction
-func (v_ ValueFunction) ValueFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("valueFunction"))
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction/name
+func (v_ ValueFunction) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("name"))
 	return rv
-}
-
-
-// SetValueFunction sets the value of the valueFunction property.
-// An optional value function that is applied to interpolated values.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/valuefunction
-func (v_ ValueFunction) SetValueFunction(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setValueFunction:"), value)
 }
 
 // Defines the value the receiver uses to start interpolation.
@@ -153,12 +143,22 @@ func (v_ ValueFunction) SetToValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setToValue:"), value)
 }
 
-// Returns the name of the value function.
+// An optional value function that is applied to interpolated values.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction/name
-func (v_ ValueFunction) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/valuefunction
+func (v_ ValueFunction) ValueFunction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("valueFunction"))
 	return rv
+}
+
+
+// SetValueFunction sets the value of the valueFunction property.
+// An optional value function that is applied to interpolated values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/valuefunction
+func (v_ ValueFunction) SetValueFunction(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setValueFunction:"), value)
 }
 
 

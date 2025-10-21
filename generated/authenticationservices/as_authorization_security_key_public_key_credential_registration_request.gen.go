@@ -81,24 +81,6 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest() Authori
 }
 
 
-// An array of excluded parameters for the credential.
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/excludedcredentials
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) ExcludedCredentials() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("excludedCredentials"))
-	return rv
-}
-
-
-// SetExcludedCredentials sets the value of the excludedCredentials property.
-// An array of excluded parameters for the credential.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/excludedcredentials
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) SetExcludedCredentials(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setExcludedCredentials:"), value)
-}
-
 // An array of parameters for the credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/credentialparameters
@@ -115,6 +97,24 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) Credent
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/credentialparameters
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) SetCredentialParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCredentialParameters:"), value)
+}
+
+// An array of excluded parameters for the credential.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/excludedcredentials
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) ExcludedCredentials() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("excludedCredentials"))
+	return rv
+}
+
+
+// SetExcludedCredentials sets the value of the excludedCredentials property.
+// An array of excluded parameters for the credential.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/excludedcredentials
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) SetExcludedCredentials(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setExcludedCredentials:"), value)
 }
 
 // The preference that indicates where the resident key resides.
