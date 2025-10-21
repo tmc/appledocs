@@ -32,6 +32,10 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "CellAttribute") {
+		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%s framework=%s\n", objcType, framework)
+	}
+
 	// Strip self-package qualifications from Swift documentation
 	// Swift docs often use module.Type format (e.g., uniformtypeidentifiers.UTType)
 	// When generating the same framework, we should use unqualified names
@@ -153,6 +157,9 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	// This must come before the block check so that mapped block types (e.g., void (^)(void) -> func())
 	// are handled correctly
 	if goType, found := lookupTypeMapping(objcType, framework); found {
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "CellAttribute") {
+			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: found in registry objcType=%s goType=%s framework=%s\n", objcType, goType, framework)
+		}
 		return goType
 	}
 
@@ -186,20 +193,24 @@ func mapObjCTypeToGo(objcType, framework string) string {
 
 	// Fall back to occ2go mapping
 	goType := occ2go.MapCTypeToGo(objcType, framework)
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "CellAttribute") {
+		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: after occ2go.MapCTypeToGo goType=%q objcType=%s\n", goType, objcType)
+	}
 
-	// If still unmapped, try stripping ObjC pointer and prefix for class types
-	if goType == "" && isPointer {
+	// If unmapped (empty or unsafe.Pointer), try stripping ObjC prefix for class/enum types
+	// This handles cases like NSCellAttribute, NSTouchBar, NSView, etc.
+	if (goType == "" || goType == "unsafe.Pointer") && objcTypeNoPtr != "" {
 		// Try stripping common Apple prefixes (NS, CG, CF, etc.)
 		strippedType := stripObjCPrefix(objcTypeNoPtr)
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "AttributedString") {
-			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: objcType=%s isPointer=%v objcTypeNoPtr=%s strippedType=%s\n",
-				objcType, isPointer, objcTypeNoPtr, strippedType)
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "AttributedString") || strings.Contains(objcType, "CellAttribute")) {
+			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: objcType=%s isPointer=%v objcTypeNoPtr=%s strippedType=%s goType=%s\n",
+				objcType, isPointer, objcTypeNoPtr, strippedType, goType)
 		}
 		if strippedType != objcTypeNoPtr {
-			// Successfully stripped a prefix - this is likely an ObjC class type
+			// Successfully stripped a prefix - this is likely an ObjC class/enum type
 			// Use the stripped type and let resolveType find the right framework
 			goType = strippedType
-			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "AttributedString") {
+			if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "AttributedString") || strings.Contains(objcType, "CellAttribute")) {
 				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: set goType=%s\n", goType)
 			}
 		}
