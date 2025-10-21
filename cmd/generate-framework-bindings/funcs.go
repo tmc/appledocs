@@ -95,9 +95,10 @@ var templateFuncs = template.FuncMap{
 	"convertDocURL":               convertDocURL,
 
 	// Property generation helpers
-	"propertyToGoName":         propertyToGoName,
-	"contains":                 sliceContainsString,
-	"capitalize":               capitalizeFirst,
+	"propertyToGoName":            propertyToGoName,
+	"contains":                    sliceContainsString,
+	"capitalize":                  capitalizeFirst,
+	"propertyConflictsWithParent": propertyConflictsWithParent,
 
 	// Import merging
 	"mergeImports": mergeImports,
@@ -971,6 +972,24 @@ func mapObjCTypeToGo(objcType, framework string) string {
 
 	// Fall back to occ2go mapping
 	goType := occ2go.MapCTypeToGo(objcType, framework)
+
+	// If still unmapped, try stripping ObjC pointer and prefix for class types
+	if goType == "" && isPointer {
+		// Try stripping common Apple prefixes (NS, CG, CF, etc.)
+		strippedType := stripObjCPrefix(objcTypeNoPtr)
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "AttributedString") {
+			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: objcType=%s isPointer=%v objcTypeNoPtr=%s strippedType=%s\n",
+				objcType, isPointer, objcTypeNoPtr, strippedType)
+		}
+		if strippedType != objcTypeNoPtr {
+			// Successfully stripped a prefix - this is likely an ObjC class type
+			// Use the stripped type and let resolveType find the right framework
+			goType = strippedType
+			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "AttributedString") {
+				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: set goType=%s\n", goType)
+			}
+		}
+	}
 
 	// Never return empty string for a type - default to unsafe.Pointer
 	if goType == "" {
@@ -3228,4 +3247,29 @@ func isTypedefConstant(g *Generator) func(constType string) bool {
 		}
 		return false
 	}
+}
+
+// propertyConflictsWithParent checks if a property accessor would conflict with an embedded parent field.
+// For example, NSCollectionViewFlowLayout embeds CollectionViewLayout, so a property named
+// "collectionViewLayout" would create a method CollectionViewLayout() that conflicts with the field.
+//
+// Parameters:
+//   className: The Objective-C class name (e.g., "NSCollectionViewFlowLayout")
+//   superClass: The Objective-C superclass name (e.g., "NSCollectionViewLayout")
+//   propertyName: The property name (e.g., "collectionViewLayout")
+//
+// Returns true if the capitalized property name would match the Go struct name of the superclass.
+func propertyConflictsWithParent(className, superClass, propertyName string) bool {
+	if superClass == "" || propertyName == "" {
+		return false
+	}
+
+	// Capitalize the property name to get the Go method name
+	capitalizedProp := capitalizeFirst(propertyName)
+
+	// Get the Go struct name for the superclass (strips NS/CG/CF prefix)
+	superStructName := classToStructName(superClass)
+
+	// Check if they match
+	return capitalizedProp == superStructName
 }

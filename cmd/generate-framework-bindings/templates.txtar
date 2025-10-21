@@ -542,7 +542,8 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- if .IsClassProperty}}
 {{- $goType := mapObjCTypeToGo .Type $framework}}
 {{- $capitalizedName := capitalize .Name}}
-{{- if ne $goType ""}}
+{{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
+{{- if and (ne $goType "") (not $conflictsWithParent)}}
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
@@ -758,7 +759,8 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- if .IsClassProperty}}
 {{- $goType := mapObjCTypeToGo .Type $framework}}
 {{- $capitalizedName := capitalize .Name}}
-{{- if ne $goType ""}}
+{{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
+{{- if and (ne $goType "") (not $conflictsWithParent)}}
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
@@ -812,7 +814,8 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 {{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
 {{- $goType := mapObjCTypeToGo $typeToMap $framework}}
 {{- $capitalizedName := capitalize .Name}}
-{{- if ne $goType ""}}
+{{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
+{{- if and (ne $goType "") (not $conflictsWithParent)}}
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//

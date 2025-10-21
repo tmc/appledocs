@@ -642,8 +642,12 @@ func extractPropertiesFromClassReferences(fsys *appledocs.FS, framework string, 
 
 	// Process all class documents in the framework
 	for _, doc := range appledocs.Symbols(fsys, framework) {
-		// Only process class documents
+		// Only process class documents (not property files, methods, etc.)
 		if !strings.HasPrefix(doc.Metadata.ExternalID, "c:objc(cs)") {
+			continue
+		}
+		// Skip property files: c:objc(cs)NSButton(py)attributedTitle
+		if strings.Contains(doc.Metadata.ExternalID, "(py)") || strings.Contains(doc.Metadata.ExternalID, "(cpy)") {
 			continue
 		}
 
@@ -985,8 +989,16 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	// Process regular symbols
 	for path, doc := range appledocs.Symbols(fsys, framework) {
 		processedFiles++
+
+		if verbose && strings.Contains(path, "attributedTitle") {
+			fmt.Fprintf(os.Stderr, "DEBUG: Processing file: %s, externalID: %s\n", path, doc.Metadata.ExternalID)
+		}
+
 		fn, cls, proto, err := occ2go.ParseDocument(doc)
-		if err == nil {
+		if verbose && strings.Contains(path, "attributedTitle") {
+			fmt.Fprintf(os.Stderr, "DEBUG: ParseDocument result - err: %v\n", err)
+		}
+		if err == nil{
 			if fn != nil {
 				functions = append(functions, fn)
 			}
