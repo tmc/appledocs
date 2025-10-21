@@ -102,6 +102,28 @@ type ParsedEnumCase struct {
 	Abstract     string
 }
 
+// ParsedTypedef represents a C typedef declaration (e.g., typedef int CIFormat).
+type ParsedTypedef struct {
+	Name         string
+	BaseType     string // The underlying type (e.g., "int", "CGRect (^)(int, CGRect)")
+	Comment      string
+	Availability Availability
+	DocURL       string
+	Abstract     string
+	IsTypedEnum  bool     // true for NS_TYPED_ENUM (has associated constants)
+	Constants    []string // List of constant names (e.g., ["kCIFormatARGB8", "kCIFormatBGRA8"])
+}
+
+// ParsedConstant represents an extern const declaration (e.g., CORE_IMAGE_EXPORT const CIFormat kCIFormatARGB8).
+type ParsedConstant struct {
+	Name         string
+	Type         string // The type (e.g., "CIFormat")
+	Comment      string
+	Availability Availability
+	DocURL       string
+	Abstract     string
+}
+
 // Parameter represents a function parameter.
 type Parameter struct {
 	Name string

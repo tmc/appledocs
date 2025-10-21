@@ -100,7 +100,14 @@ func (g *Generator) AddError(err error) {
 // prepare computes cached data needed for generation
 func (g *Generator) prepare() {
 	g.frameworkAbstract, g.frameworkURL, _ = loadFrameworkMetadata(g.InputDir, g.Framework)
-	g.refTypes = extractRefTypes(g.Functions, getFrameworkPrefix(g.Framework))
+	// Build typedef names map to exclude from refTypes
+	typedefNames := make(map[string]bool)
+	for _, typedef := range g.Typedefs {
+		if typedef.Name != "" {
+			typedefNames[typedef.Name] = true
+		}
+	}
+	g.refTypes = extractRefTypes(g.Functions, getFrameworkPrefix(g.Framework), typedefNames)
 	g.typeMethods = groupFunctionsByType(g.Functions, g.Framework)
 	g.typeToRef = make(map[string]string)
 	for _, refType := range g.refTypes {
@@ -617,6 +624,156 @@ func extractSymbolsFromAPICollections(fsys *appledocs.FS, framework string, verb
 	return syntheticDocs
 }
 
+// extractPropertiesFromClassReferences scans class documents for property references
+// that don't have separate JSON files. Many properties like NSButton.title are only
+// documented in the class's references section, not as standalone files.
+// Returns a map of className -> properties.
+// propertyFiles is a set of "ClassName.propertyName" strings for properties that have separate files.
+func extractPropertiesFromClassReferences(fsys *appledocs.FS, framework string, propertyFiles map[string]bool, verbose bool) map[string][]*occ2go.ParsedProperty {
+	classProperties := make(map[string][]*occ2go.ParsedProperty)
+
+	// Process all class documents in the framework
+	for _, doc := range appledocs.Symbols(fsys, framework) {
+		// Only process class documents
+		if !strings.HasPrefix(doc.Metadata.ExternalID, "c:objc(cs)") {
+			continue
+		}
+
+		// Extract class name from external ID: c:objc(cs)NSButton -> NSButton
+		className := strings.TrimPrefix(doc.Metadata.ExternalID, "c:objc(cs)")
+
+		// Scan references for properties
+		if doc.References == nil {
+			continue
+		}
+
+		for _, ref := range doc.References {
+			// Only process symbol references with fragments
+			if ref.Role != "symbol" || ref.Kind != "symbol" || len(ref.Fragments) == 0 {
+				continue
+			}
+
+			// Check if this is a property (starts with 'var' or 'let' keyword)
+			if ref.Fragments[0].Kind != "keyword" {
+				continue
+			}
+			if ref.Fragments[0].Text != "var" && ref.Fragments[0].Text != "let" {
+				continue
+			}
+
+			// Extract property info from fragments
+			// Format: var <name>: <Type>
+			// Convert relative URLs to full Apple developer URLs
+			docURL := ref.URL
+			if strings.HasPrefix(docURL, "/documentation/") {
+				docURL = "https://developer.apple.com" + docURL
+			}
+			property := &occ2go.ParsedProperty{
+				Attributes: []string{},
+				DocURL:     docURL,
+			}
+
+			// 'let' properties are readonly
+			if ref.Fragments[0].Text == "let" {
+				property.Attributes = append(property.Attributes, "readonly")
+			}
+
+			// Extract abstract if available
+			if len(ref.Abstract) > 0 {
+				for _, abstractNode := range ref.Abstract {
+					if abstractNode.Type == "text" && abstractNode.Text != "" {
+						property.Abstract = abstractNode.Text
+						break
+					}
+				}
+			}
+
+			// Parse property name and type from fragments
+			// Expected pattern: keyword(" "), identifier(name), text(": "), typeIdentifier(type)
+			var name, propType, preciseID string
+			for i := 0; i < len(ref.Fragments); i++ {
+				frag := ref.Fragments[i]
+				switch frag.Kind {
+				case "identifier":
+					// First identifier after 'var'/'let' is the property name
+					if name == "" {
+						name = frag.Text
+					}
+				case "typeIdentifier":
+					// Type identifier after ": " is the property type
+					if propType == "" {
+						propType = frag.Text
+						preciseID = frag.PreciseIdentifier
+					}
+				}
+			}
+
+			if name == "" {
+				continue // Skip if we couldn't extract the name
+			}
+
+			// Skip this property if it has a separate JSON file
+			// Use lowercase for comparison to handle case variations (e.g., x vs X)
+			propertyKey := className + "." + strings.ToLower(name)
+			if propertyFiles[propertyKey] {
+				if verbose {
+					fmt.Fprintf(os.Stderr, "Skipping property %s (has separate JSON file)\n", propertyKey)
+				}
+				continue
+			}
+
+			property.Name = name
+			property.Type = propType
+
+			// Map Swift types to ObjC types for proper code generation
+			objcType := propType
+
+			// Check if this is an ObjC class type using preciseIdentifier
+			if preciseID != "" && strings.HasPrefix(preciseID, "c:objc(cs)") {
+				// Extract ObjC class name from c:objc(cs)NSAttributedString -> NSAttributedString *
+				className := strings.TrimPrefix(preciseID, "c:objc(cs)")
+				objcType = className + " *"
+			} else {
+				// Map Swift primitive types to ObjC types
+				switch propType {
+				case "Bool":
+					objcType = "BOOL"
+				case "String":
+					objcType = "NSString *"
+				case "Int":
+					objcType = "NSInteger"
+				case "UInt":
+					objcType = "NSUInteger"
+				case "Double":
+					objcType = "double"
+				case "Float":
+					objcType = "float"
+				case "CGFloat":
+					objcType = "CGFloat"
+				// For other types, keep the Swift type - the type mapper will handle it
+				}
+			}
+			property.ObjCType = objcType
+
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Extracted property %s.%s from class references\n", className, name)
+			}
+
+			classProperties[className] = append(classProperties[className], property)
+		}
+	}
+
+	if verbose && len(classProperties) > 0 {
+		totalProps := 0
+		for _, props := range classProperties {
+			totalProps += len(props)
+		}
+		fmt.Fprintf(os.Stderr, "Extracted %d properties from %d class references sections\n", totalProps, len(classProperties))
+	}
+
+	return classProperties
+}
+
 // extractExternalIDFromFragments attempts to construct an external ID from fragments
 // For C functions, this typically looks like: c:@F@FunctionName
 func extractExternalIDFromFragments(fragments []appledocs.Fragment, title string) string {
@@ -751,10 +908,69 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	// First, extract synthetic documents from API collection pages
 	syntheticDocs := extractSymbolsFromAPICollections(fsys, framework, verbose)
 
+	// Build a set of properties that have separate JSON files
+	// to avoid duplicates when extracting from class references
+	propertyFiles := make(map[string]bool)
+	for _, doc := range appledocs.Symbols(fsys, framework) {
+		if strings.Contains(doc.Metadata.ExternalID, "(py)") || strings.Contains(doc.Metadata.ExternalID, "(cpy)") {
+			// This is a property file
+			// Extract class and property name from external ID
+			// Format: c:objc(cs)ClassName(py)propertyName or c:objc(cs)ClassName(cpy)propertyName
+			externalID := doc.Metadata.ExternalID
+
+			// Extract class name: c:objc(cs)ClassName(py)... -> ClassName
+			if idx := strings.Index(externalID, "(cs)"); idx != -1 {
+				rest := externalID[idx+4:] // Skip "(cs)"
+				// Find the next '(' which marks the start of (py) or (cpy)
+				if endIdx := strings.Index(rest, "("); endIdx != -1 {
+					className := rest[:endIdx]
+					// Extract property name after (py) or (cpy)
+					if pyIdx := strings.Index(rest, "(py)"); pyIdx != -1 {
+						propertyName := rest[pyIdx+4:]
+						// Use lowercase for case-insensitive comparison
+						propertyKey := className + "." + strings.ToLower(propertyName)
+						propertyFiles[propertyKey] = true
+					} else if cpyIdx := strings.Index(rest, "(cpy)"); cpyIdx != -1 {
+						propertyName := rest[cpyIdx+5:]
+						// Use lowercase for case-insensitive comparison
+						propertyKey := className + "." + strings.ToLower(propertyName)
+						propertyFiles[propertyKey] = true
+					}
+				}
+			}
+		}
+	}
+	if verbose && len(propertyFiles) > 0 {
+		fmt.Fprintf(os.Stderr, "Found %d properties with separate JSON files\n", len(propertyFiles))
+		// Debug: show first few CIVector properties
+		for key := range propertyFiles {
+			if strings.HasPrefix(key, "CIVector.") {
+				fmt.Fprintf(os.Stderr, "  Property file: %s\n", key)
+			}
+		}
+	}
+
+	// Extract properties from class references (e.g., NSButton.title)
+	// These properties don't have separate JSON files and are only in class references
+	refProperties := extractPropertiesFromClassReferences(fsys, framework, propertyFiles, verbose)
+
 	// Keep track of properties separately so we can attach them to classes later
 	classPropertiesMap := make(map[string][]*occ2go.ParsedProperty)
 	// Track seen property names per class to prevent duplicates from documentation
 	classSeenProperties := make(map[string]map[string]bool)
+
+	// Initialize with properties extracted from references
+	for className, props := range refProperties {
+		if classSeenProperties[className] == nil {
+			classSeenProperties[className] = make(map[string]bool)
+		}
+		for _, prop := range props {
+			if !classSeenProperties[className][prop.Name] {
+				classPropertiesMap[className] = append(classPropertiesMap[className], prop)
+				classSeenProperties[className][prop.Name] = true
+			}
+		}
+	}
 
 	// Keep track of enums and their cases
 	enumCasesMap := make(map[string][]*occ2go.ParsedEnumCase)
@@ -848,22 +1064,22 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				} else if verbose {
 					fmt.Fprintf(os.Stderr, "Warning: failed to parse enum case %s: %v\n", path, enumCaseErr)
 				}
-	} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@T@") {
-		// This is a C typedef (e.g., typedef int CIFormat)
-		typedef, typedefErr := occ2go.ParseTypedef(doc)
-		if typedefErr == nil && typedef != nil {
-			typedefs = append(typedefs, typedef)
-		} else if verbose {
-			fmt.Fprintf(os.Stderr, "Warning: failed to parse typedef %s: %v\\n", path, typedefErr)
-		}
-	} else if strings.Contains(doc.Metadata.ExternalID, "@k") && (strings.HasPrefix(doc.Metadata.ExternalID, "c:@k") || strings.HasPrefix(doc.Metadata.ExternalID, "c:@E@")) {
-		// This is an extern const declaration
-		constant, constErr := occ2go.ParseConstant(doc)
-		if constErr == nil && constant != nil {
-			constants = append(constants, constant)
-		} else if verbose {
-			fmt.Fprintf(os.Stderr, "Warning: failed to parse constant %s: %v\\n", path, constErr)
-		}
+			}
+		} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@T@") {
+			// This is a C typedef (e.g., typedef int CIFormat)
+			typedef, typedefErr := occ2go.ParseTypedef(doc)
+			if typedefErr == nil && typedef != nil {
+				typedefs = append(typedefs, typedef)
+			} else if verbose {
+				fmt.Fprintf(os.Stderr, "Warning: failed to parse typedef %s: %v\n", path, typedefErr)
+			}
+		} else if strings.Contains(doc.Metadata.ExternalID, "@k") && (strings.HasPrefix(doc.Metadata.ExternalID, "c:@k") || strings.HasPrefix(doc.Metadata.ExternalID, "c:@E@")) {
+			// This is an extern const declaration
+			constant, constErr := occ2go.ParseConstant(doc)
+			if constErr == nil && constant != nil {
+				constants = append(constants, constant)
+			} else if verbose {
+				fmt.Fprintf(os.Stderr, "Warning: failed to parse constant %s: %v\n", path, constErr)
 			}
 		} else {
 			parseErrors++
@@ -902,7 +1118,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 	if verbose {
 		fmt.Fprintf(os.Stderr, "Processed %d files (%d parse errors)\n", processedFiles, parseErrors)
-		fmt.Fprintf(os.Stderr, "Found: %d functions, %d classes, %d protocols, %d enums\n", len(functions), len(classes), len(protocols), len(enums))
+		fmt.Fprintf(os.Stderr, "Found: %d functions, %d classes, %d protocols, %d enums, %d typedefs, %d constants\n", len(functions), len(classes), len(protocols), len(enums), len(typedefs), len(constants))
 	}
 
 	// Populate currentFrameworkClasses map for cross-framework type detection
@@ -1267,7 +1483,7 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 		}},
 		{"doc.gen.go", func(w io.Writer) error { return generateDoc(w, framework, packageName, inputDir, functions, variant) }},
 		{"types.gen.go", func(w io.Writer) error {
-			return generateTypes(w, framework, packageName, functions, withRefMethods, variant)
+			return generateTypes(w, framework, packageName, functions, typedefs, withRefMethods, variant)
 		}},
 		{"functions.gen.go", func(w io.Writer) error {
 			return generateFunctions(w, framework, packageName, functions, withRefMethods, variant)
@@ -1278,7 +1494,7 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 		generators = append(generators, struct {
 			filename string
 			generate func(io.Writer) error
-		}{"methods.gen.go", func(w io.Writer) error { return generateMethods(w, framework, packageName, functions, variant) }})
+		}{"methods.gen.go", func(w io.Writer) error { return generateMethods(w, framework, packageName, functions, typedefs, variant) }})
 	}
 
 	if len(classes) > 0 {
@@ -1437,7 +1653,7 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 		return err
 	}
 	if err := genFile("types.gen.go", func(w io.Writer) error {
-		return generateTypes(w, framework, packageName, functions, withRefMethods, variant)
+		return generateTypes(w, framework, packageName, functions, typedefs, withRefMethods, variant)
 	}); err != nil {
 		return err
 	}
@@ -1447,7 +1663,7 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 		return err
 	}
 	if withRefMethods {
-		if err := genFile("methods.gen.go", func(w io.Writer) error { return generateMethods(w, framework, packageName, functions, variant) }); err != nil {
+		if err := genFile("methods.gen.go", func(w io.Writer) error { return generateMethods(w, framework, packageName, functions, typedefs, variant) }); err != nil {
 			return err
 		}
 	}
@@ -1519,14 +1735,27 @@ func generateDoc(w io.Writer, framework, packageName, inputDir string, functions
 }
 
 // generateTypes generates framework-specific type definitions
-func generateTypes(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, withRefMethods bool, variant string) error {
-	refTypes := extractRefTypes(functions, getFrameworkPrefix(framework))
-	data := struct {
-		Framework      string
-		PackageName    string
-		RefTypes       []string
-		WithRefMethods bool
-	}{framework, packageName, refTypes, withRefMethods}
+func generateTypes(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, typedefs []*occ2go.ParsedTypedef, withRefMethods bool, variant string) error {
+	// Build typedef names map to exclude from refTypes
+	typedefNames := make(map[string]bool)
+	for _, typedef := range typedefs {
+		if typedef.Name != "" {
+			typedefNames[typedef.Name] = true
+		}
+	}
+	refTypes := extractRefTypes(functions, getFrameworkPrefix(framework), typedefNames)
+
+	// Create a minimal generator for template execution
+	gen := &Generator{
+		Framework:      framework,
+		PackageName:    packageName,
+		Functions:      functions,
+		Typedefs:       typedefs,
+		WithRefMethods: withRefMethods,
+	}
+	gen.refTypes = refTypes
+
+	data := gen
 
 	// Load template with variant support
 	templateContent, err := getTemplateVariant("types.gen.go", variant)
@@ -1609,13 +1838,20 @@ func generateProtocols(w io.Writer, framework, packageName string, protocols []*
 }
 
 // generateMethods generates method-style wrappers
-func generateMethods(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, variant string) error {
+func generateMethods(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, typedefs []*occ2go.ParsedTypedef, variant string) error {
 	// Group functions by type
 	typeMethods := groupFunctionsByType(functions, framework)
 
 	// Build a map from type names to their underlying ref type
 	typeToRef := make(map[string]string)
-	refTypes := extractRefTypes(functions, getFrameworkPrefix(framework))
+	// Build typedef names map to exclude from refTypes
+	typedefNames := make(map[string]bool)
+	for _, typedef := range typedefs {
+		if typedef.Name != "" {
+			typedefNames[typedef.Name] = true
+		}
+	}
+	refTypes := extractRefTypes(functions, getFrameworkPrefix(framework), typedefNames)
 
 	for _, refType := range refTypes {
 		// Extract type name from ref type (e.g., CGContextRef -> Context)
@@ -1652,16 +1888,24 @@ func getFrameworkPrefix(framework string) string {
 }
 
 // extractRefTypes extracts all Ref types from function signatures
-func extractRefTypes(functions []*occ2go.ParsedFunction, prefix string) []string {
+func extractRefTypes(functions []*occ2go.ParsedFunction, prefix string, typedefNames map[string]bool) []string {
 	refTypesMap := make(map[string]bool)
 
 	for _, fn := range functions {
 		if strings.HasPrefix(fn.ReturnType, prefix) && strings.HasSuffix(fn.ReturnType, "Ref") {
+			// Skip if this type is defined as a typedef
+			if typedefNames != nil && typedefNames[fn.ReturnType] {
+				continue
+			}
 			refTypesMap[fn.ReturnType] = true
 		}
 		for _, param := range fn.Parameters {
 			typ := strings.TrimSpace(param.Type)
 			if strings.HasPrefix(typ, prefix) && strings.HasSuffix(typ, "Ref") {
+				// Skip if this type is defined as a typedef
+				if typedefNames != nil && typedefNames[typ] {
+					continue
+				}
 				refTypesMap[typ] = true
 			}
 		}
