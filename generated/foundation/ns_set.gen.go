@@ -100,16 +100,6 @@ func NewSet() Set {
 }
 
 
-// Initializes a newly allocated set with members taken from the specified list of objects.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/initWithObjects:
-func NewSetWithObjects(firstObj unsafe.Pointer) Set {
-	instance := getSetClass().Alloc()
-	rv := objc.Send[Set](instance.ID, objc.Sel("initWithObjects:"), firstObj)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a newly allocated set with the objects that are contained in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(array:)
@@ -126,6 +116,21 @@ func NewSetWithCoder(coder unsafe.Pointer) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPath:)
+func NewSetWithCollectionViewIndexPath(indexPath unsafe.Pointer) Set {
+	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithCollectionViewIndexPath:"), indexPath)
+	return rv
+}
+
+// Creates and returns a set that contains a single given object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(object:)
+func NewSetWithObject(object unsafe.Pointer) Set {
+	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithObject:"), object)
 	return rv
 }
 
@@ -149,10 +154,13 @@ func NewSetWithSetCopyItems(set unsafe.Pointer, flag bool) Set {
 	return rv
 }
 
+// Initializes a newly allocated set with members taken from the specified list of objects.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPath:)
-func NewSetWithCollectionViewIndexPath(indexPath unsafe.Pointer) Set {
-	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithCollectionViewIndexPath:"), indexPath)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/initWithObjects:
+func NewSetWithObjects(firstObj unsafe.Pointer) Set {
+	instance := getSetClass().Alloc()
+	rv := objc.Send[Set](instance.ID, objc.Sel("initWithObjects:"), firstObj)
+	rv.Autorelease()
 	return rv
 }
 
@@ -160,14 +168,6 @@ func NewSetWithCollectionViewIndexPath(indexPath unsafe.Pointer) Set {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPaths:)
 func NewSetWithCollectionViewIndexPaths(indexPaths unsafe.Pointer) Set {
 	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithCollectionViewIndexPaths:"), indexPaths)
-	return rv
-}
-
-// Creates and returns a set that contains a single given object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(object:)
-func NewSetWithObject(object unsafe.Pointer) Set {
-	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithObject:"), object)
 	return rv
 }
 

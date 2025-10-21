@@ -85,19 +85,19 @@ func NewMutableCharacterSet() MutableCharacterSet {
 }
 
 
-// Returns a character set containing characters with Unicode values in a given range.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
-func NewMutableCharacterSetWithRange(aRange Range) MutableCharacterSet {
-	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
-	return rv
-}
-
 // Returns a character set read from the bitmap representation stored in the file a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
 func NewMutableCharacterSetWithContentsOfFile(fName string) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
+	return rv
+}
+
+// Returns a character set containing characters with Unicode values in a given range.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
+func NewMutableCharacterSetWithRange(aRange Range) MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
 

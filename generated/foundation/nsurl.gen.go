@@ -109,12 +109,47 @@ func NewURL() URL {
 }
 
 
+// Reads an NSURL object off of the specified pasteboard.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
+func NewURLFromPasteboard(pasteBoard unsafe.Pointer) URL {
+	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLFromPasteboard:"), pasteBoard)
+	return rv
+}
+
+// Returns a new URL made by resolving the alias file at .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
+func NewURLByResolvingAliasFileAtURLOptionsError(url unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) URL {
+	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error_)
+	return rv
+}
+
 // Initializes a newly created NSURL that points to a location specified by resolving bookmark data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)
 func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData unsafe.Pointer, options unsafe.Pointer, relativeURL unsafe.Pointer, isStale unsafe.Pointer, error_ unsafe.Pointer) URL {
 	instance := getURLClass().Alloc()
 	rv := objc.Send[URL](instance.ID, objc.Sel("initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), bookmarkData, options, relativeURL, isStale, error_)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes an NSURL object with a base URL and a relative string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:relativeTo:)
+func NewURLWithStringRelativeToURL(URLString string, baseURL unsafe.Pointer) URL {
+	instance := getURLClass().Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:relativeToURL:"), objc.String(URLString), baseURL)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(dataRepresentation:relativeTo:)
+func NewURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsafe.Pointer) URL {
+	instance := getURLClass().Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithDataRepresentation:relativeToURL:"), data, baseURL)
 	rv.Autorelease()
 	return rv
 }
@@ -129,11 +164,12 @@ func NewURLFileURLWithPathIsDirectory(path string, isDir bool) URL {
 	return rv
 }
 
-// Returns a new URL made by resolving the alias file at .
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
-func NewURLByResolvingAliasFileAtURLOptionsError(url unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) URL {
-	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error_)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
+func NewURLFileURLWithPathRelativeToURL(path string, baseURL unsafe.Pointer) URL {
+	instance := getURLClass().Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:relativeToURL:"), objc.String(path), baseURL)
+	rv.Autorelease()
 	return rv
 }
 
@@ -167,30 +203,11 @@ func NewURLWithStringEncodingInvalidCharacters(URLString string, encodingInvalid
 	return rv
 }
 
-// Initializes an NSURL object with a base URL and a relative string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:relativeTo:)
-func NewURLWithStringRelativeToURL(URLString string, baseURL unsafe.Pointer) URL {
-	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:relativeToURL:"), objc.String(URLString), baseURL)
-	rv.Autorelease()
-	return rv
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(absoluteURLWithDataRepresentation:relativeTo:)
 func NewURLAbsoluteURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsafe.Pointer) URL {
 	instance := getURLClass().Alloc()
 	rv := objc.Send[URL](instance.ID, objc.Sel("initAbsoluteURLWithDataRepresentation:relativeToURL:"), data, baseURL)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(dataRepresentation:relativeTo:)
-func NewURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsafe.Pointer) URL {
-	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithDataRepresentation:relativeToURL:"), data, baseURL)
 	rv.Autorelease()
 	return rv
 }
@@ -221,23 +238,6 @@ func NewURLFileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, base
 	instance := getURLClass().Alloc()
 	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:relativeToURL:"), objc.String(path), isDir, baseURL)
 	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
-func NewURLFileURLWithPathRelativeToURL(path string, baseURL unsafe.Pointer) URL {
-	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:relativeToURL:"), objc.String(path), baseURL)
-	rv.Autorelease()
-	return rv
-}
-
-// Reads an NSURL object off of the specified pasteboard.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
-func NewURLFromPasteboard(pasteBoard unsafe.Pointer) URL {
-	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLFromPasteboard:"), pasteBoard)
 	return rv
 }
 

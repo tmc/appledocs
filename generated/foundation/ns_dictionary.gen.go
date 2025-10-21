@@ -120,6 +120,16 @@ func NewDictionary() Dictionary {
 
 // Initializes a newly allocated dictionary using the keys and values found at a given URL.
 //
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-4pv16
+func NewDictionaryWithContentsOfURL(url unsafe.Pointer) Dictionary {
+	instance := getDictionaryClass().Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a newly allocated dictionary using the keys and values found at a given URL.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:error:)
 func NewDictionaryWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Dictionary {
 	instance := getDictionaryClass().Alloc()
@@ -176,6 +186,16 @@ func NewDictionaryWithCoder(coder unsafe.Pointer) Dictionary {
 	return rv
 }
 
+// Initializes a newly allocated dictionary using the keys and values found in a file at a given path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfFile:)
+func NewDictionaryWithContentsOfFile(path string) Dictionary {
+	instance := getDictionaryClass().Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(dictionary:)-9fw1u
@@ -192,26 +212,6 @@ func NewDictionaryWithDictionary(otherDictionary unsafe.Pointer) Dictionary {
 func NewDictionaryWithObjectsAndKeys(firstObject objc.ID) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjectsAndKeys:"), firstObject)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes a newly allocated dictionary using the keys and values found in a file at a given path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfFile:)
-func NewDictionaryWithContentsOfFile(path string) Dictionary {
-	instance := getDictionaryClass().Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes a newly allocated dictionary using the keys and values found at a given URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-4pv16
-func NewDictionaryWithContentsOfURL(url unsafe.Pointer) Dictionary {
-	instance := getDictionaryClass().Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
 	return rv
 }
