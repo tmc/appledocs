@@ -1,0 +1,99 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+	"regexp"
+	"strings"
+)
+
+// buildCrossFrameworkTypeRegistry scans generated frameworks and populates the type registry.
+// This allows proper type resolution instead of falling back to unsafe.Pointer.
+//
+// It scans the output directory for generated frameworks and extracts class names,
+// building a map of type name -> framework package name.
+//
+// Example registry entries:
+//
+//	"Window" -> "appkit"
+//	"String" -> "foundation"
+//	"Layer" -> "quartzcore"
+func buildCrossFrameworkTypeRegistry(outputDir string) error {
+	// Check if output directory exists
+	if _, err := os.Stat(outputDir); os.IsNotExist(err) {
+		// Output directory doesn't exist yet, registry will be empty
+		return nil
+	}
+
+	// Scan all subdirectories (frameworks)
+	entries, err := os.ReadDir(outputDir)
+	if err != nil {
+		return fmt.Errorf("failed to read output directory: %w", err)
+	}
+
+	for _, entry := range entries {
+		if !entry.IsDir() {
+			continue
+		}
+
+		frameworkPkg := strings.ToLower(entry.Name())
+		frameworkDir := filepath.Join(outputDir, entry.Name())
+
+		// Look for types.gen.go which contains type definitions
+		typesFile := filepath.Join(frameworkDir, "types.gen.go")
+		if _, err := os.Stat(typesFile); os.IsNotExist(err) {
+			continue
+		}
+
+		// Parse types.gen.go to extract type names
+		data, err := os.ReadFile(typesFile)
+		if err != nil {
+			continue // Skip on error
+		}
+
+		// Extract type definitions (e.g., "type Window struct")
+		// Match struct and interface types, but NOT unsafe.Pointer aliases
+		// unsafe.Pointer aliases are forward declarations for types in other frameworks
+		typeRegex := regexp.MustCompile(`(?m)^type\s+([A-Z][A-Za-z0-9_]*)\s+(?:struct|interface)(?:\s|{)`)
+		matches := typeRegex.FindAllSubmatch(data, -1)
+
+		for _, match := range matches {
+			if len(match) > 1 {
+				typeName := string(match[1])
+				// Add to registry if not already present (first framework wins)
+				if _, exists := crossFrameworkTypeRegistry[typeName]; !exists {
+					crossFrameworkTypeRegistry[typeName] = frameworkPkg
+				}
+			}
+		}
+	}
+
+	// After scanning all frameworks, override common Foundation types to ensure they're always mapped to foundation
+	// This prevents other frameworks (accessibility, authenticationservices, etc.) from claiming Foundation types
+	// just because they come first alphabetically
+	foundationCoreTypes := []string{
+		"NSObject", "Object",
+		"NSURL", "URL",
+		"NSNumber", "Number",
+		"NSString", "String",
+		"NSArray", "Array",
+		"NSDictionary", "Dictionary",
+		"NSData", "Data",
+		"NSDate", "Date",
+		"NSSet", "Set",
+	}
+	for _, typeName := range foundationCoreTypes {
+		crossFrameworkTypeRegistry[typeName] = "foundation"
+	}
+
+	// UniformTypeIdentifiers core types
+	uniformTypeIdentifiersCoreTypes := []string{
+		"UTType",
+	}
+	for _, typeName := range uniformTypeIdentifiersCoreTypes {
+		crossFrameworkTypeRegistry[typeName] = "uniformtypeidentifiers"
+	}
+
+	return nil
+}
