@@ -169,6 +169,22 @@ var typeRegistry = []TypeMapping{
 	// Default for all other frameworks - use qualified foundation.TimeInterval
 	{ObjCType: "NSTimeInterval", GoType: "foundation.TimeInterval", Framework: ""},
 
+	// Foundation class types - unqualified within Foundation
+	{ObjCType: "NSURL", GoType: "URL", Framework: "Foundation"},
+	{ObjCType: "URL", GoType: "URL", Framework: "Foundation"},
+	{ObjCType: "NSNumber", GoType: "Number", Framework: "Foundation"},
+	{ObjCType: "Number", GoType: "Number", Framework: "Foundation"},
+	// Foundation class types for AppKit - use qualified foundation types
+	{ObjCType: "NSURL", GoType: "foundation.URL", Framework: "AppKit"},
+	{ObjCType: "URL", GoType: "foundation.URL", Framework: "AppKit"},
+	{ObjCType: "NSNumber", GoType: "foundation.Number", Framework: "AppKit"},
+	{ObjCType: "Number", GoType: "foundation.Number", Framework: "AppKit"},
+	// Default for all other frameworks - use qualified foundation types
+	{ObjCType: "NSURL", GoType: "foundation.URL", Framework: ""},
+	{ObjCType: "URL", GoType: "foundation.URL", Framework: ""},
+	{ObjCType: "NSNumber", GoType: "foundation.Number", Framework: ""},
+	{ObjCType: "Number", GoType: "foundation.Number", Framework: ""},
+
 	// ==== CoreGraphics types ====
 	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreGraphics"},
 

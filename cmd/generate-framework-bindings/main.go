@@ -61,6 +61,8 @@ type Generator struct {
 	Classes   []*occ2go.ParsedClass
 	Protocols []*occ2go.ParsedProtocol
 	Enums     []*occ2go.ParsedEnum
+	Typedefs  []*occ2go.ParsedTypedef
+	Constants []*occ2go.ParsedConstant
 
 	// Computed/cached data
 	frameworkAbstract string
@@ -248,6 +250,16 @@ func (g *Generator) ProtocolCount() int {
 // EnumCount returns the number of enums
 func (g *Generator) EnumCount() int {
 	return len(g.Enums)
+}
+
+// TypedefCount returns the number of typedefs
+func (g *Generator) TypedefCount() int {
+	return len(g.Typedefs)
+}
+
+// ConstantCount returns the number of constants
+func (g *Generator) ConstantCount() int {
+	return len(g.Constants)
 }
 
 // MinVersion returns the minimum macOS version
@@ -730,6 +742,8 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	var classes []*occ2go.ParsedClass
 	var protocols []*occ2go.ParsedProtocol
 	var enums []*occ2go.ParsedEnum
+	var typedefs []*occ2go.ParsedTypedef
+	var constants []*occ2go.ParsedConstant
 
 	processedFiles := 0
 	parseErrors := 0
@@ -834,6 +848,22 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				} else if verbose {
 					fmt.Fprintf(os.Stderr, "Warning: failed to parse enum case %s: %v\n", path, enumCaseErr)
 				}
+	} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@T@") {
+		// This is a C typedef (e.g., typedef int CIFormat)
+		typedef, typedefErr := occ2go.ParseTypedef(doc)
+		if typedefErr == nil && typedef != nil {
+			typedefs = append(typedefs, typedef)
+		} else if verbose {
+			fmt.Fprintf(os.Stderr, "Warning: failed to parse typedef %s: %v\\n", path, typedefErr)
+		}
+	} else if strings.Contains(doc.Metadata.ExternalID, "@k") && (strings.HasPrefix(doc.Metadata.ExternalID, "c:@k") || strings.HasPrefix(doc.Metadata.ExternalID, "c:@E@")) {
+		// This is an extern const declaration
+		constant, constErr := occ2go.ParseConstant(doc)
+		if constErr == nil && constant != nil {
+			constants = append(constants, constant)
+		} else if verbose {
+			fmt.Fprintf(os.Stderr, "Warning: failed to parse constant %s: %v\\n", path, constErr)
+		}
 			}
 		} else {
 			parseErrors++
@@ -1055,11 +1085,11 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 	// Generate bindings
 	if txtarOutput {
-		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, enums, withRefMethods, generateTests, generateExamples, variant); err != nil {
+		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, withRefMethods, generateTests, generateExamples, variant); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
 		}
 	} else {
-		if err := generateFiles(outDir, framework, packageName, inputDir, functions, classes, protocols, enums, withRefMethods, generateTests, generateExamples, variant); err != nil {
+		if err := generateFiles(outDir, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, withRefMethods, generateTests, generateExamples, variant); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
 		}
 		fmt.Printf("Generated %s bindings in %s\n", framework, outDir)
@@ -1156,7 +1186,7 @@ func main() {
 }
 
 // generateFiles generates all files to disk
-func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, withRefMethods, generateTests, generateExamples bool, variant string) error {
+func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, withRefMethods, generateTests, generateExamples bool, variant string) error {
 	// Determine output module - default to github.com/tmc/appledocs/generated for now
 	outputModule := "github.com/tmc/appledocs/generated"
 
@@ -1166,6 +1196,8 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 	gen.Classes = classes
 	gen.Protocols = protocols
 	gen.Enums = enums
+	gen.Typedefs = typedefs
+	gen.Constants = constants
 
 	// Apply property overrides for undocumented properties
 	for _, cls := range gen.Classes {
@@ -1362,7 +1394,7 @@ func (g *Generator) GenerateTxtarFromModule(w io.Writer) error {
 }
 
 // generateTxtar generates all files as txtar format
-func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, withRefMethods, generateTests, generateExamples bool, variant string) error {
+func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, withRefMethods, generateTests, generateExamples bool, variant string) error {
 	// Determine output module - default to github.com/tmc/appledocs/generated for now
 	outputModule := "github.com/tmc/appledocs/generated"
 
@@ -1372,6 +1404,8 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 	gen.Classes = classes
 	gen.Protocols = protocols
 	gen.Enums = enums
+	gen.Typedefs = typedefs
+	gen.Constants = constants
 
 	// Try to use the module template if it exists
 	if _, err := getTemplateVariant("module", variant); err == nil {

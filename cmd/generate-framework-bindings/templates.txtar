@@ -19,6 +19,14 @@
 #-- enums.gen.go --
 {{template "enums.gen.go" .}}
 {{end -}}
+{{if gt .TypedefCount 0 -}}
+#-- typedefs.gen.go --
+{{template "typedefs.gen.go" .}}
+{{end -}}
+{{if gt .ConstantCount 0 -}}
+#-- constants.gen.go --
+{{template "constants.gen.go" .}}
+{{end -}}
 #-- functions.gen.go --
 {{template "functions.gen.go" .}}
 {{if or (gt .ClassCount 0) (gt .FunctionCount 0) .GenerateTests .GenerateExamples -}}
@@ -1274,3 +1282,62 @@ const (
 
 {{end -}}
 {{end -}}
+-- constants.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+{{if gt (len .Constants) 0 -}}
+// Pixel data formats for image input, output, and processing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat
+const (
+{{range $const := .Constants -}}
+{{if eq $const.Type "CIFormat" -}}
+{{if $const.Abstract}}	// {{$const.Name}} - {{$const.Abstract}}
+{{end}}{{if $const.DocURL}}	//
+	// [Full Topic]: {{convertDocURL $const.DocURL}}
+{{end}}	{{$const.Name}} {{$const.Type}} = 0 // TODO: Extract actual value from SDK
+{{end -}}
+{{end -}}
+)
+{{end -}}
+-- typedefs.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+{{if gt (len .Typedefs) 0 -}}
+// Type aliases and typedefs
+{{range $typedef := .Typedefs -}}
+{{if ne $typedef.Name "" -}}
+{{if $typedef.Abstract -}}
+// {{$typedef.Name}} - {{$typedef.Abstract}}
+{{else -}}
+// {{$typedef.Name}} type alias
+{{end -}}
+{{if $typedef.DocURL -}}
+//
+// [Full Topic]: {{convertDocURL $typedef.DocURL}}
+{{end -}}
+{{if eq $typedef.BaseType "int" -}}
+type {{$typedef.Name}} int32
+{{else if eq $typedef.BaseType "unsigned int" -}}
+type {{$typedef.Name}} uint32
+{{else if eq $typedef.BaseType "NSInteger" -}}
+type {{$typedef.Name}} int
+{{else if eq $typedef.BaseType "NSUInteger" -}}
+type {{$typedef.Name}} uint
+{{else if strContains $typedef.BaseType "^" -}}
+// {{$typedef.Name}} is a block type: {{$typedef.BaseType}}
+// Block types are not yet fully supported in Go bindings
+type {{$typedef.Name}} uintptr
+{{else -}}
+// {{$typedef.Name}} has base type: {{$typedef.BaseType}}
+type {{$typedef.Name}} uintptr
+{{end -}}
+
+{{end -}}
+{{end -}}
+{{end -}}
+

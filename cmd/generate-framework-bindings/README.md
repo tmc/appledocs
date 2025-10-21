@@ -46,11 +46,13 @@ graph TB
         DOCS["Apple Documentation<br/>JSON Files<br/>~/.appledocs/cache/"]
         API["API Collection Files<br/>*-api.json"]
         CONFIG["Type Mappings<br/>typemapping.go"]
+        SDK["macOS SDK Headers<br/>/System/Library/Frameworks"]
     end
 
     subgraph "Processing Pipeline"
         DISCOVER["Framework Discovery"]
         PARSE["Document Parser<br/>(occ2go)"]
+        ENRICH["Enum Enrichment<br/>(extract-enum-values)"]
         RESOLVE["Type Resolver"]
         GEN["Generator Engine"]
         TEMPLATE["Template Engine"]
@@ -65,8 +67,10 @@ graph TB
     DOCS --> DISCOVER
     API --> DISCOVER
     CONFIG --> RESOLVE
+    SDK --> ENRICH
     DISCOVER --> PARSE
-    PARSE --> RESOLVE
+    PARSE --> ENRICH
+    ENRICH --> RESOLVE
     RESOLVE --> GEN
     GEN --> TEMPLATE
     TEMPLATE --> CODE
@@ -74,6 +78,7 @@ graph TB
     TEMPLATE --> RUNTIME
 
     style DOCS fill:#e1f5fe
+    style SDK fill:#e1f5fe
     style CODE fill:#c8e6c9
     style TEMPLATE fill:#f3e5f5
 ```

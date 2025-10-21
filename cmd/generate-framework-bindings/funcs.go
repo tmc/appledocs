@@ -123,8 +123,10 @@ var templateFuncs = template.FuncMap{
 	"getConstructorBody":      getConstructorBody,
 
 	// Utility functions for template generation
-	"sortedKeys":      sortedKeys,
-	"stripObjCPrefix": stripObjCPrefix,
+	"sortedKeys":         sortedKeys,
+	"stripObjCPrefix":    stripObjCPrefix,
+	"cleanConstantName":  cleanConstantName,
+	"strContains":        strings.Contains,
 }
 
 // FunctionData represents data for function template rendering.
@@ -869,11 +871,14 @@ func mapObjCTypeToGo(objcType, framework string) string {
 						// Type is defined in current framework, safe to use
 						return "[]" + strippedType
 					}
-					// Cross-framework reference - try resolveType before falling back to unsafe.Pointer
-					resolvedType := resolveType(framework, elementType)
-					if resolvedType != "unsafe.Pointer" {
-						// resolveType found a valid cross-framework type (foundation.NSString, coregraphics.CGRect, etc.)
-						return "[]" + resolvedType
+					// Cross-framework reference - check type mapping registry for explicit mapping
+					// Foundation defines URL and Number, not NSURL and NSNumber
+					// Try both the stripped type name and the original element type
+					if goType, found := lookupTypeMapping(strippedType, framework); found {
+						return "[]" + goType
+					}
+					if goType, found := lookupTypeMapping(elementType, framework); found {
+						return "[]" + goType
 					}
 					// Last resort - fall back to unsafe.Pointer for array elements
 					return "[]unsafe.Pointer"
@@ -3169,4 +3174,43 @@ func sortedKeys(m map[string]bool) []string {
 	}
 
 	return keys
+}
+
+// cleanConstantName converts Apple constant names to Go-style names.
+// Examples:
+//   kCIFormatARGB8 -> FormatARGB8
+//   kCIFormatBGRA8 -> FormatBGRA8
+//   NSWindowStyleMaskBorderless -> WindowStyleMaskBorderless
+func cleanConstantName(name string) string {
+	// Remove common constant prefixes
+	prefixes := []string{"kCI", "kCG", "kCA", "kCF", "kNS", "k"}
+	
+	for _, prefix := range prefixes {
+		if strings.HasPrefix(name, prefix) {
+			name = strings.TrimPrefix(name, prefix)
+			break
+		}
+	}
+	
+	// Also strip framework-specific object prefixes from the result
+	name = stripObjCPrefix(name)
+	
+	// Ensure first letter is uppercase for exported Go identifier
+	if len(name) > 0 && name[0] >= 'a' && name[0] <= 'z' {
+		name = strings.ToUpper(name[:1]) + name[1:]
+	}
+	
+	return name
+}
+
+// isTypedefConstant checks if a constant's type matches a known typedef
+func isTypedefConstant(g *Generator) func(constType string) bool {
+	return func(constType string) bool {
+		for _, typedef := range g.Typedefs {
+			if typedef.Name == constType {
+				return true
+			}
+		}
+		return false
+	}
 }

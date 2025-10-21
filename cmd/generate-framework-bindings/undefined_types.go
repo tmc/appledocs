@@ -3,6 +3,8 @@ package main
 import (
 	"regexp"
 	"strings"
+
+	"github.com/tmc/appledocs/occ2go"
 )
 
 // UndefinedType represents a type that's referenced but not defined
@@ -13,30 +15,47 @@ type UndefinedType struct {
 }
 
 // CollectUndefinedTypes scans all methods and properties for types that are referenced
-// but not defined in the generated code
+// but not defined in the generated code.
+// IMPORTANT: This only scans methods/properties that will actually be generated,
+// using the same filtering logic as the templates.
 func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 	undefined := make(map[string]*UndefinedType)
 
-	// Collect from class methods
+	// Create a set of typedef names to exclude from undefined types
+	typedefNames := make(map[string]bool)
+	for _, typedef := range g.Typedefs {
+		if typedef.Name != "" {
+			typedefNames[typedef.Name] = true
+		}
+	}
+
+	// Collect from class methods (only those that will be generated)
 	for _, cls := range g.Classes {
-		for _, method := range cls.Methods {
-			// Check return type
+		// Get the methods that will actually be generated
+		// This mirrors the template logic which uses filterPropertyMethods, prepareClassMethods, etc.
+		generatedMethods := g.getGeneratedMethods(cls)
+
+		for _, method := range generatedMethods {
+			// Check return type - use MAPPED type, not raw ObjC type
 			if method.ReturnType != "" && method.ReturnType != "void" {
-				collectTypeReferences(method.ReturnType, undefined, g.Framework)
+				mappedType := resolveType(g.Framework, method.ReturnType)
+				collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 			}
 
-			// Check parameter types
+			// Check parameter types - use MAPPED types
 			for _, param := range method.Parameters {
 				if param.Type != "" {
-					collectTypeReferences(param.Type, undefined, g.Framework)
+					mappedType := resolveType(g.Framework, param.Type)
+					collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 				}
 			}
 		}
 
-		// Check properties
+		// Check properties - properties are always generated
 		for _, prop := range cls.Properties {
 			if prop.Type != "" {
-				collectTypeReferences(prop.Type, undefined, g.Framework)
+				mappedType := resolveType(g.Framework, prop.Type)
+				collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 			}
 		}
 	}
@@ -44,11 +63,13 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 	// Collect from functions
 	for _, fn := range g.Functions {
 		if fn.ReturnType != "" && fn.ReturnType != "void" {
-			collectTypeReferences(fn.ReturnType, undefined, g.Framework)
+			mappedType := resolveType(g.Framework, fn.ReturnType)
+			collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 		}
 		for _, param := range fn.Parameters {
 			if param.Type != "" {
-				collectTypeReferences(param.Type, undefined, g.Framework)
+				mappedType := resolveType(g.Framework, param.Type)
+				collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 			}
 		}
 	}
@@ -64,9 +85,73 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 	return undefined
 }
 
-// collectTypeReferences extracts type names from a type string and adds them to undefined
-func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, framework string) {
+// getGeneratedMethods returns only the methods that will actually be generated
+// for a class, using the same filtering logic as the templates.
+func (g *Generator) getGeneratedMethods(cls *occ2go.ParsedClass) []*occ2go.ParsedMethod {
+	if cls == nil {
+		return nil
+	}
+
+	result := make([]*occ2go.ParsedMethod, 0)
+
+	// Get property methods (filtered to exclude property accessors that are auto-generated)
+	propertyMethods := filterPropertyMethods(cls)
+	result = append(result, propertyMethods...)
+
+	// Get init methods (constructor-style methods)
+	initMethods := prepareInitMethodsWithClassName(cls.Name, cls.Methods)
+	result = append(result, initMethods...)
+
+	// Get class methods
+	classMethods := prepareClassMethods(cls.Methods)
+	result = append(result, classMethods...)
+
+	// Deduplicate in case there's overlap
+	seen := make(map[string]bool)
+	deduplicated := make([]*occ2go.ParsedMethod, 0, len(result))
+	for _, m := range result {
+		key := m.Selector + ":" + string(rune(boolToInt(m.IsClassMethod)))
+		if !seen[key] {
+			seen[key] = true
+			deduplicated = append(deduplicated, m)
+		}
+	}
+
+	return deduplicated
+}
+
+func boolToInt(b bool) int {
+	if b {
+		return 1
+	}
+	return 0
+}
+
+// collectTypeReferences extracts type names from a type string and adds them to undefined.
+// IMPORTANT: This should only be called on MAPPED Go types (after resolveType), not raw ObjC types.
+func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, framework string, typedefNames map[string]bool) {
 	if typeStr == "" || typeStr == "void" {
+		return
+	}
+
+	// Skip types that are defined as typedefs
+	if typedefNames != nil && typedefNames[typeStr] {
+		return
+	}
+
+	// Skip types that are package-qualified (e.g., "coregraphics.CGColorRef")
+	// These are imports from other frameworks and don't need undefined type declarations
+	if strings.Contains(typeStr, ".") {
+		return
+	}
+
+	// Skip primitive/builtin types
+	if isBuiltinType(typeStr) {
+		return
+	}
+
+	// Skip if it's unsafe.Pointer or other special cases
+	if typeStr == "unsafe.Pointer" || strings.HasPrefix(typeStr, "[]") || strings.HasPrefix(typeStr, "*") {
 		return
 	}
 
