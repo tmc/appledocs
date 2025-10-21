@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MXMetaData] class.
@@ -99,23 +100,23 @@ func (m_ MXMetaData) JSONRepresentation() unsafe.Pointer {
 // The value of the bundle version key in the app’s property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/applicationBuildVersion
-func (m_ MXMetaData) ApplicationBuildVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationBuildVersion"))
+func (m_ MXMetaData) ApplicationBuildVersion() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("applicationBuildVersion"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/bundleIdentifier
-func (m_ MXMetaData) BundleIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bundleIdentifier"))
+func (m_ MXMetaData) BundleIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
 // The hardware identifier for the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/deviceType
-func (m_ MXMetaData) DeviceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceType"))
+func (m_ MXMetaData) DeviceType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("deviceType"))
 	return rv
 }
 
@@ -138,8 +139,8 @@ func (m_ MXMetaData) LowPowerModeEnabled() unsafe.Pointer {
 // The version of the OS on the device including the type of OS, version number, and build number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/osVersion
-func (m_ MXMetaData) OsVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("osVersion"))
+func (m_ MXMetaData) OsVersion() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("osVersion"))
 	return rv
 }
 
@@ -154,16 +155,16 @@ func (m_ MXMetaData) Pid() unsafe.Pointer {
 // The name of the processor architecture for the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/platformArchitecture
-func (m_ MXMetaData) PlatformArchitecture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("platformArchitecture"))
+func (m_ MXMetaData) PlatformArchitecture() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("platformArchitecture"))
 	return rv
 }
 
 // The short country code for the region format setting of the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/regionFormat
-func (m_ MXMetaData) RegionFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("regionFormat"))
+func (m_ MXMetaData) RegionFormat() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("regionFormat"))
 	return rv
 }
 

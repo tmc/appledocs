@@ -15,5 +15,3 @@ var ignoreModifierKeysForDraggingSessionProtocol *objc.Protocol
 func init() {
 	ignoreModifierKeysForDraggingSessionProtocol = objc.GetProtocol("ignoreModifierKeysForDraggingSession:")
 }
-
-

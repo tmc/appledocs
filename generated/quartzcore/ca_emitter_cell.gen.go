@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -425,8 +426,8 @@ func (e_ EmitterCell) SetLifetimeRange(value unsafe.Pointer) {
 // The filter used when increasing the size of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/magnificationFilter
-func (e_ EmitterCell) MagnificationFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("magnificationFilter"))
+func (e_ EmitterCell) MagnificationFilter() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("magnificationFilter"))
 	return rv
 }
 
@@ -436,14 +437,14 @@ func (e_ EmitterCell) MagnificationFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/magnificationFilter
-func (e_ EmitterCell) SetMagnificationFilter(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setMagnificationFilter:"), value)
+func (e_ EmitterCell) SetMagnificationFilter(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setMagnificationFilter:"), objc.String(value))
 }
 // The filter used when reducing the size of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/minificationFilter
-func (e_ EmitterCell) MinificationFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("minificationFilter"))
+func (e_ EmitterCell) MinificationFilter() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("minificationFilter"))
 	return rv
 }
 
@@ -453,8 +454,8 @@ func (e_ EmitterCell) MinificationFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/minificationFilter
-func (e_ EmitterCell) SetMinificationFilter(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setMinificationFilter:"), value)
+func (e_ EmitterCell) SetMinificationFilter(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setMinificationFilter:"), objc.String(value))
 }
 // The bias factor used by the minification filter to determine the levels of detail.
 //
@@ -476,8 +477,8 @@ func (e_ EmitterCell) SetMinificationFilterBias(value unsafe.Pointer) {
 // The name of the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/name
-func (e_ EmitterCell) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("name"))
+func (e_ EmitterCell) Name() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -487,8 +488,8 @@ func (e_ EmitterCell) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/name
-func (e_ EmitterCell) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
+func (e_ EmitterCell) SetName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The amount by which the red color component of the cell can vary. Animatable.
 //

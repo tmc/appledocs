@@ -15,5 +15,3 @@ var accessibilityMinValueProtocol *objc.Protocol
 func init() {
 	accessibilityMinValueProtocol = objc.GetProtocol("accessibilityMinValue")
 }
-
-

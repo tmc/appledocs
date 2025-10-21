@@ -12,5 +12,3 @@ var AccessibilityListProtocol *objc.Protocol
 func init() {
 	AccessibilityListProtocol = objc.GetProtocol("NSAccessibilityList")
 }
-
-

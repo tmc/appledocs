@@ -91,6 +91,13 @@ func NewColor() Color {
 	return getColorClass().New()
 }
 
+// Returns the color object specified by the given control tint.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(for:)
+func NewColorForControlTint(controlTint unsafe.Pointer) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorForControlTint:"), controlTint)
+	return rv
+}
 
 // Creates a color object using the specified asset catalog and color names.
 //
@@ -107,15 +114,6 @@ func NewColorWithColorSpaceComponentsCount(space unsafe.Pointer, components unsa
 	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithColorSpace:components:count:"), space, components, numberOfComponents)
 	return rv
 }
-
-// Returns the color object specified by the given control tint.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(for:)
-func NewColorForControlTint(controlTint unsafe.Pointer) Color {
-	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorForControlTint:"), controlTint)
-	return rv
-}
-
 
 // Creates a color object using the specified asset catalog and color names.
 //
@@ -148,6 +146,7 @@ func (cc _ColorClass) AlternateSelectedControlTextColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("alternateSelectedControlTextColor"))
 	return rv
 }
+
 // The system color used for the dark edge of the shadow dropped from controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/controlDarkShadowColor
@@ -155,6 +154,7 @@ func (cc _ColorClass) ControlDarkShadowColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("controlDarkShadowColor"))
 	return rv
 }
+
 // The current system control tint color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/currentControlTint
@@ -162,6 +162,7 @@ func (cc _ColorClass) CurrentControlTint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("currentControlTint"))
 	return rv
 }
+
 // The primary color to use for text labels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/labelColor
@@ -169,6 +170,7 @@ func (cc _ColorClass) LabelColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("labelColor"))
 	return rv
 }
+
 // The quaternary color to use for text labels and separators.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/quaternaryLabelColor
@@ -176,6 +178,7 @@ func (cc _ColorClass) QuaternaryLabelColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("quaternaryLabelColor"))
 	return rv
 }
+
 // The secondary color to use for text labels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/secondaryLabelColor
@@ -183,6 +186,7 @@ func (cc _ColorClass) SecondaryLabelColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("secondaryLabelColor"))
 	return rv
 }
+
 // Returns a color object for blue that automatically adapts to vibrancy and accessibility settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemBlue
@@ -190,6 +194,7 @@ func (cc _ColorClass) SystemBlueColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("systemBlueColor"))
 	return rv
 }
+
 // Returns a color object for mint that automatically adapts to vibrancy and accessibility settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemMint
@@ -197,6 +202,7 @@ func (cc _ColorClass) SystemMintColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("systemMintColor"))
 	return rv
 }
+
 // Returns a color object for yellow that automatically adapts to vibrancy and accessibility settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemYellow
@@ -204,6 +210,7 @@ func (cc _ColorClass) SystemYellowColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("systemYellowColor"))
 	return rv
 }
+
 // The tertiary color to use for text labels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/tertiaryLabelColor
@@ -211,6 +218,7 @@ func (cc _ColorClass) TertiaryLabelColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tertiaryLabelColor"))
 	return rv
 }
+
 // The color to use for the background area behind text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textBackgroundColor
@@ -218,12 +226,14 @@ func (cc _ColorClass) TextBackgroundColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("textBackgroundColor"))
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textInsertionPointColor
 func (cc _ColorClass) TextInsertionPointColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("textInsertionPointColor"))
 	return rv
 }
+
 // Reinterpret the color by applying a new without changing the color components. Changing the redefines the color relative to a different peak white, changing its behavior under tone mapping and the result of calling . The new color will have a >= 1.0. If called on a color with a color space that does not support extended range, or does not have an equivalent extended range counterpart, this will return .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/applyingContentHeadroom(_:)
@@ -521,5 +531,3 @@ func (c_ Color) YellowComponent() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("yellowComponent"))
 	return rv
 }
-
-

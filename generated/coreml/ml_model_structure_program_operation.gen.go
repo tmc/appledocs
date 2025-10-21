@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ModelStructureProgramOperation] class.
@@ -97,8 +98,8 @@ func (m_ ModelStructureProgramOperation) Inputs() unsafe.Pointer {
 // The name of the operator, e.g., “conv”, “pool”, “softmax”, etc.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/operatorName
-func (m_ ModelStructureProgramOperation) OperatorName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operatorName"))
+func (m_ ModelStructureProgramOperation) OperatorName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("operatorName"))
 	return rv
 }
 

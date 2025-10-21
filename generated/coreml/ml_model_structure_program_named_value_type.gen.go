@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ModelStructureProgramNamedValueType] class.
@@ -81,8 +82,8 @@ func NewModelStructureProgramNamedValueType() ModelStructureProgramNamedValueTyp
 // The name of the parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/name
-func (m_ ModelStructureProgramNamedValueType) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ ModelStructureProgramNamedValueType) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

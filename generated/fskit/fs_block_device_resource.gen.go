@@ -197,8 +197,8 @@ func (f_ FSBlockDeviceResource) BlockSize() uint64 {
 // The device name of the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/bsdName
-func (f_ FSBlockDeviceResource) BSDName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("BSDName"))
+func (f_ FSBlockDeviceResource) BSDName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("BSDName"))
 	return rv
 }
 

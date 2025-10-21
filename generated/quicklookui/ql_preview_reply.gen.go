@@ -8,8 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PreviewReply] class.
@@ -112,7 +112,7 @@ func NewPreviewReplyWithContextSizeIsBitmapDrawingBlock(contextSize coregraphics
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/initWithDataOfContentType:contentSize:dataCreationBlock:
-func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType uniformtypeidentifiers.UTType, contentSize coregraphics.CGSize, dataCreationBlock unsafe.Pointer) PreviewReply {
+func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType unsafe.Pointer, contentSize coregraphics.CGSize, dataCreationBlock unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithDataOfContentType:contentSize:dataCreationBlock:"), contentType, contentSize, dataCreationBlock)
 	rv.Autorelease()

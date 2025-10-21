@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ResourceViewPoolDescriptor] class.
@@ -81,8 +82,8 @@ func NewResourceViewPoolDescriptor() ResourceViewPoolDescriptor {
 // Assigns an optional label you to the resource view pool for debugging purposes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceViewPoolDescriptor/label
-func (r_ ResourceViewPoolDescriptor) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("label"))
+func (r_ ResourceViewPoolDescriptor) Label() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -92,8 +93,8 @@ func (r_ ResourceViewPoolDescriptor) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceViewPoolDescriptor/label
-func (r_ ResourceViewPoolDescriptor) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
+func (r_ ResourceViewPoolDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 

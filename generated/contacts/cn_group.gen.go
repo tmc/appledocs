@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNGroup] class.
@@ -107,16 +108,16 @@ func (cc _CNGroupClass) PredicateForSubgroupsInGroupWithIdentifier(parentGroupId
 // The unique identifier for a group on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/identifier
-func (c_ CNGroup) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+func (c_ CNGroup) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The name of the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/name
-func (c_ CNGroup) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("name"))
+func (c_ CNGroup) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 

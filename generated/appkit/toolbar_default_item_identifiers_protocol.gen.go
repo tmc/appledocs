@@ -17,5 +17,3 @@ var toolbarDefaultItemIdentifiersProtocol *objc.Protocol
 func init() {
 	toolbarDefaultItemIdentifiersProtocol = objc.GetProtocol("toolbarDefaultItemIdentifiers:")
 }
-
-

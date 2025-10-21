@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GameActivityDefinition] class.
@@ -89,8 +90,8 @@ func (g_ GameActivityDefinition) DefaultProperties() unsafe.Pointer {
 // The group identifier for the activity, if one exists.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivityDefinition/groupIdentifier
-func (g_ GameActivityDefinition) GroupIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("groupIdentifier"))
+func (g_ GameActivityDefinition) GroupIdentifier() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 

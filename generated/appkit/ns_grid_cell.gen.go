@@ -78,7 +78,3 @@ func (g_ GridCell) Autorelease() GridCell {
 func NewGridCell() GridCell {
 	return getGridCellClass().New()
 }
-
-
-
-

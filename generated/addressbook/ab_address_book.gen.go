@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ABAddressBook] class.
@@ -32,7 +33,7 @@ type IABAddressBook interface {
 	objectivec.IObject
 	AddRecord(record unsafe.Pointer) bool
 	AddRecordError(record unsafe.Pointer, error_ unsafe.Pointer) bool
-	DefaultCountryCode() unsafe.Pointer
+	DefaultCountryCode() string
 	DefaultNameOrdering() int
 	FormattedAddressFromDictionary(address objc.ID) unsafe.Pointer
 	Groups() unsafe.Pointer
@@ -40,7 +41,7 @@ type IABAddressBook interface {
 	Me() unsafe.Pointer
 	People() unsafe.Pointer
 	RecordForUniqueId(uniqueId string) unsafe.Pointer
-	RecordClassFromUniqueId(uniqueId string) unsafe.Pointer
+	RecordClassFromUniqueId(uniqueId string) string
 	RecordsMatchingSearchElement(search unsafe.Pointer) unsafe.Pointer
 	RemoveRecord(record unsafe.Pointer) bool
 	RemoveRecordError(record unsafe.Pointer, error_ unsafe.Pointer) bool
@@ -132,8 +133,8 @@ func (a_ ABAddressBook) AddRecordError(record unsafe.Pointer, error_ unsafe.Poin
 // Returns the default country code for records with unspecified country codes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/defaultCountryCode()
-func (a_ ABAddressBook) DefaultCountryCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("defaultCountryCode"))
+func (a_ ABAddressBook) DefaultCountryCode() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("defaultCountryCode"))
 	return rv
 }
 
@@ -196,8 +197,8 @@ func (a_ ABAddressBook) RecordForUniqueId(uniqueId string) unsafe.Pointer {
 // Returns the class name of the record that matches the given unique ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/recordClass(fromUniqueId:)
-func (a_ ABAddressBook) RecordClassFromUniqueId(uniqueId string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("recordClassFromUniqueId:"), objc.String(uniqueId))
+func (a_ ABAddressBook) RecordClassFromUniqueId(uniqueId string) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("recordClassFromUniqueId:"), objc.String(uniqueId))
 	return rv
 }
 

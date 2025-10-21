@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MediaPlaylistCreationMetadata] class.
@@ -94,8 +95,8 @@ func NewMediaPlaylistCreationMetadataWithName(name string) MediaPlaylistCreation
 // App defined display name for the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/authorDisplayName
-func (m_ MediaPlaylistCreationMetadata) AuthorDisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("authorDisplayName"))
+func (m_ MediaPlaylistCreationMetadata) AuthorDisplayName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("authorDisplayName"))
 	return rv
 }
 
@@ -105,14 +106,14 @@ func (m_ MediaPlaylistCreationMetadata) AuthorDisplayName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/authorDisplayName
-func (m_ MediaPlaylistCreationMetadata) SetAuthorDisplayName(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthorDisplayName:"), value)
+func (m_ MediaPlaylistCreationMetadata) SetAuthorDisplayName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthorDisplayName:"), objc.String(value))
 }
 // The descriptive text for the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/descriptionText
-func (m_ MediaPlaylistCreationMetadata) DescriptionText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("descriptionText"))
+func (m_ MediaPlaylistCreationMetadata) DescriptionText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("descriptionText"))
 	return rv
 }
 
@@ -122,14 +123,14 @@ func (m_ MediaPlaylistCreationMetadata) DescriptionText() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/descriptionText
-func (m_ MediaPlaylistCreationMetadata) SetDescriptionText(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionText:"), value)
+func (m_ MediaPlaylistCreationMetadata) SetDescriptionText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionText:"), objc.String(value))
 }
 // The playlist’s displayed name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/name
-func (m_ MediaPlaylistCreationMetadata) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MediaPlaylistCreationMetadata) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

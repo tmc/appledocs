@@ -81,22 +81,22 @@ func NewCKQueryOperation() CKQueryOperation {
 }
 
 
-// Creates an operation that searches for records in the specified record zone.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/init(query:)
-func NewCKQueryOperationWithQuery(query unsafe.Pointer) CKQueryOperation {
-	instance := getCKQueryOperationClass().Alloc()
-	rv := objc.Send[CKQueryOperation](instance.ID, objc.Sel("initWithQuery:"), query)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates an operation with additional results from a previous search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/init(cursor:)
 func NewCKQueryOperationWithCursor(cursor unsafe.Pointer) CKQueryOperation {
 	instance := getCKQueryOperationClass().Alloc()
 	rv := objc.Send[CKQueryOperation](instance.ID, objc.Sel("initWithCursor:"), cursor)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates an operation that searches for records in the specified record zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/init(query:)
+func NewCKQueryOperationWithQuery(query unsafe.Pointer) CKQueryOperation {
+	instance := getCKQueryOperationClass().Alloc()
+	rv := objc.Send[CKQueryOperation](instance.ID, objc.Sel("initWithQuery:"), query)
 	rv.Autorelease()
 	return rv
 }

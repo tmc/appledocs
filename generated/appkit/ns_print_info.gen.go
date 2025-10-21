@@ -80,7 +80,6 @@ func NewPrintInfo() PrintInfo {
 	return getPrintInfoClass().New()
 }
 
-
 // Returns the print info’s dictionary that contains the printing attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/dictionary()
@@ -97,7 +96,6 @@ func (p_ PrintInfo) HorizontallyCentered() bool {
 	return rv
 }
 
-
 // SetHorizontallyCentered sets the value of the horizontallyCentered property.
 // A Boolean value that indicates whether the image is centered horizontally.
 
@@ -106,6 +104,7 @@ func (p_ PrintInfo) HorizontallyCentered() bool {
 func (p_ PrintInfo) SetHorizontallyCentered(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHorizontallyCentered:"), value)
 }
+
 // A Boolean value that indicates whether only the currently selected contents should be printed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/isSelectionOnly
@@ -113,7 +112,6 @@ func (p_ PrintInfo) SelectionOnly() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("selectionOnly"))
 	return rv
 }
-
 
 // SetSelectionOnly sets the value of the selectionOnly property.
 // A Boolean value that indicates whether only the currently selected contents should be printed.
@@ -123,6 +121,7 @@ func (p_ PrintInfo) SelectionOnly() bool {
 func (p_ PrintInfo) SetSelectionOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectionOnly:"), value)
 }
+
 // The action specified for the job.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/jobDisposition-swift.property
@@ -130,7 +129,6 @@ func (p_ PrintInfo) JobDisposition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("jobDisposition"))
 	return rv
 }
-
 
 // SetJobDisposition sets the value of the jobDisposition property.
 // The action specified for the job.
@@ -140,5 +138,3 @@ func (p_ PrintInfo) JobDisposition() unsafe.Pointer {
 func (p_ PrintInfo) SetJobDisposition(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setJobDisposition:"), value)
 }
-
-

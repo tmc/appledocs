@@ -76,7 +76,3 @@ func (c_ Controller) Autorelease() Controller {
 func NewController() Controller {
 	return getControllerClass().New()
 }
-
-
-
-

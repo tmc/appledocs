@@ -15,5 +15,3 @@ var accessibilityCellForColumnProtocol *objc.Protocol
 func init() {
 	accessibilityCellForColumnProtocol = objc.GetProtocol("accessibilityCellForColumn:")
 }
-
-

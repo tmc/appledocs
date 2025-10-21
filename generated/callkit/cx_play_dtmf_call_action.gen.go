@@ -105,8 +105,8 @@ func NewCXPlayDTMFCallActionWithCoder(aDecoder unsafe.Pointer) CXPlayDTMFCallAct
 // The digits tapped by the user into the in-call keypad or included in the dial string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/digits
-func (c_ CXPlayDTMFCallAction) Digits() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("digits"))
+func (c_ CXPlayDTMFCallAction) Digits() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("digits"))
 	return rv
 }
 
@@ -116,8 +116,8 @@ func (c_ CXPlayDTMFCallAction) Digits() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/digits
-func (c_ CXPlayDTMFCallAction) SetDigits(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDigits:"), value)
+func (c_ CXPlayDTMFCallAction) SetDigits(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDigits:"), objc.String(value))
 }
 // The type of the call action.
 //

@@ -12,5 +12,3 @@ var pasteboardFinishedWithDataProviderProtocol *objc.Protocol
 func init() {
 	pasteboardFinishedWithDataProviderProtocol = objc.GetProtocol("pasteboardFinishedWithDataProvider:")
 }
-
-

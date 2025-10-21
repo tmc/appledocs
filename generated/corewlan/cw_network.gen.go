@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CWNetwork] class.
@@ -116,16 +117,16 @@ func (c_ CWNetwork) BeaconInterval() int {
 // The basic service set identifier (BSSID) for the network, returned as UTF-8 string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/bssid
-func (c_ CWNetwork) Bssid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("bssid"))
+func (c_ CWNetwork) Bssid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("bssid"))
 	return rv
 }
 
 // The country code (ISO/IEC 3166-1:1997) for the network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/countryCode
-func (c_ CWNetwork) CountryCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("countryCode"))
+func (c_ CWNetwork) CountryCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
@@ -164,8 +165,8 @@ func (c_ CWNetwork) RssiValue() int {
 // The service set identifier (SSID) for the network, encoded as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ssid
-func (c_ CWNetwork) Ssid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ssid"))
+func (c_ CWNetwork) Ssid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ssid"))
 	return rv
 }
 

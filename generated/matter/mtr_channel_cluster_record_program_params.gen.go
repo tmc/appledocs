@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRChannelClusterRecordProgramParams] class.
@@ -91,8 +92,8 @@ func (m_ MTRChannelClusterRecordProgramParams) SetData(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("programIdentifier"))
+func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("programIdentifier"))
 	return rv
 }
 
@@ -100,8 +101,8 @@ func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() unsafe.Pointe
 // SetProgramIdentifier sets the value of the programIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterRecordProgramParams) SetProgramIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), value)
+func (m_ MTRChannelClusterRecordProgramParams) SetProgramIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), objc.String(value))
 }
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //

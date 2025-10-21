@@ -82,21 +82,21 @@ func NewCXSetTranslatingCallAction() CXSetTranslatingCallAction {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(call:isTranslating:localLanguage:remoteLanguage:)
+func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(uuid unsafe.Pointer, isTranslating bool, localLanguage string, remoteLanguage string) CXSetTranslatingCallAction {
+	instance := getCXSetTranslatingCallActionClass().Alloc()
+	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCallUUID:isTranslating:localLanguage:remoteLanguage:"), uuid, isTranslating, objc.String(localLanguage), objc.String(remoteLanguage))
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a new action to start or stop translating a call with the provided data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(coder:)
 func NewCXSetTranslatingCallActionWithCoder(aDecoder unsafe.Pointer) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(call:isTranslating:localLanguage:remoteLanguage:)
-func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(uuid unsafe.Pointer, isTranslating bool, localLanguage string, remoteLanguage string) CXSetTranslatingCallAction {
-	instance := getCXSetTranslatingCallActionClass().Alloc()
-	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCallUUID:isTranslating:localLanguage:remoteLanguage:"), uuid, isTranslating, objc.String(localLanguage), objc.String(remoteLanguage))
 	rv.Autorelease()
 	return rv
 }
@@ -118,15 +118,15 @@ func (c_ CXSetTranslatingCallAction) IsTranslating() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/localLanguage
-func (c_ CXSetTranslatingCallAction) LocalLanguage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("localLanguage"))
+func (c_ CXSetTranslatingCallAction) LocalLanguage() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localLanguage"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/remoteLanguage
-func (c_ CXSetTranslatingCallAction) RemoteLanguage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("remoteLanguage"))
+func (c_ CXSetTranslatingCallAction) RemoteLanguage() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("remoteLanguage"))
 	return rv
 }
 

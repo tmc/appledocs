@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MediaGroup] class.
@@ -131,8 +132,8 @@ func (m_ MediaGroup) Parent() unsafe.Pointer {
 // An identifier for the media group’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/typeIdentifier
-func (m_ MediaGroup) TypeIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("typeIdentifier"))
+func (m_ MediaGroup) TypeIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("typeIdentifier"))
 	return rv
 }
 

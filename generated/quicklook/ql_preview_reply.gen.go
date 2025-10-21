@@ -8,8 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PreviewReply] class.
@@ -78,6 +78,15 @@ func NewPreviewReply() PreviewReply {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/initWithDataOfContentType:contentSize:dataCreationBlock:
+func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType unsafe.Pointer, contentSize coregraphics.CGSize, dataCreationBlock unsafe.Pointer) PreviewReply {
+	instance := getPreviewReplyClass().Alloc()
+	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithDataOfContentType:contentSize:dataCreationBlock:"), contentType, contentSize, dataCreationBlock)
+	rv.Autorelease()
+	return rv
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/init(fileURL:)
 func NewPreviewReplyWithFileURL(fileURL unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
@@ -100,15 +109,6 @@ func NewPreviewReplyForPDFWithPageSizeDocumentCreationBlock(defaultPageSize core
 func NewPreviewReplyWithContextSizeIsBitmapDrawingBlock(contextSize coregraphics.CGSize, isBitmap bool, drawingBlock unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithContextSize:isBitmap:drawingBlock:"), contextSize, isBitmap, drawingBlock)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/initWithDataOfContentType:contentSize:dataCreationBlock:
-func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType uniformtypeidentifiers.UTType, contentSize coregraphics.CGSize, dataCreationBlock unsafe.Pointer) PreviewReply {
-	instance := getPreviewReplyClass().Alloc()
-	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithDataOfContentType:contentSize:dataCreationBlock:"), contentType, contentSize, dataCreationBlock)
 	rv.Autorelease()
 	return rv
 }
@@ -151,8 +151,8 @@ func (p_ PreviewReply) SetStringEncoding(value unsafe.Pointer) {
 // Custom display title for the preview. If left as the empty string, QuickLook will use the file name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/title
-func (p_ PreviewReply) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("title"))
+func (p_ PreviewReply) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -162,7 +162,7 @@ func (p_ PreviewReply) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/title
-func (p_ PreviewReply) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
+func (p_ PreviewReply) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

@@ -84,8 +84,8 @@ func NewINGetUserCurrentRestaurantReservationBookingsIntent() INGetUserCurrentRe
 // An identifier to use when searching for the user’s reservations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetUserCurrentRestaurantReservationBookingsIntent/reservationIdentifier
-func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationIdentifier"))
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("reservationIdentifier"))
 	return rv
 }
 
@@ -95,8 +95,8 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentif
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetUserCurrentRestaurantReservationBookingsIntent/reservationIdentifier
-func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetReservationIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationIdentifier:"), value)
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetReservationIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationIdentifier:"), objc.String(value))
 }
 // A restaurant to use as a filter when searching for reservations.
 //

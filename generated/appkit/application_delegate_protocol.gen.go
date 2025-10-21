@@ -12,5 +12,3 @@ var ApplicationDelegateProtocol *objc.Protocol
 func init() {
 	ApplicationDelegateProtocol = objc.GetProtocol("NSApplicationDelegate")
 }
-
-

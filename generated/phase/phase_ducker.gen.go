@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASEDucker] class.
@@ -134,8 +135,8 @@ func (p_ PHASEDucker) Gain() unsafe.Pointer {
 // A unique value for the ducker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/identifier
-func (p_ PHASEDucker) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEDucker) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

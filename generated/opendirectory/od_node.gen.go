@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ODNode] class.
@@ -311,8 +312,8 @@ func (o_ ODNode) Configuration() unsafe.Pointer {
 // The node’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/nodeName
-func (o_ ODNode) NodeName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("nodeName"))
+func (o_ ODNode) NodeName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("nodeName"))
 	return rv
 }
 

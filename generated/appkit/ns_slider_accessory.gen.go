@@ -73,7 +73,3 @@ func (s_ SliderAccessory) Autorelease() SliderAccessory {
 func NewSliderAccessory() SliderAccessory {
 	return getSliderAccessoryClass().New()
 }
-
-
-
-

@@ -77,7 +77,3 @@ func (l_ LevelIndicatorCell) Autorelease() LevelIndicatorCell {
 func NewLevelIndicatorCell() LevelIndicatorCell {
 	return getLevelIndicatorCellClass().New()
 }
-
-
-
-

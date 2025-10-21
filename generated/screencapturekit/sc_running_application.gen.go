@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RunningApplication] class.
@@ -83,16 +84,16 @@ func NewRunningApplication() RunningApplication {
 // The display name of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication/applicationName
-func (r_ RunningApplication) ApplicationName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("applicationName"))
+func (r_ RunningApplication) ApplicationName() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("applicationName"))
 	return rv
 }
 
 // The unique bundle identifier of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication/bundleIdentifier
-func (r_ RunningApplication) BundleIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("bundleIdentifier"))
+func (r_ RunningApplication) BundleIdentifier() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 

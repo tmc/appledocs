@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNSocialProfile] class.
@@ -83,8 +84,8 @@ func NewCNSocialProfile() CNSocialProfile {
 // Returns the localized name of the property for the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSocialProfile/localizedString(forKey:)
-func (cc _CNSocialProfileClass) LocalizedStringForKey(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
+func (cc _CNSocialProfileClass) LocalizedStringForKey(key string) string {
+	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
 	return rv
 }
 

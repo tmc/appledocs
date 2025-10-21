@@ -79,7 +79,3 @@ func (b_ BrowserCell) Autorelease() BrowserCell {
 func NewBrowserCell() BrowserCell {
 	return getBrowserCellClass().New()
 }
-
-
-
-

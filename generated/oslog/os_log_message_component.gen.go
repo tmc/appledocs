@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OSLogMessageComponent] class.
@@ -123,8 +124,8 @@ func (o_ OSLogMessageComponent) ArgumentNumberValue() unsafe.Pointer {
 // The argument formatted as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentStringValue
-func (o_ OSLogMessageComponent) ArgumentStringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("argumentStringValue"))
+func (o_ OSLogMessageComponent) ArgumentStringValue() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("argumentStringValue"))
 	return rv
 }
 
@@ -139,16 +140,16 @@ func (o_ OSLogMessageComponent) ArgumentUInt64Value() uint64 {
 // The text immediately preceding a placeholder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/formatSubstring
-func (o_ OSLogMessageComponent) FormatSubstring() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("formatSubstring"))
+func (o_ OSLogMessageComponent) FormatSubstring() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("formatSubstring"))
 	return rv
 }
 
 // The placeholder text for the message component.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/placeholder
-func (o_ OSLogMessageComponent) Placeholder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("placeholder"))
+func (o_ OSLogMessageComponent) Placeholder() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("placeholder"))
 	return rv
 }
 

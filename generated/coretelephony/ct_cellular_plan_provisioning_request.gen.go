@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CellularPlanProvisioningRequest] class.
@@ -83,8 +84,8 @@ func NewCellularPlanProvisioningRequest() CellularPlanProvisioningRequest {
 // The address of the carrier network’s eSIM server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioningRequest/address
-func (c_ CellularPlanProvisioningRequest) Address() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("address"))
+func (c_ CellularPlanProvisioningRequest) Address() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("address"))
 	return rv
 }
 
@@ -94,8 +95,8 @@ func (c_ CellularPlanProvisioningRequest) Address() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioningRequest/address
-func (c_ CellularPlanProvisioningRequest) SetAddress(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAddress:"), value)
+func (c_ CellularPlanProvisioningRequest) SetAddress(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAddress:"), objc.String(value))
 }
 
 

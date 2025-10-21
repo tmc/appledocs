@@ -304,8 +304,8 @@ func (n_ NEVPNProtocolIKEv2) SetPpkConfiguration(value unsafe.Pointer) {
 // A string containing the value of the Subject Common Name field of the IKEv2 server’s certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/serverCertificateCommonName
-func (n_ NEVPNProtocolIKEv2) ServerCertificateCommonName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("serverCertificateCommonName"))
+func (n_ NEVPNProtocolIKEv2) ServerCertificateCommonName() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("serverCertificateCommonName"))
 	return rv
 }
 
@@ -315,14 +315,14 @@ func (n_ NEVPNProtocolIKEv2) ServerCertificateCommonName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/serverCertificateCommonName
-func (n_ NEVPNProtocolIKEv2) SetServerCertificateCommonName(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setServerCertificateCommonName:"), value)
+func (n_ NEVPNProtocolIKEv2) SetServerCertificateCommonName(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServerCertificateCommonName:"), objc.String(value))
 }
 // A string containing the value of the Subject Common Name field of the Certificate Authority certificate that issued the IKEv2 server’s certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/serverCertificateIssuerCommonName
-func (n_ NEVPNProtocolIKEv2) ServerCertificateIssuerCommonName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("serverCertificateIssuerCommonName"))
+func (n_ NEVPNProtocolIKEv2) ServerCertificateIssuerCommonName() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("serverCertificateIssuerCommonName"))
 	return rv
 }
 
@@ -332,8 +332,8 @@ func (n_ NEVPNProtocolIKEv2) ServerCertificateIssuerCommonName() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/serverCertificateIssuerCommonName
-func (n_ NEVPNProtocolIKEv2) SetServerCertificateIssuerCommonName(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setServerCertificateIssuerCommonName:"), value)
+func (n_ NEVPNProtocolIKEv2) SetServerCertificateIssuerCommonName(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServerCertificateIssuerCommonName:"), objc.String(value))
 }
 // Require a “not revoked” result when checking if the certificate identifying the server is revoked.
 //

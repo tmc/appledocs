@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -174,8 +175,8 @@ func (k_ Kernel) SetROISelector(method objc.SEL) {
 // The name of the kernel routine.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/name
-func (k_ Kernel) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("name"))
+func (k_ Kernel) Name() string {
+	rv := objc.Send[string](k_.ID, objc.Sel("name"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BluetoothSDPServiceAttribute] class.
@@ -83,22 +84,22 @@ func NewBluetoothSDPServiceAttribute() BluetoothSDPServiceAttribute {
 }
 
 
-// Initializes a new service attribute with the given ID and data element.
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute/init(id:attributeElement:)
-func NewBluetoothSDPServiceAttributeWithIDAttributeElement(newAttributeID unsafe.Pointer, attributeElement unsafe.Pointer) BluetoothSDPServiceAttribute {
-	instance := getBluetoothSDPServiceAttributeClass().Alloc()
-	rv := objc.Send[BluetoothSDPServiceAttribute](instance.ID, objc.Sel("initWithID:attributeElement:"), newAttributeID, attributeElement)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a new service attribute with the given ID and element value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute/init(id:attributeElementValue:)
 func NewBluetoothSDPServiceAttributeWithIDAttributeElementValue(newAttributeID unsafe.Pointer, attributeElementValue unsafe.Pointer) BluetoothSDPServiceAttribute {
 	instance := getBluetoothSDPServiceAttributeClass().Alloc()
 	rv := objc.Send[BluetoothSDPServiceAttribute](instance.ID, objc.Sel("initWithID:attributeElementValue:"), newAttributeID, attributeElementValue)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a new service attribute with the given ID and data element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute/init(id:attributeElement:)
+func NewBluetoothSDPServiceAttributeWithIDAttributeElement(newAttributeID unsafe.Pointer, attributeElement unsafe.Pointer) BluetoothSDPServiceAttribute {
+	instance := getBluetoothSDPServiceAttributeClass().Alloc()
+	rv := objc.Send[BluetoothSDPServiceAttribute](instance.ID, objc.Sel("initWithID:attributeElement:"), newAttributeID, attributeElement)
 	rv.Autorelease()
 	return rv
 }

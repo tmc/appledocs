@@ -81,7 +81,6 @@ func NewColorPicker() ColorPicker {
 	return getColorPickerClass().New()
 }
 
-
 // Overriden to attach a color list to a color picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/attachColorList(_:)
@@ -111,6 +110,3 @@ func (c_ ColorPicker) ProvideNewButtonImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("provideNewButtonImage"))
 	return rv
 }
-
-
-

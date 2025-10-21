@@ -84,7 +84,6 @@ func NewColorPanel() ColorPanel {
 	return getColorPanelClass().New()
 }
 
-
 // Drags a color into a destination view from the specified source view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/dragColor(_:with:from:)
@@ -114,6 +113,7 @@ func (cc _ColorPanelClass) SharedColorPanel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedColorPanel"))
 	return rv
 }
+
 // Returns a Boolean value indicating whether the has been created already.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/sharedColorPanelExists
@@ -121,6 +121,7 @@ func (cc _ColorPanelClass) SharedColorPanelExists() bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("sharedColorPanelExists"))
 	return rv
 }
+
 // Adds the list of objects specified to all the color pickers in the receiver that display color lists by invoking on all color pickers in the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/attachColorList(_:)
@@ -157,7 +158,6 @@ func (c_ ColorPanel) AccessoryView() unsafe.Pointer {
 	return rv
 }
 
-
 // SetAccessoryView sets the value of the accessoryView property.
 // The accessory view.
 
@@ -166,6 +166,7 @@ func (c_ ColorPanel) AccessoryView() unsafe.Pointer {
 func (c_ ColorPanel) SetAccessoryView(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAccessoryView:"), value)
 }
+
 // The receiver’s current alpha value based on its opacity slider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/alpha
@@ -182,7 +183,6 @@ func (c_ ColorPanel) Color() unsafe.Pointer {
 	return rv
 }
 
-
 // SetColor sets the value of the color property.
 // The color of the receiver.
 
@@ -191,6 +191,7 @@ func (c_ ColorPanel) Color() unsafe.Pointer {
 func (c_ ColorPanel) SetColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
 }
+
 // A Boolean value indicating whether the receiver continuously sends the action message to the target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/isContinuous
@@ -198,7 +199,6 @@ func (c_ ColorPanel) Continuous() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("continuous"))
 	return rv
 }
-
 
 // SetContinuous sets the value of the continuous property.
 // A Boolean value indicating whether the receiver continuously sends the action message to the target.
@@ -208,6 +208,7 @@ func (c_ ColorPanel) Continuous() bool {
 func (c_ ColorPanel) SetContinuous(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContinuous:"), value)
 }
+
 // The maximum linear exposure that can be set on a color picked in the color panel. Defaults to 1 and ignores any value less than 1. If set to a value >= 2, the color picked by the panel may have a linear exposure applied to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/maximumLinearExposure
@@ -215,7 +216,6 @@ func (c_ ColorPanel) MaximumLinearExposure() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("maximumLinearExposure"))
 	return rv
 }
-
 
 // SetMaximumLinearExposure sets the value of the maximumLinearExposure property.
 // The maximum linear exposure that can be set on a color picked in the color panel. Defaults to 1 and ignores any value less than 1. If set to a value >= 2, the color picked by the panel may have a linear exposure applied to it.
@@ -225,6 +225,7 @@ func (c_ ColorPanel) MaximumLinearExposure() float64 {
 func (c_ ColorPanel) SetMaximumLinearExposure(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumLinearExposure:"), value)
 }
+
 // The mode of the receiver the mode is one of the modes allowed by the color mask.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/mode-swift.property
@@ -232,7 +233,6 @@ func (c_ ColorPanel) Mode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mode"))
 	return rv
 }
-
 
 // SetMode sets the value of the mode property.
 // The mode of the receiver the mode is one of the modes allowed by the color mask.
@@ -242,6 +242,7 @@ func (c_ ColorPanel) Mode() unsafe.Pointer {
 func (c_ ColorPanel) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMode:"), value)
 }
+
 // Returns the shared instance, creating it if necessary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/shared
@@ -266,7 +267,6 @@ func (c_ ColorPanel) ShowsAlpha() bool {
 	return rv
 }
 
-
 // SetShowsAlpha sets the value of the showsAlpha property.
 // A Boolean value that indicates whether the receiver shows alpha values and an opacity slider.
 
@@ -275,5 +275,3 @@ func (c_ ColorPanel) ShowsAlpha() bool {
 func (c_ ColorPanel) SetShowsAlpha(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShowsAlpha:"), value)
 }
-
-

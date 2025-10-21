@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UNNotificationContent] class.
@@ -108,24 +109,24 @@ func (u_ UNNotificationContent) Badge() unsafe.Pointer {
 // The localized text that provides the notification’s main content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/body
-func (u_ UNNotificationContent) Body() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("body"))
+func (u_ UNNotificationContent) Body() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("body"))
 	return rv
 }
 
 // The identifier of the notification’s category.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/categoryIdentifier
-func (u_ UNNotificationContent) CategoryIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("categoryIdentifier"))
+func (u_ UNNotificationContent) CategoryIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("categoryIdentifier"))
 	return rv
 }
 
 // The criteria the system evaluates to determine if it displays the notification in the current Focus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/filterCriteria
-func (u_ UNNotificationContent) FilterCriteria() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("filterCriteria"))
+func (u_ UNNotificationContent) FilterCriteria() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("filterCriteria"))
 	return rv
 }
 
@@ -140,8 +141,8 @@ func (u_ UNNotificationContent) InterruptionLevel() unsafe.Pointer {
 // The name of the image or storyboard to use when your app launches because of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/launchImageName
-func (u_ UNNotificationContent) LaunchImageName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("launchImageName"))
+func (u_ UNNotificationContent) LaunchImageName() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("launchImageName"))
 	return rv
 }
 
@@ -164,16 +165,16 @@ func (u_ UNNotificationContent) Sound() unsafe.Pointer {
 // The localized text that provides the notification’s secondary description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/subtitle
-func (u_ UNNotificationContent) Subtitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("subtitle"))
+func (u_ UNNotificationContent) Subtitle() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
 // The text the system adds to the notification summary to provide additional context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/summaryArgument
-func (u_ UNNotificationContent) SummaryArgument() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("summaryArgument"))
+func (u_ UNNotificationContent) SummaryArgument() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("summaryArgument"))
 	return rv
 }
 
@@ -188,24 +189,24 @@ func (u_ UNNotificationContent) SummaryArgumentCount() uint {
 // The value your app uses to determine which scene to display to handle the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/targetContentIdentifier
-func (u_ UNNotificationContent) TargetContentIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("targetContentIdentifier"))
+func (u_ UNNotificationContent) TargetContentIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("targetContentIdentifier"))
 	return rv
 }
 
 // The identifier that groups related notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/threadIdentifier
-func (u_ UNNotificationContent) ThreadIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("threadIdentifier"))
+func (u_ UNNotificationContent) ThreadIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("threadIdentifier"))
 	return rv
 }
 
 // The localized text that provides the notification’s primary description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/title
-func (u_ UNNotificationContent) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("title"))
+func (u_ UNNotificationContent) Title() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MXCrashDiagnosticObjectiveCExceptionReason] class.
@@ -106,36 +107,36 @@ func (m_ MXCrashDiagnosticObjectiveCExceptionReason) Arguments() []string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/className
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ClassName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("className"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ClassName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("className"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/composedMessage
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ComposedMessage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("composedMessage"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ComposedMessage() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("composedMessage"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/exceptionName
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ExceptionName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("exceptionName"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ExceptionName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("exceptionName"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/exceptionType
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ExceptionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("exceptionType"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ExceptionType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("exceptionType"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/formatString
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) FormatString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("formatString"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) FormatString() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("formatString"))
 	return rv
 }
 

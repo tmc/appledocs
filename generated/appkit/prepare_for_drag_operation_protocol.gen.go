@@ -12,5 +12,3 @@ var prepareForDragOperationProtocol *objc.Protocol
 func init() {
 	prepareForDragOperationProtocol = objc.GetProtocol("prepareForDragOperation:")
 }
-
-

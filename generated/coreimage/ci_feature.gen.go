@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -92,8 +93,8 @@ func (f_ Feature) Bounds() coregraphics.CGRect {
 // The type of feature that was discovered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/type
-func (f_ Feature) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("type"))
+func (f_ Feature) Type() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("type"))
 	return rv
 }
 

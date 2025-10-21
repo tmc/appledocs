@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Payment] class.
@@ -108,8 +109,8 @@ func (pc _PaymentClass) PaymentWithProductIdentifier(identifier string) objc.ID 
 // A string that associates the transaction with a user account on your service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/applicationUsername
-func (p_ Payment) ApplicationUsername() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("applicationUsername"))
+func (p_ Payment) ApplicationUsername() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("applicationUsername"))
 	return rv
 }
 
@@ -124,8 +125,8 @@ func (p_ Payment) PaymentDiscount() unsafe.Pointer {
 // A string used to identify a product that can be purchased from within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/productIdentifier
-func (p_ Payment) ProductIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("productIdentifier"))
+func (p_ Payment) ProductIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKVirtualConferenceDescriptor] class.
@@ -94,16 +95,16 @@ func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(ti
 // Additional information about the conference that users may find helpful.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/conferenceDetails
-func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("conferenceDetails"))
+func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("conferenceDetails"))
 	return rv
 }
 
 // The user-visible name of the virtual conference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/title
-func (e_ EKVirtualConferenceDescriptor) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("title"))
+func (e_ EKVirtualConferenceDescriptor) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 

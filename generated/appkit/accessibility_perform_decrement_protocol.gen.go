@@ -12,5 +12,3 @@ var accessibilityPerformDecrementProtocol *objc.Protocol
 func init() {
 	accessibilityPerformDecrementProtocol = objc.GetProtocol("accessibilityPerformDecrement")
 }
-
-

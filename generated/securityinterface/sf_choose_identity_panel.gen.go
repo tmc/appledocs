@@ -31,10 +31,10 @@ type _SFChooseIdentityPanelClass struct {
 type ISFChooseIdentityPanel interface {
 	appkit.IPanel
 	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoIdentitiesMessage(docWindow unsafe.Pointer, delegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer, identities objc.ID, message string)
-	Domain() unsafe.Pointer
-	HelpAnchor() unsafe.Pointer
+	Domain() string
+	HelpAnchor() string
 	Identity() unsafe.Pointer
-	InformativeText() unsafe.Pointer
+	InformativeText() string
 	Policies() unsafe.Pointer
 	RunModalForIdentitiesMessage(identities objc.ID, message string) int
 	SetAlternateButtonTitle(title string)
@@ -115,16 +115,16 @@ func (s_ SFChooseIdentityPanel) BeginSheetForWindowModalDelegateDidEndSelectorCo
 // Returns the domain that will be associated with the chosen identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/domain()
-func (s_ SFChooseIdentityPanel) Domain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("domain"))
+func (s_ SFChooseIdentityPanel) Domain() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("domain"))
 	return rv
 }
 
 // Returns the current help anchor string for the sheet or panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/helpAnchor()
-func (s_ SFChooseIdentityPanel) HelpAnchor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("helpAnchor"))
+func (s_ SFChooseIdentityPanel) HelpAnchor() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("helpAnchor"))
 	return rv
 }
 
@@ -139,8 +139,8 @@ func (s_ SFChooseIdentityPanel) Identity() unsafe.Pointer {
 // Returns the informative text currently displayed in the panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/informativeText()
-func (s_ SFChooseIdentityPanel) InformativeText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("informativeText"))
+func (s_ SFChooseIdentityPanel) InformativeText() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("informativeText"))
 	return rv
 }
 

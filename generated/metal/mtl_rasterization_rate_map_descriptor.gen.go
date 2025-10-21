@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RasterizationRateMapDescriptor] class.
@@ -124,8 +125,8 @@ func (r_ RasterizationRateMapDescriptor) SetLayerAtIndex(layer unsafe.Pointer, l
 // A string used to identify the rate map you create with the descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/label
-func (r_ RasterizationRateMapDescriptor) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("label"))
+func (r_ RasterizationRateMapDescriptor) Label() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (r_ RasterizationRateMapDescriptor) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/label
-func (r_ RasterizationRateMapDescriptor) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
+func (r_ RasterizationRateMapDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 // The number of layers in the rate map.
 //

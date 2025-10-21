@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKShareMetadata] class.
@@ -83,8 +84,8 @@ func NewCKShareMetadata() CKShareMetadata {
 // The ID of the share’s container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/containerIdentifier
-func (c_ CKShareMetadata) ContainerIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CKShareMetadata) ContainerIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

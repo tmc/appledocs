@@ -31,7 +31,7 @@ type IABGroup interface {
 	IABRecord
 	AddMember(person unsafe.Pointer) bool
 	AddSubgroup(group unsafe.Pointer) bool
-	DistributionIdentifierForPropertyPerson(property string, person unsafe.Pointer) unsafe.Pointer
+	DistributionIdentifierForPropertyPerson(property string, person unsafe.Pointer) string
 	Members() unsafe.Pointer
 	ParentGroups() unsafe.Pointer
 	RemoveMember(person unsafe.Pointer) bool
@@ -149,8 +149,8 @@ func (a_ ABGroup) AddSubgroup(group unsafe.Pointer) bool {
 // Returns the distribution identifier for the given property and person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/distributionIdentifier(forProperty:person:)
-func (a_ ABGroup) DistributionIdentifierForPropertyPerson(property string, person unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("distributionIdentifierForProperty:person:"), objc.String(property), person)
+func (a_ ABGroup) DistributionIdentifierForPropertyPerson(property string, person unsafe.Pointer) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("distributionIdentifierForProperty:person:"), objc.String(property), person)
 	return rv
 }
 

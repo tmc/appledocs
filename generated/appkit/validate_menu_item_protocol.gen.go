@@ -12,5 +12,3 @@ var validateMenuItemProtocol *objc.Protocol
 func init() {
 	validateMenuItemProtocol = objc.GetProtocol("validateMenuItem:")
 }
-
-

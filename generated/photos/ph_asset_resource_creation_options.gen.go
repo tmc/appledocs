@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
@@ -101,8 +102,8 @@ func (p_ PHAssetResourceCreationOptions) SetContentType(value uniformtypeidentif
 // The filename for the asset resource being created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/originalFilename
-func (p_ PHAssetResourceCreationOptions) OriginalFilename() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("originalFilename"))
+func (p_ PHAssetResourceCreationOptions) OriginalFilename() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("originalFilename"))
 	return rv
 }
 
@@ -112,8 +113,8 @@ func (p_ PHAssetResourceCreationOptions) OriginalFilename() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/originalFilename
-func (p_ PHAssetResourceCreationOptions) SetOriginalFilename(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOriginalFilename:"), value)
+func (p_ PHAssetResourceCreationOptions) SetOriginalFilename(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOriginalFilename:"), objc.String(value))
 }
 // A Boolean value that determines whether Photos moves or duplicates files when creating an asset resource.
 //
@@ -135,8 +136,8 @@ func (p_ PHAssetResourceCreationOptions) SetShouldMoveFile(value bool) {
 // The uniform type identifier for the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/uniformTypeIdentifier
-func (p_ PHAssetResourceCreationOptions) UniformTypeIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("uniformTypeIdentifier"))
+func (p_ PHAssetResourceCreationOptions) UniformTypeIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("uniformTypeIdentifier"))
 	return rv
 }
 
@@ -146,8 +147,8 @@ func (p_ PHAssetResourceCreationOptions) UniformTypeIdentifier() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/uniformTypeIdentifier
-func (p_ PHAssetResourceCreationOptions) SetUniformTypeIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUniformTypeIdentifier:"), value)
+func (p_ PHAssetResourceCreationOptions) SetUniformTypeIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUniformTypeIdentifier:"), objc.String(value))
 }
 
 

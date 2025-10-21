@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRThermostatClusterPresetStruct] class.
@@ -119,8 +120,8 @@ func (m_ MTRThermostatClusterPresetStruct) SetHeatingSetpoint(value unsafe.Point
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/name
-func (m_ MTRThermostatClusterPresetStruct) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MTRThermostatClusterPresetStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (m_ MTRThermostatClusterPresetStruct) Name() unsafe.Pointer {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/name
-func (m_ MTRThermostatClusterPresetStruct) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRThermostatClusterPresetStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/presetHandle

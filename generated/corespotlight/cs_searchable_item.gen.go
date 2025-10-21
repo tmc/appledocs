@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CSSearchableItem] class.
@@ -120,8 +121,8 @@ func (c_ CSSearchableItem) SetAttributeSet(value unsafe.Pointer) {
 // An optional identifier that represents the domain or owner of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier
-func (c_ CSSearchableItem) DomainIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("domainIdentifier"))
+func (c_ CSSearchableItem) DomainIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("domainIdentifier"))
 	return rv
 }
 
@@ -131,8 +132,8 @@ func (c_ CSSearchableItem) DomainIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier
-func (c_ CSSearchableItem) SetDomainIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), value)
+func (c_ CSSearchableItem) SetDomainIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), objc.String(value))
 }
 // The date after which the searchable item should no longer exist.
 //
@@ -171,8 +172,8 @@ func (c_ CSSearchableItem) SetIsUpdate(value bool) {
 // The value that uniquely identifies the searchable item within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier
-func (c_ CSSearchableItem) UniqueIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("uniqueIdentifier"))
+func (c_ CSSearchableItem) UniqueIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 
@@ -182,8 +183,8 @@ func (c_ CSSearchableItem) UniqueIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier
-func (c_ CSSearchableItem) SetUniqueIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUniqueIdentifier:"), value)
+func (c_ CSSearchableItem) SetUniqueIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUniqueIdentifier:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/updateListenerOptions-swift.property

@@ -79,7 +79,3 @@ func (b_ Browser) Autorelease() Browser {
 func NewBrowser() Browser {
 	return getBrowserClass().New()
 }
-
-
-
-

@@ -134,8 +134,8 @@ func (e_ EKAlarm) SetAbsoluteDate(value unsafe.Pointer) {
 // The recipient of an email to send when the alarm triggers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/emailAddress
-func (e_ EKAlarm) EmailAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("emailAddress"))
+func (e_ EKAlarm) EmailAddress() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
@@ -145,8 +145,8 @@ func (e_ EKAlarm) EmailAddress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/emailAddress
-func (e_ EKAlarm) SetEmailAddress(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setEmailAddress:"), value)
+func (e_ EKAlarm) SetEmailAddress(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEmailAddress:"), objc.String(value))
 }
 // A value indicating how a location-based alarm is triggered.
 //
@@ -185,8 +185,8 @@ func (e_ EKAlarm) SetRelativeOffset(value TimeInterval) {
 // The name of the sound to play when the alarm triggers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/soundName
-func (e_ EKAlarm) SoundName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("soundName"))
+func (e_ EKAlarm) SoundName() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("soundName"))
 	return rv
 }
 
@@ -196,8 +196,8 @@ func (e_ EKAlarm) SoundName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/soundName
-func (e_ EKAlarm) SetSoundName(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setSoundName:"), value)
+func (e_ EKAlarm) SetSoundName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setSoundName:"), objc.String(value))
 }
 // The location to trigger an alarm.
 //

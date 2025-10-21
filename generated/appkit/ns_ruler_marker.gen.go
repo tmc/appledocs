@@ -80,7 +80,6 @@ func NewRulerMarker() RulerMarker {
 	return getRulerMarkerClass().New()
 }
 
-
 // Handles user manipulation of the receiver in its ruler view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/trackMouse(with:adding:)
@@ -97,7 +96,6 @@ func (r_ RulerMarker) Image() unsafe.Pointer {
 	return rv
 }
 
-
 // SetImage sets the value of the image property.
 // The receiver’s image.
 
@@ -106,6 +104,7 @@ func (r_ RulerMarker) Image() unsafe.Pointer {
 func (r_ RulerMarker) SetImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setImage:"), value)
 }
+
 // The receiver’s ruler view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/ruler
@@ -113,6 +112,3 @@ func (r_ RulerMarker) Ruler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("ruler"))
 	return rv
 }
-
-
-

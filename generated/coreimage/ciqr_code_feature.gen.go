@@ -109,8 +109,8 @@ func (q_ QRCodeFeature) Bounds() coregraphics.CGRect {
 // The string decoded from the detected barcode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/messageString
-func (q_ QRCodeFeature) MessageString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("messageString"))
+func (q_ QRCodeFeature) MessageString() string {
+	rv := objc.Send[string](q_.ID, objc.Sel("messageString"))
 	return rv
 }
 

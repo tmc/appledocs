@@ -78,7 +78,3 @@ func (g_ GlyphGenerator) Autorelease() GlyphGenerator {
 func NewGlyphGenerator() GlyphGenerator {
 	return getGlyphGeneratorClass().New()
 }
-
-
-
-

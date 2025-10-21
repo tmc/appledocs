@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -108,8 +109,8 @@ func (i_ ICCameraItem) Thumbnail() coregraphics.CGImageRef {
 // The item’s uniform type identifier (UTI) string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/uti
-func (i_ ICCameraItem) UTI() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("UTI"))
+func (i_ ICCameraItem) UTI() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("UTI"))
 	return rv
 }
 

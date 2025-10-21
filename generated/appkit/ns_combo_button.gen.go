@@ -79,7 +79,3 @@ func (c_ ComboButton) Autorelease() ComboButton {
 func NewComboButton() ComboButton {
 	return getComboButtonClass().New()
 }
-
-
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CBIdentityPicker] class.
@@ -131,8 +132,8 @@ func (c_ CBIdentityPicker) Identities() []CBIdentity {
 // The title of the identity picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/title
-func (c_ CBIdentityPicker) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("title"))
+func (c_ CBIdentityPicker) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -142,8 +143,8 @@ func (c_ CBIdentityPicker) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/title
-func (c_ CBIdentityPicker) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
+func (c_ CBIdentityPicker) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

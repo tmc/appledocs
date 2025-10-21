@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EntityMapping] class.
@@ -108,8 +109,8 @@ func (e_ EntityMapping) SetAttributeMappings(value []PropertyMapping) {
 // The destination entity name for the entity mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/destinationEntityName
-func (e_ EntityMapping) DestinationEntityName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("destinationEntityName"))
+func (e_ EntityMapping) DestinationEntityName() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("destinationEntityName"))
 	return rv
 }
 
@@ -119,8 +120,8 @@ func (e_ EntityMapping) DestinationEntityName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/destinationEntityName
-func (e_ EntityMapping) SetDestinationEntityName(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setDestinationEntityName:"), value)
+func (e_ EntityMapping) SetDestinationEntityName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setDestinationEntityName:"), objc.String(value))
 }
 // The version hash for the destination entity for the entity mapping.
 //
@@ -142,8 +143,8 @@ func (e_ EntityMapping) SetDestinationEntityVersionHash(value unsafe.Pointer) {
 // The class name of the migration policy for the entity mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/entityMigrationPolicyClassName
-func (e_ EntityMapping) EntityMigrationPolicyClassName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("entityMigrationPolicyClassName"))
+func (e_ EntityMapping) EntityMigrationPolicyClassName() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("entityMigrationPolicyClassName"))
 	return rv
 }
 
@@ -153,8 +154,8 @@ func (e_ EntityMapping) EntityMigrationPolicyClassName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/entityMigrationPolicyClassName
-func (e_ EntityMapping) SetEntityMigrationPolicyClassName(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setEntityMigrationPolicyClassName:"), value)
+func (e_ EntityMapping) SetEntityMigrationPolicyClassName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEntityMigrationPolicyClassName:"), objc.String(value))
 }
 // The mapping type for the entity mapping.
 //
@@ -176,8 +177,8 @@ func (e_ EntityMapping) SetMappingType(value unsafe.Pointer) {
 // The name of the entity mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/name
-func (e_ EntityMapping) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("name"))
+func (e_ EntityMapping) Name() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -187,8 +188,8 @@ func (e_ EntityMapping) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/name
-func (e_ EntityMapping) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
+func (e_ EntityMapping) SetName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The array of relationship mappings for the entity mapping.
 //
@@ -220,8 +221,8 @@ func (e_ EntityMapping) SetRelationshipMappings(value []PropertyMapping) {
 // The source entity name for the entity mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/sourceEntityName
-func (e_ EntityMapping) SourceEntityName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("sourceEntityName"))
+func (e_ EntityMapping) SourceEntityName() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("sourceEntityName"))
 	return rv
 }
 
@@ -231,8 +232,8 @@ func (e_ EntityMapping) SourceEntityName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/sourceEntityName
-func (e_ EntityMapping) SetSourceEntityName(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceEntityName:"), value)
+func (e_ EntityMapping) SetSourceEntityName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceEntityName:"), objc.String(value))
 }
 // The version hash of the source entity for the entity mapping.
 //

@@ -80,7 +80,6 @@ func NewPageLayout() PageLayout {
 	return getPageLayoutClass().New()
 }
 
-
 // Returns a newly created page layout object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/pageLayout
@@ -104,6 +103,3 @@ func (p_ PageLayout) AccessoryControllers() []ViewController {
 	rv := objc.Send[[]ViewController](p_.ID, objc.Sel("accessoryControllers"))
 	return rv
 }
-
-
-

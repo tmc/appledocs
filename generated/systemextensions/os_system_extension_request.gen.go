@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OSSystemExtensionRequest] class.
@@ -121,8 +122,8 @@ func (o_ OSSystemExtensionRequest) SetDelegate(value objc.ID) {
 // The bundle identifier of the target extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionRequest/identifier
-func (o_ OSSystemExtensionRequest) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("identifier"))
+func (o_ OSSystemExtensionRequest) Identifier() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("identifier"))
 	return rv
 }
 

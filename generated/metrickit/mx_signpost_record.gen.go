@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MXSignpostRecord] class.
@@ -103,8 +104,8 @@ func (m_ MXSignpostRecord) BeginTimeStamp() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/category
-func (m_ MXSignpostRecord) Category() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("category"))
+func (m_ MXSignpostRecord) Category() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("category"))
 	return rv
 }
 
@@ -131,15 +132,15 @@ func (m_ MXSignpostRecord) IsInterval() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/name
-func (m_ MXSignpostRecord) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MXSignpostRecord) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/subsystem
-func (m_ MXSignpostRecord) Subsystem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("subsystem"))
+func (m_ MXSignpostRecord) Subsystem() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("subsystem"))
 	return rv
 }
 

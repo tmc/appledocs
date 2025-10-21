@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MEEmailAddress] class.
@@ -87,8 +88,8 @@ func NewMEEmailAddressWithRawString(rawString string) MEEmailAddress {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/addressString
-func (m_ MEEmailAddress) AddressString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addressString"))
+func (m_ MEEmailAddress) AddressString() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("addressString"))
 	return rv
 }
 

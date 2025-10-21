@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNInstantMessageAddress] class.
@@ -94,16 +95,16 @@ func NewCNInstantMessageAddressWithUsernameService(username string, service stri
 // Returns a string containing the localized property name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNInstantMessageAddress/localizedString(forKey:)
-func (cc _CNInstantMessageAddressClass) LocalizedStringForKey(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
+func (cc _CNInstantMessageAddressClass) LocalizedStringForKey(key string) string {
+	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
 	return rv
 }
 
 // Returns a string containing the localized name of the specified service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNInstantMessageAddress/localizedString(forService:)
-func (cc _CNInstantMessageAddressClass) LocalizedStringForService(service string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("localizedStringForService:"), objc.String(service))
+func (cc _CNInstantMessageAddressClass) LocalizedStringForService(service string) string {
+	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("localizedStringForService:"), objc.String(service))
 	return rv
 }
 

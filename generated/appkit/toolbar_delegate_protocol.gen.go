@@ -17,5 +17,3 @@ var ToolbarDelegateProtocol *objc.Protocol
 func init() {
 	ToolbarDelegateProtocol = objc.GetProtocol("NSToolbarDelegate")
 }
-
-

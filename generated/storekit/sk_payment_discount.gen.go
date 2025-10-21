@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PaymentDiscount] class.
@@ -94,16 +95,16 @@ func NewPaymentDiscountWithIdentifierKeyIdentifierNonceSignatureTimestamp(identi
 // A string used to uniquely identify a discount offer for a product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/identifier
-func (p_ PaymentDiscount) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+func (p_ PaymentDiscount) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // A string that identifies the key used to generate the signature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/keyIdentifier
-func (p_ PaymentDiscount) KeyIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("keyIdentifier"))
+func (p_ PaymentDiscount) KeyIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("keyIdentifier"))
 	return rv
 }
 
@@ -118,8 +119,8 @@ func (p_ PaymentDiscount) Nonce() unsafe.Pointer {
 // A string representing the properties of a specific promotional offer, cryptographically signed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/signature
-func (p_ PaymentDiscount) Signature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("signature"))
+func (p_ PaymentDiscount) Signature() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("signature"))
 	return rv
 }
 

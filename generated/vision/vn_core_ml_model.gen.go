@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CoreMLModel] class.
@@ -117,8 +118,8 @@ func (c_ CoreMLModel) SetFeatureProvider(value objc.ID) {
 // The name of the feature value that Vision sets from the request handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
-func (c_ CoreMLModel) InputImageFeatureName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("inputImageFeatureName"))
+func (c_ CoreMLModel) InputImageFeatureName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("inputImageFeatureName"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (c_ CoreMLModel) InputImageFeatureName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
-func (c_ CoreMLModel) SetInputImageFeatureName(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInputImageFeatureName:"), value)
+func (c_ CoreMLModel) SetInputImageFeatureName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInputImageFeatureName:"), objc.String(value))
 }
 

@@ -15,5 +15,3 @@ var prepareForSegueProtocol *objc.Protocol
 func init() {
 	prepareForSegueProtocol = objc.GetProtocol("prepareForSegue:")
 }
-
-

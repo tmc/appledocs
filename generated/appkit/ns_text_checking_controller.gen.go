@@ -73,7 +73,3 @@ func (t_ TextCheckingController) Autorelease() TextCheckingController {
 func NewTextCheckingController() TextCheckingController {
 	return getTextCheckingControllerClass().New()
 }
-
-
-
-

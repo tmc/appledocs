@@ -15,5 +15,3 @@ var textViewProtocol *objc.Protocol
 func init() {
 	textViewProtocol = objc.GetProtocol("textView:")
 }
-
-

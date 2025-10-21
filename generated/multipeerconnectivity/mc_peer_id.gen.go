@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MCPeerID] class.
@@ -94,8 +95,8 @@ func NewMCPeerIDWithDisplayName(myDisplayName string) MCPeerID {
 // The display name for this peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCPeerID/displayName
-func (m_ MCPeerID) DisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("displayName"))
+func (m_ MCPeerID) DisplayName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("displayName"))
 	return rv
 }
 

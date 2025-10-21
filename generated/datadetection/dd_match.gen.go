@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DDMatch] class.
@@ -83,8 +84,8 @@ func NewDDMatch() DDMatch {
 // A substring that the data detection system identifies from an original string as a common type of data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatch/matchedString
-func (d_ DDMatch) MatchedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("matchedString"))
+func (d_ DDMatch) MatchedString() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("matchedString"))
 	return rv
 }
 

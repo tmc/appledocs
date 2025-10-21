@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNContactStore] class.
@@ -31,7 +32,7 @@ type _CNContactStoreClass struct {
 type ICNContactStore interface {
 	objectivec.IObject
 	ContainersMatchingPredicateError(predicate unsafe.Pointer, error_ unsafe.Pointer) []CNContainer
-	DefaultContainerIdentifier() unsafe.Pointer
+	DefaultContainerIdentifier() string
 	EnumerateContactsWithFetchRequestErrorUsingBlock(fetchRequest unsafe.Pointer, error_ unsafe.Pointer, block unsafe.Pointer) bool
 	EnumeratorForChangeHistoryFetchRequestError(request unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	EnumeratorForContactFetchRequestError(request unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
@@ -110,8 +111,8 @@ func (c_ CNContactStore) ContainersMatchingPredicateError(predicate unsafe.Point
 // Returns the identifier of the default container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/defaultContainerIdentifier()
-func (c_ CNContactStore) DefaultContainerIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("defaultContainerIdentifier"))
+func (c_ CNContactStore) DefaultContainerIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("defaultContainerIdentifier"))
 	return rv
 }
 

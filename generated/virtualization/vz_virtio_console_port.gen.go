@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZVirtioConsolePort] class.
@@ -100,8 +101,8 @@ func (v_ VZVirtioConsolePort) SetAttachment(value unsafe.Pointer) {
 // The name of the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/name
-func (v_ VZVirtioConsolePort) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("name"))
+func (v_ VZVirtioConsolePort) Name() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("name"))
 	return rv
 }
 

@@ -15,5 +15,3 @@ var accessibilityDefaultButtonProtocol *objc.Protocol
 func init() {
 	accessibilityDefaultButtonProtocol = objc.GetProtocol("accessibilityDefaultButton")
 }
-
-

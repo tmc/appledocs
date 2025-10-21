@@ -84,8 +84,8 @@ func NewMXSignpostMetric() MXSignpostMetric {
 // The developer-specified category of the custom metric represented by the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostMetric/signpostCategory
-func (m_ MXSignpostMetric) SignpostCategory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signpostCategory"))
+func (m_ MXSignpostMetric) SignpostCategory() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("signpostCategory"))
 	return rv
 }
 
@@ -100,8 +100,8 @@ func (m_ MXSignpostMetric) SignpostIntervalData() unsafe.Pointer {
 // The developer-specified name of the custom metric represented by the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostMetric/signpostName
-func (m_ MXSignpostMetric) SignpostName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signpostName"))
+func (m_ MXSignpostMetric) SignpostName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("signpostName"))
 	return rv
 }
 

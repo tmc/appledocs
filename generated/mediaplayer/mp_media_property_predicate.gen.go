@@ -125,8 +125,8 @@ func (m_ MediaPropertyPredicate) ComparisonType() unsafe.Pointer {
 // The property that the media property predicate uses when you invoke a query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPropertyPredicate/property
-func (m_ MediaPropertyPredicate) Property() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("property"))
+func (m_ MediaPropertyPredicate) Property() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("property"))
 	return rv
 }
 

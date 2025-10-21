@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SMAppService] class.
@@ -122,6 +123,13 @@ func (sc _SMAppServiceClass) StatusForLegacyURL(url unsafe.Pointer) unsafe.Point
 	return rv
 }
 
+// An app service object that corresponds to the main application as a login item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/mainApp
+func (sc _SMAppServiceClass) MainAppService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("mainAppService"))
+	return rv
+}
 // Registers the service so it can begin launching subject to user approval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/register()
@@ -143,6 +151,14 @@ func (s_ SMAppService) UnregisterAndReturnError(error_ unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/unregister(completionHandler:)
 func (s_ SMAppService) UnregisterWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("unregisterWithCompletionHandler:"), handler)
+}
+
+// An app service object that corresponds to the main application as a login item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/mainApp
+func (s_ SMAppService) MainAppService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mainAppService"))
+	return rv
 }
 
 // A property that describes registration or authorization state of the service.

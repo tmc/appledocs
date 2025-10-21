@@ -184,8 +184,8 @@ func (s_ SContext) CurrentActivity() unsafe.Pointer {
 // An optional name that the system presents to the user if you choose the custom context type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/customTypeName
-func (s_ SContext) CustomTypeName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("customTypeName"))
+func (s_ SContext) CustomTypeName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("customTypeName"))
 	return rv
 }
 
@@ -195,8 +195,8 @@ func (s_ SContext) CustomTypeName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/customTypeName
-func (s_ SContext) SetCustomTypeName(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomTypeName:"), value)
+func (s_ SContext) SetCustomTypeName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomTypeName:"), objc.String(value))
 }
 // The position of a context relative to its siblings.
 //
@@ -218,8 +218,8 @@ func (s_ SContext) SetDisplayOrder(value int) {
 // A string that uniquely identifies a context among its siblings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/identifier
-func (s_ SContext) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("identifier"))
+func (s_ SContext) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -317,8 +317,8 @@ func (s_ SContext) SetSuggestedCompletionTime(value Range) {
 // An optional, user-visible description of the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/summary
-func (s_ SContext) Summary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("summary"))
+func (s_ SContext) Summary() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("summary"))
 	return rv
 }
 
@@ -328,8 +328,8 @@ func (s_ SContext) Summary() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/summary
-func (s_ SContext) SetSummary(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSummary:"), value)
+func (s_ SContext) SetSummary(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSummary:"), objc.String(value))
 }
 // An optional thumbnail image associated with the context.
 //
@@ -351,8 +351,8 @@ func (s_ SContext) SetThumbnail(value CGImageRef) {
 // The name of the context as it appears to users.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/title
-func (s_ SContext) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("title"))
+func (s_ SContext) Title() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -362,8 +362,8 @@ func (s_ SContext) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/title
-func (s_ SContext) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
+func (s_ SContext) SetTitle(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // The area of study to which a context relates.
 //

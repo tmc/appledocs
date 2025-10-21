@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNLabeledValue] class.
@@ -105,8 +106,8 @@ func (cc _CNLabeledValueClass) LabeledValueWithLabelValue(label string, value un
 // Returns a localized string for the specified label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/localizedString(forLabel:)
-func (cc _CNLabeledValueClass) LocalizedStringForLabel(label string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("localizedStringForLabel:"), objc.String(label))
+func (cc _CNLabeledValueClass) LocalizedStringForLabel(label string) string {
+	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("localizedStringForLabel:"), objc.String(label))
 	return rv
 }
 
@@ -137,16 +138,16 @@ func (c_ CNLabeledValue) LabeledValueBySettingValue(value unsafe.Pointer) unsafe
 // A unique identifier for the labeled value object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/identifier
-func (c_ CNLabeledValue) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+func (c_ CNLabeledValue) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The label for a contact property value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/label
-func (c_ CNLabeledValue) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("label"))
+func (c_ CNLabeledValue) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
 	return rv
 }
 

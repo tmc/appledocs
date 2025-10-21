@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioNode] class.
@@ -32,8 +33,8 @@ type IAudioNode interface {
 	objectivec.IObject
 	InputFormatForBus(bus unsafe.Pointer) unsafe.Pointer
 	InstallTapOnBusBufferSizeFormatBlock(bus unsafe.Pointer, bufferSize unsafe.Pointer, format unsafe.Pointer, tapBlock unsafe.Pointer)
-	NameForInputBus(bus unsafe.Pointer) unsafe.Pointer
-	NameForOutputBus(bus unsafe.Pointer) unsafe.Pointer
+	NameForInputBus(bus unsafe.Pointer) string
+	NameForOutputBus(bus unsafe.Pointer) string
 	OutputFormatForBus(bus unsafe.Pointer) unsafe.Pointer
 	RemoveTapOnBus(bus unsafe.Pointer)
 	Reset()
@@ -105,16 +106,16 @@ func (a_ AudioNode) InstallTapOnBusBufferSizeFormatBlock(bus unsafe.Pointer, buf
 // Gets the name of the input bus you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/name(forInputBus:)
-func (a_ AudioNode) NameForInputBus(bus unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nameForInputBus:"), bus)
+func (a_ AudioNode) NameForInputBus(bus unsafe.Pointer) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("nameForInputBus:"), bus)
 	return rv
 }
 
 // Retrieves the name of the output bus you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/name(forOutputBus:)
-func (a_ AudioNode) NameForOutputBus(bus unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nameForOutputBus:"), bus)
+func (a_ AudioNode) NameForOutputBus(bus unsafe.Pointer) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("nameForOutputBus:"), bus)
 	return rv
 }
 

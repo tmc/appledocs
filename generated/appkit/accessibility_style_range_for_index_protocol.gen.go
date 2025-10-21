@@ -15,5 +15,3 @@ var accessibilityStyleRangeForIndexProtocol *objc.Protocol
 func init() {
 	accessibilityStyleRangeForIndexProtocol = objc.GetProtocol("accessibilityStyleRangeForIndex:")
 }
-
-

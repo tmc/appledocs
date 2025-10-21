@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TableView] class.
@@ -84,7 +84,6 @@ func NewTableView() TableView {
 	return getTableViewClass().New()
 }
 
-
 // Returns the rectangle containing the row at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/rect(ofRow:)
@@ -116,7 +115,6 @@ func (t_ TableView) BackgroundColor() unsafe.Pointer {
 	return rv
 }
 
-
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The color used to draw the background of the table.
 
@@ -125,6 +123,7 @@ func (t_ TableView) BackgroundColor() unsafe.Pointer {
 func (t_ TableView) SetBackgroundColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
+
 // The table view’s column autoresizing style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/columnAutoresizingStyle-swift.property
@@ -132,7 +131,6 @@ func (t_ TableView) ColumnAutoresizingStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("columnAutoresizingStyle"))
 	return rv
 }
-
 
 // SetColumnAutoresizingStyle sets the value of the columnAutoresizingStyle property.
 // The table view’s column autoresizing style.
@@ -142,6 +140,7 @@ func (t_ TableView) ColumnAutoresizingStyle() unsafe.Pointer {
 func (t_ TableView) SetColumnAutoresizingStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColumnAutoresizingStyle:"), value)
 }
+
 // The feedback style displayed when the user drags over the table view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/draggingDestinationFeedbackStyle-swift.property
@@ -149,7 +148,6 @@ func (t_ TableView) DraggingDestinationFeedbackStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("draggingDestinationFeedbackStyle"))
 	return rv
 }
-
 
 // SetDraggingDestinationFeedbackStyle sets the value of the draggingDestinationFeedbackStyle property.
 // The feedback style displayed when the user drags over the table view.
@@ -159,6 +157,7 @@ func (t_ TableView) DraggingDestinationFeedbackStyle() unsafe.Pointer {
 func (t_ TableView) SetDraggingDestinationFeedbackStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDraggingDestinationFeedbackStyle:"), value)
 }
+
 // The effective row size style for the table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/effectiveRowSizeStyle
@@ -175,7 +174,6 @@ func (t_ TableView) GridStyleMask() unsafe.Pointer {
 	return rv
 }
 
-
 // SetGridStyleMask sets the value of the gridStyleMask property.
 // The grid lines drawn by the table view.
 
@@ -184,6 +182,7 @@ func (t_ TableView) GridStyleMask() unsafe.Pointer {
 func (t_ TableView) SetGridStyleMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGridStyleMask:"), value)
 }
+
 // The row size style (small, medium, large, or custom) used by the table view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/rowSizeStyle-swift.property
@@ -191,7 +190,6 @@ func (t_ TableView) RowSizeStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rowSizeStyle"))
 	return rv
 }
-
 
 // SetRowSizeStyle sets the value of the rowSizeStyle property.
 // The row size style (small, medium, large, or custom) used by the table view.
@@ -201,6 +199,7 @@ func (t_ TableView) RowSizeStyle() unsafe.Pointer {
 func (t_ TableView) SetRowSizeStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowSizeStyle:"), value)
 }
+
 // The selection highlight style used by the table view to indicate row and column selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/selectionHighlightStyle-swift.property
@@ -208,7 +207,6 @@ func (t_ TableView) SelectionHighlightStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectionHighlightStyle"))
 	return rv
 }
-
 
 // SetSelectionHighlightStyle sets the value of the selectionHighlightStyle property.
 // The selection highlight style used by the table view to indicate row and column selection.
@@ -218,5 +216,3 @@ func (t_ TableView) SelectionHighlightStyle() unsafe.Pointer {
 func (t_ TableView) SetSelectionHighlightStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionHighlightStyle:"), value)
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BackForwardListItem] class.
@@ -91,8 +92,8 @@ func (b_ BackForwardListItem) InitialURL() unsafe.Pointer {
 // The title of the webpage this item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardListItem/title
-func (b_ BackForwardListItem) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("title"))
+func (b_ BackForwardListItem) Title() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("title"))
 	return rv
 }
 

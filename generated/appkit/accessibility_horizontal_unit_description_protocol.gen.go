@@ -15,5 +15,3 @@ var accessibilityHorizontalUnitDescriptionProtocol *objc.Protocol
 func init() {
 	accessibilityHorizontalUnitDescriptionProtocol = objc.GetProtocol("accessibilityHorizontalUnitDescription")
 }
-
-

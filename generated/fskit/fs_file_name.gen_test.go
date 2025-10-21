@@ -10,7 +10,6 @@ import (
 var _ = fskit.NewFSFileName
 
 
-
 // ExampleNewFSFileNameWithString demonstrates how to create a FSFileName instance using NewFSFileNameWithString.
 // Creates a filename by copying a character sequence from a string instance.
 func ExampleNewFSFileNameWithString() {
@@ -19,6 +18,7 @@ func ExampleNewFSFileNameWithString() {
 	)
 	// Output:
 }
+
 
 
 

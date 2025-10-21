@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PlayerItem] class.
@@ -252,8 +253,8 @@ func (p_ PlayerItem) SetForwardPlaybackEndTime(value unsafe.Pointer) {
 // An array of time ranges that identify interstitial content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges
-func (p_ PlayerItem) InterstitialTimeRanges() []avfoundation.AVInterstitialTimeRange {
-	rv := objc.Send[[]avfoundation.AVInterstitialTimeRange](p_.ID, objc.Sel("interstitialTimeRanges"))
+func (p_ PlayerItem) InterstitialTimeRanges() []AVInterstitialTimeRange {
+	rv := objc.Send[[]AVInterstitialTimeRange](p_.ID, objc.Sel("interstitialTimeRanges"))
 	return rv
 }
 
@@ -277,8 +278,8 @@ func (p_ PlayerItem) SetAudioSpatializationAllowed(value bool) {
 // The time marker groups that provide ways to navigate the player item’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
-func (p_ PlayerItem) NavigationMarkerGroups() []avfoundation.AVNavigationMarkersGroup {
-	rv := objc.Send[[]avfoundation.AVNavigationMarkersGroup](p_.ID, objc.Sel("navigationMarkerGroups"))
+func (p_ PlayerItem) NavigationMarkerGroups() []AVNavigationMarkersGroup {
+	rv := objc.Send[[]AVNavigationMarkersGroup](p_.ID, objc.Sel("navigationMarkerGroups"))
 	return rv
 }
 
@@ -288,7 +289,7 @@ func (p_ PlayerItem) NavigationMarkerGroups() []avfoundation.AVNavigationMarkers
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
-func (p_ PlayerItem) SetNavigationMarkerGroups(value []avfoundation.AVNavigationMarkersGroup) {
+func (p_ PlayerItem) SetNavigationMarkerGroups(value []AVNavigationMarkersGroup) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -338,8 +339,8 @@ func (p_ PlayerItem) SetNowPlayingInfo(value unsafe.Pointer) {
 // Indicates the AVCustomMediaSelectionSchemes of AVMediaSelectionGroups of the receiver’s asset with which an associated UI implementation should configure its interface for media selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredCustomMediaSelectionSchemes
-func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []avfoundation.AVCustomMediaSelectionScheme {
-	rv := objc.Send[[]avfoundation.AVCustomMediaSelectionScheme](p_.ID, objc.Sel("preferredCustomMediaSelectionSchemes"))
+func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []AVCustomMediaSelectionScheme {
+	rv := objc.Send[[]AVCustomMediaSelectionScheme](p_.ID, objc.Sel("preferredCustomMediaSelectionSchemes"))
 	return rv
 }
 
@@ -349,7 +350,7 @@ func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []avfoundation.AVCus
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredCustomMediaSelectionSchemes
-func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []avfoundation.AVCustomMediaSelectionScheme) {
+func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []AVCustomMediaSelectionScheme) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

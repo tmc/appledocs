@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRMessagesClusterPresentMessagesRequestParams] class.
@@ -119,8 +120,8 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageID(value unsa
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/messageText
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("messageText"))
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("messageText"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageText() unsafe.Po
 // SetMessageText sets the value of the messageText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/messageText
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageText(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), value)
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/priority

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNContactProperty] class.
@@ -91,24 +92,24 @@ func (c_ CNContactProperty) Contact() unsafe.Pointer {
 // The identifier of the labeled value in the array of labeled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/identifier
-func (c_ CNContactProperty) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+func (c_ CNContactProperty) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The key of the contact property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/key
-func (c_ CNContactProperty) Key() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("key"))
+func (c_ CNContactProperty) Key() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("key"))
 	return rv
 }
 
 // The label of the labeled value of the property array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/label
-func (c_ CNContactProperty) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("label"))
+func (c_ CNContactProperty) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
 	return rv
 }
 

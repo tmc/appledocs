@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXProviderConfiguration] class.
@@ -128,8 +129,8 @@ func (c_ CXProviderConfiguration) SetIncludesCallsInRecents(value bool) {
 // The localized name of the provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/localizedName
-func (c_ CXProviderConfiguration) LocalizedName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("localizedName"))
+func (c_ CXProviderConfiguration) LocalizedName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -170,8 +171,8 @@ func (c_ CXProviderConfiguration) SetMaximumCallsPerCallGroup(value uint) {
 // The name of the sound resource in the app bundle to be used for the provider ringtone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/ringtoneSound
-func (c_ CXProviderConfiguration) RingtoneSound() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ringtoneSound"))
+func (c_ CXProviderConfiguration) RingtoneSound() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ringtoneSound"))
 	return rv
 }
 
@@ -181,8 +182,8 @@ func (c_ CXProviderConfiguration) RingtoneSound() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/ringtoneSound
-func (c_ CXProviderConfiguration) SetRingtoneSound(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRingtoneSound:"), value)
+func (c_ CXProviderConfiguration) SetRingtoneSound(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRingtoneSound:"), objc.String(value))
 }
 // The supported handle types.
 //

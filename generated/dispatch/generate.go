@@ -3,6 +3,6 @@
 package dispatch
 
 //go:generate rm -f *.gen.go *.gen_test.go
-//go:generate go run ../../cmd/generate-framework-bindings -framework Dispatch -output ..
+//go:generate go run ../../cmd/generate-framework-bindings -framework ^Dispatch$ -output ..
 
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRCommissionerControlClusterRequestCommissioningApprovalParams] class.
@@ -77,8 +78,8 @@ func NewMTRCommissionerControlClusterRequestCommissioningApprovalParams() MTRCom
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/label
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("label"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -86,8 +87,8 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label(
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/label
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/productID

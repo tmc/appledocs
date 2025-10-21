@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ODMappings] class.
@@ -99,8 +100,8 @@ func (o_ ODMappings) SetRecordMapForStandardRecordType(map_ unsafe.Pointer, stdT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/comment-swift.property
-func (o_ ODMappings) Comment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("comment"))
+func (o_ ODMappings) Comment() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("comment"))
 	return rv
 }
 
@@ -108,13 +109,13 @@ func (o_ ODMappings) Comment() unsafe.Pointer {
 // SetComment sets the value of the comment property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/comment-swift.property
-func (o_ ODMappings) SetComment(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), value)
+func (o_ ODMappings) SetComment(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/function-swift.property
-func (o_ ODMappings) Function() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("function"))
+func (o_ ODMappings) Function() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("function"))
 	return rv
 }
 
@@ -122,8 +123,8 @@ func (o_ ODMappings) Function() unsafe.Pointer {
 // SetFunction sets the value of the function property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/function-swift.property
-func (o_ ODMappings) SetFunction(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setFunction:"), value)
+func (o_ ODMappings) SetFunction(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setFunction:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/functionAttributes-swift.property
@@ -141,8 +142,8 @@ func (o_ ODMappings) SetFunctionAttributes(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/identifier-swift.property
-func (o_ ODMappings) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("identifier"))
+func (o_ ODMappings) Identifier() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -150,8 +151,8 @@ func (o_ ODMappings) Identifier() unsafe.Pointer {
 // SetIdentifier sets the value of the identifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/identifier-swift.property
-func (o_ ODMappings) SetIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIdentifier:"), value)
+func (o_ ODMappings) SetIdentifier(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/recordTypes-swift.property
@@ -162,8 +163,8 @@ func (o_ ODMappings) RecordTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/templateName-swift.property
-func (o_ ODMappings) TemplateName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("templateName"))
+func (o_ ODMappings) TemplateName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("templateName"))
 	return rv
 }
 
@@ -171,8 +172,8 @@ func (o_ ODMappings) TemplateName() unsafe.Pointer {
 // SetTemplateName sets the value of the templateName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/templateName-swift.property
-func (o_ ODMappings) SetTemplateName(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), value)
+func (o_ ODMappings) SetTemplateName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), objc.String(value))
 }
 
 

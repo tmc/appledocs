@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MKLocalSearchRequest] class.
@@ -131,8 +132,8 @@ func (m_ MKLocalSearchRequest) SetAddressFilter(value unsafe.Pointer) {
 // A string containing the desired search item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/naturalLanguageQuery
-func (m_ MKLocalSearchRequest) NaturalLanguageQuery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("naturalLanguageQuery"))
+func (m_ MKLocalSearchRequest) NaturalLanguageQuery() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("naturalLanguageQuery"))
 	return rv
 }
 
@@ -142,8 +143,8 @@ func (m_ MKLocalSearchRequest) NaturalLanguageQuery() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/naturalLanguageQuery
-func (m_ MKLocalSearchRequest) SetNaturalLanguageQuery(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalLanguageQuery:"), value)
+func (m_ MKLocalSearchRequest) SetNaturalLanguageQuery(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalLanguageQuery:"), objc.String(value))
 }
 // A filter that lists point-of-interest categories to include or exclude in search results.
 //

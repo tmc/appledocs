@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MCAdvertiserAssistant] class.
@@ -135,8 +136,8 @@ func (m_ MCAdvertiserAssistant) DiscoveryInfo() unsafe.Pointer {
 // The service type that your app is advertising.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/serviceType
-func (m_ MCAdvertiserAssistant) ServiceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serviceType"))
+func (m_ MCAdvertiserAssistant) ServiceType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MigrationStage] class.
@@ -81,8 +82,8 @@ func NewMigrationStage() MigrationStage {
 // The textual description of the migration stage’s purpose.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
-func (m_ MigrationStage) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("label"))
+func (m_ MigrationStage) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -92,8 +93,8 @@ func (m_ MigrationStage) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
-func (m_ MigrationStage) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MigrationStage) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 

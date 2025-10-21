@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Call] class.
@@ -81,16 +82,16 @@ func NewCall() Call {
 // A unique identifier for the cellular call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callID
-func (c_ Call) CallID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("callID"))
+func (c_ Call) CallID() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("callID"))
 	return rv
 }
 
 // The state of the cellular call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callState
-func (c_ Call) CallState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("callState"))
+func (c_ Call) CallState() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("callState"))
 	return rv
 }
 

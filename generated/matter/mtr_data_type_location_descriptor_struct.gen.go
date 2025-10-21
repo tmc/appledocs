@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRDataTypeLocationDescriptorStruct] class.
@@ -105,8 +106,8 @@ func (m_ MTRDataTypeLocationDescriptorStruct) SetFloorNumber(value unsafe.Pointe
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/locationName
-func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("locationName"))
+func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("locationName"))
 	return rv
 }
 
@@ -114,8 +115,8 @@ func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() unsafe.Pointer {
 // SetLocationName sets the value of the locationName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/locationName
-func (m_ MTRDataTypeLocationDescriptorStruct) SetLocationName(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationName:"), value)
+func (m_ MTRDataTypeLocationDescriptorStruct) SetLocationName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationName:"), objc.String(value))
 }
 
 

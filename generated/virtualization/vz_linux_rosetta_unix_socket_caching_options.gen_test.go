@@ -10,12 +10,12 @@ import (
 var _ = virtualization.NewVZLinuxRosettaUnixSocketCachingOptions
 
 
+
 // ExampleNewVZLinuxRosettaUnixSocketCachingOptions demonstrates how to create a VZLinuxRosettaUnixSocketCachingOptions instance.
 // Creates a new Rosetta caching options object for a UNIX domain socket.
 func ExampleNewVZLinuxRosettaUnixSocketCachingOptions() {
 	_ = virtualization.NewVZLinuxRosettaUnixSocketCachingOptions()
 	// Output:
 }
-
 
 

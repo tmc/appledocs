@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNContact] class.
@@ -102,8 +103,8 @@ func (cc _CNContactClass) DescriptorForAllComparatorKeys() objc.ID {
 // Returns a string containing the localized contact property name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/localizedString(forKey:)
-func (cc _CNContactClass) LocalizedStringForKey(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
+func (cc _CNContactClass) LocalizedStringForKey(key string) string {
+	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
 	return rv
 }
 
@@ -214,8 +215,8 @@ func (c_ CNContact) Dates() []CNLabeledValue {
 // The name of the department associated with the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/departmentName
-func (c_ CNContact) DepartmentName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("departmentName"))
+func (c_ CNContact) DepartmentName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("departmentName"))
 	return rv
 }
 
@@ -230,24 +231,24 @@ func (c_ CNContact) EmailAddresses() []CNLabeledValue {
 // The family name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/familyName
-func (c_ CNContact) FamilyName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("familyName"))
+func (c_ CNContact) FamilyName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("familyName"))
 	return rv
 }
 
 // The given name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/givenName
-func (c_ CNContact) GivenName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("givenName"))
+func (c_ CNContact) GivenName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("givenName"))
 	return rv
 }
 
 // A value that uniquely identifies a contact on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/identifier
-func (c_ CNContact) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+func (c_ CNContact) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -278,40 +279,40 @@ func (c_ CNContact) InstantMessageAddresses() []CNLabeledValue {
 // The contact’s job title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/jobTitle
-func (c_ CNContact) JobTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("jobTitle"))
+func (c_ CNContact) JobTitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("jobTitle"))
 	return rv
 }
 
 // The middle name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/middleName
-func (c_ CNContact) MiddleName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("middleName"))
+func (c_ CNContact) MiddleName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("middleName"))
 	return rv
 }
 
 // The name prefix of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/namePrefix
-func (c_ CNContact) NamePrefix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("namePrefix"))
+func (c_ CNContact) NamePrefix() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("namePrefix"))
 	return rv
 }
 
 // The name suffix of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/nameSuffix
-func (c_ CNContact) NameSuffix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("nameSuffix"))
+func (c_ CNContact) NameSuffix() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("nameSuffix"))
 	return rv
 }
 
 // The nickname of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/nickname
-func (c_ CNContact) Nickname() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("nickname"))
+func (c_ CNContact) Nickname() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("nickname"))
 	return rv
 }
 
@@ -326,16 +327,16 @@ func (c_ CNContact) NonGregorianBirthday() unsafe.Pointer {
 // A string containing notes for the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/note
-func (c_ CNContact) Note() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("note"))
+func (c_ CNContact) Note() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("note"))
 	return rv
 }
 
 // The name of the organization associated with the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/organizationName
-func (c_ CNContact) OrganizationName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("organizationName"))
+func (c_ CNContact) OrganizationName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("organizationName"))
 	return rv
 }
 
@@ -350,32 +351,32 @@ func (c_ CNContact) PhoneNumbers() []CNLabeledValue {
 // A string for the phonetic family name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticFamilyName
-func (c_ CNContact) PhoneticFamilyName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("phoneticFamilyName"))
+func (c_ CNContact) PhoneticFamilyName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("phoneticFamilyName"))
 	return rv
 }
 
 // The phonetic given name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticGivenName
-func (c_ CNContact) PhoneticGivenName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("phoneticGivenName"))
+func (c_ CNContact) PhoneticGivenName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("phoneticGivenName"))
 	return rv
 }
 
 // The phonetic middle name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticMiddleName
-func (c_ CNContact) PhoneticMiddleName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("phoneticMiddleName"))
+func (c_ CNContact) PhoneticMiddleName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("phoneticMiddleName"))
 	return rv
 }
 
 // The phonetic name of the organization associated with the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticOrganizationName
-func (c_ CNContact) PhoneticOrganizationName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("phoneticOrganizationName"))
+func (c_ CNContact) PhoneticOrganizationName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("phoneticOrganizationName"))
 	return rv
 }
 
@@ -390,8 +391,8 @@ func (c_ CNContact) PostalAddresses() []CNLabeledValue {
 // A string for the previous family name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/previousFamilyName
-func (c_ CNContact) PreviousFamilyName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("previousFamilyName"))
+func (c_ CNContact) PreviousFamilyName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("previousFamilyName"))
 	return rv
 }
 

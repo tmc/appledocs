@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RenderPipelineDescriptor] class.
@@ -294,8 +295,8 @@ func (r_ RenderPipelineDescriptor) SetTessellationFactorScaleEnabled(value bool)
 // A string that identifies the render pipeline descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/label
-func (r_ RenderPipelineDescriptor) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("label"))
+func (r_ RenderPipelineDescriptor) Label() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -305,8 +306,8 @@ func (r_ RenderPipelineDescriptor) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/label
-func (r_ RenderPipelineDescriptor) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
+func (r_ RenderPipelineDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 // The maximum function call depth from the top-most fragment shader function.
 //

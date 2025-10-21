@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHAdjustmentData] class.
@@ -102,16 +103,16 @@ func (p_ PHAdjustmentData) Data() unsafe.Pointer {
 // A string uniquely identifying the format of the adjustment data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/formatIdentifier
-func (p_ PHAdjustmentData) FormatIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("formatIdentifier"))
+func (p_ PHAdjustmentData) FormatIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("formatIdentifier"))
 	return rv
 }
 
 // A version number for the adjustment data format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/formatVersion
-func (p_ PHAdjustmentData) FormatVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("formatVersion"))
+func (p_ PHAdjustmentData) FormatVersion() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("formatVersion"))
 	return rv
 }
 

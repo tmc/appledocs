@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GameSession] class.
@@ -198,8 +199,8 @@ func (g_ GameSession) BadgedPlayers() []CloudPlayer {
 // A unique identifier for a game session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSession/identifier
-func (g_ GameSession) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("identifier"))
+func (g_ GameSession) Identifier() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -246,8 +247,8 @@ func (g_ GameSession) Players() []CloudPlayer {
 // The title of the game session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSession/title
-func (g_ GameSession) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("title"))
+func (g_ GameSession) Title() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("title"))
 	return rv
 }
 

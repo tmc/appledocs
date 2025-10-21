@@ -15,5 +15,3 @@ var doCommandBySelectorProtocol *objc.Protocol
 func init() {
 	doCommandBySelectorProtocol = objc.GetProtocol("doCommandBySelector:")
 }
-
-

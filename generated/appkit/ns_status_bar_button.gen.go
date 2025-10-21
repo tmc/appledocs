@@ -78,7 +78,6 @@ func NewStatusBarButton() StatusBarButton {
 	return getStatusBarButtonClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBarButton/appearsDisabled
 func (s_ StatusBarButton) AppearsDisabled() bool {
@@ -86,12 +85,9 @@ func (s_ StatusBarButton) AppearsDisabled() bool {
 	return rv
 }
 
-
 // SetAppearsDisabled sets the value of the appearsDisabled property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBarButton/appearsDisabled
 func (s_ StatusBarButton) SetAppearsDisabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAppearsDisabled:"), value)
 }
-
-

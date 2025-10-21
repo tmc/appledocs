@@ -184,8 +184,8 @@ func (c_ CNContactViewController) SetAllowsEditing(value bool) {
 // The name to use if the contact has no display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/alternateName
-func (c_ CNContactViewController) AlternateName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alternateName"))
+func (c_ CNContactViewController) AlternateName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("alternateName"))
 	return rv
 }
 
@@ -195,8 +195,8 @@ func (c_ CNContactViewController) AlternateName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/alternateName
-func (c_ CNContactViewController) SetAlternateName(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlternateName:"), value)
+func (c_ CNContactViewController) SetAlternateName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlternateName:"), objc.String(value))
 }
 // The contact being displayed.
 //
@@ -260,8 +260,8 @@ func (c_ CNContactViewController) SetDisplayedPropertyKeys(value unsafe.Pointer)
 // The message displayed under the name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/message
-func (c_ CNContactViewController) Message() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("message"))
+func (c_ CNContactViewController) Message() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("message"))
 	return rv
 }
 
@@ -271,8 +271,8 @@ func (c_ CNContactViewController) Message() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/message
-func (c_ CNContactViewController) SetMessage(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMessage:"), value)
+func (c_ CNContactViewController) SetMessage(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
 // The container in which to add a new contact.
 //

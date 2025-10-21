@@ -85,8 +85,8 @@ func NewRPSystemBroadcastPickerView() RPSystemBroadcastPickerView {
 // A bundle identifier of a broadcast extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSystemBroadcastPickerView/preferredExtension
-func (r_ RPSystemBroadcastPickerView) PreferredExtension() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("preferredExtension"))
+func (r_ RPSystemBroadcastPickerView) PreferredExtension() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("preferredExtension"))
 	return rv
 }
 
@@ -96,8 +96,8 @@ func (r_ RPSystemBroadcastPickerView) PreferredExtension() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSystemBroadcastPickerView/preferredExtension
-func (r_ RPSystemBroadcastPickerView) SetPreferredExtension(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredExtension:"), value)
+func (r_ RPSystemBroadcastPickerView) SetPreferredExtension(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredExtension:"), objc.String(value))
 }
 // A Boolean value that indicates whether the microphone button is visible in the broadcast picker.
 //

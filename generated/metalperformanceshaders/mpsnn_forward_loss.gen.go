@@ -77,19 +77,19 @@ func NewForwardLoss() ForwardLoss {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(device:lossDescriptor:)
-func NewForwardLossWithDeviceLossDescriptor(device objc.ID, lossDescriptor unsafe.Pointer) ForwardLoss {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(coder:device:)
+func NewForwardLossWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) ForwardLoss {
 	instance := getForwardLossClass().Alloc()
-	rv := objc.Send[ForwardLoss](instance.ID, objc.Sel("initWithDevice:lossDescriptor:"), device, lossDescriptor)
+	rv := objc.Send[ForwardLoss](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(coder:device:)
-func NewForwardLossWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) ForwardLoss {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(device:lossDescriptor:)
+func NewForwardLossWithDeviceLossDescriptor(device objc.ID, lossDescriptor unsafe.Pointer) ForwardLoss {
 	instance := getForwardLossClass().Alloc()
-	rv := objc.Send[ForwardLoss](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
+	rv := objc.Send[ForwardLoss](instance.ID, objc.Sel("initWithDevice:lossDescriptor:"), device, lossDescriptor)
 	rv.Autorelease()
 	return rv
 }

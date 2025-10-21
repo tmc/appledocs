@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BluetoothSDPDataElement] class.
@@ -38,7 +39,7 @@ type IBluetoothSDPDataElement interface {
 	GetSDPDataElementRef() unsafe.Pointer
 	GetSize() unsafe.Pointer
 	GetSizeDescriptor() unsafe.Pointer
-	GetStringValue() unsafe.Pointer
+	GetStringValue() string
 	GetTypeDescriptor() unsafe.Pointer
 	GetUUIDValue() unsafe.Pointer
 	GetValue() unsafe.Pointer
@@ -204,8 +205,8 @@ func (b_ BluetoothSDPDataElement) GetSizeDescriptor() unsafe.Pointer {
 // If the data element is represented by a string object, it returns the value as an NSString.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getStringValue()
-func (b_ BluetoothSDPDataElement) GetStringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getStringValue"))
+func (b_ BluetoothSDPDataElement) GetStringValue() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("getStringValue"))
 	return rv
 }
 

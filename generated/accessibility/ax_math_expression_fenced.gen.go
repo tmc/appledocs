@@ -88,8 +88,8 @@ func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions u
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/closeString
-func (a_ AXMathExpressionFenced) CloseString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("closeString"))
+func (a_ AXMathExpressionFenced) CloseString() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("closeString"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (a_ AXMathExpressionFenced) Expressions() []AXMathExpression {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/openString
-func (a_ AXMathExpressionFenced) OpenString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("openString"))
+func (a_ AXMathExpressionFenced) OpenString() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("openString"))
 	return rv
 }
 

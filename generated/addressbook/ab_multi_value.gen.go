@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ABMultiValue] class.
@@ -31,11 +32,11 @@ type _ABMultiValueClass struct {
 type IABMultiValue interface {
 	objectivec.IObject
 	Count() uint
-	IdentifierAtIndex(index uint) unsafe.Pointer
+	IdentifierAtIndex(index uint) string
 	IndexForIdentifier(identifier string) uint
-	LabelAtIndex(index uint) unsafe.Pointer
+	LabelAtIndex(index uint) string
 	LabelForIdentifier(identifier string) objc.ID
-	PrimaryIdentifier() unsafe.Pointer
+	PrimaryIdentifier() string
 	PropertyType() unsafe.Pointer
 	ValueAtIndex(index uint) objc.ID
 	ValueForIdentifier(identifier string) objc.ID
@@ -100,8 +101,8 @@ func (a_ ABMultiValue) Count() uint {
 // Returns the identifier for the given index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/identifier(at:)
-func (a_ ABMultiValue) IdentifierAtIndex(index uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("identifierAtIndex:"), index)
+func (a_ ABMultiValue) IdentifierAtIndex(index uint) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("identifierAtIndex:"), index)
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (a_ ABMultiValue) IndexForIdentifier(identifier string) uint {
 // Returns the label for the given index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/label(at:)
-func (a_ ABMultiValue) LabelAtIndex(index uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("labelAtIndex:"), index)
+func (a_ ABMultiValue) LabelAtIndex(index uint) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("labelAtIndex:"), index)
 	return rv
 }
 
@@ -132,8 +133,8 @@ func (a_ ABMultiValue) LabelForIdentifier(identifier string) objc.ID {
 // Returns the identifier for the primary value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/primaryIdentifier()
-func (a_ ABMultiValue) PrimaryIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("primaryIdentifier"))
+func (a_ ABMultiValue) PrimaryIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("primaryIdentifier"))
 	return rv
 }
 

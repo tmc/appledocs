@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [LPLinkMetadata] class.
@@ -151,8 +152,8 @@ func (l_ LPLinkMetadata) SetRemoteVideoURL(value unsafe.Pointer) {
 // A representative title for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/title
-func (l_ LPLinkMetadata) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("title"))
+func (l_ LPLinkMetadata) Title() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -162,8 +163,8 @@ func (l_ LPLinkMetadata) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/title
-func (l_ LPLinkMetadata) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), value)
+func (l_ LPLinkMetadata) SetTitle(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // The URL that returned the metadata, taking server-side redirects into account.
 //

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MCNearbyServiceBrowser] class.
@@ -141,8 +142,8 @@ func (m_ MCNearbyServiceBrowser) MyPeerID() unsafe.Pointer {
 // The service type to browse for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/serviceType
-func (m_ MCNearbyServiceBrowser) ServiceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serviceType"))
+func (m_ MCNearbyServiceBrowser) ServiceType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 

@@ -73,7 +73,3 @@ func (f_ FontAssetRequest) Autorelease() FontAssetRequest {
 func NewFontAssetRequest() FontAssetRequest {
 	return getFontAssetRequestClass().New()
 }
-
-
-
-

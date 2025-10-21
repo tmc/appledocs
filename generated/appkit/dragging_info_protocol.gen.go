@@ -12,5 +12,3 @@ var DraggingInfoProtocol *objc.Protocol
 func init() {
 	DraggingInfoProtocol = objc.GetProtocol("NSDraggingInfo")
 }
-
-

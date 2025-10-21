@@ -79,22 +79,22 @@ func NewBatchUpdateRequest() BatchUpdateRequest {
 }
 
 
-// Creates a batch-update request for a named managed entity.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entityName:)
-func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
-	instance := getBatchUpdateRequestClass().Alloc()
-	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a batch-update request for a managed entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entity:)
 func NewBatchUpdateRequestWithEntity(entity unsafe.Pointer) BatchUpdateRequest {
 	instance := getBatchUpdateRequestClass().Alloc()
 	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntity:"), entity)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a batch-update request for a named managed entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entityName:)
+func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
+	instance := getBatchUpdateRequestClass().Alloc()
+	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
 	rv.Autorelease()
 	return rv
 }
@@ -119,8 +119,8 @@ func (b_ BatchUpdateRequest) Entity() unsafe.Pointer {
 // The name of the managed entity to update data for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/entityName
-func (b_ BatchUpdateRequest) EntityName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("entityName"))
+func (b_ BatchUpdateRequest) EntityName() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("entityName"))
 	return rv
 }
 

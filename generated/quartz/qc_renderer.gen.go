@@ -87,6 +87,16 @@ func NewQCRenderer() QCRenderer {
 }
 
 
+// Creates a renderer object with a object, a pixel format, a color space, and a composition object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCRenderer/init(cglContext:pixelFormat:colorSpace:composition:)
+func NewQCRendererWithCGLContextPixelFormatColorSpaceComposition(context unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, composition unsafe.Pointer) QCRenderer {
+	instance := getQCRendererClass().Alloc()
+	rv := objc.Send[QCRenderer](instance.ID, objc.Sel("initWithCGLContext:pixelFormat:colorSpace:composition:"), context, format, colorSpace, composition)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a renderer object with a composition object and a color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCRenderer/init(composition:colorSpace:)
@@ -113,16 +123,6 @@ func NewQCRendererOffScreenWithSizeColorSpaceComposition(size foundation.Size, c
 func NewQCRendererWithOpenGLContextPixelFormatFile(context unsafe.Pointer, format unsafe.Pointer, path string) QCRenderer {
 	instance := getQCRendererClass().Alloc()
 	rv := objc.Send[QCRenderer](instance.ID, objc.Sel("initWithOpenGLContext:pixelFormat:file:"), context, format, objc.String(path))
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a renderer object with a object, a pixel format, a color space, and a composition object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCRenderer/init(cglContext:pixelFormat:colorSpace:composition:)
-func NewQCRendererWithCGLContextPixelFormatColorSpaceComposition(context unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, composition unsafe.Pointer) QCRenderer {
-	instance := getQCRendererClass().Alloc()
-	rv := objc.Send[QCRenderer](instance.ID, objc.Sel("initWithCGLContext:pixelFormat:colorSpace:composition:"), context, format, colorSpace, composition)
 	rv.Autorelease()
 	return rv
 }

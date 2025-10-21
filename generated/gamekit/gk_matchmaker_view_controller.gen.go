@@ -96,8 +96,8 @@ func NewMatchmakerViewControllerWithMatchRequest(request unsafe.Pointer) Matchma
 // The default invitation message sent to a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
-func (m_ MatchmakerViewController) DefaultInvitationMessage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("defaultInvitationMessage"))
+func (m_ MatchmakerViewController) DefaultInvitationMessage() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("defaultInvitationMessage"))
 	return rv
 }
 
@@ -107,8 +107,8 @@ func (m_ MatchmakerViewController) DefaultInvitationMessage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
-func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), value)
+func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), objc.String(value))
 }
 // A Boolean value that indicates whether the match is hosted or peer-to-peer.
 //

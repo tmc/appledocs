@@ -12,5 +12,3 @@ var AccessibilityImageProtocol *objc.Protocol
 func init() {
 	AccessibilityImageProtocol = objc.GetProtocol("NSAccessibilityImage")
 }
-
-

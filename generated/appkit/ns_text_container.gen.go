@@ -79,7 +79,6 @@ func NewTextContainer() TextContainer {
 	return getTextContainerClass().New()
 }
 
-
 // The text container’s layout manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer/layoutManager
@@ -87,7 +86,6 @@ func (t_ TextContainer) LayoutManager() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutManager"))
 	return rv
 }
-
 
 // SetLayoutManager sets the value of the layoutManager property.
 // The text container’s layout manager.
@@ -97,5 +95,3 @@ func (t_ TextContainer) LayoutManager() unsafe.Pointer {
 func (t_ TextContainer) SetLayoutManager(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManager:"), value)
 }
-
-

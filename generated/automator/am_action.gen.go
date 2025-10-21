@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AMAction] class.
@@ -242,8 +243,8 @@ func (a_ AMAction) Stopped() bool {
 // The name of the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/name
-func (a_ AMAction) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("name"))
+func (a_ AMAction) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -284,8 +285,8 @@ func (a_ AMAction) SetProgressValue(value float64) {
 // The type of input, in UTI format, of the input received by the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedInputType
-func (a_ AMAction) SelectedInputType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("selectedInputType"))
+func (a_ AMAction) SelectedInputType() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("selectedInputType"))
 	return rv
 }
 
@@ -295,14 +296,14 @@ func (a_ AMAction) SelectedInputType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedInputType
-func (a_ AMAction) SetSelectedInputType(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedInputType:"), value)
+func (a_ AMAction) SetSelectedInputType(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedInputType:"), objc.String(value))
 }
 // The type of output, in UTI format, of the output to be produced by the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedOutputType
-func (a_ AMAction) SelectedOutputType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("selectedOutputType"))
+func (a_ AMAction) SelectedOutputType() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("selectedOutputType"))
 	return rv
 }
 
@@ -312,7 +313,7 @@ func (a_ AMAction) SelectedOutputType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedOutputType
-func (a_ AMAction) SetSelectedOutputType(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedOutputType:"), value)
+func (a_ AMAction) SetSelectedOutputType(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedOutputType:"), objc.String(value))
 }
 

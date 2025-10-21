@@ -12,5 +12,3 @@ var keyPathsForValuesAffectingPreviewProtocol *objc.Protocol
 func init() {
 	keyPathsForValuesAffectingPreviewProtocol = objc.GetProtocol("keyPathsForValuesAffectingPreview")
 }
-
-

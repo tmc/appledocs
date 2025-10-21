@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MatchRequest] class.
@@ -108,8 +109,8 @@ func (m_ MatchRequest) SetDefaultNumberOfPlayers(value uint) {
 // The message sent to other players when the local player invites them to join a match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/inviteMessage
-func (m_ MatchRequest) InviteMessage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("inviteMessage"))
+func (m_ MatchRequest) InviteMessage() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("inviteMessage"))
 	return rv
 }
 
@@ -119,8 +120,8 @@ func (m_ MatchRequest) InviteMessage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/inviteMessage
-func (m_ MatchRequest) SetInviteMessage(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInviteMessage:"), value)
+func (m_ MatchRequest) SetInviteMessage(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInviteMessage:"), objc.String(value))
 }
 // The maximum number of players that can join the match.
 //

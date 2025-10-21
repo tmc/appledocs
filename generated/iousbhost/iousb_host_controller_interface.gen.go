@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [USBHostControllerInterface] class.
@@ -30,7 +31,7 @@ type _USBHostControllerInterfaceClass struct {
 // An interface definition for the [USBHostControllerInterface] class.
 type IUSBHostControllerInterface interface {
 	objectivec.IObject
-	DescriptionForMessage(message unsafe.Pointer) unsafe.Pointer
+	DescriptionForMessage(message unsafe.Pointer) string
 	Destroy()
 	EnqueueInterruptsCountExpediteError(interrupts unsafe.Pointer, count uint, expedite bool, error_ unsafe.Pointer) bool
 }
@@ -80,8 +81,8 @@ func NewUSBHostControllerInterface() USBHostControllerInterface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostControllerInterface/description(for:)
-func (u_ USBHostControllerInterface) DescriptionForMessage(message unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("descriptionForMessage:"), message)
+func (u_ USBHostControllerInterface) DescriptionForMessage(message unsafe.Pointer) string {
+	rv := objc.Send[string](u_.ID, objc.Sel("descriptionForMessage:"), message)
 	return rv
 }
 

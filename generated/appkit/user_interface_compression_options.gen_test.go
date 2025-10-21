@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewUserInterfaceCompressionOptions
 
-
 // ExampleNewUserInterfaceCompressionOptionsWithIdentifier demonstrates how to create a UserInterfaceCompressionOptions instance using NewUserInterfaceCompressionOptionsWithIdentifier.
 // Creates an option object with the given identifier string.
 func ExampleNewUserInterfaceCompressionOptionsWithIdentifier() {
@@ -18,5 +17,3 @@ func ExampleNewUserInterfaceCompressionOptionsWithIdentifier() {
 	)
 	// Output:
 }
-
-

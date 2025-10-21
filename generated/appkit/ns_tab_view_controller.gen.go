@@ -79,7 +79,3 @@ func (t_ TabViewController) Autorelease() TabViewController {
 func NewTabViewController() TabViewController {
 	return getTabViewControllerClass().New()
 }
-
-
-
-

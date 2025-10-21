@@ -30,7 +30,7 @@ type _SFCertificateTrustPanelClass struct {
 type ISFCertificateTrustPanel interface {
 	ISFCertificatePanel
 	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoTrustMessage(docWindow unsafe.Pointer, delegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer, trust unsafe.Pointer, message string)
-	InformativeText() unsafe.Pointer
+	InformativeText() string
 	RunModalForTrustMessage(trust unsafe.Pointer, message string) int
 	SetInformativeText(informativeText string)
 }
@@ -103,8 +103,8 @@ func (s_ SFCertificateTrustPanel) BeginSheetForWindowModalDelegateDidEndSelector
 // Returns the (optional) informative text currently displayed in the panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificateTrustPanel/informativeText()
-func (s_ SFCertificateTrustPanel) InformativeText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("informativeText"))
+func (s_ SFCertificateTrustPanel) InformativeText() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("informativeText"))
 	return rv
 }
 

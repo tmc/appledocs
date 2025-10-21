@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNSaveRequest] class.
@@ -180,8 +181,8 @@ func (c_ CNSaveRequest) SetShouldRefetchContacts(value bool) {
 // A string that identifies the author of the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/transactionAuthor
-func (c_ CNSaveRequest) TransactionAuthor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("transactionAuthor"))
+func (c_ CNSaveRequest) TransactionAuthor() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("transactionAuthor"))
 	return rv
 }
 
@@ -191,8 +192,8 @@ func (c_ CNSaveRequest) TransactionAuthor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/transactionAuthor
-func (c_ CNSaveRequest) SetTransactionAuthor(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTransactionAuthor:"), value)
+func (c_ CNSaveRequest) SetTransactionAuthor(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTransactionAuthor:"), objc.String(value))
 }
 
 

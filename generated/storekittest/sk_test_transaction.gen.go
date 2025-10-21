@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TestTransaction] class.
@@ -147,8 +148,8 @@ func (t_ TestTransaction) PendingAskToBuyConfirmation() bool {
 // An identifier that uniquely represents a product, which you provide in the StoreKit configuration file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/productIdentifier
-func (t_ TestTransaction) ProductIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("productIdentifier"))
+func (t_ TestTransaction) ProductIdentifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 

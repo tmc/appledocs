@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CoreDataCoreSpotlightDelegate] class.
@@ -32,8 +33,8 @@ type ICoreDataCoreSpotlightDelegate interface {
 	objectivec.IObject
 	AttributeSetForObject(object unsafe.Pointer) unsafe.Pointer
 	DeleteSpotlightIndexWithCompletionHandler(completionHandler unsafe.Pointer)
-	DomainIdentifier() unsafe.Pointer
-	IndexName() unsafe.Pointer
+	DomainIdentifier() string
+	IndexName() string
 	SearchableIndexReindexAllSearchableItemsWithAcknowledgementHandler(searchableIndex unsafe.Pointer, acknowledgementHandler unsafe.Pointer)
 	SearchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler(searchableIndex unsafe.Pointer, identifiers unsafe.Pointer, acknowledgementHandler unsafe.Pointer)
 	StartSpotlightIndexing()
@@ -125,16 +126,16 @@ func (c_ CoreDataCoreSpotlightDelegate) DeleteSpotlightIndexWithCompletionHandle
 // Returns the domain identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/domainIdentifier()
-func (c_ CoreDataCoreSpotlightDelegate) DomainIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("domainIdentifier"))
+func (c_ CoreDataCoreSpotlightDelegate) DomainIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("domainIdentifier"))
 	return rv
 }
 
 // Returns the index’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/indexName()
-func (c_ CoreDataCoreSpotlightDelegate) IndexName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexName"))
+func (c_ CoreDataCoreSpotlightDelegate) IndexName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("indexName"))
 	return rv
 }
 

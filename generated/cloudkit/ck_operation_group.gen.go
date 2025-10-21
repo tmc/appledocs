@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKOperationGroup] class.
@@ -145,8 +146,8 @@ func (c_ CKOperationGroup) SetExpectedSendSize(value unsafe.Pointer) {
 // The operation group’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/name
-func (c_ CKOperationGroup) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("name"))
+func (c_ CKOperationGroup) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -156,14 +157,14 @@ func (c_ CKOperationGroup) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/name
-func (c_ CKOperationGroup) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
+func (c_ CKOperationGroup) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The operation group’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/operationGroupID
-func (c_ CKOperationGroup) OperationGroupID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("operationGroupID"))
+func (c_ CKOperationGroup) OperationGroupID() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("operationGroupID"))
 	return rv
 }
 

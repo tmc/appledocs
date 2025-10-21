@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FeatureDescription] class.
@@ -115,8 +116,8 @@ func (f_ FeatureDescription) MultiArrayConstraint() unsafe.Pointer {
 // The name of this feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/name
-func (f_ FeatureDescription) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("name"))
+func (f_ FeatureDescription) Name() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("name"))
 	return rv
 }
 

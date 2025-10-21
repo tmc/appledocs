@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKMedicationConcept] class.
@@ -83,8 +84,8 @@ func NewHKMedicationConcept() HKMedicationConcept {
 // The display name for this medication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/displayText
-func (h_ HKMedicationConcept) DisplayText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("displayText"))
+func (h_ HKMedicationConcept) DisplayText() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("displayText"))
 	return rv
 }
 

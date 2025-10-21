@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UNNotificationAttachment] class.
@@ -100,16 +101,16 @@ func (uc _UNNotificationAttachmentClass) AttachmentWithIdentifierURLOptionsError
 // The unique identifier for the attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/identifier
-func (u_ UNNotificationAttachment) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("identifier"))
+func (u_ UNNotificationAttachment) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The UTI type of the attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/type
-func (u_ UNNotificationAttachment) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("type"))
+func (u_ UNNotificationAttachment) Type() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("type"))
 	return rv
 }
 

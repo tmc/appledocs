@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NERelayManager] class.
@@ -225,8 +226,8 @@ func (n_ NERelayManager) SetUIToggleEnabled(value bool) {
 // A string that contains the display name of the relay configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/localizedDescription
-func (n_ NERelayManager) LocalizedDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NERelayManager) LocalizedDescription() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -236,8 +237,8 @@ func (n_ NERelayManager) LocalizedDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/localizedDescription
-func (n_ NERelayManager) SetLocalizedDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
+func (n_ NERelayManager) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
 // A list of domain strings used to determine which connections will use the relay configuration contained in this object.
 //

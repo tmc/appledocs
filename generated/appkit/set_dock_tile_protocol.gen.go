@@ -15,5 +15,3 @@ var setDockTileProtocol *objc.Protocol
 func init() {
 	setDockTileProtocol = objc.GetProtocol("setDockTile:")
 }
-
-

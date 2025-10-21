@@ -79,7 +79,3 @@ func (d_ DictionaryController) Autorelease() DictionaryController {
 func NewDictionaryController() DictionaryController {
 	return getDictionaryControllerClass().New()
 }
-
-
-
-

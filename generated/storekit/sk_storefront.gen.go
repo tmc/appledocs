@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Storefront] class.
@@ -83,8 +84,8 @@ func NewStorefront() Storefront {
 // The three-letter code representing the country or region associated with the App Store storefront.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStorefront/countryCode
-func (s_ Storefront) CountryCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("countryCode"))
+func (s_ Storefront) CountryCode() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("countryCode"))
 	return rv
 }
 

@@ -8,17 +8,6 @@ import (
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
-// Enum types and constants
-// AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions - A structure that defines the conditions in which to restrict camera switching.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.struct
-type CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions int
-
-// AVPlayerHDRMode - A bitfield type that specifies an HDR mode.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/HDRMode
-type PlayerHDRMode int
-
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.

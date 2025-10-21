@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EAWiFiUnconfiguredAccessory] class.
@@ -81,32 +82,32 @@ func NewEAWiFiUnconfiguredAccessory() EAWiFiUnconfiguredAccessory {
 // The primary MAC address of the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/macAddress
-func (e_ EAWiFiUnconfiguredAccessory) MacAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("macAddress"))
+func (e_ EAWiFiUnconfiguredAccessory) MacAddress() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("macAddress"))
 	return rv
 }
 
 // The name of the accessory’s manufacturer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/manufacturer
-func (e_ EAWiFiUnconfiguredAccessory) Manufacturer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("manufacturer"))
+func (e_ EAWiFiUnconfiguredAccessory) Manufacturer() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("manufacturer"))
 	return rv
 }
 
 // The model name of accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/model
-func (e_ EAWiFiUnconfiguredAccessory) Model() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("model"))
+func (e_ EAWiFiUnconfiguredAccessory) Model() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("model"))
 	return rv
 }
 
 // The name of the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/name
-func (e_ EAWiFiUnconfiguredAccessory) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("name"))
+func (e_ EAWiFiUnconfiguredAccessory) Name() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -121,8 +122,8 @@ func (e_ EAWiFiUnconfiguredAccessory) Properties() unsafe.Pointer {
 // The Wi-Fi SSID of the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/ssid
-func (e_ EAWiFiUnconfiguredAccessory) Ssid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("ssid"))
+func (e_ EAWiFiUnconfiguredAccessory) Ssid() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("ssid"))
 	return rv
 }
 

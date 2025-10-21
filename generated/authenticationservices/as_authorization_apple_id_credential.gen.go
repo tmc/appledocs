@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AuthorizationAppleIDCredential] class.
@@ -81,8 +82,8 @@ func NewAuthorizationAppleIDCredential() AuthorizationAppleIDCredential {
 // The user’s email address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/email
-func (a_ AuthorizationAppleIDCredential) Email() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("email"))
+func (a_ AuthorizationAppleIDCredential) Email() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("email"))
 	return rv
 }
 
@@ -105,16 +106,16 @@ func (a_ AuthorizationAppleIDCredential) RealUserStatus() unsafe.Pointer {
 // An arbitrary string that your app provides to the request that generates the credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/state
-func (a_ AuthorizationAppleIDCredential) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("state"))
+func (a_ AuthorizationAppleIDCredential) State() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("state"))
 	return rv
 }
 
 // An identifier for the authenticated user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/user
-func (a_ AuthorizationAppleIDCredential) User() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("user"))
+func (a_ AuthorizationAppleIDCredential) User() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("user"))
 	return rv
 }
 

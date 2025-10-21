@@ -85,8 +85,8 @@ func NewPHProjectAssetElement() PHProjectAssetElement {
 // A string annotation attached to the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectAssetElement/annotation
-func (p_ PHProjectAssetElement) Annotation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("annotation"))
+func (p_ PHProjectAssetElement) Annotation() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("annotation"))
 	return rv
 }
 

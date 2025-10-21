@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRServiceAreaClusterSkipAreaResponseParams] class.
@@ -102,8 +103,8 @@ func (m_ MTRServiceAreaClusterSkipAreaResponseParams) SetStatus(value unsafe.Poi
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaResponseParams/statusText
-func (m_ MTRServiceAreaClusterSkipAreaResponseParams) StatusText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("statusText"))
+func (m_ MTRServiceAreaClusterSkipAreaResponseParams) StatusText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("statusText"))
 	return rv
 }
 
@@ -111,7 +112,7 @@ func (m_ MTRServiceAreaClusterSkipAreaResponseParams) StatusText() unsafe.Pointe
 // SetStatusText sets the value of the statusText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaResponseParams/statusText
-func (m_ MTRServiceAreaClusterSkipAreaResponseParams) SetStatusText(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
+func (m_ MTRServiceAreaClusterSkipAreaResponseParams) SetStatusText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
 

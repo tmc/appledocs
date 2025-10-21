@@ -79,7 +79,6 @@ func NewTextInputContext() TextInputContext {
 	return getTextInputContextClass().New()
 }
 
-
 // The designated initializer
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext/init(client:)
@@ -89,6 +88,3 @@ func NewTextInputContextWithClient(client objc.ID) TextInputContext {
 	rv.Autorelease()
 	return rv
 }
-
-
-

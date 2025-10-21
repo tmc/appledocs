@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MIDIUMPCIProfile] class.
@@ -113,8 +114,8 @@ func (m_ MIDIUMPCIProfile) IsEnabled() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/name
-func (m_ MIDIUMPCIProfile) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPCIProfile) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

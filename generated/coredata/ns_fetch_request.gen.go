@@ -156,8 +156,8 @@ func (f_ FetchRequest) SetEntity(value unsafe.Pointer) {
 // The name of the entity the request is configured to fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/entityName
-func (f_ FetchRequest) EntityName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("entityName"))
+func (f_ FetchRequest) EntityName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("entityName"))
 	return rv
 }
 

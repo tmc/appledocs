@@ -147,8 +147,8 @@ func (p_ PGDisplayDescriptor) SetModeChangeHandler(value unsafe.Pointer) {
 // The display’s name as seen in the guest operating environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/name
-func (p_ PGDisplayDescriptor) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("name"))
+func (p_ PGDisplayDescriptor) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -158,8 +158,8 @@ func (p_ PGDisplayDescriptor) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/name
-func (p_ PGDisplayDescriptor) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+func (p_ PGDisplayDescriptor) SetName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // A handler that the framework calls when the guest environment has a new frame to display.
 //

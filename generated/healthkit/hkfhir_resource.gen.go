@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKFHIRResource] class.
@@ -97,8 +98,8 @@ func (h_ HKFHIRResource) FHIRVersion() unsafe.Pointer {
 // The value from the FHIR resource’s field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/identifier
-func (h_ HKFHIRResource) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("identifier"))
+func (h_ HKFHIRResource) Identifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 

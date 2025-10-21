@@ -236,8 +236,8 @@ func (p_ PlayerViewController) SetContentProposalViewController(value unsafe.Poi
 // An array of action controls to present contextually during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActions
-func (p_ PlayerViewController) ContextualActions() []avkit.UIAction {
-	rv := objc.Send[[]avkit.UIAction](p_.ID, objc.Sel("contextualActions"))
+func (p_ PlayerViewController) ContextualActions() []UIAction {
+	rv := objc.Send[[]UIAction](p_.ID, objc.Sel("contextualActions"))
 	return rv
 }
 
@@ -247,7 +247,7 @@ func (p_ PlayerViewController) ContextualActions() []avkit.UIAction {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActions
-func (p_ PlayerViewController) SetContextualActions(value []avkit.UIAction) {
+func (p_ PlayerViewController) SetContextualActions(value []UIAction) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -305,8 +305,8 @@ func (p_ PlayerViewController) SetCustomInfoViewController(value unsafe.Pointer)
 // An array of view controllers to display as content tabs in the player user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewControllers
-func (p_ PlayerViewController) CustomInfoViewControllers() []avkit.UIViewController {
-	rv := objc.Send[[]avkit.UIViewController](p_.ID, objc.Sel("customInfoViewControllers"))
+func (p_ PlayerViewController) CustomInfoViewControllers() []UIViewController {
+	rv := objc.Send[[]UIViewController](p_.ID, objc.Sel("customInfoViewControllers"))
 	return rv
 }
 
@@ -316,7 +316,7 @@ func (p_ PlayerViewController) CustomInfoViewControllers() []avkit.UIViewControl
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewControllers
-func (p_ PlayerViewController) SetCustomInfoViewControllers(value []avkit.UIViewController) {
+func (p_ PlayerViewController) SetCustomInfoViewControllers(value []UIViewController) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -408,8 +408,8 @@ func (p_ PlayerViewController) GroupExperienceCoordinator() unsafe.Pointer {
 // An array of actions to present in the Info content view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/infoViewActions
-func (p_ PlayerViewController) InfoViewActions() []avkit.UIAction {
-	rv := objc.Send[[]avkit.UIAction](p_.ID, objc.Sel("infoViewActions"))
+func (p_ PlayerViewController) InfoViewActions() []UIAction {
+	rv := objc.Send[[]UIAction](p_.ID, objc.Sel("infoViewActions"))
 	return rv
 }
 
@@ -419,7 +419,7 @@ func (p_ PlayerViewController) InfoViewActions() []avkit.UIAction {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/infoViewActions
-func (p_ PlayerViewController) SetInfoViewActions(value []avkit.UIAction) {
+func (p_ PlayerViewController) SetInfoViewActions(value []UIAction) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

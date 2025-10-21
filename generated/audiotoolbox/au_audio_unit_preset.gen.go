@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioUnitPreset] class.
@@ -83,8 +84,8 @@ func NewAudioUnitPreset() AudioUnitPreset {
 // The preset’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/name
-func (a_ AudioUnitPreset) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("name"))
+func (a_ AudioUnitPreset) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -94,8 +95,8 @@ func (a_ AudioUnitPreset) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/name
-func (a_ AudioUnitPreset) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
+func (a_ AudioUnitPreset) SetName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The preset’s unique numeric identifier.
 //

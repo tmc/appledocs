@@ -12,5 +12,3 @@ var ViewLayerContentScaleDelegateProtocol *objc.Protocol
 func init() {
 	ViewLayerContentScaleDelegateProtocol = objc.GetProtocol("NSViewLayerContentScaleDelegate")
 }
-
-

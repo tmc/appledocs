@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Animation] class.
@@ -125,8 +126,8 @@ func (a_ Animation) ShouldArchiveValueForKey(key string) bool {
 // For animations attached to SceneKit objects, a list of events attached to an animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/animationEvents
-func (a_ Animation) AnimationEvents() []quartzcore.SCNAnimationEvent {
-	rv := objc.Send[[]quartzcore.SCNAnimationEvent](a_.ID, objc.Sel("animationEvents"))
+func (a_ Animation) AnimationEvents() []SCNAnimationEvent {
+	rv := objc.Send[[]SCNAnimationEvent](a_.ID, objc.Sel("animationEvents"))
 	return rv
 }
 
@@ -136,7 +137,7 @@ func (a_ Animation) AnimationEvents() []quartzcore.SCNAnimationEvent {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/animationEvents
-func (a_ Animation) SetAnimationEvents(value []quartzcore.SCNAnimationEvent) {
+func (a_ Animation) SetAnimationEvents(value []SCNAnimationEvent) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

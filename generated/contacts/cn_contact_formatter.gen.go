@@ -31,7 +31,7 @@ type _CNContactFormatterClass struct {
 type ICNContactFormatter interface {
 	objectivec.IObject
 	AttributedStringFromContactDefaultAttributes(contact unsafe.Pointer, attributes objc.ID) unsafe.Pointer
-	StringFromContact(contact unsafe.Pointer) unsafe.Pointer
+	StringFromContact(contact unsafe.Pointer) string
 }
 
 // An object that you use to format contact information before displaying it to the user.
@@ -93,8 +93,8 @@ func (cc _CNContactFormatterClass) AttributedStringFromContactStyleDefaultAttrib
 // Returns the delimiter to use between name components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/delimiter(for:)
-func (cc _CNContactFormatterClass) DelimiterForContact(contact unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("delimiterForContact:"), contact)
+func (cc _CNContactFormatterClass) DelimiterForContact(contact unsafe.Pointer) string {
+	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("delimiterForContact:"), contact)
 	return rv
 }
 
@@ -117,8 +117,8 @@ func (cc _CNContactFormatterClass) NameOrderForContact(contact unsafe.Pointer) u
 // Returns the contact name, formatted with the specified formatter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:style:)
-func (cc _CNContactFormatterClass) StringFromContactStyle(contact unsafe.Pointer, style unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("stringFromContact:style:"), contact, style)
+func (cc _CNContactFormatterClass) StringFromContactStyle(contact unsafe.Pointer, style unsafe.Pointer) string {
+	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("stringFromContact:style:"), contact, style)
 	return rv
 }
 
@@ -147,8 +147,8 @@ func (c_ CNContactFormatter) AttributedStringFromContactDefaultAttributes(contac
 // Formats the contact name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:)
-func (c_ CNContactFormatter) StringFromContact(contact unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stringFromContact:"), contact)
+func (c_ CNContactFormatter) StringFromContact(contact unsafe.Pointer) string {
+	rv := objc.Send[string](c_.ID, objc.Sel("stringFromContact:"), contact)
 	return rv
 }
 

@@ -79,13 +79,9 @@ func NewEPSImageRep() EPSImageRep {
 	return getEPSImageRepClass().New()
 }
 
-
 // Implemented by subclasses to configure the graphics state prior to drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/prepareGState()
 func (e_ EPSImageRep) PrepareGState() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("prepareGState"))
 }
-
-
-

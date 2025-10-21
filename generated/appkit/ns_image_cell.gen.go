@@ -79,7 +79,3 @@ func (i_ ImageCell) Autorelease() ImageCell {
 func NewImageCell() ImageCell {
 	return getImageCellClass().New()
 }
-
-
-
-

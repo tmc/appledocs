@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BluetoothSDPServiceRecord] class.
@@ -37,7 +38,7 @@ type IBluetoothSDPServiceRecord interface {
 	GetL2CAPPSM(outPSM unsafe.Pointer) unsafe.Pointer
 	GetRFCOMMChannelID(rfcommChannelID unsafe.Pointer) unsafe.Pointer
 	GetSDPServiceRecordRef() unsafe.Pointer
-	GetServiceName() unsafe.Pointer
+	GetServiceName() string
 	HandsFreeSupportedFeatures() unsafe.Pointer
 	HasServiceFromArray(array objc.ID) bool
 	MatchesSearchArray(searchArray objc.ID) bool
@@ -186,8 +187,8 @@ func (b_ BluetoothSDPServiceRecord) GetSDPServiceRecordRef() unsafe.Pointer {
 // Returns the name of the service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/getServiceName()
-func (b_ BluetoothSDPServiceRecord) GetServiceName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getServiceName"))
+func (b_ BluetoothSDPServiceRecord) GetServiceName() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("getServiceName"))
 	return rv
 }
 

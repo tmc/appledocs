@@ -12,5 +12,3 @@ var moveDownProtocol *objc.Protocol
 func init() {
 	moveDownProtocol = objc.GetProtocol("moveDown:")
 }
-
-

@@ -79,7 +79,3 @@ func (m_ MutableParagraphStyle) Autorelease() MutableParagraphStyle {
 func NewMutableParagraphStyle() MutableParagraphStyle {
 	return getMutableParagraphStyleClass().New()
 }
-
-
-
-

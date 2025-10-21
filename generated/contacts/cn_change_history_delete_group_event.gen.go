@@ -82,8 +82,8 @@ func NewCNChangeHistoryDeleteGroupEvent() CNChangeHistoryDeleteGroupEvent {
 // A string that uniquely identifies the group that the user deleted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteGroupEvent/groupIdentifier
-func (c_ CNChangeHistoryDeleteGroupEvent) GroupIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("groupIdentifier"))
+func (c_ CNChangeHistoryDeleteGroupEvent) GroupIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TileRenderPipelineDescriptor] class.
@@ -124,8 +125,8 @@ func (t_ TileRenderPipelineDescriptor) ColorAttachments() unsafe.Pointer {
 // A string that identifies the tile pipeline descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/label
-func (t_ TileRenderPipelineDescriptor) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("label"))
+func (t_ TileRenderPipelineDescriptor) Label() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (t_ TileRenderPipelineDescriptor) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/label
-func (t_ TileRenderPipelineDescriptor) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), value)
+func (t_ TileRenderPipelineDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 // Functions that you can specify as function arguments for the tile shader when encoding commands that use the pipeline.
 //

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MediaTimingFunction] class.
@@ -81,14 +82,6 @@ func NewMediaTimingFunction() MediaTimingFunction {
 }
 
 
-// Creates and returns a new instance of configured with the predefined timing function specified by .
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(name:)
-func NewMediaTimingFunctionWithName(name unsafe.Pointer) MediaTimingFunction {
-	rv := objc.Send[MediaTimingFunction](objc.ID(getMediaTimingFunctionClass().class), objc.Sel("functionWithName:"), name)
-	return rv
-}
-
 // Returns an initialized timing function modeled as a cubic Bézier curve using the specified control points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(controlPoints:_:_:_:)
@@ -96,6 +89,14 @@ func NewMediaTimingFunctionWithControlPoints(c1x unsafe.Pointer, c1y unsafe.Poin
 	instance := getMediaTimingFunctionClass().Alloc()
 	rv := objc.Send[MediaTimingFunction](instance.ID, objc.Sel("initWithControlPoints::::"), c1x, c1y, c2x, c2y)
 	rv.Autorelease()
+	return rv
+}
+
+// Creates and returns a new instance of configured with the predefined timing function specified by .
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(name:)
+func NewMediaTimingFunctionWithName(name unsafe.Pointer) MediaTimingFunction {
+	rv := objc.Send[MediaTimingFunction](objc.ID(getMediaTimingFunctionClass().class), objc.Sel("functionWithName:"), name)
 	return rv
 }
 

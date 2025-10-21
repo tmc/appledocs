@@ -1,8 +1,9 @@
 // Code generated from Apple documentation for SystemConfiguration. DO NOT EDIT.
 
 package systemconfiguration
-
-import "unsafe"
+import (
+	"unsafe"
+)
 
 // AuthorizationRef is a CoreGraphics opaque type.
 type AuthorizationRef unsafe.Pointer
@@ -76,4 +77,41 @@ type SCVLANInterfaceRef unsafe.Pointer
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+type Boolean unsafe.Pointer
+
+type CFIndex unsafe.Pointer
+
+type CFStringEncoding unsafe.Pointer
+
+type CFTypeID unsafe.Pointer
+
+type SCDynamicStoreCallBack unsafe.Pointer
+
+type SCDynamicStoreContext unsafe.Pointer
+
+type SCNetworkConnectionCallBack unsafe.Pointer
+
+type SCNetworkConnectionContext unsafe.Pointer
+
+type SCNetworkConnectionFlags unsafe.Pointer
+
+type SCNetworkConnectionStatus unsafe.Pointer
+
+type SCNetworkReachabilityCallBack unsafe.Pointer
+
+type SCNetworkReachabilityContext unsafe.Pointer
+
+type SCNetworkReachabilityFlags unsafe.Pointer
+
+type SCPreferencesCallBack unsafe.Pointer
+
+type SCPreferencesContext unsafe.Pointer
+
+type UInt8 unsafe.Pointer
+
+
 

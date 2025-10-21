@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Window] class.
@@ -217,6 +217,23 @@ func NewWindow() Window {
 	return getWindowClass().New()
 }
 
+// Creates a titled window that contains the specified content view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
+func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
+	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
+	return rv
+}
+
+// Returns a Cocoa window created from a Carbon window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
+func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
+	instance := getWindowClass().Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
+	rv.Autorelease()
+	return rv
+}
 
 // Initializes the window with the specified values.
 //
@@ -237,25 +254,6 @@ func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphic
 	rv.Autorelease()
 	return rv
 }
-
-// Creates a titled window that contains the specified content view controller.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
-func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
-	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
-	return rv
-}
-
-// Returns a Cocoa window created from a Carbon window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
-func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
-	instance := getWindowClass().Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
-	rv.Autorelease()
-	return rv
-}
-
 
 // Returns the content rectangle used by a window with a given frame rectangle and window style.
 //
@@ -334,6 +332,7 @@ func (wc _WindowClass) AllowsAutomaticWindowTabbing() bool {
 	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("allowsAutomaticWindowTabbing"))
 	return rv
 }
+
 // Returns the default depth limit for instances of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultDepthLimit
@@ -341,6 +340,7 @@ func (wc _WindowClass) DefaultDepthLimit() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("defaultDepthLimit"))
 	return rv
 }
+
 // A value that indicates the user’s preference for window tabbing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/userTabbingPreference-swift.type.property
@@ -348,6 +348,7 @@ func (wc _WindowClass) UserTabbingPreference() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("userTabbingPreference"))
 	return rv
 }
+
 // Adds a given window as a child window of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/addChildWindow(_:ordered:)
@@ -1341,7 +1342,6 @@ func (w_ Window) AcceptsMouseMovedEvents() bool {
 	return rv
 }
 
-
 // SetAcceptsMouseMovedEvents sets the value of the acceptsMouseMovedEvents property.
 // A Boolean value that indicates whether the window accepts mouse-moved events.
 
@@ -1350,6 +1350,7 @@ func (w_ Window) AcceptsMouseMovedEvents() bool {
 func (w_ Window) SetAcceptsMouseMovedEvents(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAcceptsMouseMovedEvents:"), value)
 }
+
 // A Boolean value that indicates whether the app can automatically organize windows into tabs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsAutomaticWindowTabbing
@@ -1357,7 +1358,6 @@ func (w_ Window) AllowsAutomaticWindowTabbing() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsAutomaticWindowTabbing"))
 	return rv
 }
-
 
 // SetAllowsAutomaticWindowTabbing sets the value of the allowsAutomaticWindowTabbing property.
 // A Boolean value that indicates whether the app can automatically organize windows into tabs.
@@ -1367,6 +1367,7 @@ func (w_ Window) AllowsAutomaticWindowTabbing() bool {
 func (w_ Window) SetAllowsAutomaticWindowTabbing(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsAutomaticWindowTabbing:"), value)
 }
+
 // A Boolean value that indicates whether the window allows multithreaded view drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsConcurrentViewDrawing
@@ -1374,7 +1375,6 @@ func (w_ Window) AllowsConcurrentViewDrawing() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsConcurrentViewDrawing"))
 	return rv
 }
-
 
 // SetAllowsConcurrentViewDrawing sets the value of the allowsConcurrentViewDrawing property.
 // A Boolean value that indicates whether the window allows multithreaded view drawing.
@@ -1384,6 +1384,7 @@ func (w_ Window) AllowsConcurrentViewDrawing() bool {
 func (w_ Window) SetAllowsConcurrentViewDrawing(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsConcurrentViewDrawing:"), value)
 }
+
 // A Boolean value that indicates whether the window can display tooltips even when the application is in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsToolTipsWhenApplicationIsInactive
@@ -1391,7 +1392,6 @@ func (w_ Window) AllowsToolTipsWhenApplicationIsInactive() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsToolTipsWhenApplicationIsInactive"))
 	return rv
 }
-
 
 // SetAllowsToolTipsWhenApplicationIsInactive sets the value of the allowsToolTipsWhenApplicationIsInactive property.
 // A Boolean value that indicates whether the window can display tooltips even when the application is in the background.
@@ -1401,6 +1401,7 @@ func (w_ Window) AllowsToolTipsWhenApplicationIsInactive() bool {
 func (w_ Window) SetAllowsToolTipsWhenApplicationIsInactive(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsToolTipsWhenApplicationIsInactive:"), value)
 }
+
 // The window’s alpha value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/alphaValue
@@ -1408,7 +1409,6 @@ func (w_ Window) AlphaValue() float64 {
 	rv := objc.Send[float64](w_.ID, objc.Sel("alphaValue"))
 	return rv
 }
-
 
 // SetAlphaValue sets the value of the alphaValue property.
 // The window’s alpha value.
@@ -1418,6 +1418,7 @@ func (w_ Window) AlphaValue() float64 {
 func (w_ Window) SetAlphaValue(value float64) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAlphaValue:"), value)
 }
+
 // The window’s automatic animation behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/animationBehavior-swift.property
@@ -1425,7 +1426,6 @@ func (w_ Window) AnimationBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("animationBehavior"))
 	return rv
 }
-
 
 // SetAnimationBehavior sets the value of the animationBehavior property.
 // The window’s automatic animation behavior.
@@ -1435,6 +1435,7 @@ func (w_ Window) AnimationBehavior() unsafe.Pointer {
 func (w_ Window) SetAnimationBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAnimationBehavior:"), value)
 }
+
 // An object that the window inherits its appearance from.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/appearanceSource
@@ -1442,7 +1443,6 @@ func (w_ Window) AppearanceSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("appearanceSource"))
 	return rv
 }
-
 
 // SetAppearanceSource sets the value of the appearanceSource property.
 // An object that the window inherits its appearance from.
@@ -1452,6 +1452,7 @@ func (w_ Window) AppearanceSource() unsafe.Pointer {
 func (w_ Window) SetAppearanceSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAppearanceSource:"), value)
 }
+
 // A Boolean value that indicates whether the window’s cursor rectangles are enabled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/areCursorRectsEnabled
@@ -1468,7 +1469,6 @@ func (w_ Window) AspectRatio() coregraphics.CGSize {
 	return rv
 }
 
-
 // SetAspectRatio sets the value of the aspectRatio property.
 // The window’s aspect ratio, which constrains the size of its frame rectangle to integral multiples of this ratio when the user resizes it.
 
@@ -1477,6 +1477,7 @@ func (w_ Window) AspectRatio() coregraphics.CGSize {
 func (w_ Window) SetAspectRatio(value coregraphics.CGSize) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAspectRatio:"), value)
 }
+
 // The sheet attached to the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/attachedSheet
@@ -1493,7 +1494,6 @@ func (w_ Window) AutorecalculatesKeyViewLoop() bool {
 	return rv
 }
 
-
 // SetAutorecalculatesKeyViewLoop sets the value of the autorecalculatesKeyViewLoop property.
 // A Boolean value that indicates whether the window automatically recalculates the key view loop when views are added.
 
@@ -1502,6 +1502,7 @@ func (w_ Window) AutorecalculatesKeyViewLoop() bool {
 func (w_ Window) SetAutorecalculatesKeyViewLoop(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAutorecalculatesKeyViewLoop:"), value)
 }
+
 // The color of the window’s background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backgroundColor
@@ -1509,7 +1510,6 @@ func (w_ Window) BackgroundColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
-
 
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The color of the window’s background.
@@ -1519,6 +1519,7 @@ func (w_ Window) BackgroundColor() unsafe.Pointer {
 func (w_ Window) SetBackgroundColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setBackgroundColor:"), value)
 }
+
 // The location of the window’s backing store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backingLocation-swift.property
@@ -1543,7 +1544,6 @@ func (w_ Window) BackingType() BackingStoreType {
 	return rv
 }
 
-
 // SetBackingType sets the value of the backingType property.
 // The window’s backing store type.
 
@@ -1552,6 +1552,7 @@ func (w_ Window) BackingType() BackingStoreType {
 func (w_ Window) SetBackingType(value BackingStoreType) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setBackingType:"), value)
 }
+
 // A Boolean value that indicates whether the window can become the key window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canBecomeKey
@@ -1576,7 +1577,6 @@ func (w_ Window) CanBecomeVisibleWithoutLogin() bool {
 	return rv
 }
 
-
 // SetCanBecomeVisibleWithoutLogin sets the value of the canBecomeVisibleWithoutLogin property.
 // A Boolean value that indicates whether the window can be displayed at the login window.
 
@@ -1585,6 +1585,7 @@ func (w_ Window) CanBecomeVisibleWithoutLogin() bool {
 func (w_ Window) SetCanBecomeVisibleWithoutLogin(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCanBecomeVisibleWithoutLogin:"), value)
 }
+
 // A Boolean value that indicates whether the window can hide when its application becomes hidden.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canHide
@@ -1592,7 +1593,6 @@ func (w_ Window) CanHide() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canHide"))
 	return rv
 }
-
 
 // SetCanHide sets the value of the canHide property.
 // A Boolean value that indicates whether the window can hide when its application becomes hidden.
@@ -1602,6 +1602,7 @@ func (w_ Window) CanHide() bool {
 func (w_ Window) SetCanHide(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCanHide:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/cascadingReferenceFrame
 func (w_ Window) CascadingReferenceFrame() coregraphics.CGRect {
@@ -1625,7 +1626,6 @@ func (w_ Window) CollectionBehavior() unsafe.Pointer {
 	return rv
 }
 
-
 // SetCollectionBehavior sets the value of the collectionBehavior property.
 // A value that identifies the window’s behavior in window collections.
 
@@ -1634,6 +1634,7 @@ func (w_ Window) CollectionBehavior() unsafe.Pointer {
 func (w_ Window) SetCollectionBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCollectionBehavior:"), value)
 }
+
 // The window’s color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/colorSpace
@@ -1641,7 +1642,6 @@ func (w_ Window) ColorSpace() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("colorSpace"))
 	return rv
 }
-
 
 // SetColorSpace sets the value of the colorSpace property.
 // The window’s color space.
@@ -1651,6 +1651,7 @@ func (w_ Window) ColorSpace() unsafe.Pointer {
 func (w_ Window) SetColorSpace(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setColorSpace:"), value)
 }
+
 // The window’s content aspect ratio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentAspectRatio
@@ -1658,7 +1659,6 @@ func (w_ Window) ContentAspectRatio() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("contentAspectRatio"))
 	return rv
 }
-
 
 // SetContentAspectRatio sets the value of the contentAspectRatio property.
 // The window’s content aspect ratio.
@@ -1668,6 +1668,7 @@ func (w_ Window) ContentAspectRatio() coregraphics.CGSize {
 func (w_ Window) SetContentAspectRatio(value coregraphics.CGSize) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentAspectRatio:"), value)
 }
+
 // A value used by Auto Layout constraints to automatically bind to the value of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentLayoutGuide
@@ -1692,7 +1693,6 @@ func (w_ Window) ContentMaxSize() coregraphics.CGSize {
 	return rv
 }
 
-
 // SetContentMaxSize sets the value of the contentMaxSize property.
 // The maximum size of the window’s content view in the window’s base coordinate system.
 
@@ -1701,6 +1701,7 @@ func (w_ Window) ContentMaxSize() coregraphics.CGSize {
 func (w_ Window) SetContentMaxSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentMaxSize:"), value)
 }
+
 // The minimum size of the window’s content view in the window’s base coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentMinSize
@@ -1708,7 +1709,6 @@ func (w_ Window) ContentMinSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("contentMinSize"))
 	return rv
 }
-
 
 // SetContentMinSize sets the value of the contentMinSize property.
 // The minimum size of the window’s content view in the window’s base coordinate system.
@@ -1718,6 +1718,7 @@ func (w_ Window) ContentMinSize() coregraphics.CGSize {
 func (w_ Window) SetContentMinSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentMinSize:"), value)
 }
+
 // The window’s content-view resizing increments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentResizeIncrements
@@ -1725,7 +1726,6 @@ func (w_ Window) ContentResizeIncrements() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("contentResizeIncrements"))
 	return rv
 }
-
 
 // SetContentResizeIncrements sets the value of the contentResizeIncrements property.
 // The window’s content-view resizing increments.
@@ -1735,6 +1735,7 @@ func (w_ Window) ContentResizeIncrements() coregraphics.CGSize {
 func (w_ Window) SetContentResizeIncrements(value coregraphics.CGSize) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentResizeIncrements:"), value)
 }
+
 // The window’s content view, the highest accessible view object in the window’s view hierarchy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentView
@@ -1742,7 +1743,6 @@ func (w_ Window) ContentView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("contentView"))
 	return rv
 }
-
 
 // SetContentView sets the value of the contentView property.
 // The window’s content view, the highest accessible view object in the window’s view hierarchy.
@@ -1752,6 +1752,7 @@ func (w_ Window) ContentView() unsafe.Pointer {
 func (w_ Window) SetContentView(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentView:"), value)
 }
+
 // The main content view controller for the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentViewController
@@ -1759,7 +1760,6 @@ func (w_ Window) ContentViewController() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("contentViewController"))
 	return rv
 }
-
 
 // SetContentViewController sets the value of the contentViewController property.
 // The main content view controller for the window.
@@ -1769,6 +1769,7 @@ func (w_ Window) ContentViewController() unsafe.Pointer {
 func (w_ Window) SetContentViewController(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentViewController:"), value)
 }
+
 // The event currently being processed by the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/currentEvent
@@ -1793,7 +1794,6 @@ func (w_ Window) DefaultButtonCell() unsafe.Pointer {
 	return rv
 }
 
-
 // SetDefaultButtonCell sets the value of the defaultButtonCell property.
 // The button cell that performs as if clicked when the window receives a Return (or Enter) key event.
 
@@ -1802,6 +1802,7 @@ func (w_ Window) DefaultButtonCell() unsafe.Pointer {
 func (w_ Window) SetDefaultButtonCell(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultButtonCell:"), value)
 }
+
 // Returns the default depth limit for instances of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultDepthLimit
@@ -1818,7 +1819,6 @@ func (w_ Window) Delegate() objc.ID {
 	return rv
 }
 
-
 // SetDelegate sets the value of the delegate property.
 // The window’s delegate.
 
@@ -1827,6 +1827,7 @@ func (w_ Window) Delegate() objc.ID {
 func (w_ Window) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The depth limit of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/depthLimit
@@ -1834,7 +1835,6 @@ func (w_ Window) DepthLimit() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("depthLimit"))
 	return rv
 }
-
 
 // SetDepthLimit sets the value of the depthLimit property.
 // The depth limit of the window.
@@ -1844,6 +1844,7 @@ func (w_ Window) DepthLimit() unsafe.Pointer {
 func (w_ Window) SetDepthLimit(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDepthLimit:"), value)
 }
+
 // A dictionary containing information about the window’s resolution, such as color, depth, and so on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/deviceDescription
@@ -1860,7 +1861,6 @@ func (w_ Window) DisplaysWhenScreenProfileChanges() bool {
 	return rv
 }
 
-
 // SetDisplaysWhenScreenProfileChanges sets the value of the displaysWhenScreenProfileChanges property.
 // A Boolean value that indicates whether the window context should be updated when the screen profile changes or when the window moves to a different screen.
 
@@ -1869,6 +1869,7 @@ func (w_ Window) DisplaysWhenScreenProfileChanges() bool {
 func (w_ Window) SetDisplaysWhenScreenProfileChanges(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplaysWhenScreenProfileChanges:"), value)
 }
+
 // The application’s Dock tile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/dockTile
@@ -1956,7 +1957,6 @@ func (w_ Window) HasShadow() bool {
 	return rv
 }
 
-
 // SetHasShadow sets the value of the hasShadow property.
 // A Boolean value that indicates whether the window has a shadow.
 
@@ -1965,6 +1965,7 @@ func (w_ Window) HasShadow() bool {
 func (w_ Window) SetHasShadow(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHasShadow:"), value)
 }
+
 // A Boolean value that indicates if the window has a title bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/hasTitleBar
@@ -1981,7 +1982,6 @@ func (w_ Window) HidesOnDeactivate() bool {
 	return rv
 }
 
-
 // SetHidesOnDeactivate sets the value of the hidesOnDeactivate property.
 // A Boolean value that indicates whether the window is removed from the screen when its application becomes inactive.
 
@@ -1990,6 +1990,7 @@ func (w_ Window) HidesOnDeactivate() bool {
 func (w_ Window) SetHidesOnDeactivate(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHidesOnDeactivate:"), value)
 }
+
 // A Boolean value that indicates whether the window is transparent to mouse events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/ignoresMouseEvents
@@ -1997,7 +1998,6 @@ func (w_ Window) IgnoresMouseEvents() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("ignoresMouseEvents"))
 	return rv
 }
-
 
 // SetIgnoresMouseEvents sets the value of the ignoresMouseEvents property.
 // A Boolean value that indicates whether the window is transparent to mouse events.
@@ -2007,6 +2007,7 @@ func (w_ Window) IgnoresMouseEvents() bool {
 func (w_ Window) SetIgnoresMouseEvents(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIgnoresMouseEvents:"), value)
 }
+
 // A Boolean value that indicates whether the window is being resized by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/inLiveResize
@@ -2023,7 +2024,6 @@ func (w_ Window) InitialFirstResponder() unsafe.Pointer {
 	return rv
 }
 
-
 // SetInitialFirstResponder sets the value of the initialFirstResponder property.
 // The view that’s made first responder (also called the key view) the first time the window is placed onscreen.
 
@@ -2032,6 +2032,7 @@ func (w_ Window) InitialFirstResponder() unsafe.Pointer {
 func (w_ Window) SetInitialFirstResponder(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setInitialFirstResponder:"), value)
 }
+
 // A Boolean value that indicates whether the window automatically displays views that need to be displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isAutodisplay
@@ -2039,7 +2040,6 @@ func (w_ Window) Autodisplay() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("autodisplay"))
 	return rv
 }
-
 
 // SetAutodisplay sets the value of the autodisplay property.
 // A Boolean value that indicates whether the window automatically displays views that need to be displayed.
@@ -2049,6 +2049,7 @@ func (w_ Window) Autodisplay() bool {
 func (w_ Window) SetAutodisplay(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAutodisplay:"), value)
 }
+
 // A Boolean value that indicates whether the window’s document has been edited.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isDocumentEdited
@@ -2056,7 +2057,6 @@ func (w_ Window) DocumentEdited() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("documentEdited"))
 	return rv
 }
-
 
 // SetDocumentEdited sets the value of the documentEdited property.
 // A Boolean value that indicates whether the window’s document has been edited.
@@ -2066,6 +2066,7 @@ func (w_ Window) DocumentEdited() bool {
 func (w_ Window) SetDocumentEdited(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDocumentEdited:"), value)
 }
+
 // A Boolean value that indicates whether the window is excluded from the application’s Windows menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isExcludedFromWindowsMenu
@@ -2073,7 +2074,6 @@ func (w_ Window) ExcludedFromWindowsMenu() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("excludedFromWindowsMenu"))
 	return rv
 }
-
 
 // SetExcludedFromWindowsMenu sets the value of the excludedFromWindowsMenu property.
 // A Boolean value that indicates whether the window is excluded from the application’s Windows menu.
@@ -2083,6 +2083,7 @@ func (w_ Window) ExcludedFromWindowsMenu() bool {
 func (w_ Window) SetExcludedFromWindowsMenu(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setExcludedFromWindowsMenu:"), value)
 }
+
 // A Boolean value that indicates whether the window is a floating panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isFloatingPanel
@@ -2147,7 +2148,6 @@ func (w_ Window) Movable() bool {
 	return rv
 }
 
-
 // SetMovable sets the value of the movable property.
 // A Boolean value that indicates whether the window can be dragged by clicking in its title bar or background.
 
@@ -2156,6 +2156,7 @@ func (w_ Window) Movable() bool {
 func (w_ Window) SetMovable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMovable:"), value)
 }
+
 // A Boolean value that indicates whether the window is movable by clicking and dragging anywhere in its background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isMovableByWindowBackground
@@ -2163,7 +2164,6 @@ func (w_ Window) MovableByWindowBackground() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("movableByWindowBackground"))
 	return rv
 }
-
 
 // SetMovableByWindowBackground sets the value of the movableByWindowBackground property.
 // A Boolean value that indicates whether the window is movable by clicking and dragging anywhere in its background.
@@ -2173,6 +2173,7 @@ func (w_ Window) MovableByWindowBackground() bool {
 func (w_ Window) SetMovableByWindowBackground(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMovableByWindowBackground:"), value)
 }
+
 // A Boolean value that indicates whether the window is on the currently active space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isOnActiveSpace
@@ -2189,7 +2190,6 @@ func (w_ Window) OneShot() bool {
 	return rv
 }
 
-
 // SetOneShot sets the value of the oneShot property.
 // A Boolean value that indicates whether the window device the window manages is freed when it’s removed from the screen list.
 
@@ -2198,6 +2198,7 @@ func (w_ Window) OneShot() bool {
 func (w_ Window) SetOneShot(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOneShot:"), value)
 }
+
 // A Boolean value that indicates whether the window is opaque.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isOpaque
@@ -2205,7 +2206,6 @@ func (w_ Window) Opaque() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("opaque"))
 	return rv
 }
-
 
 // SetOpaque sets the value of the opaque property.
 // A Boolean value that indicates whether the window is opaque.
@@ -2215,6 +2215,7 @@ func (w_ Window) Opaque() bool {
 func (w_ Window) SetOpaque(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOpaque:"), value)
 }
+
 // A Boolean value that indicates whether the window is released when it receives the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isReleasedWhenClosed
@@ -2222,7 +2223,6 @@ func (w_ Window) ReleasedWhenClosed() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("releasedWhenClosed"))
 	return rv
 }
-
 
 // SetReleasedWhenClosed sets the value of the releasedWhenClosed property.
 // A Boolean value that indicates whether the window is released when it receives the message.
@@ -2232,6 +2232,7 @@ func (w_ Window) ReleasedWhenClosed() bool {
 func (w_ Window) SetReleasedWhenClosed(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setReleasedWhenClosed:"), value)
 }
+
 // A Boolean value that indicates if the user can resize the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isResizable
@@ -2248,7 +2249,6 @@ func (w_ Window) Restorable() bool {
 	return rv
 }
 
-
 // SetRestorable sets the value of the restorable property.
 // A Boolean value indicating whether the window configuration is preserved between application launches.
 
@@ -2257,6 +2257,7 @@ func (w_ Window) Restorable() bool {
 func (w_ Window) SetRestorable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRestorable:"), value)
 }
+
 // A Boolean value that indicates whether the window has ever run as a modal sheet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isSheet
@@ -2305,7 +2306,6 @@ func (w_ Window) Level() WindowLevel {
 	return rv
 }
 
-
 // SetLevel sets the value of the level property.
 // The window level of the window.
 
@@ -2314,6 +2314,7 @@ func (w_ Window) Level() WindowLevel {
 func (w_ Window) SetLevel(value WindowLevel) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setLevel:"), value)
 }
+
 // A maximum size that is used to determine if a window can fit when it is in full screen in a tile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/maxFullScreenContentSize
@@ -2321,7 +2322,6 @@ func (w_ Window) MaxFullScreenContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("maxFullScreenContentSize"))
 	return rv
 }
-
 
 // SetMaxFullScreenContentSize sets the value of the maxFullScreenContentSize property.
 // A maximum size that is used to determine if a window can fit when it is in full screen in a tile.
@@ -2331,6 +2331,7 @@ func (w_ Window) MaxFullScreenContentSize() coregraphics.CGSize {
 func (w_ Window) SetMaxFullScreenContentSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMaxFullScreenContentSize:"), value)
 }
+
 // The maximum size to which the window’s frame (including its title bar) can be sized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/maxSize
@@ -2338,7 +2339,6 @@ func (w_ Window) MaxSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("maxSize"))
 	return rv
 }
-
 
 // SetMaxSize sets the value of the maxSize property.
 // The maximum size to which the window’s frame (including its title bar) can be sized.
@@ -2348,6 +2348,7 @@ func (w_ Window) MaxSize() coregraphics.CGSize {
 func (w_ Window) SetMaxSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMaxSize:"), value)
 }
+
 // A minimum size that is used to determine if a window can fit when it is in full screen in a tile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minFullScreenContentSize
@@ -2355,7 +2356,6 @@ func (w_ Window) MinFullScreenContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("minFullScreenContentSize"))
 	return rv
 }
-
 
 // SetMinFullScreenContentSize sets the value of the minFullScreenContentSize property.
 // A minimum size that is used to determine if a window can fit when it is in full screen in a tile.
@@ -2365,6 +2365,7 @@ func (w_ Window) MinFullScreenContentSize() coregraphics.CGSize {
 func (w_ Window) SetMinFullScreenContentSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMinFullScreenContentSize:"), value)
 }
+
 // The minimum size to which the window’s frame (including its title bar) can be sized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minSize
@@ -2372,7 +2373,6 @@ func (w_ Window) MinSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("minSize"))
 	return rv
 }
-
 
 // SetMinSize sets the value of the minSize property.
 // The minimum size to which the window’s frame (including its title bar) can be sized.
@@ -2382,6 +2382,7 @@ func (w_ Window) MinSize() coregraphics.CGSize {
 func (w_ Window) SetMinSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMinSize:"), value)
 }
+
 // The custom miniaturized window image of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/miniwindowImage
@@ -2389,7 +2390,6 @@ func (w_ Window) MiniwindowImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("miniwindowImage"))
 	return rv
 }
-
 
 // SetMiniwindowImage sets the value of the miniwindowImage property.
 // The custom miniaturized window image of the window.
@@ -2399,6 +2399,7 @@ func (w_ Window) MiniwindowImage() unsafe.Pointer {
 func (w_ Window) SetMiniwindowImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMiniwindowImage:"), value)
 }
+
 // The title displayed in the window’s minimized window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/miniwindowTitle
@@ -2406,7 +2407,6 @@ func (w_ Window) MiniwindowTitle() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("miniwindowTitle"))
 	return rv
 }
-
 
 // SetMiniwindowTitle sets the value of the miniwindowTitle property.
 // The title displayed in the window’s minimized window.
@@ -2416,6 +2416,7 @@ func (w_ Window) MiniwindowTitle() string {
 func (w_ Window) SetMiniwindowTitle(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMiniwindowTitle:"), objc.String(value))
 }
+
 // The current location of the pointer reckoned in the window’s base coordinate system, regardless of the current event being handled or of any events pending.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/mouseLocationOutsideOfEventStream
@@ -2440,7 +2441,6 @@ func (w_ Window) OrderedIndex() int {
 	return rv
 }
 
-
 // SetOrderedIndex sets the value of the orderedIndex property.
 // The zero-based position of the window, based on its order from front to back among all visible application windows.
 
@@ -2449,6 +2449,7 @@ func (w_ Window) OrderedIndex() int {
 func (w_ Window) SetOrderedIndex(value int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOrderedIndex:"), value)
 }
+
 // The parent window to which the window is attached as a child.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/parent
@@ -2456,7 +2457,6 @@ func (w_ Window) ParentWindow() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("parentWindow"))
 	return rv
 }
-
 
 // SetParentWindow sets the value of the parentWindow property.
 // The parent window to which the window is attached as a child.
@@ -2466,6 +2466,7 @@ func (w_ Window) ParentWindow() unsafe.Pointer {
 func (w_ Window) SetParentWindow(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setParentWindow:"), value)
 }
+
 // A Boolean value that indicates the preferred location for the window’s backing store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preferredBackingLocation
@@ -2473,7 +2474,6 @@ func (w_ Window) PreferredBackingLocation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferredBackingLocation"))
 	return rv
 }
-
 
 // SetPreferredBackingLocation sets the value of the preferredBackingLocation property.
 // A Boolean value that indicates the preferred location for the window’s backing store.
@@ -2483,6 +2483,7 @@ func (w_ Window) PreferredBackingLocation() unsafe.Pointer {
 func (w_ Window) SetPreferredBackingLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredBackingLocation:"), value)
 }
+
 // A Boolean value that indicates whether the window tries to optimize user-initiated resize operations by preserving the content of views that have not changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preservesContentDuringLiveResize
@@ -2490,7 +2491,6 @@ func (w_ Window) PreservesContentDuringLiveResize() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("preservesContentDuringLiveResize"))
 	return rv
 }
-
 
 // SetPreservesContentDuringLiveResize sets the value of the preservesContentDuringLiveResize property.
 // A Boolean value that indicates whether the window tries to optimize user-initiated resize operations by preserving the content of views that have not changed.
@@ -2500,6 +2500,7 @@ func (w_ Window) PreservesContentDuringLiveResize() bool {
 func (w_ Window) SetPreservesContentDuringLiveResize(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreservesContentDuringLiveResize:"), value)
 }
+
 // A Boolean value that indicates whether the window prevents application termination when modal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preventsApplicationTerminationWhenModal
@@ -2507,7 +2508,6 @@ func (w_ Window) PreventsApplicationTerminationWhenModal() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("preventsApplicationTerminationWhenModal"))
 	return rv
 }
-
 
 // SetPreventsApplicationTerminationWhenModal sets the value of the preventsApplicationTerminationWhenModal property.
 // A Boolean value that indicates whether the window prevents application termination when modal.
@@ -2517,6 +2517,7 @@ func (w_ Window) PreventsApplicationTerminationWhenModal() bool {
 func (w_ Window) SetPreventsApplicationTerminationWhenModal(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreventsApplicationTerminationWhenModal:"), value)
 }
+
 // The path to the file of the window’s represented file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedFilename
@@ -2524,7 +2525,6 @@ func (w_ Window) RepresentedFilename() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("representedFilename"))
 	return rv
 }
-
 
 // SetRepresentedFilename sets the value of the representedFilename property.
 // The path to the file of the window’s represented file.
@@ -2534,6 +2534,7 @@ func (w_ Window) RepresentedFilename() string {
 func (w_ Window) SetRepresentedFilename(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRepresentedFilename:"), objc.String(value))
 }
+
 // The URL of the file the window represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedURL
@@ -2541,7 +2542,6 @@ func (w_ Window) RepresentedURL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("representedURL"))
 	return rv
 }
-
 
 // SetRepresentedURL sets the value of the representedURL property.
 // The URL of the file the window represents.
@@ -2551,6 +2551,7 @@ func (w_ Window) RepresentedURL() unsafe.Pointer {
 func (w_ Window) SetRepresentedURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRepresentedURL:"), value)
 }
+
 // The flags field of the event record for the mouse-down event that initiated the resizing session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/resizeFlags
@@ -2567,7 +2568,6 @@ func (w_ Window) ResizeIncrements() coregraphics.CGSize {
 	return rv
 }
 
-
 // SetResizeIncrements sets the value of the resizeIncrements property.
 // The window’s resizing increments.
 
@@ -2576,6 +2576,7 @@ func (w_ Window) ResizeIncrements() coregraphics.CGSize {
 func (w_ Window) SetResizeIncrements(value coregraphics.CGSize) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setResizeIncrements:"), value)
 }
+
 // The restoration class associated with the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/restorationClass
@@ -2583,7 +2584,6 @@ func (w_ Window) RestorationClass() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("restorationClass"))
 	return rv
 }
-
 
 // SetRestorationClass sets the value of the restorationClass property.
 // The restoration class associated with the window.
@@ -2593,6 +2593,7 @@ func (w_ Window) RestorationClass() unsafe.Pointer {
 func (w_ Window) SetRestorationClass(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRestorationClass:"), value)
 }
+
 // The screen the window is on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/screen
@@ -2609,7 +2610,6 @@ func (w_ Window) SharingType() unsafe.Pointer {
 	return rv
 }
 
-
 // SetSharingType sets the value of the sharingType property.
 // A Boolean value that indicates the level of access other processes have to the window’s content.
 
@@ -2618,6 +2618,7 @@ func (w_ Window) SharingType() unsafe.Pointer {
 func (w_ Window) SetSharingType(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setSharingType:"), value)
 }
+
 // The window to which the sheet is attached.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sheetParent
@@ -2642,7 +2643,6 @@ func (w_ Window) ShowsResizeIndicator() bool {
 	return rv
 }
 
-
 // SetShowsResizeIndicator sets the value of the showsResizeIndicator property.
 // A Boolean value that indicates whether the window’s resize indicator is visible.
 
@@ -2651,6 +2651,7 @@ func (w_ Window) ShowsResizeIndicator() bool {
 func (w_ Window) SetShowsResizeIndicator(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setShowsResizeIndicator:"), value)
 }
+
 // A Boolean value that indicates whether the toolbar control button is currently displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/showsToolbarButton
@@ -2658,7 +2659,6 @@ func (w_ Window) ShowsToolbarButton() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("showsToolbarButton"))
 	return rv
 }
-
 
 // SetShowsToolbarButton sets the value of the showsToolbarButton property.
 // A Boolean value that indicates whether the toolbar control button is currently displayed.
@@ -2668,6 +2668,7 @@ func (w_ Window) ShowsToolbarButton() bool {
 func (w_ Window) SetShowsToolbarButton(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setShowsToolbarButton:"), value)
 }
+
 // Flags that describe the window’s current style, such as if it’s resizable or in full-screen mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/styleMask-swift.property
@@ -2675,7 +2676,6 @@ func (w_ Window) StyleMask() WindowStyleMask {
 	rv := objc.Send[WindowStyleMask](w_.ID, objc.Sel("styleMask"))
 	return rv
 }
-
 
 // SetStyleMask sets the value of the styleMask property.
 // Flags that describe the window’s current style, such as if it’s resizable or in full-screen mode.
@@ -2685,6 +2685,7 @@ func (w_ Window) StyleMask() WindowStyleMask {
 func (w_ Window) SetStyleMask(value WindowStyleMask) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setStyleMask:"), value)
 }
+
 // A secondary line of text that appears in the title bar of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/subtitle
@@ -2692,7 +2693,6 @@ func (w_ Window) Subtitle() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("subtitle"))
 	return rv
 }
-
 
 // SetSubtitle sets the value of the subtitle property.
 // A secondary line of text that appears in the title bar of the window.
@@ -2702,6 +2702,7 @@ func (w_ Window) Subtitle() string {
 func (w_ Window) SetSubtitle(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
+
 // An object that represents information about a window when it displays as a tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tab
@@ -2734,7 +2735,6 @@ func (w_ Window) TabbingIdentifier() unsafe.Pointer {
 	return rv
 }
 
-
 // SetTabbingIdentifier sets the value of the tabbingIdentifier property.
 // A value that allows a group of related windows.
 
@@ -2743,6 +2743,7 @@ func (w_ Window) TabbingIdentifier() unsafe.Pointer {
 func (w_ Window) SetTabbingIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTabbingIdentifier:"), value)
 }
+
 // A value that indicates when a window displays tabs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabbingMode-swift.property
@@ -2750,7 +2751,6 @@ func (w_ Window) TabbingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tabbingMode"))
 	return rv
 }
-
 
 // SetTabbingMode sets the value of the tabbingMode property.
 // A value that indicates when a window displays tabs.
@@ -2760,6 +2760,7 @@ func (w_ Window) TabbingMode() unsafe.Pointer {
 func (w_ Window) SetTabbingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTabbingMode:"), value)
 }
+
 // The string that appears in the title bar of the window or the path to the represented file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/title
@@ -2767,7 +2768,6 @@ func (w_ Window) Title() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("title"))
 	return rv
 }
-
 
 // SetTitle sets the value of the title property.
 // The string that appears in the title bar of the window or the path to the represented file.
@@ -2777,6 +2777,7 @@ func (w_ Window) Title() string {
 func (w_ Window) SetTitle(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 // A value that indicates the visibility of the window’s title and title bar buttons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titleVisibility-swift.property
@@ -2784,7 +2785,6 @@ func (w_ Window) TitleVisibility() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("titleVisibility"))
 	return rv
 }
-
 
 // SetTitleVisibility sets the value of the titleVisibility property.
 // A value that indicates the visibility of the window’s title and title bar buttons.
@@ -2794,6 +2794,7 @@ func (w_ Window) TitleVisibility() unsafe.Pointer {
 func (w_ Window) SetTitleVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitleVisibility:"), value)
 }
+
 // An array of title bar accessory view controllers that are currently added to the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAccessoryViewControllers
@@ -2801,7 +2802,6 @@ func (w_ Window) TitlebarAccessoryViewControllers() []TitlebarAccessoryViewContr
 	rv := objc.Send[[]TitlebarAccessoryViewController](w_.ID, objc.Sel("titlebarAccessoryViewControllers"))
 	return rv
 }
-
 
 // SetTitlebarAccessoryViewControllers sets the value of the titlebarAccessoryViewControllers property.
 // An array of title bar accessory view controllers that are currently added to the window.
@@ -2821,6 +2821,7 @@ func (w_ Window) SetTitlebarAccessoryViewControllers(value []TitlebarAccessoryVi
 	}
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitlebarAccessoryViewControllers:"), nsArray)
 }
+
 // A Boolean value that indicates whether the title bar draws its background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAppearsTransparent
@@ -2828,7 +2829,6 @@ func (w_ Window) TitlebarAppearsTransparent() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("titlebarAppearsTransparent"))
 	return rv
 }
-
 
 // SetTitlebarAppearsTransparent sets the value of the titlebarAppearsTransparent property.
 // A Boolean value that indicates whether the title bar draws its background.
@@ -2838,6 +2838,7 @@ func (w_ Window) TitlebarAppearsTransparent() bool {
 func (w_ Window) SetTitlebarAppearsTransparent(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitlebarAppearsTransparent:"), value)
 }
+
 // The type of separator that the app displays between the title bar and content of a window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarSeparatorStyle
@@ -2845,7 +2846,6 @@ func (w_ Window) TitlebarSeparatorStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("titlebarSeparatorStyle"))
 	return rv
 }
-
 
 // SetTitlebarSeparatorStyle sets the value of the titlebarSeparatorStyle property.
 // The type of separator that the app displays between the title bar and content of a window.
@@ -2855,6 +2855,7 @@ func (w_ Window) TitlebarSeparatorStyle() unsafe.Pointer {
 func (w_ Window) SetTitlebarSeparatorStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitlebarSeparatorStyle:"), value)
 }
+
 // The window’s toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toolbar
@@ -2862,7 +2863,6 @@ func (w_ Window) Toolbar() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("toolbar"))
 	return rv
 }
-
 
 // SetToolbar sets the value of the toolbar property.
 // The window’s toolbar.
@@ -2872,6 +2872,7 @@ func (w_ Window) Toolbar() unsafe.Pointer {
 func (w_ Window) SetToolbar(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolbar:"), value)
 }
+
 // The style that determines the appearance and location of the toolbar in relation to the title bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toolbarStyle-swift.property
@@ -2879,7 +2880,6 @@ func (w_ Window) ToolbarStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("toolbarStyle"))
 	return rv
 }
-
 
 // SetToolbarStyle sets the value of the toolbarStyle property.
 // The style that determines the appearance and location of the toolbar in relation to the title bar.
@@ -2889,6 +2889,7 @@ func (w_ Window) ToolbarStyle() unsafe.Pointer {
 func (w_ Window) SetToolbarStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolbarStyle:"), value)
 }
+
 // A value that indicates the user’s preference for window tabbing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/userTabbingPreference-swift.type.property
@@ -2905,7 +2906,6 @@ func (w_ Window) ViewsNeedDisplay() bool {
 	return rv
 }
 
-
 // SetViewsNeedDisplay sets the value of the viewsNeedDisplay property.
 // A Boolean value that indicates whether any of the window’s views need to be displayed.
 
@@ -2914,6 +2914,7 @@ func (w_ Window) ViewsNeedDisplay() bool {
 func (w_ Window) SetViewsNeedDisplay(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setViewsNeedDisplay:"), value)
 }
+
 // The window’s window controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowController
@@ -2921,7 +2922,6 @@ func (w_ Window) WindowController() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowController"))
 	return rv
 }
-
 
 // SetWindowController sets the value of the windowController property.
 // The window’s window controller.
@@ -2931,6 +2931,7 @@ func (w_ Window) WindowController() unsafe.Pointer {
 func (w_ Window) SetWindowController(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowController:"), value)
 }
+
 // The window number of the window’s window device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumber
@@ -2954,5 +2955,3 @@ func (w_ Window) WorksWhenModal() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("worksWhenModal"))
 	return rv
 }
-
-

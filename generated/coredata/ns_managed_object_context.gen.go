@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ManagedObjectContext] class.
@@ -376,8 +377,8 @@ func (m_ ManagedObjectContext) SetMergePolicy(value objc.ID) {
 // The developer-provided name of the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/name
-func (m_ ManagedObjectContext) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ ManagedObjectContext) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -387,8 +388,8 @@ func (m_ ManagedObjectContext) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/name
-func (m_ ManagedObjectContext) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ ManagedObjectContext) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The persistent store coordinator of the context.
 //
@@ -494,8 +495,8 @@ func (m_ ManagedObjectContext) SetStalenessInterval(value TimeInterval) {
 // The author for the context that is used as an identifier in persistent history transactions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/transactionAuthor
-func (m_ ManagedObjectContext) TransactionAuthor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transactionAuthor"))
+func (m_ ManagedObjectContext) TransactionAuthor() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("transactionAuthor"))
 	return rv
 }
 
@@ -505,8 +506,8 @@ func (m_ ManagedObjectContext) TransactionAuthor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/transactionAuthor
-func (m_ ManagedObjectContext) SetTransactionAuthor(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransactionAuthor:"), value)
+func (m_ ManagedObjectContext) SetTransactionAuthor(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransactionAuthor:"), objc.String(value))
 }
 // The set of objects registered with the context that have uncommitted changes.
 //

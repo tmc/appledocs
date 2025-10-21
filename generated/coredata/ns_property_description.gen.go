@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PropertyDescription] class.
@@ -184,8 +185,8 @@ func (p_ PropertyDescription) SetTransient(value bool) {
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/name
-func (p_ PropertyDescription) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("name"))
+func (p_ PropertyDescription) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -195,14 +196,14 @@ func (p_ PropertyDescription) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/name
-func (p_ PropertyDescription) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+func (p_ PropertyDescription) SetName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The renaming identifier for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/renamingIdentifier
-func (p_ PropertyDescription) RenamingIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("renamingIdentifier"))
+func (p_ PropertyDescription) RenamingIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("renamingIdentifier"))
 	return rv
 }
 
@@ -212,8 +213,8 @@ func (p_ PropertyDescription) RenamingIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/renamingIdentifier
-func (p_ PropertyDescription) SetRenamingIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRenamingIdentifier:"), value)
+func (p_ PropertyDescription) SetRenamingIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRenamingIdentifier:"), objc.String(value))
 }
 // The user info dictionary of the receiver.
 //
@@ -259,8 +260,8 @@ func (p_ PropertyDescription) VersionHash() unsafe.Pointer {
 // The version hash modifier for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHashModifier
-func (p_ PropertyDescription) VersionHashModifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("versionHashModifier"))
+func (p_ PropertyDescription) VersionHashModifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("versionHashModifier"))
 	return rv
 }
 
@@ -270,8 +271,8 @@ func (p_ PropertyDescription) VersionHashModifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHashModifier
-func (p_ PropertyDescription) SetVersionHashModifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHashModifier:"), value)
+func (p_ PropertyDescription) SetVersionHashModifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHashModifier:"), objc.String(value))
 }
 
 

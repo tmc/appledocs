@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AXBrailleTranslationResult] class.
@@ -89,8 +90,8 @@ func (a_ AXBrailleTranslationResult) LocationMap() []NSNumber {
 // The resulting string after translation or back-translation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/resultString
-func (a_ AXBrailleTranslationResult) ResultString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("resultString"))
+func (a_ AXBrailleTranslationResult) ResultString() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("resultString"))
 	return rv
 }
 

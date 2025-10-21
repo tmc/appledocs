@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNContainer] class.
@@ -107,16 +108,16 @@ func (cc _CNContainerClass) PredicateForContainersWithIdentifiers(identifiers un
 // The unique identifier for a contacts container on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/identifier
-func (c_ CNContainer) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+func (c_ CNContainer) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The name of the container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/name
-func (c_ CNContainer) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("name"))
+func (c_ CNContainer) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 

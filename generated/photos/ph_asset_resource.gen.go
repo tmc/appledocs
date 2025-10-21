@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
@@ -100,8 +101,8 @@ func (pc _PHAssetResourceClass) AssetResourcesForLivePhoto(livePhoto unsafe.Poin
 // The unique identifier the system associates for a local asset object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/assetLocalIdentifier
-func (p_ PHAssetResource) AssetLocalIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("assetLocalIdentifier"))
+func (p_ PHAssetResource) AssetLocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("assetLocalIdentifier"))
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (p_ PHAssetResource) ContentType() uniformtypeidentifiers.UTType {
 // The original filename of the asset resource from when it was created or imported.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/originalFilename
-func (p_ PHAssetResource) OriginalFilename() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("originalFilename"))
+func (p_ PHAssetResource) OriginalFilename() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("originalFilename"))
 	return rv
 }
 
@@ -148,8 +149,8 @@ func (p_ PHAssetResource) Type() unsafe.Pointer {
 // The uniform type identifier for the asset resource’s image or video data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/uniformTypeIdentifier
-func (p_ PHAssetResource) UniformTypeIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("uniformTypeIdentifier"))
+func (p_ PHAssetResource) UniformTypeIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("uniformTypeIdentifier"))
 	return rv
 }
 

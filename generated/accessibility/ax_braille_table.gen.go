@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AXBrailleTable] class.
@@ -100,16 +101,16 @@ func (ac _AXBrailleTableClass) TablesForLocale(locale unsafe.Pointer) unsafe.Poi
 // The localized name of the provider of this table for user display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTable/localizedProviderName
-func (a_ AXBrailleTable) LocalizedProviderName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("localizedProviderName"))
+func (a_ AXBrailleTable) LocalizedProviderName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("localizedProviderName"))
 	return rv
 }
 
 // The identifier of the provider of this table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTable/providerIdentifier
-func (a_ AXBrailleTable) ProviderIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("providerIdentifier"))
+func (a_ AXBrailleTable) ProviderIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("providerIdentifier"))
 	return rv
 }
 

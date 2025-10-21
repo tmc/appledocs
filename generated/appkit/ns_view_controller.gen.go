@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ViewController] class.
@@ -95,7 +95,6 @@ func NewViewController() ViewController {
 	return getViewControllerClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(coder:)
 func NewViewControllerWithCoder(coder unsafe.Pointer) ViewController {
@@ -114,7 +113,6 @@ func NewViewControllerWithNibNameBundle(nibNameOrNil unsafe.Pointer, nibBundleOr
 	rv.Autorelease()
 	return rv
 }
-
 
 // Attempt to commit any currently edited results of the receiver.
 //
@@ -235,7 +233,6 @@ func (v_ ViewController) View() unsafe.Pointer {
 	return rv
 }
 
-
 // SetView sets the value of the view property.
 // The view controller’s primary view.
 
@@ -244,4 +241,3 @@ func (v_ ViewController) View() unsafe.Pointer {
 func (v_ ViewController) SetView(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setView:"), value)
 }
-

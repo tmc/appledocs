@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ModelConfiguration] class.
@@ -117,8 +118,8 @@ func (m_ ModelConfiguration) SetComputeUnits(value unsafe.Pointer) {
 // Function name that will use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
-func (m_ ModelConfiguration) FunctionName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("functionName"))
+func (m_ ModelConfiguration) FunctionName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("functionName"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (m_ ModelConfiguration) FunctionName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
-func (m_ ModelConfiguration) SetFunctionName(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), value)
+func (m_ ModelConfiguration) SetFunctionName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), objc.String(value))
 }
 // A group of hints for CoreML to optimize
 //

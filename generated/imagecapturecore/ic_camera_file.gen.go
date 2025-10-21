@@ -89,8 +89,8 @@ func (i_ ICCameraFile) RequestSecurityScopedURLWithCompletion(completion unsafe.
 // The burst UUID of the file if it is in a burst.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFile/burstUUID
-func (i_ ICCameraFile) BurstUUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("burstUUID"))
+func (i_ ICCameraFile) BurstUUID() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("burstUUID"))
 	return rv
 }
 

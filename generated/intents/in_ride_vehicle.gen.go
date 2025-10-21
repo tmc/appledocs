@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INRideVehicle] class.
@@ -100,8 +101,8 @@ func (i_ INRideVehicle) SetLocation(value unsafe.Pointer) {
 // The name of the vehicle’s manufacturer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/manufacturer
-func (i_ INRideVehicle) Manufacturer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("manufacturer"))
+func (i_ INRideVehicle) Manufacturer() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("manufacturer"))
 	return rv
 }
 
@@ -111,8 +112,8 @@ func (i_ INRideVehicle) Manufacturer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/manufacturer
-func (i_ INRideVehicle) SetManufacturer(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setManufacturer:"), value)
+func (i_ INRideVehicle) SetManufacturer(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setManufacturer:"), objc.String(value))
 }
 // The image to use for the vehicle when displaying its position on the map.
 //
@@ -134,8 +135,8 @@ func (i_ INRideVehicle) SetMapAnnotationImage(value unsafe.Pointer) {
 // The model of the vehicle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/model
-func (i_ INRideVehicle) Model() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("model"))
+func (i_ INRideVehicle) Model() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("model"))
 	return rv
 }
 
@@ -145,14 +146,14 @@ func (i_ INRideVehicle) Model() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/model
-func (i_ INRideVehicle) SetModel(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setModel:"), value)
+func (i_ INRideVehicle) SetModel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setModel:"), objc.String(value))
 }
 // The text on the license plate or registration plate of the vehicle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/registrationPlate
-func (i_ INRideVehicle) RegistrationPlate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("registrationPlate"))
+func (i_ INRideVehicle) RegistrationPlate() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("registrationPlate"))
 	return rv
 }
 
@@ -162,8 +163,8 @@ func (i_ INRideVehicle) RegistrationPlate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/registrationPlate
-func (i_ INRideVehicle) SetRegistrationPlate(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRegistrationPlate:"), value)
+func (i_ INRideVehicle) SetRegistrationPlate(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRegistrationPlate:"), objc.String(value))
 }
 
 

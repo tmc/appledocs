@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MEMessage] class.
@@ -112,8 +113,8 @@ func (m_ MEMessage) Headers() unsafe.Pointer {
 // The subject of the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/subject
-func (m_ MEMessage) Subject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("subject"))
+func (m_ MEMessage) Subject() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("subject"))
 	return rv
 }
 

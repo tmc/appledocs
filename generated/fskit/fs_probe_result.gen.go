@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FSProbeResult] class.
@@ -129,8 +130,8 @@ func (f_ FSProbeResult) ContainerID() unsafe.Pointer {
 // The resource name, as found during the probe operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/name
-func (f_ FSProbeResult) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("name"))
+func (f_ FSProbeResult) Name() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("name"))
 	return rv
 }
 

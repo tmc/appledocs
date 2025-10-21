@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Event] class.
@@ -81,7 +81,6 @@ func NewEvent() Event {
 	return getEventClass().New()
 }
 
-
 // Installs an event monitor that receives copies of events the system posts to this app prior to their dispatch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/addLocalMonitorForEvents(matching:handler:)
@@ -97,6 +96,7 @@ func (ec _EventClass) MouseLocation() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](objc.ID(ec.class), objc.Sel("mouseLocation"))
 	return rv
 }
+
 // Returns the location of the receiver in the coordinate system of the given node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/location(in:)
@@ -168,6 +168,3 @@ func (e_ Event) WindowNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("windowNumber"))
 	return rv
 }
-
-
-

@@ -79,7 +79,6 @@ func NewPDFPanel() PDFPanel {
 	return getPDFPanelClass().New()
 }
 
-
 // Returns a new object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel/panel
@@ -87,6 +86,3 @@ func (pc _PDFPanelClass) Panel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("panel"))
 	return rv
 }
-
-
-

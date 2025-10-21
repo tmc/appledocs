@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRDeviceEnergyManagementModeClusterModeOptionStruct] class.
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementModeClusterModeOptionStruct() MTRDeviceEnergyMa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/label
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("label"))
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -86,8 +87,8 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Label() unsafe.Po
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/label
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/mode

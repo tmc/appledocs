@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TurnBasedExchange] class.
@@ -83,8 +84,8 @@ func NewTurnBasedExchange() TurnBasedExchange {
 // The identifier for the exchange request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchange/exchangeID
-func (t_ TurnBasedExchange) ExchangeID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("exchangeID"))
+func (t_ TurnBasedExchange) ExchangeID() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("exchangeID"))
 	return rv
 }
 

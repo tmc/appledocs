@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INParameter] class.
@@ -134,8 +135,8 @@ func (i_ INParameter) ParameterClass() objc.Class {
 // The key path to a property of an interaction object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INParameter/parameterKeyPath
-func (i_ INParameter) ParameterKeyPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("parameterKeyPath"))
+func (i_ INParameter) ParameterKeyPath() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("parameterKeyPath"))
 	return rv
 }
 

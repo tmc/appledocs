@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PaymentTransaction] class.
@@ -123,8 +124,8 @@ func (p_ PaymentTransaction) TransactionDate() unsafe.Pointer {
 // A string that uniquely identifies a successful payment transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentTransaction/transactionIdentifier
-func (p_ PaymentTransaction) TransactionIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionIdentifier"))
+func (p_ PaymentTransaction) TransactionIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("transactionIdentifier"))
 	return rv
 }
 

@@ -9,18 +9,6 @@ import (
 // Suppress unused import errors
 var _ = uniformtypeidentifiers.NewUTType
 
-
-// ExampleNewUTTypeExportedTypeWithIdentifier demonstrates how to create a UTType instance using NewUTTypeExportedTypeWithIdentifier.
-// Creates a type your app owns based on an identifier.
-func ExampleNewUTTypeExportedTypeWithIdentifier() {
-	_ = uniformtypeidentifiers.NewUTTypeExportedTypeWithIdentifier(
-		"identifier", // identifier string
-	)
-	// Output:
-}
-
-
-
 // ExampleNewUTTypeWithMIMEType demonstrates how to create a UTType instance using NewUTTypeWithMIMEType.
 // Creates a type based on a MIME type.
 func ExampleNewUTTypeWithMIMEType() {
@@ -30,11 +18,28 @@ func ExampleNewUTTypeWithMIMEType() {
 	// Output:
 }
 
-
 // ExampleNewUTTypeWithIdentifier demonstrates how to create a UTType instance using NewUTTypeWithIdentifier.
 // Creates a type based on an identifier.
 func ExampleNewUTTypeWithIdentifier() {
 	_ = uniformtypeidentifiers.NewUTTypeWithIdentifier(
+		"identifier", // identifier string
+	)
+	// Output:
+}
+
+// ExampleNewUTTypeImportedTypeWithIdentifier demonstrates how to create a UTType instance using NewUTTypeImportedTypeWithIdentifier.
+// Creates a type your app uses, but doesn’t own, based on an identifier.
+func ExampleNewUTTypeImportedTypeWithIdentifier() {
+	_ = uniformtypeidentifiers.NewUTTypeImportedTypeWithIdentifier(
+		"identifier", // identifier string
+	)
+	// Output:
+}
+
+// ExampleNewUTTypeExportedTypeWithIdentifier demonstrates how to create a UTType instance using NewUTTypeExportedTypeWithIdentifier.
+// Creates a type your app owns based on an identifier.
+func ExampleNewUTTypeExportedTypeWithIdentifier() {
+	_ = uniformtypeidentifiers.NewUTTypeExportedTypeWithIdentifier(
 		"identifier", // identifier string
 	)
 	// Output:
@@ -48,15 +53,3 @@ func ExampleNewUTTypeWithFilenameExtension() {
 	)
 	// Output:
 }
-
-
-// ExampleNewUTTypeImportedTypeWithIdentifier demonstrates how to create a UTType instance using NewUTTypeImportedTypeWithIdentifier.
-// Creates a type your app uses, but doesn’t own, based on an identifier.
-func ExampleNewUTTypeImportedTypeWithIdentifier() {
-	_ = uniformtypeidentifiers.NewUTTypeImportedTypeWithIdentifier(
-		"identifier", // identifier string
-	)
-	// Output:
-}
-
-

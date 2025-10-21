@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Image] class.
@@ -89,6 +89,13 @@ func NewImage() Image {
 	return getImageClass().New()
 }
 
+// Creates a symbol image with the system symbol name and accessibility description you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)
+func NewImageWithSystemSymbolNameAccessibilityDescription(name string, description string) Image {
+	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), objc.String(name), objc.String(description))
+	return rv
+}
 
 // Creates a new image using the contents of the provided image.
 //
@@ -125,15 +132,6 @@ func NewImageWithSymbolNameVariableValue(name string, value unsafe.Pointer) Imag
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSymbolName:variableValue:"), objc.String(name), value)
 	return rv
 }
-
-// Creates a symbol image with the system symbol name and accessibility description you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)
-func NewImageWithSystemSymbolNameAccessibilityDescription(name string, description string) Image {
-	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), objc.String(name), objc.String(description))
-	return rv
-}
-
 
 // Returns the image object associated with the specified name.
 //
@@ -233,7 +231,6 @@ func (i_ Image) AlignmentRect() coregraphics.CGRect {
 	return rv
 }
 
-
 // SetAlignmentRect sets the value of the alignmentRect property.
 // A rectangle that you can use to position the image during layout.
 
@@ -242,6 +239,7 @@ func (i_ Image) AlignmentRect() coregraphics.CGRect {
 func (i_ Image) SetAlignmentRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAlignmentRect:"), value)
 }
+
 // The cap insets for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/capInsets
@@ -249,7 +247,6 @@ func (i_ Image) CapInsets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("capInsets"))
 	return rv
 }
-
 
 // SetCapInsets sets the value of the capInsets property.
 // The cap insets for the image.
@@ -259,4 +256,3 @@ func (i_ Image) CapInsets() unsafe.Pointer {
 func (i_ Image) SetCapInsets(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCapInsets:"), value)
 }
-

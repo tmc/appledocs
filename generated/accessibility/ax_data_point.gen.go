@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AXDataPoint] class.
@@ -156,8 +157,8 @@ func (a_ AXDataPoint) SetAttributedLabel(value unsafe.Pointer) {
 // The label for the data point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/label
-func (a_ AXDataPoint) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("label"))
+func (a_ AXDataPoint) Label() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -167,8 +168,8 @@ func (a_ AXDataPoint) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/label
-func (a_ AXDataPoint) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), value)
+func (a_ AXDataPoint) SetLabel(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 // The value of the x-axis for the data point.
 //

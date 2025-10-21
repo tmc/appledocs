@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [GraphicsContext] class.
@@ -81,7 +81,6 @@ func NewGraphicsContext() GraphicsContext {
 	return getGraphicsContextClass().New()
 }
 
-
 // Creates a graphics context using the specified attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(attributes:)
@@ -97,7 +96,6 @@ func NewGraphicsContextWithBitmapImageRep(bitmapRep unsafe.Pointer) GraphicsCont
 	rv := objc.Send[GraphicsContext](objc.ID(getGraphicsContextClass().class), objc.Sel("graphicsContextWithBitmapImageRep:"), bitmapRep)
 	return rv
 }
-
 
 // Creates a graphics context using the specified attributes.
 //
@@ -136,6 +134,7 @@ func (gc _GraphicsContextClass) CurrentContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("currentContext"))
 	return rv
 }
+
 // Saves the current graphics state and creates a new graphics state on the top of the stack.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.method
@@ -167,7 +166,6 @@ func (g_ GraphicsContext) ColorRenderingIntent() unsafe.Pointer {
 	return rv
 }
 
-
 // SetColorRenderingIntent sets the value of the colorRenderingIntent property.
 // The color rendering intent in the graphics context’s graphics state.
 
@@ -176,6 +174,7 @@ func (g_ GraphicsContext) ColorRenderingIntent() unsafe.Pointer {
 func (g_ GraphicsContext) SetColorRenderingIntent(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColorRenderingIntent:"), value)
 }
+
 // The graphics context’s global compositing operation setting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/compositingOperation
@@ -183,7 +182,6 @@ func (g_ GraphicsContext) CompositingOperation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("compositingOperation"))
 	return rv
 }
-
 
 // SetCompositingOperation sets the value of the compositingOperation property.
 // The graphics context’s global compositing operation setting.
@@ -193,6 +191,7 @@ func (g_ GraphicsContext) CompositingOperation() unsafe.Pointer {
 func (g_ GraphicsContext) SetCompositingOperation(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompositingOperation:"), value)
 }
+
 // Returns the current graphics context of the current thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/current
@@ -200,7 +199,6 @@ func (g_ GraphicsContext) CurrentContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("currentContext"))
 	return rv
 }
-
 
 // SetCurrentContext sets the value of the currentContext property.
 // Returns the current graphics context of the current thread.
@@ -210,6 +208,7 @@ func (g_ GraphicsContext) CurrentContext() unsafe.Pointer {
 func (g_ GraphicsContext) SetCurrentContext(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCurrentContext:"), value)
 }
+
 // A Boolean value that indicates whether the drawing destination is the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/isDrawingToScreen
@@ -234,7 +233,6 @@ func (g_ GraphicsContext) PatternPhase() coregraphics.CGPoint {
 	return rv
 }
 
-
 // SetPatternPhase sets the value of the patternPhase property.
 // The amount to offset the pattern color when filling the graphics context.
 
@@ -243,4 +241,3 @@ func (g_ GraphicsContext) PatternPhase() coregraphics.CGPoint {
 func (g_ GraphicsContext) SetPatternPhase(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPatternPhase:"), value)
 }
-

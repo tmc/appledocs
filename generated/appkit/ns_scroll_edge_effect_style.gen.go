@@ -76,7 +76,3 @@ func (s_ ScrollEdgeEffectStyle) Autorelease() ScrollEdgeEffectStyle {
 func NewScrollEdgeEffectStyle() ScrollEdgeEffectStyle {
 	return getScrollEdgeEffectStyleClass().New()
 }
-
-
-
-

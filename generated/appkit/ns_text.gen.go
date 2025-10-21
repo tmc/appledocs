@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Text] class.
@@ -113,16 +113,6 @@ func NewText() Text {
 	return getTextClass().New()
 }
 
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(frame:)
-func NewTextWithFrame(frameRect coregraphics.CGRect) Text {
-	instance := getTextClass().Alloc()
-	rv := objc.Send[Text](instance.ID, objc.Sel("initWithFrame:"), frameRect)
-	rv.Autorelease()
-	return rv
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
 func NewTextWithCoder(coder unsafe.Pointer) Text {
@@ -132,6 +122,14 @@ func NewTextWithCoder(coder unsafe.Pointer) Text {
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(frame:)
+func NewTextWithFrame(frameRect coregraphics.CGRect) Text {
+	instance := getTextClass().Alloc()
+	rv := objc.Send[Text](instance.ID, objc.Sel("initWithFrame:"), frameRect)
+	rv.Autorelease()
+	return rv
+}
 
 // This action method applies center alignment to selected paragraphs (or all text if the receiver is a plain text object).
 //
@@ -362,7 +360,6 @@ func (t_ Text) Alignment() unsafe.Pointer {
 	return rv
 }
 
-
 // SetAlignment sets the value of the alignment property.
 // The alignment of all the receiver’s text.
 
@@ -371,6 +368,7 @@ func (t_ Text) Alignment() unsafe.Pointer {
 func (t_ Text) SetAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignment:"), value)
 }
+
 // The receiver’s background color to a given color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/backgroundColor
@@ -378,7 +376,6 @@ func (t_ Text) BackgroundColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
-
 
 // SetBackgroundColor sets the value of the backgroundColor property.
 // The receiver’s background color to a given color.
@@ -388,6 +385,7 @@ func (t_ Text) BackgroundColor() unsafe.Pointer {
 func (t_ Text) SetBackgroundColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
+
 // The initial writing direction used to determine the actual writing direction for text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/baseWritingDirection
@@ -395,7 +393,6 @@ func (t_ Text) BaseWritingDirection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
-
 
 // SetBaseWritingDirection sets the value of the baseWritingDirection property.
 // The initial writing direction used to determine the actual writing direction for text.
@@ -405,6 +402,7 @@ func (t_ Text) BaseWritingDirection() unsafe.Pointer {
 func (t_ Text) SetBaseWritingDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
+
 // The receiver’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/delegate
@@ -412,7 +410,6 @@ func (t_ Text) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
 	return rv
 }
-
 
 // SetDelegate sets the value of the delegate property.
 // The receiver’s delegate.
@@ -422,6 +419,7 @@ func (t_ Text) Delegate() objc.ID {
 func (t_ Text) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean that controls whether the receiver draws its background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/drawsBackground
@@ -429,7 +427,6 @@ func (t_ Text) DrawsBackground() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
-
 
 // SetDrawsBackground sets the value of the drawsBackground property.
 // A Boolean that controls whether the receiver draws its background.
@@ -439,6 +436,7 @@ func (t_ Text) DrawsBackground() bool {
 func (t_ Text) SetDrawsBackground(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDrawsBackground:"), value)
 }
+
 // The font of all the receiver’s text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/font
@@ -446,7 +444,6 @@ func (t_ Text) Font() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("font"))
 	return rv
 }
-
 
 // SetFont sets the value of the font property.
 // The font of all the receiver’s text.
@@ -456,6 +453,7 @@ func (t_ Text) Font() unsafe.Pointer {
 func (t_ Text) SetFont(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFont:"), value)
 }
+
 // A Boolean that controls whether the receiver allows the user to import files by dragging.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/importsGraphics
@@ -463,7 +461,6 @@ func (t_ Text) ImportsGraphics() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("importsGraphics"))
 	return rv
 }
-
 
 // SetImportsGraphics sets the value of the importsGraphics property.
 // A Boolean that controls whether the receiver allows the user to import files by dragging.
@@ -473,6 +470,7 @@ func (t_ Text) ImportsGraphics() bool {
 func (t_ Text) SetImportsGraphics(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImportsGraphics:"), value)
 }
+
 // A Boolean that controls whether the receiver allows the user to edit its text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/isEditable
@@ -480,7 +478,6 @@ func (t_ Text) Editable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("editable"))
 	return rv
 }
-
 
 // SetEditable sets the value of the editable property.
 // A Boolean that controls whether the receiver allows the user to edit its text.
@@ -490,6 +487,7 @@ func (t_ Text) Editable() bool {
 func (t_ Text) SetEditable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditable:"), value)
 }
+
 // A Boolean that controls whether the receiver interprets Tab, Shift-Tab, and Return (Enter) as cues to end editing and possibly to change the first responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/isFieldEditor
@@ -497,7 +495,6 @@ func (t_ Text) FieldEditor() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("fieldEditor"))
 	return rv
 }
-
 
 // SetFieldEditor sets the value of the fieldEditor property.
 // A Boolean that controls whether the receiver interprets Tab, Shift-Tab, and Return (Enter) as cues to end editing and possibly to change the first responder.
@@ -507,6 +504,7 @@ func (t_ Text) FieldEditor() bool {
 func (t_ Text) SetFieldEditor(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFieldEditor:"), value)
 }
+
 // A Boolean that controls whether the receiver changes its width to fit the width of its text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/isHorizontallyResizable
@@ -514,7 +512,6 @@ func (t_ Text) HorizontallyResizable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("horizontallyResizable"))
 	return rv
 }
-
 
 // SetHorizontallyResizable sets the value of the horizontallyResizable property.
 // A Boolean that controls whether the receiver changes its width to fit the width of its text.
@@ -524,6 +521,7 @@ func (t_ Text) HorizontallyResizable() bool {
 func (t_ Text) SetHorizontallyResizable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHorizontallyResizable:"), value)
 }
+
 // A Boolean that controls whether the receiver allows the user to apply attributes to specific ranges of the text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/isRichText
@@ -531,7 +529,6 @@ func (t_ Text) RichText() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("richText"))
 	return rv
 }
-
 
 // SetRichText sets the value of the richText property.
 // A Boolean that controls whether the receiver allows the user to apply attributes to specific ranges of the text.
@@ -541,6 +538,7 @@ func (t_ Text) RichText() bool {
 func (t_ Text) SetRichText(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRichText:"), value)
 }
+
 // A Boolean value that indicates whether the receiver’s enclosing scroll view shows its ruler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/isRulerVisible
@@ -557,7 +555,6 @@ func (t_ Text) Selectable() bool {
 	return rv
 }
 
-
 // SetSelectable sets the value of the selectable property.
 // A Boolean that controls whether the receiver allows the user to select its text.
 
@@ -566,6 +563,7 @@ func (t_ Text) Selectable() bool {
 func (t_ Text) SetSelectable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectable:"), value)
 }
+
 // A Boolean that controls whether the receiver changes its height to fit the height of its text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/isVerticallyResizable
@@ -573,7 +571,6 @@ func (t_ Text) VerticallyResizable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("verticallyResizable"))
 	return rv
 }
-
 
 // SetVerticallyResizable sets the value of the verticallyResizable property.
 // A Boolean that controls whether the receiver changes its height to fit the height of its text.
@@ -583,6 +580,7 @@ func (t_ Text) VerticallyResizable() bool {
 func (t_ Text) SetVerticallyResizable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVerticallyResizable:"), value)
 }
+
 // The receiver’s maximum size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/maxSize
@@ -590,7 +588,6 @@ func (t_ Text) MaxSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("maxSize"))
 	return rv
 }
-
 
 // SetMaxSize sets the value of the maxSize property.
 // The receiver’s maximum size.
@@ -600,6 +597,7 @@ func (t_ Text) MaxSize() coregraphics.CGSize {
 func (t_ Text) SetMaxSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxSize:"), value)
 }
+
 // The receiver’s minimum size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/minSize
@@ -607,7 +605,6 @@ func (t_ Text) MinSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("minSize"))
 	return rv
 }
-
 
 // SetMinSize sets the value of the minSize property.
 // The receiver’s minimum size.
@@ -617,6 +614,7 @@ func (t_ Text) MinSize() coregraphics.CGSize {
 func (t_ Text) SetMinSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMinSize:"), value)
 }
+
 // The receiver’s characters within .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/selectedRange
@@ -624,7 +622,6 @@ func (t_ Text) SelectedRange() foundation.Range {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("selectedRange"))
 	return rv
 }
-
 
 // SetSelectedRange sets the value of the selectedRange property.
 // The receiver’s characters within .
@@ -634,6 +631,7 @@ func (t_ Text) SelectedRange() foundation.Range {
 func (t_ Text) SetSelectedRange(value foundation.Range) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRange:"), value)
 }
+
 // The characters of the receiver’s text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/string
@@ -641,7 +639,6 @@ func (t_ Text) String() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("string"))
 	return rv
 }
-
 
 // SetString sets the value of the string property.
 // The characters of the receiver’s text.
@@ -651,6 +648,7 @@ func (t_ Text) String() string {
 func (t_ Text) SetString(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }
+
 // The text color of all characters in the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/textColor
@@ -658,7 +656,6 @@ func (t_ Text) TextColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textColor"))
 	return rv
 }
-
 
 // SetTextColor sets the value of the textColor property.
 // The text color of all characters in the receiver.
@@ -668,6 +665,7 @@ func (t_ Text) TextColor() unsafe.Pointer {
 func (t_ Text) SetTextColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:"), value)
 }
+
 // A Boolean that controls whether the receiver uses the Font panel and Font menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/usesFontPanel
@@ -675,7 +673,6 @@ func (t_ Text) UsesFontPanel() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesFontPanel"))
 	return rv
 }
-
 
 // SetUsesFontPanel sets the value of the usesFontPanel property.
 // A Boolean that controls whether the receiver uses the Font panel and Font menu.
@@ -685,4 +682,3 @@ func (t_ Text) UsesFontPanel() bool {
 func (t_ Text) SetUsesFontPanel(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFontPanel:"), value)
 }
-

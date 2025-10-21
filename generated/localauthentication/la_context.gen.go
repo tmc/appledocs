@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Context] class.
@@ -175,8 +176,8 @@ func (c_ Context) SetInteractionNotAllowed(value bool) {
 // The localized title for the cancel button in the dialog presented to the user during authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedCancelTitle
-func (c_ Context) LocalizedCancelTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("localizedCancelTitle"))
+func (c_ Context) LocalizedCancelTitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedCancelTitle"))
 	return rv
 }
 
@@ -186,14 +187,14 @@ func (c_ Context) LocalizedCancelTitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedCancelTitle
-func (c_ Context) SetLocalizedCancelTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCancelTitle:"), value)
+func (c_ Context) SetLocalizedCancelTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCancelTitle:"), objc.String(value))
 }
 // The localized title for the fallback button in the dialog presented to the user during authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedFallbackTitle
-func (c_ Context) LocalizedFallbackTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("localizedFallbackTitle"))
+func (c_ Context) LocalizedFallbackTitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedFallbackTitle"))
 	return rv
 }
 
@@ -203,14 +204,14 @@ func (c_ Context) LocalizedFallbackTitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedFallbackTitle
-func (c_ Context) SetLocalizedFallbackTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedFallbackTitle:"), value)
+func (c_ Context) SetLocalizedFallbackTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedFallbackTitle:"), objc.String(value))
 }
 // The localized explanation for authentication shown in the dialog presented to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedReason
-func (c_ Context) LocalizedReason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("localizedReason"))
+func (c_ Context) LocalizedReason() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedReason"))
 	return rv
 }
 
@@ -220,8 +221,8 @@ func (c_ Context) LocalizedReason() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedReason
-func (c_ Context) SetLocalizedReason(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedReason:"), value)
+func (c_ Context) SetLocalizedReason(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedReason:"), objc.String(value))
 }
 // The number of biometric authentication failures after which the context falls back to another mechanism.
 //

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MKMapItem] class.
@@ -182,8 +183,8 @@ func (m_ MKMapItem) Location() unsafe.Pointer {
 // The descriptive name associated with the map item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/name
-func (m_ MKMapItem) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MKMapItem) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -193,14 +194,14 @@ func (m_ MKMapItem) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/name
-func (m_ MKMapItem) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MKMapItem) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The phone number associated with a business at the specified location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/phoneNumber
-func (m_ MKMapItem) PhoneNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("phoneNumber"))
+func (m_ MKMapItem) PhoneNumber() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 
@@ -210,8 +211,8 @@ func (m_ MKMapItem) PhoneNumber() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/phoneNumber
-func (m_ MKMapItem) SetPhoneNumber(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPhoneNumber:"), value)
+func (m_ MKMapItem) SetPhoneNumber(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPhoneNumber:"), objc.String(value))
 }
 // The placemark object containing the location information.
 //

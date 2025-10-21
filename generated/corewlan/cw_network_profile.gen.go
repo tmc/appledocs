@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CWNetworkProfile] class.
@@ -125,8 +126,8 @@ func (c_ CWNetworkProfile) Security() unsafe.Pointer {
 // The service set identifier (SSID) for the network profile, encoded as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/ssid
-func (c_ CWNetworkProfile) Ssid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ssid"))
+func (c_ CWNetworkProfile) Ssid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ssid"))
 	return rv
 }
 

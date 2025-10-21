@@ -84,8 +84,8 @@ func NewMutablePayment() MutablePayment {
 // A string that associates the transaction with a user account on your service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/applicationUsername
-func (m_ MutablePayment) ApplicationUsername() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationUsername"))
+func (m_ MutablePayment) ApplicationUsername() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("applicationUsername"))
 	return rv
 }
 
@@ -95,8 +95,8 @@ func (m_ MutablePayment) ApplicationUsername() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/applicationUsername
-func (m_ MutablePayment) SetApplicationUsername(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationUsername:"), value)
+func (m_ MutablePayment) SetApplicationUsername(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationUsername:"), objc.String(value))
 }
 // The details of the discount offer to apply to the payment.
 //
@@ -118,8 +118,8 @@ func (m_ MutablePayment) SetPaymentDiscount(value unsafe.Pointer) {
 // A string that identifies a product that can be purchased from within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/productIdentifier
-func (m_ MutablePayment) ProductIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("productIdentifier"))
+func (m_ MutablePayment) ProductIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
@@ -129,8 +129,8 @@ func (m_ MutablePayment) ProductIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/productIdentifier
-func (m_ MutablePayment) SetProductIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifier:"), value)
+func (m_ MutablePayment) SetProductIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifier:"), objc.String(value))
 }
 // The number of items the user wants to purchase.
 //

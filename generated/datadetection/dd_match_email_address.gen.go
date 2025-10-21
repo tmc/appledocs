@@ -84,16 +84,16 @@ func NewDDMatchEmailAddress() DDMatchEmailAddress {
 // A string that represents an email address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/emailAddress
-func (d_ DDMatchEmailAddress) EmailAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("emailAddress"))
+func (d_ DDMatchEmailAddress) EmailAddress() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
 // A string that categorizes an email address, such as Home or Work.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/label
-func (d_ DDMatchEmailAddress) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("label"))
+func (d_ DDMatchEmailAddress) Label() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv
 }
 

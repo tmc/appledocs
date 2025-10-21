@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TestSession] class.
@@ -382,8 +383,8 @@ func (t_ TestSession) SetBillingRetryOnRenewalEnabled(value bool) {
 // The three-letter code that represents the region associated with the App Store storefront.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/storefront
-func (t_ TestSession) Storefront() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("storefront"))
+func (t_ TestSession) Storefront() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("storefront"))
 	return rv
 }
 
@@ -393,8 +394,8 @@ func (t_ TestSession) Storefront() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/storefront
-func (t_ TestSession) SetStorefront(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStorefront:"), value)
+func (t_ TestSession) SetStorefront(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStorefront:"), objc.String(value))
 }
 // The rate at which time passes for subscriptions in the test environment as compared to real time.
 //

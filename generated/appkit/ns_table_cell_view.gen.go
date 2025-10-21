@@ -80,7 +80,6 @@ func NewTableCellView() TableCellView {
 	return getTableCellViewClass().New()
 }
 
-
 // This property is automatically set by the enclosing row view to let this view know what its background looks like.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
@@ -88,7 +87,6 @@ func (t_ TableCellView) BackgroundStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundStyle"))
 	return rv
 }
-
 
 // SetBackgroundStyle sets the value of the backgroundStyle property.
 // This property is automatically set by the enclosing row view to let this view know what its background looks like.
@@ -98,6 +96,7 @@ func (t_ TableCellView) BackgroundStyle() unsafe.Pointer {
 func (t_ TableCellView) SetBackgroundStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundStyle:"), value)
 }
+
 // Returns dragging images for the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/draggingImageComponents
@@ -114,7 +113,6 @@ func (t_ TableCellView) ImageView() unsafe.Pointer {
 	return rv
 }
 
-
 // SetImageView sets the value of the imageView property.
 // Image displayed by the cell.
 
@@ -123,6 +121,7 @@ func (t_ TableCellView) ImageView() unsafe.Pointer {
 func (t_ TableCellView) SetImageView(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImageView:"), value)
 }
+
 // The object that represents the cell data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/objectValue
@@ -130,7 +129,6 @@ func (t_ TableCellView) ObjectValue() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("objectValue"))
 	return rv
 }
-
 
 // SetObjectValue sets the value of the objectValue property.
 // The object that represents the cell data.
@@ -140,6 +138,7 @@ func (t_ TableCellView) ObjectValue() objc.ID {
 func (t_ TableCellView) SetObjectValue(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setObjectValue:"), value)
 }
+
 // Returns the row size style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
@@ -147,7 +146,6 @@ func (t_ TableCellView) RowSizeStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rowSizeStyle"))
 	return rv
 }
-
 
 // SetRowSizeStyle sets the value of the rowSizeStyle property.
 // Returns the row size style.
@@ -157,6 +155,7 @@ func (t_ TableCellView) RowSizeStyle() unsafe.Pointer {
 func (t_ TableCellView) SetRowSizeStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowSizeStyle:"), value)
 }
+
 // Text displayed by the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
@@ -164,7 +163,6 @@ func (t_ TableCellView) TextField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textField"))
 	return rv
 }
-
 
 // SetTextField sets the value of the textField property.
 // Text displayed by the cell.
@@ -174,5 +172,3 @@ func (t_ TableCellView) TextField() unsafe.Pointer {
 func (t_ TableCellView) SetTextField(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextField:"), value)
 }
-
-

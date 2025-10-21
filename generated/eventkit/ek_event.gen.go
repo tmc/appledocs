@@ -136,8 +136,8 @@ func (e_ EKEvent) SetAvailability(value unsafe.Pointer) {
 // The contact identifier of the person for this birthday event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/birthdayContactIdentifier
-func (e_ EKEvent) BirthdayContactIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("birthdayContactIdentifier"))
+func (e_ EKEvent) BirthdayContactIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("birthdayContactIdentifier"))
 	return rv
 }
 
@@ -152,8 +152,8 @@ func (e_ EKEvent) BirthdayPersonID() int {
 // The Address Book framework record identifier of the person for this birthday event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/birthdayPersonUniqueID
-func (e_ EKEvent) BirthdayPersonUniqueID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("birthdayPersonUniqueID"))
+func (e_ EKEvent) BirthdayPersonUniqueID() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("birthdayPersonUniqueID"))
 	return rv
 }
 
@@ -177,8 +177,8 @@ func (e_ EKEvent) SetEndDate(value unsafe.Pointer) {
 // A unique identifier for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/eventIdentifier
-func (e_ EKEvent) EventIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("eventIdentifier"))
+func (e_ EKEvent) EventIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("eventIdentifier"))
 	return rv
 }
 

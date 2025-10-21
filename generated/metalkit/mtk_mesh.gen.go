@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Mesh] class.
@@ -100,8 +101,8 @@ func (mc _MeshClass) NewMeshesFromAssetDeviceSourceMeshesError(asset unsafe.Poin
 // The name of the mesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/name
-func (m_ Mesh) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ Mesh) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -111,8 +112,8 @@ func (m_ Mesh) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/name
-func (m_ Mesh) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ Mesh) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // An array of submeshes containing index buffers referencing the mesh vertices.
 //

@@ -95,8 +95,8 @@ func NewINCancelRideIntentWithRideIdentifier(rideIdentifier string) INCancelRide
 // The unique identifier that you assigned to the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCancelRideIntent/rideIdentifier
-func (i_ INCancelRideIntent) RideIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rideIdentifier"))
+func (i_ INCancelRideIntent) RideIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
 

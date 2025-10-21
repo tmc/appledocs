@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INReservation] class.
@@ -107,16 +108,16 @@ func (i_ INReservation) ItemReference() unsafe.Pointer {
 // The reservation holder’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/reservationHolderName
-func (i_ INReservation) ReservationHolderName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationHolderName"))
+func (i_ INReservation) ReservationHolderName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("reservationHolderName"))
 	return rv
 }
 
 // The reservation number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/reservationNumber
-func (i_ INReservation) ReservationNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationNumber"))
+func (i_ INReservation) ReservationNumber() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("reservationNumber"))
 	return rv
 }
 

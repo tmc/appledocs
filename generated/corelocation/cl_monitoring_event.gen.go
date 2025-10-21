@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MonitoringEvent] class.
@@ -122,8 +123,8 @@ func (m_ MonitoringEvent) Date() unsafe.Pointer {
 // A string that represents the identifier of a monitored condition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/identifier
-func (m_ MonitoringEvent) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("identifier"))
+func (m_ MonitoringEvent) Identifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 

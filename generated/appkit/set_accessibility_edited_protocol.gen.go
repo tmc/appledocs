@@ -15,5 +15,3 @@ var setAccessibilityEditedProtocol *objc.Protocol
 func init() {
 	setAccessibilityEditedProtocol = objc.GetProtocol("setAccessibilityEdited")
 }
-
-

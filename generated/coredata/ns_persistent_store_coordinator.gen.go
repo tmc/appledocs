@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentStoreCoordinator] class.
@@ -321,8 +322,8 @@ func (p_ PersistentStoreCoordinator) ManagedObjectModel() unsafe.Pointer {
 // The coordinator’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/name
-func (p_ PersistentStoreCoordinator) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("name"))
+func (p_ PersistentStoreCoordinator) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -332,8 +333,8 @@ func (p_ PersistentStoreCoordinator) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/name
-func (p_ PersistentStoreCoordinator) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+func (p_ PersistentStoreCoordinator) SetName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The coordinator’s registered store types.
 //

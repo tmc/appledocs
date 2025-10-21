@@ -15,5 +15,3 @@ var TextStorageObservingProtocol *objc.Protocol
 func init() {
 	TextStorageObservingProtocol = objc.GetProtocol("NSTextStorageObserving")
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PasswordCredential] class.
@@ -89,8 +90,8 @@ func (pc _PasswordCredentialClass) CredentialWithUserPassword(user string, passw
 // The password for a password credential object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredential/password
-func (p_ PasswordCredential) Password() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("password"))
+func (p_ PasswordCredential) Password() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("password"))
 	return rv
 }
 

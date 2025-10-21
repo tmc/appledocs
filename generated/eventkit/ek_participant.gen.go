@@ -118,8 +118,8 @@ func (e_ EKParticipant) CurrentUser() bool {
 // The participant’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/name
-func (e_ EKParticipant) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("name"))
+func (e_ EKParticipant) Name() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
 

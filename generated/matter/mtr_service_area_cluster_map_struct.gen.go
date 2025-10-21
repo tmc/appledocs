@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRServiceAreaClusterMapStruct] class.
@@ -91,8 +92,8 @@ func (m_ MTRServiceAreaClusterMapStruct) SetMapID(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/name
-func (m_ MTRServiceAreaClusterMapStruct) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MTRServiceAreaClusterMapStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -100,8 +101,8 @@ func (m_ MTRServiceAreaClusterMapStruct) Name() unsafe.Pointer {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/name
-func (m_ MTRServiceAreaClusterMapStruct) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRServiceAreaClusterMapStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

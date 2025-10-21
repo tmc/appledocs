@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CollectionView] class.
@@ -120,7 +120,6 @@ func (c_ CollectionView) Autorelease() CollectionView {
 func NewCollectionView() CollectionView {
 	return getCollectionViewClass().New()
 }
-
 
 // Deletes the items at the specified index paths.
 //
@@ -429,7 +428,6 @@ func (c_ CollectionView) AllowsEmptySelection() bool {
 	return rv
 }
 
-
 // SetAllowsEmptySelection sets the value of the allowsEmptySelection property.
 // A Boolean value indicating whether the collection view may have no selected items.
 
@@ -438,6 +436,7 @@ func (c_ CollectionView) AllowsEmptySelection() bool {
 func (c_ CollectionView) SetAllowsEmptySelection(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsEmptySelection:"), value)
 }
+
 // A Boolean value that indicates whether the user may select more than one item in the collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/allowsMultipleSelection
@@ -445,7 +444,6 @@ func (c_ CollectionView) AllowsMultipleSelection() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
 }
-
 
 // SetAllowsMultipleSelection sets the value of the allowsMultipleSelection property.
 // A Boolean value that indicates whether the user may select more than one item in the collection view.
@@ -455,6 +453,7 @@ func (c_ CollectionView) AllowsMultipleSelection() bool {
 func (c_ CollectionView) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
+
 // An array containing the collection view’s background colors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/backgroundColors
@@ -462,7 +461,6 @@ func (c_ CollectionView) BackgroundColors() []Color {
 	rv := objc.Send[[]Color](c_.ID, objc.Sel("backgroundColors"))
 	return rv
 }
-
 
 // SetBackgroundColors sets the value of the backgroundColors property.
 // An array containing the collection view’s background colors.
@@ -482,6 +480,7 @@ func (c_ CollectionView) SetBackgroundColors(value []Color) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundColors:"), nsArray)
 }
+
 // The background view placed behind all items and supplementary views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/backgroundView
@@ -489,7 +488,6 @@ func (c_ CollectionView) BackgroundView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("backgroundView"))
 	return rv
 }
-
 
 // SetBackgroundView sets the value of the backgroundView property.
 // The background view placed behind all items and supplementary views.
@@ -499,6 +497,7 @@ func (c_ CollectionView) BackgroundView() unsafe.Pointer {
 func (c_ CollectionView) SetBackgroundView(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundView:"), value)
 }
+
 // A Boolean value that indicates whether the collection view’s background view scrolls with the items and other content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/backgroundViewScrollsWithContent
@@ -506,7 +505,6 @@ func (c_ CollectionView) BackgroundViewScrollsWithContent() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("backgroundViewScrollsWithContent"))
 	return rv
 }
-
 
 // SetBackgroundViewScrollsWithContent sets the value of the backgroundViewScrollsWithContent property.
 // A Boolean value that indicates whether the collection view’s background view scrolls with the items and other content.
@@ -516,6 +514,7 @@ func (c_ CollectionView) BackgroundViewScrollsWithContent() bool {
 func (c_ CollectionView) SetBackgroundViewScrollsWithContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundViewScrollsWithContent:"), value)
 }
+
 // The layout object used to organize the collection view’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/collectionViewLayout
@@ -523,7 +522,6 @@ func (c_ CollectionView) CollectionViewLayout() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("collectionViewLayout"))
 	return rv
 }
-
 
 // SetCollectionViewLayout sets the value of the collectionViewLayout property.
 // The layout object used to organize the collection view’s content.
@@ -533,6 +531,7 @@ func (c_ CollectionView) CollectionViewLayout() unsafe.Pointer {
 func (c_ CollectionView) SetCollectionViewLayout(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionViewLayout:"), value)
 }
+
 // An array that provides data for the collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/content
@@ -540,7 +539,6 @@ func (c_ CollectionView) Content() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("content"))
 	return rv
 }
-
 
 // SetContent sets the value of the content property.
 // An array that provides data for the collection view.
@@ -560,6 +558,7 @@ func (c_ CollectionView) SetContent(value []objc.ID) {
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContent:"), nsArray)
 }
+
 // An object that provides data for the collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/dataSource
@@ -567,7 +566,6 @@ func (c_ CollectionView) DataSource() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("dataSource"))
 	return rv
 }
-
 
 // SetDataSource sets the value of the dataSource property.
 // An object that provides data for the collection view.
@@ -577,6 +575,7 @@ func (c_ CollectionView) DataSource() objc.ID {
 func (c_ CollectionView) SetDataSource(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataSource:"), value)
 }
+
 // The collection view’s delegate object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/delegate
@@ -584,7 +583,6 @@ func (c_ CollectionView) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
 }
-
 
 // SetDelegate sets the value of the delegate property.
 // The collection view’s delegate object.
@@ -594,6 +592,7 @@ func (c_ CollectionView) Delegate() objc.ID {
 func (c_ CollectionView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // A Boolean value indicating whether the collection view is the first responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/isFirstResponder
@@ -610,7 +609,6 @@ func (c_ CollectionView) Selectable() bool {
 	return rv
 }
 
-
 // SetSelectable sets the value of the selectable property.
 // A Boolean value that indicates whether the user may select items in the collection view.
 
@@ -619,6 +617,7 @@ func (c_ CollectionView) Selectable() bool {
 func (c_ CollectionView) SetSelectable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectable:"), value)
 }
+
 // The receiver’s collection view item prototype.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/itemPrototype
@@ -626,7 +625,6 @@ func (c_ CollectionView) ItemPrototype() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("itemPrototype"))
 	return rv
 }
-
 
 // SetItemPrototype sets the value of the itemPrototype property.
 // The receiver’s collection view item prototype.
@@ -636,6 +634,7 @@ func (c_ CollectionView) ItemPrototype() unsafe.Pointer {
 func (c_ CollectionView) SetItemPrototype(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setItemPrototype:"), value)
 }
+
 // The maximum size (in points) of items in the collection view grid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/maxItemSize
@@ -643,7 +642,6 @@ func (c_ CollectionView) MaxItemSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("maxItemSize"))
 	return rv
 }
-
 
 // SetMaxItemSize sets the value of the maxItemSize property.
 // The maximum size (in points) of items in the collection view grid.
@@ -653,6 +651,7 @@ func (c_ CollectionView) MaxItemSize() coregraphics.CGSize {
 func (c_ CollectionView) SetMaxItemSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxItemSize:"), value)
 }
+
 // The maximum number of columns that the collection view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/maxNumberOfColumns
@@ -660,7 +659,6 @@ func (c_ CollectionView) MaxNumberOfColumns() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maxNumberOfColumns"))
 	return rv
 }
-
 
 // SetMaxNumberOfColumns sets the value of the maxNumberOfColumns property.
 // The maximum number of columns that the collection view displays.
@@ -670,6 +668,7 @@ func (c_ CollectionView) MaxNumberOfColumns() uint {
 func (c_ CollectionView) SetMaxNumberOfColumns(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxNumberOfColumns:"), value)
 }
+
 // The maximum number of rows that the collection view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/maxNumberOfRows
@@ -677,7 +676,6 @@ func (c_ CollectionView) MaxNumberOfRows() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maxNumberOfRows"))
 	return rv
 }
-
 
 // SetMaxNumberOfRows sets the value of the maxNumberOfRows property.
 // The maximum number of rows that the collection view displays.
@@ -687,6 +685,7 @@ func (c_ CollectionView) MaxNumberOfRows() uint {
 func (c_ CollectionView) SetMaxNumberOfRows(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxNumberOfRows:"), value)
 }
+
 // The minimum size (in points) of items in the collection view grid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/minItemSize
@@ -694,7 +693,6 @@ func (c_ CollectionView) MinItemSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("minItemSize"))
 	return rv
 }
-
 
 // SetMinItemSize sets the value of the minItemSize property.
 // The minimum size (in points) of items in the collection view grid.
@@ -704,6 +702,7 @@ func (c_ CollectionView) MinItemSize() coregraphics.CGSize {
 func (c_ CollectionView) SetMinItemSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinItemSize:"), value)
 }
+
 // The number of sections in the collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/numberOfSections
@@ -719,13 +718,13 @@ func (c_ CollectionView) PrefetchDataSource() objc.ID {
 	return rv
 }
 
-
 // SetPrefetchDataSource sets the value of the prefetchDataSource property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/prefetchDataSource
 func (c_ CollectionView) SetPrefetchDataSource(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPrefetchDataSource:"), value)
 }
+
 // The set of index paths representing the currently selected items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/selectionIndexPaths
@@ -733,7 +732,6 @@ func (c_ CollectionView) SelectionIndexPaths() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("selectionIndexPaths"))
 	return rv
 }
-
 
 // SetSelectionIndexPaths sets the value of the selectionIndexPaths property.
 // The set of index paths representing the currently selected items.
@@ -743,6 +741,7 @@ func (c_ CollectionView) SelectionIndexPaths() unsafe.Pointer {
 func (c_ CollectionView) SetSelectionIndexPaths(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectionIndexPaths:"), value)
 }
+
 // The indexes of the currently selected items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/selectionIndexes
@@ -750,7 +749,6 @@ func (c_ CollectionView) SelectionIndexes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("selectionIndexes"))
 	return rv
 }
-
 
 // SetSelectionIndexes sets the value of the selectionIndexes property.
 // The indexes of the currently selected items.
@@ -760,5 +758,3 @@ func (c_ CollectionView) SelectionIndexes() unsafe.Pointer {
 func (c_ CollectionView) SetSelectionIndexes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectionIndexes:"), value)
 }
-
-

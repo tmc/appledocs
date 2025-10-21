@@ -13,12 +13,12 @@ var _ = coreaudio.NewTapDescription
 
 
 
-
-
 // ExampleNewTapDescription demonstrates how to create a TapDescription instance.
 func ExampleNewTapDescription() {
 	_ = coreaudio.NewTapDescription()
 	// Output:
 }
+
+
 
 

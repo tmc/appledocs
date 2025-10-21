@@ -15,5 +15,3 @@ var attributedSubstringForProposedRangeProtocol *objc.Protocol
 func init() {
 	attributedSubstringForProposedRangeProtocol = objc.GetProtocol("attributedSubstringForProposedRange:")
 }
-
-

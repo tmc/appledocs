@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ArrayBatchProvider] class.
@@ -80,22 +81,22 @@ func NewArrayBatchProvider() ArrayBatchProvider {
 }
 
 
-// Creates the batch provider based on the array of feature providers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(array:)
-func NewArrayBatchProviderWithFeatureProviderArray(array unsafe.Pointer) ArrayBatchProvider {
-	instance := getArrayBatchProviderClass().Alloc()
-	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithFeatureProviderArray:"), array)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a batch provider based on feature names and their associated arrays of data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(dictionary:)
 func NewArrayBatchProviderWithDictionaryError(dictionary unsafe.Pointer, error_ unsafe.Pointer) ArrayBatchProvider {
 	instance := getArrayBatchProviderClass().Alloc()
 	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error_)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates the batch provider based on the array of feature providers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(array:)
+func NewArrayBatchProviderWithFeatureProviderArray(array unsafe.Pointer) ArrayBatchProvider {
+	instance := getArrayBatchProviderClass().Alloc()
+	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithFeatureProviderArray:"), array)
 	rv.Autorelease()
 	return rv
 }

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentStoreDescription] class.
@@ -133,8 +134,8 @@ func (p_ PersistentStoreDescription) SetCloudKitContainerOptions(value unsafe.Po
 // The name of the configuration used by this store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/configuration
-func (p_ PersistentStoreDescription) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("configuration"))
+func (p_ PersistentStoreDescription) Configuration() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -144,8 +145,8 @@ func (p_ PersistentStoreDescription) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/configuration
-func (p_ PersistentStoreDescription) SetConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguration:"), value)
+func (p_ PersistentStoreDescription) SetConfiguration(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguration:"), objc.String(value))
 }
 // A flag that indicates whether this store will be read-only.
 //

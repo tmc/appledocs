@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [THCredentials] class.
@@ -148,8 +149,8 @@ func (t_ THCredentials) NetworkKey() unsafe.Pointer {
 // The Thread network name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/networkName
-func (t_ THCredentials) NetworkName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("networkName"))
+func (t_ THCredentials) NetworkName() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("networkName"))
 	return rv
 }
 

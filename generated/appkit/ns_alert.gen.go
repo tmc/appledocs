@@ -82,7 +82,6 @@ func NewAlert() Alert {
 	return getAlertClass().New()
 }
 
-
 // Returns an alert initialized from information in an error object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/init(error:)
@@ -90,7 +89,6 @@ func NewAlertWithError(error_ unsafe.Pointer) Alert {
 	rv := objc.Send[Alert](objc.ID(getAlertClass().class), objc.Sel("alertWithError:"), error_)
 	return rv
 }
-
 
 // Creates an alert compatible with alerts created using the function for display as a warning-style alert.
 //
@@ -146,7 +144,6 @@ func (a_ Alert) Icon() unsafe.Pointer {
 	return rv
 }
 
-
 // SetIcon sets the value of the icon property.
 // The custom icon displayed in the alert.
 
@@ -155,4 +152,3 @@ func (a_ Alert) Icon() unsafe.Pointer {
 func (a_ Alert) SetIcon(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIcon:"), value)
 }
-

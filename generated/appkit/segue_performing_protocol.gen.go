@@ -12,5 +12,3 @@ var SeguePerformingProtocol *objc.Protocol
 func init() {
 	SeguePerformingProtocol = objc.GetProtocol("NSSeguePerforming")
 }
-
-

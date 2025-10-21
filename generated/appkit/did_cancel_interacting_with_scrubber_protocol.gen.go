@@ -15,5 +15,3 @@ var didCancelInteractingWithScrubberProtocol *objc.Protocol
 func init() {
 	didCancelInteractingWithScrubberProtocol = objc.GetProtocol("didCancelInteractingWithScrubber:")
 }
-
-

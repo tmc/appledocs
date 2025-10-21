@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GLKMesh] class.
@@ -94,8 +95,8 @@ func (gc _GLKMeshClass) NewMeshesFromAssetSourceMeshesError(asset unsafe.Pointer
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/name
-func (g_ GLKMesh) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("name"))
+func (g_ GLKMesh) Name() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("name"))
 	return rv
 }
 

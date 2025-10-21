@@ -84,16 +84,16 @@ func NewSActivityItem() SActivityItem {
 // An identifier for the activity item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/identifier
-func (s_ SActivityItem) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("identifier"))
+func (s_ SActivityItem) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // A human readable name for the activity item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
-func (s_ SActivityItem) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("title"))
+func (s_ SActivityItem) Title() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -103,8 +103,8 @@ func (s_ SActivityItem) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
-func (s_ SActivityItem) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
+func (s_ SActivityItem) SetTitle(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

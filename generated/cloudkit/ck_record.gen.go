@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKRecord] class.
@@ -90,6 +91,16 @@ func NewCKRecord() CKRecord {
 }
 
 
+// Creates a record using an ID that you provide.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/initWithRecordType:recordID:
+func NewCKRecordWithRecordTypeRecordID(recordType unsafe.Pointer, recordID unsafe.Pointer) CKRecord {
+	instance := getCKRecordClass().Alloc()
+	rv := objc.Send[CKRecord](instance.ID, objc.Sel("initWithRecordType:recordID:"), recordType, recordID)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a record in the specified zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/initWithRecordType:zoneID:
@@ -106,16 +117,6 @@ func NewCKRecordWithRecordTypeZoneID(recordType unsafe.Pointer, zoneID unsafe.Po
 func NewCKRecordWithRecordType(recordType unsafe.Pointer) CKRecord {
 	instance := getCKRecordClass().Alloc()
 	rv := objc.Send[CKRecord](instance.ID, objc.Sel("initWithRecordType:"), recordType)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a record using an ID that you provide.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/initWithRecordType:recordID:
-func NewCKRecordWithRecordTypeRecordID(recordType unsafe.Pointer, recordID unsafe.Pointer) CKRecord {
-	instance := getCKRecordClass().Alloc()
-	rv := objc.Send[CKRecord](instance.ID, objc.Sel("initWithRecordType:recordID:"), recordType, recordID)
 	rv.Autorelease()
 	return rv
 }
@@ -256,8 +257,8 @@ func (c_ CKRecord) SetParent(value unsafe.Pointer) {
 // The server change token for the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/recordChangeTag
-func (c_ CKRecord) RecordChangeTag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordChangeTag"))
+func (c_ CKRecord) RecordChangeTag() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
 	return rv
 }
 

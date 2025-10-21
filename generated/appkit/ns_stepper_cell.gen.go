@@ -77,7 +77,3 @@ func (s_ StepperCell) Autorelease() StepperCell {
 func NewStepperCell() StepperCell {
 	return getStepperCellClass().New()
 }
-
-
-
-

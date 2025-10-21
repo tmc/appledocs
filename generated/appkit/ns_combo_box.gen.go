@@ -91,7 +91,6 @@ func NewComboBox() ComboBox {
 	return getComboBoxClass().New()
 }
 
-
 // Adds an object to the end of the receiver’s internal item list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/addItem(withObjectValue:)
@@ -179,7 +178,6 @@ func (c_ ComboBox) DataSource() objc.ID {
 	return rv
 }
 
-
 // SetDataSource sets the value of the dataSource property.
 // The object that provides the item data for the combo box.
 
@@ -188,6 +186,7 @@ func (c_ ComboBox) DataSource() objc.ID {
 func (c_ ComboBox) SetDataSource(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataSource:"), value)
 }
+
 // Sets the receiver’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/delegate
@@ -195,7 +194,6 @@ func (c_ ComboBox) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
 }
-
 
 // SetDelegate sets the value of the delegate property.
 // Sets the receiver’s delegate.
@@ -205,6 +203,7 @@ func (c_ ComboBox) Delegate() objc.ID {
 func (c_ ComboBox) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
+
 // The height of each item in the pop-up list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/itemHeight
@@ -212,7 +211,6 @@ func (c_ ComboBox) ItemHeight() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("itemHeight"))
 	return rv
 }
-
 
 // SetItemHeight sets the value of the itemHeight property.
 // The height of each item in the pop-up list.
@@ -222,6 +220,7 @@ func (c_ ComboBox) ItemHeight() float64 {
 func (c_ ComboBox) SetItemHeight(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setItemHeight:"), value)
 }
+
 // The maximum number of visible items to display in the pop-up list at one time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/numberOfVisibleItems
@@ -229,7 +228,6 @@ func (c_ ComboBox) NumberOfVisibleItems() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfVisibleItems"))
 	return rv
 }
-
 
 // SetNumberOfVisibleItems sets the value of the numberOfVisibleItems property.
 // The maximum number of visible items to display in the pop-up list at one time.
@@ -239,6 +237,7 @@ func (c_ ComboBox) NumberOfVisibleItems() int {
 func (c_ ComboBox) SetNumberOfVisibleItems(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfVisibleItems:"), value)
 }
+
 // A Boolean value indicating whether the combo box retrieves its items from a data source object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/usesDataSource
@@ -246,7 +245,6 @@ func (c_ ComboBox) UsesDataSource() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("usesDataSource"))
 	return rv
 }
-
 
 // SetUsesDataSource sets the value of the usesDataSource property.
 // A Boolean value indicating whether the combo box retrieves its items from a data source object.
@@ -256,5 +254,3 @@ func (c_ ComboBox) UsesDataSource() bool {
 func (c_ ComboBox) SetUsesDataSource(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesDataSource:"), value)
 }
-
-

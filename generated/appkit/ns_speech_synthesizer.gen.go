@@ -78,7 +78,3 @@ func (s_ SpeechSynthesizer) Autorelease() SpeechSynthesizer {
 func NewSpeechSynthesizer() SpeechSynthesizer {
 	return getSpeechSynthesizerClass().New()
 }
-
-
-
-

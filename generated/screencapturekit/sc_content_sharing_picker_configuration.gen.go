@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ContentSharingPickerConfiguration] class.
@@ -110,7 +111,17 @@ func (c_ ContentSharingPickerConfiguration) ExcludedBundleIDs() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/excludedBundleIDs
 func (c_ ContentSharingPickerConfiguration) SetExcludedBundleIDs(value []string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setExcludedBundleIDs:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExcludedBundleIDs:"), nsArray)
 }
 
 

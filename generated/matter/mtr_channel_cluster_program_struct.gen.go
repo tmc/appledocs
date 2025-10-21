@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRChannelClusterProgramStruct] class.
@@ -133,8 +134,8 @@ func (m_ MTRChannelClusterProgramStruct) SetChannel(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/descriptionString
-func (m_ MTRChannelClusterProgramStruct) DescriptionString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("descriptionString"))
+func (m_ MTRChannelClusterProgramStruct) DescriptionString() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("descriptionString"))
 	return rv
 }
 
@@ -142,8 +143,8 @@ func (m_ MTRChannelClusterProgramStruct) DescriptionString() unsafe.Pointer {
 // SetDescriptionString sets the value of the descriptionString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/descriptionString
-func (m_ MTRChannelClusterProgramStruct) SetDescriptionString(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionString:"), value)
+func (m_ MTRChannelClusterProgramStruct) SetDescriptionString(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionString:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/endTime
@@ -161,8 +162,8 @@ func (m_ MTRChannelClusterProgramStruct) SetEndTime(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/identifier
-func (m_ MTRChannelClusterProgramStruct) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("identifier"))
+func (m_ MTRChannelClusterProgramStruct) Identifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -170,13 +171,13 @@ func (m_ MTRChannelClusterProgramStruct) Identifier() unsafe.Pointer {
 // SetIdentifier sets the value of the identifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/identifier
-func (m_ MTRChannelClusterProgramStruct) SetIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
+func (m_ MTRChannelClusterProgramStruct) SetIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/parentalGuidanceText
-func (m_ MTRChannelClusterProgramStruct) ParentalGuidanceText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("parentalGuidanceText"))
+func (m_ MTRChannelClusterProgramStruct) ParentalGuidanceText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("parentalGuidanceText"))
 	return rv
 }
 
@@ -184,8 +185,8 @@ func (m_ MTRChannelClusterProgramStruct) ParentalGuidanceText() unsafe.Pointer {
 // SetParentalGuidanceText sets the value of the parentalGuidanceText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/parentalGuidanceText
-func (m_ MTRChannelClusterProgramStruct) SetParentalGuidanceText(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setParentalGuidanceText:"), value)
+func (m_ MTRChannelClusterProgramStruct) SetParentalGuidanceText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setParentalGuidanceText:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/ratings
@@ -217,8 +218,8 @@ func (m_ MTRChannelClusterProgramStruct) SetRecordingFlag(value unsafe.Pointer) 
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/releaseDate
-func (m_ MTRChannelClusterProgramStruct) ReleaseDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("releaseDate"))
+func (m_ MTRChannelClusterProgramStruct) ReleaseDate() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("releaseDate"))
 	return rv
 }
 
@@ -226,8 +227,8 @@ func (m_ MTRChannelClusterProgramStruct) ReleaseDate() unsafe.Pointer {
 // SetReleaseDate sets the value of the releaseDate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/releaseDate
-func (m_ MTRChannelClusterProgramStruct) SetReleaseDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseDate:"), value)
+func (m_ MTRChannelClusterProgramStruct) SetReleaseDate(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseDate:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/seriesInfo
@@ -259,8 +260,8 @@ func (m_ MTRChannelClusterProgramStruct) SetStartTime(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/subtitle
-func (m_ MTRChannelClusterProgramStruct) Subtitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("subtitle"))
+func (m_ MTRChannelClusterProgramStruct) Subtitle() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -268,13 +269,13 @@ func (m_ MTRChannelClusterProgramStruct) Subtitle() unsafe.Pointer {
 // SetSubtitle sets the value of the subtitle property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/subtitle
-func (m_ MTRChannelClusterProgramStruct) SetSubtitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), value)
+func (m_ MTRChannelClusterProgramStruct) SetSubtitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/title
-func (m_ MTRChannelClusterProgramStruct) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("title"))
+func (m_ MTRChannelClusterProgramStruct) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -282,8 +283,8 @@ func (m_ MTRChannelClusterProgramStruct) Title() unsafe.Pointer {
 // SetTitle sets the value of the title property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/title
-func (m_ MTRChannelClusterProgramStruct) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
+func (m_ MTRChannelClusterProgramStruct) SetTitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MIDIUMPEndpoint] class.
@@ -157,15 +158,15 @@ func (m_ MIDIUMPEndpoint) MIDISource() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/name
-func (m_ MIDIUMPEndpoint) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPEndpoint) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/productInstanceID
-func (m_ MIDIUMPEndpoint) ProductInstanceID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("productInstanceID"))
+func (m_ MIDIUMPEndpoint) ProductInstanceID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("productInstanceID"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TKSmartCardSlotNFCSession] class.
@@ -100,8 +101,8 @@ func (t_ TKSmartCardSlotNFCSession) UpdateWithMessageError(message string, error
 // Smart card slot name of the NFC slot that was created together with this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/slotName
-func (t_ TKSmartCardSlotNFCSession) SlotName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("slotName"))
+func (t_ TKSmartCardSlotNFCSession) SlotName() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("slotName"))
 	return rv
 }
 

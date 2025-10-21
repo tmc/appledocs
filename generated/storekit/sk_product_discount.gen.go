@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ProductDiscount] class.
@@ -83,8 +84,8 @@ func NewProductDiscount() ProductDiscount {
 // A string used to uniquely identify a discount offer for a product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/identifier
-func (p_ ProductDiscount) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+func (p_ ProductDiscount) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

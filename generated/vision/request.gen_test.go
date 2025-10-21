@@ -10,12 +10,12 @@ import (
 var _ = vision.NewRequest
 
 
-
 // ExampleNewRequest demonstrates how to create a Request instance.
 // Creates a new Vision request with no completion handler.
 func ExampleNewRequest() {
 	_ = vision.NewRequest()
 	// Output:
 }
+
 
 

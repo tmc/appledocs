@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentHistoryTransaction] class.
@@ -112,16 +113,16 @@ func (p_ PersistentHistoryTransaction) ObjectIDNotification() unsafe.Pointer {
 // A granular description of the context that made the persistent history change, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/author
-func (p_ PersistentHistoryTransaction) Author() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("author"))
+func (p_ PersistentHistoryTransaction) Author() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("author"))
 	return rv
 }
 
 // The originating bundle’s identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/bundleID
-func (p_ PersistentHistoryTransaction) BundleID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("bundleID"))
+func (p_ PersistentHistoryTransaction) BundleID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("bundleID"))
 	return rv
 }
 
@@ -136,8 +137,8 @@ func (p_ PersistentHistoryTransaction) Changes() []PersistentHistoryChange {
 // The originating context’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/contextName
-func (p_ PersistentHistoryTransaction) ContextName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contextName"))
+func (p_ PersistentHistoryTransaction) ContextName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("contextName"))
 	return rv
 }
 
@@ -160,16 +161,16 @@ func (p_ PersistentHistoryTransaction) FetchRequest() unsafe.Pointer {
 // The originating process’s identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/processID
-func (p_ PersistentHistoryTransaction) ProcessID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("processID"))
+func (p_ PersistentHistoryTransaction) ProcessID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("processID"))
 	return rv
 }
 
 // The originating store’s identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/storeID
-func (p_ PersistentHistoryTransaction) StoreID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("storeID"))
+func (p_ PersistentHistoryTransaction) StoreID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("storeID"))
 	return rv
 }
 

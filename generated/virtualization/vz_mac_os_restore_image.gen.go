@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZMacOSRestoreImage] class.
@@ -97,8 +98,8 @@ func (vc _VZMacOSRestoreImageClass) FetchLatestSupportedWithCompletionHandler(co
 // The build version this restore image contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/buildVersion
-func (v_ VZMacOSRestoreImage) BuildVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("buildVersion"))
+func (v_ VZMacOSRestoreImage) BuildVersion() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("buildVersion"))
 	return rv
 }
 

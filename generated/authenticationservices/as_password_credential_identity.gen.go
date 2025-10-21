@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PasswordCredentialIdentity] class.
@@ -117,8 +118,8 @@ func (p_ PasswordCredentialIdentity) SetRank(value int) {
 // A string used to correlate this identity to a record in your app’s own database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/recordIdentifier
-func (p_ PasswordCredentialIdentity) RecordIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("recordIdentifier"))
+func (p_ PasswordCredentialIdentity) RecordIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("recordIdentifier"))
 	return rv
 }
 
@@ -133,8 +134,8 @@ func (p_ PasswordCredentialIdentity) ServiceIdentifier() unsafe.Pointer {
 // The username associated with the credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/user
-func (p_ PasswordCredentialIdentity) User() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("user"))
+func (p_ PasswordCredentialIdentity) User() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("user"))
 	return rv
 }
 

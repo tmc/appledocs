@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MEDecodedMessageBanner] class.
@@ -94,8 +95,8 @@ func (m_ MEDecodedMessageBanner) Dismissable() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEDecodedMessageBanner/primaryActionTitle
-func (m_ MEDecodedMessageBanner) PrimaryActionTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("primaryActionTitle"))
+func (m_ MEDecodedMessageBanner) PrimaryActionTitle() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("primaryActionTitle"))
 	return rv
 }
 

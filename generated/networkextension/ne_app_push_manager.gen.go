@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEAppPushManager] class.
@@ -127,8 +128,8 @@ func (n_ NEAppPushManager) SetMatchSSIDs(value []string) {
 // A string that contains the bundle identifier of the push provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier
-func (n_ NEAppPushManager) ProviderBundleIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("providerBundleIdentifier"))
+func (n_ NEAppPushManager) ProviderBundleIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
 	return rv
 }
 
@@ -138,8 +139,8 @@ func (n_ NEAppPushManager) ProviderBundleIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier
-func (n_ NEAppPushManager) SetProviderBundleIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), value)
+func (n_ NEAppPushManager) SetProviderBundleIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
 }
 
 

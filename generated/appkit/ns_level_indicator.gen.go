@@ -79,7 +79,3 @@ func (l_ LevelIndicator) Autorelease() LevelIndicator {
 func NewLevelIndicator() LevelIndicator {
 	return getLevelIndicatorClass().New()
 }
-
-
-
-

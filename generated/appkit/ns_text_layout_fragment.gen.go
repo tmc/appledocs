@@ -76,7 +76,3 @@ func (t_ TextLayoutFragment) Autorelease() TextLayoutFragment {
 func NewTextLayoutFragment() TextLayoutFragment {
 	return getTextLayoutFragmentClass().New()
 }
-
-
-
-

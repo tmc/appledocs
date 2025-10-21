@@ -12,5 +12,3 @@ var PrintPanelAccessorizingProtocol *objc.Protocol
 func init() {
 	PrintPanelAccessorizingProtocol = objc.GetProtocol("NSPrintPanelAccessorizing")
 }
-
-

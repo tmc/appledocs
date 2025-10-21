@@ -32,7 +32,7 @@ type IBluetoothDeviceSelectorController interface {
 	appkit.IWindowController
 	AddAllowedUUID(allowedUUID unsafe.Pointer)
 	GetOptions() unsafe.Pointer
-	GetPrompt() unsafe.Pointer
+	GetPrompt() string
 	GetSearchAttributes() unsafe.Pointer
 	SetSearchAttributes(searchAttributes unsafe.Pointer)
 	SetTitle(windowTitle string)
@@ -106,8 +106,8 @@ func (b_ BluetoothDeviceSelectorController) GetOptions() unsafe.Pointer {
 // Returns the title of the default/select button in the device selector panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/getPrompt()
-func (b_ BluetoothDeviceSelectorController) GetPrompt() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getPrompt"))
+func (b_ BluetoothDeviceSelectorController) GetPrompt() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("getPrompt"))
 	return rv
 }
 

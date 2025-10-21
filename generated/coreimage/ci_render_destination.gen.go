@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -81,6 +82,16 @@ func NewRenderDestination() RenderDestination {
 }
 
 
+// Creates a render destination based on a Core Video pixel buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(pixelBuffer:)
+func NewRenderDestinationWithPixelBuffer(pixelBuffer unsafe.Pointer) RenderDestination {
+	instance := getRenderDestinationClass().Alloc()
+	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithPixelBuffer:"), pixelBuffer)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a render destination based on a Metal texture with specified pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(width:height:pixelFormat:commandBuffer:mtlTextureProvider:)
@@ -127,16 +138,6 @@ func NewRenderDestinationWithIOSurface(surface unsafe.Pointer) RenderDestination
 func NewRenderDestinationWithMTLTextureCommandBuffer(texture objc.ID, commandBuffer objc.ID) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithMTLTexture:commandBuffer:"), texture, commandBuffer)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a render destination based on a Core Video pixel buffer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(pixelBuffer:)
-func NewRenderDestinationWithPixelBuffer(pixelBuffer unsafe.Pointer) RenderDestination {
-	instance := getRenderDestinationClass().Alloc()
-	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithPixelBuffer:"), pixelBuffer)
 	rv.Autorelease()
 	return rv
 }

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNRenderingSessionFrameAttributes] class.
@@ -80,22 +81,22 @@ func NewCNRenderingSessionFrameAttributes() CNRenderingSessionFrameAttributes {
 }
 
 
-// Initializes the rendering frame attributes from a sample buffer read from a Cinematic metadata track.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithSampleBuffer:sessionAttributes:
-func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampleBuffer unsafe.Pointer, sessionAttributes unsafe.Pointer) CNRenderingSessionFrameAttributes {
-	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
-	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithSampleBuffer:sessionAttributes:"), sampleBuffer, sessionAttributes)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes the rendering frame attributes from a timed metadata group read from a Cinematic metadata track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithTimedMetadataGroup:sessionAttributes:
 func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup unsafe.Pointer, sessionAttributes unsafe.Pointer) CNRenderingSessionFrameAttributes {
 	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
 	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithTimedMetadataGroup:sessionAttributes:"), metadataGroup, sessionAttributes)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes the rendering frame attributes from a sample buffer read from a Cinematic metadata track.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithSampleBuffer:sessionAttributes:
+func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampleBuffer unsafe.Pointer, sessionAttributes unsafe.Pointer) CNRenderingSessionFrameAttributes {
+	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
+	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithSampleBuffer:sessionAttributes:"), sampleBuffer, sessionAttributes)
 	rv.Autorelease()
 	return rv
 }

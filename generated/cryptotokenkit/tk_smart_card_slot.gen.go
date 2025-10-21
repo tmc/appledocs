@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TKSmartCardSlot] class.
@@ -92,8 +93,8 @@ func (t_ TKSmartCardSlot) MakeSmartCard() unsafe.Pointer {
 // The name of the Smart Card reader slot.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/name
-func (t_ TKSmartCardSlot) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("name"))
+func (t_ TKSmartCardSlot) Name() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 

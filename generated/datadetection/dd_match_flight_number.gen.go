@@ -84,16 +84,16 @@ func NewDDMatchFlightNumber() DDMatchFlightNumber {
 // The name of an airline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/airline
-func (d_ DDMatchFlightNumber) Airline() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("airline"))
+func (d_ DDMatchFlightNumber) Airline() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("airline"))
 	return rv
 }
 
 // A string that represents a flight number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/flightNumber
-func (d_ DDMatchFlightNumber) FlightNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("flightNumber"))
+func (d_ DDMatchFlightNumber) FlightNumber() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("flightNumber"))
 	return rv
 }
 

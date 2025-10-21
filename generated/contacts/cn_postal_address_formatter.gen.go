@@ -31,7 +31,7 @@ type _CNPostalAddressFormatterClass struct {
 type ICNPostalAddressFormatter interface {
 	objectivec.IObject
 	AttributedStringFromPostalAddressWithDefaultAttributes(postalAddress unsafe.Pointer, attributes objc.ID) unsafe.Pointer
-	StringFromPostalAddress(postalAddress unsafe.Pointer) unsafe.Pointer
+	StringFromPostalAddress(postalAddress unsafe.Pointer) string
 }
 
 // An object that you use to format a contact’s postal addresses.
@@ -93,8 +93,8 @@ func (cc _CNPostalAddressFormatterClass) AttributedStringFromPostalAddressStyleW
 // Returns a postal address as a string and formatted for the specified style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter/string(from:style:)
-func (cc _CNPostalAddressFormatterClass) StringFromPostalAddressStyle(postalAddress unsafe.Pointer, style unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("stringFromPostalAddress:style:"), postalAddress, style)
+func (cc _CNPostalAddressFormatterClass) StringFromPostalAddressStyle(postalAddress unsafe.Pointer, style unsafe.Pointer) string {
+	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("stringFromPostalAddress:style:"), postalAddress, style)
 	return rv
 }
 
@@ -109,8 +109,8 @@ func (c_ CNPostalAddressFormatter) AttributedStringFromPostalAddressWithDefaultA
 // Returns a formatted postal address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter/string(from:)
-func (c_ CNPostalAddressFormatter) StringFromPostalAddress(postalAddress unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stringFromPostalAddress:"), postalAddress)
+func (c_ CNPostalAddressFormatter) StringFromPostalAddress(postalAddress unsafe.Pointer) string {
+	rv := objc.Send[string](c_.ID, objc.Sel("stringFromPostalAddress:"), postalAddress)
 	return rv
 }
 

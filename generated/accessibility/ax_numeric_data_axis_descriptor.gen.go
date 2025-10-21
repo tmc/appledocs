@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AXNumericDataAxisDescriptor] class.
@@ -180,8 +181,8 @@ func (a_ AXNumericDataAxisDescriptor) SetUpperBound(value unsafe.Pointer) {
 // A description to speak for a particular data value on the axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/valueDescriptionProvider
-func (a_ AXNumericDataAxisDescriptor) ValueDescriptionProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("valueDescriptionProvider"))
+func (a_ AXNumericDataAxisDescriptor) ValueDescriptionProvider() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("valueDescriptionProvider"))
 	return rv
 }
 
@@ -191,7 +192,7 @@ func (a_ AXNumericDataAxisDescriptor) ValueDescriptionProvider() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/valueDescriptionProvider
-func (a_ AXNumericDataAxisDescriptor) SetValueDescriptionProvider(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValueDescriptionProvider:"), value)
+func (a_ AXNumericDataAxisDescriptor) SetValueDescriptionProvider(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValueDescriptionProvider:"), objc.String(value))
 }
 

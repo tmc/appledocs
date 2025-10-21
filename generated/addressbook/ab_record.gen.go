@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ABRecord] class.
@@ -139,16 +140,16 @@ func (a_ ABRecord) ValueForProperty(property string) objc.ID {
 // A user-visible string representing the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/displayName
-func (a_ ABRecord) DisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("displayName"))
+func (a_ ABRecord) DisplayName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 // Returns the unique ID for a record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/uniqueId
-func (a_ ABRecord) UniqueId() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("uniqueId"))
+func (a_ ABRecord) UniqueId() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("uniqueId"))
 	return rv
 }
 

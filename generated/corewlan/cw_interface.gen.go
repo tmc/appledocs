@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CWInterface] class.
@@ -33,13 +34,13 @@ type ICWInterface interface {
 	ActivePHYMode() unsafe.Pointer
 	AssociateToNetworkPasswordError(network unsafe.Pointer, password string, error_ unsafe.Pointer) bool
 	AssociateToEnterpriseNetworkIdentityUsernamePasswordError(network unsafe.Pointer, identity unsafe.Pointer, username string, password string, error_ unsafe.Pointer) bool
-	Bssid() unsafe.Pointer
+	Bssid() string
 	CachedScanResults() unsafe.Pointer
 	CommitConfigurationAuthorizationError(configuration unsafe.Pointer, authorization unsafe.Pointer, error_ unsafe.Pointer) bool
 	Configuration() unsafe.Pointer
-	CountryCode() unsafe.Pointer
+	CountryCode() string
 	Disassociate()
-	HardwareAddress() unsafe.Pointer
+	HardwareAddress() string
 	InterfaceMode() unsafe.Pointer
 	NoiseMeasurement() int
 	PowerOn() bool
@@ -54,7 +55,7 @@ type ICWInterface interface {
 	SetPowerError(power bool, error_ unsafe.Pointer) bool
 	SetWEPKeyFlagsIndexError(key unsafe.Pointer, flags unsafe.Pointer, index int, error_ unsafe.Pointer) bool
 	SetWLANChannelError(channel unsafe.Pointer, error_ unsafe.Pointer) bool
-	Ssid() unsafe.Pointer
+	Ssid() string
 	SsidData() unsafe.Pointer
 	StartIBSSModeWithSSIDSecurityChannelPasswordError(ssidData unsafe.Pointer, security unsafe.Pointer, channel uint, password string, error_ unsafe.Pointer) bool
 	SupportedWLANChannels() unsafe.Pointer
@@ -111,6 +112,14 @@ func NewCWInterface() CWInterface {
 }
 
 
+// An instance method for obtaining an CWInterface object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/init(name:)
+func NewCWInterfaceWithName(name string) CWInterface {
+	rv := objc.Send[CWInterface](objc.ID(getCWInterfaceClass().class), objc.Sel("interfaceWithName:"), objc.String(name))
+	return rv
+}
+
 // Convenience method for getting an CWInterface object with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/init(interfaceName:)
@@ -118,14 +127,6 @@ func NewCWInterfaceWithInterfaceName(name string) CWInterface {
 	instance := getCWInterfaceClass().Alloc()
 	rv := objc.Send[CWInterface](instance.ID, objc.Sel("initWithInterfaceName:"), objc.String(name))
 	rv.Autorelease()
-	return rv
-}
-
-// An instance method for obtaining an CWInterface object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/init(name:)
-func NewCWInterfaceWithName(name string) CWInterface {
-	rv := objc.Send[CWInterface](objc.ID(getCWInterfaceClass().class), objc.Sel("interfaceWithName:"), objc.String(name))
 	return rv
 }
 
@@ -181,8 +182,8 @@ func (c_ CWInterface) AssociateToEnterpriseNetworkIdentityUsernamePasswordError(
 // The current basic service set identifier (BSSID) for the interface, returned as a UTF-8 string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/bssid()
-func (c_ CWInterface) Bssid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("bssid"))
+func (c_ CWInterface) Bssid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("bssid"))
 	return rv
 }
 
@@ -213,8 +214,8 @@ func (c_ CWInterface) Configuration() unsafe.Pointer {
 // The current country code (ISO/IEC 3166-1:1997) for the interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/countryCode()
-func (c_ CWInterface) CountryCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("countryCode"))
+func (c_ CWInterface) CountryCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
@@ -228,8 +229,8 @@ func (c_ CWInterface) Disassociate() {
 // The hardware media access control (MAC) address for the interface, returned as a UTF-8 string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/hardwareAddress()
-func (c_ CWInterface) HardwareAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("hardwareAddress"))
+func (c_ CWInterface) HardwareAddress() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("hardwareAddress"))
 	return rv
 }
 
@@ -348,8 +349,8 @@ func (c_ CWInterface) SetWLANChannelError(channel unsafe.Pointer, error_ unsafe.
 // The current service set identifier (SSID) for the interface, encoded as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/ssid()
-func (c_ CWInterface) Ssid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ssid"))
+func (c_ CWInterface) Ssid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ssid"))
 	return rv
 }
 
@@ -404,8 +405,8 @@ func (c_ CWInterface) WlanChannel() unsafe.Pointer {
 // The BSD name of the interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/interfaceName
-func (c_ CWInterface) InterfaceName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("interfaceName"))
+func (c_ CWInterface) InterfaceName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("interfaceName"))
 	return rv
 }
 

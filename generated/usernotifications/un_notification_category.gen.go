@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UNNotificationCategory] class.
@@ -140,24 +141,24 @@ func (u_ UNNotificationCategory) Actions() []objc.ID {
 // A format string for the summary description used when the system groups the category’s notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationCategory/categorySummaryFormat
-func (u_ UNNotificationCategory) CategorySummaryFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("categorySummaryFormat"))
+func (u_ UNNotificationCategory) CategorySummaryFormat() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("categorySummaryFormat"))
 	return rv
 }
 
 // The placeholder text to display when the system disables notification previews for the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationCategory/hiddenPreviewsBodyPlaceholder
-func (u_ UNNotificationCategory) HiddenPreviewsBodyPlaceholder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("hiddenPreviewsBodyPlaceholder"))
+func (u_ UNNotificationCategory) HiddenPreviewsBodyPlaceholder() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("hiddenPreviewsBodyPlaceholder"))
 	return rv
 }
 
 // The unique string assigned to the category.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationCategory/identifier
-func (u_ UNNotificationCategory) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("identifier"))
+func (u_ UNNotificationCategory) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 

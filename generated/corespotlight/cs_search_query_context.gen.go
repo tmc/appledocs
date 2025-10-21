@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CSSearchQueryContext] class.
@@ -135,8 +136,8 @@ func (c_ CSSearchQueryContext) SetFilterQueries(value []string) {
 // The language used for the query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
-func (c_ CSSearchQueryContext) KeyboardLanguage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("keyboardLanguage"))
+func (c_ CSSearchQueryContext) KeyboardLanguage() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("keyboardLanguage"))
 	return rv
 }
 
@@ -146,8 +147,8 @@ func (c_ CSSearchQueryContext) KeyboardLanguage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
-func (c_ CSSearchQueryContext) SetKeyboardLanguage(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), value)
+func (c_ CSSearchQueryContext) SetKeyboardLanguage(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), objc.String(value))
 }
 // The query source options to allow or deny Mail messages in the search.
 //

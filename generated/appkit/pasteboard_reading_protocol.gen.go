@@ -12,5 +12,3 @@ var PasteboardReadingProtocol *objc.Protocol
 func init() {
 	PasteboardReadingProtocol = objc.GetProtocol("NSPasteboardReading")
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTROvenCavityOperationalStateClusterOperationalStateStruct] class.
@@ -91,8 +92,8 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperatio
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalStateStruct/operationalStateLabel
-func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) OperationalStateLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalStateLabel"))
+func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) OperationalStateLabel() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("operationalStateLabel"))
 	return rv
 }
 
@@ -100,8 +101,8 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) Operational
 // SetOperationalStateLabel sets the value of the operationalStateLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalStateStruct/operationalStateLabel
-func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), value)
+func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), objc.String(value))
 }
 
 

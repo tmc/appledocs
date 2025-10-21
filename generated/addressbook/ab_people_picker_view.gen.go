@@ -32,7 +32,7 @@ type IABPeoplePickerView interface {
 	appkit.IView
 	AddProperty(property string)
 	ClearSearchField(sender objc.ID)
-	ColumnTitleForProperty(property string) unsafe.Pointer
+	ColumnTitleForProperty(property string) string
 	DeselectRecord(record unsafe.Pointer)
 	DeselectGroup(group unsafe.Pointer)
 	DeselectAll(sender objc.ID)
@@ -114,8 +114,8 @@ func (a_ ABPeoplePickerView) ClearSearchField(sender objc.ID) {
 // Returns the title of a custom property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/columnTitle(forProperty:)
-func (a_ ABPeoplePickerView) ColumnTitleForProperty(property string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("columnTitleForProperty:"), objc.String(property))
+func (a_ ABPeoplePickerView) ColumnTitleForProperty(property string) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("columnTitleForProperty:"), objc.String(property))
 	return rv
 }
 
@@ -274,8 +274,8 @@ func (a_ ABPeoplePickerView) SetAllowsMultipleSelection(value bool) {
 // The name under which the column positions and the filter selection are saved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/autosaveName
-func (a_ ABPeoplePickerView) AutosaveName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("autosaveName"))
+func (a_ ABPeoplePickerView) AutosaveName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("autosaveName"))
 	return rv
 }
 
@@ -285,14 +285,14 @@ func (a_ ABPeoplePickerView) AutosaveName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/autosaveName
-func (a_ ABPeoplePickerView) SetAutosaveName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAutosaveName:"), value)
+func (a_ ABPeoplePickerView) SetAutosaveName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAutosaveName:"), objc.String(value))
 }
 // The property currently displayed in the record list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/displayedProperty
-func (a_ ABPeoplePickerView) DisplayedProperty() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("displayedProperty"))
+func (a_ ABPeoplePickerView) DisplayedProperty() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("displayedProperty"))
 	return rv
 }
 
@@ -302,8 +302,8 @@ func (a_ ABPeoplePickerView) DisplayedProperty() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/displayedProperty
-func (a_ ABPeoplePickerView) SetDisplayedProperty(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDisplayedProperty:"), value)
+func (a_ ABPeoplePickerView) SetDisplayedProperty(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDisplayedProperty:"), objc.String(value))
 }
 // The action to be invoked when a group is double-clicked.
 //

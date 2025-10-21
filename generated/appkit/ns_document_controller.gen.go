@@ -82,7 +82,6 @@ func NewDocumentController() DocumentController {
 	return getDocumentControllerClass().New()
 }
 
-
 // Presents an Open dialog and delivers the results to a completion handler as an array of URLs for the chosen files, or nil.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/beginOpenPanel(completionHandler:)
@@ -112,6 +111,3 @@ func (d_ DocumentController) RecentDocumentURLs() []NSURL {
 	rv := objc.Send[[]NSURL](d_.ID, objc.Sel("recentDocumentURLs"))
 	return rv
 }
-
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRChannelClusterProgramCastStruct] class.
@@ -77,8 +78,8 @@ func NewMTRChannelClusterProgramCastStruct() MTRChannelClusterProgramCastStruct 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCastStruct/name
-func (m_ MTRChannelClusterProgramCastStruct) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MTRChannelClusterProgramCastStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -86,13 +87,13 @@ func (m_ MTRChannelClusterProgramCastStruct) Name() unsafe.Pointer {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCastStruct/name
-func (m_ MTRChannelClusterProgramCastStruct) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRChannelClusterProgramCastStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCastStruct/role
-func (m_ MTRChannelClusterProgramCastStruct) Role() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("role"))
+func (m_ MTRChannelClusterProgramCastStruct) Role() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("role"))
 	return rv
 }
 
@@ -100,8 +101,8 @@ func (m_ MTRChannelClusterProgramCastStruct) Role() unsafe.Pointer {
 // SetRole sets the value of the role property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCastStruct/role
-func (m_ MTRChannelClusterProgramCastStruct) SetRole(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRole:"), value)
+func (m_ MTRChannelClusterProgramCastStruct) SetRole(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRole:"), objc.String(value))
 }
 
 

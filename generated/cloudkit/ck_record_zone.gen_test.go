@@ -10,7 +10,6 @@ import (
 var _ = cloudkit.NewCKRecordZone
 
 
-
 // ExampleNewCKRecordZoneWithZoneName demonstrates how to create a CKRecordZone instance using NewCKRecordZoneWithZoneName.
 // Creates a record zone object with the specified zone name.
 func ExampleNewCKRecordZoneWithZoneName() {
@@ -19,5 +18,6 @@ func ExampleNewCKRecordZoneWithZoneName() {
 	)
 	// Output:
 }
+
 
 

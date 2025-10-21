@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -80,22 +81,22 @@ func NewMediaItemArtwork() MediaItemArtwork {
 }
 
 
-// Initializes a media item artwork instance with a full-size image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/init(image:)
-func NewMediaItemArtworkWithImage(image unsafe.Pointer) MediaItemArtwork {
-	instance := getMediaItemArtworkClass().Alloc()
-	rv := objc.Send[MediaItemArtwork](instance.ID, objc.Sel("initWithImage:"), image)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a new image from existing artwork with the specified bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/init(boundsSize:requestHandler:)
 func NewMediaItemArtworkWithBoundsSizeRequestHandler(boundsSize coregraphics.CGSize, requestHandler unsafe.Pointer) MediaItemArtwork {
 	instance := getMediaItemArtworkClass().Alloc()
 	rv := objc.Send[MediaItemArtwork](instance.ID, objc.Sel("initWithBoundsSize:requestHandler:"), boundsSize, requestHandler)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a media item artwork instance with a full-size image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/init(image:)
+func NewMediaItemArtworkWithImage(image unsafe.Pointer) MediaItemArtwork {
+	instance := getMediaItemArtworkClass().Alloc()
+	rv := objc.Send[MediaItemArtwork](instance.ID, objc.Sel("initWithImage:"), image)
 	rv.Autorelease()
 	return rv
 }

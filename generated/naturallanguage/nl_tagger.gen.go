@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Tagger] class.
@@ -220,8 +221,8 @@ func (t_ Tagger) DominantLanguage() unsafe.Pointer {
 // The string being analyzed by the linguistic tagger.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/string
-func (t_ Tagger) String() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("string"))
+func (t_ Tagger) String() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -231,8 +232,8 @@ func (t_ Tagger) String() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/string
-func (t_ Tagger) SetString(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
+func (t_ Tagger) SetString(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }
 // The tag schemes configured for this linguistic tagger.
 //

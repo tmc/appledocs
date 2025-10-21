@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentStore] class.
@@ -177,8 +178,8 @@ func (p_ PersistentStore) PersistentStoreCoordinator() unsafe.Pointer {
 // The type string of the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/type
-func (p_ PersistentStore) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+func (p_ PersistentStore) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
 }
 

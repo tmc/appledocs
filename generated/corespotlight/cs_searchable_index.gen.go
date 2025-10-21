@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CSSearchableIndex] class.
@@ -37,7 +37,7 @@ type ICSSearchableIndex interface {
 	DeleteSearchableItemsWithIdentifiersCompletionHandler(identifiers unsafe.Pointer, completionHandler unsafe.Pointer)
 	EndIndexBatchWithClientStateCompletionHandler(clientState unsafe.Pointer, completionHandler unsafe.Pointer)
 	EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState unsafe.Pointer, newClientState unsafe.Pointer, completionHandler unsafe.Pointer)
-	FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType uniformtypeidentifiers.UTType, completionHandler unsafe.Pointer)
+	FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType unsafe.Pointer, completionHandler unsafe.Pointer)
 	FetchLastClientStateWithCompletionHandler(completionHandler unsafe.Pointer)
 	IndexSearchableItemsCompletionHandler(items unsafe.Pointer, completionHandler unsafe.Pointer)
 }
@@ -90,22 +90,22 @@ func NewCSSearchableIndex() CSSearchableIndex {
 }
 
 
-// Returns an on-device index with the specified name and data protection class.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)
-func NewCSSearchableIndexWithNameProtectionClass(name string, protectionClass unsafe.Pointer) CSSearchableIndex {
-	instance := getCSSearchableIndexClass().Alloc()
-	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:protectionClass:"), objc.String(name), protectionClass)
-	rv.Autorelease()
-	return rv
-}
-
 // Returns an on-device index with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:)
 func NewCSSearchableIndexWithName(name string) CSSearchableIndex {
 	instance := getCSSearchableIndexClass().Alloc()
 	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:"), objc.String(name))
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an on-device index with the specified name and data protection class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)
+func NewCSSearchableIndexWithNameProtectionClass(name string, protectionClass unsafe.Pointer) CSSearchableIndex {
+	instance := getCSSearchableIndexClass().Alloc()
+	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:protectionClass:"), objc.String(name), protectionClass)
 	rv.Autorelease()
 	return rv
 }
@@ -172,7 +172,7 @@ func (c_ CSSearchableIndex) EndIndexBatchWithExpectedClientStateNewClientStateCo
 // Fetches data from an external provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)
-func (c_ CSSearchableIndex) FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType uniformtypeidentifiers.UTType, completionHandler unsafe.Pointer) {
+func (c_ CSSearchableIndex) FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:"), objc.String(bundleIdentifier), objc.String(itemIdentifier), contentType, completionHandler)
 }
 

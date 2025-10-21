@@ -78,7 +78,3 @@ func (t_ TextBlock) Autorelease() TextBlock {
 func NewTextBlock() TextBlock {
 	return getTextBlockClass().New()
 }
-
-
-
-

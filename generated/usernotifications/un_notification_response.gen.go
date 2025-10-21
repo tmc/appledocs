@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UNNotificationResponse] class.
@@ -83,8 +84,8 @@ func NewUNNotificationResponse() UNNotificationResponse {
 // The identifier string of the action that the user selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationResponse/actionIdentifier
-func (u_ UNNotificationResponse) ActionIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("actionIdentifier"))
+func (u_ UNNotificationResponse) ActionIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("actionIdentifier"))
 	return rv
 }
 

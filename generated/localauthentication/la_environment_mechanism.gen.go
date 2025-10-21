@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EnvironmentMechanism] class.
@@ -78,8 +79,8 @@ func NewEnvironmentMechanism() EnvironmentMechanism {
 // Name of the SF Symbol representing this authentication mechanism.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/iconSystemName
-func (e_ EnvironmentMechanism) IconSystemName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("iconSystemName"))
+func (e_ EnvironmentMechanism) IconSystemName() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("iconSystemName"))
 	return rv
 }
 
@@ -93,8 +94,8 @@ func (e_ EnvironmentMechanism) IsUsable() bool {
 // The localized name of the authentication mechanism, e.g. “Touch ID”, “Face ID” etc.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/localizedName
-func (e_ EnvironmentMechanism) LocalizedName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("localizedName"))
+func (e_ EnvironmentMechanism) LocalizedName() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("localizedName"))
 	return rv
 }
 

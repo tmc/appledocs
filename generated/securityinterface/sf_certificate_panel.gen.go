@@ -33,7 +33,7 @@ type ISFCertificatePanel interface {
 	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoCertificatesShowGroup(docWindow unsafe.Pointer, delegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer, certificates objc.ID, showGroup bool)
 	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoTrustShowGroup(docWindow unsafe.Pointer, delegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer, trust unsafe.Pointer, showGroup bool)
 	CertificateView() unsafe.Pointer
-	HelpAnchor() unsafe.Pointer
+	HelpAnchor() string
 	Policies() unsafe.Pointer
 	RunModalForTrustShowGroup(trust unsafe.Pointer, showGroup bool) int
 	RunModalForCertificatesShowGroup(certificates objc.ID, showGroup bool) int
@@ -128,8 +128,8 @@ func (s_ SFCertificatePanel) CertificateView() unsafe.Pointer {
 // Returns the current help anchor string for the sheet or panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/helpAnchor()
-func (s_ SFCertificatePanel) HelpAnchor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("helpAnchor"))
+func (s_ SFCertificatePanel) HelpAnchor() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("helpAnchor"))
 	return rv
 }
 

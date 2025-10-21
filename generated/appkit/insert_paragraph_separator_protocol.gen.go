@@ -12,5 +12,3 @@ var insertParagraphSeparatorProtocol *objc.Protocol
 func init() {
 	insertParagraphSeparatorProtocol = objc.GetProtocol("insertParagraphSeparator:")
 }
-
-

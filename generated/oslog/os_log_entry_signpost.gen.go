@@ -92,8 +92,8 @@ func (o_ OSLogEntrySignpost) SignpostIdentifier() unsafe.Pointer {
 // The signpost’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost/signpostName
-func (o_ OSLogEntrySignpost) SignpostName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("signpostName"))
+func (o_ OSLogEntrySignpost) SignpostName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("signpostName"))
 	return rv
 }
 

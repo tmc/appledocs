@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKNotificationInfo] class.
@@ -191,8 +192,8 @@ func (c_ CKNotificationInfo) SetTitleLocalizationArgs(value []string) {
 // The key that identifies the localized string for the notification’s action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertActionLocalizationKey
-func (c_ CKNotificationInfo) AlertActionLocalizationKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alertActionLocalizationKey"))
+func (c_ CKNotificationInfo) AlertActionLocalizationKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("alertActionLocalizationKey"))
 	return rv
 }
 
@@ -202,14 +203,14 @@ func (c_ CKNotificationInfo) AlertActionLocalizationKey() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertActionLocalizationKey
-func (c_ CKNotificationInfo) SetAlertActionLocalizationKey(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertActionLocalizationKey:"), value)
+func (c_ CKNotificationInfo) SetAlertActionLocalizationKey(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertActionLocalizationKey:"), objc.String(value))
 }
 // The text for the notification’s alert.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertBody
-func (c_ CKNotificationInfo) AlertBody() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alertBody"))
+func (c_ CKNotificationInfo) AlertBody() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("alertBody"))
 	return rv
 }
 
@@ -219,14 +220,14 @@ func (c_ CKNotificationInfo) AlertBody() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertBody
-func (c_ CKNotificationInfo) SetAlertBody(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertBody:"), value)
+func (c_ CKNotificationInfo) SetAlertBody(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertBody:"), objc.String(value))
 }
 // The filename of an image to use as a launch image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertLaunchImage
-func (c_ CKNotificationInfo) AlertLaunchImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alertLaunchImage"))
+func (c_ CKNotificationInfo) AlertLaunchImage() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("alertLaunchImage"))
 	return rv
 }
 
@@ -236,14 +237,14 @@ func (c_ CKNotificationInfo) AlertLaunchImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertLaunchImage
-func (c_ CKNotificationInfo) SetAlertLaunchImage(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLaunchImage:"), value)
+func (c_ CKNotificationInfo) SetAlertLaunchImage(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLaunchImage:"), objc.String(value))
 }
 // The key that identifies the localized string for the notification’s alert.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertLocalizationKey
-func (c_ CKNotificationInfo) AlertLocalizationKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alertLocalizationKey"))
+func (c_ CKNotificationInfo) AlertLocalizationKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("alertLocalizationKey"))
 	return rv
 }
 
@@ -253,14 +254,14 @@ func (c_ CKNotificationInfo) AlertLocalizationKey() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/alertLocalizationKey
-func (c_ CKNotificationInfo) SetAlertLocalizationKey(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationKey:"), value)
+func (c_ CKNotificationInfo) SetAlertLocalizationKey(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationKey:"), objc.String(value))
 }
 // The name of the action group that corresponds to this notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/category
-func (c_ CKNotificationInfo) Category() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("category"))
+func (c_ CKNotificationInfo) Category() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("category"))
 	return rv
 }
 
@@ -270,14 +271,14 @@ func (c_ CKNotificationInfo) Category() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/category
-func (c_ CKNotificationInfo) SetCategory(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCategory:"), value)
+func (c_ CKNotificationInfo) SetCategory(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCategory:"), objc.String(value))
 }
 // A value that the system uses to coalesce unseen push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/collapseIDKey
-func (c_ CKNotificationInfo) CollapseIDKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("collapseIDKey"))
+func (c_ CKNotificationInfo) CollapseIDKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("collapseIDKey"))
 	return rv
 }
 
@@ -287,8 +288,8 @@ func (c_ CKNotificationInfo) CollapseIDKey() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/collapseIDKey
-func (c_ CKNotificationInfo) SetCollapseIDKey(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCollapseIDKey:"), value)
+func (c_ CKNotificationInfo) SetCollapseIDKey(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCollapseIDKey:"), objc.String(value))
 }
 // A Boolean value that determines whether an app’s icon badge increments its value.
 //
@@ -344,8 +345,8 @@ func (c_ CKNotificationInfo) SetShouldSendMutableContent(value bool) {
 // The filename of the sound file to play when a notification arrives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/soundName
-func (c_ CKNotificationInfo) SoundName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("soundName"))
+func (c_ CKNotificationInfo) SoundName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("soundName"))
 	return rv
 }
 
@@ -355,14 +356,14 @@ func (c_ CKNotificationInfo) SoundName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/soundName
-func (c_ CKNotificationInfo) SetSoundName(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSoundName:"), value)
+func (c_ CKNotificationInfo) SetSoundName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSoundName:"), objc.String(value))
 }
 // The notification’s subtitle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/subtitle
-func (c_ CKNotificationInfo) Subtitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subtitle"))
+func (c_ CKNotificationInfo) Subtitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -372,14 +373,14 @@ func (c_ CKNotificationInfo) Subtitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/subtitle
-func (c_ CKNotificationInfo) SetSubtitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), value)
+func (c_ CKNotificationInfo) SetSubtitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 // The key that identifies the localized string for the notification’s subtitle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/subtitleLocalizationKey
-func (c_ CKNotificationInfo) SubtitleLocalizationKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subtitleLocalizationKey"))
+func (c_ CKNotificationInfo) SubtitleLocalizationKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("subtitleLocalizationKey"))
 	return rv
 }
 
@@ -389,14 +390,14 @@ func (c_ CKNotificationInfo) SubtitleLocalizationKey() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/subtitleLocalizationKey
-func (c_ CKNotificationInfo) SetSubtitleLocalizationKey(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationKey:"), value)
+func (c_ CKNotificationInfo) SetSubtitleLocalizationKey(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationKey:"), objc.String(value))
 }
 // The notification’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/title
-func (c_ CKNotificationInfo) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("title"))
+func (c_ CKNotificationInfo) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -406,14 +407,14 @@ func (c_ CKNotificationInfo) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/title
-func (c_ CKNotificationInfo) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
+func (c_ CKNotificationInfo) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // The key that identifies the localized string for the notification’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/titleLocalizationKey
-func (c_ CKNotificationInfo) TitleLocalizationKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("titleLocalizationKey"))
+func (c_ CKNotificationInfo) TitleLocalizationKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("titleLocalizationKey"))
 	return rv
 }
 
@@ -423,8 +424,8 @@ func (c_ CKNotificationInfo) TitleLocalizationKey() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/titleLocalizationKey
-func (c_ CKNotificationInfo) SetTitleLocalizationKey(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationKey:"), value)
+func (c_ CKNotificationInfo) SetTitleLocalizationKey(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationKey:"), objc.String(value))
 }
 
 

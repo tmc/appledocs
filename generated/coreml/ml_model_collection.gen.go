@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ModelCollection] class.
@@ -98,8 +99,8 @@ func (mc _ModelCollectionClass) EndAccessingModelCollectionWithIdentifierComplet
 // The unique identifier of the model collection’s deployment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/deploymentID
-func (m_ ModelCollection) DeploymentID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deploymentID"))
+func (m_ ModelCollection) DeploymentID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("deploymentID"))
 	return rv
 }
 
@@ -114,8 +115,8 @@ func (m_ ModelCollection) Entries() unsafe.Pointer {
 // The name of the model collection, unique to the development team.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/identifier
-func (m_ ModelCollection) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("identifier"))
+func (m_ ModelCollection) Identifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 

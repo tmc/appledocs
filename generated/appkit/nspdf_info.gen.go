@@ -79,7 +79,6 @@ func NewPDFInfo() PDFInfo {
 	return getPDFInfoClass().New()
 }
 
-
 // A Boolean value that indicates whether the file extension should appear after the filename.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/isFileExtensionHidden
@@ -87,7 +86,6 @@ func (p_ PDFInfo) FileExtensionHidden() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("fileExtensionHidden"))
 	return rv
 }
-
 
 // SetFileExtensionHidden sets the value of the fileExtensionHidden property.
 // A Boolean value that indicates whether the file extension should appear after the filename.
@@ -97,6 +95,7 @@ func (p_ PDFInfo) FileExtensionHidden() bool {
 func (p_ PDFInfo) SetFileExtensionHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileExtensionHidden:"), value)
 }
+
 // The paper orientation to use when exporting content as a PDF file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/orientation
@@ -104,7 +103,6 @@ func (p_ PDFInfo) Orientation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("orientation"))
 	return rv
 }
-
 
 // SetOrientation sets the value of the orientation property.
 // The paper orientation to use when exporting content as a PDF file.
@@ -114,6 +112,7 @@ func (p_ PDFInfo) Orientation() unsafe.Pointer {
 func (p_ PDFInfo) SetOrientation(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
 }
+
 // An array of tag names that should be applied to the PDF file after it’s created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/tagNames
@@ -121,7 +120,6 @@ func (p_ PDFInfo) TagNames() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("tagNames"))
 	return rv
 }
-
 
 // SetTagNames sets the value of the tagNames property.
 // An array of tag names that should be applied to the PDF file after it’s created.
@@ -141,5 +139,3 @@ func (p_ PDFInfo) SetTagNames(value []string) {
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTagNames:"), nsArray)
 }
-
-

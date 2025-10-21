@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -228,8 +229,8 @@ func (a_ AXChartDescriptor) SetSeries(value []AXDataSeriesDescriptor) {
 // A description of the key takeaways or features of the chart.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/summary
-func (a_ AXChartDescriptor) Summary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("summary"))
+func (a_ AXChartDescriptor) Summary() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("summary"))
 	return rv
 }
 
@@ -239,14 +240,14 @@ func (a_ AXChartDescriptor) Summary() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/summary
-func (a_ AXChartDescriptor) SetSummary(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSummary:"), value)
+func (a_ AXChartDescriptor) SetSummary(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSummary:"), objc.String(value))
 }
 // The title of the chart.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/title
-func (a_ AXChartDescriptor) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("title"))
+func (a_ AXChartDescriptor) Title() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -256,8 +257,8 @@ func (a_ AXChartDescriptor) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/title
-func (a_ AXChartDescriptor) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTitle:"), value)
+func (a_ AXChartDescriptor) SetTitle(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // The axis descriptor for the chart’s x-axis.
 //

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MCNearbyServiceAdvertiser] class.
@@ -143,8 +144,8 @@ func (m_ MCNearbyServiceAdvertiser) MyPeerID() unsafe.Pointer {
 // The service type that your app is advertising
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser/serviceType
-func (m_ MCNearbyServiceAdvertiser) ServiceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serviceType"))
+func (m_ MCNearbyServiceAdvertiser) ServiceType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 

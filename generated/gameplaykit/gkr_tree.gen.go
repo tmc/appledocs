@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RTree] class.
@@ -32,7 +32,7 @@ type _RTreeClass struct {
 type IRTree interface {
 	objectivec.IObject
 	AddElementBoundingRectMinBoundingRectMaxSplitStrategy(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer, splitStrategy unsafe.Pointer)
-	ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []appkit.NSObject
+	ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []foundation.NSObject
 	RemoveElementBoundingRectMinBoundingRectMax(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer)
 }
 
@@ -113,8 +113,8 @@ func (r_ RTree) AddElementBoundingRectMinBoundingRectMaxSplitStrategy(element un
 // Searches the tree and returns all elements found within the specified bounding region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRTree/elements(inBoundingRectMin:rectMax:)
-func (r_ RTree) ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []appkit.NSObject {
-	rv := objc.Send[[]appkit.NSObject](r_.ID, objc.Sel("elementsInBoundingRectMin:rectMax:"), rectMin, rectMax)
+func (r_ RTree) ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []foundation.NSObject {
+	rv := objc.Send[[]foundation.NSObject](r_.ID, objc.Sel("elementsInBoundingRectMin:rectMax:"), rectMin, rectMax)
 	return rv
 }
 

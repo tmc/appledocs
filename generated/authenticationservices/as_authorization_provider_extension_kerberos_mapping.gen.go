@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AuthorizationProviderExtensionKerberosMapping] class.
@@ -83,8 +84,8 @@ func NewAuthorizationProviderExtensionKerberosMapping() AuthorizationProviderExt
 // The key name of the Kerberos client name string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/clientNameKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) ClientNameKeyName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("clientNameKeyName"))
+func (a_ AuthorizationProviderExtensionKerberosMapping) ClientNameKeyName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("clientNameKeyName"))
 	return rv
 }
 
@@ -94,14 +95,14 @@ func (a_ AuthorizationProviderExtensionKerberosMapping) ClientNameKeyName() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/clientNameKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) SetClientNameKeyName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setClientNameKeyName:"), value)
+func (a_ AuthorizationProviderExtensionKerberosMapping) SetClientNameKeyName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setClientNameKeyName:"), objc.String(value))
 }
 // The key name of the Kerberos session key type number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/encryptionKeyTypeKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) EncryptionKeyTypeKeyName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("encryptionKeyTypeKeyName"))
+func (a_ AuthorizationProviderExtensionKerberosMapping) EncryptionKeyTypeKeyName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("encryptionKeyTypeKeyName"))
 	return rv
 }
 
@@ -111,14 +112,14 @@ func (a_ AuthorizationProviderExtensionKerberosMapping) EncryptionKeyTypeKeyName
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/encryptionKeyTypeKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) SetEncryptionKeyTypeKeyName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setEncryptionKeyTypeKeyName:"), value)
+func (a_ AuthorizationProviderExtensionKerberosMapping) SetEncryptionKeyTypeKeyName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setEncryptionKeyTypeKeyName:"), objc.String(value))
 }
 // The key name of the Base 64-encoded Kerberos AS-REP string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/messageBufferKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) MessageBufferKeyName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("messageBufferKeyName"))
+func (a_ AuthorizationProviderExtensionKerberosMapping) MessageBufferKeyName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("messageBufferKeyName"))
 	return rv
 }
 
@@ -128,14 +129,14 @@ func (a_ AuthorizationProviderExtensionKerberosMapping) MessageBufferKeyName() u
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/messageBufferKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) SetMessageBufferKeyName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setMessageBufferKeyName:"), value)
+func (a_ AuthorizationProviderExtensionKerberosMapping) SetMessageBufferKeyName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMessageBufferKeyName:"), objc.String(value))
 }
 // The key name of the Kerberos realm string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/realmKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) RealmKeyName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("realmKeyName"))
+func (a_ AuthorizationProviderExtensionKerberosMapping) RealmKeyName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("realmKeyName"))
 	return rv
 }
 
@@ -145,14 +146,14 @@ func (a_ AuthorizationProviderExtensionKerberosMapping) RealmKeyName() unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/realmKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) SetRealmKeyName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRealmKeyName:"), value)
+func (a_ AuthorizationProviderExtensionKerberosMapping) SetRealmKeyName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRealmKeyName:"), objc.String(value))
 }
 // The key name of the Kerberos service name string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/serviceNameKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) ServiceNameKeyName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("serviceNameKeyName"))
+func (a_ AuthorizationProviderExtensionKerberosMapping) ServiceNameKeyName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("serviceNameKeyName"))
 	return rv
 }
 
@@ -162,14 +163,14 @@ func (a_ AuthorizationProviderExtensionKerberosMapping) ServiceNameKeyName() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/serviceNameKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) SetServiceNameKeyName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setServiceNameKeyName:"), value)
+func (a_ AuthorizationProviderExtensionKerberosMapping) SetServiceNameKeyName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setServiceNameKeyName:"), objc.String(value))
 }
 // The key name of the Kerberos session key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/sessionKeyKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) SessionKeyKeyName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sessionKeyKeyName"))
+func (a_ AuthorizationProviderExtensionKerberosMapping) SessionKeyKeyName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("sessionKeyKeyName"))
 	return rv
 }
 
@@ -179,14 +180,14 @@ func (a_ AuthorizationProviderExtensionKerberosMapping) SessionKeyKeyName() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/sessionKeyKeyName
-func (a_ AuthorizationProviderExtensionKerberosMapping) SetSessionKeyKeyName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSessionKeyKeyName:"), value)
+func (a_ AuthorizationProviderExtensionKerberosMapping) SetSessionKeyKeyName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSessionKeyKeyName:"), objc.String(value))
 }
 // The keypath in the response JSON that uses this set of mappings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/ticketKeyPath
-func (a_ AuthorizationProviderExtensionKerberosMapping) TicketKeyPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("ticketKeyPath"))
+func (a_ AuthorizationProviderExtensionKerberosMapping) TicketKeyPath() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("ticketKeyPath"))
 	return rv
 }
 
@@ -196,8 +197,8 @@ func (a_ AuthorizationProviderExtensionKerberosMapping) TicketKeyPath() unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping/ticketKeyPath
-func (a_ AuthorizationProviderExtensionKerberosMapping) SetTicketKeyPath(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTicketKeyPath:"), value)
+func (a_ AuthorizationProviderExtensionKerberosMapping) SetTicketKeyPath(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTicketKeyPath:"), objc.String(value))
 }
 
 

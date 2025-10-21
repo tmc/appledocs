@@ -15,4 +15,3 @@ var writingToolsCoordinatorProtocol *objc.Protocol
 func init() {
 	writingToolsCoordinatorProtocol = objc.GetProtocol("writingToolsCoordinator:")
 }
-

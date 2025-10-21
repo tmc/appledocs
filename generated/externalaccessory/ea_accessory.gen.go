@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EAAccessory] class.
@@ -90,24 +91,24 @@ func (e_ EAAccessory) ConnectionID() uint {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/dockType
-func (e_ EAAccessory) DockType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("dockType"))
+func (e_ EAAccessory) DockType() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("dockType"))
 	return rv
 }
 
 // The current firmware version for the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/firmwareRevision
-func (e_ EAAccessory) FirmwareRevision() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("firmwareRevision"))
+func (e_ EAAccessory) FirmwareRevision() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("firmwareRevision"))
 	return rv
 }
 
 // The hardware version of the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/hardwareRevision
-func (e_ EAAccessory) HardwareRevision() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("hardwareRevision"))
+func (e_ EAAccessory) HardwareRevision() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("hardwareRevision"))
 	return rv
 }
 
@@ -122,24 +123,24 @@ func (e_ EAAccessory) Connected() bool {
 // The name of the accessory’s manufacturer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/manufacturer
-func (e_ EAAccessory) Manufacturer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("manufacturer"))
+func (e_ EAAccessory) Manufacturer() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("manufacturer"))
 	return rv
 }
 
 // The model information for the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/modelNumber
-func (e_ EAAccessory) ModelNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("modelNumber"))
+func (e_ EAAccessory) ModelNumber() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("modelNumber"))
 	return rv
 }
 
 // The display name of the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/name
-func (e_ EAAccessory) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("name"))
+func (e_ EAAccessory) Name() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -154,8 +155,8 @@ func (e_ EAAccessory) ProtocolStrings() []string {
 // The serial number of the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/serialNumber
-func (e_ EAAccessory) SerialNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("serialNumber"))
+func (e_ EAAccessory) SerialNumber() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("serialNumber"))
 	return rv
 }
 

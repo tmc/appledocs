@@ -79,7 +79,3 @@ func (s_ SegmentedCell) Autorelease() SegmentedCell {
 func NewSegmentedCell() SegmentedCell {
 	return getSegmentedCellClass().New()
 }
-
-
-
-

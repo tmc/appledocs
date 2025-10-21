@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -79,19 +80,19 @@ func NewThumbnailReply() ThumbnailReply {
 }
 
 
-// Creates a new thumbnail for a custom file type in the given context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/init(contextSize:drawing:)
-func NewThumbnailReplyWithContextSizeDrawingBlock(contextSize coregraphics.CGSize, drawingBlock unsafe.Pointer) ThumbnailReply {
-	rv := objc.Send[ThumbnailReply](objc.ID(getThumbnailReplyClass().class), objc.Sel("replyWithContextSize:drawingBlock:"), contextSize, drawingBlock)
-	return rv
-}
-
 // Creates a new thumbnail for a custom file type in the current context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/init(contextSize:currentContextDrawing:)
 func NewThumbnailReplyWithContextSizeCurrentContextDrawingBlock(contextSize coregraphics.CGSize, drawingBlock unsafe.Pointer) ThumbnailReply {
 	rv := objc.Send[ThumbnailReply](objc.ID(getThumbnailReplyClass().class), objc.Sel("replyWithContextSize:currentContextDrawingBlock:"), contextSize, drawingBlock)
+	return rv
+}
+
+// Creates a new thumbnail for a custom file type in the given context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/init(contextSize:drawing:)
+func NewThumbnailReplyWithContextSizeDrawingBlock(contextSize coregraphics.CGSize, drawingBlock unsafe.Pointer) ThumbnailReply {
+	rv := objc.Send[ThumbnailReply](objc.ID(getThumbnailReplyClass().class), objc.Sel("replyWithContextSize:drawingBlock:"), contextSize, drawingBlock)
 	return rv
 }
 
@@ -115,8 +116,8 @@ func (tc _ThumbnailReplyClass) ReplyWithContextSizeDrawingBlock(contextSize core
 // A short string that identifies the file type that the system uses as a badge when producing an icon thumbnail.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/extensionBadge
-func (t_ ThumbnailReply) ExtensionBadge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("extensionBadge"))
+func (t_ ThumbnailReply) ExtensionBadge() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("extensionBadge"))
 	return rv
 }
 
@@ -126,7 +127,7 @@ func (t_ ThumbnailReply) ExtensionBadge() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/extensionBadge
-func (t_ ThumbnailReply) SetExtensionBadge(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setExtensionBadge:"), value)
+func (t_ ThumbnailReply) SetExtensionBadge(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setExtensionBadge:"), objc.String(value))
 }
 

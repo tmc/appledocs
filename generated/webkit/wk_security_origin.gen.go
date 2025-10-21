@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SecurityOrigin] class.
@@ -83,8 +84,8 @@ func NewSecurityOrigin() SecurityOrigin {
 // The security origin’s host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSecurityOrigin/host
-func (s_ SecurityOrigin) Host() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("host"))
+func (s_ SecurityOrigin) Host() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("host"))
 	return rv
 }
 

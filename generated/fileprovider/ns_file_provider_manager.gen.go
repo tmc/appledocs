@@ -383,8 +383,8 @@ func (f_ FileProviderManager) DocumentStorageURL() unsafe.Pointer {
 // A purpose identifier for coordinated reads and writes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/providerIdentifier
-func (f_ FileProviderManager) ProviderIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("providerIdentifier"))
+func (f_ FileProviderManager) ProviderIdentifier() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("providerIdentifier"))
 	return rv
 }
 

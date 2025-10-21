@@ -82,8 +82,8 @@ func NewCNChangeHistoryAddGroupEvent() CNChangeHistoryAddGroupEvent {
 // A string that uniquely identifies the container where the user added the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddGroupEvent/containerIdentifier
-func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

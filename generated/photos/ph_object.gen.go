@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHObject] class.
@@ -83,8 +84,8 @@ func NewPHObject() PHObject {
 // A unique string that persistently identifies the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHObject/localIdentifier
-func (p_ PHObject) LocalIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("localIdentifier"))
+func (p_ PHObject) LocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 

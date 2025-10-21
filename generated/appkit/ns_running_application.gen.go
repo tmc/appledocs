@@ -78,7 +78,3 @@ func (r_ RunningApplication) Autorelease() RunningApplication {
 func NewRunningApplication() RunningApplication {
 	return getRunningApplicationClass().New()
 }
-
-
-
-

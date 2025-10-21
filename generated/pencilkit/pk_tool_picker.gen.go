@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -329,8 +330,8 @@ func (t_ ToolPicker) SetSelectedToolItem(value unsafe.Pointer) {
 // The identifier of the selected tool item in the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/selectedToolItemIdentifier
-func (t_ ToolPicker) SelectedToolItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedToolItemIdentifier"))
+func (t_ ToolPicker) SelectedToolItemIdentifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("selectedToolItemIdentifier"))
 	return rv
 }
 
@@ -340,8 +341,8 @@ func (t_ ToolPicker) SelectedToolItemIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/selectedToolItemIdentifier
-func (t_ ToolPicker) SetSelectedToolItemIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedToolItemIdentifier:"), value)
+func (t_ ToolPicker) SetSelectedToolItemIdentifier(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedToolItemIdentifier:"), objc.String(value))
 }
 // A Boolean value that indicates whether the default drawing policy UI is visible.
 //
@@ -363,8 +364,8 @@ func (t_ ToolPicker) SetShowsDrawingPolicyControls(value bool) {
 // The name used to automatically save the tool picker’s state in the defaults system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/stateAutosaveName
-func (t_ ToolPicker) StateAutosaveName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("stateAutosaveName"))
+func (t_ ToolPicker) StateAutosaveName() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("stateAutosaveName"))
 	return rv
 }
 
@@ -374,8 +375,8 @@ func (t_ ToolPicker) StateAutosaveName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/stateAutosaveName
-func (t_ ToolPicker) SetStateAutosaveName(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStateAutosaveName:"), value)
+func (t_ ToolPicker) SetStateAutosaveName(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStateAutosaveName:"), objc.String(value))
 }
 // All tool items in the tool picker.
 //

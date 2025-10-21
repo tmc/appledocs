@@ -15,5 +15,3 @@ var windowDidResignMainProtocol *objc.Protocol
 func init() {
 	windowDidResignMainProtocol = objc.GetProtocol("windowDidResignMain:")
 }
-
-

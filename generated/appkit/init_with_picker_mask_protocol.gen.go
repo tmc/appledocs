@@ -12,5 +12,3 @@ var initWithPickerMaskProtocol *objc.Protocol
 func init() {
 	initWithPickerMaskProtocol = objc.GetProtocol("initWithPickerMask:")
 }
-
-

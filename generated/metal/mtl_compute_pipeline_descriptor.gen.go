@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ComputePipelineDescriptor] class.
@@ -83,8 +84,8 @@ func NewComputePipelineDescriptor() ComputePipelineDescriptor {
 // A string that identifies the instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/label
-func (c_ ComputePipelineDescriptor) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("label"))
+func (c_ ComputePipelineDescriptor) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -94,8 +95,8 @@ func (c_ ComputePipelineDescriptor) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/label
-func (c_ ComputePipelineDescriptor) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
+func (c_ ComputePipelineDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 

@@ -15,5 +15,3 @@ var accessibilityClearButtonProtocol *objc.Protocol
 func init() {
 	accessibilityClearButtonProtocol = objc.GetProtocol("accessibilityClearButton")
 }
-
-

@@ -105,8 +105,8 @@ func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ unsafe.Pointer,
 // The identifier for the recurrence rule’s calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/calendarIdentifier
-func (e_ EKRecurrenceRule) CalendarIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("calendarIdentifier"))
+func (e_ EKRecurrenceRule) CalendarIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }
 

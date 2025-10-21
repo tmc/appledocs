@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioPlayer] class.
@@ -201,8 +202,8 @@ func (a_ AudioPlayer) UpdateMeters() {
 // An array of channel descriptions for the audio player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/channelAssignments
-func (a_ AudioPlayer) ChannelAssignments() []avfaudio.AVAudioSessionChannelDescription {
-	rv := objc.Send[[]avfaudio.AVAudioSessionChannelDescription](a_.ID, objc.Sel("channelAssignments"))
+func (a_ AudioPlayer) ChannelAssignments() []AVAudioSessionChannelDescription {
+	rv := objc.Send[[]AVAudioSessionChannelDescription](a_.ID, objc.Sel("channelAssignments"))
 	return rv
 }
 
@@ -212,7 +213,7 @@ func (a_ AudioPlayer) ChannelAssignments() []avfaudio.AVAudioSessionChannelDescr
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/channelAssignments
-func (a_ AudioPlayer) SetChannelAssignments(value []avfaudio.AVAudioSessionChannelDescription) {
+func (a_ AudioPlayer) SetChannelAssignments(value []AVAudioSessionChannelDescription) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -228,8 +229,8 @@ func (a_ AudioPlayer) SetChannelAssignments(value []avfaudio.AVAudioSessionChann
 // The unique identifier of the current audio player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentDevice
-func (a_ AudioPlayer) CurrentDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentDevice"))
+func (a_ AudioPlayer) CurrentDevice() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("currentDevice"))
 	return rv
 }
 
@@ -239,8 +240,8 @@ func (a_ AudioPlayer) CurrentDevice() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentDevice
-func (a_ AudioPlayer) SetCurrentDevice(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentDevice:"), value)
+func (a_ AudioPlayer) SetCurrentDevice(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentDevice:"), objc.String(value))
 }
 // The current playback time, in seconds, within the audio timeline.
 //

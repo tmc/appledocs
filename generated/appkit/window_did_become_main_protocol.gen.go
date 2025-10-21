@@ -15,5 +15,3 @@ var windowDidBecomeMainProtocol *objc.Protocol
 func init() {
 	windowDidBecomeMainProtocol = objc.GetProtocol("windowDidBecomeMain:")
 }
-
-

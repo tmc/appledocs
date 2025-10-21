@@ -138,8 +138,8 @@ func (t_ Tokenizer) TokensForRange(range_ Range) []avfoundation.NSValue {
 // The text to be tokenized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTokenizer/string
-func (t_ Tokenizer) String() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("string"))
+func (t_ Tokenizer) String() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -149,8 +149,8 @@ func (t_ Tokenizer) String() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTokenizer/string
-func (t_ Tokenizer) SetString(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
+func (t_ Tokenizer) SetString(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }
 // The linguistic unit that this tokenizer uses.
 //

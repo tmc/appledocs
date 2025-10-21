@@ -102,8 +102,8 @@ func (n_ NCWidgetSearchViewController) SetDelegate(value objc.ID) {
 // A localized description of the nature of the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetSearchViewController/searchDescription
-func (n_ NCWidgetSearchViewController) SearchDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("searchDescription"))
+func (n_ NCWidgetSearchViewController) SearchDescription() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("searchDescription"))
 	return rv
 }
 
@@ -113,14 +113,14 @@ func (n_ NCWidgetSearchViewController) SearchDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetSearchViewController/searchDescription
-func (n_ NCWidgetSearchViewController) SetSearchDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchDescription:"), value)
+func (n_ NCWidgetSearchViewController) SetSearchDescription(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchDescription:"), objc.String(value))
 }
 // A key path for the string property to display for each object in the search results array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetSearchViewController/searchResultKeyPath
-func (n_ NCWidgetSearchViewController) SearchResultKeyPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("searchResultKeyPath"))
+func (n_ NCWidgetSearchViewController) SearchResultKeyPath() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("searchResultKeyPath"))
 	return rv
 }
 
@@ -130,8 +130,8 @@ func (n_ NCWidgetSearchViewController) SearchResultKeyPath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetSearchViewController/searchResultKeyPath
-func (n_ NCWidgetSearchViewController) SetSearchResultKeyPath(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchResultKeyPath:"), value)
+func (n_ NCWidgetSearchViewController) SetSearchResultKeyPath(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchResultKeyPath:"), objc.String(value))
 }
 // An array of search results.
 //
@@ -163,8 +163,8 @@ func (n_ NCWidgetSearchViewController) SetSearchResults(value []objc.ID) {
 // A localized phrase displayed in the results list when no search results are available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetSearchViewController/searchResultsPlaceholderString
-func (n_ NCWidgetSearchViewController) SearchResultsPlaceholderString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("searchResultsPlaceholderString"))
+func (n_ NCWidgetSearchViewController) SearchResultsPlaceholderString() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("searchResultsPlaceholderString"))
 	return rv
 }
 
@@ -174,8 +174,8 @@ func (n_ NCWidgetSearchViewController) SearchResultsPlaceholderString() unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetSearchViewController/searchResultsPlaceholderString
-func (n_ NCWidgetSearchViewController) SetSearchResultsPlaceholderString(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchResultsPlaceholderString:"), value)
+func (n_ NCWidgetSearchViewController) SetSearchResultsPlaceholderString(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchResultsPlaceholderString:"), objc.String(value))
 }
 
 

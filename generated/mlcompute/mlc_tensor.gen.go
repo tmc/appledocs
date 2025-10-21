@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CTensor] class.
@@ -89,11 +90,27 @@ func NewCTensor() CTensor {
 }
 
 
-// Creates a tensor without data, using the descriptor you specify.
+// Creates a tensor with the descriptor and random initializer type you specify.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:)
-func NewCTensorWithDescriptor(tensorDescriptor unsafe.Pointer) CTensor {
-	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithDescriptor:"), tensorDescriptor)
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:randomInitializerType:)
+func NewCTensorWithDescriptorRandomInitializerType(tensorDescriptor unsafe.Pointer, randomInitializerType unsafe.Pointer) CTensor {
+	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithDescriptor:randomInitializerType:"), tensorDescriptor, randomInitializerType)
+	return rv
+}
+
+// Creates a tensor with the sequence length, number of feature channels, batch size, and data you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(sequenceLength:featureChannelCount:batchSize:data:)
+func NewCTensorWithSequenceLengthFeatureChannelCountBatchSizeData(sequenceLength uint, featureChannelCount uint, batchSize uint, data unsafe.Pointer) CTensor {
+	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithSequenceLength:featureChannelCount:batchSize:data:"), sequenceLength, featureChannelCount, batchSize, data)
+	return rv
+}
+
+// Creates a tensor with the sizes, number of feature channels, data, and data type you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:data:dataType:)
+func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, data unsafe.Pointer, dataType unsafe.Pointer) CTensor {
+	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:data:dataType:"), width, height, featureChannelCount, batchSize, data, dataType)
 	return rv
 }
 
@@ -113,11 +130,11 @@ func NewCTensorWithSequenceLengthFeatureChannelCountBatchSize(sequenceLength uin
 	return rv
 }
 
-// Creates a tensor with the sequence length, number of feature channels, batch size, and data you specify.
+// Creates a tensor with the sequence length, number of feature channels, batch size, and random initializer type you specify.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(sequenceLength:featureChannelCount:batchSize:data:)
-func NewCTensorWithSequenceLengthFeatureChannelCountBatchSizeData(sequenceLength uint, featureChannelCount uint, batchSize uint, data unsafe.Pointer) CTensor {
-	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithSequenceLength:featureChannelCount:batchSize:data:"), sequenceLength, featureChannelCount, batchSize, data)
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(sequenceLength:featureChannelCount:batchSize:randomInitializerType:)
+func NewCTensorWithSequenceLengthFeatureChannelCountBatchSizeRandomInitializerType(sequenceLength uint, featureChannelCount uint, batchSize uint, randomInitializerType unsafe.Pointer) CTensor {
+	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithSequenceLength:featureChannelCount:batchSize:randomInitializerType:"), sequenceLength, featureChannelCount, batchSize, randomInitializerType)
 	return rv
 }
 
@@ -153,35 +170,19 @@ func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeRandomInitializerType(
 	return rv
 }
 
+// Creates a tensor without data, using the descriptor you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:)
+func NewCTensorWithDescriptor(tensorDescriptor unsafe.Pointer) CTensor {
+	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithDescriptor:"), tensorDescriptor)
+	return rv
+}
+
 // Creates a tensor with the descriptor and scalar value you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:fillWithData:)
 func NewCTensorWithDescriptorFillWithData(tensorDescriptor unsafe.Pointer, fillData unsafe.Pointer) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithDescriptor:fillWithData:"), tensorDescriptor, fillData)
-	return rv
-}
-
-// Creates a tensor with the descriptor and random initializer type you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:randomInitializerType:)
-func NewCTensorWithDescriptorRandomInitializerType(tensorDescriptor unsafe.Pointer, randomInitializerType unsafe.Pointer) CTensor {
-	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithDescriptor:randomInitializerType:"), tensorDescriptor, randomInitializerType)
-	return rv
-}
-
-// Creates a tensor with the sequence length, number of feature channels, batch size, and random initializer type you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(sequenceLength:featureChannelCount:batchSize:randomInitializerType:)
-func NewCTensorWithSequenceLengthFeatureChannelCountBatchSizeRandomInitializerType(sequenceLength uint, featureChannelCount uint, batchSize uint, randomInitializerType unsafe.Pointer) CTensor {
-	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithSequenceLength:featureChannelCount:batchSize:randomInitializerType:"), sequenceLength, featureChannelCount, batchSize, randomInitializerType)
-	return rv
-}
-
-// Creates a tensor with the sizes, number of feature channels, data, and data type you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:data:dataType:)
-func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, data unsafe.Pointer, dataType unsafe.Pointer) CTensor {
-	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:data:dataType:"), width, height, featureChannelCount, batchSize, data, dataType)
 	return rv
 }
 
@@ -453,8 +454,8 @@ func (c_ CTensor) HasValidNumerics() bool {
 // A string that identifes this tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/label
-func (c_ CTensor) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("label"))
+func (c_ CTensor) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -464,8 +465,8 @@ func (c_ CTensor) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/label
-func (c_ CTensor) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
+func (c_ CTensor) SetLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 // An array that contains optimizer buffers you specify when you create a tensor parameter.
 //

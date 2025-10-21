@@ -12,5 +12,3 @@ var WindowDelegateProtocol *objc.Protocol
 func init() {
 	WindowDelegateProtocol = objc.GetProtocol("NSWindowDelegate")
 }
-
-

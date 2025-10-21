@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Behavior] class.
@@ -87,6 +88,14 @@ func NewBehavior() Behavior {
 }
 
 
+// Creates a behavior with a single goal.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goal:weight:)
+func NewBehaviorWithGoalWeight(goal unsafe.Pointer, weight unsafe.Pointer) Behavior {
+	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithGoal:weight:"), goal, weight)
+	return rv
+}
+
 // Creates a behavior with the specified goals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goals:)
@@ -108,14 +117,6 @@ func NewBehaviorWithGoalsAndWeights(goals unsafe.Pointer, weights unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(weightedGoals:)
 func NewBehaviorWithWeightedGoals(weightedGoals unsafe.Pointer) Behavior {
 	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithWeightedGoals:"), weightedGoals)
-	return rv
-}
-
-// Creates a behavior with a single goal.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goal:weight:)
-func NewBehaviorWithGoalWeight(goal unsafe.Pointer, weight unsafe.Pointer) Behavior {
-	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithGoal:weight:"), goal, weight)
 	return rv
 }
 

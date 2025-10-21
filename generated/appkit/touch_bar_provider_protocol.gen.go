@@ -17,5 +17,3 @@ var TouchBarProviderProtocol *objc.Protocol
 func init() {
 	TouchBarProviderProtocol = objc.GetProtocol("NSTouchBarProvider")
 }
-
-

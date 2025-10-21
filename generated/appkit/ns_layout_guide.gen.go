@@ -79,7 +79,6 @@ func NewLayoutGuide() LayoutGuide {
 	return getLayoutGuideClass().New()
 }
 
-
 // A layout anchor representing the bottom edge of the layout guide’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutGuide/bottomAnchor
@@ -96,7 +95,6 @@ func (l_ LayoutGuide) Identifier() unsafe.Pointer {
 	return rv
 }
 
-
 // SetIdentifier sets the value of the identifier property.
 // A string used to identify the layout guide.
 
@@ -105,6 +103,7 @@ func (l_ LayoutGuide) Identifier() unsafe.Pointer {
 func (l_ LayoutGuide) SetIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), value)
 }
+
 // A layout anchor representing the leading edge of the layout guide’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutGuide/leadingAnchor
@@ -112,6 +111,3 @@ func (l_ LayoutGuide) LeadingAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("leadingAnchor"))
 	return rv
 }
-
-
-

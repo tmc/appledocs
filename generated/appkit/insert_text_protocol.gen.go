@@ -12,5 +12,3 @@ var insertTextProtocol *objc.Protocol
 func init() {
 	insertTextProtocol = objc.GetProtocol("insertText:")
 }
-
-

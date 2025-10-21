@@ -15,5 +15,3 @@ var confinementRectForMenuProtocol *objc.Protocol
 func init() {
 	confinementRectForMenuProtocol = objc.GetProtocol("confinementRectForMenu:")
 }
-
-

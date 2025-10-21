@@ -111,8 +111,8 @@ func (m_ MusicPlayerStoreQueueDescriptor) SetStartTimeForItemWithStoreID(startTi
 // The item identified by the store identifier to play first.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/startItemID
-func (m_ MusicPlayerStoreQueueDescriptor) StartItemID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startItemID"))
+func (m_ MusicPlayerStoreQueueDescriptor) StartItemID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("startItemID"))
 	return rv
 }
 
@@ -122,8 +122,8 @@ func (m_ MusicPlayerStoreQueueDescriptor) StartItemID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/startItemID
-func (m_ MusicPlayerStoreQueueDescriptor) SetStartItemID(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItemID:"), value)
+func (m_ MusicPlayerStoreQueueDescriptor) SetStartItemID(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItemID:"), objc.String(value))
 }
 // An array containing the store identifiers found by the query used to create the queue descriptor.
 //

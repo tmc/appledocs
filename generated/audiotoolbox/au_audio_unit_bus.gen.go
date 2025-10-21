@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioUnitBus] class.
@@ -176,8 +177,8 @@ func (a_ AudioUnitBus) SetMaximumChannelCount(value unsafe.Pointer) {
 // A name for the bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/name
-func (a_ AudioUnitBus) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("name"))
+func (a_ AudioUnitBus) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -187,8 +188,8 @@ func (a_ AudioUnitBus) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/name
-func (a_ AudioUnitBus) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
+func (a_ AudioUnitBus) SetName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The audio unit that owns the bus.
 //

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ModelDescription] class.
@@ -105,16 +106,16 @@ func (m_ ModelDescription) OutputDescriptionsByName() unsafe.Pointer {
 // The name of the primary prediction feature output description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (m_ ModelDescription) PredictedFeatureName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("predictedFeatureName"))
+func (m_ ModelDescription) PredictedFeatureName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
 
 // The name of the feature output description for all probabilities of a prediction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedProbabilitiesName
-func (m_ ModelDescription) PredictedProbabilitiesName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("predictedProbabilitiesName"))
+func (m_ ModelDescription) PredictedProbabilitiesName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("predictedProbabilitiesName"))
 	return rv
 }
 

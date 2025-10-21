@@ -99,16 +99,16 @@ func (nc _NWHostEndpointClass) EndpointWithHostnamePort(hostname string, port st
 // The endpoint’s hostname.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWHostEndpoint/hostname
-func (n_ NWHostEndpoint) Hostname() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("hostname"))
+func (n_ NWHostEndpoint) Hostname() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("hostname"))
 	return rv
 }
 
 // The endpoint’s port, represented as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWHostEndpoint/port
-func (n_ NWHostEndpoint) Port() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("port"))
+func (n_ NWHostEndpoint) Port() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("port"))
 	return rv
 }
 

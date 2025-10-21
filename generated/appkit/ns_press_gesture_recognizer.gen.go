@@ -80,7 +80,6 @@ func NewPressGestureRecognizer() PressGestureRecognizer {
 	return getPressGestureRecognizerClass().New()
 }
 
-
 // The minimum time (in seconds) that the user must hold the mouse button in the view for a valid gesture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressGestureRecognizer/minimumPressDuration
@@ -88,7 +87,6 @@ func (p_ PressGestureRecognizer) MinimumPressDuration() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("minimumPressDuration"))
 	return rv
 }
-
 
 // SetMinimumPressDuration sets the value of the minimumPressDuration property.
 // The minimum time (in seconds) that the user must hold the mouse button in the view for a valid gesture.
@@ -98,5 +96,3 @@ func (p_ PressGestureRecognizer) MinimumPressDuration() float64 {
 func (p_ PressGestureRecognizer) SetMinimumPressDuration(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMinimumPressDuration:"), value)
 }
-
-

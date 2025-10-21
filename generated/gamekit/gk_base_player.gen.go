@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BasePlayer] class.
@@ -83,8 +84,8 @@ func NewBasePlayer() BasePlayer {
 // A unique identifier for a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKBasePlayer/playerID
-func (b_ BasePlayer) PlayerID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("playerID"))
+func (b_ BasePlayer) PlayerID() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("playerID"))
 	return rv
 }
 

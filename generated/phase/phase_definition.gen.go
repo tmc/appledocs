@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASEDefinition] class.
@@ -83,8 +84,8 @@ func NewPHASEDefinition() PHASEDefinition {
 // A unique name for the definition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDefinition/identifier
-func (p_ PHASEDefinition) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEDefinition) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

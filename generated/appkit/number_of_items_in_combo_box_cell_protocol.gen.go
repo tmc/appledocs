@@ -12,5 +12,3 @@ var numberOfItemsInComboBoxCellProtocol *objc.Protocol
 func init() {
 	numberOfItemsInComboBoxCellProtocol = objc.GetProtocol("numberOfItemsInComboBoxCell:")
 }
-
-

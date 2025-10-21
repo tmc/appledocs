@@ -85,8 +85,8 @@ func NewMKAnnotationView() MKAnnotationView {
 // An identifier that determines whether the annotation view participates in clustering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/clusteringIdentifier
-func (m_ MKAnnotationView) ClusteringIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("clusteringIdentifier"))
+func (m_ MKAnnotationView) ClusteringIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("clusteringIdentifier"))
 	return rv
 }
 
@@ -96,8 +96,8 @@ func (m_ MKAnnotationView) ClusteringIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/clusteringIdentifier
-func (m_ MKAnnotationView) SetClusteringIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setClusteringIdentifier:"), value)
+func (m_ MKAnnotationView) SetClusteringIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setClusteringIdentifier:"), objc.String(value))
 }
 
 

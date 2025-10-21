@@ -102,8 +102,8 @@ func (v_ VZVirtioConsolePortConfiguration) SetIsConsole(value bool) {
 // The name of the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/name
-func (v_ VZVirtioConsolePortConfiguration) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("name"))
+func (v_ VZVirtioConsolePortConfiguration) Name() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (v_ VZVirtioConsolePortConfiguration) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/name
-func (v_ VZVirtioConsolePortConfiguration) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), value)
+func (v_ VZVirtioConsolePortConfiguration) SetName(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

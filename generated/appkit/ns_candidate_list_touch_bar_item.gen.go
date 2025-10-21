@@ -78,7 +78,6 @@ func NewCandidateListTouchBarItem() CandidateListTouchBarItem {
 	return getCandidateListTouchBarItemClass().New()
 }
 
-
 // A block that converts a candidate object into an attributed string for display in the candidate list item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem/attributedStringForCandidate
@@ -86,7 +85,6 @@ func (c_ CandidateListTouchBarItem) AttributedStringForCandidate() unsafe.Pointe
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attributedStringForCandidate"))
 	return rv
 }
-
 
 // SetAttributedStringForCandidate sets the value of the attributedStringForCandidate property.
 // A block that converts a candidate object into an attributed string for display in the candidate list item.
@@ -96,6 +94,7 @@ func (c_ CandidateListTouchBarItem) AttributedStringForCandidate() unsafe.Pointe
 func (c_ CandidateListTouchBarItem) SetAttributedStringForCandidate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringForCandidate:"), value)
 }
+
 // A Boolean value that controls the visibility of the candidate list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem/isCollapsed
@@ -103,7 +102,6 @@ func (c_ CandidateListTouchBarItem) Collapsed() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("collapsed"))
 	return rv
 }
-
 
 // SetCollapsed sets the value of the collapsed property.
 // A Boolean value that controls the visibility of the candidate list.
@@ -113,5 +111,3 @@ func (c_ CandidateListTouchBarItem) Collapsed() bool {
 func (c_ CandidateListTouchBarItem) SetCollapsed(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollapsed:"), value)
 }
-
-

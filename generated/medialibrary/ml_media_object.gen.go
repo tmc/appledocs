@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MediaObject] class.
@@ -91,8 +92,8 @@ func (m_ MediaObject) Attributes() unsafe.Pointer {
 // The UTI associated with the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/contentType
-func (m_ MediaObject) ContentType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("contentType"))
+func (m_ MediaObject) ContentType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -107,24 +108,24 @@ func (m_ MediaObject) FileSize() uint {
 // An identifier for the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/identifier
-func (m_ MediaObject) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("identifier"))
+func (m_ MediaObject) Identifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // An identifier for the source that loaded the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/mediaSourceIdentifier
-func (m_ MediaObject) MediaSourceIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaSourceIdentifier"))
+func (m_ MediaObject) MediaSourceIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("mediaSourceIdentifier"))
 	return rv
 }
 
 // The name of the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/name
-func (m_ MediaObject) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MediaObject) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

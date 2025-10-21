@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BAAssetPack] class.
@@ -109,8 +110,8 @@ func (b_ BAAssetPack) DownloadSize() int {
 // A unique identifier for the asset pack.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/identifier
-func (b_ BAAssetPack) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("identifier"))
+func (b_ BAAssetPack) Identifier() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 

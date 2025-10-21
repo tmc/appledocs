@@ -12,5 +12,3 @@ var moveWordForwardProtocol *objc.Protocol
 func init() {
 	moveWordForwardProtocol = objc.GetProtocol("moveWordForward:")
 }
-
-

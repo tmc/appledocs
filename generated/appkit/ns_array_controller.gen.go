@@ -80,7 +80,6 @@ func NewArrayController() ArrayController {
 	return getArrayControllerClass().New()
 }
 
-
 // An array of key paths that trigger automatic content sorting or filtering
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/automaticRearrangementKeyPaths
@@ -88,6 +87,3 @@ func (a_ ArrayController) AutomaticRearrangementKeyPaths() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("automaticRearrangementKeyPaths"))
 	return rv
 }
-
-
-

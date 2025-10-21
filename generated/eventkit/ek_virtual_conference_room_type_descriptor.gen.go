@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKVirtualConferenceRoomTypeDescriptor] class.
@@ -102,8 +103,8 @@ func (e_ EKVirtualConferenceRoomTypeDescriptor) Identifier() unsafe.Pointer {
 // The user-visible name of a room where virtual conferences take place, such as Personal Room or Team Room.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/title
-func (e_ EKVirtualConferenceRoomTypeDescriptor) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("title"))
+func (e_ EKVirtualConferenceRoomTypeDescriptor) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 

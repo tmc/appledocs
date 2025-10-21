@@ -15,5 +15,3 @@ var windowProtocol *objc.Protocol
 func init() {
 	windowProtocol = objc.GetProtocol("window:")
 }
-
-

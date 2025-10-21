@@ -79,7 +79,3 @@ func (d_ DatePicker) Autorelease() DatePicker {
 func NewDatePicker() DatePicker {
 	return getDatePickerClass().New()
 }
-
-
-
-

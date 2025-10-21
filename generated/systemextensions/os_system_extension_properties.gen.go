@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OSSystemExtensionProperties] class.
@@ -81,8 +82,8 @@ func NewOSSystemExtensionProperties() OSSystemExtensionProperties {
 // The bundle version of the extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/bundleVersion
-func (o_ OSSystemExtensionProperties) BundleVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("bundleVersion"))
+func (o_ OSSystemExtensionProperties) BundleVersion() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleVersion"))
 	return rv
 }
 

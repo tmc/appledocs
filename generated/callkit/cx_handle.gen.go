@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXHandle] class.
@@ -111,8 +112,8 @@ func (c_ CXHandle) Type() unsafe.Pointer {
 // The value of the handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/value
-func (c_ CXHandle) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
+func (c_ CXHandle) Value() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("value"))
 	return rv
 }
 

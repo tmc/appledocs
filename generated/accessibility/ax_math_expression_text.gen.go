@@ -88,8 +88,8 @@ func NewAXMathExpressionTextWithContent(content string) AXMathExpressionText {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionText/content
-func (a_ AXMathExpressionText) Content() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("content"))
+func (a_ AXMathExpressionText) Content() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("content"))
 	return rv
 }
 

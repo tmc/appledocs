@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MovementDisorderManager] class.
@@ -104,8 +105,8 @@ func (mc _MovementDisorderManagerClass) IsAvailable() bool {
 // Returns a string that describes the movement disorder algorithm’s current version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/version()
-func (mc _MovementDisorderManagerClass) Version() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("version"))
+func (mc _MovementDisorderManagerClass) Version() string {
+	rv := objc.Send[string](objc.ID(mc.class), objc.Sel("version"))
 	return rv
 }
 

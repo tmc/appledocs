@@ -18,5 +18,3 @@ var toolbarProtocol *objc.Protocol
 func init() {
 	toolbarProtocol = objc.GetProtocol("toolbar:")
 }
-
-

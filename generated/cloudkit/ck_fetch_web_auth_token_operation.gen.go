@@ -95,8 +95,8 @@ func NewCKFetchWebAuthTokenOperationWithAPIToken(APIToken string) CKFetchWebAuth
 // The API token that allows access to an app’s container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/apiToken
-func (c_ CKFetchWebAuthTokenOperation) APIToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("APIToken"))
+func (c_ CKFetchWebAuthTokenOperation) APIToken() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("APIToken"))
 	return rv
 }
 
@@ -106,7 +106,7 @@ func (c_ CKFetchWebAuthTokenOperation) APIToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/apiToken
-func (c_ CKFetchWebAuthTokenOperation) SetAPIToken(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAPIToken:"), value)
+func (c_ CKFetchWebAuthTokenOperation) SetAPIToken(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAPIToken:"), objc.String(value))
 }
 

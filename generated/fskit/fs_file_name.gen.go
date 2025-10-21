@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FSFileName] class.
@@ -164,16 +165,16 @@ func (f_ FSFileName) Data() unsafe.Pointer {
 // The filename, represented as a potentially lossy conversion to a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/debugDescription
-func (f_ FSFileName) DebugDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("debugDescription"))
+func (f_ FSFileName) DebugDescription() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("debugDescription"))
 	return rv
 }
 
 // The filename, represented as a Unicode string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/string
-func (f_ FSFileName) String() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("string"))
+func (f_ FSFileName) String() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("string"))
 	return rv
 }
 

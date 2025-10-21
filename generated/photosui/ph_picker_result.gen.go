@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHPickerResult] class.
@@ -81,8 +82,8 @@ func NewPHPickerResult() PHPickerResult {
 // The selected asset’s local identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerResult-c.class/assetIdentifier
-func (p_ PHPickerResult) AssetIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("assetIdentifier"))
+func (p_ PHPickerResult) AssetIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("assetIdentifier"))
 	return rv
 }
 

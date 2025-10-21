@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTROvenCavityOperationalStateClusterErrorStateStruct] class.
@@ -77,8 +78,8 @@ func NewMTROvenCavityOperationalStateClusterErrorStateStruct() MTROvenCavityOper
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterErrorStateStruct/errorStateDetails
-func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateDetails() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("errorStateDetails"))
+func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateDetails() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("errorStateDetails"))
 	return rv
 }
 
@@ -86,8 +87,8 @@ func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateDetails
 // SetErrorStateDetails sets the value of the errorStateDetails property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterErrorStateStruct/errorStateDetails
-func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateDetails(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateDetails:"), value)
+func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateDetails(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateDetails:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterErrorStateStruct/errorStateID
@@ -105,8 +106,8 @@ func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateID(v
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterErrorStateStruct/errorStateLabel
-func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("errorStateLabel"))
+func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateLabel() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("errorStateLabel"))
 	return rv
 }
 
@@ -114,8 +115,8 @@ func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateLabel()
 // SetErrorStateLabel sets the value of the errorStateLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterErrorStateStruct/errorStateLabel
-func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), value)
+func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), objc.String(value))
 }
 
 

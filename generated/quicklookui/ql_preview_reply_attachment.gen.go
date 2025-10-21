@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
@@ -84,7 +85,7 @@ func NewPreviewReplyAttachment() PreviewReplyAttachment {
 // Creates a preview reply attachment with the specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/init(data:contentType:)
-func NewPreviewReplyAttachmentWithDataContentType(data unsafe.Pointer, contentType uniformtypeidentifiers.UTType) PreviewReplyAttachment {
+func NewPreviewReplyAttachmentWithDataContentType(data unsafe.Pointer, contentType unsafe.Pointer) PreviewReplyAttachment {
 	instance := getPreviewReplyAttachmentClass().Alloc()
 	rv := objc.Send[PreviewReplyAttachment](instance.ID, objc.Sel("initWithData:contentType:"), data, contentType)
 	rv.Autorelease()

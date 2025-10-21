@@ -15,5 +15,3 @@ var windowDidUpdateProtocol *objc.Protocol
 func init() {
 	windowDidUpdateProtocol = objc.GetProtocol("windowDidUpdate:")
 }
-
-

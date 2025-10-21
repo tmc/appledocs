@@ -79,7 +79,3 @@ func (s_ Stepper) Autorelease() Stepper {
 func NewStepper() Stepper {
 	return getStepperClass().New()
 }
-
-
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AAAttribution] class.
@@ -81,8 +82,8 @@ func NewAAAttribution() AAAttribution {
 // Generates a token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AdServices/AAAttribution/attributionToken()
-func (ac _AAAttributionClass) AttributionTokenWithError(error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("attributionTokenWithError:"), error_)
+func (ac _AAAttributionClass) AttributionTokenWithError(error_ unsafe.Pointer) string {
+	rv := objc.Send[string](objc.ID(ac.class), objc.Sel("attributionTokenWithError:"), error_)
 	return rv
 }
 

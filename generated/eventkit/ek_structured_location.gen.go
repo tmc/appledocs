@@ -81,19 +81,19 @@ func NewEKStructuredLocation() EKStructuredLocation {
 }
 
 
-// Creates a new structured location with the specified title.
-//
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(title:)
-func NewEKStructuredLocationWithTitle(title string) EKStructuredLocation {
-	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithTitle:"), objc.String(title))
-	return rv
-}
-
 // Creates a new structured location with the specified map item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(mapItem:)
 func NewEKStructuredLocationWithMapItem(mapItem unsafe.Pointer) EKStructuredLocation {
 	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithMapItem:"), mapItem)
+	return rv
+}
+
+// Creates a new structured location with the specified title.
+//
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(title:)
+func NewEKStructuredLocationWithTitle(title string) EKStructuredLocation {
+	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithTitle:"), objc.String(title))
 	return rv
 }
 
@@ -151,8 +151,8 @@ func (e_ EKStructuredLocation) SetRadius(value unsafe.Pointer) {
 // The title of the location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/title
-func (e_ EKStructuredLocation) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("title"))
+func (e_ EKStructuredLocation) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -162,7 +162,7 @@ func (e_ EKStructuredLocation) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/title
-func (e_ EKStructuredLocation) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), value)
+func (e_ EKStructuredLocation) SetTitle(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

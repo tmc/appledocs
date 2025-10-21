@@ -15,5 +15,3 @@ var isAccessibilityOrderedByRowProtocol *objc.Protocol
 func init() {
 	isAccessibilityOrderedByRowProtocol = objc.GetProtocol("isAccessibilityOrderedByRow")
 }
-
-

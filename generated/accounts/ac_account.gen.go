@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ACAccount] class.
@@ -94,8 +95,8 @@ func NewACAccountWithAccountType(type_ unsafe.Pointer) ACAccount {
 // A human-readable description of the account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
-func (a_ ACAccount) AccountDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accountDescription"))
+func (a_ ACAccount) AccountDescription() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("accountDescription"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (a_ ACAccount) AccountDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
-func (a_ ACAccount) SetAccountDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountDescription:"), value)
+func (a_ ACAccount) SetAccountDescription(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountDescription:"), objc.String(value))
 }
 // The type of service account.
 //
@@ -145,24 +146,24 @@ func (a_ ACAccount) SetCredential(value unsafe.Pointer) {
 // A unique identifier for this account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/identifier
-func (a_ ACAccount) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("identifier"))
+func (a_ ACAccount) Identifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The full name associated with the user account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/userFullName
-func (a_ ACAccount) UserFullName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("userFullName"))
+func (a_ ACAccount) UserFullName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("userFullName"))
 	return rv
 }
 
 // The username for this account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
-func (a_ ACAccount) Username() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("username"))
+func (a_ ACAccount) Username() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("username"))
 	return rv
 }
 
@@ -172,7 +173,7 @@ func (a_ ACAccount) Username() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
-func (a_ ACAccount) SetUsername(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUsername:"), value)
+func (a_ ACAccount) SetUsername(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUsername:"), objc.String(value))
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PublicKeyCredentialClientData] class.
@@ -94,8 +95,8 @@ func (p_ PublicKeyCredentialClientData) SetCrossOrigin(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
-func (p_ PublicKeyCredentialClientData) Origin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("origin"))
+func (p_ PublicKeyCredentialClientData) Origin() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("origin"))
 	return rv
 }
 
@@ -103,8 +104,8 @@ func (p_ PublicKeyCredentialClientData) Origin() unsafe.Pointer {
 // SetOrigin sets the value of the origin property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
-func (p_ PublicKeyCredentialClientData) SetOrigin(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), value)
+func (p_ PublicKeyCredentialClientData) SetOrigin(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), objc.String(value))
 }
 
 

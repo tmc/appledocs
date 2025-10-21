@@ -15,5 +15,3 @@ var setAccessibilityOrderedByRowProtocol *objc.Protocol
 func init() {
 	setAccessibilityOrderedByRowProtocol = objc.GetProtocol("setAccessibilityOrderedByRow")
 }
-
-

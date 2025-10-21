@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASEEngine] class.
@@ -84,22 +85,22 @@ func NewPHASEEngine() PHASEEngine {
 }
 
 
-// Creates an engine updated by the app or framework.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/init(updateMode:)
-func NewPHASEEngineWithUpdateMode(updateMode unsafe.Pointer) PHASEEngine {
-	instance := getPHASEEngineClass().Alloc()
-	rv := objc.Send[PHASEEngine](instance.ID, objc.Sel("initWithUpdateMode:"), updateMode)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a new engine that has both update and rendering modes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/init(updateMode:renderingMode:)
 func NewPHASEEngineWithUpdateModeRenderingMode(updateMode unsafe.Pointer, renderingMode unsafe.Pointer) PHASEEngine {
 	instance := getPHASEEngineClass().Alloc()
 	rv := objc.Send[PHASEEngine](instance.ID, objc.Sel("initWithUpdateMode:renderingMode:"), updateMode, renderingMode)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates an engine updated by the app or framework.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/init(updateMode:)
+func NewPHASEEngineWithUpdateMode(updateMode unsafe.Pointer) PHASEEngine {
+	instance := getPHASEEngineClass().Alloc()
+	rv := objc.Send[PHASEEngine](instance.ID, objc.Sel("initWithUpdateMode:"), updateMode)
 	rv.Autorelease()
 	return rv
 }

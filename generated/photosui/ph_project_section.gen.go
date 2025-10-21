@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHProjectSection] class.
@@ -99,8 +100,8 @@ func (p_ PHProjectSection) SectionType() unsafe.Pointer {
 // The optional section title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/title
-func (p_ PHProjectSection) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("title"))
+func (p_ PHProjectSection) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
 	return rv
 }
 

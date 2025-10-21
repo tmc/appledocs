@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CBIdentity] class.
@@ -81,6 +82,14 @@ func NewCBIdentity() CBIdentity {
 }
 
 
+// Returns the identity object with the given name from the specified identity authority.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(name:authority:)
+func NewCBIdentityWithNameAuthority(name string, authority unsafe.Pointer) CBIdentity {
+	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithName:authority:"), objc.String(name), authority)
+	return rv
+}
+
 // Returns the identity object matching the persistent reference data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(persistentReference:)
@@ -101,14 +110,6 @@ func NewCBIdentityWithUniqueIdentifierAuthority(uuid unsafe.Pointer, authority u
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(uuidString:authority:)
 func NewCBIdentityWithUUIDStringAuthority(uuid string, authority unsafe.Pointer) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithUUIDString:authority:"), objc.String(uuid), authority)
-	return rv
-}
-
-// Returns the identity object with the given name from the specified identity authority.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(name:authority:)
-func NewCBIdentityWithNameAuthority(name string, authority unsafe.Pointer) CBIdentity {
-	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithName:authority:"), objc.String(name), authority)
 	return rv
 }
 
@@ -187,16 +188,16 @@ func (c_ CBIdentity) Authority() unsafe.Pointer {
 // Returns the email address of an identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/emailAddress
-func (c_ CBIdentity) EmailAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("emailAddress"))
+func (c_ CBIdentity) EmailAddress() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
 // Returns the full name of the identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/fullName
-func (c_ CBIdentity) FullName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fullName"))
+func (c_ CBIdentity) FullName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("fullName"))
 	return rv
 }
 
@@ -227,8 +228,8 @@ func (c_ CBIdentity) PersistentReference() unsafe.Pointer {
 // Returns the POSIX name of the identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/posixName
-func (c_ CBIdentity) PosixName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("posixName"))
+func (c_ CBIdentity) PosixName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("posixName"))
 	return rv
 }
 
@@ -242,8 +243,8 @@ func (c_ CBIdentity) UniqueIdentifier() unsafe.Pointer {
 // Returns the UUID of the identity as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/uuidString
-func (c_ CBIdentity) UUIDString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("UUIDString"))
+func (c_ CBIdentity) UUIDString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("UUIDString"))
 	return rv
 }
 

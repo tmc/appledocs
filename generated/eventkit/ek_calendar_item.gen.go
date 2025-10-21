@@ -168,16 +168,16 @@ func (e_ EKCalendarItem) SetCalendar(value unsafe.Pointer) {
 // The calendar item’s external identifier as provided by the calendar server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendarItemExternalIdentifier
-func (e_ EKCalendarItem) CalendarItemExternalIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("calendarItemExternalIdentifier"))
+func (e_ EKCalendarItem) CalendarItemExternalIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("calendarItemExternalIdentifier"))
 	return rv
 }
 
 // The calendar item’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendarItemIdentifier
-func (e_ EKCalendarItem) CalendarItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("calendarItemIdentifier"))
+func (e_ EKCalendarItem) CalendarItemIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("calendarItemIdentifier"))
 	return rv
 }
 
@@ -232,8 +232,8 @@ func (e_ EKCalendarItem) LastModifiedDate() unsafe.Pointer {
 // The location associated with the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/location
-func (e_ EKCalendarItem) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("location"))
+func (e_ EKCalendarItem) Location() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -243,14 +243,14 @@ func (e_ EKCalendarItem) Location() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/location
-func (e_ EKCalendarItem) SetLocation(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setLocation:"), value)
+func (e_ EKCalendarItem) SetLocation(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLocation:"), objc.String(value))
 }
 // The notes associated with the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/notes
-func (e_ EKCalendarItem) Notes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("notes"))
+func (e_ EKCalendarItem) Notes() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("notes"))
 	return rv
 }
 
@@ -260,8 +260,8 @@ func (e_ EKCalendarItem) Notes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/notes
-func (e_ EKCalendarItem) SetNotes(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setNotes:"), value)
+func (e_ EKCalendarItem) SetNotes(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setNotes:"), objc.String(value))
 }
 // The recurrence rules for the calendar item.
 //
@@ -310,8 +310,8 @@ func (e_ EKCalendarItem) SetTimeZone(value unsafe.Pointer) {
 // The title for the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/title
-func (e_ EKCalendarItem) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("title"))
+func (e_ EKCalendarItem) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -321,8 +321,8 @@ func (e_ EKCalendarItem) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/title
-func (e_ EKCalendarItem) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), value)
+func (e_ EKCalendarItem) SetTitle(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // The URL for the calendar item.
 //
@@ -344,8 +344,8 @@ func (e_ EKCalendarItem) SetURL(value unsafe.Pointer) {
 // The calendar item’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/uuid
-func (e_ EKCalendarItem) UUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("UUID"))
+func (e_ EKCalendarItem) UUID() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("UUID"))
 	return rv
 }
 

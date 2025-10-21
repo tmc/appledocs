@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SearchFieldCell] class.
@@ -86,7 +86,6 @@ func NewSearchFieldCell() SearchFieldCell {
 	return getSearchFieldCellClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/init(coder:)
 func NewSearchFieldCellWithCoder(coder unsafe.Pointer) SearchFieldCell {
@@ -104,7 +103,6 @@ func NewSearchFieldCellTextCell(string_ string) SearchFieldCell {
 	rv.Autorelease()
 	return rv
 }
-
 
 // Modifies the bounding rectangle for the cancel button cell.
 //
@@ -152,7 +150,6 @@ func (s_ SearchFieldCell) CancelButtonCell() unsafe.Pointer {
 	return rv
 }
 
-
 // SetCancelButtonCell sets the value of the cancelButtonCell property.
 // The button cell used to display the cancel-button image.
 
@@ -161,6 +158,7 @@ func (s_ SearchFieldCell) CancelButtonCell() unsafe.Pointer {
 func (s_ SearchFieldCell) SetCancelButtonCell(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCancelButtonCell:"), value)
 }
+
 // The maximum number of search strings that can appear in the search menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/maximumRecents
@@ -168,7 +166,6 @@ func (s_ SearchFieldCell) MaximumRecents() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("maximumRecents"))
 	return rv
 }
-
 
 // SetMaximumRecents sets the value of the maximumRecents property.
 // The maximum number of search strings that can appear in the search menu.
@@ -178,6 +175,7 @@ func (s_ SearchFieldCell) MaximumRecents() int {
 func (s_ SearchFieldCell) SetMaximumRecents(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumRecents:"), value)
 }
+
 // An array of the recent search strings to display in the pop-up icon menu of the search field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentSearches
@@ -185,7 +183,6 @@ func (s_ SearchFieldCell) RecentSearches() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("recentSearches"))
 	return rv
 }
-
 
 // SetRecentSearches sets the value of the recentSearches property.
 // An array of the recent search strings to display in the pop-up icon menu of the search field.
@@ -205,6 +202,7 @@ func (s_ SearchFieldCell) SetRecentSearches(value []string) {
 	}
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentSearches:"), nsArray)
 }
+
 // The autosave name under which the search field automatically saves the list of recent search strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentsAutosaveName
@@ -212,7 +210,6 @@ func (s_ SearchFieldCell) RecentsAutosaveName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("recentsAutosaveName"))
 	return rv
 }
-
 
 // SetRecentsAutosaveName sets the value of the recentsAutosaveName property.
 // The autosave name under which the search field automatically saves the list of recent search strings.
@@ -222,6 +219,7 @@ func (s_ SearchFieldCell) RecentsAutosaveName() unsafe.Pointer {
 func (s_ SearchFieldCell) SetRecentsAutosaveName(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentsAutosaveName:"), value)
 }
+
 // The button cell used to display the search-button image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchButtonCell
@@ -229,7 +227,6 @@ func (s_ SearchFieldCell) SearchButtonCell() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("searchButtonCell"))
 	return rv
 }
-
 
 // SetSearchButtonCell sets the value of the searchButtonCell property.
 // The button cell used to display the search-button image.
@@ -239,6 +236,7 @@ func (s_ SearchFieldCell) SearchButtonCell() unsafe.Pointer {
 func (s_ SearchFieldCell) SetSearchButtonCell(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchButtonCell:"), value)
 }
+
 // The menu object used to dynamically construct the search field’s pop-up icon menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchMenuTemplate
@@ -246,7 +244,6 @@ func (s_ SearchFieldCell) SearchMenuTemplate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("searchMenuTemplate"))
 	return rv
 }
-
 
 // SetSearchMenuTemplate sets the value of the searchMenuTemplate property.
 // The menu object used to dynamically construct the search field’s pop-up icon menu.
@@ -256,6 +253,7 @@ func (s_ SearchFieldCell) SearchMenuTemplate() unsafe.Pointer {
 func (s_ SearchFieldCell) SetSearchMenuTemplate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchMenuTemplate:"), value)
 }
+
 // A Boolean value indicating whether the cell calls its action method immediately when an appropriate action occurs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsSearchStringImmediately
@@ -263,7 +261,6 @@ func (s_ SearchFieldCell) SendsSearchStringImmediately() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("sendsSearchStringImmediately"))
 	return rv
 }
-
 
 // SetSendsSearchStringImmediately sets the value of the sendsSearchStringImmediately property.
 // A Boolean value indicating whether the cell calls its action method immediately when an appropriate action occurs.
@@ -273,6 +270,7 @@ func (s_ SearchFieldCell) SendsSearchStringImmediately() bool {
 func (s_ SearchFieldCell) SetSendsSearchStringImmediately(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsSearchStringImmediately:"), value)
 }
+
 // A Boolean value indicating whether the cell calls its search action method when the user clicks the search button (or presses Return) or after each keystroke.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsWholeSearchString
@@ -280,7 +278,6 @@ func (s_ SearchFieldCell) SendsWholeSearchString() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("sendsWholeSearchString"))
 	return rv
 }
-
 
 // SetSendsWholeSearchString sets the value of the sendsWholeSearchString property.
 // A Boolean value indicating whether the cell calls its search action method when the user clicks the search button (or presses Return) or after each keystroke.
@@ -290,4 +287,3 @@ func (s_ SearchFieldCell) SendsWholeSearchString() bool {
 func (s_ SearchFieldCell) SetSendsWholeSearchString(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsWholeSearchString:"), value)
 }
-

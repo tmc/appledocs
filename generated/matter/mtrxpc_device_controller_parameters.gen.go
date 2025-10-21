@@ -76,21 +76,21 @@ func NewMTRXPCDeviceControllerParameters() MTRXPCDeviceControllerParameters {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/init(xpConnectionBlock:uniqueIdentifier:)
-func NewMTRXPCDeviceControllerParametersWithXPConnectionBlockUniqueIdentifier(xpcConnectionBlock unsafe.Pointer, uniqueIdentifier unsafe.Pointer) MTRXPCDeviceControllerParameters {
-	instance := getMTRXPCDeviceControllerParametersClass().Alloc()
-	rv := objc.Send[MTRXPCDeviceControllerParameters](instance.ID, objc.Sel("initWithXPConnectionBlock:uniqueIdentifier:"), xpcConnectionBlock, uniqueIdentifier)
-	rv.Autorelease()
-	return rv
-}
-
 // A controller created from this way will connect to a remote instance of an MTRDeviceController loaded in an XPC Service
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/init(xpcConnectionBlock:uniqueIdentifier:)
 func NewMTRXPCDeviceControllerParametersWithXPCConnectionBlockUniqueIdentifier(xpcConnectionBlock unsafe.Pointer, uniqueIdentifier unsafe.Pointer) MTRXPCDeviceControllerParameters {
 	instance := getMTRXPCDeviceControllerParametersClass().Alloc()
 	rv := objc.Send[MTRXPCDeviceControllerParameters](instance.ID, objc.Sel("initWithXPCConnectionBlock:uniqueIdentifier:"), xpcConnectionBlock, uniqueIdentifier)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/init(xpConnectionBlock:uniqueIdentifier:)
+func NewMTRXPCDeviceControllerParametersWithXPConnectionBlockUniqueIdentifier(xpcConnectionBlock unsafe.Pointer, uniqueIdentifier unsafe.Pointer) MTRXPCDeviceControllerParameters {
+	instance := getMTRXPCDeviceControllerParametersClass().Alloc()
+	rv := objc.Send[MTRXPCDeviceControllerParameters](instance.ID, objc.Sel("initWithXPConnectionBlock:uniqueIdentifier:"), xpcConnectionBlock, uniqueIdentifier)
 	rv.Autorelease()
 	return rv
 }

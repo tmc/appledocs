@@ -15,5 +15,3 @@ var accessibilityPerformPickProtocol *objc.Protocol
 func init() {
 	accessibilityPerformPickProtocol = objc.GetProtocol("accessibilityPerformPick")
 }
-
-

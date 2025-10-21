@@ -12,5 +12,3 @@ var numberOfItemsInMenuProtocol *objc.Protocol
 func init() {
 	numberOfItemsInMenuProtocol = objc.GetProtocol("numberOfItemsInMenu:")
 }
-
-

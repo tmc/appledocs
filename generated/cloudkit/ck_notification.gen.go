@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKNotification] class.
@@ -100,8 +101,8 @@ func (cc _CKNotificationClass) NotificationFromRemoteNotificationDictionary(noti
 // The ID of the container with the content that triggers the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/containerIdentifier
-func (c_ CKNotification) ContainerIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CKNotification) ContainerIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

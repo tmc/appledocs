@@ -12,5 +12,3 @@ var UserInterfaceItemIdentificationProtocol *objc.Protocol
 func init() {
 	UserInterfaceItemIdentificationProtocol = objc.GetProtocol("NSUserInterfaceItemIdentification")
 }
-
-

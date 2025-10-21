@@ -30,8 +30,8 @@ type _BluetoothPairingControllerClass struct {
 // An interface definition for the [BluetoothPairingController] class.
 type IBluetoothPairingController interface {
 	appkit.IWindowController
-	GetPrompt() unsafe.Pointer
-	GetTitle() unsafe.Pointer
+	GetPrompt() string
+	GetTitle() string
 	SetPrompt(prompt string)
 }
 
@@ -88,16 +88,16 @@ func NewBluetoothPairingController() BluetoothPairingController {
 // Returns the title of the default/select button in the device selector panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/getPrompt()
-func (b_ BluetoothPairingController) GetPrompt() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getPrompt"))
+func (b_ BluetoothPairingController) GetPrompt() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("getPrompt"))
 	return rv
 }
 
 // Returns the title of the device selector panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/getTitle()
-func (b_ BluetoothPairingController) GetTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getTitle"))
+func (b_ BluetoothPairingController) GetTitle() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("getTitle"))
 	return rv
 }
 

@@ -138,8 +138,8 @@ func (m_ MediaPickerController) MediaTypes() unsafe.Pointer {
 // A prompt, for the user, that appears above the navigation bar buttons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/prompt
-func (m_ MediaPickerController) Prompt() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("prompt"))
+func (m_ MediaPickerController) Prompt() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("prompt"))
 	return rv
 }
 
@@ -149,8 +149,8 @@ func (m_ MediaPickerController) Prompt() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/prompt
-func (m_ MediaPickerController) SetPrompt(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPrompt:"), value)
+func (m_ MediaPickerController) SetPrompt(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrompt:"), objc.String(value))
 }
 // A Boolean value specifying whether to display iCloud Media Library items for a media picker.
 //

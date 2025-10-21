@@ -108,8 +108,8 @@ func (e_ EKSource) IsDelegate() bool {
 // A unique identifier for the source object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/sourceIdentifier
-func (e_ EKSource) SourceIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("sourceIdentifier"))
+func (e_ EKSource) SourceIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("sourceIdentifier"))
 	return rv
 }
 
@@ -124,8 +124,8 @@ func (e_ EKSource) SourceType() unsafe.Pointer {
 // The name of this source object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/title
-func (e_ EKSource) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("title"))
+func (e_ EKSource) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 

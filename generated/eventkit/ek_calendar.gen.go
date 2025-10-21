@@ -81,19 +81,19 @@ func NewEKCalendar() EKCalendar {
 }
 
 
-// Creates a new calendar that can contain the given entity type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(for:eventStore:)
-func NewEKCalendarForEntityTypeEventStore(entityType unsafe.Pointer, eventStore unsafe.Pointer) EKCalendar {
-	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarForEntityType:eventStore:"), entityType, eventStore)
-	return rv
-}
-
 // Creates and returns a calendar belonging to a specified event store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(eventStore:)
 func NewEKCalendarWithEventStore(eventStore unsafe.Pointer) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarWithEventStore:"), eventStore)
+	return rv
+}
+
+// Creates a new calendar that can contain the given entity type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(for:eventStore:)
+func NewEKCalendarForEntityTypeEventStore(entityType unsafe.Pointer, eventStore unsafe.Pointer) EKCalendar {
+	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarForEntityType:eventStore:"), entityType, eventStore)
 	return rv
 }
 
@@ -133,8 +133,8 @@ func (e_ EKCalendar) AllowsContentModifications() bool {
 // A unique identifier for the calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/calendarIdentifier
-func (e_ EKCalendar) CalendarIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("calendarIdentifier"))
+func (e_ EKCalendar) CalendarIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }
 
@@ -216,8 +216,8 @@ func (e_ EKCalendar) SupportedEventAvailabilities() unsafe.Pointer {
 // The calendar’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/title
-func (e_ EKCalendar) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("title"))
+func (e_ EKCalendar) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -227,8 +227,8 @@ func (e_ EKCalendar) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/title
-func (e_ EKCalendar) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), value)
+func (e_ EKCalendar) SetTitle(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // The calendar’s type.
 //

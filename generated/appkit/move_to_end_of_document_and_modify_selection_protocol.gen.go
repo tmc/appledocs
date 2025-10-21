@@ -12,5 +12,3 @@ var moveToEndOfDocumentAndModifySelectionProtocol *objc.Protocol
 func init() {
 	moveToEndOfDocumentAndModifySelectionProtocol = objc.GetProtocol("moveToEndOfDocumentAndModifySelection:")
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GLKSkyboxEffect] class.
@@ -116,8 +117,8 @@ func (g_ GLKSkyboxEffect) SetCenter(value unsafe.Pointer) {
 // A string used to name your effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-func (g_ GLKSkyboxEffect) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("label"))
+func (g_ GLKSkyboxEffect) Label() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -127,8 +128,8 @@ func (g_ GLKSkyboxEffect) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-func (g_ GLKSkyboxEffect) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
+func (g_ GLKSkyboxEffect) SetLabel(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 // The texture to apply to the skybox.
 //

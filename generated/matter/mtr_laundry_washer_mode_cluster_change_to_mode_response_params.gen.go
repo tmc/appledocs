@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRLaundryWasherModeClusterChangeToModeResponseParams] class.
@@ -102,8 +103,8 @@ func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) SetStatus(value 
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterChangeToModeResponseParams/statusText
-func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) StatusText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("statusText"))
+func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) StatusText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("statusText"))
 	return rv
 }
 
@@ -111,7 +112,7 @@ func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) StatusText() uns
 // SetStatusText sets the value of the statusText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterChangeToModeResponseParams/statusText
-func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) SetStatusText(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
+func (m_ MTRLaundryWasherModeClusterChangeToModeResponseParams) SetStatusText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
 

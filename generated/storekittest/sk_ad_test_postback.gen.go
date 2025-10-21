@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AdTestPostback] class.
@@ -120,8 +121,8 @@ func (a_ AdTestPostback) AdCampaignIdentifier() int {
 // A string that represents the advertising network’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/adNetworkIdentifier
-func (a_ AdTestPostback) AdNetworkIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("adNetworkIdentifier"))
+func (a_ AdTestPostback) AdNetworkIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("adNetworkIdentifier"))
 	return rv
 }
 
@@ -209,8 +210,8 @@ func (a_ AdTestPostback) PostbackSequenceIndex() int {
 // A URL on your server where the testing environment sends test postbacks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/postbackURL
-func (a_ AdTestPostback) PostbackURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("postbackURL"))
+func (a_ AdTestPostback) PostbackURL() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("postbackURL"))
 	return rv
 }
 
@@ -225,24 +226,24 @@ func (a_ AdTestPostback) SourceAppStoreItemIdentifier() int {
 // The source of a web ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/sourceDomain
-func (a_ AdTestPostback) SourceDomain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sourceDomain"))
+func (a_ AdTestPostback) SourceDomain() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("sourceDomain"))
 	return rv
 }
 
 // A string that identifies an ad campaign.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/sourceIdentifier
-func (a_ AdTestPostback) SourceIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sourceIdentifier"))
+func (a_ AdTestPostback) SourceIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("sourceIdentifier"))
 	return rv
 }
 
 // A unique transaction identifier that the system generates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/transactionIdentifier
-func (a_ AdTestPostback) TransactionIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("transactionIdentifier"))
+func (a_ AdTestPostback) TransactionIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("transactionIdentifier"))
 	return rv
 }
 

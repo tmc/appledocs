@@ -80,7 +80,6 @@ func NewScrubberTextItemView() ScrubberTextItemView {
 	return getScrubberTextItemViewClass().New()
 }
 
-
 // The text field that the scrubber item uses to display its text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/textField
@@ -97,7 +96,6 @@ func (s_ ScrubberTextItemView) Title() string {
 	return rv
 }
 
-
 // SetTitle sets the value of the title property.
 // The text displayed for the scrubber item.
 
@@ -106,5 +104,3 @@ func (s_ ScrubberTextItemView) Title() string {
 func (s_ ScrubberTextItemView) SetTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
-
-

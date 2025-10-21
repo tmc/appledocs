@@ -12,5 +12,3 @@ var TextFieldDelegateProtocol *objc.Protocol
 func init() {
 	TextFieldDelegateProtocol = objc.GetProtocol("NSTextFieldDelegate")
 }
-
-

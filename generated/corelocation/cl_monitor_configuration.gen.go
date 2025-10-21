@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MonitorConfiguration] class.
@@ -81,8 +82,8 @@ func NewMonitorConfiguration() MonitorConfiguration {
 // The name of the monitor instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration/name
-func (m_ MonitorConfiguration) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MonitorConfiguration) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

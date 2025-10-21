@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FetchedResultsController] class.
@@ -34,7 +35,7 @@ type IFetchedResultsController interface {
 	ObjectAtIndexPath(indexPath unsafe.Pointer) unsafe.Pointer
 	PerformFetch(error_ unsafe.Pointer) bool
 	SectionForSectionIndexTitleAtIndex(title string, sectionIndex int) int
-	SectionIndexTitleForSectionName(sectionName string) unsafe.Pointer
+	SectionIndexTitleForSectionName(sectionName string) string
 }
 
 // A controller that you use to manage the results of a Core Data fetch request and to display data to the user.
@@ -138,16 +139,16 @@ func (f_ FetchedResultsController) SectionForSectionIndexTitleAtIndex(title stri
 // Returns the corresponding section index entry for a given section name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sectionIndexTitle(forSectionName:)
-func (f_ FetchedResultsController) SectionIndexTitleForSectionName(sectionName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("sectionIndexTitleForSectionName:"), objc.String(sectionName))
+func (f_ FetchedResultsController) SectionIndexTitleForSectionName(sectionName string) string {
+	rv := objc.Send[string](f_.ID, objc.Sel("sectionIndexTitleForSectionName:"), objc.String(sectionName))
 	return rv
 }
 
 // The name of the file used to cache section information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/cacheName
-func (f_ FetchedResultsController) CacheName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("cacheName"))
+func (f_ FetchedResultsController) CacheName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("cacheName"))
 	return rv
 }
 
@@ -203,8 +204,8 @@ func (f_ FetchedResultsController) SectionIndexTitles() []string {
 // The key path of the attribute that determines which section the fetched entity belongs to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sectionNameKeyPath
-func (f_ FetchedResultsController) SectionNameKeyPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("sectionNameKeyPath"))
+func (f_ FetchedResultsController) SectionNameKeyPath() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("sectionNameKeyPath"))
 	return rv
 }
 

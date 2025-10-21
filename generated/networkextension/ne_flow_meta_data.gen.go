@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEFlowMetaData] class.
@@ -99,8 +100,8 @@ func (n_ NEFlowMetaData) SourceAppAuditToken() unsafe.Pointer {
 // A string that contains the signing identifier of the source application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFlowMetaData/sourceAppSigningIdentifier
-func (n_ NEFlowMetaData) SourceAppSigningIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sourceAppSigningIdentifier"))
+func (n_ NEFlowMetaData) SourceAppSigningIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("sourceAppSigningIdentifier"))
 	return rv
 }
 

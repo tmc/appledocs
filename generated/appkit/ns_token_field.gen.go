@@ -80,7 +80,6 @@ func NewTokenField() TokenField {
 	return getTokenFieldClass().New()
 }
 
-
 // Returns the default completion delay.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/defaultCompletionDelay
@@ -88,6 +87,7 @@ func (tc _TokenFieldClass) DefaultCompletionDelay() float64 {
 	rv := objc.Send[float64](objc.ID(tc.class), objc.Sel("defaultCompletionDelay"))
 	return rv
 }
+
 // Returns the default completion delay.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/defaultCompletionDelay
@@ -104,7 +104,6 @@ func (t_ TokenField) TokenizingCharacterSet() unsafe.Pointer {
 	return rv
 }
 
-
 // SetTokenizingCharacterSet sets the value of the tokenizingCharacterSet property.
 // The recevier’s tokenizing character set to .
 
@@ -113,5 +112,3 @@ func (t_ TokenField) TokenizingCharacterSet() unsafe.Pointer {
 func (t_ TokenField) SetTokenizingCharacterSet(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
 }
-
-

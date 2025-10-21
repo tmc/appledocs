@@ -78,14 +78,12 @@ func NewStepperTouchBarItem() StepperTouchBarItem {
 	return getStepperTouchBarItemClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/init(identifier:formatter:)
 func NewStepperTouchBarItemWithIdentifierFormatter(identifier unsafe.Pointer, formatter unsafe.Pointer) StepperTouchBarItem {
 	rv := objc.Send[StepperTouchBarItem](objc.ID(getStepperTouchBarItemClass().class), objc.Sel("stepperTouchBarItemWithIdentifier:formatter:"), identifier, formatter)
 	return rv
 }
-
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/init(identifier:formatter:)
@@ -101,11 +99,9 @@ func (s_ StepperTouchBarItem) MaxValue() unsafe.Pointer {
 	return rv
 }
 
-
 // SetMaxValue sets the value of the maxValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/maxValue
 func (s_ StepperTouchBarItem) SetMaxValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
-

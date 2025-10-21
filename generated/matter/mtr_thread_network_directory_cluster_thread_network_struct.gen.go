@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRThreadNetworkDirectoryClusterThreadNetworkStruct] class.
@@ -119,8 +120,8 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetExtendedPanID(v
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/networkName
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("networkName"))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() unsa
 // SetNetworkName sets the value of the networkName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/networkName
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetNetworkName(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), value)
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetNetworkName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
 }
 
 

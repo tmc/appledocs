@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKUserIdentityLookupInfo] class.
@@ -138,16 +139,16 @@ func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithPhoneNumbers(phoneNumber
 // The user’s email address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/emailAddress
-func (c_ CKUserIdentityLookupInfo) EmailAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("emailAddress"))
+func (c_ CKUserIdentityLookupInfo) EmailAddress() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
 // The user’s phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/phoneNumber
-func (c_ CKUserIdentityLookupInfo) PhoneNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("phoneNumber"))
+func (c_ CKUserIdentityLookupInfo) PhoneNumber() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 

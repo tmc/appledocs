@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Submesh] class.
@@ -115,8 +116,8 @@ func (s_ Submesh) Mesh() unsafe.Pointer {
 // The name of the submesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/name
-func (s_ Submesh) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("name"))
+func (s_ Submesh) Name() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -126,8 +127,8 @@ func (s_ Submesh) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/name
-func (s_ Submesh) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), value)
+func (s_ Submesh) SetName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The primitive type with which to draw the submesh object.
 //

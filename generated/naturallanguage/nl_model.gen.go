@@ -31,7 +31,7 @@ type _ModelClass struct {
 // An interface definition for the [Model] class.
 type IModel interface {
 	objectivec.IObject
-	PredictedLabelForString(string_ string) unsafe.Pointer
+	PredictedLabelForString(string_ string) string
 	PredictedLabelHypothesesForStringMaximumCount(string_ string, maximumCount uint) unsafe.Pointer
 	PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []foundation.NSDictionary
 	PredictedLabelsForTokens(tokens unsafe.Pointer) []string
@@ -121,8 +121,8 @@ func (mc _ModelClass) ModelWithMLModelError(mlModel unsafe.Pointer, error_ unsaf
 // Predicts a label for the given input string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabel(for:)
-func (m_ Model) PredictedLabelForString(string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("predictedLabelForString:"), objc.String(string_))
+func (m_ Model) PredictedLabelForString(string_ string) string {
+	rv := objc.Send[string](m_.ID, objc.Sel("predictedLabelForString:"), objc.String(string_))
 	return rv
 }
 

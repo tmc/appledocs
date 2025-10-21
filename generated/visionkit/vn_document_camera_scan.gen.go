@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DocumentCameraScan] class.
@@ -81,8 +82,8 @@ func NewDocumentCameraScan() DocumentCameraScan {
 // The title of the scanned document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraScan/title
-func (d_ DocumentCameraScan) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("title"))
+func (d_ DocumentCameraScan) Title() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("title"))
 	return rv
 }
 

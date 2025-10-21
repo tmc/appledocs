@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UNNotificationSound] class.
@@ -125,6 +126,49 @@ func (uc _UNNotificationSoundClass) SoundNamed(name unsafe.Pointer) unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/ringtoneSoundNamed(_:)
 func (uc _UNNotificationSoundClass) RingtoneSoundNamed(name unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("ringtoneSoundNamed:"), name)
+	return rv
+}
+
+// Returns an object representing the default sound for notifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/default
+func (uc _UNNotificationSoundClass) DefaultSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("defaultSound"))
+	return rv
+}
+// The default sound used for critical alerts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/defaultCritical
+func (uc _UNNotificationSoundClass) DefaultCriticalSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("defaultCriticalSound"))
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/defaultRingtone
+func (uc _UNNotificationSoundClass) DefaultRingtoneSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("defaultRingtoneSound"))
+	return rv
+}
+// Returns an object representing the default sound for notifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/default
+func (u_ UNNotificationSound) DefaultSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("defaultSound"))
+	return rv
+}
+
+// The default sound used for critical alerts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/defaultCritical
+func (u_ UNNotificationSound) DefaultCriticalSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("defaultCriticalSound"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/defaultRingtone
+func (u_ UNNotificationSound) DefaultRingtoneSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("defaultRingtoneSound"))
 	return rv
 }
 

@@ -92,8 +92,8 @@ func (g_ GraphOperation) Graph() unsafe.Pointer {
 // Name of the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/name
-func (g_ GraphOperation) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("name"))
+func (g_ GraphOperation) Name() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("name"))
 	return rv
 }
 

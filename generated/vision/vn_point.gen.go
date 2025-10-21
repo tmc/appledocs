@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -117,6 +118,13 @@ func (pc _PointClass) DistanceBetweenPointPoint(point1 unsafe.Pointer, point2 un
 	return rv
 }
 
+// A point object that represents the origin.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/zero
+func (pc _PointClass) ZeroPoint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("zeroPoint"))
+	return rv
+}
 // Returns the distance to another point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/distance(_:)
@@ -146,6 +154,14 @@ func (p_ Point) X() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/y
 func (p_ Point) Y() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("y"))
+	return rv
+}
+
+// A point object that represents the origin.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/zero
+func (p_ Point) ZeroPoint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("zeroPoint"))
 	return rv
 }
 

@@ -84,19 +84,19 @@ func NewAuthorizationAppleIDButton() AuthorizationAppleIDButton {
 
 // Creates a new Sign In with Apple authorization button with the given type and style.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(authorizationButtonType:authorizationButtonStyle:)
-func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButtonStyle(type_ unsafe.Pointer, style unsafe.Pointer) AuthorizationAppleIDButton {
-	instance := getAuthorizationAppleIDButtonClass().Alloc()
-	rv := objc.Send[AuthorizationAppleIDButton](instance.ID, objc.Sel("initWithAuthorizationButtonType:authorizationButtonStyle:"), type_, style)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(type:style:)
+func NewAuthorizationAppleIDButtonWithTypeStyle(type_ unsafe.Pointer, style unsafe.Pointer) AuthorizationAppleIDButton {
+	rv := objc.Send[AuthorizationAppleIDButton](objc.ID(getAuthorizationAppleIDButtonClass().class), objc.Sel("buttonWithType:style:"), type_, style)
 	return rv
 }
 
 // Creates a new Sign In with Apple authorization button with the given type and style.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(type:style:)
-func NewAuthorizationAppleIDButtonWithTypeStyle(type_ unsafe.Pointer, style unsafe.Pointer) AuthorizationAppleIDButton {
-	rv := objc.Send[AuthorizationAppleIDButton](objc.ID(getAuthorizationAppleIDButtonClass().class), objc.Sel("buttonWithType:style:"), type_, style)
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(authorizationButtonType:authorizationButtonStyle:)
+func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButtonStyle(type_ unsafe.Pointer, style unsafe.Pointer) AuthorizationAppleIDButton {
+	instance := getAuthorizationAppleIDButtonClass().Alloc()
+	rv := objc.Send[AuthorizationAppleIDButton](instance.ID, objc.Sel("initWithAuthorizationButtonType:authorizationButtonStyle:"), type_, style)
+	rv.Autorelease()
 	return rv
 }
 

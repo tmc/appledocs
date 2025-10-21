@@ -78,7 +78,3 @@ func (d_ DataAsset) Autorelease() DataAsset {
 func NewDataAsset() DataAsset {
 	return getDataAssetClass().New()
 }
-
-
-
-

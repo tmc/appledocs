@@ -79,7 +79,6 @@ func NewFilePromiseProvider() FilePromiseProvider {
 	return getFilePromiseProviderClass().New()
 }
 
-
 // Initializes a file promise provider for a certain file type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/init(fileType:delegate:)
@@ -89,7 +88,3 @@ func NewFilePromiseProviderWithFileTypeDelegate(fileType string, delegate objc.I
 	rv.Autorelease()
 	return rv
 }
-
-
-
-

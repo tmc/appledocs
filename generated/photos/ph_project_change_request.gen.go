@@ -136,8 +136,8 @@ func (p_ PHProjectChangeRequest) SetProjectExtensionData(value unsafe.Pointer) {
 // The title of the change request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/title
-func (p_ PHProjectChangeRequest) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("title"))
+func (p_ PHProjectChangeRequest) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -147,7 +147,7 @@ func (p_ PHProjectChangeRequest) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/title
-func (p_ PHProjectChangeRequest) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
+func (p_ PHProjectChangeRequest) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

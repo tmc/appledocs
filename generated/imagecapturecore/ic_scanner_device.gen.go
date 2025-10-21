@@ -99,8 +99,8 @@ func (i_ ICScannerDevice) RequestOverviewScan() {
 // The document’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerDevice/documentName
-func (i_ ICScannerDevice) DocumentName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("documentName"))
+func (i_ ICScannerDevice) DocumentName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("documentName"))
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (i_ ICScannerDevice) DocumentName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerDevice/documentName
-func (i_ ICScannerDevice) SetDocumentName(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentName:"), value)
+func (i_ ICScannerDevice) SetDocumentName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentName:"), objc.String(value))
 }
 // The transfer mode for the scanned document.
 //

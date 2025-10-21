@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKRecordZoneID] class.
@@ -94,16 +95,16 @@ func NewCKRecordZoneIDWithZoneNameOwnerName(zoneName string, ownerName string) C
 // The ID of the user who owns the record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/ID/ownerName
-func (c_ CKRecordZoneID) OwnerName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ownerName"))
+func (c_ CKRecordZoneID) OwnerName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ownerName"))
 	return rv
 }
 
 // The unique name of the record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/ID/zoneName
-func (c_ CKRecordZoneID) ZoneName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneName"))
+func (c_ CKRecordZoneID) ZoneName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("zoneName"))
 	return rv
 }
 

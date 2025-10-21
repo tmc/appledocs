@@ -84,8 +84,8 @@ func NewUNTextInputNotificationResponse() UNTextInputNotificationResponse {
 // The text response provided by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationResponse/userText
-func (u_ UNTextInputNotificationResponse) UserText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("userText"))
+func (u_ UNTextInputNotificationResponse) UserText() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("userText"))
 	return rv
 }
 

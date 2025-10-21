@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CSPerson] class.
@@ -94,8 +95,8 @@ func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string, handl
 // The identifier for the contact associated with the person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
-func (c_ CSPerson) ContactIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contactIdentifier"))
+func (c_ CSPerson) ContactIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
 
@@ -105,22 +106,22 @@ func (c_ CSPerson) ContactIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
-func (c_ CSPerson) SetContactIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), value)
+func (c_ CSPerson) SetContactIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
 }
 // A display name for the person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/displayName
-func (c_ CSPerson) DisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("displayName"))
+func (c_ CSPerson) DisplayName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 // A key that identifies the type of contact property represented by the person object’s handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/handleIdentifier
-func (c_ CSPerson) HandleIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("handleIdentifier"))
+func (c_ CSPerson) HandleIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("handleIdentifier"))
 	return rv
 }
 

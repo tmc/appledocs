@@ -82,8 +82,8 @@ func NewCNChangeHistoryDeleteContactEvent() CNChangeHistoryDeleteContactEvent {
 // A string that uniquely identifies the contact that the user deleted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteContactEvent/contactIdentifier
-func (c_ CNChangeHistoryDeleteContactEvent) ContactIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contactIdentifier"))
+func (c_ CNChangeHistoryDeleteContactEvent) ContactIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AEAssessmentApplication] class.
@@ -80,16 +81,6 @@ func NewAEAssessmentApplication() AEAssessmentApplication {
 }
 
 
-// Creates a representation of an app using its bundle and team identifiers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:teamIdentifier:)
-func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifier string, teamIdentifier string) AEAssessmentApplication {
-	instance := getAEAssessmentApplicationClass().Alloc()
-	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:teamIdentifier:"), objc.String(bundleIdentifier), objc.String(teamIdentifier))
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a representation of an app using its bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:)
@@ -100,12 +91,22 @@ func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier string) AEA
 	return rv
 }
 
+// Creates a representation of an app using its bundle and team identifiers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:teamIdentifier:)
+func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifier string, teamIdentifier string) AEAssessmentApplication {
+	instance := getAEAssessmentApplicationClass().Alloc()
+	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:teamIdentifier:"), objc.String(bundleIdentifier), objc.String(teamIdentifier))
+	rv.Autorelease()
+	return rv
+}
+
 
 // The bundle identifier of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/bundleIdentifier
-func (a_ AEAssessmentApplication) BundleIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("bundleIdentifier"))
+func (a_ AEAssessmentApplication) BundleIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
@@ -129,8 +130,8 @@ func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
 // The team identifier of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/teamIdentifier
-func (a_ AEAssessmentApplication) TeamIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("teamIdentifier"))
+func (a_ AEAssessmentApplication) TeamIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("teamIdentifier"))
 	return rv
 }
 

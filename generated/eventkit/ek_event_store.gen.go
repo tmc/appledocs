@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKEventStore] class.
@@ -398,8 +399,8 @@ func (e_ EKEventStore) DelegateSources() []EKSource {
 // The unique identifier for the event store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/eventStoreIdentifier
-func (e_ EKEventStore) EventStoreIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("eventStoreIdentifier"))
+func (e_ EKEventStore) EventStoreIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("eventStoreIdentifier"))
 	return rv
 }
 

@@ -78,7 +78,3 @@ func (c_ CollectionViewLayoutInvalidationContext) Autorelease() CollectionViewLa
 func NewCollectionViewLayoutInvalidationContext() CollectionViewLayoutInvalidationContext {
 	return getCollectionViewLayoutInvalidationContextClass().New()
 }
-
-
-
-

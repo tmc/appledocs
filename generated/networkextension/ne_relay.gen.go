@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NERelay] class.
@@ -168,8 +169,8 @@ func (n_ NERelay) SetIdentityData(value unsafe.Pointer) {
 // The password the relay uses to decrypt the PKCS12 identity data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/identityDataPassword
-func (n_ NERelay) IdentityDataPassword() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("identityDataPassword"))
+func (n_ NERelay) IdentityDataPassword() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("identityDataPassword"))
 	return rv
 }
 
@@ -179,8 +180,8 @@ func (n_ NERelay) IdentityDataPassword() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/identityDataPassword
-func (n_ NERelay) SetIdentityDataPassword(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityDataPassword:"), value)
+func (n_ NERelay) SetIdentityDataPassword(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityDataPassword:"), objc.String(value))
 }
 // An array of TLS raw public keys that the relay server can present during the TLS handshake.
 //
@@ -212,8 +213,8 @@ func (n_ NERelay) SetRawPublicKeys(value []foundation.NSData) {
 // An IPv4 address prefix the relay uses to handle address info requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/syntheticDNSAnswerIPv4Prefix
-func (n_ NERelay) SyntheticDNSAnswerIPv4Prefix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("syntheticDNSAnswerIPv4Prefix"))
+func (n_ NERelay) SyntheticDNSAnswerIPv4Prefix() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("syntheticDNSAnswerIPv4Prefix"))
 	return rv
 }
 
@@ -223,14 +224,14 @@ func (n_ NERelay) SyntheticDNSAnswerIPv4Prefix() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/syntheticDNSAnswerIPv4Prefix
-func (n_ NERelay) SetSyntheticDNSAnswerIPv4Prefix(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSyntheticDNSAnswerIPv4Prefix:"), value)
+func (n_ NERelay) SetSyntheticDNSAnswerIPv4Prefix(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSyntheticDNSAnswerIPv4Prefix:"), objc.String(value))
 }
 // An IPv6 address prefix the relay uses to handle address info requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/syntheticDNSAnswerIPv6Prefix
-func (n_ NERelay) SyntheticDNSAnswerIPv6Prefix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("syntheticDNSAnswerIPv6Prefix"))
+func (n_ NERelay) SyntheticDNSAnswerIPv6Prefix() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("syntheticDNSAnswerIPv6Prefix"))
 	return rv
 }
 
@@ -240,8 +241,8 @@ func (n_ NERelay) SyntheticDNSAnswerIPv6Prefix() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/syntheticDNSAnswerIPv6Prefix
-func (n_ NERelay) SetSyntheticDNSAnswerIPv6Prefix(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSyntheticDNSAnswerIPv6Prefix:"), value)
+func (n_ NERelay) SetSyntheticDNSAnswerIPv6Prefix(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSyntheticDNSAnswerIPv6Prefix:"), objc.String(value))
 }
 
 

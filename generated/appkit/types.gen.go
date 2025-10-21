@@ -1,21 +1,16 @@
 // Code generated from Apple documentation for AppKit. DO NOT EDIT.
 
 package appkit
+
 import (
 	"unsafe"
 )
 
-
 // TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
-// AppKit-specific enum types
-type WindowStyleMask int
-type BackingStoreType int
-type WindowOrderingMode int
-type WindowLevel int
-type EventType int
-type EventModifierFlags int
-
+type TimeInterval = float64 // NSTimeInterval
+// AppKit-specific type aliases
+// WindowLevel represents a window's position in the z-axis
+type WindowLevel = int // NSWindowLevel
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
@@ -535,6 +530,3 @@ type UIImage unsafe.Pointer
 type UIMenuElement unsafe.Pointer
 
 type UTType unsafe.Pointer
-
-
-

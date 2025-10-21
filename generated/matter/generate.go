@@ -3,6 +3,6 @@
 package matter
 
 //go:generate rm -f *.gen.go *.gen_test.go
-//go:generate go run ../../cmd/generate-framework-bindings -framework Matter -output ..
+//go:generate go run ../../cmd/generate-framework-bindings -framework ^Matter$ -output ..
 
 

@@ -10,6 +10,7 @@ import (
 var _ = corespotlight.NewCSSearchableItemAttributeSet
 
 
+
 // ExampleNewCSSearchableItemAttributeSetWithItemContentType demonstrates how to create a CSSearchableItemAttributeSet instance using NewCSSearchableItemAttributeSetWithItemContentType.
 // Creates an attribute set for the specified content type.
 func ExampleNewCSSearchableItemAttributeSetWithItemContentType() {
@@ -18,6 +19,5 @@ func ExampleNewCSSearchableItemAttributeSetWithItemContentType() {
 	)
 	// Output:
 }
-
 
 

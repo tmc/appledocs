@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -124,6 +125,14 @@ func NewLayer() Layer {
 }
 
 
+// Initializes a layer with a remote client ID.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
+func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
+	rv := objc.Send[Layer](objc.ID(getLayerClass().class), objc.Sel("layerWithRemoteClientId:"), client_id)
+	return rv
+}
+
 // Override to copy or initialize custom fields of the specified layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(layer:)
@@ -131,14 +140,6 @@ func NewLayerWithLayer(layer objc.ID) Layer {
 	instance := getLayerClass().Alloc()
 	rv := objc.Send[Layer](instance.ID, objc.Sel("initWithLayer:"), layer)
 	rv.Autorelease()
-	return rv
-}
-
-// Initializes a layer with a remote client ID.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
-func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
-	rv := objc.Send[Layer](objc.ID(getLayerClass().class), objc.Sel("layerWithRemoteClientId:"), client_id)
 	return rv
 }
 
@@ -1160,8 +1161,8 @@ func (l_ Layer) SetMinificationFilterBias(value unsafe.Pointer) {
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/name
-func (l_ Layer) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("name"))
+func (l_ Layer) Name() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -1171,8 +1172,8 @@ func (l_ Layer) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/name
-func (l_ Layer) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), value)
+func (l_ Layer) SetName(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // A Boolean indicating whether the layer contents must be updated when its bounds rectangle changes.
 //

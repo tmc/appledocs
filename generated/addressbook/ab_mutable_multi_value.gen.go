@@ -29,8 +29,8 @@ type _ABMutableMultiValueClass struct {
 // An interface definition for the [ABMutableMultiValue] class.
 type IABMutableMultiValue interface {
 	IABMultiValue
-	AddValueWithLabel(value objc.ID, label string) unsafe.Pointer
-	InsertValueWithLabelAtIndex(value objc.ID, label string, index uint) unsafe.Pointer
+	AddValueWithLabel(value objc.ID, label string) string
+	InsertValueWithLabelAtIndex(value objc.ID, label string, index uint) string
 	RemoveValueAndLabelAtIndex(index uint) bool
 	ReplaceValueAtIndexWithValue(index uint, value objc.ID) bool
 	ReplaceLabelAtIndexWithLabel(index uint, label string) bool
@@ -90,16 +90,16 @@ func NewABMutableMultiValue() ABMutableMultiValue {
 // Adds a value and its label to a multivalue list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/add(_:withLabel:)
-func (a_ ABMutableMultiValue) AddValueWithLabel(value objc.ID, label string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("addValue:withLabel:"), value, objc.String(label))
+func (a_ ABMutableMultiValue) AddValueWithLabel(value objc.ID, label string) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("addValue:withLabel:"), value, objc.String(label))
 	return rv
 }
 
 // Inserts a value and its label at the given index in a multivalue list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/insert(_:withLabel:at:)
-func (a_ ABMutableMultiValue) InsertValueWithLabelAtIndex(value objc.ID, label string, index uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("insertValue:withLabel:atIndex:"), value, objc.String(label), index)
+func (a_ ABMutableMultiValue) InsertValueWithLabelAtIndex(value objc.ID, label string, index uint) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("insertValue:withLabel:atIndex:"), value, objc.String(label), index)
 	return rv
 }
 

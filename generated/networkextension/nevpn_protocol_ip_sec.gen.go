@@ -101,8 +101,8 @@ func (n_ NEVPNProtocolIPSec) SetAuthenticationMethod(value unsafe.Pointer) {
 // A string identifying the iOS or macOS device for authentication purposes
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/localIdentifier
-func (n_ NEVPNProtocolIPSec) LocalIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("localIdentifier"))
+func (n_ NEVPNProtocolIPSec) LocalIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
@@ -112,14 +112,14 @@ func (n_ NEVPNProtocolIPSec) LocalIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/localIdentifier
-func (n_ NEVPNProtocolIPSec) SetLocalIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalIdentifier:"), value)
+func (n_ NEVPNProtocolIPSec) SetLocalIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
 }
 // A string identifying the IPSec server for authentication purposes
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/remoteIdentifier
-func (n_ NEVPNProtocolIPSec) RemoteIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("remoteIdentifier"))
+func (n_ NEVPNProtocolIPSec) RemoteIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("remoteIdentifier"))
 	return rv
 }
 
@@ -129,8 +129,8 @@ func (n_ NEVPNProtocolIPSec) RemoteIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/remoteIdentifier
-func (n_ NEVPNProtocolIPSec) SetRemoteIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteIdentifier:"), value)
+func (n_ NEVPNProtocolIPSec) SetRemoteIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteIdentifier:"), objc.String(value))
 }
 // A persistent keychain reference to a keychain item containing the IKE shared secret.
 //

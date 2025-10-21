@@ -79,7 +79,6 @@ func NewWorkspaceOpenConfiguration() WorkspaceOpenConfiguration {
 	return getWorkspaceOpenConfigurationClass().New()
 }
 
-
 // Creates and returns a new workspace configuration object containing default values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspaceOpenConfiguration/configuration
@@ -96,7 +95,6 @@ func (w_ WorkspaceOpenConfiguration) Activates() bool {
 	return rv
 }
 
-
 // SetActivates sets the value of the activates property.
 // A Boolean value indicating whether the system activates the app and brings it to the foreground.
 
@@ -105,6 +103,7 @@ func (w_ WorkspaceOpenConfiguration) Activates() bool {
 func (w_ WorkspaceOpenConfiguration) SetActivates(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setActivates:"), value)
 }
+
 // A Boolean value indicating whether to add the app or documents to the Recent Items menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/addsToRecentItems
@@ -112,7 +111,6 @@ func (w_ WorkspaceOpenConfiguration) AddsToRecentItems() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("addsToRecentItems"))
 	return rv
 }
-
 
 // SetAddsToRecentItems sets the value of the addsToRecentItems property.
 // A Boolean value indicating whether to add the app or documents to the Recent Items menu.
@@ -122,6 +120,7 @@ func (w_ WorkspaceOpenConfiguration) AddsToRecentItems() bool {
 func (w_ WorkspaceOpenConfiguration) SetAddsToRecentItems(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAddsToRecentItems:"), value)
 }
+
 // A Boolean value that indicates whether to use a running instance of an application even if it’s at a different URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/allowsRunningApplicationSubstitution
@@ -129,7 +128,6 @@ func (w_ WorkspaceOpenConfiguration) AllowsRunningApplicationSubstitution() bool
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsRunningApplicationSubstitution"))
 	return rv
 }
-
 
 // SetAllowsRunningApplicationSubstitution sets the value of the allowsRunningApplicationSubstitution property.
 // A Boolean value that indicates whether to use a running instance of an application even if it’s at a different URL.
@@ -139,6 +137,7 @@ func (w_ WorkspaceOpenConfiguration) AllowsRunningApplicationSubstitution() bool
 func (w_ WorkspaceOpenConfiguration) SetAllowsRunningApplicationSubstitution(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsRunningApplicationSubstitution:"), value)
 }
+
 // The architecture version of the app to launch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/architecture
@@ -146,7 +145,6 @@ func (w_ WorkspaceOpenConfiguration) Architecture() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("architecture"))
 	return rv
 }
-
 
 // SetArchitecture sets the value of the architecture property.
 // The architecture version of the app to launch.
@@ -156,6 +154,7 @@ func (w_ WorkspaceOpenConfiguration) Architecture() unsafe.Pointer {
 func (w_ WorkspaceOpenConfiguration) SetArchitecture(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setArchitecture:"), value)
 }
+
 // The set of command-line arguments to pass to a new app instance at launch time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/arguments
@@ -163,7 +162,6 @@ func (w_ WorkspaceOpenConfiguration) Arguments() []string {
 	rv := objc.Send[[]string](w_.ID, objc.Sel("arguments"))
 	return rv
 }
-
 
 // SetArguments sets the value of the arguments property.
 // The set of command-line arguments to pass to a new app instance at launch time.
@@ -183,6 +181,7 @@ func (w_ WorkspaceOpenConfiguration) SetArguments(value []string) {
 	}
 	objc.Send[objc.ID](w_.ID, objc.Sel("setArguments:"), nsArray)
 }
+
 // A Boolean value indicating whether you want the system to launch a new instance of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/createsNewApplicationInstance
@@ -190,7 +189,6 @@ func (w_ WorkspaceOpenConfiguration) CreatesNewApplicationInstance() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("createsNewApplicationInstance"))
 	return rv
 }
-
 
 // SetCreatesNewApplicationInstance sets the value of the createsNewApplicationInstance property.
 // A Boolean value indicating whether you want the system to launch a new instance of the app.
@@ -200,6 +198,7 @@ func (w_ WorkspaceOpenConfiguration) CreatesNewApplicationInstance() bool {
 func (w_ WorkspaceOpenConfiguration) SetCreatesNewApplicationInstance(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCreatesNewApplicationInstance:"), value)
 }
+
 // The set of environment variables to set in a new app instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/environment
@@ -207,7 +206,6 @@ func (w_ WorkspaceOpenConfiguration) Environment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("environment"))
 	return rv
 }
-
 
 // SetEnvironment sets the value of the environment property.
 // The set of environment variables to set in a new app instance.
@@ -217,6 +215,7 @@ func (w_ WorkspaceOpenConfiguration) Environment() unsafe.Pointer {
 func (w_ WorkspaceOpenConfiguration) SetEnvironment(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEnvironment:"), value)
 }
+
 // A Boolean value indicating whether you want the app to hide itself after it launches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/hides
@@ -224,7 +223,6 @@ func (w_ WorkspaceOpenConfiguration) Hides() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hides"))
 	return rv
 }
-
 
 // SetHides sets the value of the hides property.
 // A Boolean value indicating whether you want the app to hide itself after it launches.
@@ -234,6 +232,7 @@ func (w_ WorkspaceOpenConfiguration) Hides() bool {
 func (w_ WorkspaceOpenConfiguration) SetHides(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHides:"), value)
 }
+
 // A Boolean value indicating whether you want to hide all apps except the one that launched.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/hidesOthers
@@ -241,7 +240,6 @@ func (w_ WorkspaceOpenConfiguration) HidesOthers() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hidesOthers"))
 	return rv
 }
-
 
 // SetHidesOthers sets the value of the hidesOthers property.
 // A Boolean value indicating whether you want to hide all apps except the one that launched.
@@ -251,6 +249,7 @@ func (w_ WorkspaceOpenConfiguration) HidesOthers() bool {
 func (w_ WorkspaceOpenConfiguration) SetHidesOthers(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHidesOthers:"), value)
 }
+
 // A Boolean value indicating whether you want to print the contents of documents and URLs instead of opening them.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/isForPrinting
@@ -258,7 +257,6 @@ func (w_ WorkspaceOpenConfiguration) ForPrinting() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("forPrinting"))
 	return rv
 }
-
 
 // SetForPrinting sets the value of the forPrinting property.
 // A Boolean value indicating whether you want to print the contents of documents and URLs instead of opening them.
@@ -268,6 +266,7 @@ func (w_ WorkspaceOpenConfiguration) ForPrinting() bool {
 func (w_ WorkspaceOpenConfiguration) SetForPrinting(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setForPrinting:"), value)
 }
+
 // A Boolean value indicating whether you require the URL to have an associated universal link.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/requiresUniversalLinks
@@ -275,7 +274,6 @@ func (w_ WorkspaceOpenConfiguration) RequiresUniversalLinks() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("requiresUniversalLinks"))
 	return rv
 }
-
 
 // SetRequiresUniversalLinks sets the value of the requiresUniversalLinks property.
 // A Boolean value indicating whether you require the URL to have an associated universal link.
@@ -285,5 +283,3 @@ func (w_ WorkspaceOpenConfiguration) RequiresUniversalLinks() bool {
 func (w_ WorkspaceOpenConfiguration) SetRequiresUniversalLinks(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRequiresUniversalLinks:"), value)
 }
-
-

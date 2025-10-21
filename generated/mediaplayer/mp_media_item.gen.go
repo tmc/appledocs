@@ -84,24 +84,24 @@ func NewMediaItem() MediaItem {
 // Obtains the persistent identifier key for a specified grouping type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/persistentIDProperty(forGroupingType:)
-func (mc _MediaItemClass) PersistentIDPropertyForGroupingType(groupingType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("persistentIDPropertyForGroupingType:"), groupingType)
+func (mc _MediaItemClass) PersistentIDPropertyForGroupingType(groupingType unsafe.Pointer) string {
+	rv := objc.Send[string](objc.ID(mc.class), objc.Sel("persistentIDPropertyForGroupingType:"), groupingType)
 	return rv
 }
 
 // Obtains the title key for a specified grouping type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/titleProperty(forGroupingType:)
-func (mc _MediaItemClass) TitlePropertyForGroupingType(groupingType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("titlePropertyForGroupingType:"), groupingType)
+func (mc _MediaItemClass) TitlePropertyForGroupingType(groupingType unsafe.Pointer) string {
+	rv := objc.Send[string](objc.ID(mc.class), objc.Sel("titlePropertyForGroupingType:"), groupingType)
 	return rv
 }
 
 // The primary performing artist for an album.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/albumArtist
-func (m_ MediaItem) AlbumArtist() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("albumArtist"))
+func (m_ MediaItem) AlbumArtist() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("albumArtist"))
 	return rv
 }
 
@@ -124,8 +124,8 @@ func (m_ MediaItem) AlbumPersistentID() unsafe.Pointer {
 // The title of an album, such as , rather than the title of an individual song on the album, such as “Crater Dance.”
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/albumTitle
-func (m_ MediaItem) AlbumTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("albumTitle"))
+func (m_ MediaItem) AlbumTitle() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("albumTitle"))
 	return rv
 }
 
@@ -148,8 +148,8 @@ func (m_ MediaItem) AlbumTrackNumber() uint {
 // The performing artists for a media item, which may vary from the primary artist for the album that a media item belongs to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/artist
-func (m_ MediaItem) Artist() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("artist"))
+func (m_ MediaItem) Artist() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("artist"))
 	return rv
 }
 
@@ -196,8 +196,8 @@ func (m_ MediaItem) BookmarkTime() TimeInterval {
 // Textual information about the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/comments
-func (m_ MediaItem) Comments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("comments"))
+func (m_ MediaItem) Comments() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("comments"))
 	return rv
 }
 
@@ -236,8 +236,8 @@ func (m_ MediaItem) DiscNumber() uint {
 // The music or film genre of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/genre
-func (m_ MediaItem) Genre() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("genre"))
+func (m_ MediaItem) Genre() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("genre"))
 	return rv
 }
 
@@ -300,8 +300,8 @@ func (m_ MediaItem) LastPlayedDate() unsafe.Pointer {
 // The lyrics for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/lyrics
-func (m_ MediaItem) Lyrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lyrics"))
+func (m_ MediaItem) Lyrics() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("lyrics"))
 	return rv
 }
 
@@ -340,8 +340,8 @@ func (m_ MediaItem) PlaybackDuration() TimeInterval {
 // The ID of a media item from the Apple Music catalog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/playbackStoreID
-func (m_ MediaItem) PlaybackStoreID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("playbackStoreID"))
+func (m_ MediaItem) PlaybackStoreID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("playbackStoreID"))
 	return rv
 }
 
@@ -356,8 +356,8 @@ func (m_ MediaItem) PodcastPersistentID() unsafe.Pointer {
 // The title of a podcast, such as , rather than the title of an individual episode of a podcast, such as “Episode 12: Another Cold Day at the Pole.”
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/podcastTitle
-func (m_ MediaItem) PodcastTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("podcastTitle"))
+func (m_ MediaItem) PodcastTitle() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("podcastTitle"))
 	return rv
 }
 
@@ -388,16 +388,16 @@ func (m_ MediaItem) SkipCount() uint {
 // The title or name of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/title
-func (m_ MediaItem) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("title"))
+func (m_ MediaItem) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
 // Grouping information for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/userGrouping
-func (m_ MediaItem) UserGrouping() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("userGrouping"))
+func (m_ MediaItem) UserGrouping() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("userGrouping"))
 	return rv
 }
 

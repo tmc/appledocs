@@ -12,5 +12,3 @@ var ServicesMenuRequestorProtocol *objc.Protocol
 func init() {
 	ServicesMenuRequestorProtocol = objc.GetProtocol("NSServicesMenuRequestor")
 }
-
-

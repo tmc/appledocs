@@ -214,8 +214,8 @@ func (c_ CBPeripheral) SetDelegate(value objc.ID) {
 // The name of the peripheral.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/name
-func (c_ CBPeripheral) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("name"))
+func (c_ CBPeripheral) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 

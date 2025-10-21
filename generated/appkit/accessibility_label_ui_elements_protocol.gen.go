@@ -15,5 +15,3 @@ var accessibilityLabelUIElementsProtocol *objc.Protocol
 func init() {
 	accessibilityLabelUIElementsProtocol = objc.GetProtocol("accessibilityLabelUIElements")
 }
-
-

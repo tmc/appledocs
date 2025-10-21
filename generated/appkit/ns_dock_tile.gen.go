@@ -78,7 +78,3 @@ func (d_ DockTile) Autorelease() DockTile {
 func NewDockTile() DockTile {
 	return getDockTileClass().New()
 }
-
-
-
-

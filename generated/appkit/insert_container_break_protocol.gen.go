@@ -12,5 +12,3 @@ var insertContainerBreakProtocol *objc.Protocol
 func init() {
 	insertContainerBreakProtocol = objc.GetProtocol("insertContainerBreak:")
 }
-
-

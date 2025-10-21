@@ -81,13 +81,9 @@ func NewScrubberFlowLayout() ScrubberFlowLayout {
 	return getScrubberFlowLayoutClass().New()
 }
 
-
 // Informs the scrubber that it should perform a new layout pass for the items at the specified indexes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/invalidateLayoutForItems(at:)
 func (s_ ScrubberFlowLayout) InvalidateLayoutForItemsAtIndexes(invalidItemIndexes unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("invalidateLayoutForItemsAtIndexes:"), invalidItemIndexes)
 }
-
-
-

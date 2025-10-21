@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentContainer] class.
@@ -161,8 +162,8 @@ func (p_ PersistentContainer) ManagedObjectModel() unsafe.Pointer {
 // The container’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/name
-func (p_ PersistentContainer) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("name"))
+func (p_ PersistentContainer) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
 

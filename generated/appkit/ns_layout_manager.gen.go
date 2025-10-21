@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [LayoutManager] class.
@@ -83,7 +83,6 @@ func NewLayoutManager() LayoutManager {
 	return getLayoutManagerClass().New()
 }
 
-
 // Adds a temporary attribute to the characters in the specified range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/addTemporaryAttribute(_:value:forCharacterRange:)
@@ -113,7 +112,6 @@ func (l_ LayoutManager) TypesetterBehavior() unsafe.Pointer {
 	return rv
 }
 
-
 // SetTypesetterBehavior sets the value of the typesetterBehavior property.
 // The default typesetter behavior.
 
@@ -122,5 +120,3 @@ func (l_ LayoutManager) TypesetterBehavior() unsafe.Pointer {
 func (l_ LayoutManager) SetTypesetterBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTypesetterBehavior:"), value)
 }
-
-

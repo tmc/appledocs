@@ -95,8 +95,8 @@ func NewVZLinuxBootLoaderWithKernelURL(kernelURL unsafe.Pointer) VZLinuxBootLoad
 // The command-line parameters to pass to the Linux kernel at boot time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/commandLine
-func (v_ VZLinuxBootLoader) CommandLine() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("commandLine"))
+func (v_ VZLinuxBootLoader) CommandLine() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("commandLine"))
 	return rv
 }
 
@@ -106,8 +106,8 @@ func (v_ VZLinuxBootLoader) CommandLine() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/commandLine
-func (v_ VZLinuxBootLoader) SetCommandLine(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setCommandLine:"), value)
+func (v_ VZLinuxBootLoader) SetCommandLine(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setCommandLine:"), objc.String(value))
 }
 // The location of an optional RAM disk, which the boot loader maps into memory before it boots the Linux kernel.
 //

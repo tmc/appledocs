@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -296,8 +297,8 @@ func (p_ PDFPage) Document() unsafe.Pointer {
 // Returns the label for the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/label
-func (p_ PDFPage) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("label"))
+func (p_ PDFPage) Label() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -336,8 +337,8 @@ func (p_ PDFPage) SetRotation(value int) {
 // Returns an object representing the text on the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/string
-func (p_ PDFPage) String() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("string"))
+func (p_ PDFPage) String() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("string"))
 	return rv
 }
 

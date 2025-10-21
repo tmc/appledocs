@@ -15,5 +15,3 @@ var windowWillExitFullScreenProtocol *objc.Protocol
 func init() {
 	windowWillExitFullScreenProtocol = objc.GetProtocol("windowWillExitFullScreen:")
 }
-
-

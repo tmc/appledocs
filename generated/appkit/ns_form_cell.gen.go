@@ -80,7 +80,6 @@ func NewFormCell() FormCell {
 	return getFormCellClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFormCell/init(coder:)
 func NewFormCellWithCoder(coder unsafe.Pointer) FormCell {
@@ -90,7 +89,6 @@ func NewFormCellWithCoder(coder unsafe.Pointer) FormCell {
 	return rv
 }
 
-
 // A Boolean value indicating whether the title is empty and an opaque bezel is set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFormCell/isOpaque
@@ -98,5 +96,3 @@ func (f_ FormCell) Opaque() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("opaque"))
 	return rv
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UNNotificationAction] class.
@@ -124,8 +125,8 @@ func (u_ UNNotificationAction) Icon() unsafe.Pointer {
 // The unique string that your app uses to identify the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAction/identifier
-func (u_ UNNotificationAction) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("identifier"))
+func (u_ UNNotificationAction) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -140,8 +141,8 @@ func (u_ UNNotificationAction) Options() unsafe.Pointer {
 // The localized string to use as the title of the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAction/title
-func (u_ UNNotificationAction) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("title"))
+func (u_ UNNotificationAction) Title() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
 

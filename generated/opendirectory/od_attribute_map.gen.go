@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ODAttributeMap] class.
@@ -134,8 +135,8 @@ func (o_ ODAttributeMap) SetCustomAttributes(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customQueryFunction-swift.property
-func (o_ ODAttributeMap) CustomQueryFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("customQueryFunction"))
+func (o_ ODAttributeMap) CustomQueryFunction() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("customQueryFunction"))
 	return rv
 }
 
@@ -143,13 +144,13 @@ func (o_ ODAttributeMap) CustomQueryFunction() unsafe.Pointer {
 // SetCustomQueryFunction sets the value of the customQueryFunction property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customQueryFunction-swift.property
-func (o_ ODAttributeMap) SetCustomQueryFunction(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomQueryFunction:"), value)
+func (o_ ODAttributeMap) SetCustomQueryFunction(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomQueryFunction:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customTranslationFunction-swift.property
-func (o_ ODAttributeMap) CustomTranslationFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("customTranslationFunction"))
+func (o_ ODAttributeMap) CustomTranslationFunction() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("customTranslationFunction"))
 	return rv
 }
 
@@ -157,13 +158,13 @@ func (o_ ODAttributeMap) CustomTranslationFunction() unsafe.Pointer {
 // SetCustomTranslationFunction sets the value of the customTranslationFunction property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customTranslationFunction-swift.property
-func (o_ ODAttributeMap) SetCustomTranslationFunction(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomTranslationFunction:"), value)
+func (o_ ODAttributeMap) SetCustomTranslationFunction(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomTranslationFunction:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/value-swift.property
-func (o_ ODAttributeMap) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("value"))
+func (o_ ODAttributeMap) Value() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -171,7 +172,7 @@ func (o_ ODAttributeMap) Value() unsafe.Pointer {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/value-swift.property
-func (o_ ODAttributeMap) SetValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:"), value)
+func (o_ ODAttributeMap) SetValue(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:"), objc.String(value))
 }
 

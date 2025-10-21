@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EASession] class.
@@ -118,8 +119,8 @@ func (e_ EASession) OutputStream() unsafe.Pointer {
 // The protocol being used for communication with the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/protocolString
-func (e_ EASession) ProtocolString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("protocolString"))
+func (e_ EASession) ProtocolString() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("protocolString"))
 	return rv
 }
 

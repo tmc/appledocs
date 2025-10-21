@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Architecture] class.
@@ -81,8 +82,8 @@ func NewArchitecture() Architecture {
 // The name of a GPU device’s architecture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArchitecture/name
-func (a_ Architecture) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("name"))
+func (a_ Architecture) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 

@@ -78,7 +78,3 @@ func (c_ CollectionLayoutAnchor) Autorelease() CollectionLayoutAnchor {
 func NewCollectionLayoutAnchor() CollectionLayoutAnchor {
 	return getCollectionLayoutAnchorClass().New()
 }
-
-
-
-

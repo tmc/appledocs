@@ -79,7 +79,6 @@ func NewTabViewItem() TabViewItem {
 	return getTabViewItemClass().New()
 }
 
-
 // Sets the background color for content in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/color
@@ -87,7 +86,6 @@ func (t_ TabViewItem) Color() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("color"))
 	return rv
 }
-
 
 // SetColor sets the value of the color property.
 // Sets the background color for content in the view.
@@ -97,6 +95,7 @@ func (t_ TabViewItem) Color() unsafe.Pointer {
 func (t_ TabViewItem) SetColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
 }
+
 // Returns the current display state of the tab associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/tabState
@@ -112,6 +111,3 @@ func (t_ TabViewItem) TabView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabView"))
 	return rv
 }
-
-
-

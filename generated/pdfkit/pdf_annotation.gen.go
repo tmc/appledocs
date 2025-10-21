@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -112,8 +113,8 @@ func (pc _PDFAnnotationClass) LineStyleFromName(name string) unsafe.Pointer {
 // Returns the name of the line style, which matches the definition in the Adobe PDF Specification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/name(for:)
-func (pc _PDFAnnotationClass) NameForLineStyle(style unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("nameForLineStyle:"), style)
+func (pc _PDFAnnotationClass) NameForLineStyle(style unsafe.Pointer) string {
+	rv := objc.Send[string](objc.ID(pc.class), objc.Sel("nameForLineStyle:"), style)
 	return rv
 }
 
@@ -314,8 +315,8 @@ func (p_ PDFAnnotation) SetButtonWidgetState(value unsafe.Pointer) {
 // A string value that differentiates button widgets in the same group, such as to identify mutually exclusive radio buttons from each other.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/buttonWidgetStateString
-func (p_ PDFAnnotation) ButtonWidgetStateString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("buttonWidgetStateString"))
+func (p_ PDFAnnotation) ButtonWidgetStateString() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("buttonWidgetStateString"))
 	return rv
 }
 
@@ -325,14 +326,14 @@ func (p_ PDFAnnotation) ButtonWidgetStateString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/buttonWidgetStateString
-func (p_ PDFAnnotation) SetButtonWidgetStateString(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setButtonWidgetStateString:"), value)
+func (p_ PDFAnnotation) SetButtonWidgetStateString(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setButtonWidgetStateString:"), objc.String(value))
 }
 // The title of push button widget annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/caption
-func (p_ PDFAnnotation) Caption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("caption"))
+func (p_ PDFAnnotation) Caption() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("caption"))
 	return rv
 }
 
@@ -342,8 +343,8 @@ func (p_ PDFAnnotation) Caption() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/caption
-func (p_ PDFAnnotation) SetCaption(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCaption:"), value)
+func (p_ PDFAnnotation) SetCaption(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCaption:"), objc.String(value))
 }
 // An array of strings that specifies the options in either a list or a pop-up menu.
 //
@@ -392,8 +393,8 @@ func (p_ PDFAnnotation) SetColor(value unsafe.Pointer) {
 // Returns the textual content (if any) associated with the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/contents
-func (p_ PDFAnnotation) Contents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contents"))
+func (p_ PDFAnnotation) Contents() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("contents"))
 	return rv
 }
 
@@ -403,8 +404,8 @@ func (p_ PDFAnnotation) Contents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/contents
-func (p_ PDFAnnotation) SetContents(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), value)
+func (p_ PDFAnnotation) SetContents(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), objc.String(value))
 }
 // The destination for a link annotation.
 //
@@ -460,8 +461,8 @@ func (p_ PDFAnnotation) SetEndPoint(value Point) {
 // The widget identifier for form annotation actions and behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/fieldName
-func (p_ PDFAnnotation) FieldName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fieldName"))
+func (p_ PDFAnnotation) FieldName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("fieldName"))
 	return rv
 }
 
@@ -471,8 +472,8 @@ func (p_ PDFAnnotation) FieldName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/fieldName
-func (p_ PDFAnnotation) SetFieldName(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFieldName:"), value)
+func (p_ PDFAnnotation) SetFieldName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFieldName:"), objc.String(value))
 }
 // The font the annotation uses to display text.
 //
@@ -738,8 +739,8 @@ func (p_ PDFAnnotation) SetPage(value unsafe.Pointer) {
 // An array of bezier paths, in annotation-space coordinates, that compose the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/paths
-func (p_ PDFAnnotation) Paths() []pdfkit.UIBezierPath {
-	rv := objc.Send[[]pdfkit.UIBezierPath](p_.ID, objc.Sel("paths"))
+func (p_ PDFAnnotation) Paths() []UIBezierPath {
+	rv := objc.Send[[]UIBezierPath](p_.ID, objc.Sel("paths"))
 	return rv
 }
 
@@ -841,8 +842,8 @@ func (p_ PDFAnnotation) SetShouldPrint(value bool) {
 // The name of the stamp, a text or graphics annotation that emulates a rubber stamp effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/stampName
-func (p_ PDFAnnotation) StampName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("stampName"))
+func (p_ PDFAnnotation) StampName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("stampName"))
 	return rv
 }
 
@@ -852,8 +853,8 @@ func (p_ PDFAnnotation) StampName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/stampName
-func (p_ PDFAnnotation) SetStampName(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStampName:"), value)
+func (p_ PDFAnnotation) SetStampName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStampName:"), objc.String(value))
 }
 // The style of the line annotation’s starting point, such as square or filled arrowhead.
 //
@@ -892,8 +893,8 @@ func (p_ PDFAnnotation) SetStartPoint(value Point) {
 // Returns the type of the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/type
-func (p_ PDFAnnotation) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+func (p_ PDFAnnotation) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -903,8 +904,8 @@ func (p_ PDFAnnotation) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/type
-func (p_ PDFAnnotation) SetType(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
+func (p_ PDFAnnotation) SetType(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
 }
 // A URL for a link annotation.
 //
@@ -926,8 +927,8 @@ func (p_ PDFAnnotation) SetURL(value unsafe.Pointer) {
 // Returns the name of the user who created the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/userName
-func (p_ PDFAnnotation) UserName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("userName"))
+func (p_ PDFAnnotation) UserName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
 	return rv
 }
 
@@ -937,8 +938,8 @@ func (p_ PDFAnnotation) UserName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/userName
-func (p_ PDFAnnotation) SetUserName(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), value)
+func (p_ PDFAnnotation) SetUserName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
 }
 // An array of strings that specifies the export values for items in a list or a pop-up menu.
 //
@@ -987,8 +988,8 @@ func (p_ PDFAnnotation) SetWidgetControlType(value unsafe.Pointer) {
 // The string value that the widget reverts to when performing a reset form action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/widgetDefaultStringValue
-func (p_ PDFAnnotation) WidgetDefaultStringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("widgetDefaultStringValue"))
+func (p_ PDFAnnotation) WidgetDefaultStringValue() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("widgetDefaultStringValue"))
 	return rv
 }
 
@@ -998,8 +999,8 @@ func (p_ PDFAnnotation) WidgetDefaultStringValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/widgetDefaultStringValue
-func (p_ PDFAnnotation) SetWidgetDefaultStringValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetDefaultStringValue:"), value)
+func (p_ PDFAnnotation) SetWidgetDefaultStringValue(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetDefaultStringValue:"), objc.String(value))
 }
 // The type of widget annotation, such as button, choice, or text.
 //
@@ -1021,8 +1022,8 @@ func (p_ PDFAnnotation) SetWidgetFieldType(value unsafe.Pointer) {
 // The string value of the widget annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/widgetStringValue
-func (p_ PDFAnnotation) WidgetStringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("widgetStringValue"))
+func (p_ PDFAnnotation) WidgetStringValue() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("widgetStringValue"))
 	return rv
 }
 
@@ -1032,7 +1033,7 @@ func (p_ PDFAnnotation) WidgetStringValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/widgetStringValue
-func (p_ PDFAnnotation) SetWidgetStringValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetStringValue:"), value)
+func (p_ PDFAnnotation) SetWidgetStringValue(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetStringValue:"), objc.String(value))
 }
 

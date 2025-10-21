@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SpeechSynthesisVoice] class.
@@ -91,8 +92,8 @@ func (s_ SpeechSynthesisVoice) Gender() unsafe.Pointer {
 // A BCP 47 code that contains the voice’s language and locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice/language
-func (s_ SpeechSynthesisVoice) Language() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("language"))
+func (s_ SpeechSynthesisVoice) Language() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("language"))
 	return rv
 }
 

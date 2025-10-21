@@ -12,5 +12,3 @@ var ComboBoxCellDataSourceProtocol *objc.Protocol
 func init() {
 	ComboBoxCellDataSourceProtocol = objc.GetProtocol("NSComboBoxCellDataSource")
 }
-
-

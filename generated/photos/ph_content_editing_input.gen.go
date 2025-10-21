@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
@@ -188,8 +189,8 @@ func (p_ PHContentEditingInput) PlaybackStyle() unsafe.Pointer {
 // The uniform type identifier for the asset’s image or video data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/uniformTypeIdentifier
-func (p_ PHContentEditingInput) UniformTypeIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("uniformTypeIdentifier"))
+func (p_ PHContentEditingInput) UniformTypeIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("uniformTypeIdentifier"))
 	return rv
 }
 

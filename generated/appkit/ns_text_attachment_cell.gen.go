@@ -79,7 +79,3 @@ func (t_ TextAttachmentCell) Autorelease() TextAttachmentCell {
 func NewTextAttachmentCell() TextAttachmentCell {
 	return getTextAttachmentCellClass().New()
 }
-
-
-
-

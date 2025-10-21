@@ -103,15 +103,15 @@ func (vc _VZVirtioFileSystemDeviceConfigurationClass) ValidateTagError(tag strin
 // A value that indicates that the guest needs to automount this file system device in the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag
-func (vc _VZVirtioFileSystemDeviceConfigurationClass) MacOSGuestAutomountTag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("macOSGuestAutomountTag"))
+func (vc _VZVirtioFileSystemDeviceConfigurationClass) MacOSGuestAutomountTag() string {
+	rv := objc.Send[string](objc.ID(vc.class), objc.Sel("macOSGuestAutomountTag"))
 	return rv
 }
 // A value that indicates that the guest needs to automount this file system device in the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag
-func (v_ VZVirtioFileSystemDeviceConfiguration) MacOSGuestAutomountTag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("macOSGuestAutomountTag"))
+func (v_ VZVirtioFileSystemDeviceConfiguration) MacOSGuestAutomountTag() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("macOSGuestAutomountTag"))
 	return rv
 }
 
@@ -135,8 +135,8 @@ func (v_ VZVirtioFileSystemDeviceConfiguration) SetShare(value unsafe.Pointer) {
 // A label that identifies this device in the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag
-func (v_ VZVirtioFileSystemDeviceConfiguration) Tag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("tag"))
+func (v_ VZVirtioFileSystemDeviceConfiguration) Tag() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("tag"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (v_ VZVirtioFileSystemDeviceConfiguration) Tag() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag
-func (v_ VZVirtioFileSystemDeviceConfiguration) SetTag(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setTag:"), value)
+func (v_ VZVirtioFileSystemDeviceConfiguration) SetTag(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setTag:"), objc.String(value))
 }
 

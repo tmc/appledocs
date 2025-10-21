@@ -79,7 +79,3 @@ func (c_ ClickGestureRecognizer) Autorelease() ClickGestureRecognizer {
 func NewClickGestureRecognizer() ClickGestureRecognizer {
 	return getClickGestureRecognizerClass().New()
 }
-
-
-
-

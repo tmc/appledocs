@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FSModuleIdentity] class.
@@ -81,8 +82,8 @@ func NewFSModuleIdentity() FSModuleIdentity {
 // The module’s bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity/bundleIdentifier
-func (f_ FSModuleIdentity) BundleIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("bundleIdentifier"))
+func (f_ FSModuleIdentity) BundleIdentifier() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 

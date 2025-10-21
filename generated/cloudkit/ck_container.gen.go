@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKContainer] class.
@@ -245,8 +246,8 @@ func (c_ CKContainer) StatusForApplicationPermissionCompletionHandler(applicatio
 // The container’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/containerIdentifier
-func (c_ CKContainer) ContainerIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CKContainer) ContainerIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

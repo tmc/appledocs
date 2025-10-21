@@ -12,5 +12,3 @@ var AccessibilityStepperProtocol *objc.Protocol
 func init() {
 	AccessibilityStepperProtocol = objc.GetProtocol("NSAccessibilityStepper")
 }
-
-

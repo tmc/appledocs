@@ -15,5 +15,3 @@ var accessibilitySearchButtonProtocol *objc.Protocol
 func init() {
 	accessibilitySearchButtonProtocol = objc.GetProtocol("accessibilitySearchButton")
 }
-
-

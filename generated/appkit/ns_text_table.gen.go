@@ -79,7 +79,3 @@ func (t_ TextTable) Autorelease() TextTable {
 func NewTextTable() TextTable {
 	return getTextTableClass().New()
 }
-
-
-
-

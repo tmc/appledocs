@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioRecorder] class.
@@ -200,8 +201,8 @@ func (a_ AudioRecorder) UpdateMeters() {
 // An array of channel descriptions associated with the audio recorder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/channelAssignments
-func (a_ AudioRecorder) ChannelAssignments() []avfaudio.AVAudioSessionChannelDescription {
-	rv := objc.Send[[]avfaudio.AVAudioSessionChannelDescription](a_.ID, objc.Sel("channelAssignments"))
+func (a_ AudioRecorder) ChannelAssignments() []AVAudioSessionChannelDescription {
+	rv := objc.Send[[]AVAudioSessionChannelDescription](a_.ID, objc.Sel("channelAssignments"))
 	return rv
 }
 
@@ -211,7 +212,7 @@ func (a_ AudioRecorder) ChannelAssignments() []avfaudio.AVAudioSessionChannelDes
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/channelAssignments
-func (a_ AudioRecorder) SetChannelAssignments(value []avfaudio.AVAudioSessionChannelDescription) {
+func (a_ AudioRecorder) SetChannelAssignments(value []AVAudioSessionChannelDescription) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

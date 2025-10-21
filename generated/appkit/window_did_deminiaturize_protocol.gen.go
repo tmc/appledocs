@@ -15,5 +15,3 @@ var windowDidDeminiaturizeProtocol *objc.Protocol
 func init() {
 	windowDidDeminiaturizeProtocol = objc.GetProtocol("windowDidDeminiaturize:")
 }
-
-

@@ -10,7 +10,6 @@ import (
 var _ = gameplaykit.NewScene
 
 
-
 // ExampleNewSceneWithFileNamed demonstrates how to create a Scene instance using NewSceneWithFileNamed.
 // Loads the specified SpriteKit scene file, creating a   object containing the SpriteKit scene and associated GameplayKit objects.
 func ExampleNewSceneWithFileNamed() {
@@ -19,5 +18,6 @@ func ExampleNewSceneWithFileNamed() {
 	)
 	// Output:
 }
+
 
 

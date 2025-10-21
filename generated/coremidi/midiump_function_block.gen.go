@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MIDIUMPFunctionBlock] class.
@@ -126,8 +127,8 @@ func (m_ MIDIUMPFunctionBlock) MidiCIDevice() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/name
-func (m_ MIDIUMPFunctionBlock) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPFunctionBlock) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

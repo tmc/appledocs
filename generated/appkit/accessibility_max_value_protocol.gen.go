@@ -15,5 +15,3 @@ var accessibilityMaxValueProtocol *objc.Protocol
 func init() {
 	accessibilityMaxValueProtocol = objc.GetProtocol("accessibilityMaxValue")
 }
-
-

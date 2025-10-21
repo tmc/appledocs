@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BADownload] class.
@@ -89,8 +90,8 @@ func (b_ BADownload) CopyAsNonEssential() unsafe.Pointer {
 // The app-specific string that uniquely identifies the downloadable asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/identifier
-func (b_ BADownload) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("identifier"))
+func (b_ BADownload) Identifier() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -120,8 +121,8 @@ func (b_ BADownload) State() unsafe.Pointer {
 // The system-provided string that uniquely identifies the download object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/uniqueIdentifier
-func (b_ BADownload) UniqueIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("uniqueIdentifier"))
+func (b_ BADownload) UniqueIdentifier() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 

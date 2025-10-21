@@ -300,15 +300,15 @@ func (a_ AudioUnit) AudioUnitMIDIProtocol() unsafe.Pointer {
 // The audio unit’s name, derived from the component’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/audioUnitName
-func (a_ AudioUnit) AudioUnitName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioUnitName"))
+func (a_ AudioUnit) AudioUnitName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("audioUnitName"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/audioUnitShortName
-func (a_ AudioUnit) AudioUnitShortName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioUnitShortName"))
+func (a_ AudioUnit) AudioUnitShortName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("audioUnitShortName"))
 	return rv
 }
 
@@ -387,8 +387,8 @@ func (a_ AudioUnit) ComponentDescription() unsafe.Pointer {
 // The audio unit’s component’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/componentName
-func (a_ AudioUnit) ComponentName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("componentName"))
+func (a_ AudioUnit) ComponentName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("componentName"))
 	return rv
 }
 
@@ -403,8 +403,8 @@ func (a_ AudioUnit) ComponentVersion() unsafe.Pointer {
 // Information about the host context in which the audio unit is connected, for display in the audio unit’s view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/contextName
-func (a_ AudioUnit) ContextName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("contextName"))
+func (a_ AudioUnit) ContextName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("contextName"))
 	return rv
 }
 
@@ -414,8 +414,8 @@ func (a_ AudioUnit) ContextName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/contextName
-func (a_ AudioUnit) SetContextName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setContextName:"), value)
+func (a_ AudioUnit) SetContextName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setContextName:"), objc.String(value))
 }
 // The audio unit’s last-selected preset.
 //
@@ -648,8 +648,8 @@ func (a_ AudioUnit) Latency() TimeInterval {
 // The manufacturer’s name, derived from the component’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/manufacturerName
-func (a_ AudioUnit) ManufacturerName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("manufacturerName"))
+func (a_ AudioUnit) ManufacturerName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("manufacturerName"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CGraph] class.
@@ -249,8 +250,8 @@ func (c_ CGraph) Layers() []CLayer {
 // A DOT representation of the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCGraph/summarizedDOTDescription
-func (c_ CGraph) SummarizedDOTDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("summarizedDOTDescription"))
+func (c_ CGraph) SummarizedDOTDescription() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("summarizedDOTDescription"))
 	return rv
 }
 

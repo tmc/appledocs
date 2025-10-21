@@ -32,7 +32,7 @@ type IParameter interface {
 	SetValueOriginator(value unsafe.Pointer, originator unsafe.Pointer)
 	SetValueOriginatorAtHostTime(value unsafe.Pointer, originator unsafe.Pointer, hostTime uint64)
 	SetValueOriginatorAtHostTimeEventType(value unsafe.Pointer, originator unsafe.Pointer, hostTime uint64, eventType unsafe.Pointer)
-	StringFromValue(value unsafe.Pointer) unsafe.Pointer
+	StringFromValue(value unsafe.Pointer) string
 	ValueFromString(string_ string) unsafe.Pointer
 }
 
@@ -107,8 +107,8 @@ func (p_ Parameter) SetValueOriginatorAtHostTimeEventType(value unsafe.Pointer, 
 // Gets the string representation of a parameter value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/string(fromValue:)
-func (p_ Parameter) StringFromValue(value unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("stringFromValue:"), value)
+func (p_ Parameter) StringFromValue(value unsafe.Pointer) string {
+	rv := objc.Send[string](p_.ID, objc.Sel("stringFromValue:"), value)
 	return rv
 }
 
@@ -171,8 +171,8 @@ func (p_ Parameter) Unit() unsafe.Pointer {
 // The parameter’s localized unit name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/unitName
-func (p_ Parameter) UnitName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("unitName"))
+func (p_ Parameter) UnitName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("unitName"))
 	return rv
 }
 

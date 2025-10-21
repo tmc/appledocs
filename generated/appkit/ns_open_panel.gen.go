@@ -80,7 +80,6 @@ func NewOpenPanel() OpenPanel {
 	return getOpenPanelClass().New()
 }
 
-
 // Creates a new Open panel and initializes it with a default configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/openPanel
@@ -97,7 +96,6 @@ func (o_ OpenPanel) CanChooseFiles() bool {
 	return rv
 }
 
-
 // SetCanChooseFiles sets the value of the canChooseFiles property.
 // A Boolean that indicates whether the user can choose files in the panel.
 
@@ -106,5 +104,3 @@ func (o_ OpenPanel) CanChooseFiles() bool {
 func (o_ OpenPanel) SetCanChooseFiles(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanChooseFiles:"), value)
 }
-
-

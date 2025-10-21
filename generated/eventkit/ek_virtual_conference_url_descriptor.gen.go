@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKVirtualConferenceURLDescriptor] class.
@@ -94,8 +95,8 @@ func NewEKVirtualConferenceURLDescriptorWithTitleURL(title string, URL unsafe.Po
 // The user-visible name of a room where virtual conferences take place, such as Personal Room or Team Room.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceURLDescriptor/title
-func (e_ EKVirtualConferenceURLDescriptor) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("title"))
+func (e_ EKVirtualConferenceURLDescriptor) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 

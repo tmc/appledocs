@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [SharingServicePicker] class.
@@ -81,7 +81,6 @@ func NewSharingServicePicker() SharingServicePicker {
 	return getSharingServicePickerClass().New()
 }
 
-
 // Shows the picker interface and populates it with the relevant sharing services.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/show(relativeTo:of:preferredEdge:)
@@ -97,7 +96,6 @@ func (s_ SharingServicePicker) Delegate() objc.ID {
 	return rv
 }
 
-
 // SetDelegate sets the value of the delegate property.
 // The object for managing the sharing service picker.
 
@@ -106,5 +104,3 @@ func (s_ SharingServicePicker) Delegate() objc.ID {
 func (s_ SharingServicePicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
-
-

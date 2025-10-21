@@ -77,7 +77,3 @@ func (b_ ButtonTouchBarItem) Autorelease() ButtonTouchBarItem {
 func NewButtonTouchBarItem() ButtonTouchBarItem {
 	return getButtonTouchBarItemClass().New()
 }
-
-
-
-

@@ -9,15 +9,9 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewDocument
 
-
 // ExampleNewDocument demonstrates how to create a Document instance.
 // Initializes and returns an empty document object.
 func ExampleNewDocument() {
 	_ = appkit.NewDocument()
 	// Output:
 }
-
-
-
-
-

@@ -12,5 +12,3 @@ var windowWillUseStandardFrameProtocol *objc.Protocol
 func init() {
 	windowWillUseStandardFrameProtocol = objc.GetProtocol("windowWillUseStandardFrame:")
 }
-
-

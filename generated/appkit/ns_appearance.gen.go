@@ -80,7 +80,6 @@ func NewAppearance() Appearance {
 	return getAppearanceClass().New()
 }
 
-
 // Creates an appearance object from the named appearance file located in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/init(appearanceNamed:bundle:)
@@ -98,7 +97,6 @@ func NewAppearanceNamed(name unsafe.Pointer) Appearance {
 	rv := objc.Send[Appearance](objc.ID(getAppearanceClass().class), objc.Sel("appearanceNamed:"), name)
 	return rv
 }
-
 
 // Creates an appearance object based on the name of one of the standard system appearances.
 //
@@ -123,5 +121,3 @@ func (a_ Appearance) Name() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("name"))
 	return rv
 }
-
-

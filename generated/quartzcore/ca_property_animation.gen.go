@@ -135,8 +135,8 @@ func (p_ PropertyAnimation) SetCumulative(value bool) {
 // Specifies the key path the receiver animates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/keyPath
-func (p_ PropertyAnimation) KeyPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("keyPath"))
+func (p_ PropertyAnimation) KeyPath() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("keyPath"))
 	return rv
 }
 
@@ -146,8 +146,8 @@ func (p_ PropertyAnimation) KeyPath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/keyPath
-func (p_ PropertyAnimation) SetKeyPath(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setKeyPath:"), value)
+func (p_ PropertyAnimation) SetKeyPath(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setKeyPath:"), objc.String(value))
 }
 // An optional value function that is applied to interpolated values.
 //

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Product] class.
@@ -123,16 +124,16 @@ func (p_ Product) PriceLocale() unsafe.Pointer {
 // The string that identifies the product to the Apple App Store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProduct/productIdentifier
-func (p_ Product) ProductIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("productIdentifier"))
+func (p_ Product) ProductIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
 // The identifier of the subscription group to which the subscription belongs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProduct/subscriptionGroupIdentifier
-func (p_ Product) SubscriptionGroupIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("subscriptionGroupIdentifier"))
+func (p_ Product) SubscriptionGroupIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("subscriptionGroupIdentifier"))
 	return rv
 }
 

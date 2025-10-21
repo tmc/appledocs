@@ -121,16 +121,16 @@ func (m_ MXCrashDiagnostic) Signal() unsafe.Pointer {
 // The reason the app was terminated as a human-readable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/terminationReason
-func (m_ MXCrashDiagnostic) TerminationReason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("terminationReason"))
+func (m_ MXCrashDiagnostic) TerminationReason() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("terminationReason"))
 	return rv
 }
 
 // Information about the region of memory an app accessed incorrectly, resulting in a bad-access crash.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/virtualMemoryRegionInfo
-func (m_ MXCrashDiagnostic) VirtualMemoryRegionInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("virtualMemoryRegionInfo"))
+func (m_ MXCrashDiagnostic) VirtualMemoryRegionInfo() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("virtualMemoryRegionInfo"))
 	return rv
 }
 

@@ -95,8 +95,8 @@ func NewVZMultipleDirectoryShareWithDirectories(directories unsafe.Pointer) VZMu
 // Transforms a string to be a valid directory name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMultipleDirectoryShare/canonicalizedName(from:)
-func (vc _VZMultipleDirectoryShareClass) CanonicalizedNameFromName(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("canonicalizedNameFromName:"), objc.String(name))
+func (vc _VZMultipleDirectoryShareClass) CanonicalizedNameFromName(name string) string {
+	rv := objc.Send[string](objc.ID(vc.class), objc.Sel("canonicalizedNameFromName:"), objc.String(name))
 	return rv
 }
 

@@ -110,8 +110,8 @@ func (v_ VZLinuxRosettaAbstractSocketCachingOptions) MaximumNameLength() uint {
 // The name of the abstract socket that Rosetta uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAbstractSocketCachingOptions/name
-func (v_ VZLinuxRosettaAbstractSocketCachingOptions) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("name"))
+func (v_ VZLinuxRosettaAbstractSocketCachingOptions) Name() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("name"))
 	return rv
 }
 

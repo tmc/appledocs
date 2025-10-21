@@ -30,7 +30,7 @@ type _CSLocalizedStringClass struct {
 // An interface definition for the [CSLocalizedString] class.
 type ICSLocalizedString interface {
 	foundation.IString
-	LocalizedString() unsafe.Pointer
+	LocalizedString() string
 }
 
 // An object that displays localized text in search results related to your app.
@@ -97,8 +97,8 @@ func NewCSLocalizedStringWithLocalizedStrings(localizedStrings objc.ID) CSLocali
 // Returns the localized string for the current language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSLocalizedString/localizedString()
-func (c_ CSLocalizedString) LocalizedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("localizedString"))
+func (c_ CSLocalizedString) LocalizedString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedString"))
 	return rv
 }
 

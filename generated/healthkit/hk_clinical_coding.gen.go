@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKClinicalCoding] class.
@@ -94,24 +95,24 @@ func NewHKClinicalCodingWithSystemVersionCode(system string, version string, cod
 // The clinical code that represents a medical concept inside the coding system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/code
-func (h_ HKClinicalCoding) Code() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("code"))
+func (h_ HKClinicalCoding) Code() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("code"))
 	return rv
 }
 
 // The string that identifies the coding system that defines this clinical code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/system
-func (h_ HKClinicalCoding) System() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("system"))
+func (h_ HKClinicalCoding) System() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("system"))
 	return rv
 }
 
 // The version of the coding system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/version
-func (h_ HKClinicalCoding) Version() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("version"))
+func (h_ HKClinicalCoding) Version() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("version"))
 	return rv
 }
 

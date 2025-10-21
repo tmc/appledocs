@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BluetoothHostController] class.
@@ -30,9 +31,9 @@ type _BluetoothHostControllerClass struct {
 // An interface definition for the [BluetoothHostController] class.
 type IBluetoothHostController interface {
 	objectivec.IObject
-	AddressAsString() unsafe.Pointer
+	AddressAsString() string
 	ClassOfDevice() unsafe.Pointer
-	NameAsString() unsafe.Pointer
+	NameAsString() string
 	SetClassOfDeviceForTimeInterval(classOfDevice unsafe.Pointer, seconds TimeInterval) unsafe.Pointer
 }
 
@@ -95,8 +96,8 @@ func (bc _BluetoothHostControllerClass) DefaultController() unsafe.Pointer {
 // Convience routine to get the HCI controller’s Bluetooth address as an NSString object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/addressAsString()
-func (b_ BluetoothHostController) AddressAsString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("addressAsString"))
+func (b_ BluetoothHostController) AddressAsString() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("addressAsString"))
 	return rv
 }
 
@@ -111,8 +112,8 @@ func (b_ BluetoothHostController) ClassOfDevice() unsafe.Pointer {
 // Gets the “friendly” name of HCI controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/nameAsString()
-func (b_ BluetoothHostController) NameAsString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("nameAsString"))
+func (b_ BluetoothHostController) NameAsString() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("nameAsString"))
 	return rv
 }
 

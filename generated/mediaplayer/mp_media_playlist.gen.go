@@ -100,32 +100,32 @@ func (m_ MediaPlaylist) AddItemWithProductIDCompletionHandler(productID string, 
 // The display name for the playlist defined in the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/authorDisplayName
-func (m_ MediaPlaylist) AuthorDisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("authorDisplayName"))
+func (m_ MediaPlaylist) AuthorDisplayName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("authorDisplayName"))
 	return rv
 }
 
 // The cloud identifier for the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/cloudGlobalID
-func (m_ MediaPlaylist) CloudGlobalID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cloudGlobalID"))
+func (m_ MediaPlaylist) CloudGlobalID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("cloudGlobalID"))
 	return rv
 }
 
 // User supplied text that describes the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/descriptionText
-func (m_ MediaPlaylist) DescriptionText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("descriptionText"))
+func (m_ MediaPlaylist) DescriptionText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("descriptionText"))
 	return rv
 }
 
 // The name of the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/name
-func (m_ MediaPlaylist) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MediaPlaylist) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CompileOptions] class.
@@ -145,8 +146,8 @@ func (c_ CompileOptions) SetFastMathEnabled(value bool) {
 // For a dynamic library, the name to use when installing the library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/installName
-func (c_ CompileOptions) InstallName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("installName"))
+func (c_ CompileOptions) InstallName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("installName"))
 	return rv
 }
 
@@ -156,8 +157,8 @@ func (c_ CompileOptions) InstallName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/installName
-func (c_ CompileOptions) SetInstallName(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInstallName:"), value)
+func (c_ CompileOptions) SetInstallName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInstallName:"), objc.String(value))
 }
 // The language version for interpreting the library source code.
 //

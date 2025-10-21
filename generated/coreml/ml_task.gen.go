@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Task] class.
@@ -115,8 +116,8 @@ func (t_ Task) State() unsafe.Pointer {
 // A unique name of the task to distinguish it from all other tasks at runtime.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/taskIdentifier
-func (t_ Task) TaskIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("taskIdentifier"))
+func (t_ Task) TaskIdentifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("taskIdentifier"))
 	return rv
 }
 

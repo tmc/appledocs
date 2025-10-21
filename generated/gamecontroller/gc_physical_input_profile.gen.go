@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GCPhysicalInputProfile] class.
@@ -31,7 +32,7 @@ type _GCPhysicalInputProfileClass struct {
 type IGCPhysicalInputProfile interface {
 	objectivec.IObject
 	Capture() unsafe.Pointer
-	MappedElementAliasForPhysicalInputName(inputName string) unsafe.Pointer
+	MappedElementAliasForPhysicalInputName(inputName string) string
 	MappedPhysicalInputNamesForElementAlias(elementAlias string) unsafe.Pointer
 }
 
@@ -94,8 +95,8 @@ func (g_ GCPhysicalInputProfile) Capture() unsafe.Pointer {
 // Returns the name of the input element to which the user remaps the given physical element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/mappedElementAlias(forPhysicalInputName:)
-func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mappedElementAliasForPhysicalInputName:"), objc.String(inputName))
+func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputName string) string {
+	rv := objc.Send[string](g_.ID, objc.Sel("mappedElementAliasForPhysicalInputName:"), objc.String(inputName))
 	return rv
 }
 

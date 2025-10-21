@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -282,8 +283,8 @@ func (f_ FileProviderExtension) Domain() unsafe.Pointer {
 // A purpose identifier for coordinated reads and writes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/providerIdentifier
-func (f_ FileProviderExtension) ProviderIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("providerIdentifier"))
+func (f_ FileProviderExtension) ProviderIdentifier() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("providerIdentifier"))
 	return rv
 }
 

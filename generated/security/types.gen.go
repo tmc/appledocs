@@ -1,8 +1,9 @@
 // Code generated from Apple documentation for Security. DO NOT EDIT.
 
 package security
-
-import "unsafe"
+import (
+	"unsafe"
+)
 
 // AuthorizationRef is a CoreGraphics opaque type.
 type AuthorizationRef unsafe.Pointer
@@ -112,8 +113,8 @@ type SecTransformStringOrAttributeRef unsafe.Pointer
 // SecTrustRef is a CoreGraphics opaque type.
 type SecTrustRef unsafe.Pointer
 
-// CSSM_TP_ACTION is a Security opaque type.
-type CSSM_TP_ACTION unsafe.Pointer
+// SecTrustRef CSSM_TP_ACTION CFDataRef is a CoreGraphics opaque type.
+type SecTrustRef CSSM_TP_ACTION CFDataRef unsafe.Pointer
 
 // SecureDownloadRef is a CoreGraphics opaque type.
 type SecureDownloadRef unsafe.Pointer
@@ -121,4 +122,115 @@ type SecureDownloadRef unsafe.Pointer
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+type AuthorizationAsyncCallback unsafe.Pointer
+
+type AuthorizationCallbacks unsafe.Pointer
+
+type AuthorizationEnvironment unsafe.Pointer
+
+type AuthorizationExternalForm unsafe.Pointer
+
+type AuthorizationFlags unsafe.Pointer
+
+type AuthorizationItemSet unsafe.Pointer
+
+type AuthorizationPluginInterface unsafe.Pointer
+
+type AuthorizationPluginRef unsafe.Pointer
+
+type AuthorizationRights unsafe.Pointer
+
+type AuthorizationString unsafe.Pointer
+
+type Boolean unsafe.Pointer
+
+type CFAbsoluteTime unsafe.Pointer
+
+type CFIndex unsafe.Pointer
+
+type CFTypeID unsafe.Pointer
+
+type CMSCertificateChainMode unsafe.Pointer
+
+type CMSSignedAttributes unsafe.Pointer
+
+type CMSSignerStatus unsafe.Pointer
+
+type FILE unsafe.Pointer
+
+type OSStatus unsafe.Pointer
+
+type SInt64 unsafe.Pointer
+
+type SSLAuthenticate unsafe.Pointer
+
+type SSLCipherSuite unsafe.Pointer
+
+type SSLCiphersuiteGroup unsafe.Pointer
+
+type SSLClientCertificateState unsafe.Pointer
+
+type SSLConnectionType unsafe.Pointer
+
+type SSLProtocol unsafe.Pointer
+
+type SSLProtocolSide unsafe.Pointer
+
+type SSLReadFunc unsafe.Pointer
+
+type SSLSessionOption unsafe.Pointer
+
+type SSLSessionState unsafe.Pointer
+
+type SSLWriteFunc unsafe.Pointer
+
+type SecAccessControlCreateFlags unsafe.Pointer
+
+type SecAsn1Item unsafe.Pointer
+
+type SecAsn1Oid unsafe.Pointer
+
+type SecAsn1Template unsafe.Pointer
+
+type SecCSFlags unsafe.Pointer
+
+type SecIdentitySearchRef unsafe.Pointer
+
+type SecKeyAlgorithm unsafe.Pointer
+
+type SecKeyOperationType unsafe.Pointer
+
+type SecKeychainPromptSelector unsafe.Pointer
+
+type SecMessageBlock unsafe.Pointer
+
+type SecTransformActionBlock unsafe.Pointer
+
+type SecTransformAttributeActionBlock unsafe.Pointer
+
+type SecTransformCreateFP unsafe.Pointer
+
+type SecTransformDataBlock unsafe.Pointer
+
+type SecTransformMetaAttributeType unsafe.Pointer
+
+type SecTrustCallback unsafe.Pointer
+
+type SecTrustResultType unsafe.Pointer
+
+type SecureDownloadTrustEvaluateCallback unsafe.Pointer
+
+type SecureDownloadTrustSetupCallback unsafe.Pointer
+
+type SecuritySessionId unsafe.Pointer
+
+type SessionAttributeBits unsafe.Pointer
+
+type SessionCreationFlags unsafe.Pointer
+
+
 

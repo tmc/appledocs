@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDFOutline] class.
@@ -176,8 +177,8 @@ func (p_ PDFOutline) SetIsOpen(value bool) {
 // Returns the label for the outline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/label
-func (p_ PDFOutline) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("label"))
+func (p_ PDFOutline) Label() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -187,8 +188,8 @@ func (p_ PDFOutline) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/label
-func (p_ PDFOutline) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLabel:"), value)
+func (p_ PDFOutline) SetLabel(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 // Returns the number of child outline objects in the outline.
 //

@@ -12,5 +12,3 @@ var dockMenuProtocol *objc.Protocol
 func init() {
 	dockMenuProtocol = objc.GetProtocol("dockMenu")
 }
-
-

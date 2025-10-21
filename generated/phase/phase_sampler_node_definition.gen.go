@@ -105,8 +105,8 @@ func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinitionIdentif
 // The name of the audio this node plays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/assetIdentifier
-func (p_ PHASESamplerNodeDefinition) AssetIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("assetIdentifier"))
+func (p_ PHASESamplerNodeDefinition) AssetIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("assetIdentifier"))
 	return rv
 }
 

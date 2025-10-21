@@ -83,6 +83,16 @@ func NewCKShare() CKShare {
 }
 
 
+// Creates a new share for the specified record and record ID.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:shareID:)
+func NewCKShareWithRootRecordShareID(rootRecord unsafe.Pointer, shareID unsafe.Pointer) CKShare {
+	instance := getCKShareClass().Alloc()
+	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:shareID:"), rootRecord, shareID)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a share from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(coder:)
@@ -109,16 +119,6 @@ func NewCKShareWithRecordZoneID(recordZoneID unsafe.Pointer) CKShare {
 func NewCKShareWithRootRecord(rootRecord unsafe.Pointer) CKShare {
 	instance := getCKShareClass().Alloc()
 	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:"), rootRecord)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a new share for the specified record and record ID.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:shareID:)
-func NewCKShareWithRootRecordShareID(rootRecord unsafe.Pointer, shareID unsafe.Pointer) CKShare {
-	instance := getCKShareClass().Alloc()
-	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:shareID:"), rootRecord, shareID)
 	rv.Autorelease()
 	return rv
 }

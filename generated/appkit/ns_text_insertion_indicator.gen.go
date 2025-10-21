@@ -80,7 +80,6 @@ func NewTextInsertionIndicator() TextInsertionIndicator {
 	return getTextInsertionIndicatorClass().New()
 }
 
-
 // Options that affect the automatic display mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/automaticModeOptions-swift.property
@@ -88,7 +87,6 @@ func (t_ TextInsertionIndicator) AutomaticModeOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("automaticModeOptions"))
 	return rv
 }
-
 
 // SetAutomaticModeOptions sets the value of the automaticModeOptions property.
 // Options that affect the automatic display mode.
@@ -98,6 +96,7 @@ func (t_ TextInsertionIndicator) AutomaticModeOptions() unsafe.Pointer {
 func (t_ TextInsertionIndicator) SetAutomaticModeOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticModeOptions:"), value)
 }
+
 // The color of this indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/color
@@ -105,7 +104,6 @@ func (t_ TextInsertionIndicator) Color() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("color"))
 	return rv
 }
-
 
 // SetColor sets the value of the color property.
 // The color of this indicator.
@@ -115,6 +113,7 @@ func (t_ TextInsertionIndicator) Color() unsafe.Pointer {
 func (t_ TextInsertionIndicator) SetColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
 }
+
 // A value that describes the display mode of an indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/displayMode-swift.property
@@ -122,7 +121,6 @@ func (t_ TextInsertionIndicator) DisplayMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("displayMode"))
 	return rv
 }
-
 
 // SetDisplayMode sets the value of the displayMode property.
 // A value that describes the display mode of an indicator.
@@ -132,5 +130,3 @@ func (t_ TextInsertionIndicator) DisplayMode() unsafe.Pointer {
 func (t_ TextInsertionIndicator) SetDisplayMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDisplayMode:"), value)
 }
-
-

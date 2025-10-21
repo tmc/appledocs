@@ -12,5 +12,3 @@ var TableViewDataSourceProtocol *objc.Protocol
 func init() {
 	TableViewDataSourceProtocol = objc.GetProtocol("NSTableViewDataSource")
 }
-
-

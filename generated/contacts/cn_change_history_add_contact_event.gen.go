@@ -90,8 +90,8 @@ func (c_ CNChangeHistoryAddContactEvent) Contact() unsafe.Pointer {
 // A string that uniquely identifies the container where the user added the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddContactEvent/containerIdentifier
-func (c_ CNChangeHistoryAddContactEvent) ContainerIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CNChangeHistoryAddContactEvent) ContainerIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

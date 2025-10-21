@@ -84,16 +84,16 @@ func NewDDMatchShipmentTrackingNumber() DDMatchShipmentTrackingNumber {
 // The name of a parcel carrier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/carrier
-func (d_ DDMatchShipmentTrackingNumber) Carrier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("carrier"))
+func (d_ DDMatchShipmentTrackingNumber) Carrier() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("carrier"))
 	return rv
 }
 
 // A string that represents a carrier’s tracking identifier for a parcel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/trackingNumber
-func (d_ DDMatchShipmentTrackingNumber) TrackingNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("trackingNumber"))
+func (d_ DDMatchShipmentTrackingNumber) TrackingNumber() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("trackingNumber"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MovieAccessLogEvent] class.
@@ -155,8 +156,8 @@ func (m_ MovieAccessLogEvent) SegmentsDownloadedDuration() TimeInterval {
 // The IPv4 or IPv6 address of the web server that was the source of the last delivered media segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/serverAddress
-func (m_ MovieAccessLogEvent) ServerAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverAddress"))
+func (m_ MovieAccessLogEvent) ServerAddress() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serverAddress"))
 	return rv
 }
 

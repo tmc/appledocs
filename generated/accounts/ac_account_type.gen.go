@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ACAccountType] class.
@@ -91,16 +92,16 @@ func (a_ ACAccountType) AccessGranted() bool {
 // A human-readable description of the account type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accountTypeDescription
-func (a_ ACAccountType) AccountTypeDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accountTypeDescription"))
+func (a_ ACAccountType) AccountTypeDescription() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("accountTypeDescription"))
 	return rv
 }
 
 // The unique identifier for the account type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/identifier
-func (a_ ACAccountType) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("identifier"))
+func (a_ ACAccountType) Identifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 

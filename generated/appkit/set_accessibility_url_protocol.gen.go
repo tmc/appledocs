@@ -15,5 +15,3 @@ var setAccessibilityURLProtocol *objc.Protocol
 func init() {
 	setAccessibilityURLProtocol = objc.GetProtocol("setAccessibilityURL")
 }
-
-

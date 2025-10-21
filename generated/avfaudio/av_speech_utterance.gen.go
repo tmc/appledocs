@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SpeechUtterance] class.
@@ -167,8 +168,8 @@ func (s_ SpeechUtterance) SetRate(value unsafe.Pointer) {
 // A string that contains the text for speech synthesis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/speechString
-func (s_ SpeechUtterance) SpeechString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechString"))
+func (s_ SpeechUtterance) SpeechString() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("speechString"))
 	return rv
 }
 

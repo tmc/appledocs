@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GLKBaseEffect] class.
@@ -133,8 +134,8 @@ func (g_ GLKBaseEffect) Fog() unsafe.Pointer {
 // A string used to name your effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/label
-func (g_ GLKBaseEffect) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("label"))
+func (g_ GLKBaseEffect) Label() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -144,8 +145,8 @@ func (g_ GLKBaseEffect) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/label
-func (g_ GLKBaseEffect) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
+func (g_ GLKBaseEffect) SetLabel(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 // The lighting properties for the first light in the scene.
 //

@@ -84,16 +84,16 @@ func NewAMShellScriptAction() AMShellScriptAction {
 // A string to use as the delimiter between items in the string passed to the action through standard input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction/inputFieldSeparator
-func (a_ AMShellScriptAction) InputFieldSeparator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputFieldSeparator"))
+func (a_ AMShellScriptAction) InputFieldSeparator() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("inputFieldSeparator"))
 	return rv
 }
 
 // A string to use as a delimiter in the string output by the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction/outputFieldSeparator
-func (a_ AMShellScriptAction) OutputFieldSeparator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputFieldSeparator"))
+func (a_ AMShellScriptAction) OutputFieldSeparator() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("outputFieldSeparator"))
 	return rv
 }
 

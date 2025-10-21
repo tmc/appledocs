@@ -15,5 +15,3 @@ var setAccessibilityIncrementButtonProtocol *objc.Protocol
 func init() {
 	setAccessibilityIncrementButtonProtocol = objc.GetProtocol("setAccessibilityIncrementButton")
 }
-
-

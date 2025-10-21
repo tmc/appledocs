@@ -81,21 +81,21 @@ func NewEraserTool() EraserTool {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKEraserToolReference/init(eraserType:width:)
-func NewEraserToolWithEraserTypeWidth(eraserType unsafe.Pointer, width float64) EraserTool {
-	instance := getEraserToolClass().Alloc()
-	rv := objc.Send[EraserTool](instance.ID, objc.Sel("initWithEraserType:width:"), eraserType, width)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates an eraser tool object that removes objects wholly or partially from a canvas view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKEraserToolReference/init(eraserType:)
 func NewEraserToolWithEraserType(eraserType unsafe.Pointer) EraserTool {
 	instance := getEraserToolClass().Alloc()
 	rv := objc.Send[EraserTool](instance.ID, objc.Sel("initWithEraserType:"), eraserType)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKEraserToolReference/init(eraserType:width:)
+func NewEraserToolWithEraserTypeWidth(eraserType unsafe.Pointer, width float64) EraserTool {
+	instance := getEraserToolClass().Alloc()
+	rv := objc.Send[EraserTool](instance.ID, objc.Sel("initWithEraserType:width:"), eraserType, width)
 	rv.Autorelease()
 	return rv
 }

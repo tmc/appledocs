@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ModelCollectionEntry] class.
@@ -90,8 +91,8 @@ func (m_ ModelCollectionEntry) IsEqualToModelCollectionEntry(entry unsafe.Pointe
 // The name of the model, which is unique to the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelIdentifier
-func (m_ ModelCollectionEntry) ModelIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modelIdentifier"))
+func (m_ ModelCollectionEntry) ModelIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("modelIdentifier"))
 	return rv
 }
 

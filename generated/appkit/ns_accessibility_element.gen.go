@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [AccessibilityElement] class.
@@ -81,7 +81,6 @@ func NewAccessibilityElement() AccessibilityElement {
 	return getAccessibilityElementClass().New()
 }
 
-
 // Instantiates and configures a new accessibility element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/element(withRole:frame:label:parent:)
@@ -105,7 +104,6 @@ func (a_ AccessibilityElement) AccessibilityFrameInParentSpace() coregraphics.CG
 	return rv
 }
 
-
 // SetAccessibilityFrameInParentSpace sets the value of the accessibilityFrameInParentSpace property.
 // The accessibility element’s frame in its parent’s coordinate system.
 
@@ -114,5 +112,3 @@ func (a_ AccessibilityElement) AccessibilityFrameInParentSpace() coregraphics.CG
 func (a_ AccessibilityElement) SetAccessibilityFrameInParentSpace(value coregraphics.CGRect) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessibilityFrameInParentSpace:"), value)
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -86,22 +87,22 @@ func NewDrawing() Drawing {
 }
 
 
-// Creates a drawing object and populates it with previously drawn content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKDrawingReference/init(data:)
-func NewDrawingWithDataError(data unsafe.Pointer, error_ unsafe.Pointer) Drawing {
-	instance := getDrawingClass().Alloc()
-	rv := objc.Send[Drawing](instance.ID, objc.Sel("initWithData:error:"), data, error_)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a drawing object with the strokes you supply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKDrawingReference/init(strokes:)
 func NewDrawingWithStrokes(strokes unsafe.Pointer) Drawing {
 	instance := getDrawingClass().Alloc()
 	rv := objc.Send[Drawing](instance.ID, objc.Sel("initWithStrokes:"), strokes)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a drawing object and populates it with previously drawn content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKDrawingReference/init(data:)
+func NewDrawingWithDataError(data unsafe.Pointer, error_ unsafe.Pointer) Drawing {
+	instance := getDrawingClass().Alloc()
+	rv := objc.Send[Drawing](instance.ID, objc.Sel("initWithData:error:"), data, error_)
 	rv.Autorelease()
 	return rv
 }

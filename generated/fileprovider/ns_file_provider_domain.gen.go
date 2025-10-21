@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FileProviderDomain] class.
@@ -122,8 +123,8 @@ func (f_ FileProviderDomain) BackingStoreIdentity() unsafe.Pointer {
 // The name of the domain displayed in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/displayName
-func (f_ FileProviderDomain) DisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("displayName"))
+func (f_ FileProviderDomain) DisplayName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -170,8 +171,8 @@ func (f_ FileProviderDomain) Replicated() bool {
 // The path of the domain’s subdirectory relative to the file provider’s shared container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/pathRelativeToDocumentStorage
-func (f_ FileProviderDomain) PathRelativeToDocumentStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("pathRelativeToDocumentStorage"))
+func (f_ FileProviderDomain) PathRelativeToDocumentStorage() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("pathRelativeToDocumentStorage"))
 	return rv
 }
 

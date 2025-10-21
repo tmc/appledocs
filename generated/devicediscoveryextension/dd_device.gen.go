@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
@@ -84,7 +85,7 @@ func NewDDDevice() DDDevice {
 // Creates an object that describes a discovered device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/init(displayName:category:protocolType:identifier:)
-func NewDDDeviceWithDisplayNameCategoryProtocolTypeIdentifier(displayName string, category unsafe.Pointer, protocolType uniformtypeidentifiers.UTType, identifier string) DDDevice {
+func NewDDDeviceWithDisplayNameCategoryProtocolTypeIdentifier(displayName string, category unsafe.Pointer, protocolType unsafe.Pointer, identifier string) DDDevice {
 	instance := getDDDeviceClass().Alloc()
 	rv := objc.Send[DDDevice](instance.ID, objc.Sel("initWithDisplayName:category:protocolType:identifier:"), objc.String(displayName), category, protocolType, objc.String(identifier))
 	rv.Autorelease()
@@ -142,8 +143,8 @@ func (d_ DDDevice) SetDeviceSupports(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/displayImageName
-func (d_ DDDevice) DisplayImageName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("displayImageName"))
+func (d_ DDDevice) DisplayImageName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("displayImageName"))
 	return rv
 }
 
@@ -151,14 +152,14 @@ func (d_ DDDevice) DisplayImageName() unsafe.Pointer {
 // SetDisplayImageName sets the value of the displayImageName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/displayImageName
-func (d_ DDDevice) SetDisplayImageName(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDisplayImageName:"), value)
+func (d_ DDDevice) SetDisplayImageName(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDisplayImageName:"), objc.String(value))
 }
 // A name for the device to display to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/displayName
-func (d_ DDDevice) DisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("displayName"))
+func (d_ DDDevice) DisplayName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -168,14 +169,14 @@ func (d_ DDDevice) DisplayName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/displayName
-func (d_ DDDevice) SetDisplayName(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDisplayName:"), value)
+func (d_ DDDevice) SetDisplayName(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 // A unique identifier for the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/identifier
-func (d_ DDDevice) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("identifier"))
+func (d_ DDDevice) Identifier() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -185,14 +186,14 @@ func (d_ DDDevice) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/identifier
-func (d_ DDDevice) SetIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setIdentifier:"), value)
+func (d_ DDDevice) SetIdentifier(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 // A subtitle for the current media that the device plays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/mediaContentSubtitle
-func (d_ DDDevice) MediaContentSubtitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("mediaContentSubtitle"))
+func (d_ DDDevice) MediaContentSubtitle() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("mediaContentSubtitle"))
 	return rv
 }
 
@@ -202,14 +203,14 @@ func (d_ DDDevice) MediaContentSubtitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/mediaContentSubtitle
-func (d_ DDDevice) SetMediaContentSubtitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setMediaContentSubtitle:"), value)
+func (d_ DDDevice) SetMediaContentSubtitle(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMediaContentSubtitle:"), objc.String(value))
 }
 // A title for the current media that the device plays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/mediaContentTitle
-func (d_ DDDevice) MediaContentTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("mediaContentTitle"))
+func (d_ DDDevice) MediaContentTitle() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("mediaContentTitle"))
 	return rv
 }
 
@@ -219,8 +220,8 @@ func (d_ DDDevice) MediaContentTitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/mediaContentTitle
-func (d_ DDDevice) SetMediaContentTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setMediaContentTitle:"), value)
+func (d_ DDDevice) SetMediaContentTitle(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMediaContentTitle:"), objc.String(value))
 }
 // A playback status for the device’s current media.
 //
@@ -292,8 +293,8 @@ func (d_ DDDevice) SetProtocolType(value uniformtypeidentifiers.UTType) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/ssid
-func (d_ DDDevice) SSID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("SSID"))
+func (d_ DDDevice) SSID() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("SSID"))
 	return rv
 }
 
@@ -301,8 +302,8 @@ func (d_ DDDevice) SSID() unsafe.Pointer {
 // SetSSID sets the value of the SSID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/ssid
-func (d_ DDDevice) SetSSID(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setSSID:"), value)
+func (d_ DDDevice) SetSSID(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSSID:"), objc.String(value))
 }
 // A state that represents the level of user interaction with the device.
 //
@@ -375,8 +376,8 @@ func (d_ DDDevice) SetUrl(value unsafe.Pointer) {
 // Device’s Wi-Fi Aware model name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareModelName
-func (d_ DDDevice) WifiAwareModelName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("wifiAwareModelName"))
+func (d_ DDDevice) WifiAwareModelName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("wifiAwareModelName"))
 	return rv
 }
 
@@ -386,14 +387,14 @@ func (d_ DDDevice) WifiAwareModelName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareModelName
-func (d_ DDDevice) SetWifiAwareModelName(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareModelName:"), value)
+func (d_ DDDevice) SetWifiAwareModelName(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareModelName:"), objc.String(value))
 }
 // Device’s Wi-Fi Aware’s service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareServiceName
-func (d_ DDDevice) WifiAwareServiceName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("wifiAwareServiceName"))
+func (d_ DDDevice) WifiAwareServiceName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("wifiAwareServiceName"))
 	return rv
 }
 
@@ -403,8 +404,8 @@ func (d_ DDDevice) WifiAwareServiceName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareServiceName
-func (d_ DDDevice) SetWifiAwareServiceName(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareServiceName:"), value)
+func (d_ DDDevice) SetWifiAwareServiceName(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareServiceName:"), objc.String(value))
 }
 // Device’s Wi-Fi Aware’s service. Default is
 //
@@ -426,8 +427,8 @@ func (d_ DDDevice) SetWifiAwareServiceRole(value unsafe.Pointer) {
 // Device’s Wi-Fi Aware vendor name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareVendorName
-func (d_ DDDevice) WifiAwareVendorName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("wifiAwareVendorName"))
+func (d_ DDDevice) WifiAwareVendorName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("wifiAwareVendorName"))
 	return rv
 }
 
@@ -437,7 +438,7 @@ func (d_ DDDevice) WifiAwareVendorName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareVendorName
-func (d_ DDDevice) SetWifiAwareVendorName(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareVendorName:"), value)
+func (d_ DDDevice) SetWifiAwareVendorName(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareVendorName:"), objc.String(value))
 }
 

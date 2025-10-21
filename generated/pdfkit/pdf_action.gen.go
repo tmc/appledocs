@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDFAction] class.
@@ -83,8 +84,8 @@ func NewPDFAction() PDFAction {
 // Returns the type of the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAction/type
-func (p_ PDFAction) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+func (p_ PDFAction) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
 }
 

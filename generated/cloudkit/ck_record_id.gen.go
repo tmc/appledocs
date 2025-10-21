@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKRecordID] class.
@@ -104,8 +105,8 @@ func NewCKRecordIDWithRecordNameZoneID(recordName string, zoneID unsafe.Pointer)
 // The unique name of the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/recordName
-func (c_ CKRecordID) RecordName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordName"))
+func (c_ CKRecordID) RecordName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("recordName"))
 	return rv
 }
 

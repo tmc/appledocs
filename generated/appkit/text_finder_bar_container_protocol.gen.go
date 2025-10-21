@@ -12,5 +12,3 @@ var TextFinderBarContainerProtocol *objc.Protocol
 func init() {
 	TextFinderBarContainerProtocol = objc.GetProtocol("NSTextFinderBarContainer")
 }
-
-

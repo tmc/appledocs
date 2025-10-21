@@ -12,5 +12,3 @@ var TabViewDelegateProtocol *objc.Protocol
 func init() {
 	TabViewDelegateProtocol = objc.GetProtocol("NSTabViewDelegate")
 }
-
-

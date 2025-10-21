@@ -81,7 +81,6 @@ func NewObjectController() ObjectController {
 	return getObjectControllerClass().New()
 }
 
-
 // Typically overridden by subclasses that require additional control over the creation of new objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/prepareContent()
@@ -97,7 +96,6 @@ func (o_ ObjectController) AutomaticallyPreparesContent() bool {
 	return rv
 }
 
-
 // SetAutomaticallyPreparesContent sets the value of the automaticallyPreparesContent property.
 // A Boolean that shows whether the receiver automatically creates and inserts new content objects automatically when loading from a nib file.
 
@@ -106,6 +104,7 @@ func (o_ ObjectController) AutomaticallyPreparesContent() bool {
 func (o_ ObjectController) SetAutomaticallyPreparesContent(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutomaticallyPreparesContent:"), value)
 }
+
 // The receiver’s content object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/content
@@ -113,7 +112,6 @@ func (o_ ObjectController) Content() objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("content"))
 	return rv
 }
-
 
 // SetContent sets the value of the content property.
 // The receiver’s content object.
@@ -123,6 +121,7 @@ func (o_ ObjectController) Content() objc.ID {
 func (o_ ObjectController) SetContent(value objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setContent:"), value)
 }
+
 // The object class to use when creating new objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/objectClass
@@ -130,7 +129,6 @@ func (o_ ObjectController) ObjectClass() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("objectClass"))
 	return rv
 }
-
 
 // SetObjectClass sets the value of the objectClass property.
 // The object class to use when creating new objects.
@@ -140,5 +138,3 @@ func (o_ ObjectController) ObjectClass() objc.Class {
 func (o_ ObjectController) SetObjectClass(value objc.Class) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setObjectClass:"), value)
 }
-
-

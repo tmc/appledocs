@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ODConfiguration] class.
@@ -87,15 +88,15 @@ func (oc _ODConfigurationClass) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/suggestedTrustAccount(_:)
-func (oc _ODConfigurationClass) SuggestedTrustAccount(hostname string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("suggestedTrustAccount:"), objc.String(hostname))
+func (oc _ODConfigurationClass) SuggestedTrustAccount(hostname string) string {
+	rv := objc.Send[string](objc.ID(oc.class), objc.Sel("suggestedTrustAccount:"), objc.String(hostname))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/suggestedTrustPassword(_:)
-func (oc _ODConfigurationClass) SuggestedTrustPassword(length unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("suggestedTrustPassword:"), length)
+func (oc _ODConfigurationClass) SuggestedTrustPassword(length unsafe.Pointer) string {
+	rv := objc.Send[string](objc.ID(oc.class), objc.Sel("suggestedTrustPassword:"), length)
 	return rv
 }
 
@@ -136,8 +137,8 @@ func (o_ ODConfiguration) SetAuthenticationModuleEntries(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/comment-swift.property
-func (o_ ODConfiguration) Comment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("comment"))
+func (o_ ODConfiguration) Comment() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("comment"))
 	return rv
 }
 
@@ -145,8 +146,8 @@ func (o_ ODConfiguration) Comment() unsafe.Pointer {
 // SetComment sets the value of the comment property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/comment-swift.property
-func (o_ ODConfiguration) SetComment(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), value)
+func (o_ ODConfiguration) SetComment(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionIdleTimeoutInSeconds-swift.property
@@ -262,8 +263,8 @@ func (o_ ODConfiguration) SetManInTheMiddleProtection(value bool) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/nodeName-swift.property
-func (o_ ODConfiguration) NodeName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("nodeName"))
+func (o_ ODConfiguration) NodeName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("nodeName"))
 	return rv
 }
 
@@ -271,8 +272,8 @@ func (o_ ODConfiguration) NodeName() unsafe.Pointer {
 // SetNodeName sets the value of the nodeName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/nodeName-swift.property
-func (o_ ODConfiguration) SetNodeName(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setNodeName:"), value)
+func (o_ ODConfiguration) SetNodeName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setNodeName:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetEncryption-swift.property
@@ -304,8 +305,8 @@ func (o_ ODConfiguration) SetPacketSigning(value int) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostName-swift.property
-func (o_ ODConfiguration) PreferredDestinationHostName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("preferredDestinationHostName"))
+func (o_ ODConfiguration) PreferredDestinationHostName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("preferredDestinationHostName"))
 	return rv
 }
 
@@ -313,8 +314,8 @@ func (o_ ODConfiguration) PreferredDestinationHostName() unsafe.Pointer {
 // SetPreferredDestinationHostName sets the value of the preferredDestinationHostName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostName-swift.property
-func (o_ ODConfiguration) SetPreferredDestinationHostName(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostName:"), value)
+func (o_ ODConfiguration) SetPreferredDestinationHostName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostName:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostPort-swift.property
@@ -346,8 +347,8 @@ func (o_ ODConfiguration) SetQueryTimeoutInSeconds(value int) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/templateName-swift.property
-func (o_ ODConfiguration) TemplateName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("templateName"))
+func (o_ ODConfiguration) TemplateName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("templateName"))
 	return rv
 }
 
@@ -355,34 +356,34 @@ func (o_ ODConfiguration) TemplateName() unsafe.Pointer {
 // SetTemplateName sets the value of the templateName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/templateName-swift.property
-func (o_ ODConfiguration) SetTemplateName(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), value)
+func (o_ ODConfiguration) SetTemplateName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustAccount-swift.property
-func (o_ ODConfiguration) TrustAccount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("trustAccount"))
+func (o_ ODConfiguration) TrustAccount() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("trustAccount"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustKerberosPrincipal-swift.property
-func (o_ ODConfiguration) TrustKerberosPrincipal() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("trustKerberosPrincipal"))
+func (o_ ODConfiguration) TrustKerberosPrincipal() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("trustKerberosPrincipal"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustMetaAccount-swift.property
-func (o_ ODConfiguration) TrustMetaAccount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("trustMetaAccount"))
+func (o_ ODConfiguration) TrustMetaAccount() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("trustMetaAccount"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustType-swift.property
-func (o_ ODConfiguration) TrustType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("trustType"))
+func (o_ ODConfiguration) TrustType() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("trustType"))
 	return rv
 }
 

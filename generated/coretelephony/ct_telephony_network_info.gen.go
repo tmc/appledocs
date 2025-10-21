@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TelephonyNetworkInfo] class.
@@ -83,8 +84,8 @@ func NewTelephonyNetworkInfo() TelephonyNetworkInfo {
 // The identifier of the service that’s currently providing data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTTelephonyNetworkInfo/dataServiceIdentifier
-func (t_ TelephonyNetworkInfo) DataServiceIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dataServiceIdentifier"))
+func (t_ TelephonyNetworkInfo) DataServiceIdentifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("dataServiceIdentifier"))
 	return rv
 }
 

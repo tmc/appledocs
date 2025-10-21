@@ -82,22 +82,22 @@ func NewPHASEBlendNodeDefinition() PHASEBlendNodeDefinition {
 }
 
 
-// Creates a named blend node with a maxiumum blend range value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEBlendNodeDefinition/init(blendMetaParameterDefinition:identifier:)
-func NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinitionIdentifier(blendMetaParameterDefinition unsafe.Pointer, identifier string) PHASEBlendNodeDefinition {
-	instance := getPHASEBlendNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASEBlendNodeDefinition](instance.ID, objc.Sel("initWithBlendMetaParameterDefinition:identifier:"), blendMetaParameterDefinition, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a blend node with a maxiumum blend range value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEBlendNodeDefinition/init(blendMetaParameterDefinition:)
 func NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinition(blendMetaParameterDefinition unsafe.Pointer) PHASEBlendNodeDefinition {
 	instance := getPHASEBlendNodeDefinitionClass().Alloc()
 	rv := objc.Send[PHASEBlendNodeDefinition](instance.ID, objc.Sel("initWithBlendMetaParameterDefinition:"), blendMetaParameterDefinition)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a named blend node with a maxiumum blend range value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEBlendNodeDefinition/init(blendMetaParameterDefinition:identifier:)
+func NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinitionIdentifier(blendMetaParameterDefinition unsafe.Pointer, identifier string) PHASEBlendNodeDefinition {
+	instance := getPHASEBlendNodeDefinitionClass().Alloc()
+	rv := objc.Send[PHASEBlendNodeDefinition](instance.ID, objc.Sel("initWithBlendMetaParameterDefinition:identifier:"), blendMetaParameterDefinition, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

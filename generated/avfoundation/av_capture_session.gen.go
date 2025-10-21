@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CaptureSession] class.
@@ -357,8 +358,8 @@ func (c_ CaptureSession) Connections() []CaptureConnection {
 // The controls that allow configuring the camera system from device hardware.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/controls
-func (c_ CaptureSession) Controls() []avfoundation.AVCaptureControl {
-	rv := objc.Send[[]avfoundation.AVCaptureControl](c_.ID, objc.Sel("controls"))
+func (c_ CaptureSession) Controls() []AVCaptureControl {
+	rv := objc.Send[[]AVCaptureControl](c_.ID, objc.Sel("controls"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INInteraction] class.
@@ -107,8 +108,8 @@ func (i_ INInteraction) ParameterValueForParameter(parameter unsafe.Pointer) obj
 // The unique identifier of the interaction’s group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/groupIdentifier
-func (i_ INInteraction) GroupIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("groupIdentifier"))
+func (i_ INInteraction) GroupIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 
@@ -118,14 +119,14 @@ func (i_ INInteraction) GroupIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/groupIdentifier
-func (i_ INInteraction) SetGroupIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupIdentifier:"), value)
+func (i_ INInteraction) SetGroupIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
 // The unique identifier of the interaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/identifier
-func (i_ INInteraction) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("identifier"))
+func (i_ INInteraction) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (i_ INInteraction) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/identifier
-func (i_ INInteraction) SetIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
+func (i_ INInteraction) SetIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 // The current state of the interaction.
 //

@@ -15,5 +15,3 @@ var setAccessibilityHandlesProtocol *objc.Protocol
 func init() {
 	setAccessibilityHandlesProtocol = objc.GetProtocol("setAccessibilityHandles")
 }
-
-

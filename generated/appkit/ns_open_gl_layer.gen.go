@@ -78,7 +78,3 @@ func (o_ OpenGLLayer) Autorelease() OpenGLLayer {
 func NewOpenGLLayer() OpenGLLayer {
 	return getOpenGLLayerClass().New()
 }
-
-
-
-

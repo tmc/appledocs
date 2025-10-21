@@ -95,8 +95,8 @@ func NewSProgressReportingCapabilityWithKindDetails(kind unsafe.Pointer, details
 // A description of the capability presented to teachers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/details
-func (s_ SProgressReportingCapability) Details() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("details"))
+func (s_ SProgressReportingCapability) Details() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("details"))
 	return rv
 }
 

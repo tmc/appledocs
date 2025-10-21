@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ODRecordMap] class.
@@ -106,8 +107,8 @@ func (o_ ODRecordMap) Attributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/native-swift.property
-func (o_ ODRecordMap) Native() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("native"))
+func (o_ ODRecordMap) Native() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("native"))
 	return rv
 }
 
@@ -115,8 +116,8 @@ func (o_ ODRecordMap) Native() unsafe.Pointer {
 // SetNative sets the value of the native property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/native-swift.property
-func (o_ ODRecordMap) SetNative(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setNative:"), value)
+func (o_ ODRecordMap) SetNative(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setNative:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/odPredicate-swift.property

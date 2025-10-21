@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PreferencePane] class.
@@ -242,8 +243,8 @@ func (p_ PreferencePane) SetLastKeyView(value unsafe.Pointer) {
 // The name of the preference pane’s nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/mainNibName
-func (p_ PreferencePane) MainNibName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mainNibName"))
+func (p_ PreferencePane) MainNibName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("mainNibName"))
 	return rv
 }
 

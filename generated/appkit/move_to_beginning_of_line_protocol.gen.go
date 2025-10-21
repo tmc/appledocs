@@ -12,5 +12,3 @@ var moveToBeginningOfLineProtocol *objc.Protocol
 func init() {
 	moveToBeginningOfLineProtocol = objc.GetProtocol("moveToBeginningOfLine:")
 }
-
-

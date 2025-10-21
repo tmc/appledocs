@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NETunnelNetworkSettings] class.
@@ -126,8 +127,8 @@ func (n_ NETunnelNetworkSettings) SetProxySettings(value unsafe.Pointer) {
 // The IP address of the tunnel server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/tunnelRemoteAddress
-func (n_ NETunnelNetworkSettings) TunnelRemoteAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("tunnelRemoteAddress"))
+func (n_ NETunnelNetworkSettings) TunnelRemoteAddress() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("tunnelRemoteAddress"))
 	return rv
 }
 

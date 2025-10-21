@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKUserAnnotatedMedication] class.
@@ -107,8 +108,8 @@ func (h_ HKUserAnnotatedMedication) Medication() unsafe.Pointer {
 // The nickname that a person added to a medication during the entry experience.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/nickname
-func (h_ HKUserAnnotatedMedication) Nickname() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("nickname"))
+func (h_ HKUserAnnotatedMedication) Nickname() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("nickname"))
 	return rv
 }
 

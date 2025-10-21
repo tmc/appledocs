@@ -79,7 +79,6 @@ func NewTextContentManager() TextContentManager {
 	return getTextContentManagerClass().New()
 }
 
-
 // Performs an editing transaction and invokes a block upon completion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/performEditingTransaction(_:)
@@ -102,7 +101,6 @@ func (t_ TextContentManager) AutomaticallySynchronizesTextLayoutManagers() bool 
 	return rv
 }
 
-
 // SetAutomaticallySynchronizesTextLayoutManagers sets the value of the automaticallySynchronizesTextLayoutManagers property.
 // Determines if the framework should automatically synchronize all text layout managers when exiting an editing transaction.
 
@@ -111,6 +109,7 @@ func (t_ TextContentManager) AutomaticallySynchronizesTextLayoutManagers() bool 
 func (t_ TextContentManager) SetAutomaticallySynchronizesTextLayoutManagers(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticallySynchronizesTextLayoutManagers:"), value)
 }
+
 // Indicates there’s an active editing transaction from the primary text layout manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/hasEditingTransaction
@@ -126,6 +125,3 @@ func (t_ TextContentManager) TextLayoutManagers() []TextLayoutManager {
 	rv := objc.Send[[]TextLayoutManager](t_.ID, objc.Sel("textLayoutManagers"))
 	return rv
 }
-
-
-

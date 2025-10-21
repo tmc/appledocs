@@ -101,16 +101,16 @@ func (nc _NWBonjourServiceEndpointClass) EndpointWithNameTypeDomain(name string,
 // The endpoint’s Bonjour service domain, such as .
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/domain
-func (n_ NWBonjourServiceEndpoint) Domain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("domain"))
+func (n_ NWBonjourServiceEndpoint) Domain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("domain"))
 	return rv
 }
 
 // The endpoint’s Bonjour service type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/type
-func (n_ NWBonjourServiceEndpoint) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("type"))
+func (n_ NWBonjourServiceEndpoint) Type() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("type"))
 	return rv
 }
 

@@ -78,7 +78,3 @@ func (n_ Nib) Autorelease() Nib {
 func NewNib() Nib {
 	return getNibClass().New()
 }
-
-
-
-

@@ -12,5 +12,3 @@ var CandidateListTouchBarItemDelegateProtocol *objc.Protocol
 func init() {
 	CandidateListTouchBarItemDelegateProtocol = objc.GetProtocol("NSCandidateListTouchBarItemDelegate")
 }
-
-

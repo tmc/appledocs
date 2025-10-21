@@ -79,7 +79,3 @@ func (p_ PopUpButtonCell) Autorelease() PopUpButtonCell {
 func NewPopUpButtonCell() PopUpButtonCell {
 	return getPopUpButtonCellClass().New()
 }
-
-
-
-

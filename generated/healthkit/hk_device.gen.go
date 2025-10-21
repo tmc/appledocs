@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKDevice] class.
@@ -83,8 +84,8 @@ func NewHKDevice() HKDevice {
 // An identifier that uniquely identifies the device object on the hardware running this code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDevice/localIdentifier
-func (h_ HKDevice) LocalIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("localIdentifier"))
+func (h_ HKDevice) LocalIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 

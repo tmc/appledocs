@@ -80,7 +80,6 @@ func NewMagnificationGestureRecognizer() MagnificationGestureRecognizer {
 	return getMagnificationGestureRecognizerClass().New()
 }
 
-
 // The amount of magnification to apply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMagnificationGestureRecognizer/magnification
@@ -88,7 +87,6 @@ func (m_ MagnificationGestureRecognizer) Magnification() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("magnification"))
 	return rv
 }
-
 
 // SetMagnification sets the value of the magnification property.
 // The amount of magnification to apply.
@@ -98,5 +96,3 @@ func (m_ MagnificationGestureRecognizer) Magnification() float64 {
 func (m_ MagnificationGestureRecognizer) SetMagnification(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMagnification:"), value)
 }
-
-

@@ -74,7 +74,3 @@ func (m_ MutableAttributedString) Autorelease() MutableAttributedString {
 func NewMutableAttributedString() MutableAttributedString {
 	return getMutableAttributedStringClass().New()
 }
-
-
-
-

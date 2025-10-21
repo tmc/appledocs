@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXCallUpdate] class.
@@ -100,8 +101,8 @@ func (c_ CXCallUpdate) SetHasVideo(value bool) {
 // The localized name of the caller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/localizedCallerName
-func (c_ CXCallUpdate) LocalizedCallerName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("localizedCallerName"))
+func (c_ CXCallUpdate) LocalizedCallerName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedCallerName"))
 	return rv
 }
 
@@ -111,8 +112,8 @@ func (c_ CXCallUpdate) LocalizedCallerName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/localizedCallerName
-func (c_ CXCallUpdate) SetLocalizedCallerName(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCallerName:"), value)
+func (c_ CXCallUpdate) SetLocalizedCallerName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCallerName:"), objc.String(value))
 }
 // The handle for the remote party (for an incoming call, this is the caller; for an outgoing call, this is the callee).
 //

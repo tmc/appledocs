@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ContextualEmbeddingResult] class.
@@ -114,8 +115,8 @@ func (c_ ContextualEmbeddingResult) SequenceLength() uint {
 // The string value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/string
-func (c_ ContextualEmbeddingResult) String() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("string"))
+func (c_ ContextualEmbeddingResult) String() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("string"))
 	return rv
 }
 

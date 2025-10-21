@@ -92,8 +92,8 @@ func (h_ HKClinicalRecord) ClinicalType() unsafe.Pointer {
 // The primary display name as shown in the Health app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/displayName
-func (h_ HKClinicalRecord) DisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("displayName"))
+func (h_ HKClinicalRecord) DisplayName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("displayName"))
 	return rv
 }
 

@@ -79,7 +79,3 @@ func (p_ PathCell) Autorelease() PathCell {
 func NewPathCell() PathCell {
 	return getPathCellClass().New()
 }
-
-
-
-

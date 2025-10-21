@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INIntent] class.
@@ -30,7 +31,7 @@ type _INIntentClass struct {
 // An interface definition for the [INIntent] class.
 type IINIntent interface {
 	objectivec.IObject
-	SetImageForParameterNamed(image unsafe.Pointer, parameterName unsafe.Pointer)
+	SetImageForParameterNamed(image unsafe.Pointer, parameterName string)
 	ImageForParameterNamed(parameterName string) unsafe.Pointer
 	KeyImage() unsafe.Pointer
 }
@@ -86,8 +87,8 @@ func NewINIntent() INIntent {
 // Sets the image to use for the specified parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintent/2976224-setimage
-func (i_ INIntent) SetImageForParameterNamed(image unsafe.Pointer, parameterName unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:forParameterNamed:"), image, parameterName)
+func (i_ INIntent) SetImageForParameterNamed(image unsafe.Pointer, parameterName string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:forParameterNamed:"), image, objc.String(parameterName))
 }
 
 // Returns the image associated with the specified parameter.
@@ -123,16 +124,16 @@ func (i_ INIntent) SetDonationMetadata(value unsafe.Pointer) {
 // The unique identifier for this intent object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INIntent/identifier
-func (i_ INIntent) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("identifier"))
+func (i_ INIntent) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // A string describing the content of the intent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INIntent/intentDescription
-func (i_ INIntent) IntentDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("intentDescription"))
+func (i_ INIntent) IntentDescription() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("intentDescription"))
 	return rv
 }
 
@@ -156,8 +157,8 @@ func (i_ INIntent) SetShortcutAvailability(value unsafe.Pointer) {
 // The intent’s display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INIntent/suggestedInvocationPhrase
-func (i_ INIntent) SuggestedInvocationPhrase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("suggestedInvocationPhrase"))
+func (i_ INIntent) SuggestedInvocationPhrase() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("suggestedInvocationPhrase"))
 	return rv
 }
 
@@ -167,8 +168,8 @@ func (i_ INIntent) SuggestedInvocationPhrase() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INIntent/suggestedInvocationPhrase
-func (i_ INIntent) SetSuggestedInvocationPhrase(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedInvocationPhrase:"), value)
+func (i_ INIntent) SetSuggestedInvocationPhrase(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedInvocationPhrase:"), objc.String(value))
 }
 
 

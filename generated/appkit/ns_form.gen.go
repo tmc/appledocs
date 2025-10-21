@@ -80,7 +80,6 @@ func NewForm() Form {
 	return getFormClass().New()
 }
 
-
 // Selects the entry at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSForm/selectText(at:)
@@ -94,6 +93,3 @@ func (f_ Form) SelectTextAtIndex(index int) {
 func (f_ Form) SetTextAlignment(mode unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTextAlignment:"), mode)
 }
-
-
-

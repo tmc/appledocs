@@ -12,5 +12,3 @@ var moveWordRightProtocol *objc.Protocol
 func init() {
 	moveWordRightProtocol = objc.GetProtocol("moveWordRight:")
 }
-
-

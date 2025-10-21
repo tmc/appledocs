@@ -91,8 +91,8 @@ func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier string) SceneA
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASceneAnchoringStrategy/sceneIdentifier
-func (s_ SceneAnchoringStrategy) SceneIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sceneIdentifier"))
+func (s_ SceneAnchoringStrategy) SceneIdentifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("sceneIdentifier"))
 	return rv
 }
 

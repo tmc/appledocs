@@ -15,5 +15,3 @@ var setAccessibilityChildrenInNavigationOrderProtocol *objc.Protocol
 func init() {
 	setAccessibilityChildrenInNavigationOrderProtocol = objc.GetProtocol("setAccessibilityChildrenInNavigationOrder")
 }
-
-

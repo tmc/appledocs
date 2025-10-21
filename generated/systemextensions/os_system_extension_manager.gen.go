@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OSSystemExtensionManager] class.
@@ -81,11 +82,26 @@ func NewOSSystemExtensionManager() OSSystemExtensionManager {
 }
 
 
+// The shared instance of the extension manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/shared
+func (oc _OSSystemExtensionManagerClass) SharedManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("sharedManager"))
+	return rv
+}
 // Submits a system extension request to the manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/submitRequest(_:)
 func (o_ OSSystemExtensionManager) SubmitRequest(request unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("submitRequest:"), request)
+}
+
+// The shared instance of the extension manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/shared
+func (o_ OSSystemExtensionManager) SharedManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sharedManager"))
+	return rv
 }
 
 

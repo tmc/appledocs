@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ModelStructureProgramBinding] class.
@@ -83,8 +84,8 @@ func NewModelStructureProgramBinding() ModelStructureProgramBinding {
 // The name of the variable in the Program.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/name
-func (m_ ModelStructureProgramBinding) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ ModelStructureProgramBinding) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

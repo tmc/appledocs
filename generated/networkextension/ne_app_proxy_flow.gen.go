@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEAppProxyFlow] class.
@@ -155,8 +156,8 @@ func (n_ NEAppProxyFlow) SetNetworkInterface(value unsafe.Pointer) {
 // The remote host name for flows created from a hostname.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/remoteHostname
-func (n_ NEAppProxyFlow) RemoteHostname() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("remoteHostname"))
+func (n_ NEAppProxyFlow) RemoteHostname() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("remoteHostname"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SNClassification] class.
@@ -83,8 +84,8 @@ func NewSNClassification() SNClassification {
 // A prediction label that’s one of the classifications a sound classifier’s underlying model defines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassification/identifier
-func (s_ SNClassification) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("identifier"))
+func (s_ SNClassification) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 

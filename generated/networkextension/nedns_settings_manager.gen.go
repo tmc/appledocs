@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEDNSSettingsManager] class.
@@ -140,8 +141,8 @@ func (n_ NEDNSSettingsManager) Enabled() bool {
 // A string that contains the display name of the DNS settings configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/localizedDescription
-func (n_ NEDNSSettingsManager) LocalizedDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEDNSSettingsManager) LocalizedDescription() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -151,8 +152,8 @@ func (n_ NEDNSSettingsManager) LocalizedDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/localizedDescription
-func (n_ NEDNSSettingsManager) SetLocalizedDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
+func (n_ NEDNSSettingsManager) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
 // A list of ordered rules that defines the networks on which the DNS settings will apply.
 //

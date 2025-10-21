@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ODRecord] class.
@@ -355,16 +356,16 @@ func (o_ ODRecord) WillPasswordExpire(willExpireIn uint64) bool {
 // The official name of the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/recordName
-func (o_ ODRecord) RecordName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("recordName"))
+func (o_ ODRecord) RecordName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("recordName"))
 	return rv
 }
 
 // The record’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/recordType
-func (o_ ODRecord) RecordType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("recordType"))
+func (o_ ODRecord) RecordType() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("recordType"))
 	return rv
 }
 

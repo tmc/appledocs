@@ -12,5 +12,3 @@ var AccessibilityRadioButtonProtocol *objc.Protocol
 func init() {
 	AccessibilityRadioButtonProtocol = objc.GetProtocol("NSAccessibilityRadioButton")
 }
-
-

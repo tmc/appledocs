@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SNClassifySoundRequest] class.
@@ -80,22 +81,22 @@ func NewSNClassifySoundRequest() SNClassifySoundRequest {
 }
 
 
-// Creates a request that uses the framework’s built-in sound classification model.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/init(classifierIdentifier:)
-func NewSNClassifySoundRequestWithClassifierIdentifierError(classifierIdentifier unsafe.Pointer, error_ unsafe.Pointer) SNClassifySoundRequest {
-	instance := getSNClassifySoundRequestClass().Alloc()
-	rv := objc.Send[SNClassifySoundRequest](instance.ID, objc.Sel("initWithClassifierIdentifier:error:"), classifierIdentifier, error_)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a request that uses a custom sound classification model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/init(mlModel:)
 func NewSNClassifySoundRequestWithMLModelError(mlModel unsafe.Pointer, error_ unsafe.Pointer) SNClassifySoundRequest {
 	instance := getSNClassifySoundRequestClass().Alloc()
 	rv := objc.Send[SNClassifySoundRequest](instance.ID, objc.Sel("initWithMLModel:error:"), mlModel, error_)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a request that uses the framework’s built-in sound classification model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/init(classifierIdentifier:)
+func NewSNClassifySoundRequestWithClassifierIdentifierError(classifierIdentifier unsafe.Pointer, error_ unsafe.Pointer) SNClassifySoundRequest {
+	instance := getSNClassifySoundRequestClass().Alloc()
+	rv := objc.Send[SNClassifySoundRequest](instance.ID, objc.Sel("initWithClassifierIdentifier:error:"), classifierIdentifier, error_)
 	rv.Autorelease()
 	return rv
 }

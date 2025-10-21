@@ -9,11 +9,8 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewController
 
-
 // ExampleNewController demonstrates how to create a Controller instance.
 func ExampleNewController() {
 	_ = appkit.NewController()
 	// Output:
 }
-
-

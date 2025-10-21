@@ -12,5 +12,3 @@ var changeFontProtocol *objc.Protocol
 func init() {
 	changeFontProtocol = objc.GetProtocol("changeFont:")
 }
-
-

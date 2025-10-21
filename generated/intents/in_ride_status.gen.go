@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INRideStatus] class.
@@ -134,8 +135,8 @@ func (i_ INRideStatus) SetPhase(value unsafe.Pointer) {
 // The unique string that you use to identify the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/rideIdentifier
-func (i_ INRideStatus) RideIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rideIdentifier"))
+func (i_ INRideStatus) RideIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
 
@@ -145,8 +146,8 @@ func (i_ INRideStatus) RideIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/rideIdentifier
-func (i_ INRideStatus) SetRideIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRideIdentifier:"), value)
+func (i_ INRideStatus) SetRideIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRideIdentifier:"), objc.String(value))
 }
 // Information about the type of ride that you are offering to the user.
 //

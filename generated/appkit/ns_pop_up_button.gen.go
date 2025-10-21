@@ -79,7 +79,3 @@ func (p_ PopUpButton) Autorelease() PopUpButton {
 func NewPopUpButton() PopUpButton {
 	return getPopUpButtonClass().New()
 }
-
-
-
-

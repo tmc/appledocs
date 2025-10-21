@@ -15,5 +15,3 @@ var setAccessibilityHiddenProtocol *objc.Protocol
 func init() {
 	setAccessibilityHiddenProtocol = objc.GetProtocol("setAccessibilityHidden")
 }
-
-

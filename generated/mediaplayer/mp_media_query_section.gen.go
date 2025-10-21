@@ -92,8 +92,8 @@ func (m_ MediaQuerySection) Range() foundation.Range {
 // The localized title of the media query section.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuerySection/title
-func (m_ MediaQuerySection) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("title"))
+func (m_ MediaQuerySection) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
 

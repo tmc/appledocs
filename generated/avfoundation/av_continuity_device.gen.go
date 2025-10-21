@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ContinuityDevice] class.
@@ -83,8 +84,8 @@ func NewContinuityDevice() ContinuityDevice {
 // An array of the continuity device’s audio session port descriptions that’s available to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice/audioSessionInputs
-func (c_ ContinuityDevice) AudioSessionInputs() []avfoundation.AVAudioSessionPortDescription {
-	rv := objc.Send[[]avfoundation.AVAudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
+func (c_ ContinuityDevice) AudioSessionInputs() []AVAudioSessionPortDescription {
+	rv := objc.Send[[]AVAudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
 	return rv
 }
 

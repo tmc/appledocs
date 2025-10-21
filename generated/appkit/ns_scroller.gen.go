@@ -80,7 +80,6 @@ func NewScroller() Scroller {
 	return getScrollerClass().New()
 }
 
-
 // Returns the style of scrollers that applications should use wherever possible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/preferredScrollerStyle
@@ -88,6 +87,7 @@ func (sc _ScrollerClass) PreferredScrollerStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("preferredScrollerStyle"))
 	return rv
 }
+
 // Returns the style of scrollers that applications should use wherever possible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/preferredScrollerStyle
@@ -95,6 +95,3 @@ func (s_ Scroller) PreferredScrollerStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("preferredScrollerStyle"))
 	return rv
 }
-
-
-

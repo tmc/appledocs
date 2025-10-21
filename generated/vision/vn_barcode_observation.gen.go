@@ -115,8 +115,8 @@ func (b_ BarcodeObservation) PayloadData() unsafe.Pointer {
 // A string value that represents the barcode payload.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/payloadStringValue
-func (b_ BarcodeObservation) PayloadStringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("payloadStringValue"))
+func (b_ BarcodeObservation) PayloadStringValue() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("payloadStringValue"))
 	return rv
 }
 
@@ -138,8 +138,8 @@ func (b_ BarcodeObservation) SupplementalPayloadData() unsafe.Pointer {
 // The supplemental code decoded as a string value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/supplementalPayloadString
-func (b_ BarcodeObservation) SupplementalPayloadString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("supplementalPayloadString"))
+func (b_ BarcodeObservation) SupplementalPayloadString() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("supplementalPayloadString"))
 	return rv
 }
 

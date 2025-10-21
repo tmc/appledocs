@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ContentItem] class.
@@ -111,8 +112,8 @@ func (c_ ContentItem) SetArtwork(value unsafe.Pointer) {
 // The unique identifier for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/identifier
-func (c_ ContentItem) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+func (c_ ContentItem) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -204,8 +205,8 @@ func (c_ ContentItem) SetPlaybackProgress(value unsafe.Pointer) {
 // A secondary designator for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/subtitle
-func (c_ ContentItem) Subtitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subtitle"))
+func (c_ ContentItem) Subtitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -215,14 +216,14 @@ func (c_ ContentItem) Subtitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/subtitle
-func (c_ ContentItem) SetSubtitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), value)
+func (c_ ContentItem) SetSubtitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 // The public name of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/title
-func (c_ ContentItem) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("title"))
+func (c_ ContentItem) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -232,7 +233,7 @@ func (c_ ContentItem) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/title
-func (c_ ContentItem) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
+func (c_ ContentItem) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

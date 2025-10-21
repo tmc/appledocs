@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
@@ -86,20 +87,20 @@ func NewCSSearchableItemAttributeSet() CSSearchableItemAttributeSet {
 
 // Creates an attribute set for the specified content type.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/init(itemContentType:)
-func NewCSSearchableItemAttributeSetWithItemContentType(itemContentType string) CSSearchableItemAttributeSet {
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/init(contentType:)
+func NewCSSearchableItemAttributeSetWithContentType(contentType unsafe.Pointer) CSSearchableItemAttributeSet {
 	instance := getCSSearchableItemAttributeSetClass().Alloc()
-	rv := objc.Send[CSSearchableItemAttributeSet](instance.ID, objc.Sel("initWithItemContentType:"), objc.String(itemContentType))
+	rv := objc.Send[CSSearchableItemAttributeSet](instance.ID, objc.Sel("initWithContentType:"), contentType)
 	rv.Autorelease()
 	return rv
 }
 
 // Creates an attribute set for the specified content type.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/init(contentType:)
-func NewCSSearchableItemAttributeSetWithContentType(contentType uniformtypeidentifiers.UTType) CSSearchableItemAttributeSet {
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/init(itemContentType:)
+func NewCSSearchableItemAttributeSetWithItemContentType(itemContentType string) CSSearchableItemAttributeSet {
 	instance := getCSSearchableItemAttributeSetClass().Alloc()
-	rv := objc.Send[CSSearchableItemAttributeSet](instance.ID, objc.Sel("initWithContentType:"), contentType)
+	rv := objc.Send[CSSearchableItemAttributeSet](instance.ID, objc.Sel("initWithItemContentType:"), objc.String(itemContentType))
 	rv.Autorelease()
 	return rv
 }
@@ -173,8 +174,8 @@ func (c_ CSSearchableItemAttributeSet) SetAccountHandles(value []string) {
 // The unique identifier for the account with which the message is associated, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/accountIdentifier
-func (c_ CSSearchableItemAttributeSet) AccountIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("accountIdentifier"))
+func (c_ CSSearchableItemAttributeSet) AccountIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("accountIdentifier"))
 	return rv
 }
 
@@ -184,14 +185,14 @@ func (c_ CSSearchableItemAttributeSet) AccountIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/accountIdentifier
-func (c_ CSSearchableItemAttributeSet) SetAccountIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAccountIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetAccountIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAccountIdentifier:"), objc.String(value))
 }
 // The manufacturer of the device that captured the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/acquisitionMake
-func (c_ CSSearchableItemAttributeSet) AcquisitionMake() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("acquisitionMake"))
+func (c_ CSSearchableItemAttributeSet) AcquisitionMake() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("acquisitionMake"))
 	return rv
 }
 
@@ -201,14 +202,14 @@ func (c_ CSSearchableItemAttributeSet) AcquisitionMake() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/acquisitionMake
-func (c_ CSSearchableItemAttributeSet) SetAcquisitionMake(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAcquisitionMake:"), value)
+func (c_ CSSearchableItemAttributeSet) SetAcquisitionMake(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAcquisitionMake:"), objc.String(value))
 }
 // The model of the device that captured the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/acquisitionModel
-func (c_ CSSearchableItemAttributeSet) AcquisitionModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("acquisitionModel"))
+func (c_ CSSearchableItemAttributeSet) AcquisitionModel() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("acquisitionModel"))
 	return rv
 }
 
@@ -218,8 +219,8 @@ func (c_ CSSearchableItemAttributeSet) AcquisitionModel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/acquisitionModel
-func (c_ CSSearchableItemAttributeSet) SetAcquisitionModel(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAcquisitionModel:"), value)
+func (c_ CSSearchableItemAttributeSet) SetAcquisitionModel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAcquisitionModel:"), objc.String(value))
 }
 // The identifiers that specify custom actions the app supports for the item.
 //
@@ -295,8 +296,8 @@ func (c_ CSSearchableItemAttributeSet) SetAdditionalRecipients(value []CSPerson)
 // The title for a collection of audio media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/album
-func (c_ CSSearchableItemAttributeSet) Album() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("album"))
+func (c_ CSSearchableItemAttributeSet) Album() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("album"))
 	return rv
 }
 
@@ -306,8 +307,8 @@ func (c_ CSSearchableItemAttributeSet) Album() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/album
-func (c_ CSSearchableItemAttributeSet) SetAlbum(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlbum:"), value)
+func (c_ CSSearchableItemAttributeSet) SetAlbum(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlbum:"), objc.String(value))
 }
 // A value that indicates if the event covers an entire day.
 //
@@ -390,8 +391,8 @@ func (c_ CSSearchableItemAttributeSet) SetAperture(value unsafe.Pointer) {
 // The artist associated with the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/artist
-func (c_ CSSearchableItemAttributeSet) Artist() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("artist"))
+func (c_ CSSearchableItemAttributeSet) Artist() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("artist"))
 	return rv
 }
 
@@ -401,8 +402,8 @@ func (c_ CSSearchableItemAttributeSet) Artist() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/artist
-func (c_ CSSearchableItemAttributeSet) SetArtist(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setArtist:"), value)
+func (c_ CSSearchableItemAttributeSet) SetArtist(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setArtist:"), objc.String(value))
 }
 // A class of entity for which the item is intended or useful.
 //
@@ -468,8 +469,8 @@ func (c_ CSSearchableItemAttributeSet) SetAudioChannelCount(value unsafe.Pointer
 // The name of the application that encoded the data the audio file contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/audioEncodingApplication
-func (c_ CSSearchableItemAttributeSet) AudioEncodingApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("audioEncodingApplication"))
+func (c_ CSSearchableItemAttributeSet) AudioEncodingApplication() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("audioEncodingApplication"))
 	return rv
 }
 
@@ -479,8 +480,8 @@ func (c_ CSSearchableItemAttributeSet) AudioEncodingApplication() unsafe.Pointer
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/audioEncodingApplication
-func (c_ CSSearchableItemAttributeSet) SetAudioEncodingApplication(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioEncodingApplication:"), value)
+func (c_ CSSearchableItemAttributeSet) SetAudioEncodingApplication(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioEncodingApplication:"), objc.String(value))
 }
 // The sample rate of the audio data the file contains, as a float value representing Hz (audio frames per second), such as 44100.0 or 22254.54.
 //
@@ -617,8 +618,8 @@ func (c_ CSSearchableItemAttributeSet) SetBitsPerSample(value unsafe.Pointer) {
 // The owner of the camera that captured the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/cameraOwner
-func (c_ CSSearchableItemAttributeSet) CameraOwner() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cameraOwner"))
+func (c_ CSSearchableItemAttributeSet) CameraOwner() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("cameraOwner"))
 	return rv
 }
 
@@ -628,14 +629,14 @@ func (c_ CSSearchableItemAttributeSet) CameraOwner() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/cameraOwner
-func (c_ CSSearchableItemAttributeSet) SetCameraOwner(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCameraOwner:"), value)
+func (c_ CSSearchableItemAttributeSet) SetCameraOwner(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCameraOwner:"), objc.String(value))
 }
 // The city of the item’s origin according to guidelines that the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/city
-func (c_ CSSearchableItemAttributeSet) City() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("city"))
+func (c_ CSSearchableItemAttributeSet) City() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("city"))
 	return rv
 }
 
@@ -645,8 +646,8 @@ func (c_ CSSearchableItemAttributeSet) City() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/city
-func (c_ CSSearchableItemAttributeSet) SetCity(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCity:"), value)
+func (c_ CSSearchableItemAttributeSet) SetCity(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCity:"), objc.String(value))
 }
 // The codecs used to encode/decode the media.
 //
@@ -678,8 +679,8 @@ func (c_ CSSearchableItemAttributeSet) SetCodecs(value []string) {
 // The color space model the image uses, such as RGB, CMYK, YUV, or YCbCr.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/colorSpace
-func (c_ CSSearchableItemAttributeSet) ColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorSpace"))
+func (c_ CSSearchableItemAttributeSet) ColorSpace() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
@@ -689,14 +690,14 @@ func (c_ CSSearchableItemAttributeSet) ColorSpace() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/colorSpace
-func (c_ CSSearchableItemAttributeSet) SetColorSpace(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSpace:"), value)
+func (c_ CSSearchableItemAttributeSet) SetColorSpace(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSpace:"), objc.String(value))
 }
 // A comment related to the media file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/comment
-func (c_ CSSearchableItemAttributeSet) Comment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("comment"))
+func (c_ CSSearchableItemAttributeSet) Comment() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("comment"))
 	return rv
 }
 
@@ -706,8 +707,8 @@ func (c_ CSSearchableItemAttributeSet) Comment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/comment
-func (c_ CSSearchableItemAttributeSet) SetComment(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setComment:"), value)
+func (c_ CSSearchableItemAttributeSet) SetComment(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setComment:"), objc.String(value))
 }
 // The date on which the item was completed.
 //
@@ -756,8 +757,8 @@ func (c_ CSSearchableItemAttributeSet) SetContactKeywords(value []string) {
 // A localized string that specifies the name of a container to which the item belongs, suitable to display in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerDisplayName
-func (c_ CSSearchableItemAttributeSet) ContainerDisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("containerDisplayName"))
+func (c_ CSSearchableItemAttributeSet) ContainerDisplayName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerDisplayName"))
 	return rv
 }
 
@@ -767,14 +768,14 @@ func (c_ CSSearchableItemAttributeSet) ContainerDisplayName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerDisplayName
-func (c_ CSSearchableItemAttributeSet) SetContainerDisplayName(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerDisplayName:"), value)
+func (c_ CSSearchableItemAttributeSet) SetContainerDisplayName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerDisplayName:"), objc.String(value))
 }
 // The identifier of the container to which the item belongs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerIdentifier
-func (c_ CSSearchableItemAttributeSet) ContainerIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CSSearchableItemAttributeSet) ContainerIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 
@@ -784,8 +785,8 @@ func (c_ CSSearchableItemAttributeSet) ContainerIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerIdentifier
-func (c_ CSSearchableItemAttributeSet) SetContainerIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetContainerIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), objc.String(value))
 }
 // The order of the item within the container.
 //
@@ -807,8 +808,8 @@ func (c_ CSSearchableItemAttributeSet) SetContainerOrder(value unsafe.Pointer) {
 // The title of the container to which the item belongs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerTitle
-func (c_ CSSearchableItemAttributeSet) ContainerTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("containerTitle"))
+func (c_ CSSearchableItemAttributeSet) ContainerTitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerTitle"))
 	return rv
 }
 
@@ -818,8 +819,8 @@ func (c_ CSSearchableItemAttributeSet) ContainerTitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerTitle
-func (c_ CSSearchableItemAttributeSet) SetContainerTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerTitle:"), value)
+func (c_ CSSearchableItemAttributeSet) SetContainerTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerTitle:"), objc.String(value))
 }
 // The creation date of an edited or optimized version of the song or composition.
 //
@@ -841,8 +842,8 @@ func (c_ CSSearchableItemAttributeSet) SetContentCreationDate(value unsafe.Point
 // A description of the item’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentDescription
-func (c_ CSSearchableItemAttributeSet) ContentDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contentDescription"))
+func (c_ CSSearchableItemAttributeSet) ContentDescription() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contentDescription"))
 	return rv
 }
 
@@ -852,8 +853,8 @@ func (c_ CSSearchableItemAttributeSet) ContentDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentDescription
-func (c_ CSSearchableItemAttributeSet) SetContentDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContentDescription:"), value)
+func (c_ CSSearchableItemAttributeSet) SetContentDescription(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContentDescription:"), objc.String(value))
 }
 // The date on which the contents of the file was last modified.
 //
@@ -919,8 +920,8 @@ func (c_ CSSearchableItemAttributeSet) SetContentSources(value []string) {
 // The uniform type identifier (UTI) of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType
-func (c_ CSSearchableItemAttributeSet) ContentType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contentType"))
+func (c_ CSSearchableItemAttributeSet) ContentType() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -930,8 +931,8 @@ func (c_ CSSearchableItemAttributeSet) ContentType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType
-func (c_ CSSearchableItemAttributeSet) SetContentType(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContentType:"), value)
+func (c_ CSSearchableItemAttributeSet) SetContentType(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContentType:"), objc.String(value))
 }
 // An attribute type that identifies a custom hierarchy of types to describe the attributes of your item.
 //
@@ -1007,8 +1008,8 @@ func (c_ CSSearchableItemAttributeSet) SetContributors(value []string) {
 // The copyright date of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/copyright
-func (c_ CSSearchableItemAttributeSet) Copyright() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("copyright"))
+func (c_ CSSearchableItemAttributeSet) Copyright() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("copyright"))
 	return rv
 }
 
@@ -1018,14 +1019,14 @@ func (c_ CSSearchableItemAttributeSet) Copyright() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/copyright
-func (c_ CSSearchableItemAttributeSet) SetCopyright(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCopyright:"), value)
+func (c_ CSSearchableItemAttributeSet) SetCopyright(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCopyright:"), objc.String(value))
 }
 // The full, publishable name of the country or region in which the intellectual property of the item was created, according to guidelines the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/country
-func (c_ CSSearchableItemAttributeSet) Country() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("country"))
+func (c_ CSSearchableItemAttributeSet) Country() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("country"))
 	return rv
 }
 
@@ -1035,8 +1036,8 @@ func (c_ CSSearchableItemAttributeSet) Country() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/country
-func (c_ CSSearchableItemAttributeSet) SetCountry(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCountry:"), value)
+func (c_ CSSearchableItemAttributeSet) SetCountry(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCountry:"), objc.String(value))
 }
 // A list of descriptors that specify the extent or scope of the media.
 //
@@ -1068,8 +1069,8 @@ func (c_ CSSearchableItemAttributeSet) SetCoverage(value []string) {
 // The name of the app that created the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/creator
-func (c_ CSSearchableItemAttributeSet) Creator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("creator"))
+func (c_ CSSearchableItemAttributeSet) Creator() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("creator"))
 	return rv
 }
 
@@ -1079,8 +1080,8 @@ func (c_ CSSearchableItemAttributeSet) Creator() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/creator
-func (c_ CSSearchableItemAttributeSet) SetCreator(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCreator:"), value)
+func (c_ CSSearchableItemAttributeSet) SetCreator(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCreator:"), objc.String(value))
 }
 // The local file URL of the thumbnail image for the item when Dark Mode is active.
 //
@@ -1119,8 +1120,8 @@ func (c_ CSSearchableItemAttributeSet) SetDeliveryType(value unsafe.Pointer) {
 // The name of the director of the media (for example, a movie director).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/director
-func (c_ CSSearchableItemAttributeSet) Director() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("director"))
+func (c_ CSSearchableItemAttributeSet) Director() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("director"))
 	return rv
 }
 
@@ -1130,14 +1131,14 @@ func (c_ CSSearchableItemAttributeSet) Director() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/director
-func (c_ CSSearchableItemAttributeSet) SetDirector(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDirector:"), value)
+func (c_ CSSearchableItemAttributeSet) SetDirector(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDirector:"), objc.String(value))
 }
 // A localized string that contains the name of the item, suitable to display in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/displayName
-func (c_ CSSearchableItemAttributeSet) DisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("displayName"))
+func (c_ CSSearchableItemAttributeSet) DisplayName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -1147,14 +1148,14 @@ func (c_ CSSearchableItemAttributeSet) DisplayName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/displayName
-func (c_ CSSearchableItemAttributeSet) SetDisplayName(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayName:"), value)
+func (c_ CSSearchableItemAttributeSet) SetDisplayName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 // An identifier that represents the domain or owner of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/domainIdentifier
-func (c_ CSSearchableItemAttributeSet) DomainIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("domainIdentifier"))
+func (c_ CSSearchableItemAttributeSet) DomainIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("domainIdentifier"))
 	return rv
 }
 
@@ -1164,8 +1165,8 @@ func (c_ CSSearchableItemAttributeSet) DomainIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/domainIdentifier
-func (c_ CSSearchableItemAttributeSet) SetDomainIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetDomainIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), objc.String(value))
 }
 // The most recent date on which the file was downloaded or received.
 //
@@ -1336,8 +1337,8 @@ func (c_ CSSearchableItemAttributeSet) SetEndDate(value unsafe.Pointer) {
 // The version of the EXIF header that was used to generate the metadata for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exifVersion
-func (c_ CSSearchableItemAttributeSet) EXIFVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("EXIFVersion"))
+func (c_ CSSearchableItemAttributeSet) EXIFVersion() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("EXIFVersion"))
 	return rv
 }
 
@@ -1347,14 +1348,14 @@ func (c_ CSSearchableItemAttributeSet) EXIFVersion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exifVersion
-func (c_ CSSearchableItemAttributeSet) SetEXIFVersion(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEXIFVersion:"), value)
+func (c_ CSSearchableItemAttributeSet) SetEXIFVersion(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEXIFVersion:"), objc.String(value))
 }
 // The version of GPS Info IFD header that was used to generate the metadata for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exifgpsVersion
-func (c_ CSSearchableItemAttributeSet) EXIFGPSVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("EXIFGPSVersion"))
+func (c_ CSSearchableItemAttributeSet) EXIFGPSVersion() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("EXIFGPSVersion"))
 	return rv
 }
 
@@ -1364,8 +1365,8 @@ func (c_ CSSearchableItemAttributeSet) EXIFGPSVersion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exifgpsVersion
-func (c_ CSSearchableItemAttributeSet) SetEXIFGPSVersion(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEXIFGPSVersion:"), value)
+func (c_ CSSearchableItemAttributeSet) SetEXIFGPSVersion(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEXIFGPSVersion:"), objc.String(value))
 }
 // The mode the camera used for the exposure of the image.
 //
@@ -1387,8 +1388,8 @@ func (c_ CSSearchableItemAttributeSet) SetExposureMode(value unsafe.Pointer) {
 // The class of the program the camera used to set exposure when capturing the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exposureProgram
-func (c_ CSSearchableItemAttributeSet) ExposureProgram() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("exposureProgram"))
+func (c_ CSSearchableItemAttributeSet) ExposureProgram() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("exposureProgram"))
 	return rv
 }
 
@@ -1398,8 +1399,8 @@ func (c_ CSSearchableItemAttributeSet) ExposureProgram() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exposureProgram
-func (c_ CSSearchableItemAttributeSet) SetExposureProgram(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureProgram:"), value)
+func (c_ CSSearchableItemAttributeSet) SetExposureProgram(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureProgram:"), objc.String(value))
 }
 // The time that the lens was open during exposure, in seconds.
 //
@@ -1421,8 +1422,8 @@ func (c_ CSSearchableItemAttributeSet) SetExposureTime(value unsafe.Pointer) {
 // The time that the lens was open during exposure, in a string, such as “1/250 seconds”.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exposureTimeString
-func (c_ CSSearchableItemAttributeSet) ExposureTimeString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("exposureTimeString"))
+func (c_ CSSearchableItemAttributeSet) ExposureTimeString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("exposureTimeString"))
 	return rv
 }
 
@@ -1432,8 +1433,8 @@ func (c_ CSSearchableItemAttributeSet) ExposureTimeString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exposureTimeString
-func (c_ CSSearchableItemAttributeSet) SetExposureTimeString(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureTimeString:"), value)
+func (c_ CSSearchableItemAttributeSet) SetExposureTimeString(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureTimeString:"), objc.String(value))
 }
 // The focal length of the lens, divided by the diameter of the aperture when the camera captured the image.
 //
@@ -1550,8 +1551,8 @@ func (c_ CSSearchableItemAttributeSet) SetFontNames(value []string) {
 // The fully formatted address of the item, received from MapKit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/fullyFormattedAddress
-func (c_ CSSearchableItemAttributeSet) FullyFormattedAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fullyFormattedAddress"))
+func (c_ CSSearchableItemAttributeSet) FullyFormattedAddress() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("fullyFormattedAddress"))
 	return rv
 }
 
@@ -1561,8 +1562,8 @@ func (c_ CSSearchableItemAttributeSet) FullyFormattedAddress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/fullyFormattedAddress
-func (c_ CSSearchableItemAttributeSet) SetFullyFormattedAddress(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFullyFormattedAddress:"), value)
+func (c_ CSSearchableItemAttributeSet) SetFullyFormattedAddress(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFullyFormattedAddress:"), objc.String(value))
 }
 // A value that indicates whether the MIDI sequence the file contains is set up for use with a general MIDI device.
 //
@@ -1584,8 +1585,8 @@ func (c_ CSSearchableItemAttributeSet) SetGeneralMIDISequence(value unsafe.Point
 // The genre of the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/genre
-func (c_ CSSearchableItemAttributeSet) Genre() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("genre"))
+func (c_ CSSearchableItemAttributeSet) Genre() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("genre"))
 	return rv
 }
 
@@ -1595,14 +1596,14 @@ func (c_ CSSearchableItemAttributeSet) Genre() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/genre
-func (c_ CSSearchableItemAttributeSet) SetGenre(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGenre:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGenre(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGenre:"), objc.String(value))
 }
 // Information about the GPS area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsAreaInformation
-func (c_ CSSearchableItemAttributeSet) GPSAreaInformation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("GPSAreaInformation"))
+func (c_ CSSearchableItemAttributeSet) GPSAreaInformation() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("GPSAreaInformation"))
 	return rv
 }
 
@@ -1612,8 +1613,8 @@ func (c_ CSSearchableItemAttributeSet) GPSAreaInformation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsAreaInformation
-func (c_ CSSearchableItemAttributeSet) SetGPSAreaInformation(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSAreaInformation:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGPSAreaInformation(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSAreaInformation:"), objc.String(value))
 }
 // The date and time related to the GPS value.
 //
@@ -1720,8 +1721,8 @@ func (c_ CSSearchableItemAttributeSet) SetGPSDifferental(value unsafe.Pointer) {
 // The geodetic data that the GPS receiver uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsMapDatum
-func (c_ CSSearchableItemAttributeSet) GPSMapDatum() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("GPSMapDatum"))
+func (c_ CSSearchableItemAttributeSet) GPSMapDatum() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("GPSMapDatum"))
 	return rv
 }
 
@@ -1731,14 +1732,14 @@ func (c_ CSSearchableItemAttributeSet) GPSMapDatum() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsMapDatum
-func (c_ CSSearchableItemAttributeSet) SetGPSMapDatum(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSMapDatum:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGPSMapDatum(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSMapDatum:"), objc.String(value))
 }
 // The measurement precision mode in use by the GPS receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsMeasureMode
-func (c_ CSSearchableItemAttributeSet) GPSMeasureMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("GPSMeasureMode"))
+func (c_ CSSearchableItemAttributeSet) GPSMeasureMode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("GPSMeasureMode"))
 	return rv
 }
 
@@ -1748,14 +1749,14 @@ func (c_ CSSearchableItemAttributeSet) GPSMeasureMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsMeasureMode
-func (c_ CSSearchableItemAttributeSet) SetGPSMeasureMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSMeasureMode:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGPSMeasureMode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSMeasureMode:"), objc.String(value))
 }
 // The location finding method that the GPS receiver uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsProcessingMethod
-func (c_ CSSearchableItemAttributeSet) GPSProcessingMethod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("GPSProcessingMethod"))
+func (c_ CSSearchableItemAttributeSet) GPSProcessingMethod() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("GPSProcessingMethod"))
 	return rv
 }
 
@@ -1765,14 +1766,14 @@ func (c_ CSSearchableItemAttributeSet) GPSProcessingMethod() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsProcessingMethod
-func (c_ CSSearchableItemAttributeSet) SetGPSProcessingMethod(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSProcessingMethod:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGPSProcessingMethod(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSProcessingMethod:"), objc.String(value))
 }
 // The status of the GPS receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsStatus
-func (c_ CSSearchableItemAttributeSet) GPSStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("GPSStatus"))
+func (c_ CSSearchableItemAttributeSet) GPSStatus() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("GPSStatus"))
 	return rv
 }
 
@@ -1782,8 +1783,8 @@ func (c_ CSSearchableItemAttributeSet) GPSStatus() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsStatus
-func (c_ CSSearchableItemAttributeSet) SetGPSStatus(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSStatus:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGPSStatus(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSStatus:"), objc.String(value))
 }
 // The direction of travel of the item in degrees from true north.
 //
@@ -1839,8 +1840,8 @@ func (c_ CSSearchableItemAttributeSet) SetHasAlphaChannel(value unsafe.Pointer) 
 // A publishable string that provides a synopsis of the contents of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/headline
-func (c_ CSSearchableItemAttributeSet) Headline() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("headline"))
+func (c_ CSSearchableItemAttributeSet) Headline() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("headline"))
 	return rv
 }
 
@@ -1850,8 +1851,8 @@ func (c_ CSSearchableItemAttributeSet) Headline() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/headline
-func (c_ CSSearchableItemAttributeSet) SetHeadline(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setHeadline:"), value)
+func (c_ CSSearchableItemAttributeSet) SetHeadline(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHeadline:"), objc.String(value))
 }
 // An array of objects representing the content of the Bcc: field in an email message.
 //
@@ -1900,8 +1901,8 @@ func (c_ CSSearchableItemAttributeSet) SetHTMLContentData(value unsafe.Pointer) 
 // A formal identifier that references the document the item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/identifier
-func (c_ CSSearchableItemAttributeSet) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+func (c_ CSSearchableItemAttributeSet) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -1911,8 +1912,8 @@ func (c_ CSSearchableItemAttributeSet) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/identifier
-func (c_ CSSearchableItemAttributeSet) SetIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 // The direction of the item’s image in degrees from true north.
 //
@@ -1961,8 +1962,8 @@ func (c_ CSSearchableItemAttributeSet) SetImportantDates(value []foundation.NSDa
 // Information about the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/information
-func (c_ CSSearchableItemAttributeSet) Information() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("information"))
+func (c_ CSSearchableItemAttributeSet) Information() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("information"))
 	return rv
 }
 
@@ -1972,8 +1973,8 @@ func (c_ CSSearchableItemAttributeSet) Information() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/information
-func (c_ CSSearchableItemAttributeSet) SetInformation(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInformation:"), value)
+func (c_ CSSearchableItemAttributeSet) SetInformation(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInformation:"), objc.String(value))
 }
 // An array of instant message addresses for the message.
 //
@@ -2005,8 +2006,8 @@ func (c_ CSSearchableItemAttributeSet) SetInstantMessageAddresses(value []string
 // Instructions that concern the use of the item, such as an embargo or warning.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/instructions
-func (c_ CSSearchableItemAttributeSet) Instructions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("instructions"))
+func (c_ CSSearchableItemAttributeSet) Instructions() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("instructions"))
 	return rv
 }
 
@@ -2016,8 +2017,8 @@ func (c_ CSSearchableItemAttributeSet) Instructions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/instructions
-func (c_ CSSearchableItemAttributeSet) SetInstructions(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInstructions:"), value)
+func (c_ CSSearchableItemAttributeSet) SetInstructions(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInstructions:"), objc.String(value))
 }
 // A Boolean value that indicates whether the mail or messages content represents a prioritized item.
 //
@@ -2047,8 +2048,8 @@ func (c_ CSSearchableItemAttributeSet) SetISOSpeed(value unsafe.Pointer) {
 // The musical key of the song or audio composition that the file contains, such as C, Dm, or F#m.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/keySignature
-func (c_ CSSearchableItemAttributeSet) KeySignature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("keySignature"))
+func (c_ CSSearchableItemAttributeSet) KeySignature() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("keySignature"))
 	return rv
 }
 
@@ -2058,8 +2059,8 @@ func (c_ CSSearchableItemAttributeSet) KeySignature() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/keySignature
-func (c_ CSSearchableItemAttributeSet) SetKeySignature(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySignature:"), value)
+func (c_ CSSearchableItemAttributeSet) SetKeySignature(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySignature:"), objc.String(value))
 }
 // An array of keywords associated with the item, such as work, birthday, important, and so on.
 //
@@ -2091,8 +2092,8 @@ func (c_ CSSearchableItemAttributeSet) SetKeywords(value []string) {
 // A description of the kind of document the item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/kind
-func (c_ CSSearchableItemAttributeSet) Kind() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("kind"))
+func (c_ CSSearchableItemAttributeSet) Kind() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("kind"))
 	return rv
 }
 
@@ -2102,8 +2103,8 @@ func (c_ CSSearchableItemAttributeSet) Kind() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/kind
-func (c_ CSSearchableItemAttributeSet) SetKind(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKind:"), value)
+func (c_ CSSearchableItemAttributeSet) SetKind(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKind:"), objc.String(value))
 }
 // A list of the included languages for the intellectual content of the media.
 //
@@ -2196,8 +2197,8 @@ func (c_ CSSearchableItemAttributeSet) SetLayerNames(value []string) {
 // The model of the lens that captured the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/lensModel
-func (c_ CSSearchableItemAttributeSet) LensModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lensModel"))
+func (c_ CSSearchableItemAttributeSet) LensModel() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("lensModel"))
 	return rv
 }
 
@@ -2207,8 +2208,8 @@ func (c_ CSSearchableItemAttributeSet) LensModel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/lensModel
-func (c_ CSSearchableItemAttributeSet) SetLensModel(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLensModel:"), value)
+func (c_ CSSearchableItemAttributeSet) SetLensModel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLensModel:"), objc.String(value))
 }
 // A value that indicates if the message is likely to be considered junk.
 //
@@ -2264,8 +2265,8 @@ func (c_ CSSearchableItemAttributeSet) SetLongitude(value unsafe.Pointer) {
 // The lyricist or text writer for the song or audio composition that the file contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/lyricist
-func (c_ CSSearchableItemAttributeSet) Lyricist() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lyricist"))
+func (c_ CSSearchableItemAttributeSet) Lyricist() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("lyricist"))
 	return rv
 }
 
@@ -2275,8 +2276,8 @@ func (c_ CSSearchableItemAttributeSet) Lyricist() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/lyricist
-func (c_ CSSearchableItemAttributeSet) SetLyricist(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLyricist:"), value)
+func (c_ CSSearchableItemAttributeSet) SetLyricist(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLyricist:"), objc.String(value))
 }
 // An array of mailbox identifiers associated with the message.
 //
@@ -2369,8 +2370,8 @@ func (c_ CSSearchableItemAttributeSet) SetMetadataModificationDate(value unsafe.
 // The metering mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/meteringMode
-func (c_ CSSearchableItemAttributeSet) MeteringMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("meteringMode"))
+func (c_ CSSearchableItemAttributeSet) MeteringMode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("meteringMode"))
 	return rv
 }
 
@@ -2380,14 +2381,14 @@ func (c_ CSSearchableItemAttributeSet) MeteringMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/meteringMode
-func (c_ CSSearchableItemAttributeSet) SetMeteringMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMeteringMode:"), value)
+func (c_ CSSearchableItemAttributeSet) SetMeteringMode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMeteringMode:"), objc.String(value))
 }
 // The musical genre of the song or audio composition that the file contains, such as jazz, pop, rock, or classical.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalGenre
-func (c_ CSSearchableItemAttributeSet) MusicalGenre() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("musicalGenre"))
+func (c_ CSSearchableItemAttributeSet) MusicalGenre() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("musicalGenre"))
 	return rv
 }
 
@@ -2397,14 +2398,14 @@ func (c_ CSSearchableItemAttributeSet) MusicalGenre() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalGenre
-func (c_ CSSearchableItemAttributeSet) SetMusicalGenre(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalGenre:"), value)
+func (c_ CSSearchableItemAttributeSet) SetMusicalGenre(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalGenre:"), objc.String(value))
 }
 // The category of the instrument associated with the audio file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalInstrumentCategory
-func (c_ CSSearchableItemAttributeSet) MusicalInstrumentCategory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("musicalInstrumentCategory"))
+func (c_ CSSearchableItemAttributeSet) MusicalInstrumentCategory() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("musicalInstrumentCategory"))
 	return rv
 }
 
@@ -2414,14 +2415,14 @@ func (c_ CSSearchableItemAttributeSet) MusicalInstrumentCategory() unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalInstrumentCategory
-func (c_ CSSearchableItemAttributeSet) SetMusicalInstrumentCategory(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalInstrumentCategory:"), value)
+func (c_ CSSearchableItemAttributeSet) SetMusicalInstrumentCategory(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalInstrumentCategory:"), objc.String(value))
 }
 // The name of an instrument within the context of an instrument category.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalInstrumentName
-func (c_ CSSearchableItemAttributeSet) MusicalInstrumentName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("musicalInstrumentName"))
+func (c_ CSSearchableItemAttributeSet) MusicalInstrumentName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("musicalInstrumentName"))
 	return rv
 }
 
@@ -2431,14 +2432,14 @@ func (c_ CSSearchableItemAttributeSet) MusicalInstrumentName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalInstrumentName
-func (c_ CSSearchableItemAttributeSet) SetMusicalInstrumentName(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalInstrumentName:"), value)
+func (c_ CSSearchableItemAttributeSet) SetMusicalInstrumentName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalInstrumentName:"), objc.String(value))
 }
 // The name of the location or point of interest associated with the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/namedLocation
-func (c_ CSSearchableItemAttributeSet) NamedLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("namedLocation"))
+func (c_ CSSearchableItemAttributeSet) NamedLocation() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("namedLocation"))
 	return rv
 }
 
@@ -2448,8 +2449,8 @@ func (c_ CSSearchableItemAttributeSet) NamedLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/namedLocation
-func (c_ CSSearchableItemAttributeSet) SetNamedLocation(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNamedLocation:"), value)
+func (c_ CSSearchableItemAttributeSet) SetNamedLocation(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNamedLocation:"), objc.String(value))
 }
 // A list of companies or organizations that created the content.
 //
@@ -2498,8 +2499,8 @@ func (c_ CSSearchableItemAttributeSet) SetOrientation(value unsafe.Pointer) {
 // The original format of the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/originalFormat
-func (c_ CSSearchableItemAttributeSet) OriginalFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("originalFormat"))
+func (c_ CSSearchableItemAttributeSet) OriginalFormat() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("originalFormat"))
 	return rv
 }
 
@@ -2509,14 +2510,14 @@ func (c_ CSSearchableItemAttributeSet) OriginalFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/originalFormat
-func (c_ CSSearchableItemAttributeSet) SetOriginalFormat(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOriginalFormat:"), value)
+func (c_ CSSearchableItemAttributeSet) SetOriginalFormat(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOriginalFormat:"), objc.String(value))
 }
 // The original source of the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/originalSource
-func (c_ CSSearchableItemAttributeSet) OriginalSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("originalSource"))
+func (c_ CSSearchableItemAttributeSet) OriginalSource() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("originalSource"))
 	return rv
 }
 
@@ -2526,8 +2527,8 @@ func (c_ CSSearchableItemAttributeSet) OriginalSource() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/originalSource
-func (c_ CSSearchableItemAttributeSet) SetOriginalSource(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOriginalSource:"), value)
+func (c_ CSSearchableItemAttributeSet) SetOriginalSource(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOriginalSource:"), objc.String(value))
 }
 // The number of pages in the document.
 //
@@ -2610,8 +2611,8 @@ func (c_ CSSearchableItemAttributeSet) SetParticipants(value []string) {
 // The complete path to the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/path
-func (c_ CSSearchableItemAttributeSet) Path() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("path"))
+func (c_ CSSearchableItemAttributeSet) Path() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -2621,8 +2622,8 @@ func (c_ CSSearchableItemAttributeSet) Path() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/path
-func (c_ CSSearchableItemAttributeSet) SetPath(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPath:"), value)
+func (c_ CSSearchableItemAttributeSet) SetPath(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPath:"), objc.String(value))
 }
 // A list of performers in the media.
 //
@@ -2749,8 +2750,8 @@ func (c_ CSSearchableItemAttributeSet) SetPlayCount(value unsafe.Pointer) {
 // The postal code for the item according to guidelines the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/postalCode
-func (c_ CSSearchableItemAttributeSet) PostalCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("postalCode"))
+func (c_ CSSearchableItemAttributeSet) PostalCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("postalCode"))
 	return rv
 }
 
@@ -2760,8 +2761,8 @@ func (c_ CSSearchableItemAttributeSet) PostalCode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/postalCode
-func (c_ CSSearchableItemAttributeSet) SetPostalCode(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPostalCode:"), value)
+func (c_ CSSearchableItemAttributeSet) SetPostalCode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPostalCode:"), objc.String(value))
 }
 // An array of objects representing the content of the To: field in an email message.
 //
@@ -2793,8 +2794,8 @@ func (c_ CSSearchableItemAttributeSet) SetPrimaryRecipients(value []CSPerson) {
 // The producer of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/producer
-func (c_ CSSearchableItemAttributeSet) Producer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("producer"))
+func (c_ CSSearchableItemAttributeSet) Producer() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("producer"))
 	return rv
 }
 
@@ -2804,14 +2805,14 @@ func (c_ CSSearchableItemAttributeSet) Producer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/producer
-func (c_ CSSearchableItemAttributeSet) SetProducer(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setProducer:"), value)
+func (c_ CSSearchableItemAttributeSet) SetProducer(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setProducer:"), objc.String(value))
 }
 // The name of the color profile the camera used for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/profileName
-func (c_ CSSearchableItemAttributeSet) ProfileName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("profileName"))
+func (c_ CSSearchableItemAttributeSet) ProfileName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("profileName"))
 	return rv
 }
 
@@ -2821,8 +2822,8 @@ func (c_ CSSearchableItemAttributeSet) ProfileName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/profileName
-func (c_ CSSearchableItemAttributeSet) SetProfileName(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setProfileName:"), value)
+func (c_ CSSearchableItemAttributeSet) SetProfileName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setProfileName:"), objc.String(value))
 }
 // A list of projects of which this file is a part.
 //
@@ -2996,8 +2997,8 @@ func (c_ CSSearchableItemAttributeSet) SetRating(value unsafe.Pointer) {
 // A description of the rating.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/ratingDescription
-func (c_ CSSearchableItemAttributeSet) RatingDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ratingDescription"))
+func (c_ CSSearchableItemAttributeSet) RatingDescription() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ratingDescription"))
 	return rv
 }
 
@@ -3007,8 +3008,8 @@ func (c_ CSSearchableItemAttributeSet) RatingDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/ratingDescription
-func (c_ CSSearchableItemAttributeSet) SetRatingDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRatingDescription:"), value)
+func (c_ CSSearchableItemAttributeSet) SetRatingDescription(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRatingDescription:"), objc.String(value))
 }
 // An array of addresses associated with the recipients of the message.
 //
@@ -3128,8 +3129,8 @@ func (c_ CSSearchableItemAttributeSet) SetRedEyeOn(value unsafe.Pointer) {
 // The unique identifier for the item to which the activity is related.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/relatedUniqueIdentifier
-func (c_ CSSearchableItemAttributeSet) RelatedUniqueIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("relatedUniqueIdentifier"))
+func (c_ CSSearchableItemAttributeSet) RelatedUniqueIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("relatedUniqueIdentifier"))
 	return rv
 }
 
@@ -3139,8 +3140,8 @@ func (c_ CSSearchableItemAttributeSet) RelatedUniqueIdentifier() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/relatedUniqueIdentifier
-func (c_ CSSearchableItemAttributeSet) SetRelatedUniqueIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRelatedUniqueIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetRelatedUniqueIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRelatedUniqueIdentifier:"), objc.String(value))
 }
 // The resolution height of the image, in DPI.
 //
@@ -3179,8 +3180,8 @@ func (c_ CSSearchableItemAttributeSet) SetResolutionWidthDPI(value unsafe.Pointe
 // A link to information about the rights held in and over the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/rights
-func (c_ CSSearchableItemAttributeSet) Rights() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rights"))
+func (c_ CSSearchableItemAttributeSet) Rights() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("rights"))
 	return rv
 }
 
@@ -3190,14 +3191,14 @@ func (c_ CSSearchableItemAttributeSet) Rights() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/rights
-func (c_ CSSearchableItemAttributeSet) SetRights(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRights:"), value)
+func (c_ CSSearchableItemAttributeSet) SetRights(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRights:"), objc.String(value))
 }
 // Indicates the role of the content creator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/role
-func (c_ CSSearchableItemAttributeSet) Role() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("role"))
+func (c_ CSSearchableItemAttributeSet) Role() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("role"))
 	return rv
 }
 
@@ -3207,14 +3208,14 @@ func (c_ CSSearchableItemAttributeSet) Role() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/role
-func (c_ CSSearchableItemAttributeSet) SetRole(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRole:"), value)
+func (c_ CSSearchableItemAttributeSet) SetRole(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRole:"), objc.String(value))
 }
 // The security method (a type of encryption) that protects the document file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/securityMethod
-func (c_ CSSearchableItemAttributeSet) SecurityMethod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("securityMethod"))
+func (c_ CSSearchableItemAttributeSet) SecurityMethod() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("securityMethod"))
 	return rv
 }
 
@@ -3224,8 +3225,8 @@ func (c_ CSSearchableItemAttributeSet) SecurityMethod() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/securityMethod
-func (c_ CSSearchableItemAttributeSet) SetSecurityMethod(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSecurityMethod:"), value)
+func (c_ CSSearchableItemAttributeSet) SetSecurityMethod(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSecurityMethod:"), objc.String(value))
 }
 // The file type of the item to enable the user to share items from Spotlight.
 //
@@ -3281,8 +3282,8 @@ func (c_ CSSearchableItemAttributeSet) SetStartDate(value unsafe.Pointer) {
 // The province or state of origin according to guidelines the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/stateOrProvince
-func (c_ CSSearchableItemAttributeSet) StateOrProvince() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stateOrProvince"))
+func (c_ CSSearchableItemAttributeSet) StateOrProvince() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("stateOrProvince"))
 	return rv
 }
 
@@ -3292,8 +3293,8 @@ func (c_ CSSearchableItemAttributeSet) StateOrProvince() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/stateOrProvince
-func (c_ CSSearchableItemAttributeSet) SetStateOrProvince(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStateOrProvince:"), value)
+func (c_ CSSearchableItemAttributeSet) SetStateOrProvince(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStateOrProvince:"), objc.String(value))
 }
 // A value that indicates if the content is prepared for streaming.
 //
@@ -3315,8 +3316,8 @@ func (c_ CSSearchableItemAttributeSet) SetStreamable(value unsafe.Pointer) {
 // The sublocation, such as a street number, for the item according to guidelines the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/subThoroughfare
-func (c_ CSSearchableItemAttributeSet) SubThoroughfare() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subThoroughfare"))
+func (c_ CSSearchableItemAttributeSet) SubThoroughfare() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("subThoroughfare"))
 	return rv
 }
 
@@ -3326,14 +3327,14 @@ func (c_ CSSearchableItemAttributeSet) SubThoroughfare() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/subThoroughfare
-func (c_ CSSearchableItemAttributeSet) SetSubThoroughfare(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubThoroughfare:"), value)
+func (c_ CSSearchableItemAttributeSet) SetSubThoroughfare(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubThoroughfare:"), objc.String(value))
 }
 // The subject of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/subject
-func (c_ CSSearchableItemAttributeSet) Subject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subject"))
+func (c_ CSSearchableItemAttributeSet) Subject() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("subject"))
 	return rv
 }
 
@@ -3343,8 +3344,8 @@ func (c_ CSSearchableItemAttributeSet) Subject() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/subject
-func (c_ CSSearchableItemAttributeSet) SetSubject(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubject:"), value)
+func (c_ CSSearchableItemAttributeSet) SetSubject(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubject:"), objc.String(value))
 }
 // A value that indicates whether the item contains information sufficient to provide navigation to the location it represents.
 //
@@ -3400,8 +3401,8 @@ func (c_ CSSearchableItemAttributeSet) SetTempo(value unsafe.Pointer) {
 // The textual content of the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/textContent
-func (c_ CSSearchableItemAttributeSet) TextContent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("textContent"))
+func (c_ CSSearchableItemAttributeSet) TextContent() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("textContent"))
 	return rv
 }
 
@@ -3411,22 +3412,22 @@ func (c_ CSSearchableItemAttributeSet) TextContent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/textContent
-func (c_ CSSearchableItemAttributeSet) SetTextContent(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTextContent:"), value)
+func (c_ CSSearchableItemAttributeSet) SetTextContent(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTextContent:"), objc.String(value))
 }
 // A string that presents the Apple Intelligence summarization of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/textContentSummary
-func (c_ CSSearchableItemAttributeSet) TextContentSummary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("textContentSummary"))
+func (c_ CSSearchableItemAttributeSet) TextContentSummary() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("textContentSummary"))
 	return rv
 }
 
 // The theme of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/theme
-func (c_ CSSearchableItemAttributeSet) Theme() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("theme"))
+func (c_ CSSearchableItemAttributeSet) Theme() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("theme"))
 	return rv
 }
 
@@ -3436,14 +3437,14 @@ func (c_ CSSearchableItemAttributeSet) Theme() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/theme
-func (c_ CSSearchableItemAttributeSet) SetTheme(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTheme:"), value)
+func (c_ CSSearchableItemAttributeSet) SetTheme(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTheme:"), objc.String(value))
 }
 // The thoroughfare, such as a street name, associated with the location for the item according to guidelines the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/thoroughfare
-func (c_ CSSearchableItemAttributeSet) Thoroughfare() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("thoroughfare"))
+func (c_ CSSearchableItemAttributeSet) Thoroughfare() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("thoroughfare"))
 	return rv
 }
 
@@ -3453,8 +3454,8 @@ func (c_ CSSearchableItemAttributeSet) Thoroughfare() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/thoroughfare
-func (c_ CSSearchableItemAttributeSet) SetThoroughfare(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setThoroughfare:"), value)
+func (c_ CSSearchableItemAttributeSet) SetThoroughfare(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setThoroughfare:"), objc.String(value))
 }
 // Image data that represents the thumbnail of the item.
 //
@@ -3493,8 +3494,8 @@ func (c_ CSSearchableItemAttributeSet) SetThumbnailURL(value unsafe.Pointer) {
 // The time signature of the musical composition that the audio or MIDI file contains, in a string, such as “4/4” or “7/8”.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/timeSignature
-func (c_ CSSearchableItemAttributeSet) TimeSignature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeSignature"))
+func (c_ CSSearchableItemAttributeSet) TimeSignature() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("timeSignature"))
 	return rv
 }
 
@@ -3504,8 +3505,8 @@ func (c_ CSSearchableItemAttributeSet) TimeSignature() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/timeSignature
-func (c_ CSSearchableItemAttributeSet) SetTimeSignature(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeSignature:"), value)
+func (c_ CSSearchableItemAttributeSet) SetTimeSignature(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeSignature:"), objc.String(value))
 }
 // The timestamp on the item.
 //
@@ -3527,8 +3528,8 @@ func (c_ CSSearchableItemAttributeSet) SetTimestamp(value unsafe.Pointer) {
 // The title of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/title
-func (c_ CSSearchableItemAttributeSet) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("title"))
+func (c_ CSSearchableItemAttributeSet) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -3538,8 +3539,8 @@ func (c_ CSSearchableItemAttributeSet) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/title
-func (c_ CSSearchableItemAttributeSet) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
+func (c_ CSSearchableItemAttributeSet) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // The total bit rate of the media, combining audio and video.
 //
@@ -3561,8 +3562,8 @@ func (c_ CSSearchableItemAttributeSet) SetTotalBitRate(value unsafe.Pointer) {
 // A string that represents the text the system transcribed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/transcribedTextContent
-func (c_ CSSearchableItemAttributeSet) TranscribedTextContent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("transcribedTextContent"))
+func (c_ CSSearchableItemAttributeSet) TranscribedTextContent() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("transcribedTextContent"))
 	return rv
 }
 
@@ -3572,8 +3573,8 @@ func (c_ CSSearchableItemAttributeSet) TranscribedTextContent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/transcribedTextContent
-func (c_ CSSearchableItemAttributeSet) SetTranscribedTextContent(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTranscribedTextContent:"), value)
+func (c_ CSSearchableItemAttributeSet) SetTranscribedTextContent(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTranscribedTextContent:"), objc.String(value))
 }
 // The URL associated with the media.
 //
@@ -3646,8 +3647,8 @@ func (c_ CSSearchableItemAttributeSet) SetUserOwned(value unsafe.Pointer) {
 // A version string associated with the file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/version
-func (c_ CSSearchableItemAttributeSet) Version() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("version"))
+func (c_ CSSearchableItemAttributeSet) Version() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -3657,8 +3658,8 @@ func (c_ CSSearchableItemAttributeSet) Version() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/version
-func (c_ CSSearchableItemAttributeSet) SetVersion(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVersion:"), value)
+func (c_ CSSearchableItemAttributeSet) SetVersion(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 // The video bit rate of the media.
 //
@@ -3680,8 +3681,8 @@ func (c_ CSSearchableItemAttributeSet) SetVideoBitRate(value unsafe.Pointer) {
 // The unique identifier for the item to which the activity is related, but not linked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/weakRelatedUniqueIdentifier
-func (c_ CSSearchableItemAttributeSet) WeakRelatedUniqueIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weakRelatedUniqueIdentifier"))
+func (c_ CSSearchableItemAttributeSet) WeakRelatedUniqueIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("weakRelatedUniqueIdentifier"))
 	return rv
 }
 
@@ -3691,8 +3692,8 @@ func (c_ CSSearchableItemAttributeSet) WeakRelatedUniqueIdentifier() unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/weakRelatedUniqueIdentifier
-func (c_ CSSearchableItemAttributeSet) SetWeakRelatedUniqueIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeakRelatedUniqueIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetWeakRelatedUniqueIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setWeakRelatedUniqueIdentifier:"), objc.String(value))
 }
 // The white balance setting when the camera captured the image.
 //

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Request] class.
@@ -95,6 +96,27 @@ func NewRequestWithCompletionHandler(completionHandler unsafe.Pointer) Request {
 }
 
 
+// The current revison supported by the request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/currentRevision
+func (rc _RequestClass) CurrentRevision() uint {
+	rv := objc.Send[uint](objc.ID(rc.class), objc.Sel("currentRevision"))
+	return rv
+}
+// The revision of the latest request for the particular SDK linked with the client application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/defaultRevision
+func (rc _RequestClass) DefaultRevision() uint {
+	rv := objc.Send[uint](objc.ID(rc.class), objc.Sel("defaultRevision"))
+	return rv
+}
+// The collection of currently-supported algorithm versions for the class of request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/supportedRevisions
+func (rc _RequestClass) SupportedRevisions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("supportedRevisions"))
+	return rv
+}
 // Cancels the request before it can finish executing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/cancel()
@@ -130,6 +152,22 @@ func (r_ Request) SupportedComputeStageDevicesAndReturnError(error_ unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/completionHandler
 func (r_ Request) CompletionHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("completionHandler"))
+	return rv
+}
+
+// The current revison supported by the request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/currentRevision
+func (r_ Request) CurrentRevision() uint {
+	rv := objc.Send[uint](r_.ID, objc.Sel("currentRevision"))
+	return rv
+}
+
+// The revision of the latest request for the particular SDK linked with the client application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/defaultRevision
+func (r_ Request) DefaultRevision() uint {
+	rv := objc.Send[uint](r_.ID, objc.Sel("defaultRevision"))
 	return rv
 }
 
@@ -175,6 +213,14 @@ func (r_ Request) Revision() uint {
 func (r_ Request) SetRevision(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRevision:"), value)
 }
+// The collection of currently-supported algorithm versions for the class of request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/supportedRevisions
+func (r_ Request) SupportedRevisions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("supportedRevisions"))
+	return rv
+}
+
 // A Boolean signifying that the Vision request should execute exclusively on the CPU.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/usesCPUOnly

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRDeviceType] class.
@@ -114,8 +115,8 @@ func (m_ MTRDeviceType) IsUtility() bool {
 // Returns the name of the device type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/name
-func (m_ MTRDeviceType) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("name"))
+func (m_ MTRDeviceType) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

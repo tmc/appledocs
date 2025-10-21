@@ -130,7 +130,17 @@ func (r_ RecognizeTextRequest) CustomWords() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/customWords
 func (r_ RecognizeTextRequest) SetCustomWords(value []string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setCustomWords:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](r_.ID, objc.Sel("setCustomWords:"), nsArray)
 }
 // An array of languages to detect, in priority order.
 //
@@ -147,7 +157,17 @@ func (r_ RecognizeTextRequest) RecognitionLanguages() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/recognitionLanguages
 func (r_ RecognizeTextRequest) SetRecognitionLanguages(value []string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRecognitionLanguages:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRecognitionLanguages:"), nsArray)
 }
 // A value that determines whether the request prioritizes accuracy or speed in text recognition.
 //

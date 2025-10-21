@@ -78,7 +78,3 @@ func (a_ AccessibilityCustomAction) Autorelease() AccessibilityCustomAction {
 func NewAccessibilityCustomAction() AccessibilityCustomAction {
 	return getAccessibilityCustomActionClass().New()
 }
-
-
-
-

@@ -82,8 +82,8 @@ func NewAuthorizationSingleSignOnRequest() AuthorizationSingleSignOnRequest {
 // Options that control the authorization process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/authorizationOptions
-func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []authenticationservices.NSURLQueryItem {
-	rv := objc.Send[[]authenticationservices.NSURLQueryItem](a_.ID, objc.Sel("authorizationOptions"))
+func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []NSURLQueryItem {
+	rv := objc.Send[[]NSURLQueryItem](a_.ID, objc.Sel("authorizationOptions"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []authenticati
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/authorizationOptions
-func (a_ AuthorizationSingleSignOnRequest) SetAuthorizationOptions(value []authenticationservices.NSURLQueryItem) {
+func (a_ AuthorizationSingleSignOnRequest) SetAuthorizationOptions(value []NSURLQueryItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

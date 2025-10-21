@@ -77,7 +77,6 @@ func NewHapticFeedbackManager() HapticFeedbackManager {
 	return getHapticFeedbackManagerClass().New()
 }
 
-
 // Requests a haptic feedback performer object that is based on the current input device, accessibility settings, and user preferences.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager/defaultPerformer
@@ -85,6 +84,7 @@ func (hc _HapticFeedbackManagerClass) DefaultPerformer() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("defaultPerformer"))
 	return rv
 }
+
 // Requests a haptic feedback performer object that is based on the current input device, accessibility settings, and user preferences.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager/defaultPerformer
@@ -92,6 +92,3 @@ func (h_ HapticFeedbackManager) DefaultPerformer() objc.ID {
 	rv := objc.Send[objc.ID](h_.ID, objc.Sel("defaultPerformer"))
 	return rv
 }
-
-
-

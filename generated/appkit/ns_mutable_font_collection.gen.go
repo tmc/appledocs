@@ -79,7 +79,3 @@ func (m_ MutableFontCollection) Autorelease() MutableFontCollection {
 func NewMutableFontCollection() MutableFontCollection {
 	return getMutableFontCollectionClass().New()
 }
-
-
-
-

@@ -82,22 +82,22 @@ func NewCXStartCallAction() CXStartCallAction {
 }
 
 
-// Initializes a new action to start a call with the specified UUID to a recipient with the specified handle.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(call:handle:)
-func NewCXStartCallActionWithCallUUIDHandle(callUUID unsafe.Pointer, handle unsafe.Pointer) CXStartCallAction {
-	instance := getCXStartCallActionClass().Alloc()
-	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCallUUID:handle:"), callUUID, handle)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a new action to start a call with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(coder:)
 func NewCXStartCallActionWithCoder(aDecoder unsafe.Pointer) CXStartCallAction {
 	instance := getCXStartCallActionClass().Alloc()
 	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a new action to start a call with the specified UUID to a recipient with the specified handle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(call:handle:)
+func NewCXStartCallActionWithCallUUIDHandle(callUUID unsafe.Pointer, handle unsafe.Pointer) CXStartCallAction {
+	instance := getCXStartCallActionClass().Alloc()
+	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCallUUID:handle:"), callUUID, handle)
 	rv.Autorelease()
 	return rv
 }
@@ -113,8 +113,8 @@ func (c_ CXStartCallAction) FulfillWithDateStarted(dateStarted unsafe.Pointer) {
 // The identifier for the call recipient.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/contactIdentifier
-func (c_ CXStartCallAction) ContactIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contactIdentifier"))
+func (c_ CXStartCallAction) ContactIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
 
@@ -124,8 +124,8 @@ func (c_ CXStartCallAction) ContactIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/contactIdentifier
-func (c_ CXStartCallAction) SetContactIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), value)
+func (c_ CXStartCallAction) SetContactIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
 }
 // The handle of the call recipient.
 //

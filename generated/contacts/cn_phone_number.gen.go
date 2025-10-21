@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNPhoneNumber] class.
@@ -102,8 +103,8 @@ func (cc _CNPhoneNumberClass) PhoneNumberWithStringValue(stringValue string) uns
 // The string value of the phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPhoneNumber/stringValue
-func (c_ CNPhoneNumber) StringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stringValue"))
+func (c_ CNPhoneNumber) StringValue() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
 

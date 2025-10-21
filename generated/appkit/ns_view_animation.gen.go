@@ -79,7 +79,3 @@ func (v_ ViewAnimation) Autorelease() ViewAnimation {
 func NewViewAnimation() ViewAnimation {
 	return getViewAnimationClass().New()
 }
-
-
-
-

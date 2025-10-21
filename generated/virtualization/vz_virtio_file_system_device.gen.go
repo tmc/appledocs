@@ -101,8 +101,8 @@ func (v_ VZVirtioFileSystemDevice) SetShare(value unsafe.Pointer) {
 // A string that identifies the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice/tag
-func (v_ VZVirtioFileSystemDevice) Tag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("tag"))
+func (v_ VZVirtioFileSystemDevice) Tag() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("tag"))
 	return rv
 }
 

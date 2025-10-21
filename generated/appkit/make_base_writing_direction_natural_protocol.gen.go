@@ -15,5 +15,3 @@ var makeBaseWritingDirectionNaturalProtocol *objc.Protocol
 func init() {
 	makeBaseWritingDirectionNaturalProtocol = objc.GetProtocol("makeBaseWritingDirectionNatural:")
 }
-
-

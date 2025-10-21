@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ContentSharingPicker] class.
@@ -77,6 +78,21 @@ func NewContentSharingPicker() ContentSharingPicker {
 	return getContentSharingPickerClass().New()
 }
 
+
+// The system-provided picker UI instance for capturing display and audio content from someone’s Mac.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPicker/shared
+func (cc _ContentSharingPickerClass) SharedPicker() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedPicker"))
+	return rv
+}
+// The system-provided picker UI instance for capturing display and audio content from someone’s Mac.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPicker/shared
+func (c_ ContentSharingPicker) SharedPicker() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sharedPicker"))
+	return rv
+}
 
 
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OSSystemExtensionInfo] class.
@@ -77,15 +78,15 @@ func NewOSSystemExtensionInfo() OSSystemExtensionInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo/bundleIdentifier
-func (o_ OSSystemExtensionInfo) BundleIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("bundleIdentifier"))
+func (o_ OSSystemExtensionInfo) BundleIdentifier() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo/bundleShortVersion
-func (o_ OSSystemExtensionInfo) BundleShortVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("bundleShortVersion"))
+func (o_ OSSystemExtensionInfo) BundleShortVersion() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleShortVersion"))
 	return rv
 }
 

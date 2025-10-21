@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Region] class.
@@ -111,8 +112,8 @@ func (r_ Region) Center() unsafe.Pointer {
 // The identifier for the region object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/identifier
-func (r_ Region) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("identifier"))
+func (r_ Region) Identifier() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("identifier"))
 	return rv
 }
 

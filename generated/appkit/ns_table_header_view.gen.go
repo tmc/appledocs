@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TableHeaderView] class.
@@ -83,7 +83,6 @@ func NewTableHeaderView() TableHeaderView {
 	return getTableHeaderViewClass().New()
 }
 
-
 // Returns the index of the column whose header lies under in the receiver, or –1 if no such column is found.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/column(at:)
@@ -132,7 +131,6 @@ func (t_ TableHeaderView) TableView() unsafe.Pointer {
 	return rv
 }
 
-
 // SetTableView sets the value of the tableView property.
 // The instance that this table header view belongs to.
 
@@ -141,5 +139,3 @@ func (t_ TableHeaderView) TableView() unsafe.Pointer {
 func (t_ TableHeaderView) SetTableView(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
 }
-
-

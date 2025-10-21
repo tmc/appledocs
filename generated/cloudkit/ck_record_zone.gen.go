@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKRecordZone] class.
@@ -80,22 +81,22 @@ func NewCKRecordZone() CKRecordZone {
 }
 
 
-// Creates a record zone object with the specified zone ID.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/init(zoneID:)
-func NewCKRecordZoneWithZoneID(zoneID unsafe.Pointer) CKRecordZone {
-	instance := getCKRecordZoneClass().Alloc()
-	rv := objc.Send[CKRecordZone](instance.ID, objc.Sel("initWithZoneID:"), zoneID)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a record zone object with the specified zone name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/init(zoneName:)
 func NewCKRecordZoneWithZoneName(zoneName string) CKRecordZone {
 	instance := getCKRecordZoneClass().Alloc()
 	rv := objc.Send[CKRecordZone](instance.ID, objc.Sel("initWithZoneName:"), objc.String(zoneName))
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a record zone object with the specified zone ID.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/init(zoneID:)
+func NewCKRecordZoneWithZoneID(zoneID unsafe.Pointer) CKRecordZone {
+	instance := getCKRecordZoneClass().Alloc()
+	rv := objc.Send[CKRecordZone](instance.ID, objc.Sel("initWithZoneID:"), zoneID)
 	rv.Autorelease()
 	return rv
 }

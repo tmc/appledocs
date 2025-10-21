@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SFSafariPageProperties] class.
@@ -91,8 +92,8 @@ func (s_ SFSafariPageProperties) Active() bool {
 // The title of the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPageProperties/title
-func (s_ SFSafariPageProperties) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("title"))
+func (s_ SFSafariPageProperties) Title() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
 }
 

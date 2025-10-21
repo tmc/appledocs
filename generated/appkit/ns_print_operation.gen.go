@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [PrintOperation] class.
@@ -82,7 +82,6 @@ func NewPrintOperation() PrintOperation {
 	return getPrintOperationClass().New()
 }
 
-
 // Creates and returns a new print operation object ready to control the copying of EPS graphics from the specified view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:)
@@ -121,7 +120,6 @@ func (p_ PrintOperation) PDFPanel() unsafe.Pointer {
 	return rv
 }
 
-
 // SetPDFPanel sets the value of the PDFPanel property.
 // The PDF panel object to use during the operation.
 
@@ -130,6 +128,7 @@ func (p_ PrintOperation) PDFPanel() unsafe.Pointer {
 func (p_ PrintOperation) SetPDFPanel(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPDFPanel:"), value)
 }
+
 // The printing information associated with the print operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/printInfo
@@ -137,7 +136,6 @@ func (p_ PrintOperation) PrintInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("printInfo"))
 	return rv
 }
-
 
 // SetPrintInfo sets the value of the printInfo property.
 // The printing information associated with the print operation.
@@ -147,6 +145,7 @@ func (p_ PrintOperation) PrintInfo() unsafe.Pointer {
 func (p_ PrintOperation) SetPrintInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintInfo:"), value)
 }
+
 // The view object that generates the actual data for the print operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/view
@@ -154,6 +153,3 @@ func (p_ PrintOperation) View() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("view"))
 	return rv
 }
-
-
-

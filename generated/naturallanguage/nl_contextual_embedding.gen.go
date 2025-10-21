@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ContextualEmbedding] class.
@@ -84,14 +85,6 @@ func NewContextualEmbedding() ContextualEmbedding {
 }
 
 
-// Creates a contextual embedding from a language.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(language:)
-func NewContextualEmbeddingWithLanguage(language unsafe.Pointer) ContextualEmbedding {
-	rv := objc.Send[ContextualEmbedding](objc.ID(getContextualEmbeddingClass().class), objc.Sel("contextualEmbeddingWithLanguage:"), language)
-	return rv
-}
-
 // Creates a contextual embedding from a model identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(modelIdentifier:)
@@ -105,6 +98,14 @@ func NewContextualEmbeddingWithModelIdentifier(modelIdentifier string) Contextua
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(script:)
 func NewContextualEmbeddingWithScript(script unsafe.Pointer) ContextualEmbedding {
 	rv := objc.Send[ContextualEmbedding](objc.ID(getContextualEmbeddingClass().class), objc.Sel("contextualEmbeddingWithScript:"), script)
+	return rv
+}
+
+// Creates a contextual embedding from a language.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(language:)
+func NewContextualEmbeddingWithLanguage(language unsafe.Pointer) ContextualEmbedding {
+	rv := objc.Send[ContextualEmbedding](objc.ID(getContextualEmbeddingClass().class), objc.Sel("contextualEmbeddingWithLanguage:"), language)
 	return rv
 }
 
@@ -205,8 +206,8 @@ func (c_ ContextualEmbedding) MaximumSequenceLength() uint {
 // The model identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/modelIdentifier
-func (c_ ContextualEmbedding) ModelIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modelIdentifier"))
+func (c_ ContextualEmbedding) ModelIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("modelIdentifier"))
 	return rv
 }
 

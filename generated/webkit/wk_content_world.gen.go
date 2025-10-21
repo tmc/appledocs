@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ContentWorld] class.
@@ -79,6 +80,21 @@ func NewContentWorld() ContentWorld {
 	return getContentWorldClass().New()
 }
 
+
+// The content world for the current webpage’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentWorld/page
+func (cc _ContentWorldClass) PageWorld() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("pageWorld"))
+	return rv
+}
+// The content world for the current webpage’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentWorld/page
+func (c_ ContentWorld) PageWorld() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("pageWorld"))
+	return rv
+}
 
 
 

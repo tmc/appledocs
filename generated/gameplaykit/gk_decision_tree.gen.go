@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DecisionTree] class.
@@ -82,6 +83,15 @@ func NewDecisionTree() DecisionTree {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
+func NewDecisionTreeWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) DecisionTree {
+	instance := getDecisionTreeClass().Alloc()
+	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a decision tree starting with the specified initial attribute to test.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(attribute:)
@@ -98,15 +108,6 @@ func NewDecisionTreeWithAttribute(attribute objc.ID) DecisionTree {
 func NewDecisionTreeWithExamplesActionsAttributes(examples unsafe.Pointer, actions unsafe.Pointer, attributes unsafe.Pointer) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithExamples:actions:attributes:"), examples, actions, attributes)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
-func NewDecisionTreeWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) DecisionTree {
-	instance := getDecisionTreeClass().Alloc()
-	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
 	return rv
 }

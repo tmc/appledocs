@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASEAsset] class.
@@ -83,8 +84,8 @@ func NewPHASEAsset() PHASEAsset {
 // A unique name for the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAsset/identifier
-func (p_ PHASEAsset) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEAsset) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

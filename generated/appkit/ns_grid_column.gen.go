@@ -77,7 +77,6 @@ func NewGridColumn() GridColumn {
 	return getGridColumnClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/leadingPadding
 func (g_ GridColumn) LeadingPadding() float64 {
@@ -85,13 +84,13 @@ func (g_ GridColumn) LeadingPadding() float64 {
 	return rv
 }
 
-
 // SetLeadingPadding sets the value of the leadingPadding property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/leadingPadding
 func (g_ GridColumn) SetLeadingPadding(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeadingPadding:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/trailingPadding
 func (g_ GridColumn) TrailingPadding() float64 {
@@ -99,13 +98,13 @@ func (g_ GridColumn) TrailingPadding() float64 {
 	return rv
 }
 
-
 // SetTrailingPadding sets the value of the trailingPadding property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/trailingPadding
 func (g_ GridColumn) SetTrailingPadding(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTrailingPadding:"), value)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/xPlacement
 func (g_ GridColumn) XPlacement() unsafe.Pointer {
@@ -113,12 +112,9 @@ func (g_ GridColumn) XPlacement() unsafe.Pointer {
 	return rv
 }
 
-
 // SetXPlacement sets the value of the xPlacement property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/xPlacement
 func (g_ GridColumn) SetXPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXPlacement:"), value)
 }
-
-

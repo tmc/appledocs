@@ -84,8 +84,8 @@ func NewPlayer() Player {
 // A string the player chooses to identify themself to other players.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPlayer/alias
-func (p_ Player) Alias() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("alias"))
+func (p_ Player) Alias() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("alias"))
 	return rv
 }
 

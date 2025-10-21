@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASEMixer] class.
@@ -99,8 +100,8 @@ func (p_ PHASEMixer) GainMetaParameter() unsafe.Pointer {
 // A unique name for the mixer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixer/identifier
-func (p_ PHASEMixer) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEMixer) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

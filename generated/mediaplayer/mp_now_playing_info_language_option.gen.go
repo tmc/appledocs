@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NowPlayingInfoLanguageOption] class.
@@ -112,16 +113,16 @@ func (n_ NowPlayingInfoLanguageOption) IsAutomaticLegibleLanguageOption() bool {
 // The display name for a language option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/displayName
-func (n_ NowPlayingInfoLanguageOption) DisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("displayName"))
+func (n_ NowPlayingInfoLanguageOption) DisplayName() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 // The unique identifier for the language option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/identifier
-func (n_ NowPlayingInfoLanguageOption) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("identifier"))
+func (n_ NowPlayingInfoLanguageOption) Identifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -144,8 +145,8 @@ func (n_ NowPlayingInfoLanguageOption) LanguageOptionType() unsafe.Pointer {
 // The abbreviated language code for the language option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/languageTag
-func (n_ NowPlayingInfoLanguageOption) LanguageTag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("languageTag"))
+func (n_ NowPlayingInfoLanguageOption) LanguageTag() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("languageTag"))
 	return rv
 }
 

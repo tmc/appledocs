@@ -175,16 +175,16 @@ func (p_ PHAsset) AddedDate() unsafe.Pointer {
 // The identifier that describes the adjustment format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/adjustmentFormatIdentifier
-func (p_ PHAsset) AdjustmentFormatIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("adjustmentFormatIdentifier"))
+func (p_ PHAsset) AdjustmentFormatIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("adjustmentFormatIdentifier"))
 	return rv
 }
 
 // The unique identifier shared by photo assets from the same burst sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/burstIdentifier
-func (p_ PHAsset) BurstIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("burstIdentifier"))
+func (p_ PHAsset) BurstIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("burstIdentifier"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ResidencySetDescriptor] class.
@@ -83,8 +84,8 @@ func NewResidencySetDescriptor() ResidencySetDescriptor {
 // An optional name that can help you identify a residency set you create with the descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/label
-func (r_ ResidencySetDescriptor) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("label"))
+func (r_ ResidencySetDescriptor) Label() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -94,8 +95,8 @@ func (r_ ResidencySetDescriptor) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/label
-func (r_ ResidencySetDescriptor) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
+func (r_ ResidencySetDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 

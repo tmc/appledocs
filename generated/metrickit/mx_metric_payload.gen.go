@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MXMetricPayload] class.
@@ -194,8 +195,8 @@ func (m_ MXMetricPayload) IncludesMultipleApplicationVersions() bool {
 // The version of the app on the device at the end of the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/latestApplicationVersion
-func (m_ MXMetricPayload) LatestApplicationVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("latestApplicationVersion"))
+func (m_ MXMetricPayload) LatestApplicationVersion() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("latestApplicationVersion"))
 	return rv
 }
 

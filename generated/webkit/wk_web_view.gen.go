@@ -121,22 +121,22 @@ func NewWebView() WebView {
 }
 
 
-// Returns an object initialized from data in the specified coder object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/init(coder:)
-func NewWebViewWithCoder(coder unsafe.Pointer) WebView {
-	instance := getWebViewClass().Alloc()
-	rv := objc.Send[WebView](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a web view and initializes it with the specified frame and configuration data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/init(frame:configuration:)
 func NewWebViewWithFrameConfiguration(frame coregraphics.CGRect, configuration unsafe.Pointer) WebView {
 	instance := getWebViewClass().Alloc()
 	rv := objc.Send[WebView](instance.ID, objc.Sel("initWithFrame:configuration:"), frame, configuration)
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an object initialized from data in the specified coder object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/init(coder:)
+func NewWebViewWithCoder(coder unsafe.Pointer) WebView {
+	instance := getWebViewClass().Alloc()
+	rv := objc.Send[WebView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -527,8 +527,8 @@ func (w_ WebView) Configuration() unsafe.Pointer {
 // The custom user agent string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/customUserAgent
-func (w_ WebView) CustomUserAgent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("customUserAgent"))
+func (w_ WebView) CustomUserAgent() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("customUserAgent"))
 	return rv
 }
 
@@ -538,8 +538,8 @@ func (w_ WebView) CustomUserAgent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/customUserAgent
-func (w_ WebView) SetCustomUserAgent(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomUserAgent:"), value)
+func (w_ WebView) SetCustomUserAgent(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomUserAgent:"), objc.String(value))
 }
 // An estimate of what fraction of the current navigation has been loaded.
 //
@@ -668,8 +668,8 @@ func (w_ WebView) MaximumViewportInset() unsafe.Pointer {
 // The media type for the contents of the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/mediaType
-func (w_ WebView) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("mediaType"))
+func (w_ WebView) MediaType() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
@@ -679,8 +679,8 @@ func (w_ WebView) MediaType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/mediaType
-func (w_ WebView) SetMediaType(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaType:"), value)
+func (w_ WebView) SetMediaType(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaType:"), objc.String(value))
 }
 // An enumeration case that indicates whether the webpage is using the microphone to capture audio.
 //
@@ -772,8 +772,8 @@ func (w_ WebView) ThemeColor() unsafe.Pointer {
 // The page title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/title
-func (w_ WebView) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("title"))
+func (w_ WebView) Title() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("title"))
 	return rv
 }
 

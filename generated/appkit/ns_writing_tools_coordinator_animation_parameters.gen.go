@@ -78,7 +78,3 @@ func (w_ WritingToolsCoordinatorAnimationParameters) Autorelease() WritingToolsC
 func NewWritingToolsCoordinatorAnimationParameters() WritingToolsCoordinatorAnimationParameters {
 	return getWritingToolsCoordinatorAnimationParametersClass().New()
 }
-
-
-
-

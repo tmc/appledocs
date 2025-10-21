@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OSSystemExtensionsWorkspace] class.
@@ -79,6 +80,12 @@ func NewOSSystemExtensionsWorkspace() OSSystemExtensionsWorkspace {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/shared
+func (oc _OSSystemExtensionsWorkspaceClass) SharedWorkspace() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("sharedWorkspace"))
+	return rv
+}
+//
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/addObserver(_:)
 func (o_ OSSystemExtensionsWorkspace) AddObserverError(observer objc.ID, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("addObserver:error:"), observer, error_)
@@ -95,6 +102,13 @@ func (o_ OSSystemExtensionsWorkspace) RemoveObserver(observer objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/systemExtensions(forApplicationWithBundleID:)
 func (o_ OSSystemExtensionsWorkspace) SystemExtensionsForApplicationWithBundleIDError(bundleID string, out_error unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("systemExtensionsForApplicationWithBundleID:error:"), objc.String(bundleID), out_error)
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/shared
+func (o_ OSSystemExtensionsWorkspace) SharedWorkspace() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sharedWorkspace"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ODModuleEntry] class.
@@ -121,8 +122,8 @@ func (o_ ODModuleEntry) SetMappings(value unsafe.Pointer) {
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/name-swift.property
-func (o_ ODModuleEntry) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("name"))
+func (o_ ODModuleEntry) Name() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -130,8 +131,8 @@ func (o_ ODModuleEntry) Name() unsafe.Pointer {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/name-swift.property
-func (o_ ODModuleEntry) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), value)
+func (o_ ODModuleEntry) SetName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/supportedOptions-swift.property
@@ -142,8 +143,8 @@ func (o_ ODModuleEntry) SupportedOptions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/uuidString-swift.property
-func (o_ ODModuleEntry) UuidString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("uuidString"))
+func (o_ ODModuleEntry) UuidString() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("uuidString"))
 	return rv
 }
 
@@ -151,13 +152,13 @@ func (o_ ODModuleEntry) UuidString() unsafe.Pointer {
 // SetUuidString sets the value of the uuidString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/uuidString-swift.property
-func (o_ ODModuleEntry) SetUuidString(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setUuidString:"), value)
+func (o_ ODModuleEntry) SetUuidString(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setUuidString:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/xpcServiceName-swift.property
-func (o_ ODModuleEntry) XpcServiceName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("xpcServiceName"))
+func (o_ ODModuleEntry) XpcServiceName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("xpcServiceName"))
 	return rv
 }
 
@@ -165,7 +166,7 @@ func (o_ ODModuleEntry) XpcServiceName() unsafe.Pointer {
 // SetXpcServiceName sets the value of the xpcServiceName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/xpcServiceName-swift.property
-func (o_ ODModuleEntry) SetXpcServiceName(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setXpcServiceName:"), value)
+func (o_ ODModuleEntry) SetXpcServiceName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setXpcServiceName:"), objc.String(value))
 }
 

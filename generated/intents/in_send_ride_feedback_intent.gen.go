@@ -84,8 +84,8 @@ func NewINSendRideFeedbackIntent() INSendRideFeedbackIntent {
 // The unique identifier that you assigned to the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendRideFeedbackIntent/rideIdentifier
-func (i_ INSendRideFeedbackIntent) RideIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rideIdentifier"))
+func (i_ INSendRideFeedbackIntent) RideIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
 

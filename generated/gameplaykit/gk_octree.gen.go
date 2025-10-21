@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Octree] class.
@@ -33,8 +33,8 @@ type IOctree interface {
 	objectivec.IObject
 	AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) unsafe.Pointer
 	AddElementWithBox(element unsafe.Pointer, box unsafe.Pointer) unsafe.Pointer
-	ElementsAtPoint(point unsafe.Pointer) []appkit.NSObject
-	ElementsInBox(box unsafe.Pointer) []appkit.NSObject
+	ElementsAtPoint(point unsafe.Pointer) []foundation.NSObject
+	ElementsInBox(box unsafe.Pointer) []foundation.NSObject
 	RemoveElement(element unsafe.Pointer) bool
 	RemoveElementWithNode(element unsafe.Pointer, node unsafe.Pointer) bool
 }
@@ -125,16 +125,16 @@ func (o_ Octree) AddElementWithBox(element unsafe.Pointer, box unsafe.Pointer) u
 // Returns all objects whose corresponding locations overlap the specified point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/elements(at:)
-func (o_ Octree) ElementsAtPoint(point unsafe.Pointer) []appkit.NSObject {
-	rv := objc.Send[[]appkit.NSObject](o_.ID, objc.Sel("elementsAtPoint:"), point)
+func (o_ Octree) ElementsAtPoint(point unsafe.Pointer) []foundation.NSObject {
+	rv := objc.Send[[]foundation.NSObject](o_.ID, objc.Sel("elementsAtPoint:"), point)
 	return rv
 }
 
 // Returns all objects whose corresponding locations overlap the specified volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/elements(in:)
-func (o_ Octree) ElementsInBox(box unsafe.Pointer) []appkit.NSObject {
-	rv := objc.Send[[]appkit.NSObject](o_.ID, objc.Sel("elementsInBox:"), box)
+func (o_ Octree) ElementsInBox(box unsafe.Pointer) []foundation.NSObject {
+	rv := objc.Send[[]foundation.NSObject](o_.ID, objc.Sel("elementsInBox:"), box)
 	return rv
 }
 

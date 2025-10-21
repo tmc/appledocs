@@ -89,7 +89,6 @@ func NewPasteboard() Pasteboard {
 	return getPasteboardClass().New()
 }
 
-
 // Clears the existing contents of the pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/clearContents()
@@ -183,6 +182,3 @@ func (p_ Pasteboard) PasteboardItems() []PasteboardItem {
 	rv := objc.Send[[]PasteboardItem](p_.ID, objc.Sel("pasteboardItems"))
 	return rv
 }
-
-
-

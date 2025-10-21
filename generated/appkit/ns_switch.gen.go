@@ -79,7 +79,3 @@ func (s_ Switch) Autorelease() Switch {
 func NewSwitch() Switch {
 	return getSwitchClass().New()
 }
-
-
-
-

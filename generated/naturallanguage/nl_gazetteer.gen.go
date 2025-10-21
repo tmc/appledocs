@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Gazetteer] class.
@@ -30,7 +31,7 @@ type _GazetteerClass struct {
 // An interface definition for the [Gazetteer] class.
 type IGazetteer interface {
 	objectivec.IObject
-	LabelForString(string_ string) unsafe.Pointer
+	LabelForString(string_ string) string
 }
 
 // A collection of terms and their labels, which take precedence over a word tagger.
@@ -81,6 +82,16 @@ func NewGazetteer() Gazetteer {
 }
 
 
+// Creates a Natural Language gazetteer from a model created with the Create ML framework.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(contentsOf:)
+func NewGazetteerWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Gazetteer {
+	instance := getGazetteerClass().Alloc()
+	rv := objc.Send[Gazetteer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a gazetteer from a data instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(data:)
@@ -97,16 +108,6 @@ func NewGazetteerWithDataError(data unsafe.Pointer, error_ unsafe.Pointer) Gazet
 func NewGazetteerWithDictionaryLanguageError(dictionary unsafe.Pointer, language unsafe.Pointer, error_ unsafe.Pointer) Gazetteer {
 	instance := getGazetteerClass().Alloc()
 	rv := objc.Send[Gazetteer](instance.ID, objc.Sel("initWithDictionary:language:error:"), dictionary, language, error_)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a Natural Language gazetteer from a model created with the Create ML framework.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(contentsOf:)
-func NewGazetteerWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Gazetteer {
-	instance := getGazetteerClass().Alloc()
-	rv := objc.Send[Gazetteer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -131,8 +132,8 @@ func (gc _GazetteerClass) WriteGazetteerForDictionaryLanguageToURLError(dictiona
 // Retrieves the label for the given term.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/label(for:)
-func (g_ Gazetteer) LabelForString(string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("labelForString:"), objc.String(string_))
+func (g_ Gazetteer) LabelForString(string_ string) string {
+	rv := objc.Send[string](g_.ID, objc.Sel("labelForString:"), objc.String(string_))
 	return rv
 }
 

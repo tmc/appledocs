@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTROvenModeClusterModeOptionStruct] class.
@@ -77,8 +78,8 @@ func NewMTROvenModeClusterModeOptionStruct() MTROvenModeClusterModeOptionStruct 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/label
-func (m_ MTROvenModeClusterModeOptionStruct) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("label"))
+func (m_ MTROvenModeClusterModeOptionStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -86,8 +87,8 @@ func (m_ MTROvenModeClusterModeOptionStruct) Label() unsafe.Pointer {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/label
-func (m_ MTROvenModeClusterModeOptionStruct) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTROvenModeClusterModeOptionStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/mode

@@ -81,7 +81,6 @@ func NewPopoverTouchBarItem() PopoverTouchBarItem {
 	return getPopoverTouchBarItemClass().New()
 }
 
-
 // Restores the previously visible main bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/dismissPopover(_:)
@@ -112,7 +111,6 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentation() unsafe.Pointer {
 	return rv
 }
 
-
 // SetCollapsedRepresentation sets the value of the collapsedRepresentation property.
 // The view displayed when this item is displayed in its parent bar.
 
@@ -121,6 +119,7 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentation() unsafe.Pointer {
 func (p_ PopoverTouchBarItem) SetCollapsedRepresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentation:"), value)
 }
+
 // The image displayed by the button for the default collapsed representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationImage
@@ -128,7 +127,6 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentationImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collapsedRepresentationImage"))
 	return rv
 }
-
 
 // SetCollapsedRepresentationImage sets the value of the collapsedRepresentationImage property.
 // The image displayed by the button for the default collapsed representation.
@@ -138,6 +136,7 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentationImage() unsafe.Pointer {
 func (p_ PopoverTouchBarItem) SetCollapsedRepresentationImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationImage:"), value)
 }
+
 // The localized string displayed by the button for the default collapsed representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationLabel
@@ -145,7 +144,6 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentationLabel() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("collapsedRepresentationLabel"))
 	return rv
 }
-
 
 // SetCollapsedRepresentationLabel sets the value of the collapsedRepresentationLabel property.
 // The localized string displayed by the button for the default collapsed representation.
@@ -155,6 +153,7 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentationLabel() string {
 func (p_ PopoverTouchBarItem) SetCollapsedRepresentationLabel(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), objc.String(value))
 }
+
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/customizationLabel
@@ -162,7 +161,6 @@ func (p_ PopoverTouchBarItem) CustomizationLabel() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
-
 
 // SetCustomizationLabel sets the value of the customizationLabel property.
 // The user-visible string identifying this item during bar customization.
@@ -172,6 +170,7 @@ func (p_ PopoverTouchBarItem) CustomizationLabel() string {
 func (p_ PopoverTouchBarItem) SetCustomizationLabel(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
 }
+
 // The bar displayed when this item is “popped.”
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/popoverTouchBar
@@ -179,7 +178,6 @@ func (p_ PopoverTouchBarItem) PopoverTouchBar() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("popoverTouchBar"))
 	return rv
 }
-
 
 // SetPopoverTouchBar sets the value of the popoverTouchBar property.
 // The bar displayed when this item is “popped.”
@@ -189,6 +187,7 @@ func (p_ PopoverTouchBarItem) PopoverTouchBar() unsafe.Pointer {
 func (p_ PopoverTouchBarItem) SetPopoverTouchBar(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPopoverTouchBar:"), value)
 }
+
 // The bar that is displayed when a user press-and-holds on the popover item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/pressAndHoldTouchBar
@@ -196,7 +195,6 @@ func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pressAndHoldTouchBar"))
 	return rv
 }
-
 
 // SetPressAndHoldTouchBar sets the value of the pressAndHoldTouchBar property.
 // The bar that is displayed when a user press-and-holds on the popover item.
@@ -206,5 +204,3 @@ func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() unsafe.Pointer {
 func (p_ PopoverTouchBarItem) SetPressAndHoldTouchBar(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
 }
-
-

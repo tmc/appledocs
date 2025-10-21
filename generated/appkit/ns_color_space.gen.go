@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ColorSpace] class.
@@ -80,7 +80,6 @@ func NewColorSpace() ColorSpace {
 	return getColorSpaceClass().New()
 }
 
-
 // Initializes and returns a color space object initialized from a Core Graphics color-space object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/init(cgColorSpace:)
@@ -111,7 +110,6 @@ func NewColorSpaceWithICCProfileData(iccData unsafe.Pointer) ColorSpace {
 	return rv
 }
 
-
 // Returns the list of color spaces available on the system that are displayed in the color panel, in the order they are displayed in the color panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/availableColorSpaces(with:)
@@ -127,6 +125,7 @@ func (cc _ColorSpaceClass) AdobeRGB1998ColorSpace() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("adobeRGB1998ColorSpace"))
 	return rv
 }
+
 // A color space object that represents a calibrated or device-dependent gray color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/deviceGray
@@ -134,6 +133,7 @@ func (cc _ColorSpaceClass) DeviceGrayColorSpace() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("deviceGrayColorSpace"))
 	return rv
 }
+
 // A color space object that represents an extended gray color space with a gamma value of 2.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedGenericGamma22Gray
@@ -141,6 +141,7 @@ func (cc _ColorSpaceClass) ExtendedGenericGamma22GrayColorSpace() unsafe.Pointer
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("extendedGenericGamma22GrayColorSpace"))
 	return rv
 }
+
 // A color space object that represents an extended sRGB color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedSRGB
@@ -148,6 +149,7 @@ func (cc _ColorSpaceClass) ExtendedSRGBColorSpace() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("extendedSRGBColorSpace"))
 	return rv
 }
+
 // A color space object that represents an Adobe RGB (1998) color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/adobeRGB1998
@@ -179,5 +181,3 @@ func (c_ ColorSpace) ExtendedSRGBColorSpace() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("extendedSRGBColorSpace"))
 	return rv
 }
-
-

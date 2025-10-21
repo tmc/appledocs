@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SFSafariViewControllerActivityButton] class.
@@ -87,8 +88,8 @@ func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/extensionIdentifier
-func (s_ SFSafariViewControllerActivityButton) ExtensionIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("extensionIdentifier"))
+func (s_ SFSafariViewControllerActivityButton) ExtensionIdentifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("extensionIdentifier"))
 	return rv
 }
 

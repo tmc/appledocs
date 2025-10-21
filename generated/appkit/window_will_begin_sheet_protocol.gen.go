@@ -15,5 +15,3 @@ var windowWillBeginSheetProtocol *objc.Protocol
 func init() {
 	windowWillBeginSheetProtocol = objc.GetProtocol("windowWillBeginSheet:")
 }
-
-

@@ -80,7 +80,6 @@ func NewMenuToolbarItem() MenuToolbarItem {
 	return getMenuToolbarItemClass().New()
 }
 
-
 // The menu presented from the toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/menu
@@ -88,7 +87,6 @@ func (m_ MenuToolbarItem) Menu() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("menu"))
 	return rv
 }
-
 
 // SetMenu sets the value of the menu property.
 // The menu presented from the toolbar item.
@@ -98,5 +96,3 @@ func (m_ MenuToolbarItem) Menu() unsafe.Pointer {
 func (m_ MenuToolbarItem) SetMenu(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenu:"), value)
 }
-
-

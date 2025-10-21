@@ -84,16 +84,16 @@ func NewDDMatchPhoneNumber() DDMatchPhoneNumber {
 // A string that categorizes a phone number, such as Home or Work.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/label
-func (d_ DDMatchPhoneNumber) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("label"))
+func (d_ DDMatchPhoneNumber) Label() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv
 }
 
 // A string that represents a phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/phoneNumber
-func (d_ DDMatchPhoneNumber) PhoneNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("phoneNumber"))
+func (d_ DDMatchPhoneNumber) PhoneNumber() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 

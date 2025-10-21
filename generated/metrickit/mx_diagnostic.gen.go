@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MXDiagnostic] class.
@@ -99,8 +100,8 @@ func (m_ MXDiagnostic) JSONRepresentation() unsafe.Pointer {
 // The value of the bundle version key, short form, in the app’s property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/applicationVersion
-func (m_ MXDiagnostic) ApplicationVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationVersion"))
+func (m_ MXDiagnostic) ApplicationVersion() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("applicationVersion"))
 	return rv
 }
 

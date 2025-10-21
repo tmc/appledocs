@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EntityDescription] class.
@@ -91,8 +92,8 @@ func (ec _EntityDescriptionClass) InsertNewObjectForEntityForNameInManagedObject
 // The entity name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/name
-func (e_ EntityDescription) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("name"))
+func (e_ EntityDescription) Name() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (e_ EntityDescription) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/name
-func (e_ EntityDescription) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
+func (e_ EntityDescription) SetName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The version hash for the receiver.
 //

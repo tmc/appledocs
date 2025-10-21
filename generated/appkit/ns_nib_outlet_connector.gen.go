@@ -79,12 +79,8 @@ func NewNibOutletConnector() NibOutletConnector {
 	return getNibOutletConnectorClass().New()
 }
 
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibOutletConnector/establishConnection
 func (n_ NibOutletConnector) EstablishConnection() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("establishConnection"))
 }
-
-
-

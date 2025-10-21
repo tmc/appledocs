@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MKUserLocation] class.
@@ -107,8 +108,8 @@ func (m_ MKUserLocation) Location() unsafe.Pointer {
 // The subtitle to display for the user’s location annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/subtitle
-func (m_ MKUserLocation) Subtitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("subtitle"))
+func (m_ MKUserLocation) Subtitle() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -118,14 +119,14 @@ func (m_ MKUserLocation) Subtitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/subtitle
-func (m_ MKUserLocation) SetSubtitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), value)
+func (m_ MKUserLocation) SetSubtitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 // The title to display for the user’s location annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/title
-func (m_ MKUserLocation) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("title"))
+func (m_ MKUserLocation) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (m_ MKUserLocation) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/title
-func (m_ MKUserLocation) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
+func (m_ MKUserLocation) SetTitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

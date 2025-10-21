@@ -12,5 +12,3 @@ var imageDidNotDrawProtocol *objc.Protocol
 func init() {
 	imageDidNotDrawProtocol = objc.GetProtocol("imageDidNotDraw:")
 }
-
-

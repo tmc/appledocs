@@ -19,7 +19,7 @@ var (
 	_CGAnimateImageDataWithBlock func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGImageDestinationAddAuxiliaryDataInfo func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGImageDestinationAddImage func(unsafe.Pointer, CGImageRef, unsafe.Pointer) unsafe.Pointer
-	_CGImageDestinationAddImageAndMetadata func(unsafe.Pointer, CGImageRef, imageio.CGImageMetadataRef, unsafe.Pointer) unsafe.Pointer
+	_CGImageDestinationAddImageAndMetadata func(unsafe.Pointer, CGImageRef, CGImageMetadataRef, unsafe.Pointer) unsafe.Pointer
 	_CGImageDestinationAddImageFromSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGImageDestinationCopyImageSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGImageDestinationCopyTypeIdentifiers func() unsafe.Pointer
@@ -29,31 +29,31 @@ var (
 	_CGImageDestinationFinalize func(unsafe.Pointer) unsafe.Pointer
 	_CGImageDestinationGetTypeID func() unsafe.Pointer
 	_CGImageDestinationSetProperties func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGImageMetadataCopyStringValueWithPath func(imageio.CGImageMetadataRef, imageio.CGImageMetadataTagRef, unsafe.Pointer) unsafe.Pointer
-	_CGImageMetadataCopyTagMatchingImageProperty func(imageio.CGImageMetadataRef, unsafe.Pointer, unsafe.Pointer) imageio.CGImageMetadataTagRef
-	_CGImageMetadataCopyTagWithPath func(imageio.CGImageMetadataRef, imageio.CGImageMetadataTagRef, unsafe.Pointer) imageio.CGImageMetadataTagRef
-	_CGImageMetadataCopyTags func(imageio.CGImageMetadataRef) unsafe.Pointer
-	_CGImageMetadataCreateFromXMPData func(unsafe.Pointer) imageio.CGImageMetadataRef
-	_CGImageMetadataCreateMutable func() imageio.CGMutableImageMetadataRef
-	_CGImageMetadataCreateMutableCopy func(imageio.CGImageMetadataRef) imageio.CGMutableImageMetadataRef
-	_CGImageMetadataCreateXMPData func(imageio.CGImageMetadataRef, unsafe.Pointer) unsafe.Pointer
-	_CGImageMetadataEnumerateTagsUsingBlock func(imageio.CGImageMetadataRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGImageMetadataCopyStringValueWithPath func(CGImageMetadataRef, CGImageMetadataTagRef, unsafe.Pointer) unsafe.Pointer
+	_CGImageMetadataCopyTagMatchingImageProperty func(CGImageMetadataRef, unsafe.Pointer, unsafe.Pointer) CGImageMetadataTagRef
+	_CGImageMetadataCopyTagWithPath func(CGImageMetadataRef, CGImageMetadataTagRef, unsafe.Pointer) CGImageMetadataTagRef
+	_CGImageMetadataCopyTags func(CGImageMetadataRef) unsafe.Pointer
+	_CGImageMetadataCreateFromXMPData func(unsafe.Pointer) CGImageMetadataRef
+	_CGImageMetadataCreateMutable func() CGMutableImageMetadataRef
+	_CGImageMetadataCreateMutableCopy func(CGImageMetadataRef) CGMutableImageMetadataRef
+	_CGImageMetadataCreateXMPData func(CGImageMetadataRef, unsafe.Pointer) unsafe.Pointer
+	_CGImageMetadataEnumerateTagsUsingBlock func(CGImageMetadataRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGImageMetadataGetTypeID func() unsafe.Pointer
-	_CGImageMetadataRegisterNamespaceForPrefix func(imageio.CGMutableImageMetadataRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGImageMetadataRemoveTagWithPath func(imageio.CGMutableImageMetadataRef, imageio.CGImageMetadataTagRef, unsafe.Pointer) unsafe.Pointer
-	_CGImageMetadataSetTagWithPath func(imageio.CGMutableImageMetadataRef, imageio.CGImageMetadataTagRef, unsafe.Pointer, imageio.CGImageMetadataTagRef) unsafe.Pointer
-	_CGImageMetadataSetValueMatchingImageProperty func(imageio.CGMutableImageMetadataRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGImageMetadataSetValueWithPath func(imageio.CGMutableImageMetadataRef, imageio.CGImageMetadataTagRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGImageMetadataTagCopyName func(imageio.CGImageMetadataTagRef) unsafe.Pointer
-	_CGImageMetadataTagCopyNamespace func(imageio.CGImageMetadataTagRef) unsafe.Pointer
-	_CGImageMetadataTagCopyPrefix func(imageio.CGImageMetadataTagRef) unsafe.Pointer
-	_CGImageMetadataTagCopyQualifiers func(imageio.CGImageMetadataTagRef) unsafe.Pointer
-	_CGImageMetadataTagCopyValue func(imageio.CGImageMetadataTagRef) unsafe.Pointer
-	_CGImageMetadataTagCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) imageio.CGImageMetadataTagRef
-	_CGImageMetadataTagGetType func(imageio.CGImageMetadataTagRef) unsafe.Pointer
+	_CGImageMetadataRegisterNamespaceForPrefix func(CGMutableImageMetadataRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGImageMetadataRemoveTagWithPath func(CGMutableImageMetadataRef, CGImageMetadataTagRef, unsafe.Pointer) unsafe.Pointer
+	_CGImageMetadataSetTagWithPath func(CGMutableImageMetadataRef, CGImageMetadataTagRef, unsafe.Pointer, CGImageMetadataTagRef) unsafe.Pointer
+	_CGImageMetadataSetValueMatchingImageProperty func(CGMutableImageMetadataRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGImageMetadataSetValueWithPath func(CGMutableImageMetadataRef, CGImageMetadataTagRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGImageMetadataTagCopyName func(CGImageMetadataTagRef) unsafe.Pointer
+	_CGImageMetadataTagCopyNamespace func(CGImageMetadataTagRef) unsafe.Pointer
+	_CGImageMetadataTagCopyPrefix func(CGImageMetadataTagRef) unsafe.Pointer
+	_CGImageMetadataTagCopyQualifiers func(CGImageMetadataTagRef) unsafe.Pointer
+	_CGImageMetadataTagCopyValue func(CGImageMetadataTagRef) unsafe.Pointer
+	_CGImageMetadataTagCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGImageMetadataTagRef
+	_CGImageMetadataTagGetType func(CGImageMetadataTagRef) unsafe.Pointer
 	_CGImageMetadataTagGetTypeID func() unsafe.Pointer
 	_CGImageSourceCopyAuxiliaryDataInfoAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGImageSourceCopyMetadataAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) imageio.CGImageMetadataRef
+	_CGImageSourceCopyMetadataAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGImageMetadataRef
 	_CGImageSourceCopyProperties func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGImageSourceCopyPropertiesAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGImageSourceCopyTypeIdentifiers func() unsafe.Pointer
@@ -199,7 +199,7 @@ func CGImageDestinationAddImage(idst unsafe.Pointer, image CGImageRef, propertie
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationAddImageAndMetadata(_:_:_:_:)
-func CGImageDestinationAddImageAndMetadata(idst unsafe.Pointer, image CGImageRef, metadata imageio.CGImageMetadataRef, options unsafe.Pointer) {
+func CGImageDestinationAddImageAndMetadata(idst unsafe.Pointer, image CGImageRef, metadata CGImageMetadataRef, options unsafe.Pointer) {
 	_CGImageDestinationAddImageAndMetadata(idst, image, metadata, options)
 	}
 
@@ -299,7 +299,7 @@ func CGImageDestinationSetProperties(idst unsafe.Pointer, properties unsafe.Poin
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCopyStringValueWithPath(_:_:_:)
-func CGImageMetadataCopyStringValueWithPath(metadata imageio.CGImageMetadataRef, parent imageio.CGImageMetadataTagRef, path unsafe.Pointer) unsafe.Pointer {
+func CGImageMetadataCopyStringValueWithPath(metadata CGImageMetadataRef, parent CGImageMetadataTagRef, path unsafe.Pointer) unsafe.Pointer {
 	return _CGImageMetadataCopyStringValueWithPath(metadata, parent, path)
 	}
 
@@ -309,7 +309,7 @@ func CGImageMetadataCopyStringValueWithPath(metadata imageio.CGImageMetadataRef,
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCopyTagMatchingImageProperty(_:_:_:)
-func CGImageMetadataCopyTagMatchingImageProperty(metadata imageio.CGImageMetadataRef, dictionaryName unsafe.Pointer, propertyName unsafe.Pointer) imageio.CGImageMetadataTagRef {
+func CGImageMetadataCopyTagMatchingImageProperty(metadata CGImageMetadataRef, dictionaryName unsafe.Pointer, propertyName unsafe.Pointer) CGImageMetadataTagRef {
 	return _CGImageMetadataCopyTagMatchingImageProperty(metadata, dictionaryName, propertyName)
 	}
 
@@ -319,7 +319,7 @@ func CGImageMetadataCopyTagMatchingImageProperty(metadata imageio.CGImageMetadat
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCopyTagWithPath(_:_:_:)
-func CGImageMetadataCopyTagWithPath(metadata imageio.CGImageMetadataRef, parent imageio.CGImageMetadataTagRef, path unsafe.Pointer) imageio.CGImageMetadataTagRef {
+func CGImageMetadataCopyTagWithPath(metadata CGImageMetadataRef, parent CGImageMetadataTagRef, path unsafe.Pointer) CGImageMetadataTagRef {
 	return _CGImageMetadataCopyTagWithPath(metadata, parent, path)
 	}
 
@@ -329,7 +329,7 @@ func CGImageMetadataCopyTagWithPath(metadata imageio.CGImageMetadataRef, parent 
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCopyTags(_:)
-func CGImageMetadataCopyTags(metadata imageio.CGImageMetadataRef) unsafe.Pointer {
+func CGImageMetadataCopyTags(metadata CGImageMetadataRef) unsafe.Pointer {
 	return _CGImageMetadataCopyTags(metadata)
 	}
 
@@ -339,7 +339,7 @@ func CGImageMetadataCopyTags(metadata imageio.CGImageMetadataRef) unsafe.Pointer
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCreateFromXMPData(_:)
-func CGImageMetadataCreateFromXMPData(data unsafe.Pointer) imageio.CGImageMetadataRef {
+func CGImageMetadataCreateFromXMPData(data unsafe.Pointer) CGImageMetadataRef {
 	return _CGImageMetadataCreateFromXMPData(data)
 	}
 
@@ -349,7 +349,7 @@ func CGImageMetadataCreateFromXMPData(data unsafe.Pointer) imageio.CGImageMetada
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCreateMutable()
-func CGImageMetadataCreateMutable() imageio.CGMutableImageMetadataRef {
+func CGImageMetadataCreateMutable() CGMutableImageMetadataRef {
 	return _CGImageMetadataCreateMutable()
 	}
 
@@ -359,7 +359,7 @@ func CGImageMetadataCreateMutable() imageio.CGMutableImageMetadataRef {
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCreateMutableCopy(_:)
-func CGImageMetadataCreateMutableCopy(metadata imageio.CGImageMetadataRef) imageio.CGMutableImageMetadataRef {
+func CGImageMetadataCreateMutableCopy(metadata CGImageMetadataRef) CGMutableImageMetadataRef {
 	return _CGImageMetadataCreateMutableCopy(metadata)
 	}
 
@@ -369,7 +369,7 @@ func CGImageMetadataCreateMutableCopy(metadata imageio.CGImageMetadataRef) image
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCreateXMPData(_:_:)
-func CGImageMetadataCreateXMPData(metadata imageio.CGImageMetadataRef, options unsafe.Pointer) unsafe.Pointer {
+func CGImageMetadataCreateXMPData(metadata CGImageMetadataRef, options unsafe.Pointer) unsafe.Pointer {
 	return _CGImageMetadataCreateXMPData(metadata, options)
 	}
 
@@ -379,7 +379,7 @@ func CGImageMetadataCreateXMPData(metadata imageio.CGImageMetadataRef, options u
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataEnumerateTagsUsingBlock(_:_:_:_:)
-func CGImageMetadataEnumerateTagsUsingBlock(metadata imageio.CGImageMetadataRef, rootPath unsafe.Pointer, options unsafe.Pointer, block unsafe.Pointer) {
+func CGImageMetadataEnumerateTagsUsingBlock(metadata CGImageMetadataRef, rootPath unsafe.Pointer, options unsafe.Pointer, block unsafe.Pointer) {
 	_CGImageMetadataEnumerateTagsUsingBlock(metadata, rootPath, options, block)
 	}
 
@@ -399,7 +399,7 @@ func CGImageMetadataGetTypeID() unsafe.Pointer {
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataRegisterNamespaceForPrefix(_:_:_:_:)
-func CGImageMetadataRegisterNamespaceForPrefix(metadata imageio.CGMutableImageMetadataRef, xmlns unsafe.Pointer, prefix unsafe.Pointer, err unsafe.Pointer) unsafe.Pointer {
+func CGImageMetadataRegisterNamespaceForPrefix(metadata CGMutableImageMetadataRef, xmlns unsafe.Pointer, prefix unsafe.Pointer, err unsafe.Pointer) unsafe.Pointer {
 	return _CGImageMetadataRegisterNamespaceForPrefix(metadata, xmlns, prefix, err)
 	}
 
@@ -409,7 +409,7 @@ func CGImageMetadataRegisterNamespaceForPrefix(metadata imageio.CGMutableImageMe
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataRemoveTagWithPath(_:_:_:)
-func CGImageMetadataRemoveTagWithPath(metadata imageio.CGMutableImageMetadataRef, parent imageio.CGImageMetadataTagRef, path unsafe.Pointer) unsafe.Pointer {
+func CGImageMetadataRemoveTagWithPath(metadata CGMutableImageMetadataRef, parent CGImageMetadataTagRef, path unsafe.Pointer) unsafe.Pointer {
 	return _CGImageMetadataRemoveTagWithPath(metadata, parent, path)
 	}
 
@@ -419,7 +419,7 @@ func CGImageMetadataRemoveTagWithPath(metadata imageio.CGMutableImageMetadataRef
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataSetTagWithPath(_:_:_:_:)
-func CGImageMetadataSetTagWithPath(metadata imageio.CGMutableImageMetadataRef, parent imageio.CGImageMetadataTagRef, path unsafe.Pointer, tag imageio.CGImageMetadataTagRef) unsafe.Pointer {
+func CGImageMetadataSetTagWithPath(metadata CGMutableImageMetadataRef, parent CGImageMetadataTagRef, path unsafe.Pointer, tag CGImageMetadataTagRef) unsafe.Pointer {
 	return _CGImageMetadataSetTagWithPath(metadata, parent, path, tag)
 	}
 
@@ -429,7 +429,7 @@ func CGImageMetadataSetTagWithPath(metadata imageio.CGMutableImageMetadataRef, p
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataSetValueMatchingImageProperty(_:_:_:_:)
-func CGImageMetadataSetValueMatchingImageProperty(metadata imageio.CGMutableImageMetadataRef, dictionaryName unsafe.Pointer, propertyName unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGImageMetadataSetValueMatchingImageProperty(metadata CGMutableImageMetadataRef, dictionaryName unsafe.Pointer, propertyName unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _CGImageMetadataSetValueMatchingImageProperty(metadata, dictionaryName, propertyName, value)
 	}
 
@@ -439,7 +439,7 @@ func CGImageMetadataSetValueMatchingImageProperty(metadata imageio.CGMutableImag
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataSetValueWithPath(_:_:_:_:)
-func CGImageMetadataSetValueWithPath(metadata imageio.CGMutableImageMetadataRef, parent imageio.CGImageMetadataTagRef, path unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGImageMetadataSetValueWithPath(metadata CGMutableImageMetadataRef, parent CGImageMetadataTagRef, path unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _CGImageMetadataSetValueWithPath(metadata, parent, path, value)
 	}
 
@@ -449,7 +449,7 @@ func CGImageMetadataSetValueWithPath(metadata imageio.CGMutableImageMetadataRef,
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCopyName(_:)
-func CGImageMetadataTagCopyName(tag imageio.CGImageMetadataTagRef) unsafe.Pointer {
+func CGImageMetadataTagCopyName(tag CGImageMetadataTagRef) unsafe.Pointer {
 	return _CGImageMetadataTagCopyName(tag)
 	}
 
@@ -459,7 +459,7 @@ func CGImageMetadataTagCopyName(tag imageio.CGImageMetadataTagRef) unsafe.Pointe
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCopyNamespace(_:)
-func CGImageMetadataTagCopyNamespace(tag imageio.CGImageMetadataTagRef) unsafe.Pointer {
+func CGImageMetadataTagCopyNamespace(tag CGImageMetadataTagRef) unsafe.Pointer {
 	return _CGImageMetadataTagCopyNamespace(tag)
 	}
 
@@ -469,7 +469,7 @@ func CGImageMetadataTagCopyNamespace(tag imageio.CGImageMetadataTagRef) unsafe.P
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCopyPrefix(_:)
-func CGImageMetadataTagCopyPrefix(tag imageio.CGImageMetadataTagRef) unsafe.Pointer {
+func CGImageMetadataTagCopyPrefix(tag CGImageMetadataTagRef) unsafe.Pointer {
 	return _CGImageMetadataTagCopyPrefix(tag)
 	}
 
@@ -479,7 +479,7 @@ func CGImageMetadataTagCopyPrefix(tag imageio.CGImageMetadataTagRef) unsafe.Poin
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCopyQualifiers(_:)
-func CGImageMetadataTagCopyQualifiers(tag imageio.CGImageMetadataTagRef) unsafe.Pointer {
+func CGImageMetadataTagCopyQualifiers(tag CGImageMetadataTagRef) unsafe.Pointer {
 	return _CGImageMetadataTagCopyQualifiers(tag)
 	}
 
@@ -489,7 +489,7 @@ func CGImageMetadataTagCopyQualifiers(tag imageio.CGImageMetadataTagRef) unsafe.
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCopyValue(_:)
-func CGImageMetadataTagCopyValue(tag imageio.CGImageMetadataTagRef) unsafe.Pointer {
+func CGImageMetadataTagCopyValue(tag CGImageMetadataTagRef) unsafe.Pointer {
 	return _CGImageMetadataTagCopyValue(tag)
 	}
 
@@ -499,7 +499,7 @@ func CGImageMetadataTagCopyValue(tag imageio.CGImageMetadataTagRef) unsafe.Point
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCreate(_:_:_:_:_:)
-func CGImageMetadataTagCreate(xmlns unsafe.Pointer, prefix unsafe.Pointer, name unsafe.Pointer, type_ unsafe.Pointer, value unsafe.Pointer) imageio.CGImageMetadataTagRef {
+func CGImageMetadataTagCreate(xmlns unsafe.Pointer, prefix unsafe.Pointer, name unsafe.Pointer, type_ unsafe.Pointer, value unsafe.Pointer) CGImageMetadataTagRef {
 	return _CGImageMetadataTagCreate(xmlns, prefix, name, type_, value)
 	}
 
@@ -509,7 +509,7 @@ func CGImageMetadataTagCreate(xmlns unsafe.Pointer, prefix unsafe.Pointer, name 
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagGetType(_:)
-func CGImageMetadataTagGetType(tag imageio.CGImageMetadataTagRef) unsafe.Pointer {
+func CGImageMetadataTagGetType(tag CGImageMetadataTagRef) unsafe.Pointer {
 	return _CGImageMetadataTagGetType(tag)
 	}
 
@@ -539,7 +539,7 @@ func CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc unsafe.Pointer, index unsafe
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCopyMetadataAtIndex(_:_:_:)
-func CGImageSourceCopyMetadataAtIndex(isrc unsafe.Pointer, index unsafe.Pointer, options unsafe.Pointer) imageio.CGImageMetadataRef {
+func CGImageSourceCopyMetadataAtIndex(isrc unsafe.Pointer, index unsafe.Pointer, options unsafe.Pointer) CGImageMetadataRef {
 	return _CGImageSourceCopyMetadataAtIndex(isrc, index, options)
 	}
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentCloudKitContainerOptions] class.
@@ -94,8 +95,8 @@ func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdent
 // The identifier of the CloudKit container associated with a given store description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/containerIdentifier
-func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("containerIdentifier"))
+func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

@@ -12,5 +12,3 @@ var TextContentProtocol *objc.Protocol
 func init() {
 	TextContentProtocol = objc.GetProtocol("NSTextContent")
 }
-
-

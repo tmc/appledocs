@@ -92,8 +92,8 @@ func (d_ DDMatchMoneyAmount) Amount() unsafe.Pointer {
 // A string that contains an ISO currency code, which the data detection system identifies from the matched string and user preferences.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/currency
-func (d_ DDMatchMoneyAmount) Currency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("currency"))
+func (d_ DDMatchMoneyAmount) Currency() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("currency"))
 	return rv
 }
 

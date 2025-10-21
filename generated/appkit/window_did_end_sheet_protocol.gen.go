@@ -15,5 +15,3 @@ var windowDidEndSheetProtocol *objc.Protocol
 func init() {
 	windowDidEndSheetProtocol = objc.GetProtocol("windowDidEndSheet:")
 }
-
-

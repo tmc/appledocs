@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CSCustomAttributeKey] class.
@@ -136,8 +137,8 @@ func (c_ CSCustomAttributeKey) Unique() bool {
 // The name of the custom attribute key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/keyName
-func (c_ CSCustomAttributeKey) KeyName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("keyName"))
+func (c_ CSCustomAttributeKey) KeyName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("keyName"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CBIdentityAuthority] class.
@@ -113,8 +114,8 @@ func (c_ CBIdentityAuthority) CSIdentityAuthority() unsafe.Pointer {
 // Returns the localized name of the identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/localizedName
-func (c_ CBIdentityAuthority) LocalizedName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("localizedName"))
+func (c_ CBIdentityAuthority) LocalizedName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
 

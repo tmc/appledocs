@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MKGeoJSONFeature] class.
@@ -83,8 +84,8 @@ func NewMKGeoJSONFeature() MKGeoJSONFeature {
 // An optional identifier the class returns as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeoJSONFeature/identifier
-func (m_ MKGeoJSONFeature) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("identifier"))
+func (m_ MKGeoJSONFeature) Identifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 

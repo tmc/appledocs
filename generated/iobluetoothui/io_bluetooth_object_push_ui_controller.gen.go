@@ -32,7 +32,7 @@ type IBluetoothObjectPushUIController interface {
 	appkit.IWindowController
 	BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow unsafe.Pointer, modalDelegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer) unsafe.Pointer
 	GetDevice() unsafe.Pointer
-	GetTitle() unsafe.Pointer
+	GetTitle() string
 	IsTransferInProgress() bool
 	SetIconImage(image unsafe.Pointer)
 	SetTitle(windowTitle string)
@@ -117,8 +117,8 @@ func (b_ BluetoothObjectPushUIController) GetDevice() unsafe.Pointer {
 // Returns the title of the transfer panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/getTitle()
-func (b_ BluetoothObjectPushUIController) GetTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getTitle"))
+func (b_ BluetoothObjectPushUIController) GetTitle() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("getTitle"))
 	return rv
 }
 

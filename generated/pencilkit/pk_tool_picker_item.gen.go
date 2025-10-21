@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ToolPickerItem] class.
@@ -81,8 +82,8 @@ func NewToolPickerItem() ToolPickerItem {
 // A string that identifies the item in the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerItem/identifier
-func (t_ ToolPickerItem) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identifier"))
+func (t_ ToolPickerItem) Identifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("identifier"))
 	return rv
 }
 

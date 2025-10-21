@@ -18,5 +18,3 @@ var toolbarDidRemoveItemProtocol *objc.Protocol
 func init() {
 	toolbarDidRemoveItemProtocol = objc.GetProtocol("toolbarDidRemoveItem:")
 }
-
-

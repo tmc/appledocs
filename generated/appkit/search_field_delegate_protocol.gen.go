@@ -12,5 +12,3 @@ var SearchFieldDelegateProtocol *objc.Protocol
 func init() {
 	SearchFieldDelegateProtocol = objc.GetProtocol("NSSearchFieldDelegate")
 }
-
-

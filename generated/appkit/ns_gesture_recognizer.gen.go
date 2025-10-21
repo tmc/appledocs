@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [GestureRecognizer] class.
@@ -85,7 +85,6 @@ func NewGestureRecognizer() GestureRecognizer {
 	return getGestureRecognizerClass().New()
 }
 
-
 // Returns the point computed as the location of the gesture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/location(in:)
@@ -129,13 +128,13 @@ func (g_ GestureRecognizer) AllowedTouchTypes() unsafe.Pointer {
 	return rv
 }
 
-
 // SetAllowedTouchTypes sets the value of the allowedTouchTypes property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/allowedTouchTypes
 func (g_ GestureRecognizer) SetAllowedTouchTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAllowedTouchTypes:"), value)
 }
+
 // A Boolean value that indicates whether key events are delivered only after gesture recognition fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/delaysKeyEvents
@@ -143,7 +142,6 @@ func (g_ GestureRecognizer) DelaysKeyEvents() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("delaysKeyEvents"))
 	return rv
 }
-
 
 // SetDelaysKeyEvents sets the value of the delaysKeyEvents property.
 // A Boolean value that indicates whether key events are delivered only after gesture recognition fails.
@@ -153,6 +151,7 @@ func (g_ GestureRecognizer) DelaysKeyEvents() bool {
 func (g_ GestureRecognizer) SetDelaysKeyEvents(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelaysKeyEvents:"), value)
 }
+
 // A Boolean value that indicates whether magnification events are delivered only after gesture recognition fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/delaysMagnificationEvents
@@ -160,7 +159,6 @@ func (g_ GestureRecognizer) DelaysMagnificationEvents() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("delaysMagnificationEvents"))
 	return rv
 }
-
 
 // SetDelaysMagnificationEvents sets the value of the delaysMagnificationEvents property.
 // A Boolean value that indicates whether magnification events are delivered only after gesture recognition fails.
@@ -170,6 +168,7 @@ func (g_ GestureRecognizer) DelaysMagnificationEvents() bool {
 func (g_ GestureRecognizer) SetDelaysMagnificationEvents(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelaysMagnificationEvents:"), value)
 }
+
 // A Boolean value that indicates whether other mouse button events are delivered only after gesture recognition fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/delaysOtherMouseButtonEvents
@@ -177,7 +176,6 @@ func (g_ GestureRecognizer) DelaysOtherMouseButtonEvents() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("delaysOtherMouseButtonEvents"))
 	return rv
 }
-
 
 // SetDelaysOtherMouseButtonEvents sets the value of the delaysOtherMouseButtonEvents property.
 // A Boolean value that indicates whether other mouse button events are delivered only after gesture recognition fails.
@@ -187,6 +185,7 @@ func (g_ GestureRecognizer) DelaysOtherMouseButtonEvents() bool {
 func (g_ GestureRecognizer) SetDelaysOtherMouseButtonEvents(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelaysOtherMouseButtonEvents:"), value)
 }
+
 // A Boolean value that indicates whether primary mouse button events are delivered only after gesture recognition fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/delaysPrimaryMouseButtonEvents
@@ -194,7 +193,6 @@ func (g_ GestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("delaysPrimaryMouseButtonEvents"))
 	return rv
 }
-
 
 // SetDelaysPrimaryMouseButtonEvents sets the value of the delaysPrimaryMouseButtonEvents property.
 // A Boolean value that indicates whether primary mouse button events are delivered only after gesture recognition fails.
@@ -204,6 +202,7 @@ func (g_ GestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
 func (g_ GestureRecognizer) SetDelaysPrimaryMouseButtonEvents(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelaysPrimaryMouseButtonEvents:"), value)
 }
+
 // A Boolean value that indicates whether rotation events are delivered only after gesture recognition fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/delaysRotationEvents
@@ -211,7 +210,6 @@ func (g_ GestureRecognizer) DelaysRotationEvents() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("delaysRotationEvents"))
 	return rv
 }
-
 
 // SetDelaysRotationEvents sets the value of the delaysRotationEvents property.
 // A Boolean value that indicates whether rotation events are delivered only after gesture recognition fails.
@@ -221,6 +219,7 @@ func (g_ GestureRecognizer) DelaysRotationEvents() bool {
 func (g_ GestureRecognizer) SetDelaysRotationEvents(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelaysRotationEvents:"), value)
 }
+
 // A Boolean value that indicates whether secondary mouse button events are delivered only after gesture recognition fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/delaysSecondaryMouseButtonEvents
@@ -228,7 +227,6 @@ func (g_ GestureRecognizer) DelaysSecondaryMouseButtonEvents() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("delaysSecondaryMouseButtonEvents"))
 	return rv
 }
-
 
 // SetDelaysSecondaryMouseButtonEvents sets the value of the delaysSecondaryMouseButtonEvents property.
 // A Boolean value that indicates whether secondary mouse button events are delivered only after gesture recognition fails.
@@ -238,5 +236,3 @@ func (g_ GestureRecognizer) DelaysSecondaryMouseButtonEvents() bool {
 func (g_ GestureRecognizer) SetDelaysSecondaryMouseButtonEvents(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelaysSecondaryMouseButtonEvents:"), value)
 }
-
-

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NENetworkRule] class.
@@ -78,6 +79,16 @@ func NewNENetworkRule() NENetworkRule {
 }
 
 
+// Creates a rule that matches traffic by remote network, local network, protocol, and direction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)
+func NewNENetworkRuleWithRemoteNetworkRemotePrefixLocalNetworkLocalPrefixProtocolDirection(remoteNetwork unsafe.Pointer, remotePrefix uint, localNetwork unsafe.Pointer, localPrefix uint, protocol unsafe.Pointer, direction unsafe.Pointer) NENetworkRule {
+	instance := getNENetworkRuleClass().Alloc()
+	rv := objc.Send[NENetworkRule](instance.ID, objc.Sel("initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:"), remoteNetwork, remotePrefix, localNetwork, localPrefix, protocol, direction)
+	rv.Autorelease()
+	return rv
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/initWithDestinationHostEndpoint:protocol:
 func NewNENetworkRuleWithDestinationHostEndpointProtocol(hostEndpoint unsafe.Pointer, protocol unsafe.Pointer) NENetworkRule {
@@ -121,16 +132,6 @@ func NewNENetworkRuleWithDestinationHostProtocol(hostEndpoint unsafe.Pointer, pr
 func NewNENetworkRuleWithDestinationNetworkPrefixProtocol(networkEndpoint unsafe.Pointer, destinationPrefix uint, protocol unsafe.Pointer) NENetworkRule {
 	instance := getNENetworkRuleClass().Alloc()
 	rv := objc.Send[NENetworkRule](instance.ID, objc.Sel("initWithDestinationNetwork:prefix:protocol:"), networkEndpoint, destinationPrefix, protocol)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a rule that matches traffic by remote network, local network, protocol, and direction.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)
-func NewNENetworkRuleWithRemoteNetworkRemotePrefixLocalNetworkLocalPrefixProtocolDirection(remoteNetwork unsafe.Pointer, remotePrefix uint, localNetwork unsafe.Pointer, localPrefix uint, protocol unsafe.Pointer, direction unsafe.Pointer) NENetworkRule {
-	instance := getNENetworkRuleClass().Alloc()
-	rv := objc.Send[NENetworkRule](instance.ID, objc.Sel("initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:"), remoteNetwork, remotePrefix, localNetwork, localPrefix, protocol, direction)
 	rv.Autorelease()
 	return rv
 }

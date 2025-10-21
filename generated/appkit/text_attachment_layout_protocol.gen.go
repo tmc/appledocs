@@ -15,5 +15,3 @@ var TextAttachmentLayoutProtocol *objc.Protocol
 func init() {
 	TextAttachmentLayoutProtocol = objc.GetProtocol("NSTextAttachmentLayout")
 }
-
-

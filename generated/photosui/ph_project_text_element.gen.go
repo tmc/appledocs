@@ -90,8 +90,8 @@ func (p_ PHProjectTextElement) AttributedText() unsafe.Pointer {
 // The raw unformatted string for the text element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectTextElement/text
-func (p_ PHProjectTextElement) Text() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("text"))
+func (p_ PHProjectTextElement) Text() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("text"))
 	return rv
 }
 

@@ -78,7 +78,6 @@ func NewCIImageRep() CIImageRep {
 	return getCIImageRepClass().New()
 }
 
-
 // Returns a representation of an image initialized to the specified Core Image instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCIImageRep/init(ciImage:)
@@ -89,7 +88,6 @@ func NewCIImageRepWithCIImage(image unsafe.Pointer) CIImageRep {
 	return rv
 }
 
-
 // The Core Image instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCIImageRep/ciImage
@@ -97,5 +95,3 @@ func (i_ CIImageRep) CIImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("CIImage"))
 	return rv
 }
-
-

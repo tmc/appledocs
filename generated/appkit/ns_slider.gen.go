@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Slider] class.
@@ -83,7 +83,6 @@ func NewSlider() Slider {
 	return getSliderClass().New()
 }
 
-
 // Returns the index of the tick mark closest to the location of the slider represented by the given point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/indexOfTickMark(at:)
@@ -107,7 +106,6 @@ func (s_ Slider) Vertical() bool {
 	return rv
 }
 
-
 // SetVertical sets the value of the vertical property.
 // An integer indicating the orientation (horizontal or vertical) of the slider.
 
@@ -116,6 +114,7 @@ func (s_ Slider) Vertical() bool {
 func (s_ Slider) SetVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVertical:"), value)
 }
+
 // The knob’s thickness, in pixels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/knobThickness
@@ -132,7 +131,6 @@ func (s_ Slider) MaxValue() unsafe.Pointer {
 	return rv
 }
 
-
 // SetMaxValue sets the value of the maxValue property.
 // The maximum value the slider can send to its target.
 
@@ -141,6 +139,7 @@ func (s_ Slider) MaxValue() unsafe.Pointer {
 func (s_ Slider) SetMaxValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
+
 // The color of the filled portion of the slider track, in appearances that support it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/trackFillColor
@@ -148,7 +147,6 @@ func (s_ Slider) TrackFillColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("trackFillColor"))
 	return rv
 }
-
 
 // SetTrackFillColor sets the value of the trackFillColor property.
 // The color of the filled portion of the slider track, in appearances that support it.
@@ -158,5 +156,3 @@ func (s_ Slider) TrackFillColor() unsafe.Pointer {
 func (s_ Slider) SetTrackFillColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackFillColor:"), value)
 }
-
-

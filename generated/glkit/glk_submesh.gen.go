@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GLKSubmesh] class.
@@ -105,8 +106,8 @@ func (g_ GLKSubmesh) Mode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/name
-func (g_ GLKSubmesh) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("name"))
+func (g_ GLKSubmesh) Name() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("name"))
 	return rv
 }
 

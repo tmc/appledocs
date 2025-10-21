@@ -10,13 +10,13 @@ import (
 var _ = pdfkit.NewPDFDocument
 
 
+
 // ExampleNewPDFDocument demonstrates how to create a PDFDocument instance.
 // Initializes a   object.
 func ExampleNewPDFDocument() {
 	_ = pdfkit.NewPDFDocument()
 	// Output:
 }
-
 
 
 

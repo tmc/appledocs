@@ -15,5 +15,3 @@ var accessibilityLineForIndexProtocol *objc.Protocol
 func init() {
 	accessibilityLineForIndexProtocol = objc.GetProtocol("accessibilityLineForIndex:")
 }
-
-

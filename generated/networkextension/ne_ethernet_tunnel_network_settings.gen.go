@@ -95,8 +95,8 @@ func NewNEEthernetTunnelNetworkSettingsWithTunnelRemoteAddressEthernetAddressMtu
 // The ethernet address of the tunnel interface, as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelNetworkSettings/ethernetAddress
-func (n_ NEEthernetTunnelNetworkSettings) EthernetAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("ethernetAddress"))
+func (n_ NEEthernetTunnelNetworkSettings) EthernetAddress() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("ethernetAddress"))
 	return rv
 }
 

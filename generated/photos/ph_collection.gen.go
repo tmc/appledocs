@@ -125,8 +125,8 @@ func (p_ PHCollection) CanContainCollections() bool {
 // The localized name of the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/localizedTitle
-func (p_ PHCollection) LocalizedTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("localizedTitle"))
+func (p_ PHCollection) LocalizedTitle() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
 	return rv
 }
 

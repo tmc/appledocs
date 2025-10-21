@@ -12,5 +12,3 @@ var ToolbarItemValidationProtocol *objc.Protocol
 func init() {
 	ToolbarItemValidationProtocol = objc.GetProtocol("NSToolbarItemValidation")
 }
-
-

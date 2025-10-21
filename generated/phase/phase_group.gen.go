@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASEGroup] class.
@@ -175,8 +176,8 @@ func (p_ PHASEGroup) SetGain(value unsafe.Pointer) {
 // A unique name for the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/identifier
-func (p_ PHASEGroup) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEGroup) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

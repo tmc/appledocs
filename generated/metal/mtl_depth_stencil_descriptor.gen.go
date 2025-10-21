@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DepthStencilDescriptor] class.
@@ -151,8 +152,8 @@ func (d_ DepthStencilDescriptor) SetDepthWriteEnabled(value bool) {
 // A string that identifies this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/label
-func (d_ DepthStencilDescriptor) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("label"))
+func (d_ DepthStencilDescriptor) Label() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -162,8 +163,8 @@ func (d_ DepthStencilDescriptor) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/label
-func (d_ DepthStencilDescriptor) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), value)
+func (d_ DepthStencilDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 

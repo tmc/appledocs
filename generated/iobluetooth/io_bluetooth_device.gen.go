@@ -32,7 +32,7 @@ type IBluetoothDevice interface {
 	AddToFavorites() unsafe.Pointer
 	CloseConnection() unsafe.Pointer
 	GetAddress() unsafe.Pointer
-	GetAddressString() unsafe.Pointer
+	GetAddressString() string
 	GetClassOfDevice() unsafe.Pointer
 	GetClockOffset() unsafe.Pointer
 	GetConnectionHandle() unsafe.Pointer
@@ -44,17 +44,17 @@ type IBluetoothDevice interface {
 	GetLastNameUpdate() unsafe.Pointer
 	GetLastServicesUpdate() unsafe.Pointer
 	GetLinkType() unsafe.Pointer
-	GetName() unsafe.Pointer
-	GetNameOrAddress() unsafe.Pointer
+	GetName() string
+	GetNameOrAddress() string
 	GetPageScanMode() unsafe.Pointer
 	GetPageScanPeriodMode() unsafe.Pointer
 	GetPageScanRepetitionMode() unsafe.Pointer
 	GetServiceClassMajor() unsafe.Pointer
 	GetServiceRecordForUUID(sdpUUID unsafe.Pointer) unsafe.Pointer
 	GetServices() unsafe.Pointer
-	HandsFreeAudioGatewayDriverID() unsafe.Pointer
+	HandsFreeAudioGatewayDriverID() string
 	HandsFreeAudioGatewayServiceRecord() unsafe.Pointer
-	HandsFreeDeviceDriverID() unsafe.Pointer
+	HandsFreeDeviceDriverID() string
 	HandsFreeDeviceServiceRecord() unsafe.Pointer
 	IsConnected() bool
 	IsFavorite() bool
@@ -248,8 +248,8 @@ func (b_ BluetoothDevice) GetAddress() unsafe.Pointer {
 // Get a string representation of the Bluetooth device address for the target device. The format of the string is the same as returned by IOBluetoothNSStringFromDeviceAddress().
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getAddressString
-func (b_ BluetoothDevice) GetAddressString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getAddressString"))
+func (b_ BluetoothDevice) GetAddressString() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("getAddressString"))
 	return rv
 }
 
@@ -344,16 +344,16 @@ func (b_ BluetoothDevice) GetLinkType() unsafe.Pointer {
 // Get the human readable name of the remote device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getName
-func (b_ BluetoothDevice) GetName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getName"))
+func (b_ BluetoothDevice) GetName() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("getName"))
 	return rv
 }
 
 // Get the human readable name of the remote device. If the name is not present, it will return a string containing the device’s address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getNameOrAddress
-func (b_ BluetoothDevice) GetNameOrAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getNameOrAddress"))
+func (b_ BluetoothDevice) GetNameOrAddress() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("getNameOrAddress"))
 	return rv
 }
 
@@ -406,8 +406,8 @@ func (b_ BluetoothDevice) GetServices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/handsFreeAudioGatewayDriverID
-func (b_ BluetoothDevice) HandsFreeAudioGatewayDriverID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("handsFreeAudioGatewayDriverID"))
+func (b_ BluetoothDevice) HandsFreeAudioGatewayDriverID() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("handsFreeAudioGatewayDriverID"))
 	return rv
 }
 
@@ -420,8 +420,8 @@ func (b_ BluetoothDevice) HandsFreeAudioGatewayServiceRecord() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/handsFreeDeviceDriverID
-func (b_ BluetoothDevice) HandsFreeDeviceDriverID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("handsFreeDeviceDriverID"))
+func (b_ BluetoothDevice) HandsFreeDeviceDriverID() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("handsFreeDeviceDriverID"))
 	return rv
 }
 
@@ -643,8 +643,8 @@ func (b_ BluetoothDevice) SetSupervisionTimeout(timeout unsafe.Pointer) unsafe.P
 // Get a string representation of the Bluetooth device address for the target device. The format of the string is the same as returned by IOBluetoothNSStringFromDeviceAddress().
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/addressString
-func (b_ BluetoothDevice) AddressString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("addressString"))
+func (b_ BluetoothDevice) AddressString() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("addressString"))
 	return rv
 }
 
@@ -705,16 +705,16 @@ func (b_ BluetoothDevice) LastNameUpdate() unsafe.Pointer {
 // Get the human readable name of the remote device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/name
-func (b_ BluetoothDevice) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("name"))
+func (b_ BluetoothDevice) Name() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("name"))
 	return rv
 }
 
 // Get the human readable name of the remote device. If the name is not present, it will return a string containing the device’s address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/nameOrAddress
-func (b_ BluetoothDevice) NameOrAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("nameOrAddress"))
+func (b_ BluetoothDevice) NameOrAddress() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("nameOrAddress"))
 	return rv
 }
 

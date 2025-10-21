@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OBEXFileTransferServices] class.
@@ -38,7 +39,7 @@ type IOBEXFileTransferServices interface {
 	ConnectToObjectPushService() unsafe.Pointer
 	CopyRemoteFileToLocalPath(inRemoteFileName string, inLocalPathAndName string) unsafe.Pointer
 	CreateFolder(inDirName string) unsafe.Pointer
-	CurrentPath() unsafe.Pointer
+	CurrentPath() string
 	Disconnect() unsafe.Pointer
 	GetDefaultVCard(inLocalPathAndName string) unsafe.Pointer
 	IsBusy() bool
@@ -183,8 +184,8 @@ func (o_ OBEXFileTransferServices) CreateFolder(inDirName string) unsafe.Pointer
 // Get the remote current directory path during an FTP session
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/currentPath()
-func (o_ OBEXFileTransferServices) CurrentPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("currentPath"))
+func (o_ OBEXFileTransferServices) CurrentPath() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("currentPath"))
 	return rv
 }
 

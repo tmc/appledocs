@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AdImpression] class.
@@ -111,8 +112,8 @@ func (a_ AdImpression) SetAdCampaignIdentifier(value unsafe.Pointer) {
 // A human-readable description of the ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adDescription
-func (a_ AdImpression) AdDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("adDescription"))
+func (a_ AdImpression) AdDescription() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("adDescription"))
 	return rv
 }
 
@@ -122,14 +123,14 @@ func (a_ AdImpression) AdDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adDescription
-func (a_ AdImpression) SetAdDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdDescription:"), value)
+func (a_ AdImpression) SetAdDescription(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAdDescription:"), objc.String(value))
 }
 // A random value to use for added security.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adImpressionIdentifier
-func (a_ AdImpression) AdImpressionIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("adImpressionIdentifier"))
+func (a_ AdImpression) AdImpressionIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("adImpressionIdentifier"))
 	return rv
 }
 
@@ -139,14 +140,14 @@ func (a_ AdImpression) AdImpressionIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adImpressionIdentifier
-func (a_ AdImpression) SetAdImpressionIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdImpressionIdentifier:"), value)
+func (a_ AdImpression) SetAdImpressionIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAdImpressionIdentifier:"), objc.String(value))
 }
 // A string that represents the advertising network’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adNetworkIdentifier
-func (a_ AdImpression) AdNetworkIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("adNetworkIdentifier"))
+func (a_ AdImpression) AdNetworkIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("adNetworkIdentifier"))
 	return rv
 }
 
@@ -156,14 +157,14 @@ func (a_ AdImpression) AdNetworkIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adNetworkIdentifier
-func (a_ AdImpression) SetAdNetworkIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdNetworkIdentifier:"), value)
+func (a_ AdImpression) SetAdNetworkIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAdNetworkIdentifier:"), objc.String(value))
 }
 // The name of the entity that purchased the ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adPurchaserName
-func (a_ AdImpression) AdPurchaserName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("adPurchaserName"))
+func (a_ AdImpression) AdPurchaserName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("adPurchaserName"))
 	return rv
 }
 
@@ -173,14 +174,14 @@ func (a_ AdImpression) AdPurchaserName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adPurchaserName
-func (a_ AdImpression) SetAdPurchaserName(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdPurchaserName:"), value)
+func (a_ AdImpression) SetAdPurchaserName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAdPurchaserName:"), objc.String(value))
 }
 // The type of the ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adType
-func (a_ AdImpression) AdType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("adType"))
+func (a_ AdImpression) AdType() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("adType"))
 	return rv
 }
 
@@ -190,8 +191,8 @@ func (a_ AdImpression) AdType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adType
-func (a_ AdImpression) SetAdType(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdType:"), value)
+func (a_ AdImpression) SetAdType(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAdType:"), objc.String(value))
 }
 // The App Store ID of the app that the ad impression advertises.
 //
@@ -213,8 +214,8 @@ func (a_ AdImpression) SetAdvertisedAppStoreItemIdentifier(value unsafe.Pointer)
 // The advertising network’s cryptographic signature for the ad impression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/signature
-func (a_ AdImpression) Signature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("signature"))
+func (a_ AdImpression) Signature() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("signature"))
 	return rv
 }
 
@@ -224,8 +225,8 @@ func (a_ AdImpression) Signature() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/signature
-func (a_ AdImpression) SetSignature(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSignature:"), value)
+func (a_ AdImpression) SetSignature(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSignature:"), objc.String(value))
 }
 // The App Store ID of the app that displays the ad.
 //
@@ -281,8 +282,8 @@ func (a_ AdImpression) SetTimestamp(value unsafe.Pointer) {
 // The version of the SKAdNetwork API.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/version
-func (a_ AdImpression) Version() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("version"))
+func (a_ AdImpression) Version() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -292,7 +293,7 @@ func (a_ AdImpression) Version() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/version
-func (a_ AdImpression) SetVersion(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setVersion:"), value)
+func (a_ AdImpression) SetVersion(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 

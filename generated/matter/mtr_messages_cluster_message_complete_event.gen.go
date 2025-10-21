@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRMessagesClusterMessageCompleteEvent] class.
@@ -105,8 +106,8 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) SetMessageID(value unsafe.Point
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/reply
-func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("reply"))
+func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("reply"))
 	return rv
 }
 
@@ -114,8 +115,8 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() unsafe.Pointer {
 // SetReply sets the value of the reply property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/reply
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetReply(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReply:"), value)
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetReply(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReply:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/responseID

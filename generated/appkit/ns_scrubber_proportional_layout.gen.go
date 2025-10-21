@@ -78,7 +78,6 @@ func NewScrubberProportionalLayout() ScrubberProportionalLayout {
 	return getScrubberProportionalLayoutClass().New()
 }
 
-
 // The number of items visible in the scrubber at once.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout/numberOfVisibleItems
@@ -86,7 +85,6 @@ func (s_ ScrubberProportionalLayout) NumberOfVisibleItems() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("numberOfVisibleItems"))
 	return rv
 }
-
 
 // SetNumberOfVisibleItems sets the value of the numberOfVisibleItems property.
 // The number of items visible in the scrubber at once.
@@ -96,5 +94,3 @@ func (s_ ScrubberProportionalLayout) NumberOfVisibleItems() int {
 func (s_ ScrubberProportionalLayout) SetNumberOfVisibleItems(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfVisibleItems:"), value)
 }
-
-

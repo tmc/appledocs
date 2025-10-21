@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AXCategoricalDataAxisDescriptor] class.
@@ -80,22 +81,22 @@ func NewAXCategoricalDataAxisDescriptor() AXCategoricalDataAxisDescriptor {
 }
 
 
-// Creates a categorical data axis with the specified attributed title and an array of categories in the specified order.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/init(attributedTitle:categoryOrder:)
-func NewAXCategoricalDataAxisDescriptorWithAttributedTitleCategoryOrder(attributedTitle unsafe.Pointer, categoryOrder unsafe.Pointer) AXCategoricalDataAxisDescriptor {
-	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
-	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithAttributedTitle:categoryOrder:"), attributedTitle, categoryOrder)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a categorical data axis with the specified title and an array of categories in the specified order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/init(title:categoryOrder:)
 func NewAXCategoricalDataAxisDescriptorWithTitleCategoryOrder(title string, categoryOrder unsafe.Pointer) AXCategoricalDataAxisDescriptor {
 	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
 	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithTitle:categoryOrder:"), objc.String(title), categoryOrder)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a categorical data axis with the specified attributed title and an array of categories in the specified order.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/init(attributedTitle:categoryOrder:)
+func NewAXCategoricalDataAxisDescriptorWithAttributedTitleCategoryOrder(attributedTitle unsafe.Pointer, categoryOrder unsafe.Pointer) AXCategoricalDataAxisDescriptor {
+	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
+	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithAttributedTitle:categoryOrder:"), attributedTitle, categoryOrder)
 	rv.Autorelease()
 	return rv
 }

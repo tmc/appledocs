@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNContactsUserDefaults] class.
@@ -89,8 +90,8 @@ func (cc _CNContactsUserDefaultsClass) SharedDefaults() unsafe.Pointer {
 // An ISO country code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/countryCode
-func (c_ CNContactsUserDefaults) CountryCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("countryCode"))
+func (c_ CNContactsUserDefaults) CountryCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
 	return rv
 }
 

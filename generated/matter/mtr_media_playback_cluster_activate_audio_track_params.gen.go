@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRMediaPlaybackClusterActivateAudioTrackParams] class.
@@ -125,8 +126,8 @@ func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) SetTimedInvokeTimeoutM
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateAudioTrackParams/trackID
-func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) TrackID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("trackID"))
+func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) TrackID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("trackID"))
 	return rv
 }
 
@@ -134,8 +135,8 @@ func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) TrackID() unsafe.Point
 // SetTrackID sets the value of the trackID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateAudioTrackParams/trackID
-func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) SetTrackID(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), value)
+func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) SetTrackID(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), objc.String(value))
 }
 
 

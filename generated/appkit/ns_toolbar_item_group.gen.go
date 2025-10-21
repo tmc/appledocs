@@ -80,7 +80,6 @@ func NewToolbarItemGroup() ToolbarItemGroup {
 	return getToolbarItemGroupClass().New()
 }
 
-
 // The index value for the most recently selected subitem of a grouped toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup/selectedIndex
@@ -88,7 +87,6 @@ func (t_ ToolbarItemGroup) SelectedIndex() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("selectedIndex"))
 	return rv
 }
-
 
 // SetSelectedIndex sets the value of the selectedIndex property.
 // The index value for the most recently selected subitem of a grouped toolbar item.
@@ -98,5 +96,3 @@ func (t_ ToolbarItemGroup) SelectedIndex() int {
 func (t_ ToolbarItemGroup) SetSelectedIndex(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedIndex:"), value)
 }
-
-

@@ -79,7 +79,6 @@ func NewSharingService() SharingService {
 	return getSharingServiceClass().New()
 }
 
-
 // Returns a sharing service instance representing the specified service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(named:)
@@ -98,7 +97,6 @@ func NewSharingServiceWithTitleImageAlternateImageHandler(title string, image un
 	return rv
 }
 
-
 // Returns a sharing service instance representing the specified service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(named:)
@@ -114,5 +112,3 @@ func (sc _SharingServiceClass) SharingServicesForItems(items objc.ID) []SharingS
 	rv := objc.Send[[]SharingService](objc.ID(sc.class), objc.Sel("sharingServicesForItems:"), items)
 	return rv
 }
-
-

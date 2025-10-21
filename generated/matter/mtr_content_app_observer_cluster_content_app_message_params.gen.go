@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRContentAppObserverClusterContentAppMessageParams] class.
@@ -77,8 +78,8 @@ func NewMTRContentAppObserverClusterContentAppMessageParams() MTRContentAppObser
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/data
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -86,13 +87,13 @@ func (m_ MTRContentAppObserverClusterContentAppMessageParams) Data() unsafe.Poin
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/data
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetData(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/encodingHint
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) EncodingHint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("encodingHint"))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) EncodingHint() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("encodingHint"))
 	return rv
 }
 
@@ -100,8 +101,8 @@ func (m_ MTRContentAppObserverClusterContentAppMessageParams) EncodingHint() uns
 // SetEncodingHint sets the value of the encodingHint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/encodingHint
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetEncodingHint(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), value)
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetEncodingHint(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), objc.String(value))
 }
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
