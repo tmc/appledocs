@@ -107,24 +107,6 @@ func (a_ AppleScript) SetSource(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSource:"), objc.String(value))
 }
 
-// A Boolean value that indicates whether the receiver’s script has been compiled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/iscompiled
-func (a_ AppleScript) IsCompiled() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("isCompiled"))
-	return rv
-}
-
-
-// SetIsCompiled sets the value of the isCompiled property.
-// A Boolean value that indicates whether the receiver’s script has been compiled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/iscompiled
-func (a_ AppleScript) SetIsCompiled(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCompiled:"), value)
-}
-
 // Returns the syntax-highlighted source code of the receiver if the receiver has been compiled and its source code is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/richtextsource
@@ -141,6 +123,24 @@ func (a_ AppleScript) RichTextSource() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/richtextsource
 func (a_ AppleScript) SetRichTextSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRichTextSource:"), value)
+}
+
+// A Boolean value that indicates whether the receiver’s script has been compiled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/iscompiled
+func (a_ AppleScript) IsCompiled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isCompiled"))
+	return rv
+}
+
+
+// SetIsCompiled sets the value of the isCompiled property.
+// A Boolean value that indicates whether the receiver’s script has been compiled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/iscompiled
+func (a_ AppleScript) SetIsCompiled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCompiled:"), value)
 }
 
 

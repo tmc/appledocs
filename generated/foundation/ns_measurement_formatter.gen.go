@@ -99,24 +99,6 @@ func (m_ MeasurementFormatter) SetUnitStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
 }
 
-// The number formatter used to format the quantity of a measurement.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
-func (m_ MeasurementFormatter) NumberFormatter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberFormatter"))
-	return rv
-}
-
-
-// SetNumberFormatter sets the value of the numberFormatter property.
-// The number formatter used to format the quantity of a measurement.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
-func (m_ MeasurementFormatter) SetNumberFormatter(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
-}
-
 // The locale of the formatter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/locale
@@ -133,6 +115,24 @@ func (m_ MeasurementFormatter) Locale() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/locale
 func (m_ MeasurementFormatter) SetLocale(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
+}
+
+// The number formatter used to format the quantity of a measurement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
+func (m_ MeasurementFormatter) NumberFormatter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberFormatter"))
+	return rv
+}
+
+
+// SetNumberFormatter sets the value of the numberFormatter property.
+// The number formatter used to format the quantity of a measurement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
+func (m_ MeasurementFormatter) SetNumberFormatter(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
 }
 
 // The options for how the unit is formatted.

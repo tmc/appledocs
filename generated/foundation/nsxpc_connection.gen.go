@@ -190,24 +190,6 @@ func (x_ XPCConnection) SynchronousRemoteObjectProxyWithErrorHandler(handler uns
 	return rv
 }
 
-// The XPC connection reply was invalid.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-swift.var
-func (x_ XPCConnection) NSXPCConnectionReplyInvalid() int {
-	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionReplyInvalid"))
-	return rv
-}
-
-
-// SetNSXPCConnectionReplyInvalid sets the value of the NSXPCConnectionReplyInvalid property.
-// The XPC connection reply was invalid.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-swift.var
-func (x_ XPCConnection) SetNSXPCConnectionReplyInvalid(value int) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionReplyInvalid:"), value)
-}
-
 // A code-signing requirement check failed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioncodesigningrequirementfailure-swift.var
@@ -262,6 +244,24 @@ func (x_ XPCConnection) SetNSXPCConnectionInvalid(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionInvalid:"), value)
 }
 
+// The upper bounds of XPC connection error code values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var
+func (x_ XPCConnection) NSXPCConnectionErrorMaximum() int {
+	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionErrorMaximum"))
+	return rv
+}
+
+
+// SetNSXPCConnectionErrorMaximum sets the value of the NSXPCConnectionErrorMaximum property.
+// The upper bounds of XPC connection error code values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var
+func (x_ XPCConnection) SetNSXPCConnectionErrorMaximum(value int) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionErrorMaximum:"), value)
+}
+
 // The lower bounds of XPC connection error code values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum-swift.var
@@ -280,22 +280,22 @@ func (x_ XPCConnection) SetNSXPCConnectionErrorMinimum(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionErrorMinimum:"), value)
 }
 
-// The upper bounds of XPC connection error code values.
+// The XPC connection reply was invalid.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var
-func (x_ XPCConnection) NSXPCConnectionErrorMaximum() int {
-	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionErrorMaximum"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-swift.var
+func (x_ XPCConnection) NSXPCConnectionReplyInvalid() int {
+	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionReplyInvalid"))
 	return rv
 }
 
 
-// SetNSXPCConnectionErrorMaximum sets the value of the NSXPCConnectionErrorMaximum property.
-// The upper bounds of XPC connection error code values.
+// SetNSXPCConnectionReplyInvalid sets the value of the NSXPCConnectionReplyInvalid property.
+// The XPC connection reply was invalid.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var
-func (x_ XPCConnection) SetNSXPCConnectionErrorMaximum(value int) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionErrorMaximum:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-swift.var
+func (x_ XPCConnection) SetNSXPCConnectionReplyInvalid(value int) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionReplyInvalid:"), value)
 }
 
 // The BSM audit session identifier for the connecting process.

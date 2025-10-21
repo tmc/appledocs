@@ -128,58 +128,22 @@ func (o_ Operation) WaitUntilFinished() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("waitUntilFinished"))
 }
 
-// A Boolean value indicating whether the operation is currently executing.
+// A Boolean value indicating whether the operation has been cancelled
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isexecuting
-func (o_ Operation) IsExecuting() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isExecuting"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/iscancelled
+func (o_ Operation) IsCancelled() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isCancelled"))
 	return rv
 }
 
 
-// SetIsExecuting sets the value of the isExecuting property.
-// A Boolean value indicating whether the operation is currently executing.
+// SetIsCancelled sets the value of the isCancelled property.
+// A Boolean value indicating whether the operation has been cancelled
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isexecuting
-func (o_ Operation) SetIsExecuting(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIsExecuting:"), value)
-}
-
-// A Boolean value indicating whether the operation has finished executing its task.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isfinished
-func (o_ Operation) IsFinished() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isFinished"))
-	return rv
-}
-
-
-// SetIsFinished sets the value of the isFinished property.
-// A Boolean value indicating whether the operation has finished executing its task.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isfinished
-func (o_ Operation) SetIsFinished(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIsFinished:"), value)
-}
-
-// A Boolean value indicating whether the operation executes its task asynchronously.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isconcurrent
-func (o_ Operation) IsConcurrent() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isConcurrent"))
-	return rv
-}
-
-
-// SetIsConcurrent sets the value of the isConcurrent property.
-// A Boolean value indicating whether the operation executes its task asynchronously.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isconcurrent
-func (o_ Operation) SetIsConcurrent(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIsConcurrent:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/iscancelled
+func (o_ Operation) SetIsCancelled(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
 // A Boolean value indicating whether the operation executes its task asynchronously.
@@ -218,22 +182,58 @@ func (o_ Operation) SetIsReady(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsReady:"), value)
 }
 
-// A Boolean value indicating whether the operation has been cancelled
+// A Boolean value indicating whether the operation has finished executing its task.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/iscancelled
-func (o_ Operation) IsCancelled() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isCancelled"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isfinished
+func (o_ Operation) IsFinished() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isFinished"))
 	return rv
 }
 
 
-// SetIsCancelled sets the value of the isCancelled property.
-// A Boolean value indicating whether the operation has been cancelled
+// SetIsFinished sets the value of the isFinished property.
+// A Boolean value indicating whether the operation has finished executing its task.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/iscancelled
-func (o_ Operation) SetIsCancelled(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIsCancelled:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isfinished
+func (o_ Operation) SetIsFinished(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIsFinished:"), value)
+}
+
+// A Boolean value indicating whether the operation executes its task asynchronously.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isconcurrent
+func (o_ Operation) IsConcurrent() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isConcurrent"))
+	return rv
+}
+
+
+// SetIsConcurrent sets the value of the isConcurrent property.
+// A Boolean value indicating whether the operation executes its task asynchronously.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isconcurrent
+func (o_ Operation) SetIsConcurrent(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIsConcurrent:"), value)
+}
+
+// A Boolean value indicating whether the operation is currently executing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isexecuting
+func (o_ Operation) IsExecuting() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isExecuting"))
+	return rv
+}
+
+
+// SetIsExecuting sets the value of the isExecuting property.
+// A Boolean value indicating whether the operation is currently executing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isexecuting
+func (o_ Operation) SetIsExecuting(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIsExecuting:"), value)
 }
 
 // An array of the operation objects that must finish executing before the current object can begin executing.

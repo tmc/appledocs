@@ -80,24 +80,6 @@ func NewIndexPath() IndexPath {
 }
 
 
-// An index number identifying an item in a section of a collection view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/item
-func (i_ IndexPath) Item() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("item"))
-	return rv
-}
-
-
-// SetItem sets the value of the item property.
-// An index number identifying an item in a section of a collection view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/item
-func (i_ IndexPath) SetItem(value int) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setItem:"), value)
-}
-
 // The number of nodes in the index path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/length
@@ -114,6 +96,24 @@ func (i_ IndexPath) Length() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/length
 func (i_ IndexPath) SetLength(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLength:"), value)
+}
+
+// An index number identifying an item in a section of a collection view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/item
+func (i_ IndexPath) Item() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("item"))
+	return rv
+}
+
+
+// SetItem sets the value of the item property.
+// An index number identifying an item in a section of a collection view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/item
+func (i_ IndexPath) SetItem(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setItem:"), value)
 }
 
 // An index number identifying a row in a section of a table view.

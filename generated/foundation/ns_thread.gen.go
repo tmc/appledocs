@@ -229,24 +229,6 @@ func (t_ Thread) NSAssertionHandlerKey() string {
 	return rv
 }
 
-// The thread object’s dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) ThreadDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("threadDictionary"))
-	return rv
-}
-
-
-// SetThreadDictionary sets the value of the threadDictionary property.
-// The thread object’s dictionary.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) SetThreadDictionary(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadDictionary:"), value)
-}
-
 // A Boolean value that indicates whether the receiver is cancelled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
@@ -281,6 +263,24 @@ func (t_ Thread) IsExecuting() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isexecuting
 func (t_ Thread) SetIsExecuting(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsExecuting:"), value)
+}
+
+// The thread object’s dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
+func (t_ Thread) ThreadDictionary() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("threadDictionary"))
+	return rv
+}
+
+
+// SetThreadDictionary sets the value of the threadDictionary property.
+// The thread object’s dictionary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
+func (t_ Thread) SetThreadDictionary(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadDictionary:"), value)
 }
 
 // Returns an array containing the call stack return addresses.

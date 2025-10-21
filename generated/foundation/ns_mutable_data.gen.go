@@ -81,24 +81,6 @@ func NewMutableData() MutableData {
 }
 
 
-// A pointer to the data contained by the mutable data object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/mutablebytes
-func (m_ MutableData) MutableBytes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mutableBytes"))
-	return rv
-}
-
-
-// SetMutableBytes sets the value of the mutableBytes property.
-// A pointer to the data contained by the mutable data object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/mutablebytes
-func (m_ MutableData) SetMutableBytes(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMutableBytes:"), value)
-}
-
 // The end of the range of error codes reserved for compression errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
@@ -115,6 +97,42 @@ func (m_ MutableData) NSCompressionErrorMaximum() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
 func (m_ MutableData) SetNSCompressionErrorMaximum(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMaximum:"), value)
+}
+
+// The start of the range of error codes reserved for compression errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
+func (m_ MutableData) NSCompressionErrorMinimum() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMinimum"))
+	return rv
+}
+
+
+// SetNSCompressionErrorMinimum sets the value of the NSCompressionErrorMinimum property.
+// The start of the range of error codes reserved for compression errors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
+func (m_ MutableData) SetNSCompressionErrorMinimum(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
+}
+
+// A pointer to the data contained by the mutable data object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/mutablebytes
+func (m_ MutableData) MutableBytes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mutableBytes"))
+	return rv
+}
+
+
+// SetMutableBytes sets the value of the mutableBytes property.
+// A pointer to the data contained by the mutable data object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/mutablebytes
+func (m_ MutableData) SetMutableBytes(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMutableBytes:"), value)
 }
 
 // An error code value that indicates a failure to compress data using the provided algorithm.
@@ -151,24 +169,6 @@ func (m_ MutableData) NSDecompressionFailedError() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
 func (m_ MutableData) SetNSDecompressionFailedError(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
-}
-
-// The start of the range of error codes reserved for compression errors.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (m_ MutableData) NSCompressionErrorMinimum() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMinimum"))
-	return rv
-}
-
-
-// SetNSCompressionErrorMinimum sets the value of the NSCompressionErrorMinimum property.
-// The start of the range of error codes reserved for compression errors.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (m_ MutableData) SetNSCompressionErrorMinimum(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
 }
 
 // The number of bytes contained in the mutable data object.

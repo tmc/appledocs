@@ -243,24 +243,6 @@ func (x_ XMLNode) XMLStringWithOptions(options unsafe.Pointer) string {
 	return rv
 }
 
-// Returns the prefix of the receiver’s name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/prefix
-func (x_ XMLNode) Prefix() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("prefix"))
-	return rv
-}
-
-
-// SetPrefix sets the value of the prefix property.
-// Returns the prefix of the receiver’s name.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/prefix
-func (x_ XMLNode) SetPrefix(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setPrefix:"), objc.String(value))
-}
-
 // Returns the next
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/next
@@ -279,58 +261,22 @@ func (x_ XMLNode) SetNext(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNext:"), value)
 }
 
-// Returns the XPath expression identifying the receiver’s location in the document tree.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xpath
-func (x_ XMLNode) XPath() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("xPath"))
-	return rv
-}
-
-
-// SetXPath sets the value of the xPath property.
-// Returns the XPath expression identifying the receiver’s location in the document tree.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xpath
-func (x_ XMLNode) SetXPath(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setXPath:"), objc.String(value))
-}
-
-// Returns the number of child nodes the receiver has.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/childcount
-func (x_ XMLNode) ChildCount() int {
-	rv := objc.Send[int](x_.ID, objc.Sel("childCount"))
-	return rv
-}
-
-
-// SetChildCount sets the value of the childCount property.
-// Returns the number of child nodes the receiver has.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/childcount
-func (x_ XMLNode) SetChildCount(value int) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setChildCount:"), value)
-}
-
 // Returns the previous
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previous
-func (x_ XMLNode) Previous() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("previous"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previoussibling
+func (x_ XMLNode) PreviousSibling() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("previousSibling"))
 	return rv
 }
 
 
-// SetPrevious sets the value of the previous property.
+// SetPreviousSibling sets the value of the previousSibling property.
 // Returns the previous
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previous
-func (x_ XMLNode) SetPrevious(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setPrevious:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previoussibling
+func (x_ XMLNode) SetPreviousSibling(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setPreviousSibling:"), value)
 }
 
 // Returns the string representation of the receiver as it would appear in an XML document.
@@ -369,60 +315,6 @@ func (x_ XMLNode) SetLocalName(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setLocalName:"), objc.String(value))
 }
 
-// Returns the previous
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previoussibling
-func (x_ XMLNode) PreviousSibling() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("previousSibling"))
-	return rv
-}
-
-
-// SetPreviousSibling sets the value of the previousSibling property.
-// Returns the previous
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previoussibling
-func (x_ XMLNode) SetPreviousSibling(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setPreviousSibling:"), value)
-}
-
-// Returns an immutable array containing the child nodes of the receiver (as
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/children
-func (x_ XMLNode) Children() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("children"))
-	return rv
-}
-
-
-// SetChildren sets the value of the children property.
-// Returns an immutable array containing the child nodes of the receiver (as
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/children
-func (x_ XMLNode) SetChildren(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), value)
-}
-
-// Returns the
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/rootdocument
-func (x_ XMLNode) RootDocument() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("rootDocument"))
-	return rv
-}
-
-
-// SetRootDocument sets the value of the rootDocument property.
-// Returns the
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/rootdocument
-func (x_ XMLNode) SetRootDocument(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setRootDocument:"), value)
-}
-
 // Returns the next
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/nextsibling
@@ -454,6 +346,114 @@ func (x_ XMLNode) Description() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/description
 func (x_ XMLNode) SetDescription(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDescription:"), objc.String(value))
+}
+
+// Returns the
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/rootdocument
+func (x_ XMLNode) RootDocument() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("rootDocument"))
+	return rv
+}
+
+
+// SetRootDocument sets the value of the rootDocument property.
+// Returns the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/rootdocument
+func (x_ XMLNode) SetRootDocument(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setRootDocument:"), value)
+}
+
+// Returns the number of child nodes the receiver has.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/childcount
+func (x_ XMLNode) ChildCount() int {
+	rv := objc.Send[int](x_.ID, objc.Sel("childCount"))
+	return rv
+}
+
+
+// SetChildCount sets the value of the childCount property.
+// Returns the number of child nodes the receiver has.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/childcount
+func (x_ XMLNode) SetChildCount(value int) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setChildCount:"), value)
+}
+
+// Returns the previous
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previous
+func (x_ XMLNode) Previous() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("previous"))
+	return rv
+}
+
+
+// SetPrevious sets the value of the previous property.
+// Returns the previous
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previous
+func (x_ XMLNode) SetPrevious(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setPrevious:"), value)
+}
+
+// Returns an immutable array containing the child nodes of the receiver (as
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/children
+func (x_ XMLNode) Children() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("children"))
+	return rv
+}
+
+
+// SetChildren sets the value of the children property.
+// Returns an immutable array containing the child nodes of the receiver (as
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/children
+func (x_ XMLNode) SetChildren(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), value)
+}
+
+// Returns the prefix of the receiver’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/prefix
+func (x_ XMLNode) Prefix() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("prefix"))
+	return rv
+}
+
+
+// SetPrefix sets the value of the prefix property.
+// Returns the prefix of the receiver’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/prefix
+func (x_ XMLNode) SetPrefix(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setPrefix:"), objc.String(value))
+}
+
+// Returns the XPath expression identifying the receiver’s location in the document tree.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xpath
+func (x_ XMLNode) XPath() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("xPath"))
+	return rv
+}
+
+
+// SetXPath sets the value of the xPath property.
+// Returns the XPath expression identifying the receiver’s location in the document tree.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xpath
+func (x_ XMLNode) SetXPath(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setXPath:"), objc.String(value))
 }
 
 // Returns the index of the receiver identifying its position relative to its sibling nodes.

@@ -326,6 +326,24 @@ func (c_ Coder) EncodeNXObject(object objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeNXObject:"), object)
 }
 
+// Decoding failed due to corrupt data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoderreadcorrupterror-swift.var
+func (c_ Coder) NSCoderReadCorruptError() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("NSCoderReadCorruptError"))
+	return rv
+}
+
+
+// SetNSCoderReadCorruptError sets the value of the NSCoderReadCorruptError property.
+// Decoding failed due to corrupt data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoderreadcorrupterror-swift.var
+func (c_ Coder) SetNSCoderReadCorruptError(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderReadCorruptError:"), value)
+}
+
 // Data wasn’t valid to encode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoderinvalidvalueerror-swift.var
@@ -380,42 +398,6 @@ func (c_ Coder) SetSystemVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemVersion:"), value)
 }
 
-// The requested data wasn’t found.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscodervaluenotfounderror-swift.var
-func (c_ Coder) NSCoderValueNotFoundError() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("NSCoderValueNotFoundError"))
-	return rv
-}
-
-
-// SetNSCoderValueNotFoundError sets the value of the NSCoderValueNotFoundError property.
-// The requested data wasn’t found.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscodervaluenotfounderror-swift.var
-func (c_ Coder) SetNSCoderValueNotFoundError(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderValueNotFoundError:"), value)
-}
-
-// The set of coded classes allowed for secure coding.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/allowedclasses
-func (c_ Coder) AllowedClasses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allowedClasses"))
-	return rv
-}
-
-
-// SetAllowedClasses sets the value of the allowedClasses property.
-// The set of coded classes allowed for secure coding.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/allowedclasses
-func (c_ Coder) SetAllowedClasses(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedClasses:"), value)
-}
-
 // The end of the range of error codes reserved for coder errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscodererrormaximum-swift.var
@@ -434,22 +416,22 @@ func (c_ Coder) SetNSCoderErrorMaximum(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderErrorMaximum:"), value)
 }
 
-// Decoding failed due to corrupt data.
+// The requested data wasn’t found.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoderreadcorrupterror-swift.var
-func (c_ Coder) NSCoderReadCorruptError() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("NSCoderReadCorruptError"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscodervaluenotfounderror-swift.var
+func (c_ Coder) NSCoderValueNotFoundError() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("NSCoderValueNotFoundError"))
 	return rv
 }
 
 
-// SetNSCoderReadCorruptError sets the value of the NSCoderReadCorruptError property.
-// Decoding failed due to corrupt data.
+// SetNSCoderValueNotFoundError sets the value of the NSCoderValueNotFoundError property.
+// The requested data wasn’t found.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoderreadcorrupterror-swift.var
-func (c_ Coder) SetNSCoderReadCorruptError(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderReadCorruptError:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscodervaluenotfounderror-swift.var
+func (c_ Coder) SetNSCoderValueNotFoundError(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderValueNotFoundError:"), value)
 }
 
 // The start of the range of error codes reserved for coder errors.
@@ -468,6 +450,24 @@ func (c_ Coder) NSCoderErrorMinimum() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscodererrorminimum-swift.var
 func (c_ Coder) SetNSCoderErrorMinimum(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderErrorMinimum:"), value)
+}
+
+// The set of coded classes allowed for secure coding.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/allowedclasses
+func (c_ Coder) AllowedClasses() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allowedClasses"))
+	return rv
+}
+
+
+// SetAllowedClasses sets the value of the allowedClasses property.
+// The set of coded classes allowed for secure coding.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/allowedclasses
+func (c_ Coder) SetAllowedClasses(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedClasses:"), value)
 }
 
 // A Boolean value that indicates whether the receiver supports keyed coding of objects.

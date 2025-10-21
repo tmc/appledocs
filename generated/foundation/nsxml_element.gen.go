@@ -182,24 +182,6 @@ func (x_ XMLElement) ReplaceChildAtIndexWithNode(index uint, node unsafe.Pointer
 	objc.Send[objc.ID](x_.ID, objc.Sel("replaceChildAtIndex:withNode:"), index, node)
 }
 
-// Sets all of the namespace nodes of the receiver at once, replacing any existing namespace nodes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/namespaces
-func (x_ XMLElement) Namespaces() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("namespaces"))
-	return rv
-}
-
-
-// SetNamespaces sets the value of the namespaces property.
-// Sets all of the namespace nodes of the receiver at once, replacing any existing namespace nodes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/namespaces
-func (x_ XMLElement) SetNamespaces(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setNamespaces:"), value)
-}
-
 // Sets all attributes of the receiver at once, replacing any existing attribute nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/attributes
@@ -216,6 +198,24 @@ func (x_ XMLElement) Attributes() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/attributes
 func (x_ XMLElement) SetAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setAttributes:"), value)
+}
+
+// Sets all of the namespace nodes of the receiver at once, replacing any existing namespace nodes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/namespaces
+func (x_ XMLElement) Namespaces() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("namespaces"))
+	return rv
+}
+
+
+// SetNamespaces sets the value of the namespaces property.
+// Sets all of the namespace nodes of the receiver at once, replacing any existing namespace nodes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/namespaces
+func (x_ XMLElement) SetNamespaces(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setNamespaces:"), value)
 }
 
 

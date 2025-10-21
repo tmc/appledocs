@@ -81,24 +81,6 @@ func NewRelativeSpecifier() RelativeSpecifier {
 }
 
 
-// Sets the relative position encapsulated by the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property
-func (r_ RelativeSpecifier) RelativePosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("relativePosition"))
-	return rv
-}
-
-
-// SetRelativePosition sets the value of the relativePosition property.
-// Sets the relative position encapsulated by the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property
-func (r_ RelativeSpecifier) SetRelativePosition(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRelativePosition:"), value)
-}
-
 // Sets the specifier for the base object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/basespecifier
@@ -115,6 +97,24 @@ func (r_ RelativeSpecifier) BaseSpecifier() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/basespecifier
 func (r_ RelativeSpecifier) SetBaseSpecifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBaseSpecifier:"), value)
+}
+
+// Sets the relative position encapsulated by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property
+func (r_ RelativeSpecifier) RelativePosition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("relativePosition"))
+	return rv
+}
+
+
+// SetRelativePosition sets the value of the relativePosition property.
+// Sets the relative position encapsulated by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property
+func (r_ RelativeSpecifier) SetRelativePosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRelativePosition:"), value)
 }
 
 

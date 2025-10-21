@@ -457,24 +457,6 @@ func (d_ Data) WriteToFileOptionsError(path string, writeOptionsMask unsafe.Poin
 	return rv
 }
 
-// The end of the range of error codes reserved for compression errors.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-func (d_ Data) NSCompressionErrorMaximum() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("NSCompressionErrorMaximum"))
-	return rv
-}
-
-
-// SetNSCompressionErrorMaximum sets the value of the NSCompressionErrorMaximum property.
-// The end of the range of error codes reserved for compression errors.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-func (d_ Data) SetNSCompressionErrorMaximum(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionErrorMaximum:"), value)
-}
-
 // An error code value that indicates a failure to compress data using the provided algorithm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
@@ -527,6 +509,24 @@ func (d_ Data) NSDecompressionFailedError() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
 func (d_ Data) SetNSDecompressionFailedError(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
+}
+
+// The end of the range of error codes reserved for compression errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
+func (d_ Data) NSCompressionErrorMaximum() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("NSCompressionErrorMaximum"))
+	return rv
+}
+
+
+// SetNSCompressionErrorMaximum sets the value of the NSCompressionErrorMaximum property.
+// The end of the range of error codes reserved for compression errors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
+func (d_ Data) SetNSCompressionErrorMaximum(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionErrorMaximum:"), value)
 }
 
 // A pointer to the data object’s contents.

@@ -137,6 +137,14 @@ func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain unsafe.Pointer)
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("userInfoValueProviderForDomain:"), errorDomain)
 }
 
+// The corresponding value is an object that conforms to the NSErrorRecoveryAttempting informal protocol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrecoveryattemptererrorkey
+func (e_ Error) NSRecoveryAttempterErrorKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSRecoveryAttempterErrorKey"))
+	return rv
+}
+
 // Mac OS 9/Carbon errors
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsosstatuserrordomain
@@ -153,19 +161,19 @@ func (e_ Error) NSPOSIXErrorDomain() string {
 	return rv
 }
 
-// Mach errors
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmacherrordomain
-func (e_ Error) NSMachErrorDomain() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("NSMachErrorDomain"))
-	return rv
-}
-
 // URL loading system errors
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlerrordomain
 func (e_ Error) NSURLErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSURLErrorDomain"))
+	return rv
+}
+
+// Cocoa errors
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscocoaerrordomain
+func (e_ Error) NSCocoaErrorDomain() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSCocoaErrorDomain"))
 	return rv
 }
 
@@ -185,19 +193,11 @@ func (e_ Error) NSStreamSOCKSErrorDomain() string {
 	return rv
 }
 
-// Cocoa errors
+// Mach errors
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscocoaerrordomain
-func (e_ Error) NSCocoaErrorDomain() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("NSCocoaErrorDomain"))
-	return rv
-}
-
-// The corresponding value is an object that conforms to the NSErrorRecoveryAttempting informal protocol.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrecoveryattemptererrorkey
-func (e_ Error) NSRecoveryAttempterErrorKey() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("NSRecoveryAttempterErrorKey"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmacherrordomain
+func (e_ Error) NSMachErrorDomain() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSMachErrorDomain"))
 	return rv
 }
 

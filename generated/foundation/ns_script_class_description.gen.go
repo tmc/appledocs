@@ -90,6 +90,24 @@ func (s_ ScriptClassDescription) TypeForKey(key string) string {
 	return rv
 }
 
+// Returns the name of the class the receiver describes, as provided at initialization time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
+func (s_ ScriptClassDescription) ClassName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("className"))
+	return rv
+}
+
+
+// SetClassName sets the value of the className property.
+// Returns the name of the class the receiver describes, as provided at initialization time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
+func (s_ ScriptClassDescription) SetClassName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setClassName:"), objc.String(value))
+}
+
 // Returns the Apple event code associated with the receiver’s class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
@@ -106,6 +124,24 @@ func (s_ ScriptClassDescription) AppleEventCode() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
 func (s_ ScriptClassDescription) SetAppleEventCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCode:"), value)
+}
+
+// Returns the name of the Objective-C class instantiated to implement the scripting class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
+func (s_ ScriptClassDescription) ImplementationClassName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("implementationClassName"))
+	return rv
+}
+
+
+// SetImplementationClassName sets the value of the implementationClassName property.
+// Returns the name of the Objective-C class instantiated to implement the scripting class.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
+func (s_ ScriptClassDescription) SetImplementationClassName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImplementationClassName:"), objc.String(value))
 }
 
 // Returns the value of the
@@ -144,24 +180,6 @@ func (s_ ScriptClassDescription) SetSuperclass(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuperclass:"), value)
 }
 
-// Returns the name of the class the receiver describes, as provided at initialization time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
-func (s_ ScriptClassDescription) ClassName() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("className"))
-	return rv
-}
-
-
-// SetClassName sets the value of the className property.
-// Returns the name of the class the receiver describes, as provided at initialization time.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
-func (s_ ScriptClassDescription) SetClassName(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setClassName:"), objc.String(value))
-}
-
 // Returns the name of the receiver’s suite.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
@@ -178,24 +196,6 @@ func (s_ ScriptClassDescription) SuiteName() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
 func (s_ ScriptClassDescription) SetSuiteName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), objc.String(value))
-}
-
-// Returns the name of the Objective-C class instantiated to implement the scripting class.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
-func (s_ ScriptClassDescription) ImplementationClassName() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("implementationClassName"))
-	return rv
-}
-
-
-// SetImplementationClassName sets the value of the implementationClassName property.
-// Returns the name of the Objective-C class instantiated to implement the scripting class.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
-func (s_ ScriptClassDescription) SetImplementationClassName(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setImplementationClassName:"), objc.String(value))
 }
 
 

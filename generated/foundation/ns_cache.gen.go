@@ -88,6 +88,24 @@ func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g ui
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKey:cost:"), obj, key, g)
 }
 
+// The name of the cache.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
+func (c_ Cache) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the cache.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
+func (c_ Cache) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
 // The maximum number of objects the cache should hold.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
@@ -104,24 +122,6 @@ func (c_ Cache) CountLimit() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
 func (c_ Cache) SetCountLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCountLimit:"), value)
-}
-
-// The cache’s delegate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
-func (c_ Cache) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The cache’s delegate.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
-func (c_ Cache) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
 // The maximum total cost that the cache can hold before it starts evicting objects.
@@ -142,22 +142,22 @@ func (c_ Cache) SetTotalCostLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTotalCostLimit:"), value)
 }
 
-// The name of the cache.
+// The cache’s delegate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
-func (c_ Cache) Name() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
+func (c_ Cache) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-// The name of the cache.
+// SetDelegate sets the value of the delegate property.
+// The cache’s delegate.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
-func (c_ Cache) SetName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
+func (c_ Cache) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
 // Whether the cache will automatically evict discardable-content objects whose content has been discarded.

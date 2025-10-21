@@ -80,111 +80,6 @@ func NewURLRequest() URLRequest {
 }
 
 
-// The entity that initiates the network request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.property
-func (u_ URLRequest) Attribution() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("attribution"))
-	return rv
-}
-
-
-// SetAttribution sets the value of the attribution property.
-// The entity that initiates the network request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.property
-func (u_ URLRequest) SetAttribution(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAttribution:"), value)
-}
-
-// The request’s timeout interval, in seconds.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
-func (u_ URLRequest) TimeoutInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("timeoutInterval"))
-	return rv
-}
-
-
-// SetTimeoutInterval sets the value of the timeoutInterval property.
-// The request’s timeout interval, in seconds.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
-func (u_ URLRequest) SetTimeoutInterval(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutInterval:"), value)
-}
-
-// The request body as an input stream.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbodystream
-func (u_ URLRequest) HttpBodyStream() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("httpBodyStream"))
-	return rv
-}
-
-
-// SetHttpBodyStream sets the value of the httpBodyStream property.
-// The request body as an input stream.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbodystream
-func (u_ URLRequest) SetHttpBodyStream(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpBodyStream:"), value)
-}
-
-// The main document URL associated with the request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/maindocumenturl
-func (u_ URLRequest) MainDocumentURL() URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("mainDocumentURL"))
-	return rv
-}
-
-
-// SetMainDocumentURL sets the value of the mainDocumentURL property.
-// The main document URL associated with the request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/maindocumenturl
-func (u_ URLRequest) SetMainDocumentURL(value URL) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setMainDocumentURL:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/requiresdnssecvalidation
-func (u_ URLRequest) RequiresDNSSECValidation() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("requiresDNSSECValidation"))
-	return rv
-}
-
-
-// SetRequiresDNSSECValidation sets the value of the requiresDNSSECValidation property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/requiresdnssecvalidation
-func (u_ URLRequest) SetRequiresDNSSECValidation(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRequiresDNSSECValidation:"), value)
-}
-
-// The request’s cache policy.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.property
-func (u_ URLRequest) CachePolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("cachePolicy"))
-	return rv
-}
-
-
-// SetCachePolicy sets the value of the cachePolicy property.
-// The request’s cache policy.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.property
-func (u_ URLRequest) SetCachePolicy(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCachePolicy:"), value)
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/assumeshttp3capable
 func (u_ URLRequest) AssumesHTTP3Capable() bool {
@@ -198,90 +93,6 @@ func (u_ URLRequest) AssumesHTTP3Capable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/assumeshttp3capable
 func (u_ URLRequest) SetAssumesHTTP3Capable(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAssumesHTTP3Capable:"), value)
-}
-
-// The HTTP request method.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
-func (u_ URLRequest) HttpMethod() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("httpMethod"))
-	return rv
-}
-
-
-// SetHttpMethod sets the value of the httpMethod property.
-// The HTTP request method.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
-func (u_ URLRequest) SetHttpMethod(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpMethod:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cookiepartitionidentifier
-func (u_ URLRequest) CookiePartitionIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("cookiePartitionIdentifier"))
-	return rv
-}
-
-
-// SetCookiePartitionIdentifier sets the value of the cookiePartitionIdentifier property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cookiepartitionidentifier
-func (u_ URLRequest) SetCookiePartitionIdentifier(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCookiePartitionIdentifier:"), objc.String(value))
-}
-
-// A Boolean value that indicates whether the request is allowed to use the cellular radio (if present).
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowscellularaccess
-func (u_ URLRequest) AllowsCellularAccess() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("allowsCellularAccess"))
-	return rv
-}
-
-
-// SetAllowsCellularAccess sets the value of the allowsCellularAccess property.
-// A Boolean value that indicates whether the request is allowed to use the cellular radio (if present).
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowscellularaccess
-func (u_ URLRequest) SetAllowsCellularAccess(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsCellularAccess:"), value)
-}
-
-// A Boolean value that indicates whether the request should continue transmitting data before receiving a response from an earlier transmission.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpshouldusepipelining
-func (u_ URLRequest) HttpShouldUsePipelining() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("httpShouldUsePipelining"))
-	return rv
-}
-
-
-// SetHttpShouldUsePipelining sets the value of the httpShouldUsePipelining property.
-// A Boolean value that indicates whether the request should continue transmitting data before receiving a response from an earlier transmission.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpshouldusepipelining
-func (u_ URLRequest) SetHttpShouldUsePipelining(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpShouldUsePipelining:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsultraconstrainednetworkaccess
-func (u_ URLRequest) AllowsUltraConstrainedNetworkAccess() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("allowsUltraConstrainedNetworkAccess"))
-	return rv
-}
-
-
-// SetAllowsUltraConstrainedNetworkAccess sets the value of the allowsUltraConstrainedNetworkAccess property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsultraconstrainednetworkaccess
-func (u_ URLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsUltraConstrainedNetworkAccess:"), value)
 }
 
 // A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
@@ -320,6 +131,75 @@ func (u_ URLRequest) SetHttpBody(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpBody:"), value)
 }
 
+// The entity that initiates the network request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.property
+func (u_ URLRequest) Attribution() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("attribution"))
+	return rv
+}
+
+
+// SetAttribution sets the value of the attribution property.
+// The entity that initiates the network request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.property
+func (u_ URLRequest) SetAttribution(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAttribution:"), value)
+}
+
+// The HTTP request method.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
+func (u_ URLRequest) HttpMethod() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("httpMethod"))
+	return rv
+}
+
+
+// SetHttpMethod sets the value of the httpMethod property.
+// The HTTP request method.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
+func (u_ URLRequest) SetHttpMethod(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpMethod:"), objc.String(value))
+}
+
+// The main document URL associated with the request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/maindocumenturl
+func (u_ URLRequest) MainDocumentURL() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("mainDocumentURL"))
+	return rv
+}
+
+
+// SetMainDocumentURL sets the value of the mainDocumentURL property.
+// The main document URL associated with the request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/maindocumenturl
+func (u_ URLRequest) SetMainDocumentURL(value URL) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setMainDocumentURL:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsultraconstrainednetworkaccess
+func (u_ URLRequest) AllowsUltraConstrainedNetworkAccess() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("allowsUltraConstrainedNetworkAccess"))
+	return rv
+}
+
+
+// SetAllowsUltraConstrainedNetworkAccess sets the value of the allowsUltraConstrainedNetworkAccess property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsultraconstrainednetworkaccess
+func (u_ URLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsUltraConstrainedNetworkAccess:"), value)
+}
+
 // A dictionary containing all of the HTTP header fields for a request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allhttpheaderfields
@@ -338,6 +218,57 @@ func (u_ URLRequest) SetAllHTTPHeaderFields(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllHTTPHeaderFields:"), objc.String(value))
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/requiresdnssecvalidation
+func (u_ URLRequest) RequiresDNSSECValidation() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("requiresDNSSECValidation"))
+	return rv
+}
+
+
+// SetRequiresDNSSECValidation sets the value of the requiresDNSSECValidation property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/requiresdnssecvalidation
+func (u_ URLRequest) SetRequiresDNSSECValidation(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRequiresDNSSECValidation:"), value)
+}
+
+// The request’s cache policy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.property
+func (u_ URLRequest) CachePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("cachePolicy"))
+	return rv
+}
+
+
+// SetCachePolicy sets the value of the cachePolicy property.
+// The request’s cache policy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.property
+func (u_ URLRequest) SetCachePolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCachePolicy:"), value)
+}
+
+// A Boolean value that indicates whether the request should continue transmitting data before receiving a response from an earlier transmission.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpshouldusepipelining
+func (u_ URLRequest) HttpShouldUsePipelining() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("httpShouldUsePipelining"))
+	return rv
+}
+
+
+// SetHttpShouldUsePipelining sets the value of the httpShouldUsePipelining property.
+// A Boolean value that indicates whether the request should continue transmitting data before receiving a response from an earlier transmission.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpshouldusepipelining
+func (u_ URLRequest) SetHttpShouldUsePipelining(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpShouldUsePipelining:"), value)
+}
+
 // The URL being requested.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/url
@@ -354,6 +285,75 @@ func (u_ URLRequest) Url() URL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/url
 func (u_ URLRequest) SetUrl(value URL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUrl:"), value)
+}
+
+// A Boolean value that indicates whether the request is allowed to use the cellular radio (if present).
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowscellularaccess
+func (u_ URLRequest) AllowsCellularAccess() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("allowsCellularAccess"))
+	return rv
+}
+
+
+// SetAllowsCellularAccess sets the value of the allowsCellularAccess property.
+// A Boolean value that indicates whether the request is allowed to use the cellular radio (if present).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowscellularaccess
+func (u_ URLRequest) SetAllowsCellularAccess(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsCellularAccess:"), value)
+}
+
+// The request body as an input stream.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbodystream
+func (u_ URLRequest) HttpBodyStream() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("httpBodyStream"))
+	return rv
+}
+
+
+// SetHttpBodyStream sets the value of the httpBodyStream property.
+// The request body as an input stream.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbodystream
+func (u_ URLRequest) SetHttpBodyStream(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpBodyStream:"), value)
+}
+
+// The request’s timeout interval, in seconds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
+func (u_ URLRequest) TimeoutInterval() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("timeoutInterval"))
+	return rv
+}
+
+
+// SetTimeoutInterval sets the value of the timeoutInterval property.
+// The request’s timeout interval, in seconds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
+func (u_ URLRequest) SetTimeoutInterval(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutInterval:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cookiepartitionidentifier
+func (u_ URLRequest) CookiePartitionIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("cookiePartitionIdentifier"))
+	return rv
+}
+
+
+// SetCookiePartitionIdentifier sets the value of the cookiePartitionIdentifier property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cookiepartitionidentifier
+func (u_ URLRequest) SetCookiePartitionIdentifier(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCookiePartitionIdentifier:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.

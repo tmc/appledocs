@@ -80,24 +80,6 @@ func NewURLCache() URLCache {
 }
 
 
-// The current size of the in-memory cache, in bytes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentmemoryusage
-func (u_ URLCache) CurrentMemoryUsage() int {
-	rv := objc.Send[int](u_.ID, objc.Sel("currentMemoryUsage"))
-	return rv
-}
-
-
-// SetCurrentMemoryUsage sets the value of the currentMemoryUsage property.
-// The current size of the in-memory cache, in bytes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentmemoryusage
-func (u_ URLCache) SetCurrentMemoryUsage(value int) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentMemoryUsage:"), value)
-}
-
 // The current size of the on-disk cache, in bytes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentdiskusage
@@ -132,6 +114,24 @@ func (u_ URLCache) MemoryCapacity() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/memorycapacity
 func (u_ URLCache) SetMemoryCapacity(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMemoryCapacity:"), value)
+}
+
+// The current size of the in-memory cache, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentmemoryusage
+func (u_ URLCache) CurrentMemoryUsage() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("currentMemoryUsage"))
+	return rv
+}
+
+
+// SetCurrentMemoryUsage sets the value of the currentMemoryUsage property.
+// The current size of the in-memory cache, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentmemoryusage
+func (u_ URLCache) SetCurrentMemoryUsage(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentMemoryUsage:"), value)
 }
 
 // The capacity of the on-disk cache, in bytes.

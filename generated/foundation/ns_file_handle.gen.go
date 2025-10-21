@@ -401,22 +401,22 @@ func (f_ FileHandle) NSFileHandleNotificationMonitorModes() string {
 	return rv
 }
 
-// The data currently available in the receiver.
+// The file’s contents, as an asynchronous sequence of bytes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
-func (f_ FileHandle) AvailableData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("availableData"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/bytes
+func (f_ FileHandle) Bytes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("bytes"))
 	return rv
 }
 
 
-// SetAvailableData sets the value of the availableData property.
-// The data currently available in the receiver.
+// SetBytes sets the value of the bytes property.
+// The file’s contents, as an asynchronous sequence of bytes.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
-func (f_ FileHandle) SetAvailableData(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableData:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/bytes
+func (f_ FileHandle) SetBytes(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setBytes:"), value)
 }
 
 // The POSIX file descriptor associated with the receiver.
@@ -437,22 +437,22 @@ func (f_ FileHandle) SetFileDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileDescriptor:"), value)
 }
 
-// The file’s contents, as an asynchronous sequence of bytes.
+// The data currently available in the receiver.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/bytes
-func (f_ FileHandle) Bytes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("bytes"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
+func (f_ FileHandle) AvailableData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("availableData"))
 	return rv
 }
 
 
-// SetBytes sets the value of the bytes property.
-// The file’s contents, as an asynchronous sequence of bytes.
+// SetAvailableData sets the value of the availableData property.
+// The data currently available in the receiver.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/bytes
-func (f_ FileHandle) SetBytes(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setBytes:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
+func (f_ FileHandle) SetAvailableData(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableData:"), value)
 }
 
 // The file handle associated with a null device.

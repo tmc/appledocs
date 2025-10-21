@@ -167,24 +167,6 @@ func (n_ NumberFormatter) SetIsPartialStringValidationEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsPartialStringValidationEnabled:"), value)
 }
 
-// The text attributes used to display the NaN (“not a number”) string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
-func (n_ NumberFormatter) TextAttributesForNotANumber() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("textAttributesForNotANumber"))
-	return rv
-}
-
-
-// SetTextAttributesForNotANumber sets the value of the textAttributesForNotANumber property.
-// The text attributes used to display the NaN (“not a number”) string.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
-func (n_ NumberFormatter) SetTextAttributesForNotANumber(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNotANumber:"), objc.String(value))
-}
-
 // The string the receiver uses as the prefix for positive values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
@@ -219,6 +201,24 @@ func (n_ NumberFormatter) IsLenient() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/islenient
 func (n_ NumberFormatter) SetIsLenient(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsLenient:"), value)
+}
+
+// The text attributes used to display the NaN (“not a number”) string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
+func (n_ NumberFormatter) TextAttributesForNotANumber() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("textAttributesForNotANumber"))
+	return rv
+}
+
+
+// SetTextAttributesForNotANumber sets the value of the textAttributesForNotANumber property.
+// The text attributes used to display the NaN (“not a number”) string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
+func (n_ NumberFormatter) SetTextAttributesForNotANumber(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNotANumber:"), objc.String(value))
 }
 
 // Determines whether the receiver allows as input floating-point values (that is, values that include the period character [ ]).

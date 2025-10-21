@@ -88,24 +88,6 @@ func (c_ ConditionLock) LockWhenCondition(condition int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("lockWhenCondition:"), condition)
 }
 
-// The name associated with the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/name
-func (c_ ConditionLock) Name() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-// The name associated with the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/name
-func (c_ ConditionLock) SetName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
 // The condition associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/condition
@@ -122,6 +104,24 @@ func (c_ ConditionLock) Condition() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/condition
 func (c_ ConditionLock) SetCondition(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCondition:"), value)
+}
+
+// The name associated with the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/name
+func (c_ ConditionLock) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name associated with the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/name
+func (c_ ConditionLock) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

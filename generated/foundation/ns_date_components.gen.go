@@ -123,22 +123,22 @@ func (d_ DateComponents) Week() int {
 	return rv
 }
 
-// A Boolean value that indicates whether the current combination of properties represents a date which exists in the current calendar.
+// Specifies a date component without a value.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isvaliddate
-func (d_ DateComponents) IsValidDate() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("isValidDate"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponentundefined
+func (d_ DateComponents) NSDateComponentUndefined() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("NSDateComponentUndefined"))
 	return rv
 }
 
 
-// SetIsValidDate sets the value of the isValidDate property.
-// A Boolean value that indicates whether the current combination of properties represents a date which exists in the current calendar.
+// SetNSDateComponentUndefined sets the value of the NSDateComponentUndefined property.
+// Specifies a date component without a value.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isvaliddate
-func (d_ DateComponents) SetIsValidDate(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setIsValidDate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponentundefined
+func (d_ DateComponents) SetNSDateComponentUndefined(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setNSDateComponentUndefined:"), value)
 }
 
 // A Boolean value that indicates whether the month is a leap month.
@@ -174,22 +174,22 @@ func (d_ DateComponents) SetIsRepeatedDay(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsRepeatedDay:"), value)
 }
 
-// Specifies a date component without a value.
+// A Boolean value that indicates whether the current combination of properties represents a date which exists in the current calendar.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponentundefined
-func (d_ DateComponents) NSDateComponentUndefined() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("NSDateComponentUndefined"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isvaliddate
+func (d_ DateComponents) IsValidDate() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isValidDate"))
 	return rv
 }
 
 
-// SetNSDateComponentUndefined sets the value of the NSDateComponentUndefined property.
-// Specifies a date component without a value.
+// SetIsValidDate sets the value of the isValidDate property.
+// A Boolean value that indicates whether the current combination of properties represents a date which exists in the current calendar.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponentundefined
-func (d_ DateComponents) SetNSDateComponentUndefined(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setNSDateComponentUndefined:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isvaliddate
+func (d_ DateComponents) SetIsValidDate(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsValidDate:"), value)
 }
 
 // The calendar used to interpret the date components.

@@ -90,24 +90,6 @@ func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string_ s
 	return rv
 }
 
-// The formatting style of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.property
-func (p_ PersonNameComponentsFormatter) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
-	return rv
-}
-
-
-// SetStyle sets the value of the style property.
-// The formatting style of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.property
-func (p_ PersonNameComponentsFormatter) SetStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/locale
 func (p_ PersonNameComponentsFormatter) Locale() unsafe.Pointer {
@@ -139,6 +121,24 @@ func (p_ PersonNameComponentsFormatter) IsPhonetic() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/isphonetic
 func (p_ PersonNameComponentsFormatter) SetIsPhonetic(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPhonetic:"), value)
+}
+
+// The formatting style of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.property
+func (p_ PersonNameComponentsFormatter) Style() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
+	return rv
+}
+
+
+// SetStyle sets the value of the style property.
+// The formatting style of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.property
+func (p_ PersonNameComponentsFormatter) SetStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
 
 

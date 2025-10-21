@@ -98,24 +98,6 @@ func (s_ ScriptExecutionContext) SetObjectBeingTested(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setObjectBeingTested:"), value)
 }
 
-// Sets the top-level object for an object-specifier evaluation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/toplevelobject
-func (s_ ScriptExecutionContext) TopLevelObject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("topLevelObject"))
-	return rv
-}
-
-
-// SetTopLevelObject sets the value of the topLevelObject property.
-// Sets the top-level object for an object-specifier evaluation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/toplevelobject
-func (s_ ScriptExecutionContext) SetTopLevelObject(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTopLevelObject:"), value)
-}
-
 // Sets the top-level container object for a range-specifier evaluation to a give object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/rangecontainerobject
@@ -132,6 +114,24 @@ func (s_ ScriptExecutionContext) RangeContainerObject() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/rangecontainerobject
 func (s_ ScriptExecutionContext) SetRangeContainerObject(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRangeContainerObject:"), value)
+}
+
+// Sets the top-level object for an object-specifier evaluation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/toplevelobject
+func (s_ ScriptExecutionContext) TopLevelObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("topLevelObject"))
+	return rv
+}
+
+
+// SetTopLevelObject sets the value of the topLevelObject property.
+// Sets the top-level object for an object-specifier evaluation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/toplevelobject
+func (s_ ScriptExecutionContext) SetTopLevelObject(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTopLevelObject:"), value)
 }
 
 

@@ -89,73 +89,40 @@ func (m_ MutableURLRequest) BindToHotspotHelperCommand(command unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("bindToHotspotHelperCommand:"), command)
 }
 
-// The entity that initiates the network request.
+// The request body as an input stream.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/attribution
-func (m_ MutableURLRequest) Attribution() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attribution"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbodystream
+func (m_ MutableURLRequest) HttpBodyStream() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("httpBodyStream"))
 	return rv
 }
 
 
-// SetAttribution sets the value of the attribution property.
-// The entity that initiates the network request.
+// SetHttpBodyStream sets the value of the httpBodyStream property.
+// The request body as an input stream.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/attribution
-func (m_ MutableURLRequest) SetAttribution(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAttribution:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbodystream
+func (m_ MutableURLRequest) SetHttpBodyStream(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpBodyStream:"), value)
 }
 
+// A Boolean value that indicates whether a connection can use the device’s cellular network (if present).
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/requiresdnssecvalidation
-func (m_ MutableURLRequest) RequiresDNSSECValidation() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("requiresDNSSECValidation"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowscellularaccess
+func (m_ MutableURLRequest) AllowsCellularAccess() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("allowsCellularAccess"))
 	return rv
 }
 
 
-// SetRequiresDNSSECValidation sets the value of the requiresDNSSECValidation property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/requiresdnssecvalidation
-func (m_ MutableURLRequest) SetRequiresDNSSECValidation(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiresDNSSECValidation:"), value)
-}
-
-// A Boolean value that indicates whether the request can continue transmitting data before receiving a response from an earlier transmission.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpshouldusepipelining
-func (m_ MutableURLRequest) HttpShouldUsePipelining() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("httpShouldUsePipelining"))
-	return rv
-}
-
-
-// SetHttpShouldUsePipelining sets the value of the httpShouldUsePipelining property.
-// A Boolean value that indicates whether the request can continue transmitting data before receiving a response from an earlier transmission.
+// SetAllowsCellularAccess sets the value of the allowsCellularAccess property.
+// A Boolean value that indicates whether a connection can use the device’s cellular network (if present).
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpshouldusepipelining
-func (m_ MutableURLRequest) SetHttpShouldUsePipelining(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpShouldUsePipelining:"), value)
-}
-
-// The request’s timeout interval, in seconds.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/timeoutinterval
-func (m_ MutableURLRequest) TimeoutInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeoutInterval"))
-	return rv
-}
-
-
-// SetTimeoutInterval sets the value of the timeoutInterval property.
-// The request’s timeout interval, in seconds.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/timeoutinterval
-func (m_ MutableURLRequest) SetTimeoutInterval(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeoutInterval:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowscellularaccess
+func (m_ MutableURLRequest) SetAllowsCellularAccess(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsCellularAccess:"), value)
 }
 
 // A Boolean value that indicates whether the request should use the default cookie handling for the request.
@@ -174,6 +141,24 @@ func (m_ MutableURLRequest) HttpShouldHandleCookies() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpshouldhandlecookies
 func (m_ MutableURLRequest) SetHttpShouldHandleCookies(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpShouldHandleCookies:"), value)
+}
+
+// The main document URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/maindocumenturl
+func (m_ MutableURLRequest) MainDocumentURL() URL {
+	rv := objc.Send[URL](m_.ID, objc.Sel("mainDocumentURL"))
+	return rv
+}
+
+
+// SetMainDocumentURL sets the value of the mainDocumentURL property.
+// The main document URL.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/maindocumenturl
+func (m_ MutableURLRequest) SetMainDocumentURL(value URL) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMainDocumentURL:"), value)
 }
 
 // A dictionary containing all of the HTTP header fields for a request.
@@ -195,39 +180,6 @@ func (m_ MutableURLRequest) SetAllHTTPHeaderFields(value string) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowspersistentdns
-func (m_ MutableURLRequest) AllowsPersistentDNS() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("allowsPersistentDNS"))
-	return rv
-}
-
-
-// SetAllowsPersistentDNS sets the value of the allowsPersistentDNS property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowspersistentdns
-func (m_ MutableURLRequest) SetAllowsPersistentDNS(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsPersistentDNS:"), value)
-}
-
-// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsconstrainednetworkaccess
-func (m_ MutableURLRequest) AllowsConstrainedNetworkAccess() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("allowsConstrainedNetworkAccess"))
-	return rv
-}
-
-
-// SetAllowsConstrainedNetworkAccess sets the value of the allowsConstrainedNetworkAccess property.
-// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsconstrainednetworkaccess
-func (m_ MutableURLRequest) SetAllowsConstrainedNetworkAccess(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsConstrainedNetworkAccess:"), value)
-}
-
-//
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsultraconstrainednetworkaccess
 func (m_ MutableURLRequest) AllowsUltraConstrainedNetworkAccess() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsUltraConstrainedNetworkAccess"))
@@ -243,54 +195,18 @@ func (m_ MutableURLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool) {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/assumeshttp3capable
-func (m_ MutableURLRequest) AssumesHTTP3Capable() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("assumesHTTP3Capable"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/requiresdnssecvalidation
+func (m_ MutableURLRequest) RequiresDNSSECValidation() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("requiresDNSSECValidation"))
 	return rv
 }
 
 
-// SetAssumesHTTP3Capable sets the value of the assumesHTTP3Capable property.
+// SetRequiresDNSSECValidation sets the value of the requiresDNSSECValidation property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/assumeshttp3capable
-func (m_ MutableURLRequest) SetAssumesHTTP3Capable(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAssumesHTTP3Capable:"), value)
-}
-
-// A Boolean value that indicates whether a connection can use the device’s cellular network (if present).
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowscellularaccess
-func (m_ MutableURLRequest) AllowsCellularAccess() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("allowsCellularAccess"))
-	return rv
-}
-
-
-// SetAllowsCellularAccess sets the value of the allowsCellularAccess property.
-// A Boolean value that indicates whether a connection can use the device’s cellular network (if present).
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowscellularaccess
-func (m_ MutableURLRequest) SetAllowsCellularAccess(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsCellularAccess:"), value)
-}
-
-// A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsexpensivenetworkaccess
-func (m_ MutableURLRequest) AllowsExpensiveNetworkAccess() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("allowsExpensiveNetworkAccess"))
-	return rv
-}
-
-
-// SetAllowsExpensiveNetworkAccess sets the value of the allowsExpensiveNetworkAccess property.
-// A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsexpensivenetworkaccess
-func (m_ MutableURLRequest) SetAllowsExpensiveNetworkAccess(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsExpensiveNetworkAccess:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/requiresdnssecvalidation
+func (m_ MutableURLRequest) SetRequiresDNSSECValidation(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiresDNSSECValidation:"), value)
 }
 
 //
@@ -308,22 +224,37 @@ func (m_ MutableURLRequest) SetCookiePartitionIdentifier(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCookiePartitionIdentifier:"), objc.String(value))
 }
 
-// The main document URL.
+// A Boolean value that indicates whether the request can continue transmitting data before receiving a response from an earlier transmission.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/maindocumenturl
-func (m_ MutableURLRequest) MainDocumentURL() URL {
-	rv := objc.Send[URL](m_.ID, objc.Sel("mainDocumentURL"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpshouldusepipelining
+func (m_ MutableURLRequest) HttpShouldUsePipelining() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("httpShouldUsePipelining"))
 	return rv
 }
 
 
-// SetMainDocumentURL sets the value of the mainDocumentURL property.
-// The main document URL.
+// SetHttpShouldUsePipelining sets the value of the httpShouldUsePipelining property.
+// A Boolean value that indicates whether the request can continue transmitting data before receiving a response from an earlier transmission.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/maindocumenturl
-func (m_ MutableURLRequest) SetMainDocumentURL(value URL) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMainDocumentURL:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpshouldusepipelining
+func (m_ MutableURLRequest) SetHttpShouldUsePipelining(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpShouldUsePipelining:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowspersistentdns
+func (m_ MutableURLRequest) AllowsPersistentDNS() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("allowsPersistentDNS"))
+	return rv
+}
+
+
+// SetAllowsPersistentDNS sets the value of the allowsPersistentDNS property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowspersistentdns
+func (m_ MutableURLRequest) SetAllowsPersistentDNS(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsPersistentDNS:"), value)
 }
 
 // The network service type of the connection.
@@ -344,6 +275,42 @@ func (m_ MutableURLRequest) SetNetworkServiceType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkServiceType:"), value)
 }
 
+// A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsexpensivenetworkaccess
+func (m_ MutableURLRequest) AllowsExpensiveNetworkAccess() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("allowsExpensiveNetworkAccess"))
+	return rv
+}
+
+
+// SetAllowsExpensiveNetworkAccess sets the value of the allowsExpensiveNetworkAccess property.
+// A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsexpensivenetworkaccess
+func (m_ MutableURLRequest) SetAllowsExpensiveNetworkAccess(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsExpensiveNetworkAccess:"), value)
+}
+
+// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsconstrainednetworkaccess
+func (m_ MutableURLRequest) AllowsConstrainedNetworkAccess() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("allowsConstrainedNetworkAccess"))
+	return rv
+}
+
+
+// SetAllowsConstrainedNetworkAccess sets the value of the allowsConstrainedNetworkAccess property.
+// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsconstrainednetworkaccess
+func (m_ MutableURLRequest) SetAllowsConstrainedNetworkAccess(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsConstrainedNetworkAccess:"), value)
+}
+
 // The request body.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbody
@@ -362,22 +329,55 @@ func (m_ MutableURLRequest) SetHttpBody(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpBody:"), value)
 }
 
-// The request body as an input stream.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbodystream
-func (m_ MutableURLRequest) HttpBodyStream() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("httpBodyStream"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/assumeshttp3capable
+func (m_ MutableURLRequest) AssumesHTTP3Capable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("assumesHTTP3Capable"))
 	return rv
 }
 
 
-// SetHttpBodyStream sets the value of the httpBodyStream property.
-// The request body as an input stream.
+// SetAssumesHTTP3Capable sets the value of the assumesHTTP3Capable property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/assumeshttp3capable
+func (m_ MutableURLRequest) SetAssumesHTTP3Capable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAssumesHTTP3Capable:"), value)
+}
+
+// The request’s timeout interval, in seconds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/timeoutinterval
+func (m_ MutableURLRequest) TimeoutInterval() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeoutInterval"))
+	return rv
+}
+
+
+// SetTimeoutInterval sets the value of the timeoutInterval property.
+// The request’s timeout interval, in seconds.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbodystream
-func (m_ MutableURLRequest) SetHttpBodyStream(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpBodyStream:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/timeoutinterval
+func (m_ MutableURLRequest) SetTimeoutInterval(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeoutInterval:"), value)
+}
+
+// The entity that initiates the network request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/attribution
+func (m_ MutableURLRequest) Attribution() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attribution"))
+	return rv
+}
+
+
+// SetAttribution sets the value of the attribution property.
+// The entity that initiates the network request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/attribution
+func (m_ MutableURLRequest) SetAttribution(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttribution:"), value)
 }
 
 // The request’s cache policy.

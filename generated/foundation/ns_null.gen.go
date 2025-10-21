@@ -88,8 +88,9 @@ func (nc _NullClass) Null() unsafe.Pointer {
 	return rv
 }
 
+// A value indicating that a requested item couldn’t be found or doesn’t exist.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-9t5v2
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
 func (n_ Null) NSNotFound() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("NSNotFound"))
 	return rv

@@ -98,6 +98,24 @@ func (u_ URLResponse) SetMimeType(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMimeType:"), objc.String(value))
 }
 
+// A suggested filename for the response data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
+func (u_ URLResponse) SuggestedFilename() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("suggestedFilename"))
+	return rv
+}
+
+
+// SetSuggestedFilename sets the value of the suggestedFilename property.
+// A suggested filename for the response data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
+func (u_ URLResponse) SetSuggestedFilename(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedFilename:"), objc.String(value))
+}
+
 // The expected length of the response’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/expectedcontentlength
@@ -132,24 +150,6 @@ func (u_ URLResponse) TextEncodingName() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
 func (u_ URLResponse) SetTextEncodingName(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTextEncodingName:"), objc.String(value))
-}
-
-// A suggested filename for the response data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
-func (u_ URLResponse) SuggestedFilename() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("suggestedFilename"))
-	return rv
-}
-
-
-// SetSuggestedFilename sets the value of the suggestedFilename property.
-// A suggested filename for the response data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
-func (u_ URLResponse) SetSuggestedFilename(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedFilename:"), objc.String(value))
 }
 
 // The URL for the response.

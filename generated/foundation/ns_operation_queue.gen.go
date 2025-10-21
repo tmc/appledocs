@@ -104,60 +104,6 @@ func (o_ OperationQueue) CancelAllOperations() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("cancelAllOperations"))
 }
 
-// The execution priority of the operation in an operation queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
-func (o_ OperationQueue) QueuePriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("queuePriority"))
-	return rv
-}
-
-
-// SetQueuePriority sets the value of the queuePriority property.
-// The execution priority of the operation in an operation queue.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
-func (o_ OperationQueue) SetQueuePriority(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
-}
-
-// An object that represents the total progress of the operations executing in the queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
-func (o_ OperationQueue) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("progress"))
-	return rv
-}
-
-
-// SetProgress sets the value of the progress property.
-// An object that represents the total progress of the operations executing in the queue.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
-func (o_ OperationQueue) SetProgress(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setProgress:"), value)
-}
-
-// A Boolean value indicating whether the operation can be performed now.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
-func (o_ OperationQueue) IsReady() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isReady"))
-	return rv
-}
-
-
-// SetIsReady sets the value of the isReady property.
-// A Boolean value indicating whether the operation can be performed now.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
-func (o_ OperationQueue) SetIsReady(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIsReady:"), value)
-}
-
 // The default service level to apply to operations that the queue invokes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/qualityofservice
@@ -174,6 +120,24 @@ func (o_ OperationQueue) QualityOfService() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/qualityofservice
 func (o_ OperationQueue) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
+}
+
+// A Boolean value indicating whether the queue is actively scheduling operations for execution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/issuspended
+func (o_ OperationQueue) IsSuspended() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isSuspended"))
+	return rv
+}
+
+
+// SetIsSuspended sets the value of the isSuspended property.
+// A Boolean value indicating whether the queue is actively scheduling operations for execution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/issuspended
+func (o_ OperationQueue) SetIsSuspended(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIsSuspended:"), value)
 }
 
 // The name of the operation queue.
@@ -230,22 +194,58 @@ func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setMaxConcurrentOperationCount:"), value)
 }
 
-// A Boolean value indicating whether the queue is actively scheduling operations for execution.
+// A Boolean value indicating whether the operation can be performed now.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/issuspended
-func (o_ OperationQueue) IsSuspended() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isSuspended"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
+func (o_ OperationQueue) IsReady() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isReady"))
 	return rv
 }
 
 
-// SetIsSuspended sets the value of the isSuspended property.
-// A Boolean value indicating whether the queue is actively scheduling operations for execution.
+// SetIsReady sets the value of the isReady property.
+// A Boolean value indicating whether the operation can be performed now.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/issuspended
-func (o_ OperationQueue) SetIsSuspended(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIsSuspended:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
+func (o_ OperationQueue) SetIsReady(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIsReady:"), value)
+}
+
+// An object that represents the total progress of the operations executing in the queue.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
+func (o_ OperationQueue) Progress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("progress"))
+	return rv
+}
+
+
+// SetProgress sets the value of the progress property.
+// An object that represents the total progress of the operations executing in the queue.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
+func (o_ OperationQueue) SetProgress(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setProgress:"), value)
+}
+
+// The execution priority of the operation in an operation queue.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
+func (o_ OperationQueue) QueuePriority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("queuePriority"))
+	return rv
+}
+
+
+// SetQueuePriority sets the value of the queuePriority property.
+// The execution priority of the operation in an operation queue.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
+func (o_ OperationQueue) SetQueuePriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
 }
 
 // The number of operations currently in the queue.

@@ -97,60 +97,6 @@ func (e_ Expression) ExpressionValueWithObjectContext(object objc.ID, context un
 	return rv
 }
 
-// The collection of expressions in an aggregate expression, or the collection element of a subquery expression.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/collection
-func (e_ Expression) Collection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("collection"))
-	return rv
-}
-
-
-// SetCollection sets the value of the collection property.
-// The collection of expressions in an aggregate expression, or the collection element of a subquery expression.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/collection
-func (e_ Expression) SetCollection(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setCollection:"), value)
-}
-
-// An expression to evalutate if a conditional expression’s predicate evaluates to false.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
-func (e_ Expression) `false`() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("`false`"))
-	return rv
-}
-
-
-// Set`false` sets the value of the `false` property.
-// An expression to evalutate if a conditional expression’s predicate evaluates to false.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
-func (e_ Expression) Set`false`(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("set`false`:"), value)
-}
-
-// The right expression of an aggregate expression.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/right
-func (e_ Expression) Right() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("right"))
-	return rv
-}
-
-
-// SetRight sets the value of the right property.
-// The right expression of an aggregate expression.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/right
-func (e_ Expression) SetRight(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setRight:"), value)
-}
-
 // The constant value of the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/constantvalue
@@ -167,60 +113,6 @@ func (e_ Expression) ConstantValue() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/constantvalue
 func (e_ Expression) SetConstantValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setConstantValue:"), value)
-}
-
-// The operand for the expression.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
-func (e_ Expression) Operand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("operand"))
-	return rv
-}
-
-
-// SetOperand sets the value of the operand property.
-// The operand for the expression.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
-func (e_ Expression) SetOperand(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setOperand:"), value)
-}
-
-// The function for the expression.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
-func (e_ Expression) Function() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("function"))
-	return rv
-}
-
-
-// SetFunction sets the value of the function property.
-// The function for the expression.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
-func (e_ Expression) SetFunction(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setFunction:"), objc.String(value))
-}
-
-// The left expression of an aggregate expression.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/left
-func (e_ Expression) Left() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("left"))
-	return rv
-}
-
-
-// SetLeft sets the value of the left property.
-// The left expression of an aggregate expression.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/left
-func (e_ Expression) SetLeft(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setLeft:"), value)
 }
 
 // The key path for the expression.
@@ -241,6 +133,24 @@ func (e_ Expression) SetKeyPath(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setKeyPath:"), objc.String(value))
 }
 
+// An expression to evalutate if a conditional expression’s predicate evaluates to true.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
+func (e_ Expression) `true`() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("`true`"))
+	return rv
+}
+
+
+// Set`true` sets the value of the `true` property.
+// An expression to evalutate if a conditional expression’s predicate evaluates to true.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
+func (e_ Expression) Set`true`(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("set`true`:"), value)
+}
+
 // The expression type for the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.property
@@ -257,6 +167,78 @@ func (e_ Expression) ExpressionType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.property
 func (e_ Expression) SetExpressionType(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionType:"), value)
+}
+
+// The collection of expressions in an aggregate expression, or the collection element of a subquery expression.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/collection
+func (e_ Expression) Collection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("collection"))
+	return rv
+}
+
+
+// SetCollection sets the value of the collection property.
+// The collection of expressions in an aggregate expression, or the collection element of a subquery expression.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/collection
+func (e_ Expression) SetCollection(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setCollection:"), value)
+}
+
+// The operand for the expression.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
+func (e_ Expression) Operand() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("operand"))
+	return rv
+}
+
+
+// SetOperand sets the value of the operand property.
+// The operand for the expression.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
+func (e_ Expression) SetOperand(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setOperand:"), value)
+}
+
+// The right expression of an aggregate expression.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/right
+func (e_ Expression) Right() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("right"))
+	return rv
+}
+
+
+// SetRight sets the value of the right property.
+// The right expression of an aggregate expression.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/right
+func (e_ Expression) SetRight(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setRight:"), value)
+}
+
+// The left expression of an aggregate expression.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/left
+func (e_ Expression) Left() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("left"))
+	return rv
+}
+
+
+// SetLeft sets the value of the left property.
+// The left expression of an aggregate expression.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/left
+func (e_ Expression) SetLeft(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLeft:"), value)
 }
 
 // The variable for the expression.
@@ -277,40 +259,22 @@ func (e_ Expression) SetVariable(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVariable:"), objc.String(value))
 }
 
-// The arguments for the expression.
+// An expression to evalutate if a conditional expression’s predicate evaluates to false.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
-func (e_ Expression) Arguments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("arguments"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
+func (e_ Expression) `false`() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("`false`"))
 	return rv
 }
 
 
-// SetArguments sets the value of the arguments property.
-// The arguments for the expression.
+// Set`false` sets the value of the `false` property.
+// An expression to evalutate if a conditional expression’s predicate evaluates to false.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
-func (e_ Expression) SetArguments(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setArguments:"), value)
-}
-
-// An expression to evalutate if a conditional expression’s predicate evaluates to true.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
-func (e_ Expression) `true`() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("`true`"))
-	return rv
-}
-
-
-// Set`true` sets the value of the `true` property.
-// An expression to evalutate if a conditional expression’s predicate evaluates to true.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
-func (e_ Expression) Set`true`(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("set`true`:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
+func (e_ Expression) Set`false`(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("set`false`:"), value)
 }
 
 // The block that executes to evaluate the expression.
@@ -329,6 +293,42 @@ func (e_ Expression) ExpressionBlock() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressionblock
 func (e_ Expression) SetExpressionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionBlock:"), value)
+}
+
+// The arguments for the expression.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
+func (e_ Expression) Arguments() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("arguments"))
+	return rv
+}
+
+
+// SetArguments sets the value of the arguments property.
+// The arguments for the expression.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
+func (e_ Expression) SetArguments(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setArguments:"), value)
+}
+
+// The function for the expression.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
+func (e_ Expression) Function() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("function"))
+	return rv
+}
+
+
+// SetFunction sets the value of the function property.
+// The function for the expression.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
+func (e_ Expression) SetFunction(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setFunction:"), objc.String(value))
 }
 
 // An expression to evalutate if a conditional expression’s predicate evaluates to false.
