@@ -15,8 +15,6 @@ func ExampleNewMutableSet() {
 	_ = foundation.NewMutableSet()
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
 
 // ExampleNewMutableSetWithCapacity demonstrates how to create a MutableSet instance using NewMutableSetWithCapacity.
 // Returns an initialized mutable set with a given initial capacity.
@@ -26,12 +24,6 @@ func ExampleNewMutableSetWithCapacity() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of range prepareInitMethodsWithClassName
-// end of if HasInitMethods
 
-// end of with .Class
 
 

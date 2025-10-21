@@ -15,19 +15,6 @@ func ExampleNewString() {
 	_ = foundation.NewString()
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
 
 // ExampleNewStringWithContentsOfFile demonstrates how to create a String instance using NewStringWithContentsOfFile.
 // Initializes the receiver, a newly allocated   object, by reading data from the file named by  .
@@ -37,14 +24,6 @@ func ExampleNewStringWithContentsOfFile() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
 
 // ExampleNewStringWithFormat demonstrates how to create a String instance using NewStringWithFormat.
 // Returns an   object initialized by using a given format string as a template into which the remaining argument values are substituted.
@@ -54,11 +33,6 @@ func ExampleNewStringWithFormat() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
 
 // ExampleNewStringWithString demonstrates how to create a String instance using NewStringWithString.
 // Returns an   object initialized by copying the characters from another given string.
@@ -68,16 +42,6 @@ func ExampleNewStringWithString() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of range prepareInitMethodsWithClassName
-// end of if HasInitMethods
 
-// end of with .Class
 
 

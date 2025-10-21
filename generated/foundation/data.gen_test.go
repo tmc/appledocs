@@ -8,8 +8,6 @@ import (
 
 // Suppress unused import errors
 var _ = foundation.NewData
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
 
 // ExampleNewDataWithBase64Encoding demonstrates how to create a Data instance using NewDataWithBase64Encoding.
 // Initializes a data object initialized with the given Base64 encoded string.
@@ -19,12 +17,6 @@ func ExampleNewDataWithBase64Encoding() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
 
 // ExampleNewDataWithContentsOfFile demonstrates how to create a Data instance using NewDataWithContentsOfFile.
 // Initializes a data object with the content of the file at a given path.
@@ -34,9 +26,6 @@ func ExampleNewDataWithContentsOfFile() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
 
 // ExampleNewDataWithContentsOfMappedFile demonstrates how to create a Data instance using NewDataWithContentsOfMappedFile.
 // Initializes a data object with the contents of the mapped file specified by a given path.
@@ -46,14 +35,6 @@ func ExampleNewDataWithContentsOfMappedFile() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of range prepareInitMethodsWithClassName
-// end of if HasInitMethods
 
-// end of with .Class
 
 

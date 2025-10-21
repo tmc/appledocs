@@ -8,8 +8,6 @@ import (
 
 // Suppress unused import errors
 var _ = foundation.NewXPCConnection
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
 
 // ExampleNewXPCConnectionWithServiceName demonstrates how to create a XPCConnection instance using NewXPCConnectionWithServiceName.
 // Initializes an   object to connect to an   object in an XPC service, identified by a service name.
@@ -19,11 +17,6 @@ func ExampleNewXPCConnectionWithServiceName() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of range prepareInitMethodsWithClassName
-// end of if HasInitMethods
 
-// end of with .Class
 
 

@@ -8,10 +8,6 @@ import (
 
 // Suppress unused import errors
 var _ = foundation.NewMorphologyPronoun
-// end of if canGenerateAllParams
-// end of range prepareInitMethodsWithClassName
-// end of if HasInitMethods
 
-// end of with .Class
 
 

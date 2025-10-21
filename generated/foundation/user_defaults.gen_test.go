@@ -15,8 +15,6 @@ func ExampleNewUserDefaults() {
 	_ = foundation.NewUserDefaults()
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
 
 // ExampleNewUserDefaultsWithSuiteName demonstrates how to create a UserDefaults instance using NewUserDefaultsWithSuiteName.
 // Creates a user defaults object initialized with the defaults for the specified database name.
@@ -26,11 +24,6 @@ func ExampleNewUserDefaultsWithSuiteName() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of range prepareInitMethodsWithClassName
-// end of if HasInitMethods
 
-// end of with .Class
 
 

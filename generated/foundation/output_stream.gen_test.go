@@ -8,7 +8,6 @@ import (
 
 // Suppress unused import errors
 var _ = foundation.NewOutputStream
-// end of if canGenerateAllParams
 
 // ExampleNewOutputStreamToFileAtPathAppend demonstrates how to create a OutputStream instance using NewOutputStreamToFileAtPathAppend.
 // Returns an initialized output stream for writing to a specified file.
@@ -19,8 +18,6 @@ func ExampleNewOutputStreamToFileAtPathAppend() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
 
 // ExampleNewOutputStreamToMemory demonstrates how to create a OutputStream instance using NewOutputStreamToMemory.
 // Returns an initialized output stream that will write to memory.
@@ -28,12 +25,6 @@ func ExampleNewOutputStreamToMemory() {
 	_ = foundation.NewOutputStreamToMemory()
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of range prepareInitMethodsWithClassName
-// end of if HasInitMethods
 
-// end of with .Class
 
 

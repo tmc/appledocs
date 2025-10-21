@@ -8,8 +8,6 @@ import (
 
 // Suppress unused import errors
 var _ = foundation.NewDecimalNumber
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
 
 // ExampleNewDecimalNumberWithString demonstrates how to create a DecimalNumber instance using NewDecimalNumberWithString.
 // Initializes a decimal number so that its value is equivalent to that in a given numeric string.
@@ -19,12 +17,6 @@ func ExampleNewDecimalNumberWithString() {
 	)
 	// Output:
 }
-// end of example function
-// end of if canGenerateAllParams
-// end of if canGenerateAllParams
-// end of range prepareInitMethodsWithClassName
-// end of if HasInitMethods
 
-// end of with .Class
 
 
