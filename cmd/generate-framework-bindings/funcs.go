@@ -796,17 +796,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	originalType := objcType
 	objcType = strings.TrimSpace(objcType)
 
-	// Debug logging for problematic types
-	if strings.Contains(objcType, "^") && strings.HasPrefix(objcType, "[]") {
-		defer func() {
-			if strings.HasPrefix(originalType, "[]") {
-				elementType := strings.TrimPrefix(originalType, "[]")
-				if strings.Contains(elementType, "^") {
-					fmt.Fprintf(os.Stderr, "DEBUG: Mapping array of blocks: %q\n", originalType)
-				}
-			}
-		}()
-	}
+
 
 	// Strip __kindof qualifier (e.g., "__kindof NSView *" -> "NSView *")
 	// __kindof is an Objective-C type qualifier meaning "this type or any subclass"
@@ -956,18 +946,8 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "unsafe.Pointer"
 	}
 
-	// DEBUG: Uncomment to see what occ2go.MapCTypeToGo returns
-	// if framework == "AppKit" && strings.Contains(goType, "NSTextCheckingResult") {
-	// 	fmt.Fprintf(os.Stderr, "DEBUG: occ2go.MapCTypeToGo(%q, %q) = %q\n", objcType, framework, goType)
-	// }
-
 	// Resolve cross-framework types (e.g., CGAffineTransform -> coregraphics.CGAffineTransform)
 	goType = resolveType(framework, goType)
-
-	// DEBUG: Uncomment to see what resolveType returns
-	// if framework == "AppKit" && strings.Contains(goType, "NSTextCheckingResult") {
-	// 	fmt.Fprintf(os.Stderr, "DEBUG: resolveType(%q, ...) = %q\n", framework, goType)
-	// }
 
 	return goType
 }
@@ -2476,6 +2456,14 @@ type ClassImports struct {
 	NeedsUniformTypeIdentifiers bool
 }
 
+// typeReferencesFramework checks if a Go type string contains a reference to a specific framework.
+// It handles container types like []pkg.Type, map[string]pkg.Type, etc. by checking if the
+// framework package name appears with a dot (pkg.) anywhere in the type string.
+func typeReferencesFramework(goType, framework string) bool {
+	// Check for "framework." pattern which indicates the framework is used as a package qualifier
+	return strings.Contains(goType, framework+".")
+}
+
 // getClassImports analyzes a class and its methods to determine which framework imports are needed.
 // This consolidates the complex import detection logic from the template into a single helper function.
 // Returns a ClassImports struct with boolean flags for each potential import.
@@ -2546,26 +2534,24 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 		// Check return type
 		if method.ReturnType != "" {
 			goType := mapObjCTypeToGo(method.ReturnType, framework)
-			// Use Contains instead of HasPrefix to catch array types like []appkit.View
-			if strings.Contains(goType, "appkit.") {
+			if typeReferencesFramework(goType, "appkit") {
 				imports.NeedsAppKit = true
-			} else if strings.Contains(goType, "quartzcore.") {
+			} else if typeReferencesFramework(goType, "quartzcore") {
 				imports.NeedsQuartzCore = true
-			} else if strings.Contains(goType, "cloudkit.") {
+			} else if typeReferencesFramework(goType, "cloudkit") {
 				imports.NeedsCloudKit = true
 			}
 		}
 		// Check parameters
 		for _, param := range method.Parameters {
 			goType := mapObjCTypeToGo(param.Type, framework)
-			// Use Contains instead of HasPrefix to catch array types
-			if strings.Contains(goType, "foundation.") {
+			if typeReferencesFramework(goType, "foundation") {
 				imports.NeedsFoundation = true
-			} else if strings.Contains(goType, "appkit.") {
+			} else if typeReferencesFramework(goType, "appkit") {
 				imports.NeedsAppKit = true
-			} else if strings.Contains(goType, "quartzcore.") {
+			} else if typeReferencesFramework(goType, "quartzcore") {
 				imports.NeedsQuartzCore = true
-			} else if strings.Contains(goType, "cloudkit.") {
+			} else if typeReferencesFramework(goType, "cloudkit") {
 				imports.NeedsCloudKit = true
 			}
 		}
@@ -2579,16 +2565,14 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 		for _, method := range class.Methods {
 			// Check return type
 			goReturnType := mapObjCTypeToGo(method.ReturnType, framework)
-			// Use Contains instead of HasPrefix to catch array types like []foundation.NSURL
-			if strings.Contains(goReturnType, "foundation.") {
+			if typeReferencesFramework(goReturnType, "foundation") {
 				imports.NeedsFoundation = true
 				break
 			}
 			// Check parameter types
 			for _, param := range method.Parameters {
 				goParamType := mapObjCTypeToGo(param.Type, framework)
-				// Use Contains instead of HasPrefix to catch array types like []foundation.NSURL
-				if strings.Contains(goParamType, "foundation.") {
+				if typeReferencesFramework(goParamType, "foundation") {
 					imports.NeedsFoundation = true
 					break
 				}
@@ -2950,6 +2934,23 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 				}
 			}
 		}
+	}
+
+	// After scanning all frameworks, override common Foundation types to ensure they're always mapped to foundation
+	// This prevents other frameworks (accessibility, authenticationservices, etc.) from claiming Foundation types
+	// just because they come first alphabetically
+	foundationCoreTypes := []string{
+		"NSURL", "URL",
+		"NSNumber", "Number",
+		"NSString", "String",
+		"NSArray", "Array",
+		"NSDictionary", "Dictionary",
+		"NSData", "Data",
+		"NSDate", "Date",
+		"NSSet", "Set",
+	}
+	for _, typeName := range foundationCoreTypes {
+		crossFrameworkTypeRegistry[typeName] = "foundation"
 	}
 
 	return nil

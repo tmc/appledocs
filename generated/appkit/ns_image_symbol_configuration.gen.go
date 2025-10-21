@@ -81,19 +81,11 @@ func NewImageSymbolConfiguration() ImageSymbolConfiguration {
 }
 
 
-// Creates a hierarchical color configuration using the color you specify.
+// Create a configuration with a specific color rendering mode.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(hierarchicalColor:)
-func NewImageSymbolConfigurationWithHierarchicalColor(hierarchicalColor unsafe.Pointer) ImageSymbolConfiguration {
-	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithHierarchicalColor:"), hierarchicalColor)
-	return rv
-}
-
-// Creates a color configuration by specifying a palette of colors.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(paletteColors:)
-func NewImageSymbolConfigurationWithPaletteColors(paletteColors unsafe.Pointer) ImageSymbolConfiguration {
-	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithPaletteColors:"), paletteColors)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(colorRenderingMode:)
+func NewImageSymbolConfigurationWithColorRenderingMode(mode unsafe.Pointer) ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithColorRenderingMode:"), mode)
 	return rv
 }
 
@@ -113,6 +105,14 @@ func NewImageSymbolConfigurationWithPointSizeWeightScale(pointSize float64, weig
 	return rv
 }
 
+// Creates a symbol configuration using the scale you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(scale:)
+func NewImageSymbolConfigurationWithScale(scale unsafe.Pointer) ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithScale:"), scale)
+	return rv
+}
+
 // Creates a symbol configuration with the specified text style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(textStyle:)
@@ -129,19 +129,19 @@ func NewImageSymbolConfigurationWithTextStyleScale(style unsafe.Pointer, scale u
 	return rv
 }
 
-// Create a configuration with a specific color rendering mode.
+// Creates a hierarchical color configuration using the color you specify.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(colorRenderingMode:)
-func NewImageSymbolConfigurationWithColorRenderingMode(mode unsafe.Pointer) ImageSymbolConfiguration {
-	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithColorRenderingMode:"), mode)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(hierarchicalColor:)
+func NewImageSymbolConfigurationWithHierarchicalColor(hierarchicalColor unsafe.Pointer) ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithHierarchicalColor:"), hierarchicalColor)
 	return rv
 }
 
-// Creates a symbol configuration using the scale you specify.
+// Creates a color configuration by specifying a palette of colors.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(scale:)
-func NewImageSymbolConfigurationWithScale(scale unsafe.Pointer) ImageSymbolConfiguration {
-	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithScale:"), scale)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(paletteColors:)
+func NewImageSymbolConfigurationWithPaletteColors(paletteColors unsafe.Pointer) ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithPaletteColors:"), paletteColors)
 	return rv
 }
 

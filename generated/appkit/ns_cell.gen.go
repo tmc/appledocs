@@ -127,15 +127,6 @@ func NewCell() Cell {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
-func NewCellWithCoder(coder unsafe.Pointer) Cell {
-	instance := getCellClass().Alloc()
-	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
 // Returns an object initialized with the specified image and set to have the cell’s default menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(imageCell:)
@@ -152,6 +143,15 @@ func NewCellImageCell(image unsafe.Pointer) Cell {
 func NewCellTextCell(string_ string) Cell {
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string_))
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
+func NewCellWithCoder(coder unsafe.Pointer) Cell {
+	instance := getCellClass().Alloc()
+	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

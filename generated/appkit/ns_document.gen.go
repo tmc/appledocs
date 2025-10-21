@@ -178,6 +178,16 @@ func NewDocument() Document {
 }
 
 
+// Initializes a document located by a URL of a specified type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(contentsOf:ofType:)
+func NewDocumentWithContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) Document {
+	instance := getDocumentClass().Alloc()
+	rv := objc.Send[Document](instance.ID, objc.Sel("initWithContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes a document with the specified contents, and places the resulting document’s file at the designated location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(for:withContentsOf:ofType:)
@@ -194,16 +204,6 @@ func NewDocumentForURLWithContentsOfURLOfTypeError(urlOrNil unsafe.Pointer, cont
 func NewDocumentWithTypeError(typeName string, outError unsafe.Pointer) Document {
 	instance := getDocumentClass().Alloc()
 	rv := objc.Send[Document](instance.ID, objc.Sel("initWithType:error:"), objc.String(typeName), outError)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes a document located by a URL of a specified type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(contentsOf:ofType:)
-func NewDocumentWithContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) Document {
-	instance := getDocumentClass().Alloc()
-	rv := objc.Send[Document](instance.ID, objc.Sel("initWithContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
 	rv.Autorelease()
 	return rv
 }

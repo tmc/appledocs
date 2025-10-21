@@ -81,18 +81,18 @@ func NewSplitViewItem() SplitViewItem {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/init(inspectorWithViewController:)
-func NewSplitViewItemInspectorWithViewController(viewController unsafe.Pointer) SplitViewItem {
-	rv := objc.Send[SplitViewItem](objc.ID(getSplitViewItemClass().class), objc.Sel("inspectorWithViewController:"), viewController)
-	return rv
-}
-
 // Creates a split view item that represents a content list for the specified view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/init(contentListWithViewController:)
 func NewSplitViewItemContentListWithViewController(viewController unsafe.Pointer) SplitViewItem {
 	rv := objc.Send[SplitViewItem](objc.ID(getSplitViewItemClass().class), objc.Sel("contentListWithViewController:"), viewController)
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/init(inspectorWithViewController:)
+func NewSplitViewItemInspectorWithViewController(viewController unsafe.Pointer) SplitViewItem {
+	rv := objc.Send[SplitViewItem](objc.ID(getSplitViewItemClass().class), objc.Sel("inspectorWithViewController:"), viewController)
 	return rv
 }
 

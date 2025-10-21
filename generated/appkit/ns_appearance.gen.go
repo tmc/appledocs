@@ -81,14 +81,6 @@ func NewAppearance() Appearance {
 }
 
 
-// Creates an appearance object based on the name of one of the standard system appearances.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/init(named:)
-func NewAppearanceNamed(name unsafe.Pointer) Appearance {
-	rv := objc.Send[Appearance](objc.ID(getAppearanceClass().class), objc.Sel("appearanceNamed:"), name)
-	return rv
-}
-
 // Creates an appearance object from the named appearance file located in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/init(appearanceNamed:bundle:)
@@ -96,6 +88,14 @@ func NewAppearanceWithAppearanceNamedBundle(name unsafe.Pointer, bundle unsafe.P
 	instance := getAppearanceClass().Alloc()
 	rv := objc.Send[Appearance](instance.ID, objc.Sel("initWithAppearanceNamed:bundle:"), name, bundle)
 	rv.Autorelease()
+	return rv
+}
+
+// Creates an appearance object based on the name of one of the standard system appearances.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/init(named:)
+func NewAppearanceNamed(name unsafe.Pointer) Appearance {
+	rv := objc.Send[Appearance](objc.ID(getAppearanceClass().class), objc.Sel("appearanceNamed:"), name)
 	return rv
 }
 
