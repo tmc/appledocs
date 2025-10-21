@@ -30,3 +30,10 @@ func ExampleNewDictionaryWithContentsOfFile() {
 
 
 
+
+
+
+
+
+
+

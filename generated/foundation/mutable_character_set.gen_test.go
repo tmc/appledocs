@@ -18,7 +18,6 @@ func ExampleNewMutableCharacterSetWithContentsOfFile() {
 	// Output:
 }
 
-
 // ExampleNewMutableCharacterSetWithRange demonstrates how to create a MutableCharacterSet instance using NewMutableCharacterSetWithRange.
 // Returns a character set containing characters with Unicode values in a given range.
 func ExampleNewMutableCharacterSetWithRange() {
@@ -27,7 +26,6 @@ func ExampleNewMutableCharacterSetWithRange() {
 	)
 	// Output:
 }
-
 
 
 

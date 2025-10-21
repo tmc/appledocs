@@ -16,7 +16,6 @@ func ExampleNewMutableSet() {
 	// Output:
 }
 
-
 // ExampleNewMutableSetWithCapacity demonstrates how to create a MutableSet instance using NewMutableSetWithCapacity.
 // Returns an initialized mutable set with a given initial capacity.
 func ExampleNewMutableSetWithCapacity() {

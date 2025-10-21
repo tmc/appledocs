@@ -17,6 +17,16 @@ func ExampleNewString() {
 }
 
 
+
+
+
+
+
+
+
+
+
+
 // ExampleNewStringWithContentsOfFile demonstrates how to create a String instance using NewStringWithContentsOfFile.
 // Initializes the receiver, a newly allocated   object, by reading data from the file named by  .
 func ExampleNewStringWithContentsOfFile() {
@@ -25,6 +35,11 @@ func ExampleNewStringWithContentsOfFile() {
 	)
 	// Output:
 }
+
+
+
+
+
 
 
 // ExampleNewStringWithFormat demonstrates how to create a String instance using NewStringWithFormat.
@@ -37,6 +52,8 @@ func ExampleNewStringWithFormat() {
 }
 
 
+
+
 // ExampleNewStringWithString demonstrates how to create a String instance using NewStringWithString.
 // Returns an   object initialized by copying the characters from another given string.
 func ExampleNewStringWithString() {
@@ -45,6 +62,10 @@ func ExampleNewStringWithString() {
 	)
 	// Output:
 }
+
+
+
+
 
 
 

@@ -9,6 +9,7 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewSortDescriptor
 
+
 // ExampleNewSortDescriptorWithKeyAscending demonstrates how to create a SortDescriptor instance using NewSortDescriptorWithKeyAscending.
 // Creates a sort descriptor with a specified string key path and sort order.
 func ExampleNewSortDescriptorWithKeyAscending() {
@@ -30,7 +31,6 @@ func ExampleNewSortDescriptorWithKeyAscendingSelector() {
 	)
 	// Output:
 }
-
 
 
 
