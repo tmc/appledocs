@@ -15,5 +15,3 @@ func ExampleNewURLSession() {
 	// Output:
 }
 
-
-

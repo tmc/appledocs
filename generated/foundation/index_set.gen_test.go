@@ -18,5 +18,3 @@ func ExampleNewIndexSetWithIndex() {
 	// Output:
 }
 
-
-

@@ -16,5 +16,3 @@ func ExampleNewNetServiceBrowser() {
 	// Output:
 }
 
-
-

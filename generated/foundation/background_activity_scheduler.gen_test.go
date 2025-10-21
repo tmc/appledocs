@@ -18,5 +18,3 @@ func ExampleNewBackgroundActivitySchedulerWithIdentifier() {
 	// Output:
 }
 
-
-

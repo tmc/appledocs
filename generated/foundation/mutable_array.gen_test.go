@@ -18,5 +18,3 @@ func ExampleNewMutableArrayWithContentsOfFile() {
 	// Output:
 }
 
-
-

@@ -19,5 +19,3 @@ func ExampleNewUserNotificationActionWithIdentifierTitle() {
 	// Output:
 }
 
-
-

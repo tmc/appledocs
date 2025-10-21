@@ -16,5 +16,3 @@ func ExampleNewISO8601DateFormatter() {
 	// Output:
 }
 
-
-

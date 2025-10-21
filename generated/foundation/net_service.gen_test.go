@@ -20,5 +20,3 @@ func ExampleNewNetServiceWithDomainTypeName() {
 	// Output:
 }
 
-
-

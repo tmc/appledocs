@@ -15,5 +15,3 @@ func ExampleNewURLSessionStreamTask() {
 	// Output:
 }
 
-
-

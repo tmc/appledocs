@@ -16,5 +16,3 @@ func ExampleNewSet() {
 	// Output:
 }
 
-
-

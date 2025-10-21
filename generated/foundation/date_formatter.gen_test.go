@@ -19,5 +19,3 @@ func ExampleNewDateFormatterWithDateFormatAllowNaturalLanguage() {
 	// Output:
 }
 
-
-

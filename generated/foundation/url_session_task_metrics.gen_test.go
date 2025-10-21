@@ -16,5 +16,3 @@ func ExampleNewURLSessionTaskMetrics() {
 	// Output:
 }
 
-
-

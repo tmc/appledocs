@@ -16,5 +16,3 @@ func ExampleNewURLSessionTask() {
 	// Output:
 }
 
-
-

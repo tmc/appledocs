@@ -18,7 +18,6 @@ func ExampleNewSortDescriptorWithKeyAscending() {
 	)
 	// Output:
 }
-
 // ExampleNewSortDescriptorWithKeyAscendingSelector demonstrates how to create a SortDescriptor instance using NewSortDescriptorWithKeyAscendingSelector.
 // Creates a sort descriptor with a specified string key path, ordering, and comparison selector.
 func ExampleNewSortDescriptorWithKeyAscendingSelector() {
@@ -29,6 +28,4 @@ func ExampleNewSortDescriptorWithKeyAscendingSelector() {
 	)
 	// Output:
 }
-
-
 

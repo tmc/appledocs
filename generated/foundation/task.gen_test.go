@@ -16,5 +16,3 @@ func ExampleNewTask() {
 	// Output:
 }
 
-
-

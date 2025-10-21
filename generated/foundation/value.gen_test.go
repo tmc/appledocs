@@ -17,7 +17,6 @@ func ExampleNewValueWithPoint() {
 	)
 	// Output:
 }
-
 // ExampleNewValueWithRange demonstrates how to create a Value instance using NewValueWithRange.
 // Creates a new value object containing the specified Foundation range structure.
 func ExampleNewValueWithRange() {
@@ -26,7 +25,6 @@ func ExampleNewValueWithRange() {
 	)
 	// Output:
 }
-
 // ExampleNewValueWithRect demonstrates how to create a Value instance using NewValueWithRect.
 // Creates a new value object containing the specified Foundation rectangle structure.
 func ExampleNewValueWithRect() {
@@ -35,7 +33,6 @@ func ExampleNewValueWithRect() {
 	)
 	// Output:
 }
-
 // ExampleNewValueWithSize demonstrates how to create a Value instance using NewValueWithSize.
 // Creates a new value object containing the specified Foundation size structure.
 func ExampleNewValueWithSize() {
@@ -44,6 +41,4 @@ func ExampleNewValueWithSize() {
 	)
 	// Output:
 }
-
-
 

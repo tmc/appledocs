@@ -18,5 +18,3 @@ func ExampleNewXMLDTDNodeWithXMLString() {
 	// Output:
 }
 
-
-
