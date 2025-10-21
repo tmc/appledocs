@@ -503,28 +503,10 @@ func canGenerateTestValue(args ...string) bool {
 	return false
 }
 
-// isEssentialSelector checks if a selector is one of the essential methods
-// we generate manually (alloc, new, init, autorelease, etc.) for classes with init methods.
-// These should be skipped when generating methods from Apple's documentation to avoid duplicates.
+// isEssentialSelector checks if a selector is essential for object lifecycle.
+// Delegates to occ2go.IsEssentialSelector.
 func isEssentialSelector(selector string) bool {
-	essentialSelectors := []string{
-		"alloc",
-		"allocWithZone:",
-		"new",
-		"init",
-		"autorelease",
-		"copy",
-		"copyWithZone:",
-		"mutableCopy",
-		"mutableCopyWithZone:",
-	}
-
-	for _, essential := range essentialSelectors {
-		if selector == essential {
-			return true
-		}
-	}
-	return false
+	return occ2go.IsEssentialSelector(selector)
 }
 
 // convertDocURL converts Apple's doc:// scheme URLs to https:// URLs.

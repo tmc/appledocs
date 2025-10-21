@@ -249,29 +249,9 @@ func sortMethodsByName(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 }
 
 // isConstructor checks if a method is a constructor (returns instance of class).
+// Delegates to occ2go.IsFactoryMethodForClass.
 func isConstructor(method *occ2go.ParsedMethod, className string) bool {
-	// Class methods that start with class name or common constructor prefixes
-	if !method.IsClassMethod {
-		return false
-	}
-
-	// Check if it's a factory method that returns the class type
-	selector := strings.ToLower(method.Selector)
-	classNameLower := strings.ToLower(stripObjCPrefix(className))
-
-	if strings.HasPrefix(selector, classNameLower) {
-		return true
-	}
-
-	// Common factory method patterns
-	factoryPrefixes := []string{"new", "create", "make", "alloc"}
-	for _, prefix := range factoryPrefixes {
-		if strings.HasPrefix(selector, prefix) {
-			return true
-		}
-	}
-
-	return false
+	return occ2go.IsFactoryMethodForClass(method.Selector, className, method.IsClassMethod)
 }
 
 // classDependsOnCoreGraphics returns true if any method in the class uses CoreGraphics types
@@ -308,104 +288,7 @@ func classDependsOnCoreGraphics(methods []*occ2go.ParsedMethod, framework string
 // These methods should not be redeclared in child interfaces.
 // Returns true for common NSObject methods that appear in most/all classes.
 func isInheritedFromNSObject(selector string) bool {
-	// Common NSObject instance methods that should not be redeclared
-	nsobjectMethods := map[string]bool{
-		// Memory management
-		"retain":      true,
-		"release":     true,
-		"autorelease": true,
-		"retainCount": true,
-
-		// Object identity and comparison
-		"isEqual:":            true,
-		"isEqualTo:":          true,
-		"hash":                true,
-		"isKindOfClass:":      true,
-		"isMemberOfClass:":    true,
-		"conformsToProtocol:": true,
-		"respondsToSelector:": true,
-
-		// Description and debugging
-		"description":      true,
-		"debugDescription": true,
-		"className":        true,
-		"superclass":       true,
-
-		// KVC (Key-Value Coding)
-		"valueForKey:":                    true,
-		"setValue:forKey:":                true,
-		"valueForKeyPath:":                true,
-		"setValue:forKeyPath:":            true,
-		"valueForUndefinedKey:":           true,
-		"setValue:forUndefinedKey:":       true,
-		"setNilValueForKey:":              true,
-		"dictionaryWithValuesForKeys:":    true,
-		"setValuesForKeysWithDictionary:": true,
-		"valuesForKeys:":                  true,
-		"takeValuesFromDictionary:":       true,
-
-		// KVO (Key-Value Observing)
-		"addObserver:forKeyPath:options:context:":             true,
-		"removeObserver:forKeyPath:":                          true,
-		"removeObserver:forKeyPath:context:":                  true,
-		"willChangeValueForKey:":                              true,
-		"didChangeValueForKey:":                               true,
-		"willChange:valuesAtIndexes:forKey:":                  true,
-		"didChange:valuesAtIndexes:forKey:":                   true,
-		"willChangeValueForKey:withSetMutation:usingObjects:": true,
-		"didChangeValueForKey:withSetMutation:usingObjects:":  true,
-		"observationInfo":                                     true,
-		"setObservationInfo:":                                 true,
-		"observeValueForKeyPath:ofObject:change:context:":     true,
-		"keyPathsForValuesAffectingValueForKey:":              true,
-		"automaticallyNotifiesObserversForKey:":               true,
-
-		// Notifications
-		"postNotification:":                     true,
-		"postNotificationName:object:":          true,
-		"postNotificationName:object:userInfo:": true,
-
-		// Copying
-		"copy":                 true,
-		"mutableCopy":          true,
-		"copyWithZone:":        true,
-		"mutableCopyWithZone:": true,
-
-		// Archiving
-		"classForCoder":              true,
-		"replacementObjectForCoder:": true,
-		"awakeAfterUsingCoder:":      true,
-
-		// Forwarding
-		"forwardInvocation:":           true,
-		"forwardingTargetForSelector:": true,
-		"methodSignatureForSelector:":  true,
-		"doesNotRecognizeSelector:":    true,
-
-		// Scripting
-		"scriptingIsEqualTo:":              true,
-		"scriptingIsLessThanOrEqualTo:":    true,
-		"scriptingIsLessThan:":             true,
-		"scriptingIsGreaterThanOrEqualTo:": true,
-		"scriptingIsGreaterThan:":          true,
-		"scriptingBeginsWith:":             true,
-		"scriptingEndsWith:":               true,
-		"scriptingContains:":               true,
-
-		// Performance
-		"performSelector:":                                         true,
-		"performSelector:withObject:":                              true,
-		"performSelector:withObject:withObject:":                   true,
-		"performSelectorOnMainThread:withObject:waitUntilDone:":    true,
-		"performSelector:onThread:withObject:waitUntilDone:":       true,
-		"performSelectorInBackground:withObject:":                  true,
-		"performSelector:withObject:afterDelay:":                   true,
-		"performSelector:withObject:afterDelay:inModes:":           true,
-		"cancelPreviousPerformRequestsWithTarget:":                 true,
-		"cancelPreviousPerformRequestsWithTarget:selector:object:": true,
-	}
-
-	return nsobjectMethods[selector]
+	return occ2go.IsInheritedFromNSObject(selector)
 }
 
 // filterPropertyMethods removes methods that are generated from properties (getters/setters)
