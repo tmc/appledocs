@@ -102,8 +102,8 @@ func (t_ TextViewportLayoutController) SetDelegate(value unsafe.Pointer) {
 // Returns the text layout manager for this viewport layout controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/textlayoutmanager
-func (t_ TextViewportLayoutController) TextLayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textLayoutManager"))
+func (t_ TextViewportLayoutController) TextLayoutManager() NSTextLayoutManager {
+	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (t_ TextViewportLayoutController) TextLayoutManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/textlayoutmanager
-func (t_ TextViewportLayoutController) SetTextLayoutManager(value unsafe.Pointer) {
+func (t_ TextViewportLayoutController) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
 
@@ -138,8 +138,8 @@ func (t_ TextViewportLayoutController) SetViewportBounds(value coregraphics.CGRe
 // Returns the text range of the current viewport layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportrange
-func (t_ TextViewportLayoutController) ViewportRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("viewportRange"))
+func (t_ TextViewportLayoutController) ViewportRange() NSTextRange {
+	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("viewportRange"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (t_ TextViewportLayoutController) ViewportRange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportrange
-func (t_ TextViewportLayoutController) SetViewportRange(value unsafe.Pointer) {
+func (t_ TextViewportLayoutController) SetViewportRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setViewportRange:"), value)
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -138,8 +139,8 @@ func (t_ TextAttachment) SetBounds(value coregraphics.CGRect) {
 // The contents for the text attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/contents
-func (t_ TextAttachment) Contents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("contents"))
+func (t_ TextAttachment) Contents() foundation.Data {
+	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("contents"))
 	return rv
 }
 
@@ -149,7 +150,7 @@ func (t_ TextAttachment) Contents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/contents
-func (t_ TextAttachment) SetContents(value unsafe.Pointer) {
+func (t_ TextAttachment) SetContents(value foundation.IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
 }
 
@@ -192,8 +193,8 @@ func (t_ TextAttachment) SetFileWrapper(value unsafe.Pointer) {
 // An instance of the relevant image class that represents the contents of the text attachment object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/image
-func (t_ TextAttachment) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("image"))
+func (t_ TextAttachment) Image() Image {
+	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -203,7 +204,7 @@ func (t_ TextAttachment) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/image
-func (t_ TextAttachment) SetImage(value unsafe.Pointer) {
+func (t_ TextAttachment) SetImage(value IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
 }
 

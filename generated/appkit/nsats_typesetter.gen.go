@@ -85,8 +85,8 @@ func NewATSTypesetter() ATSTypesetter {
 // The backing store that contains the text on which this typesetter operates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/attributedstring
-func (a_ ATSTypesetter) AttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("attributedString"))
+func (a_ ATSTypesetter) AttributedString() AttributedString {
+	rv := objc.Send[AttributedString](a_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (a_ ATSTypesetter) AttributedString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/attributedstring
-func (a_ ATSTypesetter) SetAttributedString(value unsafe.Pointer) {
+func (a_ ATSTypesetter) SetAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedString:"), value)
 }
 
@@ -121,8 +121,8 @@ func (a_ ATSTypesetter) SetBidiProcessingEnabled(value bool) {
 // The text container for the text being typeset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/currenttextcontainer
-func (a_ ATSTypesetter) CurrentTextContainer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentTextContainer"))
+func (a_ ATSTypesetter) CurrentTextContainer() NSTextContainer {
+	rv := objc.Send[NSTextContainer](a_.ID, objc.Sel("currentTextContainer"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (a_ ATSTypesetter) CurrentTextContainer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/currenttextcontainer
-func (a_ ATSTypesetter) SetCurrentTextContainer(value unsafe.Pointer) {
+func (a_ ATSTypesetter) SetCurrentTextContainer(value ITextContainer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentTextContainer:"), value)
 }
 
@@ -157,8 +157,8 @@ func (a_ ATSTypesetter) SetHyphenationFactor(value unsafe.Pointer) {
 // The layout manager for the text being typeset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/layoutmanager
-func (a_ ATSTypesetter) LayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("layoutManager"))
+func (a_ ATSTypesetter) LayoutManager() NSLayoutManager {
+	rv := objc.Send[NSLayoutManager](a_.ID, objc.Sel("layoutManager"))
 	return rv
 }
 
@@ -168,7 +168,7 @@ func (a_ ATSTypesetter) LayoutManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/layoutmanager
-func (a_ ATSTypesetter) SetLayoutManager(value unsafe.Pointer) {
+func (a_ ATSTypesetter) SetLayoutManager(value ILayoutManager) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLayoutManager:"), value)
 }
 
@@ -204,7 +204,7 @@ func (a_ ATSTypesetter) ParagraphGlyphRange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/paragraphglyphrange
-func (a_ ATSTypesetter) SetParagraphGlyphRange(value foundation.Range) {
+func (a_ ATSTypesetter) SetParagraphGlyphRange(value foundation.IRange) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParagraphGlyphRange:"), value)
 }
 
@@ -222,7 +222,7 @@ func (a_ ATSTypesetter) ParagraphSeparatorGlyphRange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/paragraphseparatorglyphrange
-func (a_ ATSTypesetter) SetParagraphSeparatorGlyphRange(value foundation.Range) {
+func (a_ ATSTypesetter) SetParagraphSeparatorGlyphRange(value foundation.IRange) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParagraphSeparatorGlyphRange:"), value)
 }
 

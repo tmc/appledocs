@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CustomImageRep] class.
@@ -87,7 +87,7 @@ func NewCustomImageRep() CustomImageRep {
 // Returns a representation of an image initialized with the specified delegate information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep/init(draw:delegate:)
-func NewCustomImageRepWithDrawSelectorDelegate(selector objc.SEL, delegate objc.ID) CustomImageRep {
+func NewCustomImageRepWithDrawSelectorDelegate(selector objc.SEL, delegate objectivec.IObject) CustomImageRep {
 	instance := getCustomImageRepClass().Alloc()
 	rv := objc.Send[CustomImageRep](instance.ID, objc.Sel("initWithDrawSelector:delegate:"), selector, delegate)
 	rv.Autorelease()
@@ -124,8 +124,8 @@ func (c_ CustomImageRep) SetDrawSelector(value unsafe.Pointer) {
 // The destination rectangle of the drawing handler block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/drawinghandler
-func (c_ CustomImageRep) DrawingHandler() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("drawingHandler"))
+func (c_ CustomImageRep) DrawingHandler() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("drawingHandler"))
 	return rv
 }
 
@@ -135,7 +135,7 @@ func (c_ CustomImageRep) DrawingHandler() coregraphics.CGRect {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/drawinghandler
-func (c_ CustomImageRep) SetDrawingHandler(value coregraphics.CGRect) {
+func (c_ CustomImageRep) SetDrawingHandler(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawingHandler:"), value)
 }
 

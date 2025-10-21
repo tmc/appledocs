@@ -96,8 +96,8 @@ func (b_ ButtonTouchBarItem) SetAction(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/bezelcolor
-func (b_ ButtonTouchBarItem) BezelColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bezelColor"))
+func (b_ ButtonTouchBarItem) BezelColor() Color {
+	rv := objc.Send[Color](b_.ID, objc.Sel("bezelColor"))
 	return rv
 }
 
@@ -105,7 +105,7 @@ func (b_ ButtonTouchBarItem) BezelColor() unsafe.Pointer {
 // SetBezelColor sets the value of the bezelColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/bezelcolor
-func (b_ ButtonTouchBarItem) SetBezelColor(value unsafe.Pointer) {
+func (b_ ButtonTouchBarItem) SetBezelColor(value IColor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBezelColor:"), value)
 }
 
@@ -126,8 +126,8 @@ func (b_ ButtonTouchBarItem) SetCustomizationLabel(value string) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/image
-func (b_ ButtonTouchBarItem) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("image"))
+func (b_ ButtonTouchBarItem) Image() Image {
+	rv := objc.Send[Image](b_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -135,7 +135,7 @@ func (b_ ButtonTouchBarItem) Image() unsafe.Pointer {
 // SetImage sets the value of the image property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/image
-func (b_ ButtonTouchBarItem) SetImage(value unsafe.Pointer) {
+func (b_ ButtonTouchBarItem) SetImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setImage:"), value)
 }
 

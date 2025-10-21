@@ -100,8 +100,8 @@ func (p_ PathControl) SetAllowedTypes(value string) {
 // The receiver’s background color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/backgroundcolor
-func (p_ PathControl) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("backgroundColor"))
+func (p_ PathControl) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](p_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (p_ PathControl) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/backgroundcolor
-func (p_ PathControl) SetBackgroundColor(value unsafe.Pointer) {
+func (p_ PathControl) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
@@ -184,8 +184,8 @@ func (p_ PathControl) SetIsEditable(value bool) {
 // The menu that is used for the path control’s cells.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/menu
-func (p_ PathControl) Menu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("menu"))
+func (p_ PathControl) Menu() NSMenu {
+	rv := objc.Send[NSMenu](p_.ID, objc.Sel("menu"))
 	return rv
 }
 
@@ -195,7 +195,7 @@ func (p_ PathControl) Menu() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/menu
-func (p_ PathControl) SetMenu(value unsafe.Pointer) {
+func (p_ PathControl) SetMenu(value IMenu) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMenu:"), value)
 }
 
@@ -234,8 +234,8 @@ func (p_ PathControl) SetPathStyle(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderattributedstring
-func (p_ PathControl) PlaceholderAttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("placeholderAttributedString"))
+func (p_ PathControl) PlaceholderAttributedString() AttributedString {
+	rv := objc.Send[AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 
@@ -243,7 +243,7 @@ func (p_ PathControl) PlaceholderAttributedString() unsafe.Pointer {
 // SetPlaceholderAttributedString sets the value of the placeholderAttributedString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderattributedstring
-func (p_ PathControl) SetPlaceholderAttributedString(value unsafe.Pointer) {
+func (p_ PathControl) SetPlaceholderAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
 
@@ -276,7 +276,7 @@ func (p_ PathControl) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/url
-func (p_ PathControl) SetUrl(value foundation.URL) {
+func (p_ PathControl) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

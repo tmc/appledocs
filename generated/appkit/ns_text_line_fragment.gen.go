@@ -83,8 +83,8 @@ func NewTextLineFragment() TextLineFragment {
 // The source attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/attributedstring
-func (t_ TextLineFragment) AttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("attributedString"))
+func (t_ TextLineFragment) AttributedString() AttributedString {
+	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (t_ TextLineFragment) AttributedString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/attributedstring
-func (t_ TextLineFragment) SetAttributedString(value unsafe.Pointer) {
+func (t_ TextLineFragment) SetAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 
@@ -112,7 +112,7 @@ func (t_ TextLineFragment) CharacterRange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/characterrange
-func (t_ TextLineFragment) SetCharacterRange(value foundation.Range) {
+func (t_ TextLineFragment) SetCharacterRange(value foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCharacterRange:"), value)
 }
 

@@ -118,8 +118,8 @@ func (t_ TextLayoutFragment) SetLayoutFragmentFrame(value coregraphics.CGRect) {
 // The queue on which the framework dispatches layout operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutqueue
-func (t_ TextLayoutFragment) LayoutQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutQueue"))
+func (t_ TextLayoutFragment) LayoutQueue() OperationQueue {
+	rv := objc.Send[OperationQueue](t_.ID, objc.Sel("layoutQueue"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (t_ TextLayoutFragment) LayoutQueue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutqueue
-func (t_ TextLayoutFragment) SetLayoutQueue(value unsafe.Pointer) {
+func (t_ TextLayoutFragment) SetLayoutQueue(value IOperationQueue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutQueue:"), value)
 }
 
@@ -154,8 +154,8 @@ func (t_ TextLayoutFragment) SetLeadingPadding(value float64) {
 // The range inside the text element relative to the document origin.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/rangeinelement
-func (t_ TextLayoutFragment) RangeInElement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rangeInElement"))
+func (t_ TextLayoutFragment) RangeInElement() NSTextRange {
+	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("rangeInElement"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (t_ TextLayoutFragment) RangeInElement() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/rangeinelement
-func (t_ TextLayoutFragment) SetRangeInElement(value unsafe.Pointer) {
+func (t_ TextLayoutFragment) SetRangeInElement(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeInElement:"), value)
 }
 
@@ -208,8 +208,8 @@ func (t_ TextLayoutFragment) SetState(value unsafe.Pointer) {
 // The attachment view provider associated with the text layout fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textattachmentviewproviders
-func (t_ TextLayoutFragment) TextAttachmentViewProviders() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textAttachmentViewProviders"))
+func (t_ TextLayoutFragment) TextAttachmentViewProviders() NSTextAttachmentViewProvider {
+	rv := objc.Send[NSTextAttachmentViewProvider](t_.ID, objc.Sel("textAttachmentViewProviders"))
 	return rv
 }
 
@@ -219,15 +219,15 @@ func (t_ TextLayoutFragment) TextAttachmentViewProviders() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textattachmentviewproviders
-func (t_ TextLayoutFragment) SetTextAttachmentViewProviders(value unsafe.Pointer) {
+func (t_ TextLayoutFragment) SetTextAttachmentViewProviders(value ITextAttachmentViewProvider) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextAttachmentViewProviders:"), value)
 }
 
 // The parent text element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textelement
-func (t_ TextLayoutFragment) TextElement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textElement"))
+func (t_ TextLayoutFragment) TextElement() NSTextElement {
+	rv := objc.Send[NSTextElement](t_.ID, objc.Sel("textElement"))
 	return rv
 }
 
@@ -237,15 +237,15 @@ func (t_ TextLayoutFragment) TextElement() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textelement
-func (t_ TextLayoutFragment) SetTextElement(value unsafe.Pointer) {
+func (t_ TextLayoutFragment) SetTextElement(value ITextElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextElement:"), value)
 }
 
 // The layout manager for this text layout fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlayoutmanager
-func (t_ TextLayoutFragment) TextLayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textLayoutManager"))
+func (t_ TextLayoutFragment) TextLayoutManager() NSTextLayoutManager {
+	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 
@@ -255,15 +255,15 @@ func (t_ TextLayoutFragment) TextLayoutManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlayoutmanager
-func (t_ TextLayoutFragment) SetTextLayoutManager(value unsafe.Pointer) {
+func (t_ TextLayoutFragment) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
 
 // An array of text line fragments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlinefragments
-func (t_ TextLayoutFragment) TextLineFragments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textLineFragments"))
+func (t_ TextLayoutFragment) TextLineFragments() NSTextLineFragment {
+	rv := objc.Send[NSTextLineFragment](t_.ID, objc.Sel("textLineFragments"))
 	return rv
 }
 
@@ -273,7 +273,7 @@ func (t_ TextLayoutFragment) TextLineFragments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlinefragments
-func (t_ TextLayoutFragment) SetTextLineFragments(value unsafe.Pointer) {
+func (t_ TextLayoutFragment) SetTextLineFragments(value ITextLineFragment) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLineFragments:"), value)
 }
 

@@ -103,8 +103,8 @@ func (p_ PDFInfo) SetFileExtensionHidden(value bool) {
 // The paper orientation to use when exporting content as a PDF file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/orientation
-func (p_ PDFInfo) Orientation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("orientation"))
+func (p_ PDFInfo) Orientation() PaperOrientation {
+	rv := objc.Send[PaperOrientation](p_.ID, objc.Sel("orientation"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (p_ PDFInfo) Orientation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/orientation
-func (p_ PDFInfo) SetOrientation(value unsafe.Pointer) {
+func (p_ PDFInfo) SetOrientation(value PaperOrientation) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
 }
 
@@ -149,8 +149,8 @@ func (p_ PDFInfo) SetTagNames(value []string) {
 // A dictionary of additional attributes that describe how to export content as a PDF file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-func (p_ PDFInfo) Attributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("attributes"))
+func (p_ PDFInfo) Attributes() MutableDictionary {
+	rv := objc.Send[MutableDictionary](p_.ID, objc.Sel("attributes"))
 	return rv
 }
 
@@ -160,7 +160,7 @@ func (p_ PDFInfo) Attributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-func (p_ PDFInfo) SetAttributes(value unsafe.Pointer) {
+func (p_ PDFInfo) SetAttributes(value IMutableDictionary) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttributes:"), value)
 }
 
@@ -214,7 +214,7 @@ func (p_ PDFInfo) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/url
-func (p_ PDFInfo) SetUrl(value foundation.URL) {
+func (p_ PDFInfo) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

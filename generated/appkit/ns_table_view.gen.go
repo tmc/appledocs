@@ -31,8 +31,9 @@ type _TableViewClass struct {
 type ITableView interface {
 	IControl
 	RectOfRow(row int) coregraphics.CGRect
-	RemoveRowsAtIndexesWithAnimation(indexes unsafe.Pointer, animationOptions unsafe.Pointer)
+	RemoveRowsAtIndexesWithAnimation(indexes unsafe.Pointer, animationOptions TableViewAnimationOptions)
 	RowAtPoint(point coregraphics.CGPoint) int
+	SetDraggingSourceOperationMaskForLocal(mask IDragOperation, isLocal bool)
 }
 
 // A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records.
@@ -96,7 +97,7 @@ func (t_ TableView) RectOfRow(row int) coregraphics.CGRect {
 // Removes the rows using the specified animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/removeRows(at:withAnimation:)
-func (t_ TableView) RemoveRowsAtIndexesWithAnimation(indexes unsafe.Pointer, animationOptions unsafe.Pointer) {
+func (t_ TableView) RemoveRowsAtIndexesWithAnimation(indexes unsafe.Pointer, animationOptions TableViewAnimationOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeRowsAtIndexes:withAnimation:"), indexes, animationOptions)
 }
 
@@ -108,11 +109,18 @@ func (t_ TableView) RowAtPoint(point coregraphics.CGPoint) int {
 	return rv
 }
 
+// Sets the default operation mask returned by to .
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/setDraggingSourceOperationMask(_:forLocal:)
+func (t_ TableView) SetDraggingSourceOperationMaskForLocal(mask IDragOperation, isLocal bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDraggingSourceOperationMask:forLocal:"), mask, isLocal)
+}
+
 // The color used to draw the background of the table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/backgroundColor
-func (t_ TableView) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+func (t_ TableView) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -122,15 +130,15 @@ func (t_ TableView) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/backgroundColor
-func (t_ TableView) SetBackgroundColor(value unsafe.Pointer) {
+func (t_ TableView) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 // The table view’s column autoresizing style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/columnAutoresizingStyle-swift.property
-func (t_ TableView) ColumnAutoresizingStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("columnAutoresizingStyle"))
+func (t_ TableView) ColumnAutoresizingStyle() TableViewColumnAutoresizingStyle {
+	rv := objc.Send[TableViewColumnAutoresizingStyle](t_.ID, objc.Sel("columnAutoresizingStyle"))
 	return rv
 }
 
@@ -140,15 +148,15 @@ func (t_ TableView) ColumnAutoresizingStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/columnAutoresizingStyle-swift.property
-func (t_ TableView) SetColumnAutoresizingStyle(value unsafe.Pointer) {
+func (t_ TableView) SetColumnAutoresizingStyle(value TableViewColumnAutoresizingStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColumnAutoresizingStyle:"), value)
 }
 
 // The feedback style displayed when the user drags over the table view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/draggingDestinationFeedbackStyle-swift.property
-func (t_ TableView) DraggingDestinationFeedbackStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("draggingDestinationFeedbackStyle"))
+func (t_ TableView) DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle {
+	rv := objc.Send[TableViewDraggingDestinationFeedbackStyle](t_.ID, objc.Sel("draggingDestinationFeedbackStyle"))
 	return rv
 }
 
@@ -158,23 +166,23 @@ func (t_ TableView) DraggingDestinationFeedbackStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/draggingDestinationFeedbackStyle-swift.property
-func (t_ TableView) SetDraggingDestinationFeedbackStyle(value unsafe.Pointer) {
+func (t_ TableView) SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDraggingDestinationFeedbackStyle:"), value)
 }
 
 // The effective row size style for the table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/effectiveRowSizeStyle
-func (t_ TableView) EffectiveRowSizeStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("effectiveRowSizeStyle"))
+func (t_ TableView) EffectiveRowSizeStyle() TableViewRowSizeStyle {
+	rv := objc.Send[TableViewRowSizeStyle](t_.ID, objc.Sel("effectiveRowSizeStyle"))
 	return rv
 }
 
 // The grid lines drawn by the table view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/gridStyleMask
-func (t_ TableView) GridStyleMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("gridStyleMask"))
+func (t_ TableView) GridStyleMask() TableViewGridLineStyle {
+	rv := objc.Send[TableViewGridLineStyle](t_.ID, objc.Sel("gridStyleMask"))
 	return rv
 }
 
@@ -184,15 +192,15 @@ func (t_ TableView) GridStyleMask() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/gridStyleMask
-func (t_ TableView) SetGridStyleMask(value unsafe.Pointer) {
+func (t_ TableView) SetGridStyleMask(value TableViewGridLineStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGridStyleMask:"), value)
 }
 
 // The row size style (small, medium, large, or custom) used by the table view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/rowSizeStyle-swift.property
-func (t_ TableView) RowSizeStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rowSizeStyle"))
+func (t_ TableView) RowSizeStyle() TableViewRowSizeStyle {
+	rv := objc.Send[TableViewRowSizeStyle](t_.ID, objc.Sel("rowSizeStyle"))
 	return rv
 }
 
@@ -202,7 +210,7 @@ func (t_ TableView) RowSizeStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/rowSizeStyle-swift.property
-func (t_ TableView) SetRowSizeStyle(value unsafe.Pointer) {
+func (t_ TableView) SetRowSizeStyle(value TableViewRowSizeStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowSizeStyle:"), value)
 }
 
@@ -425,8 +433,8 @@ func (t_ TableView) SetClickedRow(value int) {
 // The view used to draw the area to the right of the column headers and above the vertical scroller of the enclosing scroll view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/cornerview
-func (t_ TableView) CornerView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("cornerView"))
+func (t_ TableView) CornerView() NSView {
+	rv := objc.Send[NSView](t_.ID, objc.Sel("cornerView"))
 	return rv
 }
 
@@ -436,7 +444,7 @@ func (t_ TableView) CornerView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/cornerview
-func (t_ TableView) SetCornerView(value unsafe.Pointer) {
+func (t_ TableView) SetCornerView(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCornerView:"), value)
 }
 
@@ -569,8 +577,8 @@ func (t_ TableView) SetFloatsGroupRows(value bool) {
 // The color used to draw grid lines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/gridcolor
-func (t_ TableView) GridColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("gridColor"))
+func (t_ TableView) GridColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("gridColor"))
 	return rv
 }
 
@@ -580,15 +588,15 @@ func (t_ TableView) GridColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/gridcolor
-func (t_ TableView) SetGridColor(value unsafe.Pointer) {
+func (t_ TableView) SetGridColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGridColor:"), value)
 }
 
 // The view object used to draw headers over columns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/headerview
-func (t_ TableView) HeaderView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("headerView"))
+func (t_ TableView) HeaderView() NSTableHeaderView {
+	rv := objc.Send[NSTableHeaderView](t_.ID, objc.Sel("headerView"))
 	return rv
 }
 
@@ -598,7 +606,7 @@ func (t_ TableView) HeaderView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/headerview
-func (t_ TableView) SetHeaderView(value unsafe.Pointer) {
+func (t_ TableView) SetHeaderView(value ITableHeaderView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderView:"), value)
 }
 
@@ -623,8 +631,8 @@ func (t_ TableView) SetHiddenRowIndexes(value unsafe.Pointer) {
 // The column highlighted in the table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/highlightedtablecolumn
-func (t_ TableView) HighlightedTableColumn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("highlightedTableColumn"))
+func (t_ TableView) HighlightedTableColumn() NSTableColumn {
+	rv := objc.Send[NSTableColumn](t_.ID, objc.Sel("highlightedTableColumn"))
 	return rv
 }
 
@@ -634,7 +642,7 @@ func (t_ TableView) HighlightedTableColumn() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/highlightedtablecolumn
-func (t_ TableView) SetHighlightedTableColumn(value unsafe.Pointer) {
+func (t_ TableView) SetHighlightedTableColumn(value ITableColumn) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHighlightedTableColumn:"), value)
 }
 
@@ -731,8 +739,8 @@ func (t_ TableView) SetNumberOfSelectedRows(value int) {
 // The dictionary of all registered nib files for view-based table view identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/registerednibsbyidentifier
-func (t_ TableView) RegisteredNibsByIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("registeredNibsByIdentifier"))
+func (t_ TableView) RegisteredNibsByIdentifier() NSNib {
+	rv := objc.Send[NSNib](t_.ID, objc.Sel("registeredNibsByIdentifier"))
 	return rv
 }
 
@@ -742,7 +750,7 @@ func (t_ TableView) RegisteredNibsByIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/registerednibsbyidentifier
-func (t_ TableView) SetRegisteredNibsByIdentifier(value unsafe.Pointer) {
+func (t_ TableView) SetRegisteredNibsByIdentifier(value INib) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRegisteredNibsByIdentifier:"), value)
 }
 
@@ -893,8 +901,8 @@ func (t_ TableView) SetStyle(value unsafe.Pointer) {
 // An array containing the current table column objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/tablecolumns
-func (t_ TableView) TableColumns() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tableColumns"))
+func (t_ TableView) TableColumns() NSTableColumn {
+	rv := objc.Send[NSTableColumn](t_.ID, objc.Sel("tableColumns"))
 	return rv
 }
 
@@ -904,15 +912,15 @@ func (t_ TableView) TableColumns() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/tablecolumns
-func (t_ TableView) SetTableColumns(value unsafe.Pointer) {
+func (t_ TableView) SetTableColumns(value ITableColumn) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableColumns:"), value)
 }
 
 // The layout direction of the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/userinterfacelayoutdirection
-func (t_ TableView) UserInterfaceLayoutDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("userInterfaceLayoutDirection"))
+func (t_ TableView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
+	rv := objc.Send[UserInterfaceLayoutDirection](t_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
 
@@ -922,7 +930,7 @@ func (t_ TableView) UserInterfaceLayoutDirection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/userinterfacelayoutdirection
-func (t_ TableView) SetUserInterfaceLayoutDirection(value unsafe.Pointer) {
+func (t_ TableView) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 

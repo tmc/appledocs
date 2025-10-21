@@ -31,16 +31,16 @@ type _GridViewClass struct {
 // An interface definition for the [GridView] class.
 type IGridView interface {
 	IView
-	AddColumnWithViews(views unsafe.Pointer) unsafe.Pointer
-	AddRowWithViews(views unsafe.Pointer) unsafe.Pointer
-	CellAtColumnIndexRowIndex(columnIndex int, rowIndex int) unsafe.Pointer
-	CellForView(view unsafe.Pointer) unsafe.Pointer
-	ColumnAtIndex(index int) unsafe.Pointer
-	IndexOfColumn(column unsafe.Pointer) int
+	AddColumnWithViews(views []View) GridColumn
+	AddRowWithViews(views []View) unsafe.Pointer
+	CellAtColumnIndexRowIndex(columnIndex int, rowIndex int) GridCell
+	CellForView(view IView) GridCell
+	ColumnAtIndex(index int) GridColumn
+	IndexOfColumn(column IGridColumn) int
 	IndexOfRow(row unsafe.Pointer) int
-	InsertColumnAtIndexWithViews(index int, views unsafe.Pointer) unsafe.Pointer
-	InsertRowAtIndexWithViews(index int, views unsafe.Pointer) unsafe.Pointer
-	MergeCellsInHorizontalRangeVerticalRange(hRange foundation.Range, vRange foundation.Range)
+	InsertColumnAtIndexWithViews(index int, views []View) GridColumn
+	InsertRowAtIndexWithViews(index int, views []View) unsafe.Pointer
+	MergeCellsInHorizontalRangeVerticalRange(hRange foundation.IRange, vRange foundation.IRange)
 	MoveColumnAtIndexToIndex(fromIndex int, toIndex int)
 	MoveRowAtIndexToIndex(fromIndex int, toIndex int)
 	RemoveColumnAtIndex(index int)
@@ -103,7 +103,7 @@ func NewGridView() GridView {
 // Creates a newly allocated grid view object from the coder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
-func NewGridViewWithCoder(coder unsafe.Pointer) GridView {
+func NewGridViewWithCoder(coder ICoder) GridView {
 	instance := getGridViewClass().Alloc()
 	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -137,7 +137,7 @@ func NewGridViewWithNumberOfColumnsRows(columnCount int, rowCount int) GridView 
 // Creates a newly allocated grid view object with the specified array of arrays of views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
-func NewGridViewWithViews(rows unsafe.Pointer) GridView {
+func NewGridViewWithViews(rows []foundation.IArray) GridView {
 	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithViews:"), rows)
 	return rv
 }
@@ -154,7 +154,7 @@ func (gc _GridViewClass) GridViewWithNumberOfColumnsRows(columnCount int, rowCou
 // Creates a newly allocated grid view object with the specified array of arrays of views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
-func (gc _GridViewClass) GridViewWithViews(rows unsafe.Pointer) unsafe.Pointer {
+func (gc _GridViewClass) GridViewWithViews(rows []foundation.IArray) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("gridViewWithViews:"), rows)
 	return rv
 }
@@ -162,15 +162,15 @@ func (gc _GridViewClass) GridViewWithViews(rows unsafe.Pointer) unsafe.Pointer {
 // Adds a new column containing the array of views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/addColumn(with:)
-func (g_ GridView) AddColumnWithViews(views unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("addColumnWithViews:"), views)
+func (g_ GridView) AddColumnWithViews(views []View) GridColumn {
+	rv := objc.Send[GridColumn](g_.ID, objc.Sel("addColumnWithViews:"), views)
 	return rv
 }
 
 // Adds an array of views to a new row.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/addRow(with:)
-func (g_ GridView) AddRowWithViews(views unsafe.Pointer) unsafe.Pointer {
+func (g_ GridView) AddRowWithViews(views []View) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("addRowWithViews:"), views)
 	return rv
 }
@@ -178,31 +178,31 @@ func (g_ GridView) AddRowWithViews(views unsafe.Pointer) unsafe.Pointer {
 // Returns the grid cell object at the specified column and row index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/cell(atColumnIndex:rowIndex:)
-func (g_ GridView) CellAtColumnIndexRowIndex(columnIndex int, rowIndex int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("cellAtColumnIndex:rowIndex:"), columnIndex, rowIndex)
+func (g_ GridView) CellAtColumnIndexRowIndex(columnIndex int, rowIndex int) GridCell {
+	rv := objc.Send[GridCell](g_.ID, objc.Sel("cellAtColumnIndex:rowIndex:"), columnIndex, rowIndex)
 	return rv
 }
 
 // Returns the grid cell object that contains the given view or one of its ancestors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/cell(for:)
-func (g_ GridView) CellForView(view unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("cellForView:"), view)
+func (g_ GridView) CellForView(view IView) GridCell {
+	rv := objc.Send[GridCell](g_.ID, objc.Sel("cellForView:"), view)
 	return rv
 }
 
 // Returns the grid column object at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/column(at:)
-func (g_ GridView) ColumnAtIndex(index int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("columnAtIndex:"), index)
+func (g_ GridView) ColumnAtIndex(index int) GridColumn {
+	rv := objc.Send[GridColumn](g_.ID, objc.Sel("columnAtIndex:"), index)
 	return rv
 }
 
 // Returns the index of the specified grid column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/index(of:)-32sdd
-func (g_ GridView) IndexOfColumn(column unsafe.Pointer) int {
+func (g_ GridView) IndexOfColumn(column IGridColumn) int {
 	rv := objc.Send[int](g_.ID, objc.Sel("indexOfColumn:"), column)
 	return rv
 }
@@ -218,15 +218,15 @@ func (g_ GridView) IndexOfRow(row unsafe.Pointer) int {
 // Inserts the array of view objects at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/insertColumn(at:with:)
-func (g_ GridView) InsertColumnAtIndexWithViews(index int, views unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("insertColumnAtIndex:withViews:"), index, views)
+func (g_ GridView) InsertColumnAtIndexWithViews(index int, views []View) GridColumn {
+	rv := objc.Send[GridColumn](g_.ID, objc.Sel("insertColumnAtIndex:withViews:"), index, views)
 	return rv
 }
 
 // Inserts the array of view objects into the grid view at the index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/insertRow(at:with:)
-func (g_ GridView) InsertRowAtIndexWithViews(index int, views unsafe.Pointer) unsafe.Pointer {
+func (g_ GridView) InsertRowAtIndexWithViews(index int, views []View) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("insertRowAtIndex:withViews:"), index, views)
 	return rv
 }
@@ -234,7 +234,7 @@ func (g_ GridView) InsertRowAtIndexWithViews(index int, views unsafe.Pointer) un
 // Expands the cell at the top-leading corner of the horizontal and vertical range to cover the entire area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/mergeCells(inHorizontalRange:verticalRange:)
-func (g_ GridView) MergeCellsInHorizontalRangeVerticalRange(hRange foundation.Range, vRange foundation.Range) {
+func (g_ GridView) MergeCellsInHorizontalRangeVerticalRange(hRange foundation.IRange, vRange foundation.IRange) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("mergeCellsInHorizontalRange:verticalRange:"), hRange, vRange)
 }
 

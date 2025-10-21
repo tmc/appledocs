@@ -68,13 +68,37 @@ func isPropertySetter(method MethodInfo) bool {
 
 // typeToInterfaceType converts a concrete type to its interface type for setter parameters.
 // For example: "Image" becomes "IImage", "Window" becomes "IWindow".
+// For qualified types: "foundation.Coder" becomes "foundation.ICoder".
 // Types that don't have interfaces (primitives, slices, enums, typedefs, etc.) are returned unchanged.
 func typeToInterfaceType(goType string) string {
+	// Handle qualified types (e.g., "foundation.Coder" -> "foundation.ICoder")
+	if strings.Contains(goType, ".") {
+		parts := strings.SplitN(goType, ".", 2)
+		if len(parts) == 2 {
+			pkg := parts[0]
+			typeName := parts[1]
+
+			// Don't convert runtime types (objc.ID, unsafe.Pointer, etc.)
+			if pkg == "objc" || pkg == "unsafe" || pkg == "objectivec" {
+				return goType
+			}
+
+			// Don't convert CoreGraphics types (structs and refs)
+			if strings.HasPrefix(typeName, "CG") {
+				return goType
+			}
+
+			// Recursively convert the type part
+			interfaceType := typeToInterfaceType(typeName)
+			return pkg + "." + interfaceType
+		}
+		return goType
+	}
+
 	// Don't convert primitives, slices, pointers, or special types
 	if strings.HasPrefix(goType, "[]") ||
 		strings.HasPrefix(goType, "*") ||
 		strings.HasPrefix(goType, "map[") ||
-		strings.Contains(goType, ".") || // qualified types like "objc.ID"
 		goType == "string" ||
 		goType == "int" ||
 		goType == "int64" ||

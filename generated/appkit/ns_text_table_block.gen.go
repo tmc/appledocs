@@ -154,8 +154,8 @@ func (t_ TextTableBlock) SetStartingRow(value int) {
 // Returns the table containing this text table block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/table
-func (t_ TextTableBlock) Table() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("table"))
+func (t_ TextTableBlock) Table() NSTextTable {
+	rv := objc.Send[NSTextTable](t_.ID, objc.Sel("table"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (t_ TextTableBlock) Table() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/table
-func (t_ TextTableBlock) SetTable(value unsafe.Pointer) {
+func (t_ TextTableBlock) SetTable(value ITextTable) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTable:"), value)
 }
 

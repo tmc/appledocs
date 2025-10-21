@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,15 +32,15 @@ type _ImageClass struct {
 // An interface definition for the [Image] class.
 type IImage interface {
 	objectivec.IObject
-	BestRepresentationForDevice(deviceDescription objc.ID) unsafe.Pointer
-	CompositeToPointFromRectOperation(point coregraphics.CGPoint, rect coregraphics.CGRect, operation unsafe.Pointer)
-	CompositeToPointFromRectOperationFraction(point coregraphics.CGPoint, rect coregraphics.CGRect, operation unsafe.Pointer, fraction float64)
-	CompositeToPointOperation(point coregraphics.CGPoint, operation unsafe.Pointer)
-	CompositeToPointOperationFraction(point coregraphics.CGPoint, operation unsafe.Pointer, fraction float64)
-	DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op unsafe.Pointer, delta float64)
-	DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op unsafe.Pointer, delta float64)
+	BestRepresentationForDevice(deviceDescription objectivec.IObject) ImageRep
+	CompositeToPointFromRectOperation(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation)
+	CompositeToPointFromRectOperationFraction(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation, fraction float64)
+	CompositeToPointOperation(point coregraphics.CGPoint, operation ICompositingOperation)
+	CompositeToPointOperationFraction(point coregraphics.CGPoint, operation ICompositingOperation, fraction float64)
+	DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64)
+	DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64)
 	LayerContentsForContentsScale(layerContentsScale float64) objc.ID
-	ImageWithSymbolConfiguration(configuration unsafe.Pointer) unsafe.Pointer
+	ImageWithSymbolConfiguration(configuration IImageSymbolConfiguration) Image
 }
 
 // A high-level interface for manipulating image data.
@@ -117,10 +118,20 @@ func NewImageWithCGImageSize(cgImage coregraphics.CGImageRef, size coregraphics.
 // Initializes and returns an image object using the provided image data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(data:)
-func NewImageWithData(data unsafe.Pointer) Image {
+func NewImageWithData(data foundation.IData) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates and returns an image object whose contents are drawn using the specified block.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(size:flipped:drawingHandler:)
+func NewImageWithSizeFlippedDrawingHandler(size coregraphics.CGSize, drawingHandlerShouldBeCalledWithFlippedContext bool, drawingHandler unsafe.Pointer) Image {
+	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSize:flipped:drawingHandler:"), size, drawingHandlerShouldBeCalledWithFlippedContext, drawingHandler)
 	return rv
 }
 
@@ -148,8 +159,16 @@ func NewImageWithSystemSymbolNameAccessibilityDescription(name string, descripti
 // Returns the image object associated with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(named:)
-func (ic _ImageClass) ImageNamed(name unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageNamed:"), name)
+func (ic _ImageClass) ImageNamed(name unsafe.Pointer) Image {
+	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageNamed:"), name)
+	return rv
+}
+
+// Creates and returns an image object whose contents are drawn using the specified block.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(size:flipped:drawingHandler:)
+func (ic _ImageClass) ImageWithSizeFlippedDrawingHandler(size coregraphics.CGSize, drawingHandlerShouldBeCalledWithFlippedContext bool, drawingHandler unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSize:flipped:drawingHandler:"), size, drawingHandlerShouldBeCalledWithFlippedContext, drawingHandler)
 	return rv
 }
 
@@ -172,50 +191,50 @@ func (ic _ImageClass) ImageWithSystemSymbolNameAccessibilityDescription(name str
 // Returns the best representation for the device with the specified characteristics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/bestRepresentationForDevice:
-func (i_ Image) BestRepresentationForDevice(deviceDescription objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("bestRepresentationForDevice:"), deviceDescription)
+func (i_ Image) BestRepresentationForDevice(deviceDescription objectivec.IObject) ImageRep {
+	rv := objc.Send[ImageRep](i_.ID, objc.Sel("bestRepresentationForDevice:"), deviceDescription)
 	return rv
 }
 
 // Composites a portion of the image to the specified point in the current coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:
-func (i_ Image) CompositeToPointFromRectOperation(point coregraphics.CGPoint, rect coregraphics.CGRect, operation unsafe.Pointer) {
+func (i_ Image) CompositeToPointFromRectOperation(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:fromRect:operation:"), point, rect, operation)
 }
 
 // Composites a portion of the image at the specified opacity to the current coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:
-func (i_ Image) CompositeToPointFromRectOperationFraction(point coregraphics.CGPoint, rect coregraphics.CGRect, operation unsafe.Pointer, fraction float64) {
+func (i_ Image) CompositeToPointFromRectOperationFraction(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation, fraction float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:fromRect:operation:fraction:"), point, rect, operation, fraction)
 }
 
 // Composites the entire image to the specified point in the current coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:operation:
-func (i_ Image) CompositeToPointOperation(point coregraphics.CGPoint, operation unsafe.Pointer) {
+func (i_ Image) CompositeToPointOperation(point coregraphics.CGPoint, operation ICompositingOperation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:operation:"), point, operation)
 }
 
 // Composites the entire image at the specified opacity in the current coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:
-func (i_ Image) CompositeToPointOperationFraction(point coregraphics.CGPoint, operation unsafe.Pointer, fraction float64) {
+func (i_ Image) CompositeToPointOperationFraction(point coregraphics.CGPoint, operation ICompositingOperation, fraction float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:operation:fraction:"), point, operation, fraction)
 }
 
 // Draws all or part of the image at the specified point in the current coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(at:from:operation:fraction:)
-func (i_ Image) DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op unsafe.Pointer, delta float64) {
+func (i_ Image) DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawAtPoint:fromRect:operation:fraction:"), point, fromRect, op, delta)
 }
 
 // Draws all or part of the image in the specified rectangle in the current coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(in:from:operation:fraction:)
-func (i_ Image) DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op unsafe.Pointer, delta float64) {
+func (i_ Image) DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:"), rect, fromRect, op, delta)
 }
 
@@ -230,9 +249,27 @@ func (i_ Image) LayerContentsForContentsScale(layerContentsScale float64) objc.I
 // Creates a new symbol image with the specified configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/withSymbolConfiguration(_:)
-func (i_ Image) ImageWithSymbolConfiguration(configuration unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageWithSymbolConfiguration:"), configuration)
+func (i_ Image) ImageWithSymbolConfiguration(configuration IImageSymbolConfiguration) Image {
+	rv := objc.Send[Image](i_.ID, objc.Sel("imageWithSymbolConfiguration:"), configuration)
 	return rv
+}
+
+// The image’s accessibility description.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/accessibilityDescription
+func (i_ Image) AccessibilityDescription() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("accessibilityDescription"))
+	return rv
+}
+
+
+// SetAccessibilityDescription sets the value of the accessibilityDescription property.
+// The image’s accessibility description.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/accessibilityDescription
+func (i_ Image) SetAccessibilityDescription(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAccessibilityDescription:"), objc.String(value))
 }
 
 // A rectangle that you can use to position the image during layout.
@@ -271,29 +308,11 @@ func (i_ Image) SetCapInsets(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCapInsets:"), value)
 }
 
-// The image’s accessibility description.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/accessibilitydescription
-func (i_ Image) AccessibilityDescription() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("accessibilityDescription"))
-	return rv
-}
-
-
-// SetAccessibilityDescription sets the value of the accessibilityDescription property.
-// The image’s accessibility description.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/accessibilitydescription
-func (i_ Image) SetAccessibilityDescription(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setAccessibilityDescription:"), objc.String(value))
-}
-
 // The background color for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/backgroundcolor
-func (i_ Image) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("backgroundColor"))
+func (i_ Image) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](i_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -303,7 +322,7 @@ func (i_ Image) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/backgroundcolor
-func (i_ Image) SetBackgroundColor(value unsafe.Pointer) {
+func (i_ Image) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
@@ -451,8 +470,8 @@ func (i_ Image) SetPrefersColorMatch(value bool) {
 // An array containing all of the image object’s image representations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/representations
-func (i_ Image) Representations() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("representations"))
+func (i_ Image) Representations() NSImageRep {
+	rv := objc.Send[NSImageRep](i_.ID, objc.Sel("representations"))
 	return rv
 }
 
@@ -462,7 +481,7 @@ func (i_ Image) Representations() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/representations
-func (i_ Image) SetRepresentations(value unsafe.Pointer) {
+func (i_ Image) SetRepresentations(value IImageRep) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRepresentations:"), value)
 }
 
@@ -505,8 +524,8 @@ func (i_ Image) SetSize(value coregraphics.CGSize) {
 // The configuration details for a symbol image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/symbolconfiguration-swift.property
-func (i_ Image) SymbolConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("symbolConfiguration"))
+func (i_ Image) SymbolConfiguration() ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](i_.ID, objc.Sel("symbolConfiguration"))
 	return rv
 }
 
@@ -516,15 +535,15 @@ func (i_ Image) SymbolConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/symbolconfiguration-swift.property
-func (i_ Image) SetSymbolConfiguration(value unsafe.Pointer) {
+func (i_ Image) SetSymbolConfiguration(value IImageSymbolConfiguration) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSymbolConfiguration:"), value)
 }
 
 // A data object containing TIFF data for all of the image representations in the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/tiffrepresentation
-func (i_ Image) TiffRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tiffRepresentation"))
+func (i_ Image) TiffRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](i_.ID, objc.Sel("tiffRepresentation"))
 	return rv
 }
 
@@ -534,7 +553,7 @@ func (i_ Image) TiffRepresentation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/tiffrepresentation
-func (i_ Image) SetTiffRepresentation(value unsafe.Pointer) {
+func (i_ Image) SetTiffRepresentation(value foundation.IData) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTiffRepresentation:"), value)
 }
 

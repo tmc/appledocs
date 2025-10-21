@@ -102,8 +102,8 @@ func (t_ TreeController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 // The tree controller’s sorted content objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/arrangedobjects
-func (t_ TreeController) ArrangedObjects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("arrangedObjects"))
+func (t_ TreeController) ArrangedObjects() NSTreeNode {
+	rv := objc.Send[NSTreeNode](t_.ID, objc.Sel("arrangedObjects"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (t_ TreeController) ArrangedObjects() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/arrangedobjects
-func (t_ TreeController) SetArrangedObjects(value unsafe.Pointer) {
+func (t_ TreeController) SetArrangedObjects(value ITreeNode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setArrangedObjects:"), value)
 }
 
@@ -282,8 +282,8 @@ func (t_ TreeController) SetPreservesSelection(value bool) {
 // An array containing the tree controller’s selected tree nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectednodes
-func (t_ TreeController) SelectedNodes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedNodes"))
+func (t_ TreeController) SelectedNodes() NSTreeNode {
+	rv := objc.Send[NSTreeNode](t_.ID, objc.Sel("selectedNodes"))
 	return rv
 }
 
@@ -293,7 +293,7 @@ func (t_ TreeController) SelectedNodes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectednodes
-func (t_ TreeController) SetSelectedNodes(value unsafe.Pointer) {
+func (t_ TreeController) SetSelectedNodes(value ITreeNode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedNodes:"), value)
 }
 

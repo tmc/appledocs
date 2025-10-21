@@ -32,7 +32,7 @@ type _WritingToolsCoordinatorClass struct {
 type IWritingToolsCoordinator interface {
 	objectivec.IObject
 	UpdateForReflowedTextInContextWithIdentifier(contextID unsafe.Pointer)
-	UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.Range, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer)
+	UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.IRange, replacementText IAttributedString, reason unsafe.Pointer, contextID unsafe.Pointer)
 }
 
 // An object that manages interactions between Writing Tools and your custom text view.
@@ -93,23 +93,23 @@ func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(c
 // Informs the coordinator about changes your app made to the text in the specified context object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)
-func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.Range, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.IRange, replacementText IAttributedString, reason unsafe.Pointer, contextID unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateRange:withText:reason:forContextWithIdentifier:"), range_, replacementText, reason, contextID)
 }
 
 // The actual level of Writing Tools support the system provides for your view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/behavior
-func (w_ WritingToolsCoordinator) Behavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("behavior"))
+func (w_ WritingToolsCoordinator) Behavior() WritingToolsBehavior {
+	rv := objc.Send[WritingToolsBehavior](w_.ID, objc.Sel("behavior"))
 	return rv
 }
 
 // The view that Writing Tools uses to display background decorations such as proofreading marks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/decorationContainerView
-func (w_ WritingToolsCoordinator) DecorationContainerView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("decorationContainerView"))
+func (w_ WritingToolsCoordinator) DecorationContainerView() NSView {
+	rv := objc.Send[NSView](w_.ID, objc.Sel("decorationContainerView"))
 	return rv
 }
 
@@ -119,15 +119,15 @@ func (w_ WritingToolsCoordinator) DecorationContainerView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/decorationContainerView
-func (w_ WritingToolsCoordinator) SetDecorationContainerView(value unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) SetDecorationContainerView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDecorationContainerView:"), value)
 }
 
 // The view that Writing Tools uses to display visual effects during the text-rewriting process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/effectContainerView
-func (w_ WritingToolsCoordinator) EffectContainerView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("effectContainerView"))
+func (w_ WritingToolsCoordinator) EffectContainerView() NSView {
+	rv := objc.Send[NSView](w_.ID, objc.Sel("effectContainerView"))
 	return rv
 }
 
@@ -137,15 +137,15 @@ func (w_ WritingToolsCoordinator) EffectContainerView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/effectContainerView
-func (w_ WritingToolsCoordinator) SetEffectContainerView(value unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) SetEffectContainerView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEffectContainerView:"), value)
 }
 
 // The level of Writing Tools support you want the system to provide for your view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/preferredBehavior
-func (w_ WritingToolsCoordinator) PreferredBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferredBehavior"))
+func (w_ WritingToolsCoordinator) PreferredBehavior() WritingToolsBehavior {
+	rv := objc.Send[WritingToolsBehavior](w_.ID, objc.Sel("preferredBehavior"))
 	return rv
 }
 
@@ -155,15 +155,15 @@ func (w_ WritingToolsCoordinator) PreferredBehavior() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/preferredBehavior
-func (w_ WritingToolsCoordinator) SetPreferredBehavior(value unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) SetPreferredBehavior(value WritingToolsBehavior) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredBehavior:"), value)
 }
 
 // The type of content you allow Writing Tools to generate for your custom text view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/preferredResultOptions
-func (w_ WritingToolsCoordinator) PreferredResultOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferredResultOptions"))
+func (w_ WritingToolsCoordinator) PreferredResultOptions() WritingToolsResultOptions {
+	rv := objc.Send[WritingToolsResultOptions](w_.ID, objc.Sel("preferredResultOptions"))
 	return rv
 }
 
@@ -173,30 +173,30 @@ func (w_ WritingToolsCoordinator) PreferredResultOptions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/preferredResultOptions
-func (w_ WritingToolsCoordinator) SetPreferredResultOptions(value unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) SetPreferredResultOptions(value WritingToolsResultOptions) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredResultOptions:"), value)
 }
 
 // The type of content the system generates for your custom text view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/resultOptions
-func (w_ WritingToolsCoordinator) ResultOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("resultOptions"))
+func (w_ WritingToolsCoordinator) ResultOptions() WritingToolsResultOptions {
+	rv := objc.Send[WritingToolsResultOptions](w_.ID, objc.Sel("resultOptions"))
 	return rv
 }
 
 // The current level of Writing Tools activity in your view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/state-swift.property
-func (w_ WritingToolsCoordinator) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("state"))
+func (w_ WritingToolsCoordinator) State() WritingToolsCoordinatorState {
+	rv := objc.Send[WritingToolsCoordinatorState](w_.ID, objc.Sel("state"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/writingtoolscoordinator
-func (w_ WritingToolsCoordinator) WritingToolsCoordinator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("writingToolsCoordinator"))
+func (w_ WritingToolsCoordinator) WritingToolsCoordinator() NSWritingToolsCoordinator {
+	rv := objc.Send[NSWritingToolsCoordinator](w_.ID, objc.Sel("writingToolsCoordinator"))
 	return rv
 }
 
@@ -204,7 +204,7 @@ func (w_ WritingToolsCoordinator) WritingToolsCoordinator() unsafe.Pointer {
 // SetWritingToolsCoordinator sets the value of the writingToolsCoordinator property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/writingtoolscoordinator
-func (w_ WritingToolsCoordinator) SetWritingToolsCoordinator(value unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) SetWritingToolsCoordinator(value IWritingToolsCoordinator) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWritingToolsCoordinator:"), value)
 }
 
@@ -244,8 +244,8 @@ func (w_ WritingToolsCoordinator) SetIncludesTextListMarkers(value bool) {
 // The view that currently uses the writing tools coordinator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/view
-func (w_ WritingToolsCoordinator) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("view"))
+func (w_ WritingToolsCoordinator) View() NSView {
+	rv := objc.Send[NSView](w_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -255,7 +255,7 @@ func (w_ WritingToolsCoordinator) View() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/view
-func (w_ WritingToolsCoordinator) SetView(value unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) SetView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setView:"), value)
 }
 

@@ -83,8 +83,8 @@ func NewTextList() TextList {
 // The text lists that contain the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists
-func (t_ TextList) TextLists() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textLists"))
+func (t_ TextList) TextLists() NSTextList {
+	rv := objc.Send[NSTextList](t_.ID, objc.Sel("textLists"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (t_ TextList) TextLists() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists
-func (t_ TextList) SetTextLists(value unsafe.Pointer) {
+func (t_ TextList) SetTextLists(value ITextList) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLists:"), value)
 }
 

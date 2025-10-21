@@ -84,8 +84,8 @@ func NewPredicateEditor() PredicateEditor {
 // The row templates for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
-func (p_ PredicateEditor) RowTemplates() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("rowTemplates"))
+func (p_ PredicateEditor) RowTemplates() []PredicateEditorRowTemplate {
+	rv := objc.Send[[]PredicateEditorRowTemplate](p_.ID, objc.Sel("rowTemplates"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (p_ PredicateEditor) RowTemplates() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
-func (p_ PredicateEditor) SetRowTemplates(value []unsafe.Pointer) {
+func (p_ PredicateEditor) SetRowTemplates(value []PredicateEditorRowTemplate) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

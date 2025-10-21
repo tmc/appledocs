@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewViewController
 
+// ExampleNewViewControllerWithCoder demonstrates how to create a ViewController instance using NewViewControllerWithCoder.
+func ExampleNewViewControllerWithCoder() {
+	_ = appkit.NewViewControllerWithCoder(
+		appkit.Coder{}, // coder Coder
+	)
+	// Output:
+}

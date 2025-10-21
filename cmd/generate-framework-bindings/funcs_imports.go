@@ -241,6 +241,18 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 		// Check all parameters
 		for _, param := range method.Parameters {
 			goType := mapObjCTypeToGo(param.Type, framework)
+
+			// When we use objc.ID as a parameter, we convert it to objectivec.IObject in formatMethodParams
+			// So we need to import the objectivec package
+			if goType == "objc.ID" && framework != "ObjectiveC" {
+				// Add objectivec package import
+				if globalRegistry != nil {
+					if objcImport := globalRegistry.GetImportPathByPackage("objectivec"); objcImport != "" {
+						imports[objcImport] = true
+					}
+				}
+			}
+
 			if importPath := GetImportPathFromType(goType); importPath != "" {
 				if importPath != currentFrameworkImportPath {
 					imports[importPath] = true

@@ -943,24 +943,7 @@ func ParseProperty(doc *appledocs.Document) (*ParsedProperty, error) {
 		return nil, fmt.Errorf("no declaration found for %s", externalID)
 	}
 
-	if strings.Contains(externalID, "(cpy)") && strings.Contains(externalID, "maximumAllowedMemorySize") {
-		propName := externalID[strings.LastIndex(externalID, ")")+1:]
-		fmt.Fprintf(os.Stderr, "DEBUG: Parsing class property %s: %d tokens\n", propName, len(tokens))
-		for i, tok := range tokens {
-			if i < 10 { // Show first 10 tokens
-				fmt.Fprintf(os.Stderr, "DEBUG:   [%d] kind=%s text=%q\n", i, tok.Kind, tok.Text)
-			}
-		}
-	}
-
 	property, err := ParsePropertyDeclaration(tokens)
-	if os.Getenv("DEBUG_PARSER") != "" && strings.Contains(externalID, "(cpy)") {
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "DEBUG: ParsePropertyDeclaration error: %v\n", err)
-		} else {
-			fmt.Fprintf(os.Stderr, "DEBUG: Parsed property successfully: name=%s type=%s\n", property.Name, property.Type)
-		}
-	}
 	if err != nil {
 		return nil, err
 	}
@@ -1141,11 +1124,18 @@ func ParsePropertyDeclaration(tokens []appledocs.Token) (*ParsedProperty, error)
 		Attributes: []string{},
 	}
 
-	// Check if this is a Swift property declaration (class var / var)
-	// Pattern: [class] var name: Type { get }
-	if len(tokens) > 0 && tokens[0].Kind == "keyword" {
-		if tokens[0].Text == "class" || tokens[0].Text == "var" || tokens[0].Text == "let" {
-			return parseSwiftPropertyDeclaration(tokens)
+	// Check if this is a Swift property declaration (class var / var / let)
+	// Pattern: [@attributes] [class] var name: Type { get }
+	// Need to skip attributes to find the property keyword
+	for i := 0; i < len(tokens); i++ {
+		if tokens[i].Kind == "keyword" {
+			if tokens[i].Text == "class" || tokens[i].Text == "var" || tokens[i].Text == "let" {
+				return parseSwiftPropertyDeclaration(tokens)
+			}
+			// If we hit another keyword (like @property), it's not Swift
+			if tokens[i].Text == "@property" {
+				break
+			}
 		}
 	}
 
@@ -1201,6 +1191,14 @@ func ParsePropertyDeclaration(tokens []appledocs.Token) (*ParsedProperty, error)
 	for i < len(tokens) && tokens[i].Kind != "identifier" {
 		if tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "keyword" {
 			typeParts = append(typeParts, tokens[i].Text)
+		} else if tokens[i].Kind == "text" {
+			// Include all text tokens that are part of the type
+			// This includes generic type parameters like <NSButton *>, pointer markers *, etc.
+			// Skip only pure whitespace
+			text := strings.TrimSpace(tokens[i].Text)
+			if text != "" {
+				typeParts = append(typeParts, text)
+			}
 		}
 		i++
 	}

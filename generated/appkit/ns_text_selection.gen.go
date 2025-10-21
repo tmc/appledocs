@@ -189,8 +189,8 @@ func (t_ TextSelection) SetSecondarySelectionLocation(value unsafe.Pointer) {
 // Represents an array of noncontiguous logical ranges in the selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/textranges
-func (t_ TextSelection) TextRanges() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textRanges"))
+func (t_ TextSelection) TextRanges() NSTextRange {
+	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("textRanges"))
 	return rv
 }
 
@@ -200,7 +200,7 @@ func (t_ TextSelection) TextRanges() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/textranges
-func (t_ TextSelection) SetTextRanges(value unsafe.Pointer) {
+func (t_ TextSelection) SetTextRanges(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextRanges:"), value)
 }
 

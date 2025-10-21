@@ -31,10 +31,10 @@ type _TextLayoutManagerClass struct {
 // An interface definition for the [TextLayoutManager] class.
 type ITextLayoutManager interface {
 	objectivec.IObject
-	EnumerateTextSegmentsInRangeTypeOptionsUsingBlock(textRange unsafe.Pointer, type_ unsafe.Pointer, options unsafe.Pointer, block unsafe.Pointer)
-	ReplaceTextContentManager(textContentManager unsafe.Pointer)
-	ReplaceContentsInRangeWithAttributedString(range_ unsafe.Pointer, attributedString unsafe.Pointer)
-	ReplaceContentsInRangeWithTextElements(range_ unsafe.Pointer, textElements unsafe.Pointer)
+	EnumerateTextSegmentsInRangeTypeOptionsUsingBlock(textRange ITextRange, type_ TextLayoutManagerSegmentType, options TextLayoutManagerSegmentOptions, block unsafe.Pointer)
+	ReplaceTextContentManager(textContentManager ITextContentManager)
+	ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString IAttributedString)
+	ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement)
 }
 
 // The primary class that you use to manage text layout and presentation for custom text displays.
@@ -88,36 +88,36 @@ func NewTextLayoutManager() TextLayoutManager {
 // Enumerates text segments of a specific type and in the text range you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/enumerateTextSegments(in:type:options:using:)
-func (t_ TextLayoutManager) EnumerateTextSegmentsInRangeTypeOptionsUsingBlock(textRange unsafe.Pointer, type_ unsafe.Pointer, options unsafe.Pointer, block unsafe.Pointer) {
+func (t_ TextLayoutManager) EnumerateTextSegmentsInRangeTypeOptionsUsingBlock(textRange ITextRange, type_ TextLayoutManagerSegmentType, options TextLayoutManagerSegmentOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("enumerateTextSegmentsInRange:type:options:usingBlock:"), textRange, type_, options, block)
 }
 
 // Replaces the current text content manager with a new one you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/replace(_:)
-func (t_ TextLayoutManager) ReplaceTextContentManager(textContentManager unsafe.Pointer) {
+func (t_ TextLayoutManager) ReplaceTextContentManager(textContentManager ITextContentManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("replaceTextContentManager:"), textContentManager)
 }
 
 // Replaces content at the location you specify with an attributed string you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/replaceContents(in:with:)-2elb
-func (t_ TextLayoutManager) ReplaceContentsInRangeWithAttributedString(range_ unsafe.Pointer, attributedString unsafe.Pointer) {
+func (t_ TextLayoutManager) ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("replaceContentsInRange:withAttributedString:"), range_, attributedString)
 }
 
 // Replaces content at the location you specify with the text elements string you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/replaceContents(in:with:)-80j0b
-func (t_ TextLayoutManager) ReplaceContentsInRangeWithTextElements(range_ unsafe.Pointer, textElements unsafe.Pointer) {
+func (t_ TextLayoutManager) ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("replaceContentsInRange:withTextElements:"), range_, textElements)
 }
 
 // The text container object that provides geometric information for the layout destination.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textContainer
-func (t_ TextLayoutManager) TextContainer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textContainer"))
+func (t_ TextLayoutManager) TextContainer() NSTextContainer {
+	rv := objc.Send[NSTextContainer](t_.ID, objc.Sel("textContainer"))
 	return rv
 }
 
@@ -127,23 +127,23 @@ func (t_ TextLayoutManager) TextContainer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textContainer
-func (t_ TextLayoutManager) SetTextContainer(value unsafe.Pointer) {
+func (t_ TextLayoutManager) SetTextContainer(value ITextContainer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
 }
 
 // Returns the text content manager associated with this text layout manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textContentManager
-func (t_ TextLayoutManager) TextContentManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textContentManager"))
+func (t_ TextLayoutManager) TextContentManager() NSTextContentManager {
+	rv := objc.Send[NSTextContentManager](t_.ID, objc.Sel("textContentManager"))
 	return rv
 }
 
 // Returns a text selection manager configured to have the text layout manager as its data source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textSelectionNavigation
-func (t_ TextLayoutManager) TextSelectionNavigation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textSelectionNavigation"))
+func (t_ TextLayoutManager) TextSelectionNavigation() NSTextSelectionNavigation {
+	rv := objc.Send[NSTextSelectionNavigation](t_.ID, objc.Sel("textSelectionNavigation"))
 	return rv
 }
 
@@ -153,7 +153,7 @@ func (t_ TextLayoutManager) TextSelectionNavigation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textSelectionNavigation
-func (t_ TextLayoutManager) SetTextSelectionNavigation(value unsafe.Pointer) {
+func (t_ TextLayoutManager) SetTextSelectionNavigation(value ITextSelectionNavigation) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelectionNavigation:"), value)
 }
 
@@ -214,8 +214,8 @@ func (t_ TextLayoutManager) SetDelegate(value unsafe.Pointer) {
 // The queue that the framework dispatches layout operations on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/layoutqueue
-func (t_ TextLayoutManager) LayoutQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutQueue"))
+func (t_ TextLayoutManager) LayoutQueue() OperationQueue {
+	rv := objc.Send[OperationQueue](t_.ID, objc.Sel("layoutQueue"))
 	return rv
 }
 
@@ -225,7 +225,7 @@ func (t_ TextLayoutManager) LayoutQueue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/layoutqueue
-func (t_ TextLayoutManager) SetLayoutQueue(value unsafe.Pointer) {
+func (t_ TextLayoutManager) SetLayoutQueue(value IOperationQueue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutQueue:"), value)
 }
 
@@ -286,8 +286,8 @@ func (t_ TextLayoutManager) SetResolvesNaturalAlignmentWithBaseWritingDirection(
 // The text viewport layout controller associated with the layout manager’s text container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textviewportlayoutcontroller
-func (t_ TextLayoutManager) TextViewportLayoutController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textViewportLayoutController"))
+func (t_ TextLayoutManager) TextViewportLayoutController() NSTextViewportLayoutController {
+	rv := objc.Send[NSTextViewportLayoutController](t_.ID, objc.Sel("textViewportLayoutController"))
 	return rv
 }
 
@@ -297,7 +297,7 @@ func (t_ TextLayoutManager) TextViewportLayoutController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textviewportlayoutcontroller
-func (t_ TextLayoutManager) SetTextViewportLayoutController(value unsafe.Pointer) {
+func (t_ TextLayoutManager) SetTextViewportLayoutController(value ITextViewportLayoutController) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextViewportLayoutController:"), value)
 }
 

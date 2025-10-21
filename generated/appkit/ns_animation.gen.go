@@ -84,8 +84,8 @@ func NewAnimation() Animation {
 // The current progress of the animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/currentProgress
-func (a_ Animation) CurrentProgress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentProgress"))
+func (a_ Animation) CurrentProgress() AnimationProgress {
+	rv := objc.Send[AnimationProgress](a_.ID, objc.Sel("currentProgress"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (a_ Animation) CurrentProgress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/currentProgress
-func (a_ Animation) SetCurrentProgress(value unsafe.Pointer) {
+func (a_ Animation) SetCurrentProgress(value IAnimationProgress) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentProgress:"), value)
 }
 
@@ -239,7 +239,7 @@ func (a_ Animation) ProgressMarks() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/progressmarks
-func (a_ Animation) SetProgressMarks(value foundation.Number) {
+func (a_ Animation) SetProgressMarks(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProgressMarks:"), value)
 }
 

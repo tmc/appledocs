@@ -82,24 +82,6 @@ func NewCollectionViewFlowLayout() CollectionViewFlowLayout {
 }
 
 
-// The layout object used to organize the collection view’s content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout
-func (c_ CollectionViewFlowLayout) CollectionViewLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("collectionViewLayout"))
-	return rv
-}
-
-
-// SetCollectionViewLayout sets the value of the collectionViewLayout property.
-// The layout object used to organize the collection view’s content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout
-func (c_ CollectionViewFlowLayout) SetCollectionViewLayout(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionViewLayout:"), value)
-}
-
 // The collection view’s delegate object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/delegate

@@ -92,8 +92,8 @@ func (w_ WritingToolsCoordinatorContext) Range() foundation.Range {
 // The portion of your view’s text to evaluate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
-func (w_ WritingToolsCoordinatorContext) AttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("attributedString"))
+func (w_ WritingToolsCoordinatorContext) AttributedString() AttributedString {
+	rv := objc.Send[AttributedString](w_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -103,7 +103,7 @@ func (w_ WritingToolsCoordinatorContext) AttributedString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
-func (w_ WritingToolsCoordinatorContext) SetAttributedString(value unsafe.Pointer) {
+func (w_ WritingToolsCoordinatorContext) SetAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedString:"), value)
 }
 
@@ -139,7 +139,7 @@ func (w_ WritingToolsCoordinatorContext) ResolvedRange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/resolvedrange
-func (w_ WritingToolsCoordinatorContext) SetResolvedRange(value foundation.Range) {
+func (w_ WritingToolsCoordinatorContext) SetResolvedRange(value foundation.IRange) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setResolvedRange:"), value)
 }
 

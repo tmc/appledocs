@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DatePickerCell] class.
@@ -82,8 +83,8 @@ func NewDatePickerCell() DatePickerCell {
 // The maximum date that the picker allows as input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell/maxDate
-func (d_ DatePickerCell) MaxDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("maxDate"))
+func (d_ DatePickerCell) MaxDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("maxDate"))
 	return rv
 }
 
@@ -93,15 +94,15 @@ func (d_ DatePickerCell) MaxDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell/maxDate
-func (d_ DatePickerCell) SetMaxDate(value unsafe.Pointer) {
+func (d_ DatePickerCell) SetMaxDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxDate:"), value)
 }
 
 // The cell’s background color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/backgroundcolor
-func (d_ DatePickerCell) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("backgroundColor"))
+func (d_ DatePickerCell) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](d_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -111,7 +112,7 @@ func (d_ DatePickerCell) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/backgroundcolor
-func (d_ DatePickerCell) SetBackgroundColor(value unsafe.Pointer) {
+func (d_ DatePickerCell) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
@@ -190,8 +191,8 @@ func (d_ DatePickerCell) SetDatePickerStyle(value unsafe.Pointer) {
 // The date currently specified in the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datevalue
-func (d_ DatePickerCell) DateValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateValue"))
+func (d_ DatePickerCell) DateValue() foundation.Date {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("dateValue"))
 	return rv
 }
 
@@ -201,7 +202,7 @@ func (d_ DatePickerCell) DateValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datevalue
-func (d_ DatePickerCell) SetDateValue(value unsafe.Pointer) {
+func (d_ DatePickerCell) SetDateValue(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateValue:"), value)
 }
 
@@ -262,8 +263,8 @@ func (d_ DatePickerCell) SetLocale(value unsafe.Pointer) {
 // The minimum date that the picker allows as input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/mindate
-func (d_ DatePickerCell) MinDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("minDate"))
+func (d_ DatePickerCell) MinDate() foundation.Date {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("minDate"))
 	return rv
 }
 
@@ -273,15 +274,15 @@ func (d_ DatePickerCell) MinDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/mindate
-func (d_ DatePickerCell) SetMinDate(value unsafe.Pointer) {
+func (d_ DatePickerCell) SetMinDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinDate:"), value)
 }
 
 // The cell’s text color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/textcolor
-func (d_ DatePickerCell) TextColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("textColor"))
+func (d_ DatePickerCell) TextColor() NSColor {
+	rv := objc.Send[NSColor](d_.ID, objc.Sel("textColor"))
 	return rv
 }
 
@@ -291,7 +292,7 @@ func (d_ DatePickerCell) TextColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/textcolor
-func (d_ DatePickerCell) SetTextColor(value unsafe.Pointer) {
+func (d_ DatePickerCell) SetTextColor(value IColor) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTextColor:"), value)
 }
 

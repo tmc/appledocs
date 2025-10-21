@@ -84,8 +84,8 @@ func NewPopUpButtonCell() PopUpButtonCell {
 // The image displayed by the cell, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/image
-func (p_ PopUpButtonCell) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("image"))
+func (p_ PopUpButtonCell) Image() Image {
+	rv := objc.Send[Image](p_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (p_ PopUpButtonCell) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/image
-func (p_ PopUpButtonCell) SetImage(value unsafe.Pointer) {
+func (p_ PopUpButtonCell) SetImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImage:"), value)
 }
 
@@ -174,8 +174,8 @@ func (p_ PopUpButtonCell) SetIndexOfSelectedItem(value int) {
 // An array of
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/itemarray
-func (p_ PopUpButtonCell) ItemArray() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("itemArray"))
+func (p_ PopUpButtonCell) ItemArray() NSMenuItem {
+	rv := objc.Send[NSMenuItem](p_.ID, objc.Sel("itemArray"))
 	return rv
 }
 
@@ -185,7 +185,7 @@ func (p_ PopUpButtonCell) ItemArray() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/itemarray
-func (p_ PopUpButtonCell) SetItemArray(value unsafe.Pointer) {
+func (p_ PopUpButtonCell) SetItemArray(value IMenuItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setItemArray:"), value)
 }
 
@@ -210,8 +210,8 @@ func (p_ PopUpButtonCell) SetItemTitles(value string) {
 // The last item in the menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/lastitem
-func (p_ PopUpButtonCell) LastItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("lastItem"))
+func (p_ PopUpButtonCell) LastItem() NSMenuItem {
+	rv := objc.Send[NSMenuItem](p_.ID, objc.Sel("lastItem"))
 	return rv
 }
 
@@ -221,15 +221,15 @@ func (p_ PopUpButtonCell) LastItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/lastitem
-func (p_ PopUpButtonCell) SetLastItem(value unsafe.Pointer) {
+func (p_ PopUpButtonCell) SetLastItem(value IMenuItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLastItem:"), value)
 }
 
 // The pop-up button’s associated menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/menu
-func (p_ PopUpButtonCell) Menu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("menu"))
+func (p_ PopUpButtonCell) Menu() NSMenu {
+	rv := objc.Send[NSMenu](p_.ID, objc.Sel("menu"))
 	return rv
 }
 
@@ -239,7 +239,7 @@ func (p_ PopUpButtonCell) Menu() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/menu
-func (p_ PopUpButtonCell) SetMenu(value unsafe.Pointer) {
+func (p_ PopUpButtonCell) SetMenu(value IMenu) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMenu:"), value)
 }
 
@@ -300,8 +300,8 @@ func (p_ PopUpButtonCell) SetPullsDown(value bool) {
 // The menu item last selected by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/selecteditem
-func (p_ PopUpButtonCell) SelectedItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectedItem"))
+func (p_ PopUpButtonCell) SelectedItem() NSMenuItem {
+	rv := objc.Send[NSMenuItem](p_.ID, objc.Sel("selectedItem"))
 	return rv
 }
 
@@ -311,7 +311,7 @@ func (p_ PopUpButtonCell) SelectedItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/selecteditem
-func (p_ PopUpButtonCell) SetSelectedItem(value unsafe.Pointer) {
+func (p_ PopUpButtonCell) SetSelectedItem(value IMenuItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectedItem:"), value)
 }
 

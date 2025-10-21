@@ -82,8 +82,8 @@ func NewTextListElement() TextListElement {
 // An attributed string that represents the string the framework displays for this element taking into account markers and the indentation level of the list element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/attributedstring
-func (t_ TextListElement) AttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("attributedString"))
+func (t_ TextListElement) AttributedString() AttributedString {
+	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -93,15 +93,15 @@ func (t_ TextListElement) AttributedString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/attributedstring
-func (t_ TextListElement) SetAttributedString(value unsafe.Pointer) {
+func (t_ TextListElement) SetAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 
 // An array that contains child text elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/childelements
-func (t_ TextListElement) ChildElements() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("childElements"))
+func (t_ TextListElement) ChildElements() NSTextListElement {
+	rv := objc.Send[NSTextListElement](t_.ID, objc.Sel("childElements"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (t_ TextListElement) ChildElements() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/childelements
-func (t_ TextListElement) SetChildElements(value unsafe.Pointer) {
+func (t_ TextListElement) SetChildElements(value ITextListElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChildElements:"), value)
 }
 
 // The text list element contents without markers and formatting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/contents
-func (t_ TextListElement) Contents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("contents"))
+func (t_ TextListElement) Contents() AttributedString {
+	rv := objc.Send[AttributedString](t_.ID, objc.Sel("contents"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (t_ TextListElement) Contents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/contents
-func (t_ TextListElement) SetContents(value unsafe.Pointer) {
+func (t_ TextListElement) SetContents(value IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
 }
 
@@ -154,8 +154,8 @@ func (t_ TextListElement) SetMarkerAttributes(value unsafe.Pointer) {
 // A text list element that refers to the enclosing text list element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/parent
-func (t_ TextListElement) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("parent"))
+func (t_ TextListElement) Parent() NSTextListElement {
+	rv := objc.Send[NSTextListElement](t_.ID, objc.Sel("parent"))
 	return rv
 }
 
@@ -165,15 +165,15 @@ func (t_ TextListElement) Parent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/parent
-func (t_ TextListElement) SetParent(value unsafe.Pointer) {
+func (t_ TextListElement) SetParent(value ITextListElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParent:"), value)
 }
 
 // The value that represents the text list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/textlist
-func (t_ TextListElement) TextList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textList"))
+func (t_ TextListElement) TextList() NSTextList {
+	rv := objc.Send[NSTextList](t_.ID, objc.Sel("textList"))
 	return rv
 }
 
@@ -183,7 +183,7 @@ func (t_ TextListElement) TextList() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/textlist
-func (t_ TextListElement) SetTextList(value unsafe.Pointer) {
+func (t_ TextListElement) SetTextList(value ITextList) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextList:"), value)
 }
 

@@ -29,6 +29,15 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 	gen.Typedefs = typedefs
 	gen.Constants = constants
 
+	// DEBUG: Check if enums have cases after assignment
+	if verbose {
+		for _, enum := range gen.Enums {
+			if len(enum.Cases) > 0 {
+				fmt.Fprintf(os.Stderr, "DEBUG generateFiles: enum %s has %d cases\n", enum.Name, len(enum.Cases))
+			}
+		}
+	}
+
 	// Apply property overrides for undocumented properties
 	for _, cls := range gen.Classes {
 		MergePropertyOverrides(framework, cls.Name, cls)
@@ -763,14 +772,15 @@ func generateObjcRuntimePackage(outputDir string) error {
 // It populates the IntValue field of each ParsedEnumCase with the resolved integer value.
 func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool) error {
 	// Find the extract-enum-values tool
-	extractToolPath := filepath.Join("cmd", "extract-enum-values", "extract-enum-values")
+	// From cmd/generate-framework-bindings, the tool is at ../extract-enum-values/extract-enum-values
+	extractToolPath := filepath.Join("..", "extract-enum-values", "extract-enum-values")
 
 	// Check if tool exists, if not try to build it
 	if _, err := os.Stat(extractToolPath); os.IsNotExist(err) {
 		if verbose {
 			fmt.Fprintf(os.Stderr, "Building extract-enum-values tool...\n")
 		}
-		cmd := exec.Command("go", "build", "-o", extractToolPath, "./cmd/extract-enum-values")
+		cmd := exec.Command("go", "build", "-o", extractToolPath, "../extract-enum-values")
 		if output, err := cmd.CombinedOutput(); err != nil {
 			return fmt.Errorf("failed to build extract-enum-values tool: %w\nOutput: %s", err, output)
 		}
@@ -781,11 +791,8 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 
 	// Process each enum
 	for _, enum := range enums {
-		if len(enum.Cases) == 0 {
-			continue
-		}
-
-		// Call extract-enum-values to get actual values
+		// Call extract-enum-values to get actual values from SDK headers
+		// This works even for enums with no cases from documentation
 		cmd := exec.Command(extractToolPath, framework, enum.Name)
 		output, err := cmd.Output()
 		if err != nil {
@@ -812,7 +819,25 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 			continue
 		}
 
-		// Build a map of case names to values
+		// If enum has no cases from documentation, create them from SDK extraction
+		if len(enum.Cases) == 0 && len(result.Values) > 0 {
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Creating %d cases for enum %s from SDK headers\n", len(result.Values), enum.Name)
+			}
+			for _, v := range result.Values {
+				enum.Cases = append(enum.Cases, &occ2go.ParsedEnumCase{
+					Name:     v.Name,
+					IntValue: v.Value,
+				})
+			}
+			if verbose {
+				fmt.Fprintf(os.Stderr, "DEBUG: After appending, enum %s now has %d cases\n", enum.Name, len(enum.Cases))
+			}
+			enrichedCount++
+			continue
+		}
+
+		// Build a map of case names to values for existing cases
 		valueMap := make(map[string]int)
 		for _, v := range result.Values {
 			valueMap[v.Name] = v.Value

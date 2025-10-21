@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DatePicker] class.
@@ -84,8 +85,8 @@ func NewDatePicker() DatePicker {
 // The date picker’s background color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/backgroundcolor
-func (d_ DatePicker) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("backgroundColor"))
+func (d_ DatePicker) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](d_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -95,7 +96,7 @@ func (d_ DatePicker) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/backgroundcolor
-func (d_ DatePicker) SetBackgroundColor(value unsafe.Pointer) {
+func (d_ DatePicker) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
@@ -174,8 +175,8 @@ func (d_ DatePicker) SetDatePickerStyle(value unsafe.Pointer) {
 // The date selected by the date picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/datevalue
-func (d_ DatePicker) DateValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateValue"))
+func (d_ DatePicker) DateValue() foundation.Date {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("dateValue"))
 	return rv
 }
 
@@ -185,7 +186,7 @@ func (d_ DatePicker) DateValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/datevalue
-func (d_ DatePicker) SetDateValue(value unsafe.Pointer) {
+func (d_ DatePicker) SetDateValue(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateValue:"), value)
 }
 
@@ -282,8 +283,8 @@ func (d_ DatePicker) SetLocale(value unsafe.Pointer) {
 // The date picker’s maximum date value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/maxdate
-func (d_ DatePicker) MaxDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("maxDate"))
+func (d_ DatePicker) MaxDate() foundation.Date {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("maxDate"))
 	return rv
 }
 
@@ -293,15 +294,15 @@ func (d_ DatePicker) MaxDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/maxdate
-func (d_ DatePicker) SetMaxDate(value unsafe.Pointer) {
+func (d_ DatePicker) SetMaxDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxDate:"), value)
 }
 
 // The date picker’s minimum date value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/mindate
-func (d_ DatePicker) MinDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("minDate"))
+func (d_ DatePicker) MinDate() foundation.Date {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("minDate"))
 	return rv
 }
 
@@ -311,7 +312,7 @@ func (d_ DatePicker) MinDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/mindate
-func (d_ DatePicker) SetMinDate(value unsafe.Pointer) {
+func (d_ DatePicker) SetMinDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinDate:"), value)
 }
 
@@ -336,8 +337,8 @@ func (d_ DatePicker) SetPresentsCalendarOverlay(value bool) {
 // The date picker’s text color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/textcolor
-func (d_ DatePicker) TextColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("textColor"))
+func (d_ DatePicker) TextColor() NSColor {
+	rv := objc.Send[NSColor](d_.ID, objc.Sel("textColor"))
 	return rv
 }
 
@@ -347,7 +348,7 @@ func (d_ DatePicker) TextColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/textcolor
-func (d_ DatePicker) SetTextColor(value unsafe.Pointer) {
+func (d_ DatePicker) SetTextColor(value IColor) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTextColor:"), value)
 }
 

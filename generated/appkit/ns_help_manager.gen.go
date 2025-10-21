@@ -31,13 +31,13 @@ type _HelpManagerClass struct {
 // An interface definition for the [HelpManager] class.
 type IHelpManager interface {
 	objectivec.IObject
-	ContextHelpForObject(object objc.ID) unsafe.Pointer
-	FindStringInBook(query string, book unsafe.Pointer)
-	OpenHelpAnchorInBook(anchor unsafe.Pointer, book unsafe.Pointer)
+	ContextHelpForObject(object objectivec.IObject) AttributedString
+	FindStringInBook(query string, book IHelpBookName)
+	OpenHelpAnchorInBook(anchor IHelpAnchorName, book IHelpBookName)
 	RegisterBooksInBundle(bundle unsafe.Pointer) bool
-	RemoveContextHelpForObject(object objc.ID)
-	SetContextHelpForObject(attrString unsafe.Pointer, object objc.ID)
-	ShowContextHelpForObjectLocationHint(object objc.ID, pt coregraphics.CGPoint) bool
+	RemoveContextHelpForObject(object objectivec.IObject)
+	SetContextHelpForObject(attrString IAttributedString, object objectivec.IObject)
+	ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt coregraphics.CGPoint) bool
 }
 
 // An object for displaying online help for an app.
@@ -97,29 +97,29 @@ func (hc _HelpManagerClass) ContextHelpModeActive() bool {
 // Returns the shared instance, creating it if it does not already exist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/shared
-func (hc _HelpManagerClass) SharedHelpManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("sharedHelpManager"))
+func (hc _HelpManagerClass) SharedHelpManager() NSHelpManager {
+	rv := objc.Send[NSHelpManager](objc.ID(hc.class), objc.Sel("sharedHelpManager"))
 	return rv
 }
 // Returns context-sensitive help for an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/contextHelp(for:)
-func (h_ HelpManager) ContextHelpForObject(object objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("contextHelpForObject:"), object)
+func (h_ HelpManager) ContextHelpForObject(object objectivec.IObject) AttributedString {
+	rv := objc.Send[AttributedString](h_.ID, objc.Sel("contextHelpForObject:"), object)
 	return rv
 }
 
 // Performs a search for the specified string in the specified book.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/find(_:inBook:)
-func (h_ HelpManager) FindStringInBook(query string, book unsafe.Pointer) {
+func (h_ HelpManager) FindStringInBook(query string, book IHelpBookName) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("findString:inBook:"), objc.String(query), book)
 }
 
 // Finds and displays the text at the given anchor location in the given book.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/openHelpAnchor(_:inBook:)
-func (h_ HelpManager) OpenHelpAnchorInBook(anchor unsafe.Pointer, book unsafe.Pointer) {
+func (h_ HelpManager) OpenHelpAnchorInBook(anchor IHelpAnchorName, book IHelpBookName) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("openHelpAnchor:inBook:"), anchor, book)
 }
 
@@ -134,21 +134,21 @@ func (h_ HelpManager) RegisterBooksInBundle(bundle unsafe.Pointer) bool {
 // Removes the association between an object and its context-sensitive help.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/removeContextHelp(for:)
-func (h_ HelpManager) RemoveContextHelpForObject(object objc.ID) {
+func (h_ HelpManager) RemoveContextHelpForObject(object objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("removeContextHelpForObject:"), object)
 }
 
 // Associates help content with an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/setContextHelp(_:for:)
-func (h_ HelpManager) SetContextHelpForObject(attrString unsafe.Pointer, object objc.ID) {
+func (h_ HelpManager) SetContextHelpForObject(attrString IAttributedString, object objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setContextHelp:forObject:"), attrString, object)
 }
 
 // Displays the context-sensitive help for a given object at or near the point on the screen specified by a given point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/showContextHelp(for:locationHint:)
-func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objc.ID, pt coregraphics.CGPoint) bool {
+func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt coregraphics.CGPoint) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("showContextHelpForObject:locationHint:"), object, pt)
 	return rv
 }
@@ -171,8 +171,8 @@ func (h_ HelpManager) SetContextHelpModeActive(value bool) {
 // Returns the shared instance, creating it if it does not already exist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/shared
-func (h_ HelpManager) SharedHelpManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sharedHelpManager"))
+func (h_ HelpManager) SharedHelpManager() NSHelpManager {
+	rv := objc.Send[NSHelpManager](h_.ID, objc.Sel("sharedHelpManager"))
 	return rv
 }
 

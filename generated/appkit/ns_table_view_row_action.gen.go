@@ -83,8 +83,8 @@ func NewTableViewRowAction() TableViewRowAction {
 // The background color of the action button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/backgroundcolor
-func (t_ TableViewRowAction) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+func (t_ TableViewRowAction) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -94,14 +94,14 @@ func (t_ TableViewRowAction) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/backgroundcolor
-func (t_ TableViewRowAction) SetBackgroundColor(value unsafe.Pointer) {
+func (t_ TableViewRowAction) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/image
-func (t_ TableViewRowAction) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("image"))
+func (t_ TableViewRowAction) Image() Image {
+	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (t_ TableViewRowAction) Image() unsafe.Pointer {
 // SetImage sets the value of the image property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/image
-func (t_ TableViewRowAction) SetImage(value unsafe.Pointer) {
+func (t_ TableViewRowAction) SetImage(value IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
 }
 

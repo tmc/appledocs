@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,59 +81,53 @@ func NewDataAsset() DataAsset {
 }
 
 
-// The raw data values in the data asset.
+
+
+// Initializes and returns an object with a reference to the named data asset in an asset catalog.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/data
-func (d_ DataAsset) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("data"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:)
+func NewDataAssetWithName(name IDataAssetName) DataAsset {
+	instance := getDataAssetClass().Alloc()
+	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:"), name)
+	rv.Autorelease()
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-// The raw data values in the data asset.
 
+// Initializes and returns an object with a reference to the named data asset that’s in an asset catalog in the specified bundle.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/data
-func (d_ DataAsset) SetData(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setData:"), value)
-}
-
-// The name of the data set in the asset catalog.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/name-swift.property
-func (d_ DataAsset) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:bundle:)
+func NewDataAssetWithNameBundle(name IDataAssetName, bundle unsafe.Pointer) DataAsset {
+	instance := getDataAssetClass().Alloc()
+	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:bundle:"), name, bundle)
+	rv.Autorelease()
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-// The name of the data set in the asset catalog.
-
+// The raw data values in the data asset.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/name-swift.property
-func (d_ DataAsset) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setName:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/data
+func (d_ DataAsset) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("data"))
+	return rv
+}
+
+// The name of the data set in the asset catalog.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/name-swift.property
+func (d_ DataAsset) Name() DataAssetName {
+	rv := objc.Send[DataAssetName](d_.ID, objc.Sel("name"))
+	return rv
 }
 
 // The uniform type identifier for the data asset.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/typeIdentifier
 func (d_ DataAsset) TypeIdentifier() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("typeIdentifier"))
 	return rv
 }
-
-
-// SetTypeIdentifier sets the value of the typeIdentifier property.
-// The uniform type identifier for the data asset.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
-func (d_ DataAsset) SetTypeIdentifier(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setTypeIdentifier:"), objc.String(value))
-}
-
 
 

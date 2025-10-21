@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Application] class.
@@ -30,42 +32,42 @@ type _ApplicationClass struct {
 type IApplication interface {
 	IResponder
 	ActivateIgnoringOtherApps(ignoreOtherApps bool)
-	ApplicationPrintFiles(sender unsafe.Pointer, filenames unsafe.Pointer)
-	BeginModalSessionForWindow(window unsafe.Pointer) unsafe.Pointer
-	BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheet unsafe.Pointer, docWindow unsafe.Pointer, modalDelegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer)
-	DiscardEventsMatchingMaskBeforeEvent(mask unsafe.Pointer, lastEvent unsafe.Pointer)
+	ApplicationPrintFiles(sender IApplication, filenames []string)
+	BeginModalSessionForWindow(window IWindow) unsafe.Pointer
+	BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheet IWindow, docWindow IWindow, modalDelegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer)
+	DiscardEventsMatchingMaskBeforeEvent(mask EventMask, lastEvent IEvent)
 	EndModalSession(session unsafe.Pointer)
-	EndSheet(sheet unsafe.Pointer)
-	EndSheetReturnCode(sheet unsafe.Pointer, returnCode int)
+	EndSheet(sheet IWindow)
+	EndSheetReturnCode(sheet IWindow, returnCode int)
 	FinishLaunching()
-	Hide(sender objc.ID)
-	NextEventMatchingMaskUntilDateInModeDequeue(mask unsafe.Pointer, expiration unsafe.Pointer, mode unsafe.Pointer, deqFlag bool) unsafe.Pointer
-	OrderFrontCharacterPalette(sender objc.ID)
-	OrderFrontColorPanel(sender objc.ID)
-	OrderFrontStandardAboutPanel(sender objc.ID)
+	Hide(sender objectivec.IObject)
+	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration foundation.IDate, mode unsafe.Pointer, deqFlag bool) Event
+	OrderFrontCharacterPalette(sender objectivec.IObject)
+	OrderFrontColorPanel(sender objectivec.IObject)
+	OrderFrontStandardAboutPanel(sender objectivec.IObject)
 	OrderFrontStandardAboutPanelWithOptions(optionsDictionary unsafe.Pointer)
-	PostEventAtStart(event unsafe.Pointer, atStart bool)
+	PostEventAtStart(event IEvent, atStart bool)
 	RegisterForRemoteNotifications()
-	RegisterForRemoteNotificationTypes(types unsafe.Pointer)
-	RegisterServicesMenuSendTypesReturnTypes(sendTypes unsafe.Pointer, returnTypes unsafe.Pointer)
-	RegisterUserInterfaceItemSearchHandler(handler objc.ID)
+	RegisterForRemoteNotificationTypes(types RemoteNotificationType)
+	RegisterServicesMenuSendTypesReturnTypes(sendTypes []string, returnTypes []string)
+	RegisterUserInterfaceItemSearchHandler(handler objectivec.IObject)
 	ReplyToOpenOrPrint(reply unsafe.Pointer)
 	ReportException(exception unsafe.Pointer)
 	Run()
-	RunModalForWindow(window unsafe.Pointer) unsafe.Pointer
-	RunModalForWindowRelativeToWindow(window unsafe.Pointer, docWindow unsafe.Pointer) int
-	RunModalSession(session unsafe.Pointer) unsafe.Pointer
-	RunPageLayout(sender objc.ID)
-	SendActionToFrom(action objc.SEL, target objc.ID, sender objc.ID) bool
-	SendEvent(event unsafe.Pointer)
+	RunModalForWindow(window IWindow) ModalResponse
+	RunModalForWindowRelativeToWindow(window IWindow, docWindow IWindow) int
+	RunModalSession(session unsafe.Pointer) ModalResponse
+	RunPageLayout(sender objectivec.IObject)
+	SendActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) bool
+	SendEvent(event IEvent)
 	SetWindowsNeedUpdate(needUpdate bool)
 	StopModal()
-	Terminate(sender objc.ID)
-	ToggleTouchBarCustomizationPalette(sender objc.ID)
+	Terminate(sender objectivec.IObject)
+	ToggleTouchBarCustomizationPalette(sender objectivec.IObject)
 	UnhideWithoutActivation()
 	UnregisterForRemoteNotifications()
 	UpdateWindows()
-	ValidRequestorForSendTypeReturnType(sendType unsafe.Pointer, returnType unsafe.Pointer) objc.ID
+	ValidRequestorForSendTypeReturnType(sendType PasteboardType, returnType PasteboardType) objc.ID
 }
 
 // An object that manages an app’s main event loop and resources used by all of that app’s objects.
@@ -121,8 +123,8 @@ func NewApplication() Application {
 // Returns the application instance, creating it if it doesn’t exist yet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/shared
-func (ac _ApplicationClass) SharedApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("sharedApplication"))
+func (ac _ApplicationClass) SharedApplication() NSApplication {
+	rv := objc.Send[NSApplication](objc.ID(ac.class), objc.Sel("sharedApplication"))
 	return rv
 }
 // Makes the receiver the active app.
@@ -135,14 +137,14 @@ func (a_ Application) ActivateIgnoringOtherApps(ignoreOtherApps bool) {
 // Use the delegate method instead.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/application:printFiles:
-func (a_ Application) ApplicationPrintFiles(sender unsafe.Pointer, filenames unsafe.Pointer) {
+func (a_ Application) ApplicationPrintFiles(sender IApplication, filenames []string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("application:printFiles:"), sender, filenames)
 }
 
 // Sets up a modal session with the given window and returns a pointer to the structure representing the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/beginModalSession(for:)
-func (a_ Application) BeginModalSessionForWindow(window unsafe.Pointer) unsafe.Pointer {
+func (a_ Application) BeginModalSessionForWindow(window IWindow) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("beginModalSessionForWindow:"), window)
 	return rv
 }
@@ -150,14 +152,14 @@ func (a_ Application) BeginModalSessionForWindow(window unsafe.Pointer) unsafe.P
 // Starts a document modal session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/beginSheet(_:modalFor:modalDelegate:didEnd:contextInfo:)
-func (a_ Application) BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheet unsafe.Pointer, docWindow unsafe.Pointer, modalDelegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (a_ Application) BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheet IWindow, docWindow IWindow, modalDelegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo:"), sheet, docWindow, modalDelegate, didEndSelector, contextInfo)
 }
 
 // Removes all events matching the given mask and generated before the specified event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/discardEvents(matching:before:)
-func (a_ Application) DiscardEventsMatchingMaskBeforeEvent(mask unsafe.Pointer, lastEvent unsafe.Pointer) {
+func (a_ Application) DiscardEventsMatchingMaskBeforeEvent(mask EventMask, lastEvent IEvent) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("discardEventsMatchingMask:beforeEvent:"), mask, lastEvent)
 }
 
@@ -171,14 +173,14 @@ func (a_ Application) EndModalSession(session unsafe.Pointer) {
 // Ends a document modal session by specifying the sheet window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/endSheet(_:)
-func (a_ Application) EndSheet(sheet unsafe.Pointer) {
+func (a_ Application) EndSheet(sheet IWindow) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("endSheet:"), sheet)
 }
 
 // Ends a document modal session by specifying the sheet window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/endSheet(_:returnCode:)
-func (a_ Application) EndSheetReturnCode(sheet unsafe.Pointer, returnCode int) {
+func (a_ Application) EndSheetReturnCode(sheet IWindow, returnCode int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("endSheet:returnCode:"), sheet, returnCode)
 }
 
@@ -192,36 +194,36 @@ func (a_ Application) FinishLaunching() {
 // Hides all the receiver’s windows, and the next app in line is activated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/hide(_:)
-func (a_ Application) Hide(sender objc.ID) {
+func (a_ Application) Hide(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("hide:"), sender)
 }
 
 // Returns the next event matching a given mask, or if no such event is found before a specified expiration date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/nextEvent(matching:until:inMode:dequeue:)
-func (a_ Application) NextEventMatchingMaskUntilDateInModeDequeue(mask unsafe.Pointer, expiration unsafe.Pointer, mode unsafe.Pointer, deqFlag bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nextEventMatchingMask:untilDate:inMode:dequeue:"), mask, expiration, mode, deqFlag)
+func (a_ Application) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration foundation.IDate, mode unsafe.Pointer, deqFlag bool) Event {
+	rv := objc.Send[Event](a_.ID, objc.Sel("nextEventMatchingMask:untilDate:inMode:dequeue:"), mask, expiration, mode, deqFlag)
 	return rv
 }
 
 // Opens the character palette.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/orderFrontCharacterPalette(_:)
-func (a_ Application) OrderFrontCharacterPalette(sender objc.ID) {
+func (a_ Application) OrderFrontCharacterPalette(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("orderFrontCharacterPalette:"), sender)
 }
 
 // Brings up the color panel, an instance of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/orderFrontColorPanel(_:)
-func (a_ Application) OrderFrontColorPanel(sender objc.ID) {
+func (a_ Application) OrderFrontColorPanel(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("orderFrontColorPanel:"), sender)
 }
 
 // Displays a standard About window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/orderFrontStandardAboutPanel(_:)
-func (a_ Application) OrderFrontStandardAboutPanel(sender objc.ID) {
+func (a_ Application) OrderFrontStandardAboutPanel(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("orderFrontStandardAboutPanel:"), sender)
 }
 
@@ -235,7 +237,7 @@ func (a_ Application) OrderFrontStandardAboutPanelWithOptions(optionsDictionary 
 // Adds a given event to the receiver’s event queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/postEvent(_:atStart:)
-func (a_ Application) PostEventAtStart(event unsafe.Pointer, atStart bool) {
+func (a_ Application) PostEventAtStart(event IEvent, atStart bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("postEvent:atStart:"), event, atStart)
 }
 
@@ -249,21 +251,21 @@ func (a_ Application) RegisterForRemoteNotifications() {
 // Register to receive notifications of the specified types from a provider through the Apple Push Notification service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/registerForRemoteNotifications(matching:)
-func (a_ Application) RegisterForRemoteNotificationTypes(types unsafe.Pointer) {
+func (a_ Application) RegisterForRemoteNotificationTypes(types RemoteNotificationType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("registerForRemoteNotificationTypes:"), types)
 }
 
 // Registers the pasteboard types the receiver can send and receive in response to service requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/registerServicesMenuSendTypes(_:returnTypes:)
-func (a_ Application) RegisterServicesMenuSendTypesReturnTypes(sendTypes unsafe.Pointer, returnTypes unsafe.Pointer) {
+func (a_ Application) RegisterServicesMenuSendTypesReturnTypes(sendTypes []string, returnTypes []string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("registerServicesMenuSendTypes:returnTypes:"), sendTypes, returnTypes)
 }
 
 // Register an object that provides help data to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/registerUserInterfaceItemSearchHandler(_:)
-func (a_ Application) RegisterUserInterfaceItemSearchHandler(handler objc.ID) {
+func (a_ Application) RegisterUserInterfaceItemSearchHandler(handler objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("registerUserInterfaceItemSearchHandler:"), handler)
 }
 
@@ -291,14 +293,14 @@ func (a_ Application) Run() {
 // Starts a modal event loop for the specified window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/runModal(for:)
-func (a_ Application) RunModalForWindow(window unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("runModalForWindow:"), window)
+func (a_ Application) RunModalForWindow(window IWindow) ModalResponse {
+	rv := objc.Send[ModalResponse](a_.ID, objc.Sel("runModalForWindow:"), window)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/runModalForWindow:relativeToWindow:
-func (a_ Application) RunModalForWindowRelativeToWindow(window unsafe.Pointer, docWindow unsafe.Pointer) int {
+func (a_ Application) RunModalForWindowRelativeToWindow(window IWindow, docWindow IWindow) int {
 	rv := objc.Send[int](a_.ID, objc.Sel("runModalForWindow:relativeToWindow:"), window, docWindow)
 	return rv
 }
@@ -306,22 +308,22 @@ func (a_ Application) RunModalForWindowRelativeToWindow(window unsafe.Pointer, d
 // Runs a given modal session, as defined in a previous invocation of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/runModalSession(_:)
-func (a_ Application) RunModalSession(session unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("runModalSession:"), session)
+func (a_ Application) RunModalSession(session unsafe.Pointer) ModalResponse {
+	rv := objc.Send[ModalResponse](a_.ID, objc.Sel("runModalSession:"), session)
 	return rv
 }
 
 // Displays the receiver’s page layout panel, an instance of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/runPageLayout(_:)
-func (a_ Application) RunPageLayout(sender objc.ID) {
+func (a_ Application) RunPageLayout(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("runPageLayout:"), sender)
 }
 
 // Sends the given action message to the given target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/sendAction(_:to:from:)
-func (a_ Application) SendActionToFrom(action objc.SEL, target objc.ID, sender objc.ID) bool {
+func (a_ Application) SendActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("sendAction:to:from:"), action, target, sender)
 	return rv
 }
@@ -329,7 +331,7 @@ func (a_ Application) SendActionToFrom(action objc.SEL, target objc.ID, sender o
 // Dispatches an event to other objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/sendEvent(_:)
-func (a_ Application) SendEvent(event unsafe.Pointer) {
+func (a_ Application) SendEvent(event IEvent) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("sendEvent:"), event)
 }
 
@@ -350,14 +352,14 @@ func (a_ Application) StopModal() {
 // Terminates the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/terminate(_:)
-func (a_ Application) Terminate(sender objc.ID) {
+func (a_ Application) Terminate(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("terminate:"), sender)
 }
 
 // Show or hides the interface for customizing the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/toggleTouchBarCustomizationPalette(_:)
-func (a_ Application) ToggleTouchBarCustomizationPalette(sender objc.ID) {
+func (a_ Application) ToggleTouchBarCustomizationPalette(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("toggleTouchBarCustomizationPalette:"), sender)
 }
 
@@ -385,7 +387,7 @@ func (a_ Application) UpdateWindows() {
 // Indicates whether the receiver can send and receive the specified pasteboard types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/validRequestor(forSendType:returnType:)
-func (a_ Application) ValidRequestorForSendTypeReturnType(sendType unsafe.Pointer, returnType unsafe.Pointer) objc.ID {
+func (a_ Application) ValidRequestorForSendTypeReturnType(sendType PasteboardType, returnType PasteboardType) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("validRequestorForSendType:returnType:"), sendType, returnType)
 	return rv
 }
@@ -393,8 +395,8 @@ func (a_ Application) ValidRequestorForSendTypeReturnType(sendType unsafe.Pointe
 // The appearance associated with the app’s windows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/appearance
-func (a_ Application) Appearance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("appearance"))
+func (a_ Application) Appearance() NSAppearance {
+	rv := objc.Send[NSAppearance](a_.ID, objc.Sel("appearance"))
 	return rv
 }
 
@@ -404,31 +406,49 @@ func (a_ Application) Appearance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/appearance
-func (a_ Application) SetAppearance(value unsafe.Pointer) {
+func (a_ Application) SetAppearance(value IAppearance) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAppearance:"), value)
+}
+
+// The image used for the app’s icon.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/applicationIconImage
+func (a_ Application) ApplicationIconImage() Image {
+	rv := objc.Send[Image](a_.ID, objc.Sel("applicationIconImage"))
+	return rv
+}
+
+
+// SetApplicationIconImage sets the value of the applicationIconImage property.
+// The image used for the app’s icon.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/applicationIconImage
+func (a_ Application) SetApplicationIconImage(value IImage) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicationIconImage:"), value)
 }
 
 // The last event object that the app retrieved from the event queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/currentEvent
-func (a_ Application) CurrentEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentEvent"))
+func (a_ Application) CurrentEvent() NSEvent {
+	rv := objc.Send[NSEvent](a_.ID, objc.Sel("currentEvent"))
 	return rv
 }
 
 // The appearance that AppKit uses to draw the app’s interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/effectiveAppearance
-func (a_ Application) EffectiveAppearance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("effectiveAppearance"))
+func (a_ Application) EffectiveAppearance() NSAppearance {
+	rv := objc.Send[NSAppearance](a_.ID, objc.Sel("effectiveAppearance"))
 	return rv
 }
 
 // The types of push notifications that the app accepts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/enabledRemoteNotificationTypes
-func (a_ Application) EnabledRemoteNotificationTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("enabledRemoteNotificationTypes"))
+func (a_ Application) EnabledRemoteNotificationTypes() RemoteNotificationType {
+	rv := objc.Send[RemoteNotificationType](a_.ID, objc.Sel("enabledRemoteNotificationTypes"))
 	return rv
 }
 
@@ -461,8 +481,8 @@ func (a_ Application) RegisteredForRemoteNotifications() bool {
 // The app’s Services menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/servicesMenu
-func (a_ Application) ServicesMenu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("servicesMenu"))
+func (a_ Application) ServicesMenu() NSMenu {
+	rv := objc.Send[NSMenu](a_.ID, objc.Sel("servicesMenu"))
 	return rv
 }
 
@@ -472,7 +492,7 @@ func (a_ Application) ServicesMenu() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/servicesMenu
-func (a_ Application) SetServicesMenu(value unsafe.Pointer) {
+func (a_ Application) SetServicesMenu(value IMenu) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setServicesMenu:"), value)
 }
 
@@ -497,16 +517,16 @@ func (a_ Application) SetServicesProvider(value objc.ID) {
 // Returns the application instance, creating it if it doesn’t exist yet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/shared
-func (a_ Application) SharedApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sharedApplication"))
+func (a_ Application) SharedApplication() NSApplication {
+	rv := objc.Send[NSApplication](a_.ID, objc.Sel("sharedApplication"))
 	return rv
 }
 
 // The global variable for the shared app instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapp
-func (a_ Application) NSApp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("NSApp"))
+func (a_ Application) NSApp() NSApplication {
+	rv := objc.Send[NSApplication](a_.ID, objc.Sel("NSApp"))
 	return rv
 }
 
@@ -516,26 +536,8 @@ func (a_ Application) NSApp() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapp
-func (a_ Application) SetNSApp(value unsafe.Pointer) {
+func (a_ Application) SetNSApp(value IApplication) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNSApp:"), value)
-}
-
-// The image used for the app’s icon.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationiconimage
-func (a_ Application) ApplicationIconImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("applicationIconImage"))
-	return rv
-}
-
-
-// SetApplicationIconImage sets the value of the applicationIconImage property.
-// The image used for the app’s icon.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationiconimage
-func (a_ Application) SetApplicationIconImage(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicationIconImage:"), value)
 }
 
 // A boolean value indicating whether your application should suppress HDR content based on established policy.
@@ -595,8 +597,8 @@ func (a_ Application) SetDelegate(value unsafe.Pointer) {
 // The app’s Dock tile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/docktile
-func (a_ Application) DockTile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dockTile"))
+func (a_ Application) DockTile() NSDockTile {
+	rv := objc.Send[NSDockTile](a_.ID, objc.Sel("dockTile"))
 	return rv
 }
 
@@ -606,15 +608,15 @@ func (a_ Application) DockTile() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/docktile
-func (a_ Application) SetDockTile(value unsafe.Pointer) {
+func (a_ Application) SetDockTile(value IDockTile) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDockTile:"), value)
 }
 
 // The help menu used by the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/helpmenu
-func (a_ Application) HelpMenu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("helpMenu"))
+func (a_ Application) HelpMenu() NSMenu {
+	rv := objc.Send[NSMenu](a_.ID, objc.Sel("helpMenu"))
 	return rv
 }
 
@@ -624,7 +626,7 @@ func (a_ Application) HelpMenu() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/helpmenu
-func (a_ Application) SetHelpMenu(value unsafe.Pointer) {
+func (a_ Application) SetHelpMenu(value IMenu) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHelpMenu:"), value)
 }
 
@@ -703,8 +705,8 @@ func (a_ Application) SetIsRunning(value bool) {
 // An array of document objects arranged according to the front-to-back ordering of their associated windows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/ordereddocuments
-func (a_ Application) OrderedDocuments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("orderedDocuments"))
+func (a_ Application) OrderedDocuments() NSDocument {
+	rv := objc.Send[NSDocument](a_.ID, objc.Sel("orderedDocuments"))
 	return rv
 }
 
@@ -714,15 +716,15 @@ func (a_ Application) OrderedDocuments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/ordereddocuments
-func (a_ Application) SetOrderedDocuments(value unsafe.Pointer) {
+func (a_ Application) SetOrderedDocuments(value IDocument) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOrderedDocuments:"), value)
 }
 
 // An array of window objects arranged according to their front-to-back ordering on the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/orderedwindows
-func (a_ Application) OrderedWindows() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("orderedWindows"))
+func (a_ Application) OrderedWindows() NSWindow {
+	rv := objc.Send[NSWindow](a_.ID, objc.Sel("orderedWindows"))
 	return rv
 }
 
@@ -732,7 +734,7 @@ func (a_ Application) OrderedWindows() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/orderedwindows
-func (a_ Application) SetOrderedWindows(value unsafe.Pointer) {
+func (a_ Application) SetOrderedWindows(value IWindow) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOrderedWindows:"), value)
 }
 
@@ -757,8 +759,8 @@ func (a_ Application) SetPresentationOptions(value unsafe.Pointer) {
 // The layout direction of the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/userinterfacelayoutdirection
-func (a_ Application) UserInterfaceLayoutDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("userInterfaceLayoutDirection"))
+func (a_ Application) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
+	rv := objc.Send[UserInterfaceLayoutDirection](a_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
 
@@ -768,7 +770,7 @@ func (a_ Application) UserInterfaceLayoutDirection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/userinterfacelayoutdirection
-func (a_ Application) SetUserInterfaceLayoutDirection(value unsafe.Pointer) {
+func (a_ Application) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 

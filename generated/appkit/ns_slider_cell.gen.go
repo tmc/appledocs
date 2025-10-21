@@ -94,8 +94,8 @@ func (s_ SliderCell) KnobRectFlipped(flipped bool) coregraphics.CGRect {
 // The slider type, either linear or circular.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/sliderType
-func (s_ SliderCell) SliderType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sliderType"))
+func (s_ SliderCell) SliderType() SliderType {
+	rv := objc.Send[SliderType](s_.ID, objc.Sel("sliderType"))
 	return rv
 }
 
@@ -105,7 +105,7 @@ func (s_ SliderCell) SliderType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/sliderType
-func (s_ SliderCell) SetSliderType(value unsafe.Pointer) {
+func (s_ SliderCell) SetSliderType(value SliderType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSliderType:"), value)
 }
 

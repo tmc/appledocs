@@ -33,7 +33,7 @@ type _PrintOperationClass struct {
 type IPrintOperation interface {
 	objectivec.IObject
 	CleanUpOperation()
-	RunOperationModalForWindowDelegateDidRunSelectorContextInfo(docWindow unsafe.Pointer, delegate objc.ID, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
+	RunOperationModalForWindowDelegateDidRunSelectorContextInfo(docWindow IWindow, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
 }
 
 // An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs.
@@ -87,8 +87,8 @@ func NewPrintOperation() PrintOperation {
 // Creates and returns a new print operation object ready to control the copying of EPS graphics from the specified view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:)
-func (pc _PrintOperationClass) EPSOperationWithViewInsideRectToData(view unsafe.Pointer, rect coregraphics.CGRect, data unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("EPSOperationWithView:insideRect:toData:"), view, rect, data)
+func (pc _PrintOperationClass) EPSOperationWithViewInsideRectToData(view IView, rect coregraphics.CGRect, data IMutableData) PrintOperation {
+	rv := objc.Send[PrintOperation](objc.ID(pc.class), objc.Sel("EPSOperationWithView:insideRect:toData:"), view, rect, data)
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (p_ PrintOperation) CleanUpOperation() {
 // Runs the print operation, calling your custom delegate method upon completion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/runModal(for:delegate:didRun:contextInfo:)
-func (p_ PrintOperation) RunOperationModalForWindowDelegateDidRunSelectorContextInfo(docWindow unsafe.Pointer, delegate objc.ID, didRunSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (p_ PrintOperation) RunOperationModalForWindowDelegateDidRunSelectorContextInfo(docWindow IWindow, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("runOperationModalForWindow:delegate:didRunSelector:contextInfo:"), docWindow, delegate, didRunSelector, contextInfo)
 }
 
@@ -117,8 +117,8 @@ func (p_ PrintOperation) CopyingOperation() bool {
 // The PDF panel object to use during the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/pdfPanel
-func (p_ PrintOperation) PDFPanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("PDFPanel"))
+func (p_ PrintOperation) PDFPanel() NSPDFPanel {
+	rv := objc.Send[NSPDFPanel](p_.ID, objc.Sel("PDFPanel"))
 	return rv
 }
 
@@ -128,15 +128,15 @@ func (p_ PrintOperation) PDFPanel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/pdfPanel
-func (p_ PrintOperation) SetPDFPanel(value unsafe.Pointer) {
+func (p_ PrintOperation) SetPDFPanel(value IPDFPanel) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPDFPanel:"), value)
 }
 
 // The printing information associated with the print operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/printInfo
-func (p_ PrintOperation) PrintInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("printInfo"))
+func (p_ PrintOperation) PrintInfo() NSPrintInfo {
+	rv := objc.Send[NSPrintInfo](p_.ID, objc.Sel("printInfo"))
 	return rv
 }
 
@@ -146,15 +146,15 @@ func (p_ PrintOperation) PrintInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/printInfo
-func (p_ PrintOperation) SetPrintInfo(value unsafe.Pointer) {
+func (p_ PrintOperation) SetPrintInfo(value IPrintInfo) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintInfo:"), value)
 }
 
 // The view object that generates the actual data for the print operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/view
-func (p_ PrintOperation) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("view"))
+func (p_ PrintOperation) View() NSView {
+	rv := objc.Send[NSView](p_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -179,8 +179,8 @@ func (p_ PrintOperation) SetCanSpawnSeparateThread(value bool) {
 // The graphics context object used for generating output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/context
-func (p_ PrintOperation) Context() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("context"))
+func (p_ PrintOperation) Context() NSGraphicsContext {
+	rv := objc.Send[NSGraphicsContext](p_.ID, objc.Sel("context"))
 	return rv
 }
 
@@ -190,7 +190,7 @@ func (p_ PrintOperation) Context() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/context
-func (p_ PrintOperation) SetContext(value unsafe.Pointer) {
+func (p_ PrintOperation) SetContext(value IGraphicsContext) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContext:"), value)
 }
 
@@ -280,7 +280,7 @@ func (p_ PrintOperation) PageRange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pagerange
-func (p_ PrintOperation) SetPageRange(value foundation.Range) {
+func (p_ PrintOperation) SetPageRange(value foundation.IRange) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPageRange:"), value)
 }
 
@@ -305,8 +305,8 @@ func (p_ PrintOperation) SetPreferredRenderingQuality(value unsafe.Pointer) {
 // The print panel object to use during the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/printpanel
-func (p_ PrintOperation) PrintPanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("printPanel"))
+func (p_ PrintOperation) PrintPanel() NSPrintPanel {
+	rv := objc.Send[NSPrintPanel](p_.ID, objc.Sel("printPanel"))
 	return rv
 }
 
@@ -316,7 +316,7 @@ func (p_ PrintOperation) PrintPanel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/printpanel
-func (p_ PrintOperation) SetPrintPanel(value unsafe.Pointer) {
+func (p_ PrintOperation) SetPrintPanel(value IPrintPanel) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintPanel:"), value)
 }
 

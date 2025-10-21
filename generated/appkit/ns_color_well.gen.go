@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ColorWell] class.
@@ -29,7 +30,7 @@ type _ColorWellClass struct {
 // An interface definition for the [ColorWell] class.
 type IColorWell interface {
 	IControl
-	TakeColorFrom(sender objc.ID)
+	TakeColorFrom(sender objectivec.IObject)
 }
 
 // A control that displays a color value and lets the user change that color value.
@@ -85,15 +86,15 @@ func NewColorWell() ColorWell {
 // Changes the currently selected color to the color of the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/takeColorFrom(_:)
-func (c_ ColorWell) TakeColorFrom(sender objc.ID) {
+func (c_ ColorWell) TakeColorFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeColorFrom:"), sender)
 }
 
 // The appearance and interaction style to apply to the color well.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/colorWellStyle
-func (c_ ColorWell) ColorWellStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorWellStyle"))
+func (c_ ColorWell) ColorWellStyle() ColorWellStyle {
+	rv := objc.Send[ColorWellStyle](c_.ID, objc.Sel("colorWellStyle"))
 	return rv
 }
 
@@ -103,8 +104,26 @@ func (c_ ColorWell) ColorWellStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/colorWellStyle
-func (c_ ColorWell) SetColorWellStyle(value unsafe.Pointer) {
+func (c_ ColorWell) SetColorWellStyle(value ColorWellStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColorWellStyle:"), value)
+}
+
+// The image to display on the button portion of a color well that adopts the expanded style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/image
+func (c_ ColorWell) Image() Image {
+	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The image to display on the button portion of a color well that adopts the expanded style.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/image
+func (c_ ColorWell) SetImage(value IImage) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
 }
 
 // A Boolean value that determines whether the color well has a border.
@@ -164,8 +183,8 @@ func (c_ ColorWell) SetSupportsAlpha(value bool) {
 // The currently selected color for the color well.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/color
-func (c_ ColorWell) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("color"))
+func (c_ ColorWell) Color() NSColor {
+	rv := objc.Send[NSColor](c_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -175,26 +194,8 @@ func (c_ ColorWell) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/color
-func (c_ ColorWell) SetColor(value unsafe.Pointer) {
+func (c_ ColorWell) SetColor(value IColor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
-}
-
-// The image to display on the button portion of a color well that adopts the expanded style.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/image
-func (c_ ColorWell) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("image"))
-	return rv
-}
-
-
-// SetImage sets the value of the image property.
-// The image to display on the button portion of a color well that adopts the expanded style.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/image
-func (c_ ColorWell) SetImage(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
 }
 
 // A Boolean value that indicates whether the color well is currently active.

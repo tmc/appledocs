@@ -30,7 +30,7 @@ type _FontManagerClass struct {
 // An interface definition for the [FontManager] class.
 type IFontManager interface {
 	objectivec.IObject
-	SetFontMenu(newMenu unsafe.Pointer)
+	SetFontMenu(newMenu IMenu)
 }
 
 // The center of activity for the font-conversion system.
@@ -84,7 +84,7 @@ func NewFontManager() FontManager {
 // Records the given menu as the application’s Font menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/setFontMenu(_:)
-func (f_ FontManager) SetFontMenu(newMenu unsafe.Pointer) {
+func (f_ FontManager) SetFontMenu(newMenu IMenu) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFontMenu:"), newMenu)
 }
 
@@ -199,8 +199,8 @@ func (f_ FontManager) SetIsMultiple(value bool) {
 // The currently selected font object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/selectedfont
-func (f_ FontManager) SelectedFont() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("selectedFont"))
+func (f_ FontManager) SelectedFont() NSFont {
+	rv := objc.Send[NSFont](f_.ID, objc.Sel("selectedFont"))
 	return rv
 }
 
@@ -210,7 +210,7 @@ func (f_ FontManager) SelectedFont() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/selectedfont
-func (f_ FontManager) SetSelectedFont(value unsafe.Pointer) {
+func (f_ FontManager) SetSelectedFont(value IFont) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSelectedFont:"), value)
 }
 

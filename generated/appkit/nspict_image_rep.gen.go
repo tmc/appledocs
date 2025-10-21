@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PICTImageRep] class.
@@ -83,8 +84,8 @@ func NewPICTImageRep() PICTImageRep {
 // The image representation’s PICT data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep/pictRepresentation
-func (p_ PICTImageRep) PICTRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("PICTRepresentation"))
+func (p_ PICTImageRep) PICTRepresentation() foundation.NSData {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("PICTRepresentation"))
 	return rv
 }
 

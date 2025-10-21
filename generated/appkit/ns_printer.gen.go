@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -37,8 +38,8 @@ type IPrinter interface {
 	IsKeyInTable(key string, table string) bool
 	PageSizeForPaper(paperName unsafe.Pointer) coregraphics.CGSize
 	StatusForTable(tableName string) unsafe.Pointer
-	StringForKeyInTable(key string, table string) string
-	StringListForKeyInTable(key string, table string) unsafe.Pointer
+	StringForKeyInTable(key string, table string) foundation.String
+	StringListForKeyInTable(key string, table string) foundation.Array
 }
 
 // An object that describes a printer’s capabilities.
@@ -140,16 +141,16 @@ func (p_ Printer) StatusForTable(tableName string) unsafe.Pointer {
 // Returns the first occurrence of a value associated with specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/stringForKey:inTable:
-func (p_ Printer) StringForKeyInTable(key string, table string) string {
-	rv := objc.Send[string](p_.ID, objc.Sel("stringForKey:inTable:"), objc.String(key), objc.String(table))
+func (p_ Printer) StringForKeyInTable(key string, table string) foundation.String {
+	rv := objc.Send[foundation.String](p_.ID, objc.Sel("stringForKey:inTable:"), objc.String(key), objc.String(table))
 	return rv
 }
 
 // Returns an array of strings, one for each occurrence, associated with specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/stringListForKey:inTable:
-func (p_ Printer) StringListForKeyInTable(key string, table string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("stringListForKey:inTable:"), objc.String(key), objc.String(table))
+func (p_ Printer) StringListForKeyInTable(key string, table string) foundation.Array {
+	rv := objc.Send[foundation.Array](p_.ID, objc.Sel("stringListForKey:inTable:"), objc.String(key), objc.String(table))
 	return rv
 }
 

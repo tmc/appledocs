@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,51 +33,51 @@ type _CellClass struct {
 type ICell interface {
 	objectivec.IObject
 	CalcDrawInfo(rect coregraphics.CGRect)
-	CellAttribute(parameter unsafe.Pointer) int
+	CellAttribute(parameter CellAttribute) int
 	CellSizeForBounds(rect coregraphics.CGRect) coregraphics.CGSize
-	Compare(otherCell objc.ID) unsafe.Pointer
-	ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView unsafe.Pointer) bool
-	DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view unsafe.Pointer) []DraggingImageComponent
-	DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view unsafe.Pointer)
-	DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer)
-	DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer)
-	DrawInteriorWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer)
+	Compare(otherCell objectivec.IObject) unsafe.Pointer
+	ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView IView) bool
+	DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view IView) []DraggingImageComponent
+	DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view IView)
+	DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
+	DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
+	DrawInteriorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
 	DrawingRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	EditWithFrameInViewEditorDelegateEvent(rect coregraphics.CGRect, controlView unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer)
-	EndEditing(textObj unsafe.Pointer)
+	EditWithFrameInViewEditorDelegateEvent(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, event IEvent)
+	EndEditing(textObj IText)
 	EntryType() int
-	ExpansionFrameWithFrameInView(cellFrame coregraphics.CGRect, view unsafe.Pointer) coregraphics.CGRect
-	FieldEditorForView(controlView unsafe.Pointer) unsafe.Pointer
-	FocusRingMaskBoundsForFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer) coregraphics.CGRect
+	ExpansionFrameWithFrameInView(cellFrame coregraphics.CGRect, view IView) coregraphics.CGRect
+	FieldEditorForView(controlView IView) TextView
+	FocusRingMaskBoundsForFrameInView(cellFrame coregraphics.CGRect, controlView IView) coregraphics.CGRect
 	GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
-	HighlightWithFrameInView(flag bool, cellFrame coregraphics.CGRect, controlView unsafe.Pointer)
-	HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer) unsafe.Pointer
-	HitTestForEventInRectOfView(event unsafe.Pointer, cellFrame coregraphics.CGRect, controlView unsafe.Pointer) unsafe.Pointer
+	HighlightWithFrameInView(flag bool, cellFrame coregraphics.CGRect, controlView IView)
+	HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) Color
+	HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) CellHitResult
 	ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
 	IsEntryAcceptable(string_ string) bool
-	MenuForEventInRectOfView(event unsafe.Pointer, cellFrame coregraphics.CGRect, view unsafe.Pointer) unsafe.Pointer
-	Mnemonic() string
+	MenuForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, view IView) Menu
+	Mnemonic() foundation.String
 	MnemonicLocation() uint
-	PerformClick(sender objc.ID)
-	ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer)
-	SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int)
-	SendActionOn(mask unsafe.Pointer) int
-	SetCellAttributeTo(parameter unsafe.Pointer, value int)
+	PerformClick(sender objectivec.IObject)
+	ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView IView)
+	SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, selStart int, selLength int)
+	SendActionOn(mask EventMask) int
+	SetCellAttributeTo(parameter CellAttribute, value int)
 	SetEntryType(type_ int)
 	SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, rightDigits uint)
 	SetMnemonicLocation(location uint)
 	SetTitleWithMnemonic(stringWithAmpersand string)
-	SetUpFieldEditorAttributes(textObj unsafe.Pointer) unsafe.Pointer
-	StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView unsafe.Pointer) bool
-	StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView unsafe.Pointer, flag bool)
-	TakeDoubleValueFrom(sender objc.ID)
-	TakeFloatValueFrom(sender objc.ID)
-	TakeIntValueFrom(sender objc.ID)
-	TakeIntegerValueFrom(sender objc.ID)
-	TakeObjectValueFrom(sender objc.ID)
-	TakeStringValueFrom(sender objc.ID)
+	SetUpFieldEditorAttributes(textObj IText) Text
+	StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView IView) bool
+	StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView IView, flag bool)
+	TakeDoubleValueFrom(sender objectivec.IObject)
+	TakeFloatValueFrom(sender objectivec.IObject)
+	TakeIntValueFrom(sender objectivec.IObject)
+	TakeIntegerValueFrom(sender objectivec.IObject)
+	TakeObjectValueFrom(sender objectivec.IObject)
+	TakeStringValueFrom(sender objectivec.IObject)
 	TitleRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	TrackMouseInRectOfViewUntilMouseUp(event unsafe.Pointer, cellFrame coregraphics.CGRect, controlView unsafe.Pointer, flag bool) bool
+	TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregraphics.CGRect, controlView IView, flag bool) bool
 }
 
 // A mechanism for displaying text or images in a view object without the overhead of a full subclass.
@@ -132,7 +133,7 @@ func NewCell() Cell {
 // Returns an object initialized with the specified image and set to have the cell’s default menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(imageCell:)
-func NewCellImageCell(image unsafe.Pointer) Cell {
+func NewCellImageCell(image IImage) Cell {
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initImageCell:"), image)
 	rv.Autorelease()
@@ -153,7 +154,7 @@ func NewCellTextCell(string_ string) Cell {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
-func NewCellWithCoder(coder unsafe.Pointer) Cell {
+func NewCellWithCoder(coder ICoder) Cell {
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -164,15 +165,15 @@ func NewCellWithCoder(coder unsafe.Pointer) Cell {
 // Returns the default type of focus ring for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultFocusRingType
-func (cc _CellClass) DefaultFocusRingType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("defaultFocusRingType"))
+func (cc _CellClass) DefaultFocusRingType() FocusRingType {
+	rv := objc.Send[FocusRingType](objc.ID(cc.class), objc.Sel("defaultFocusRingType"))
 	return rv
 }
 // Returns the default menu for instances of the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultMenu
-func (cc _CellClass) DefaultMenu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("defaultMenu"))
+func (cc _CellClass) DefaultMenu() NSMenu {
+	rv := objc.Send[NSMenu](objc.ID(cc.class), objc.Sel("defaultMenu"))
 	return rv
 }
 // Returns a Boolean value that indicates whether tracking stops when the cursor leaves the cell.
@@ -192,7 +193,7 @@ func (c_ Cell) CalcDrawInfo(rect coregraphics.CGRect) {
 // Returns the value for the specified cell attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/cellAttribute(_:)
-func (c_ Cell) CellAttribute(parameter unsafe.Pointer) int {
+func (c_ Cell) CellAttribute(parameter CellAttribute) int {
 	rv := objc.Send[int](c_.ID, objc.Sel("cellAttribute:"), parameter)
 	return rv
 }
@@ -208,7 +209,7 @@ func (c_ Cell) CellSizeForBounds(rect coregraphics.CGRect) coregraphics.CGSize {
 // Compares the string values of the receiver another cell, disregarding case.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/compare(_:)
-func (c_ Cell) Compare(otherCell objc.ID) unsafe.Pointer {
+func (c_ Cell) Compare(otherCell objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compare:"), otherCell)
 	return rv
 }
@@ -216,7 +217,7 @@ func (c_ Cell) Compare(otherCell objc.ID) unsafe.Pointer {
 // Returns a Boolean value that indicates whether mouse tracking should continue in the receiving cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/continueTracking(last:current:in:)
-func (c_ Cell) ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView unsafe.Pointer) bool {
+func (c_ Cell) ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView IView) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("continueTracking:at:inView:"), lastPoint, currentPoint, controlView)
 	return rv
 }
@@ -224,7 +225,7 @@ func (c_ Cell) ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentP
 // Generates dragging image components with the specified frame in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/draggingImageComponents(withFrame:in:)
-func (c_ Cell) DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view unsafe.Pointer) []DraggingImageComponent {
+func (c_ Cell) DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view IView) []DraggingImageComponent {
 	rv := objc.Send[[]DraggingImageComponent](c_.ID, objc.Sel("draggingImageComponentsWithFrame:inView:"), frame, view)
 	return rv
 }
@@ -232,28 +233,28 @@ func (c_ Cell) DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect,
 // Instructs the receiver to draw in an expansion frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/draw(withExpansionFrame:in:)
-func (c_ Cell) DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view unsafe.Pointer) {
+func (c_ Cell) DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawWithExpansionFrame:inView:"), cellFrame, view)
 }
 
 // Draws the receiver’s border and then draws the interior of the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/draw(withFrame:in:)
-func (c_ Cell) DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer) {
+func (c_ Cell) DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawWithFrame:inView:"), cellFrame, controlView)
 }
 
 // Draws the focus ring for the control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/drawFocusRingMask(withFrame:in:)
-func (c_ Cell) DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer) {
+func (c_ Cell) DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawFocusRingMaskWithFrame:inView:"), cellFrame, controlView)
 }
 
 // Draws the interior portion of the receiver, which includes the image or text portion but does not include the border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/drawInterior(withFrame:in:)
-func (c_ Cell) DrawInteriorWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer) {
+func (c_ Cell) DrawInteriorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawInteriorWithFrame:inView:"), cellFrame, controlView)
 }
 
@@ -268,14 +269,14 @@ func (c_ Cell) DrawingRectForBounds(rect coregraphics.CGRect) coregraphics.CGRec
 // Begins editing of the receiver’s text using the specified field editor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/edit(withFrame:in:editor:delegate:event:)
-func (c_ Cell) EditWithFrameInViewEditorDelegateEvent(rect coregraphics.CGRect, controlView unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer) {
+func (c_ Cell) EditWithFrameInViewEditorDelegateEvent(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, event IEvent) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("editWithFrame:inView:editor:delegate:event:"), rect, controlView, textObj, delegate, event)
 }
 
 // Ends the editing of text in the receiver using the specified field editor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/endEditing(_:)
-func (c_ Cell) EndEditing(textObj unsafe.Pointer) {
+func (c_ Cell) EndEditing(textObj IText) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("endEditing:"), textObj)
 }
 
@@ -290,7 +291,7 @@ func (c_ Cell) EntryType() int {
 // Returns the expansion cell frame for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/expansionFrame(withFrame:in:)
-func (c_ Cell) ExpansionFrameWithFrameInView(cellFrame coregraphics.CGRect, view unsafe.Pointer) coregraphics.CGRect {
+func (c_ Cell) ExpansionFrameWithFrameInView(cellFrame coregraphics.CGRect, view IView) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("expansionFrameWithFrame:inView:"), cellFrame, view)
 	return rv
 }
@@ -298,15 +299,15 @@ func (c_ Cell) ExpansionFrameWithFrameInView(cellFrame coregraphics.CGRect, view
 // Returns a custom field editor for editing in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/fieldEditor(for:)
-func (c_ Cell) FieldEditorForView(controlView unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fieldEditorForView:"), controlView)
+func (c_ Cell) FieldEditorForView(controlView IView) TextView {
+	rv := objc.Send[TextView](c_.ID, objc.Sel("fieldEditorForView:"), controlView)
 	return rv
 }
 
 // Returns the bounds of the focus ring mask.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/focusRingMaskBounds(forFrame:in:)
-func (c_ Cell) FocusRingMaskBoundsForFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer) coregraphics.CGRect {
+func (c_ Cell) FocusRingMaskBoundsForFrameInView(cellFrame coregraphics.CGRect, controlView IView) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("focusRingMaskBoundsForFrame:inView:"), cellFrame, controlView)
 	return rv
 }
@@ -321,23 +322,23 @@ func (c_ Cell) GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Po
 // Redraws the receiver with the specified highlight setting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/highlight(_:withFrame:in:)
-func (c_ Cell) HighlightWithFrameInView(flag bool, cellFrame coregraphics.CGRect, controlView unsafe.Pointer) {
+func (c_ Cell) HighlightWithFrameInView(flag bool, cellFrame coregraphics.CGRect, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("highlight:withFrame:inView:"), flag, cellFrame, controlView)
 }
 
 // Returns the color the receiver uses when drawing the selection highlight.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/highlightColor(withFrame:in:)
-func (c_ Cell) HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("highlightColorWithFrame:inView:"), cellFrame, controlView)
+func (c_ Cell) HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) Color {
+	rv := objc.Send[Color](c_.ID, objc.Sel("highlightColorWithFrame:inView:"), cellFrame, controlView)
 	return rv
 }
 
 // Returns hit testing information for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/hitTest(for:in:of:)
-func (c_ Cell) HitTestForEventInRectOfView(event unsafe.Pointer, cellFrame coregraphics.CGRect, controlView unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("hitTestForEvent:inRect:ofView:"), event, cellFrame, controlView)
+func (c_ Cell) HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) CellHitResult {
+	rv := objc.Send[CellHitResult](c_.ID, objc.Sel("hitTestForEvent:inRect:ofView:"), event, cellFrame, controlView)
 	return rv
 }
 
@@ -360,16 +361,16 @@ func (c_ Cell) IsEntryAcceptable(string_ string) bool {
 // Returns the menu associated with the cell and related to the specified event and frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/menu(for:in:of:)
-func (c_ Cell) MenuForEventInRectOfView(event unsafe.Pointer, cellFrame coregraphics.CGRect, view unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("menuForEvent:inRect:ofView:"), event, cellFrame, view)
+func (c_ Cell) MenuForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, view IView) Menu {
+	rv := objc.Send[Menu](c_.ID, objc.Sel("menuForEvent:inRect:ofView:"), event, cellFrame, view)
 	return rv
 }
 
 // Returns the character in the receiver’s title that appears underlined for use as a mnemonic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/mnemonic
-func (c_ Cell) Mnemonic() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("mnemonic"))
+func (c_ Cell) Mnemonic() foundation.String {
+	rv := objc.Send[foundation.String](c_.ID, objc.Sel("mnemonic"))
 	return rv
 }
 
@@ -384,28 +385,28 @@ func (c_ Cell) MnemonicLocation() uint {
 // Simulates a single mouse click on the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/performClick(_:)
-func (c_ Cell) PerformClick(sender objc.ID) {
+func (c_ Cell) PerformClick(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("performClick:"), sender)
 }
 
 // Sets the receiver to show the I-beam cursor while it tracks the mouse.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/resetCursorRect(_:in:)
-func (c_ Cell) ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer) {
+func (c_ Cell) ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("resetCursorRect:inView:"), cellFrame, controlView)
 }
 
 // Selects the specified text range in the cell’s field editor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/select(withFrame:in:editor:delegate:start:length:)
-func (c_ Cell) SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int) {
+func (c_ Cell) SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, selStart int, selLength int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("selectWithFrame:inView:editor:delegate:start:length:"), rect, controlView, textObj, delegate, selStart, selLength)
 }
 
 // Sets the conditions on which the receiver sends action messages to its target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/sendAction(on:)
-func (c_ Cell) SendActionOn(mask unsafe.Pointer) int {
+func (c_ Cell) SendActionOn(mask EventMask) int {
 	rv := objc.Send[int](c_.ID, objc.Sel("sendActionOn:"), mask)
 	return rv
 }
@@ -413,7 +414,7 @@ func (c_ Cell) SendActionOn(mask unsafe.Pointer) int {
 // Sets the value for the specified cell attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setCellAttribute(_:to:)
-func (c_ Cell) SetCellAttributeTo(parameter unsafe.Pointer, value int) {
+func (c_ Cell) SetCellAttributeTo(parameter CellAttribute, value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCellAttribute:to:"), parameter, value)
 }
 
@@ -448,15 +449,15 @@ func (c_ Cell) SetTitleWithMnemonic(stringWithAmpersand string) {
 // Configures the textual and background attributes of the receiver’s field editor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setUpFieldEditorAttributes(_:)
-func (c_ Cell) SetUpFieldEditorAttributes(textObj unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("setUpFieldEditorAttributes:"), textObj)
+func (c_ Cell) SetUpFieldEditorAttributes(textObj IText) Text {
+	rv := objc.Send[Text](c_.ID, objc.Sel("setUpFieldEditorAttributes:"), textObj)
 	return rv
 }
 
 // Begins tracking mouse events within the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/startTracking(at:in:)
-func (c_ Cell) StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView unsafe.Pointer) bool {
+func (c_ Cell) StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView IView) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("startTrackingAt:inView:"), startPoint, controlView)
 	return rv
 }
@@ -464,49 +465,49 @@ func (c_ Cell) StartTrackingAtInView(startPoint coregraphics.CGPoint, controlVie
 // Stops tracking mouse events within the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/stopTracking(last:current:in:mouseIsUp:)
-func (c_ Cell) StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView unsafe.Pointer, flag bool) {
+func (c_ Cell) StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView IView, flag bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("stopTracking:at:inView:mouseIsUp:"), lastPoint, stopPoint, controlView, flag)
 }
 
 // Sets the value of the receiver’s cell to a double-precision floating-point value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/takeDoubleValueFrom(_:)
-func (c_ Cell) TakeDoubleValueFrom(sender objc.ID) {
+func (c_ Cell) TakeDoubleValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeDoubleValueFrom:"), sender)
 }
 
 // Sets the value of the receiver’s cell to a single-precision floating-point value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/takeFloatValueFrom(_:)
-func (c_ Cell) TakeFloatValueFrom(sender objc.ID) {
+func (c_ Cell) TakeFloatValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeFloatValueFrom:"), sender)
 }
 
 // Sets the value of the receiver’s cell to an integer value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/takeIntValueFrom(_:)
-func (c_ Cell) TakeIntValueFrom(sender objc.ID) {
+func (c_ Cell) TakeIntValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeIntValueFrom:"), sender)
 }
 
 // Sets the value of the receiver’s cell to an integer value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/takeIntegerValueFrom(_:)
-func (c_ Cell) TakeIntegerValueFrom(sender objc.ID) {
+func (c_ Cell) TakeIntegerValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeIntegerValueFrom:"), sender)
 }
 
 // Sets the value of the receiver’s cell to the object value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/takeObjectValueFrom(_:)
-func (c_ Cell) TakeObjectValueFrom(sender objc.ID) {
+func (c_ Cell) TakeObjectValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeObjectValueFrom:"), sender)
 }
 
 // Sets the value of the receiver’s cell to the string value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/takeStringValueFrom(_:)
-func (c_ Cell) TakeStringValueFrom(sender objc.ID) {
+func (c_ Cell) TakeStringValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeStringValueFrom:"), sender)
 }
 
@@ -521,7 +522,7 @@ func (c_ Cell) TitleRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect 
 // Initiates the mouse tracking behavior in a cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/trackMouse(with:in:of:untilMouseUp:)
-func (c_ Cell) TrackMouseInRectOfViewUntilMouseUp(event unsafe.Pointer, cellFrame coregraphics.CGRect, controlView unsafe.Pointer, flag bool) bool {
+func (c_ Cell) TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregraphics.CGRect, controlView IView, flag bool) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("trackMouse:inRect:ofView:untilMouseUp:"), event, cellFrame, controlView, flag)
 	return rv
 }
@@ -555,8 +556,8 @@ func (c_ Cell) SetAction(value objc.SEL) {
 // The alignment of the cell’s text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/alignment
-func (c_ Cell) Alignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alignment"))
+func (c_ Cell) Alignment() TextAlignment {
+	rv := objc.Send[TextAlignment](c_.ID, objc.Sel("alignment"))
 	return rv
 }
 
@@ -566,7 +567,7 @@ func (c_ Cell) Alignment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/alignment
-func (c_ Cell) SetAlignment(value unsafe.Pointer) {
+func (c_ Cell) SetAlignment(value TextAlignment) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -627,8 +628,8 @@ func (c_ Cell) SetAllowsUndo(value bool) {
 // The cell’s value as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/attributedStringValue
-func (c_ Cell) AttributedStringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attributedStringValue"))
+func (c_ Cell) AttributedStringValue() AttributedString {
+	rv := objc.Send[AttributedString](c_.ID, objc.Sel("attributedStringValue"))
 	return rv
 }
 
@@ -638,15 +639,15 @@ func (c_ Cell) AttributedStringValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/attributedStringValue
-func (c_ Cell) SetAttributedStringValue(value unsafe.Pointer) {
+func (c_ Cell) SetAttributedStringValue(value IAttributedString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringValue:"), value)
 }
 
 // The cell’s background style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/backgroundStyle
-func (c_ Cell) BackgroundStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("backgroundStyle"))
+func (c_ Cell) BackgroundStyle() BackgroundStyle {
+	rv := objc.Send[BackgroundStyle](c_.ID, objc.Sel("backgroundStyle"))
 	return rv
 }
 
@@ -656,15 +657,15 @@ func (c_ Cell) BackgroundStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/backgroundStyle
-func (c_ Cell) SetBackgroundStyle(value unsafe.Pointer) {
+func (c_ Cell) SetBackgroundStyle(value BackgroundStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundStyle:"), value)
 }
 
 // The initial writing direction used to determine the actual writing direction for text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/baseWritingDirection
-func (c_ Cell) BaseWritingDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("baseWritingDirection"))
+func (c_ Cell) BaseWritingDirection() WritingDirection {
+	rv := objc.Send[WritingDirection](c_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -674,7 +675,7 @@ func (c_ Cell) BaseWritingDirection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/baseWritingDirection
-func (c_ Cell) SetBaseWritingDirection(value unsafe.Pointer) {
+func (c_ Cell) SetBaseWritingDirection(value WritingDirection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
@@ -689,8 +690,8 @@ func (c_ Cell) CellSize() coregraphics.CGSize {
 // The size of the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlSize
-func (c_ Cell) ControlSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlSize"))
+func (c_ Cell) ControlSize() ControlSize {
+	rv := objc.Send[ControlSize](c_.ID, objc.Sel("controlSize"))
 	return rv
 }
 
@@ -700,15 +701,15 @@ func (c_ Cell) ControlSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlSize
-func (c_ Cell) SetControlSize(value unsafe.Pointer) {
+func (c_ Cell) SetControlSize(value IControlSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlSize:"), value)
 }
 
 // The cell’s control tint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlTint
-func (c_ Cell) ControlTint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlTint"))
+func (c_ Cell) ControlTint() ControlTint {
+	rv := objc.Send[ControlTint](c_.ID, objc.Sel("controlTint"))
 	return rv
 }
 
@@ -718,15 +719,15 @@ func (c_ Cell) ControlTint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlTint
-func (c_ Cell) SetControlTint(value unsafe.Pointer) {
+func (c_ Cell) SetControlTint(value IControlTint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlTint:"), value)
 }
 
 // The view associated with the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlView
-func (c_ Cell) ControlView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlView"))
+func (c_ Cell) ControlView() NSView {
+	rv := objc.Send[NSView](c_.ID, objc.Sel("controlView"))
 	return rv
 }
 
@@ -736,23 +737,23 @@ func (c_ Cell) ControlView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlView
-func (c_ Cell) SetControlView(value unsafe.Pointer) {
+func (c_ Cell) SetControlView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlView:"), value)
 }
 
 // Returns the default type of focus ring for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultFocusRingType
-func (c_ Cell) DefaultFocusRingType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("defaultFocusRingType"))
+func (c_ Cell) DefaultFocusRingType() FocusRingType {
+	rv := objc.Send[FocusRingType](c_.ID, objc.Sel("defaultFocusRingType"))
 	return rv
 }
 
 // Returns the default menu for instances of the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultMenu
-func (c_ Cell) DefaultMenu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("defaultMenu"))
+func (c_ Cell) DefaultMenu() NSMenu {
+	rv := objc.Send[NSMenu](c_.ID, objc.Sel("defaultMenu"))
 	return rv
 }
 
@@ -795,8 +796,8 @@ func (c_ Cell) SetFloatValue(value unsafe.Pointer) {
 // The type of focus ring to use with the associated view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/focusRingType
-func (c_ Cell) FocusRingType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("focusRingType"))
+func (c_ Cell) FocusRingType() FocusRingType {
+	rv := objc.Send[FocusRingType](c_.ID, objc.Sel("focusRingType"))
 	return rv
 }
 
@@ -806,15 +807,15 @@ func (c_ Cell) FocusRingType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/focusRingType
-func (c_ Cell) SetFocusRingType(value unsafe.Pointer) {
+func (c_ Cell) SetFocusRingType(value FocusRingType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFocusRingType:"), value)
 }
 
 // The font that the cell uses to display text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/font
-func (c_ Cell) Font() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("font"))
+func (c_ Cell) Font() NSFont {
+	rv := objc.Send[NSFont](c_.ID, objc.Sel("font"))
 	return rv
 }
 
@@ -824,7 +825,7 @@ func (c_ Cell) Font() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/font
-func (c_ Cell) SetFont(value unsafe.Pointer) {
+func (c_ Cell) SetFont(value IFont) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFont:"), value)
 }
 
@@ -857,8 +858,8 @@ func (c_ Cell) HasValidObjectValue() bool {
 // The image displayed by the cell, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/image
-func (c_ Cell) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("image"))
+func (c_ Cell) Image() Image {
+	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -868,7 +869,7 @@ func (c_ Cell) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/image
-func (c_ Cell) SetImage(value unsafe.Pointer) {
+func (c_ Cell) SetImage(value IImage) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
 }
 
@@ -929,8 +930,8 @@ func (c_ Cell) SetIntegerValue(value int) {
 // The cell’s interior background style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/interiorBackgroundStyle
-func (c_ Cell) InteriorBackgroundStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("interiorBackgroundStyle"))
+func (c_ Cell) InteriorBackgroundStyle() BackgroundStyle {
+	rv := objc.Send[BackgroundStyle](c_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
 }
 
@@ -1097,8 +1098,8 @@ func (c_ Cell) KeyEquivalent() string {
 // The line break mode to use when drawing text in the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/lineBreakMode
-func (c_ Cell) LineBreakMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lineBreakMode"))
+func (c_ Cell) LineBreakMode() LineBreakMode {
+	rv := objc.Send[LineBreakMode](c_.ID, objc.Sel("lineBreakMode"))
 	return rv
 }
 
@@ -1108,15 +1109,15 @@ func (c_ Cell) LineBreakMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/lineBreakMode
-func (c_ Cell) SetLineBreakMode(value unsafe.Pointer) {
+func (c_ Cell) SetLineBreakMode(value LineBreakMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLineBreakMode:"), value)
 }
 
 // The cell’s contextual menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/menu
-func (c_ Cell) Menu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("menu"))
+func (c_ Cell) Menu() NSMenu {
+	rv := objc.Send[NSMenu](c_.ID, objc.Sel("menu"))
 	return rv
 }
 
@@ -1126,7 +1127,7 @@ func (c_ Cell) Menu() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/menu
-func (c_ Cell) SetMenu(value unsafe.Pointer) {
+func (c_ Cell) SetMenu(value IMenu) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMenu:"), value)
 }
 
@@ -1247,8 +1248,8 @@ func (c_ Cell) SetShowsFirstResponder(value bool) {
 // The cell’s current state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/state
-func (c_ Cell) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("state"))
+func (c_ Cell) State() ControlStateValue {
+	rv := objc.Send[ControlStateValue](c_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -1258,7 +1259,7 @@ func (c_ Cell) State() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/state
-func (c_ Cell) SetState(value unsafe.Pointer) {
+func (c_ Cell) SetState(value IControlStateValue) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setState:"), value)
 }
 
@@ -1355,8 +1356,8 @@ func (c_ Cell) SetTruncatesLastVisibleLine(value bool) {
 // The type of the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/type
-func (c_ Cell) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
+func (c_ Cell) Type() CellType {
+	rv := objc.Send[CellType](c_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -1366,15 +1367,15 @@ func (c_ Cell) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/type
-func (c_ Cell) SetType(value unsafe.Pointer) {
+func (c_ Cell) SetType(value CellType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
 
 // The layout direction of the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/userInterfaceLayoutDirection
-func (c_ Cell) UserInterfaceLayoutDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userInterfaceLayoutDirection"))
+func (c_ Cell) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
+	rv := objc.Send[UserInterfaceLayoutDirection](c_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
 
@@ -1384,7 +1385,7 @@ func (c_ Cell) UserInterfaceLayoutDirection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/userInterfaceLayoutDirection
-func (c_ Cell) SetUserInterfaceLayoutDirection(value unsafe.Pointer) {
+func (c_ Cell) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 

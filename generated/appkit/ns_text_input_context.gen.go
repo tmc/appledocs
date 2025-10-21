@@ -85,7 +85,7 @@ func NewTextInputContext() TextInputContext {
 // The designated initializer
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext/init(client:)
-func NewTextInputContextWithClient(client objc.ID) TextInputContext {
+func NewTextInputContextWithClient(client objectivec.IObject) TextInputContext {
 	instance := getTextInputContextClass().Alloc()
 	rv := objc.Send[TextInputContext](instance.ID, objc.Sel("initWithClient:"), client)
 	rv.Autorelease()

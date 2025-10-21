@@ -30,7 +30,7 @@ type _ClipViewClass struct {
 // An interface definition for the [ClipView] class.
 type IClipView interface {
 	IView
-	Autoscroll(event unsafe.Pointer) bool
+	Autoscroll(event IEvent) bool
 	ConstrainBoundsRect(proposedBounds coregraphics.CGRect) coregraphics.CGRect
 	ConstrainScrollPoint(newOrigin coregraphics.CGPoint) coregraphics.CGPoint
 	ScrollToPoint(newOrigin coregraphics.CGPoint)
@@ -91,7 +91,7 @@ func NewClipView() ClipView {
 // Scrolls the clip view proportionally to ’s distance outside of it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/autoscroll(with:)
-func (c_ ClipView) Autoscroll(event unsafe.Pointer) bool {
+func (c_ ClipView) Autoscroll(event IEvent) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("autoscroll:"), event)
 	return rv
 }
@@ -154,8 +154,8 @@ func (c_ ClipView) SetAutomaticallyAdjustsContentInsets(value bool) {
 // The color of the clip view’s background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/backgroundColor
-func (c_ ClipView) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("backgroundColor"))
+func (c_ ClipView) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](c_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (c_ ClipView) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/backgroundColor
-func (c_ ClipView) SetBackgroundColor(value unsafe.Pointer) {
+func (c_ ClipView) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
@@ -208,8 +208,8 @@ func (c_ ClipView) SetCopiesOnScroll(value bool) {
 // The cursor object used when the pointer lies over the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentCursor
-func (c_ ClipView) DocumentCursor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("documentCursor"))
+func (c_ ClipView) DocumentCursor() NSCursor {
+	rv := objc.Send[NSCursor](c_.ID, objc.Sel("documentCursor"))
 	return rv
 }
 
@@ -219,7 +219,7 @@ func (c_ ClipView) DocumentCursor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentCursor
-func (c_ ClipView) SetDocumentCursor(value unsafe.Pointer) {
+func (c_ ClipView) SetDocumentCursor(value ICursor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDocumentCursor:"), value)
 }
 
@@ -234,8 +234,8 @@ func (c_ ClipView) DocumentRect() coregraphics.CGRect {
 // The clip view’s document view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentView
-func (c_ ClipView) DocumentView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("documentView"))
+func (c_ ClipView) DocumentView() NSView {
+	rv := objc.Send[NSView](c_.ID, objc.Sel("documentView"))
 	return rv
 }
 
@@ -245,7 +245,7 @@ func (c_ ClipView) DocumentView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentView
-func (c_ ClipView) SetDocumentView(value unsafe.Pointer) {
+func (c_ ClipView) SetDocumentView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDocumentView:"), value)
 }
 

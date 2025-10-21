@@ -81,6 +81,24 @@ func NewStepper() Stepper {
 }
 
 
+// A Boolean value that indicates whether the stepper wraps around the minimum and maximum values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/valueWraps
+func (s_ Stepper) ValueWraps() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("valueWraps"))
+	return rv
+}
+
+
+// SetValueWraps sets the value of the valueWraps property.
+// A Boolean value that indicates whether the stepper wraps around the minimum and maximum values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/valueWraps
+func (s_ Stepper) SetValueWraps(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setValueWraps:"), value)
+}
+
 // A Boolean value that indicates how the stepper responds to mouse events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/autorepeat
@@ -151,24 +169,6 @@ func (s_ Stepper) MinValue() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/minvalue
 func (s_ Stepper) SetMinValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
-}
-
-// A Boolean value that indicates whether the stepper wraps around the minimum and maximum values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/valuewraps
-func (s_ Stepper) ValueWraps() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("valueWraps"))
-	return rv
-}
-
-
-// SetValueWraps sets the value of the valueWraps property.
-// A Boolean value that indicates whether the stepper wraps around the minimum and maximum values.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/valuewraps
-func (s_ Stepper) SetValueWraps(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setValueWraps:"), value)
 }
 
 

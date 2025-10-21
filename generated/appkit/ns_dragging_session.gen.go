@@ -156,8 +156,8 @@ func (d_ DraggingSession) SetDraggingLocation(value coregraphics.CGPoint) {
 // Returns the pasteboard object that contains the data being dragged.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingpasteboard
-func (d_ DraggingSession) DraggingPasteboard() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("draggingPasteboard"))
+func (d_ DraggingSession) DraggingPasteboard() NSPasteboard {
+	rv := objc.Send[NSPasteboard](d_.ID, objc.Sel("draggingPasteboard"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (d_ DraggingSession) DraggingPasteboard() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingpasteboard
-func (d_ DraggingSession) SetDraggingPasteboard(value unsafe.Pointer) {
+func (d_ DraggingSession) SetDraggingPasteboard(value IPasteboard) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingPasteboard:"), value)
 }
 

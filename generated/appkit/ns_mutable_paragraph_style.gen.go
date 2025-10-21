@@ -84,8 +84,8 @@ func NewMutableParagraphStyle() MutableParagraphStyle {
 // The text alignment of the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/alignment
-func (m_ MutableParagraphStyle) Alignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("alignment"))
+func (m_ MutableParagraphStyle) Alignment() TextAlignment {
+	rv := objc.Send[TextAlignment](m_.ID, objc.Sel("alignment"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (m_ MutableParagraphStyle) Alignment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/alignment
-func (m_ MutableParagraphStyle) SetAlignment(value unsafe.Pointer) {
+func (m_ MutableParagraphStyle) SetAlignment(value TextAlignment) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -120,8 +120,8 @@ func (m_ MutableParagraphStyle) SetAllowsDefaultTighteningForTruncation(value bo
 // The base writing direction for the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/basewritingdirection
-func (m_ MutableParagraphStyle) BaseWritingDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("baseWritingDirection"))
+func (m_ MutableParagraphStyle) BaseWritingDirection() WritingDirection {
+	rv := objc.Send[WritingDirection](m_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (m_ MutableParagraphStyle) BaseWritingDirection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/basewritingdirection
-func (m_ MutableParagraphStyle) SetBaseWritingDirection(value unsafe.Pointer) {
+func (m_ MutableParagraphStyle) SetBaseWritingDirection(value WritingDirection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
@@ -228,8 +228,8 @@ func (m_ MutableParagraphStyle) SetHyphenationFactor(value unsafe.Pointer) {
 // The mode for breaking lines in the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linebreakmode
-func (m_ MutableParagraphStyle) LineBreakMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lineBreakMode"))
+func (m_ MutableParagraphStyle) LineBreakMode() LineBreakMode {
+	rv := objc.Send[LineBreakMode](m_.ID, objc.Sel("lineBreakMode"))
 	return rv
 }
 
@@ -239,15 +239,15 @@ func (m_ MutableParagraphStyle) LineBreakMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linebreakmode
-func (m_ MutableParagraphStyle) SetLineBreakMode(value unsafe.Pointer) {
+func (m_ MutableParagraphStyle) SetLineBreakMode(value LineBreakMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineBreakMode:"), value)
 }
 
 // The strategies that the text system may use to break lines while laying out the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linebreakstrategy
-func (m_ MutableParagraphStyle) LineBreakStrategy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lineBreakStrategy"))
+func (m_ MutableParagraphStyle) LineBreakStrategy() LineBreakStrategy {
+	rv := objc.Send[LineBreakStrategy](m_.ID, objc.Sel("lineBreakStrategy"))
 	return rv
 }
 
@@ -257,7 +257,7 @@ func (m_ MutableParagraphStyle) LineBreakStrategy() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linebreakstrategy
-func (m_ MutableParagraphStyle) SetLineBreakStrategy(value unsafe.Pointer) {
+func (m_ MutableParagraphStyle) SetLineBreakStrategy(value LineBreakStrategy) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineBreakStrategy:"), value)
 }
 
@@ -372,8 +372,8 @@ func (m_ MutableParagraphStyle) SetParagraphSpacingBefore(value float64) {
 // The text tab objects that represent the paragraph’s tab stops.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tabstops
-func (m_ MutableParagraphStyle) TabStops() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tabStops"))
+func (m_ MutableParagraphStyle) TabStops() NSTextTab {
+	rv := objc.Send[NSTextTab](m_.ID, objc.Sel("tabStops"))
 	return rv
 }
 
@@ -383,7 +383,7 @@ func (m_ MutableParagraphStyle) TabStops() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tabstops
-func (m_ MutableParagraphStyle) SetTabStops(value unsafe.Pointer) {
+func (m_ MutableParagraphStyle) SetTabStops(value ITextTab) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTabStops:"), value)
 }
 
@@ -408,8 +408,8 @@ func (m_ MutableParagraphStyle) SetTailIndent(value float64) {
 // The text blocks that contain the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textblocks
-func (m_ MutableParagraphStyle) TextBlocks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("textBlocks"))
+func (m_ MutableParagraphStyle) TextBlocks() NSTextBlock {
+	rv := objc.Send[NSTextBlock](m_.ID, objc.Sel("textBlocks"))
 	return rv
 }
 
@@ -419,15 +419,15 @@ func (m_ MutableParagraphStyle) TextBlocks() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textblocks
-func (m_ MutableParagraphStyle) SetTextBlocks(value unsafe.Pointer) {
+func (m_ MutableParagraphStyle) SetTextBlocks(value ITextBlock) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTextBlocks:"), value)
 }
 
 // The text lists that contain the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists
-func (m_ MutableParagraphStyle) TextLists() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("textLists"))
+func (m_ MutableParagraphStyle) TextLists() NSTextList {
+	rv := objc.Send[NSTextList](m_.ID, objc.Sel("textLists"))
 	return rv
 }
 
@@ -437,7 +437,7 @@ func (m_ MutableParagraphStyle) TextLists() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists
-func (m_ MutableParagraphStyle) SetTextLists(value unsafe.Pointer) {
+func (m_ MutableParagraphStyle) SetTextLists(value ITextList) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTextLists:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,8 +85,8 @@ func NewFontDescriptor() FontDescriptor {
 // Returns a font descriptor with a dictionary of attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/fontDescriptorWithFontAttributes:
-func (fc _FontDescriptorClass) FontDescriptorWithFontAttributes(attributes unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fontDescriptorWithFontAttributes:"), attributes)
+func (fc _FontDescriptorClass) FontDescriptorWithFontAttributes(attributes unsafe.Pointer) FontDescriptor {
+	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("fontDescriptorWithFontAttributes:"), attributes)
 	return rv
 }
 
@@ -100,16 +101,16 @@ func (f_ FontDescriptor) ObjectForKey(attribute unsafe.Pointer) objc.ID {
 // The current transform matrix of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/matrix
-func (f_ FontDescriptor) Matrix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("matrix"))
+func (f_ FontDescriptor) Matrix() coregraphics.AffineTransform {
+	rv := objc.Send[coregraphics.AffineTransform](f_.ID, objc.Sel("matrix"))
 	return rv
 }
 
 // A bit mask that describes the traits of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/symbolicTraits-swift.property
-func (f_ FontDescriptor) SymbolicTraits() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("symbolicTraits"))
+func (f_ FontDescriptor) SymbolicTraits() FontDescriptorSymbolicTraits {
+	rv := objc.Send[FontDescriptorSymbolicTraits](f_.ID, objc.Sel("symbolicTraits"))
 	return rv
 }
 

@@ -82,8 +82,8 @@ func NewCustomTouchBarItem() CustomTouchBarItem {
 // A view controller whose view is displayed in the bar to represent this item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/viewController
-func (c_ CustomTouchBarItem) ViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("viewController"))
+func (c_ CustomTouchBarItem) ViewController() NSViewController {
+	rv := objc.Send[NSViewController](c_.ID, objc.Sel("viewController"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (c_ CustomTouchBarItem) ViewController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/viewController
-func (c_ CustomTouchBarItem) SetViewController(value unsafe.Pointer) {
+func (c_ CustomTouchBarItem) SetViewController(value IViewController) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setViewController:"), value)
 }
 
@@ -118,8 +118,8 @@ func (c_ CustomTouchBarItem) SetCustomizationLabel(value string) {
 // The view displayed in the bar to represent this item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/view
-func (c_ CustomTouchBarItem) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("view"))
+func (c_ CustomTouchBarItem) View() NSView {
+	rv := objc.Send[NSView](c_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (c_ CustomTouchBarItem) View() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/view
-func (c_ CustomTouchBarItem) SetView(value unsafe.Pointer) {
+func (c_ CustomTouchBarItem) SetView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setView:"), value)
 }
 

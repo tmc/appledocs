@@ -1,0 +1,355 @@
+// Code generated from Apple documentation for AppKit. DO NOT EDIT.
+
+package appkit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [TextFinder] class.
+var (
+	TextFinderClass     _TextFinderClass
+	TextFinderClassOnce sync.Once
+)
+
+func getTextFinderClass() _TextFinderClass {
+	TextFinderClassOnce.Do(func() {
+		TextFinderClass = _TextFinderClass{objc.GetClass("NSTextFinder")}
+	})
+	return TextFinderClass
+}
+
+type _TextFinderClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [TextFinder] class.
+type ITextFinder interface {
+	objectivec.IObject
+}
+
+// An optional search-and-replace find interface inside a view, usually a scroll view.
+//
+// The class serves as a controller for the standard Cocoa find bar. The class interacts heavily with a object which supports the protocol. The client object provides access to the content being searched and provides visual feedback for a search operation. All menu items related to finding (Find…, Find Next, Find Previous, Use Selection for Find, etc.) should have the same action, , which gets sent down the responder chain in the standard method.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFinder
+type TextFinder struct {
+	objectivec.Object
+}
+
+// TextFinderFrom constructs a [TextFinder] from an unsafe.Pointer.
+//
+// An optional search-and-replace find interface inside a view, usually a scroll view.
+func TextFinderFrom(ptr unsafe.Pointer) TextFinder {
+	return TextFinder{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (tc _TextFinderClass) Alloc() TextFinder {
+	rv := objc.Send[TextFinder](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (tc _TextFinderClass) New() TextFinder {
+	rv := objc.Send[TextFinder](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextFinder) Init() TextFinder {
+	rv := objc.Send[TextFinder](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextFinder) Autorelease() TextFinder {
+	rv := objc.Send[TextFinder](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextFinder creates a new TextFinder instance.
+func NewTextFinder() TextFinder {
+	return getTextFinderClass().New()
+}
+
+
+// The position of the find bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.property
+func (t_ TextFinder) FindBarPosition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("findBarPosition"))
+	return rv
+}
+
+
+// SetFindBarPosition sets the value of the findBarPosition property.
+// The position of the find bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.property
+func (t_ TextFinder) SetFindBarPosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFindBarPosition:"), value)
+}
+
+// The object that provides the target search string, find bar location, and feedback methods.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/client
+func (t_ TextFinder) Client() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("client"))
+	return rv
+}
+
+
+// SetClient sets the value of the client property.
+// The object that provides the target search string, find bar location, and feedback methods.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/client
+func (t_ TextFinder) SetClient(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setClient:"), value)
+}
+
+// Specifies the find bar container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/findbarcontainer
+func (t_ TextFinder) FindBarContainer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("findBarContainer"))
+	return rv
+}
+
+
+// SetFindBarContainer sets the value of the findBarContainer property.
+// Specifies the find bar container.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/findbarcontainer
+func (t_ TextFinder) SetFindBarContainer(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFindBarContainer:"), value)
+}
+
+// Invoke to specify that the find indicator needs updating when not contained within a scroll view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/findindicatorneedsupdate
+func (t_ TextFinder) FindIndicatorNeedsUpdate() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("findIndicatorNeedsUpdate"))
+	return rv
+}
+
+
+// SetFindIndicatorNeedsUpdate sets the value of the findIndicatorNeedsUpdate property.
+// Invoke to specify that the find indicator needs updating when not contained within a scroll view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/findindicatorneedsupdate
+func (t_ TextFinder) SetFindIndicatorNeedsUpdate(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFindIndicatorNeedsUpdate:"), value)
+}
+
+// Array of incremental search matches posted on the main queue, which have been found during a background search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalmatchranges
+func (t_ TextFinder) IncrementalMatchRanges() Value {
+	rv := objc.Send[Value](t_.ID, objc.Sel("incrementalMatchRanges"))
+	return rv
+}
+
+
+// SetIncrementalMatchRanges sets the value of the incrementalMatchRanges property.
+// Array of incremental search matches posted on the main queue, which have been found during a background search.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalmatchranges
+func (t_ TextFinder) SetIncrementalMatchRanges(value IValue) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIncrementalMatchRanges:"), value)
+}
+
+// Determines the type of incremental search feedback to be presented
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalsearchingshoulddimcontentview
+func (t_ TextFinder) IncrementalSearchingShouldDimContentView() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("incrementalSearchingShouldDimContentView"))
+	return rv
+}
+
+
+// SetIncrementalSearchingShouldDimContentView sets the value of the incrementalSearchingShouldDimContentView property.
+// Determines the type of incremental search feedback to be presented
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalsearchingshoulddimcontentview
+func (t_ TextFinder) SetIncrementalSearchingShouldDimContentView(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIncrementalSearchingShouldDimContentView:"), value)
+}
+
+// Determines if incremental searching is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/isincrementalsearchingenabled
+func (t_ TextFinder) IsIncrementalSearchingEnabled() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isIncrementalSearchingEnabled"))
+	return rv
+}
+
+
+// SetIsIncrementalSearchingEnabled sets the value of the isIncrementalSearchingEnabled property.
+// Determines if incremental searching is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/isincrementalsearchingenabled
+func (t_ TextFinder) SetIsIncrementalSearchingEnabled(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsIncrementalSearchingEnabled:"), value)
+}
+
+// The view assigned by the text bar as the find bar view for the container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer/findbarview
+func (t_ TextFinder) FindBarView() NSView {
+	rv := objc.Send[NSView](t_.ID, objc.Sel("findBarView"))
+	return rv
+}
+
+
+// SetFindBarView sets the value of the findBarView property.
+// The view assigned by the text bar as the find bar view for the container.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer/findbarview
+func (t_ TextFinder) SetFindBarView(value IView) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFindBarView:"), value)
+}
+
+// Returns whether the container should display its find bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer/isfindbarvisible
+func (t_ TextFinder) IsFindBarVisible() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isFindBarVisible"))
+	return rv
+}
+
+
+// SetIsFindBarVisible sets the value of the isFindBarVisible property.
+// Returns whether the container should display its find bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer/isfindbarvisible
+func (t_ TextFinder) SetIsFindBarVisible(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFindBarVisible:"), value)
+}
+
+// Returns whether multiple items can be selected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/allowsmultipleselection
+func (t_ TextFinder) AllowsMultipleSelection() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("allowsMultipleSelection"))
+	return rv
+}
+
+
+// SetAllowsMultipleSelection sets the value of the allowsMultipleSelection property.
+// Returns whether multiple items can be selected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/allowsmultipleselection
+func (t_ TextFinder) SetAllowsMultipleSelection(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
+}
+
+// Returns the currently selected range.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/firstselectedrange
+func (t_ TextFinder) FirstSelectedRange() foundation.Range {
+	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("firstSelectedRange"))
+	return rv
+}
+
+
+// SetFirstSelectedRange sets the value of the firstSelectedRange property.
+// Returns the currently selected range.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/firstselectedrange
+func (t_ TextFinder) SetFirstSelectedRange(value foundation.IRange) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFirstSelectedRange:"), value)
+}
+
+// Returns whether the text is selectable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/isselectable
+func (t_ TextFinder) IsSelectable() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isSelectable"))
+	return rv
+}
+
+
+// SetIsSelectable sets the value of the isSelectable property.
+// Returns whether the text is selectable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/isselectable
+func (t_ TextFinder) SetIsSelectable(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSelectable:"), value)
+}
+
+// Returns an array of selected ranges.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/selectedranges
+func (t_ TextFinder) SelectedRanges() Value {
+	rv := objc.Send[Value](t_.ID, objc.Sel("selectedRanges"))
+	return rv
+}
+
+
+// SetSelectedRanges sets the value of the selectedRanges property.
+// Returns an array of selected ranges.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/selectedranges
+func (t_ TextFinder) SetSelectedRanges(value IValue) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRanges:"), value)
+}
+
+// An array of visible character ranges.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/visiblecharacterranges
+func (t_ TextFinder) VisibleCharacterRanges() Value {
+	rv := objc.Send[Value](t_.ID, objc.Sel("visibleCharacterRanges"))
+	return rv
+}
+
+
+// SetVisibleCharacterRanges sets the value of the visibleCharacterRanges property.
+// An array of visible character ranges.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/visiblecharacterranges
+func (t_ TextFinder) SetVisibleCharacterRanges(value IValue) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibleCharacterRanges:"), value)
+}
+
+// A Boolean value that indicates whether to use the find bar for this text view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesfindbar
+func (t_ TextFinder) UsesFindBar() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("usesFindBar"))
+	return rv
+}
+
+
+// SetUsesFindBar sets the value of the usesFindBar property.
+// A Boolean value that indicates whether to use the find bar for this text view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesfindbar
+func (t_ TextFinder) SetUsesFindBar(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFindBar:"), value)
+}
+
+
+

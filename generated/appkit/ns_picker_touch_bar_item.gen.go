@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PickerTouchBarItem] class.
@@ -81,7 +82,7 @@ func NewPickerTouchBarItem() PickerTouchBarItem {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/init(identifier:labels:selectionMode:target:action:)
-func NewPickerTouchBarItemWithIdentifierLabelsSelectionModeTargetAction(identifier unsafe.Pointer, labels unsafe.Pointer, selectionMode unsafe.Pointer, target objc.ID, action objc.SEL) PickerTouchBarItem {
+func NewPickerTouchBarItemWithIdentifierLabelsSelectionModeTargetAction(identifier ITouchBarItemIdentifier, labels []string, selectionMode PickerTouchBarItemSelectionMode, target objectivec.IObject, action objc.SEL) PickerTouchBarItem {
 	rv := objc.Send[PickerTouchBarItem](objc.ID(getPickerTouchBarItemClass().class), objc.Sel("pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:"), identifier, labels, selectionMode, target, action)
 	return rv
 }
@@ -89,15 +90,15 @@ func NewPickerTouchBarItemWithIdentifierLabelsSelectionModeTargetAction(identifi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/init(identifier:labels:selectionMode:target:action:)
-func (pc _PickerTouchBarItemClass) PickerTouchBarItemWithIdentifierLabelsSelectionModeTargetAction(identifier unsafe.Pointer, labels unsafe.Pointer, selectionMode unsafe.Pointer, target objc.ID, action objc.SEL) unsafe.Pointer {
+func (pc _PickerTouchBarItemClass) PickerTouchBarItemWithIdentifierLabelsSelectionModeTargetAction(identifier ITouchBarItemIdentifier, labels []string, selectionMode PickerTouchBarItemSelectionMode, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:"), identifier, labels, selectionMode, target, action)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationImage
-func (p_ PickerTouchBarItem) CollapsedRepresentationImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collapsedRepresentationImage"))
+func (p_ PickerTouchBarItem) CollapsedRepresentationImage() Image {
+	rv := objc.Send[Image](p_.ID, objc.Sel("collapsedRepresentationImage"))
 	return rv
 }
 
@@ -105,7 +106,7 @@ func (p_ PickerTouchBarItem) CollapsedRepresentationImage() unsafe.Pointer {
 // SetCollapsedRepresentationImage sets the value of the collapsedRepresentationImage property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationImage
-func (p_ PickerTouchBarItem) SetCollapsedRepresentationImage(value unsafe.Pointer) {
+func (p_ PickerTouchBarItem) SetCollapsedRepresentationImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationImage:"), value)
 }
 
@@ -216,8 +217,8 @@ func (p_ PickerTouchBarItem) SetSelectedIndex(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectioncolor
-func (p_ PickerTouchBarItem) SelectionColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectionColor"))
+func (p_ PickerTouchBarItem) SelectionColor() Color {
+	rv := objc.Send[Color](p_.ID, objc.Sel("selectionColor"))
 	return rv
 }
 
@@ -225,7 +226,7 @@ func (p_ PickerTouchBarItem) SelectionColor() unsafe.Pointer {
 // SetSelectionColor sets the value of the selectionColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectioncolor
-func (p_ PickerTouchBarItem) SetSelectionColor(value unsafe.Pointer) {
+func (p_ PickerTouchBarItem) SetSelectionColor(value IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectionColor:"), value)
 }
 

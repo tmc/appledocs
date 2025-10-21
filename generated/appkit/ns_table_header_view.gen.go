@@ -127,8 +127,8 @@ func (t_ TableHeaderView) ResizedColumn() int {
 // The instance that this table header view belongs to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
-func (t_ TableHeaderView) TableView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tableView"))
+func (t_ TableHeaderView) TableView() NSTableView {
+	rv := objc.Send[NSTableView](t_.ID, objc.Sel("tableView"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (t_ TableHeaderView) TableView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
-func (t_ TableHeaderView) SetTableView(value unsafe.Pointer) {
+func (t_ TableHeaderView) SetTableView(value ITableView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
 }
 

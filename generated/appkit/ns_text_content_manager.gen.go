@@ -31,7 +31,7 @@ type _TextContentManagerClass struct {
 type ITextContentManager interface {
 	objectivec.IObject
 	PerformEditingTransactionUsingBlock(transaction unsafe.Pointer)
-	RecordEditActionInRangeNewTextRange(originalTextRange unsafe.Pointer, newTextRange unsafe.Pointer)
+	RecordEditActionInRangeNewTextRange(originalTextRange ITextRange, newTextRange ITextRange)
 }
 
 // An abstract class that defines the interface and a default implementation for managing the text document contents.
@@ -90,7 +90,7 @@ func (t_ TextContentManager) PerformEditingTransactionUsingBlock(transaction uns
 // Records information about an edit action to the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/recordEditAction(in:newTextRange:)
-func (t_ TextContentManager) RecordEditActionInRangeNewTextRange(originalTextRange unsafe.Pointer, newTextRange unsafe.Pointer) {
+func (t_ TextContentManager) RecordEditActionInRangeNewTextRange(originalTextRange ITextRange, newTextRange ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("recordEditActionInRange:newTextRange:"), originalTextRange, newTextRange)
 }
 
@@ -167,8 +167,8 @@ func (t_ TextContentManager) SetDelegate(value unsafe.Pointer) {
 // The primary text layout manager for this content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/primarytextlayoutmanager
-func (t_ TextContentManager) PrimaryTextLayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("primaryTextLayoutManager"))
+func (t_ TextContentManager) PrimaryTextLayoutManager() NSTextLayoutManager {
+	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("primaryTextLayoutManager"))
 	return rv
 }
 
@@ -178,7 +178,7 @@ func (t_ TextContentManager) PrimaryTextLayoutManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/primarytextlayoutmanager
-func (t_ TextContentManager) SetPrimaryTextLayoutManager(value unsafe.Pointer) {
+func (t_ TextContentManager) SetPrimaryTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPrimaryTextLayoutManager:"), value)
 }
 

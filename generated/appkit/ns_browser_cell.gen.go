@@ -84,8 +84,8 @@ func NewBrowserCell() BrowserCell {
 // The browser cell’s image for the highlighted state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/alternateimage
-func (b_ BrowserCell) AlternateImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("alternateImage"))
+func (b_ BrowserCell) AlternateImage() Image {
+	rv := objc.Send[Image](b_.ID, objc.Sel("alternateImage"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (b_ BrowserCell) AlternateImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/alternateimage
-func (b_ BrowserCell) SetAlternateImage(value unsafe.Pointer) {
+func (b_ BrowserCell) SetAlternateImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateImage:"), value)
 }
 
 // The browser cell’s image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/image
-func (b_ BrowserCell) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("image"))
+func (b_ BrowserCell) Image() Image {
+	rv := objc.Send[Image](b_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (b_ BrowserCell) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/image
-func (b_ BrowserCell) SetImage(value unsafe.Pointer) {
+func (b_ BrowserCell) SetImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setImage:"), value)
 }
 

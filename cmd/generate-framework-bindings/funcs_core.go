@@ -92,6 +92,7 @@ var templateFuncs = template.FuncMap{
 	"contains":                    sliceContainsString,
 	"capitalize":                  capitalizeFirst,
 	"propertyConflictsWithParent": propertyConflictsWithParent,
+	"typeToInterfaceType":         typeToInterfaceType,
 
 	// Import merging
 	"mergeImports": mergeImports,

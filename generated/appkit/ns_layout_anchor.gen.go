@@ -91,8 +91,8 @@ func (l_ LayoutAnchor) HasAmbiguousLayout() bool {
 // The constraints that impact the layout of the anchor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/constraintsaffectinglayout
-func (l_ LayoutAnchor) ConstraintsAffectingLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("constraintsAffectingLayout"))
+func (l_ LayoutAnchor) ConstraintsAffectingLayout() NSLayoutConstraint {
+	rv := objc.Send[NSLayoutConstraint](l_.ID, objc.Sel("constraintsAffectingLayout"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (l_ LayoutAnchor) ConstraintsAffectingLayout() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/constraintsaffectinglayout
-func (l_ LayoutAnchor) SetConstraintsAffectingLayout(value unsafe.Pointer) {
+func (l_ LayoutAnchor) SetConstraintsAffectingLayout(value ILayoutConstraint) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setConstraintsAffectingLayout:"), value)
 }
 
@@ -145,8 +145,8 @@ func (l_ LayoutAnchor) SetName(value string) {
 // A layout anchor representing the bottom edge of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/bottomanchor
-func (l_ LayoutAnchor) BottomAnchor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("bottomAnchor"))
+func (l_ LayoutAnchor) BottomAnchor() NSLayoutYAxisAnchor {
+	rv := objc.Send[NSLayoutYAxisAnchor](l_.ID, objc.Sel("bottomAnchor"))
 	return rv
 }
 
@@ -156,15 +156,15 @@ func (l_ LayoutAnchor) BottomAnchor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/bottomanchor
-func (l_ LayoutAnchor) SetBottomAnchor(value unsafe.Pointer) {
+func (l_ LayoutAnchor) SetBottomAnchor(value ILayoutYAxisAnchor) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBottomAnchor:"), value)
 }
 
 // A layout anchor representing the leading edge of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leadinganchor
-func (l_ LayoutAnchor) LeadingAnchor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("leadingAnchor"))
+func (l_ LayoutAnchor) LeadingAnchor() NSLayoutXAxisAnchor {
+	rv := objc.Send[NSLayoutXAxisAnchor](l_.ID, objc.Sel("leadingAnchor"))
 	return rv
 }
 
@@ -174,15 +174,15 @@ func (l_ LayoutAnchor) LeadingAnchor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leadinganchor
-func (l_ LayoutAnchor) SetLeadingAnchor(value unsafe.Pointer) {
+func (l_ LayoutAnchor) SetLeadingAnchor(value ILayoutXAxisAnchor) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLeadingAnchor:"), value)
 }
 
 // A layout anchor representing the left edge of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leftanchor
-func (l_ LayoutAnchor) LeftAnchor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("leftAnchor"))
+func (l_ LayoutAnchor) LeftAnchor() NSLayoutXAxisAnchor {
+	rv := objc.Send[NSLayoutXAxisAnchor](l_.ID, objc.Sel("leftAnchor"))
 	return rv
 }
 
@@ -192,7 +192,7 @@ func (l_ LayoutAnchor) LeftAnchor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leftanchor
-func (l_ LayoutAnchor) SetLeftAnchor(value unsafe.Pointer) {
+func (l_ LayoutAnchor) SetLeftAnchor(value ILayoutXAxisAnchor) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLeftAnchor:"), value)
 }
 

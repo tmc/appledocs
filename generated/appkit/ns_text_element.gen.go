@@ -81,8 +81,8 @@ func NewTextElement() TextElement {
 // An array of zero or more child text elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/childelements
-func (t_ TextElement) ChildElements() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("childElements"))
+func (t_ TextElement) ChildElements() NSTextElement {
+	rv := objc.Send[NSTextElement](t_.ID, objc.Sel("childElements"))
 	return rv
 }
 
@@ -92,15 +92,15 @@ func (t_ TextElement) ChildElements() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/childelements
-func (t_ TextElement) SetChildElements(value unsafe.Pointer) {
+func (t_ TextElement) SetChildElements(value ITextElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChildElements:"), value)
 }
 
 // A range value that represents the range of the element inside the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/elementrange
-func (t_ TextElement) ElementRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("elementRange"))
+func (t_ TextElement) ElementRange() NSTextRange {
+	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("elementRange"))
 	return rv
 }
 
@@ -110,7 +110,7 @@ func (t_ TextElement) ElementRange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/elementrange
-func (t_ TextElement) SetElementRange(value unsafe.Pointer) {
+func (t_ TextElement) SetElementRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setElementRange:"), value)
 }
 
@@ -135,8 +135,8 @@ func (t_ TextElement) SetIsRepresentedElement(value bool) {
 // A value that represents the parent element if this text element is a child of an enclosing element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/parent
-func (t_ TextElement) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("parent"))
+func (t_ TextElement) Parent() NSTextElement {
+	rv := objc.Send[NSTextElement](t_.ID, objc.Sel("parent"))
 	return rv
 }
 
@@ -146,15 +146,15 @@ func (t_ TextElement) Parent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/parent
-func (t_ TextElement) SetParent(value unsafe.Pointer) {
+func (t_ TextElement) SetParent(value ITextElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParent:"), value)
 }
 
 // The value that represents the current content manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/textcontentmanager
-func (t_ TextElement) TextContentManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textContentManager"))
+func (t_ TextElement) TextContentManager() NSTextContentManager {
+	rv := objc.Send[NSTextContentManager](t_.ID, objc.Sel("textContentManager"))
 	return rv
 }
 
@@ -164,7 +164,7 @@ func (t_ TextElement) TextContentManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/textcontentmanager
-func (t_ TextElement) SetTextContentManager(value unsafe.Pointer) {
+func (t_ TextElement) SetTextContentManager(value ITextContentManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContentManager:"), value)
 }
 

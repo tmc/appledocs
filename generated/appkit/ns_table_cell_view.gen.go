@@ -84,8 +84,8 @@ func NewTableCellView() TableCellView {
 // This property is automatically set by the enclosing row view to let this view know what its background looks like.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
-func (t_ TableCellView) BackgroundStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundStyle"))
+func (t_ TableCellView) BackgroundStyle() BackgroundStyle {
+	rv := objc.Send[BackgroundStyle](t_.ID, objc.Sel("backgroundStyle"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (t_ TableCellView) BackgroundStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
-func (t_ TableCellView) SetBackgroundStyle(value unsafe.Pointer) {
+func (t_ TableCellView) SetBackgroundStyle(value BackgroundStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundStyle:"), value)
 }
 
@@ -110,8 +110,8 @@ func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent {
 // Image displayed by the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/imageView
-func (t_ TableCellView) ImageView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("imageView"))
+func (t_ TableCellView) ImageView() NSImageView {
+	rv := objc.Send[NSImageView](t_.ID, objc.Sel("imageView"))
 	return rv
 }
 
@@ -121,7 +121,7 @@ func (t_ TableCellView) ImageView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/imageView
-func (t_ TableCellView) SetImageView(value unsafe.Pointer) {
+func (t_ TableCellView) SetImageView(value IImageView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImageView:"), value)
 }
 
@@ -146,8 +146,8 @@ func (t_ TableCellView) SetObjectValue(value objc.ID) {
 // Returns the row size style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
-func (t_ TableCellView) RowSizeStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rowSizeStyle"))
+func (t_ TableCellView) RowSizeStyle() TableViewRowSizeStyle {
+	rv := objc.Send[TableViewRowSizeStyle](t_.ID, objc.Sel("rowSizeStyle"))
 	return rv
 }
 
@@ -157,15 +157,15 @@ func (t_ TableCellView) RowSizeStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
-func (t_ TableCellView) SetRowSizeStyle(value unsafe.Pointer) {
+func (t_ TableCellView) SetRowSizeStyle(value TableViewRowSizeStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowSizeStyle:"), value)
 }
 
 // Text displayed by the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
-func (t_ TableCellView) TextField() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textField"))
+func (t_ TableCellView) TextField() NSTextField {
+	rv := objc.Send[NSTextField](t_.ID, objc.Sel("textField"))
 	return rv
 }
 
@@ -175,7 +175,7 @@ func (t_ TableCellView) TextField() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
-func (t_ TableCellView) SetTextField(value unsafe.Pointer) {
+func (t_ TableCellView) SetTextField(value ITextField) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextField:"), value)
 }
 

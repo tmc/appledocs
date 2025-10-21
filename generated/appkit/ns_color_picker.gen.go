@@ -31,8 +31,8 @@ type _ColorPickerClass struct {
 // An interface definition for the [ColorPicker] class.
 type IColorPicker interface {
 	objectivec.IObject
-	AttachColorList(colorList unsafe.Pointer)
-	ViewSizeChanged(sender objc.ID)
+	AttachColorList(colorList IColorList)
+	ViewSizeChanged(sender objectivec.IObject)
 }
 
 // An abstract superclass that implements the default color picking protocol.
@@ -86,30 +86,30 @@ func NewColorPicker() ColorPicker {
 // Overriden to attach a color list to a color picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/attachColorList(_:)
-func (c_ ColorPicker) AttachColorList(colorList unsafe.Pointer) {
+func (c_ ColorPicker) AttachColorList(colorList IColorList) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("attachColorList:"), colorList)
 }
 
 // Overriden to respond to a size change.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/viewSizeChanged(_:)
-func (c_ ColorPicker) ViewSizeChanged(sender objc.ID) {
+func (c_ ColorPicker) ViewSizeChanged(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewSizeChanged:"), sender)
 }
 
 // The color panel instance that owns the color picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/colorPanel
-func (c_ ColorPicker) ColorPanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorPanel"))
+func (c_ ColorPicker) ColorPanel() NSColorPanel {
+	rv := objc.Send[NSColorPanel](c_.ID, objc.Sel("colorPanel"))
 	return rv
 }
 
 // The button image used by the color picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/provideNewButtonImage
-func (c_ ColorPicker) ProvideNewButtonImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("provideNewButtonImage"))
+func (c_ ColorPicker) ProvideNewButtonImage() Image {
+	rv := objc.Send[Image](c_.ID, objc.Sel("provideNewButtonImage"))
 	return rv
 }
 

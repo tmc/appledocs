@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PopoverTouchBarItem] class.
@@ -29,9 +30,9 @@ type _PopoverTouchBarItemClass struct {
 // An interface definition for the [PopoverTouchBarItem] class.
 type IPopoverTouchBarItem interface {
 	ITouchBarItem
-	DismissPopover(sender objc.ID)
-	MakeStandardActivatePopoverGestureRecognizer() unsafe.Pointer
-	ShowPopover(sender objc.ID)
+	DismissPopover(sender objectivec.IObject)
+	MakeStandardActivatePopoverGestureRecognizer() GestureRecognizer
+	ShowPopover(sender objectivec.IObject)
 }
 
 // A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns.
@@ -85,30 +86,30 @@ func NewPopoverTouchBarItem() PopoverTouchBarItem {
 // Restores the previously visible main bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/dismissPopover(_:)
-func (p_ PopoverTouchBarItem) DismissPopover(sender objc.ID) {
+func (p_ PopoverTouchBarItem) DismissPopover(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("dismissPopover:"), sender)
 }
 
 // Returns a gesture recognizer, configured to invoke the method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/makeStandardActivatePopoverGestureRecognizer()
-func (p_ PopoverTouchBarItem) MakeStandardActivatePopoverGestureRecognizer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("makeStandardActivatePopoverGestureRecognizer"))
+func (p_ PopoverTouchBarItem) MakeStandardActivatePopoverGestureRecognizer() GestureRecognizer {
+	rv := objc.Send[GestureRecognizer](p_.ID, objc.Sel("makeStandardActivatePopoverGestureRecognizer"))
 	return rv
 }
 
 // Replaces the main bar with this item’s popover bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/showPopover(_:)
-func (p_ PopoverTouchBarItem) ShowPopover(sender objc.ID) {
+func (p_ PopoverTouchBarItem) ShowPopover(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("showPopover:"), sender)
 }
 
 // The view displayed when this item is displayed in its parent bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentation
-func (p_ PopoverTouchBarItem) CollapsedRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collapsedRepresentation"))
+func (p_ PopoverTouchBarItem) CollapsedRepresentation() NSView {
+	rv := objc.Send[NSView](p_.ID, objc.Sel("collapsedRepresentation"))
 	return rv
 }
 
@@ -118,15 +119,15 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentation
-func (p_ PopoverTouchBarItem) SetCollapsedRepresentation(value unsafe.Pointer) {
+func (p_ PopoverTouchBarItem) SetCollapsedRepresentation(value IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentation:"), value)
 }
 
 // The image displayed by the button for the default collapsed representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationImage
-func (p_ PopoverTouchBarItem) CollapsedRepresentationImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collapsedRepresentationImage"))
+func (p_ PopoverTouchBarItem) CollapsedRepresentationImage() Image {
+	rv := objc.Send[Image](p_.ID, objc.Sel("collapsedRepresentationImage"))
 	return rv
 }
 
@@ -136,7 +137,7 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentationImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationImage
-func (p_ PopoverTouchBarItem) SetCollapsedRepresentationImage(value unsafe.Pointer) {
+func (p_ PopoverTouchBarItem) SetCollapsedRepresentationImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationImage:"), value)
 }
 
@@ -179,8 +180,8 @@ func (p_ PopoverTouchBarItem) SetCustomizationLabel(value string) {
 // The bar displayed when this item is “popped.”
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/popoverTouchBar
-func (p_ PopoverTouchBarItem) PopoverTouchBar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("popoverTouchBar"))
+func (p_ PopoverTouchBarItem) PopoverTouchBar() NSTouchBar {
+	rv := objc.Send[NSTouchBar](p_.ID, objc.Sel("popoverTouchBar"))
 	return rv
 }
 
@@ -190,15 +191,15 @@ func (p_ PopoverTouchBarItem) PopoverTouchBar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/popoverTouchBar
-func (p_ PopoverTouchBarItem) SetPopoverTouchBar(value unsafe.Pointer) {
+func (p_ PopoverTouchBarItem) SetPopoverTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPopoverTouchBar:"), value)
 }
 
 // The bar that is displayed when a user press-and-holds on the popover item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/pressAndHoldTouchBar
-func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pressAndHoldTouchBar"))
+func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() NSTouchBar {
+	rv := objc.Send[NSTouchBar](p_.ID, objc.Sel("pressAndHoldTouchBar"))
 	return rv
 }
 
@@ -208,7 +209,7 @@ func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/pressAndHoldTouchBar
-func (p_ PopoverTouchBarItem) SetPressAndHoldTouchBar(value unsafe.Pointer) {
+func (p_ PopoverTouchBarItem) SetPressAndHoldTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
 }
 

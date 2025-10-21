@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EPSImageRep] class.
@@ -109,8 +110,8 @@ func (e_ EPSImageRep) SetBoundingBox(value coregraphics.CGRect) {
 // The EPS representation of the image representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
-func (e_ EPSImageRep) EpsRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("epsRepresentation"))
+func (e_ EPSImageRep) EpsRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](e_.ID, objc.Sel("epsRepresentation"))
 	return rv
 }
 
@@ -120,7 +121,7 @@ func (e_ EPSImageRep) EpsRepresentation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
-func (e_ EPSImageRep) SetEpsRepresentation(value unsafe.Pointer) {
+func (e_ EPSImageRep) SetEpsRepresentation(value foundation.IData) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEpsRepresentation:"), value)
 }
 

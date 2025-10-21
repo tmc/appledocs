@@ -83,7 +83,7 @@ func NewTreeNode() TreeNode {
 // Creates and returns a tree node that represents the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeNode/treeNodeWithRepresentedObject:
-func (tc _TreeNodeClass) TreeNodeWithRepresentedObject(modelObject objc.ID) unsafe.Pointer {
+func (tc _TreeNodeClass) TreeNodeWithRepresentedObject(modelObject objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("treeNodeWithRepresentedObject:"), modelObject)
 	return rv
 }
@@ -99,8 +99,8 @@ func (t_ TreeNode) ChildNodes() []TreeNode {
 // An array containing receiver’s child nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/children
-func (t_ TreeNode) Children() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("children"))
+func (t_ TreeNode) Children() NSTreeNode {
+	rv := objc.Send[NSTreeNode](t_.ID, objc.Sel("children"))
 	return rv
 }
 
@@ -110,7 +110,7 @@ func (t_ TreeNode) Children() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/children
-func (t_ TreeNode) SetChildren(value unsafe.Pointer) {
+func (t_ TreeNode) SetChildren(value ITreeNode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChildren:"), value)
 }
 
@@ -153,8 +153,8 @@ func (t_ TreeNode) SetIsLeaf(value bool) {
 // A mutable array that provides read-write access to the receiver’s child nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/mutablechildren
-func (t_ TreeNode) MutableChildren() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("mutableChildren"))
+func (t_ TreeNode) MutableChildren() MutableArray {
+	rv := objc.Send[MutableArray](t_.ID, objc.Sel("mutableChildren"))
 	return rv
 }
 
@@ -164,15 +164,15 @@ func (t_ TreeNode) MutableChildren() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/mutablechildren
-func (t_ TreeNode) SetMutableChildren(value unsafe.Pointer) {
+func (t_ TreeNode) SetMutableChildren(value IMutableArray) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMutableChildren:"), value)
 }
 
 // The receiver’s parent node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/parent
-func (t_ TreeNode) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("parent"))
+func (t_ TreeNode) Parent() NSTreeNode {
+	rv := objc.Send[NSTreeNode](t_.ID, objc.Sel("parent"))
 	return rv
 }
 
@@ -182,7 +182,7 @@ func (t_ TreeNode) Parent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/parent
-func (t_ TreeNode) SetParent(value unsafe.Pointer) {
+func (t_ TreeNode) SetParent(value ITreeNode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParent:"), value)
 }
 

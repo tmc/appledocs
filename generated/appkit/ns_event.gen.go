@@ -85,7 +85,7 @@ func NewEvent() Event {
 // Installs an event monitor that receives copies of events the system posts to this app prior to their dispatch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/addLocalMonitorForEvents(matching:handler:)
-func (ec _EventClass) AddLocalMonitorForEventsMatchingMaskHandler(mask unsafe.Pointer, block unsafe.Pointer) objc.ID {
+func (ec _EventClass) AddLocalMonitorForEventsMatchingMaskHandler(mask EventMask, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("addLocalMonitorForEventsMatchingMask:handler:"), mask, block)
 	return rv
 }
@@ -156,8 +156,8 @@ func (e_ Event) Timestamp() float64 {
 // The window object associated with the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/window
-func (e_ Event) Window() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("window"))
+func (e_ Event) Window() NSWindow {
+	rv := objc.Send[NSWindow](e_.ID, objc.Sel("window"))
 	return rv
 }
 
@@ -352,8 +352,8 @@ func (e_ Event) SetClickCount(value int) {
 // The display graphics context for this event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/context
-func (e_ Event) Context() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("context"))
+func (e_ Event) Context() NSGraphicsContext {
+	rv := objc.Send[NSGraphicsContext](e_.ID, objc.Sel("context"))
 	return rv
 }
 
@@ -363,7 +363,7 @@ func (e_ Event) Context() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/context
-func (e_ Event) SetContext(value unsafe.Pointer) {
+func (e_ Event) SetContext(value IGraphicsContext) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setContext:"), value)
 }
 
@@ -928,8 +928,8 @@ func (e_ Event) SetTilt(value coregraphics.CGPoint) {
 // The tracking area for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/trackingarea
-func (e_ Event) TrackingArea() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("trackingArea"))
+func (e_ Event) TrackingArea() NSTrackingArea {
+	rv := objc.Send[NSTrackingArea](e_.ID, objc.Sel("trackingArea"))
 	return rv
 }
 
@@ -939,7 +939,7 @@ func (e_ Event) TrackingArea() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/trackingarea
-func (e_ Event) SetTrackingArea(value unsafe.Pointer) {
+func (e_ Event) SetTrackingArea(value ITrackingArea) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTrackingArea:"), value)
 }
 
@@ -964,8 +964,8 @@ func (e_ Event) SetTrackingNumber(value int) {
 // The event’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/type
-func (e_ Event) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("type"))
+func (e_ Event) Type() EventType {
+	rv := objc.Send[EventType](e_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -975,7 +975,7 @@ func (e_ Event) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/type
-func (e_ Event) SetType(value unsafe.Pointer) {
+func (e_ Event) SetType(value EventType) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setType:"), value)
 }
 

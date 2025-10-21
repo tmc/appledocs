@@ -81,6 +81,14 @@ func NewStringDrawingContext() StringDrawingContext {
 }
 
 
+// The actual scale factor that the system applied to the font during drawing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/actualScaleFactor
+func (s_ StringDrawingContext) ActualScaleFactor() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("actualScaleFactor"))
+	return rv
+}
+
 // The scale factor that determines the smallest font size to use during drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/minimumScaleFactor
@@ -105,24 +113,6 @@ func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64) {
 func (s_ StringDrawingContext) TotalBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("totalBounds"))
 	return rv
-}
-
-// The actual scale factor that the system applied to the font during drawing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/actualscalefactor
-func (s_ StringDrawingContext) ActualScaleFactor() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("actualScaleFactor"))
-	return rv
-}
-
-
-// SetActualScaleFactor sets the value of the actualScaleFactor property.
-// The actual scale factor that the system applied to the font during drawing.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/actualscalefactor
-func (s_ StringDrawingContext) SetActualScaleFactor(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setActualScaleFactor:"), value)
 }
 
 

@@ -138,8 +138,8 @@ func (t_ ToolbarItemGroup) SetSelectionMode(value unsafe.Pointer) {
 // The subitems of the grouped toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/subitems
-func (t_ ToolbarItemGroup) Subitems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("subitems"))
+func (t_ ToolbarItemGroup) Subitems() NSToolbarItem {
+	rv := objc.Send[NSToolbarItem](t_.ID, objc.Sel("subitems"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (t_ ToolbarItemGroup) Subitems() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/subitems
-func (t_ ToolbarItemGroup) SetSubitems(value unsafe.Pointer) {
+func (t_ ToolbarItemGroup) SetSubitems(value IToolbarItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSubitems:"), value)
 }
 

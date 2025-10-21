@@ -30,7 +30,8 @@ type _PageLayoutClass struct {
 // An interface definition for the [PageLayout] class.
 type IPageLayout interface {
 	objectivec.IObject
-	AccessoryView() unsafe.Pointer
+	AccessoryView() View
+	AddAccessoryController(accessoryController IViewController)
 }
 
 // A panel that queries the user for information such as paper type and orientation.
@@ -84,17 +85,24 @@ func NewPageLayout() PageLayout {
 // Returns a newly created page layout object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/pageLayout
-func (pc _PageLayoutClass) PageLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pageLayout"))
+func (pc _PageLayoutClass) PageLayout() PageLayout {
+	rv := objc.Send[PageLayout](objc.ID(pc.class), objc.Sel("pageLayout"))
 	return rv
 }
 
 // Returns the page layout panel’s accessory view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/accessoryView
-func (p_ PageLayout) AccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("accessoryView"))
+func (p_ PageLayout) AccessoryView() View {
+	rv := objc.Send[View](p_.ID, objc.Sel("accessoryView"))
 	return rv
+}
+
+// Adds the specified controller of an accessory view to be presented in the page setup panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/addAccessoryController(_:)
+func (p_ PageLayout) AddAccessoryController(accessoryController IViewController) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("addAccessoryController:"), accessoryController)
 }
 
 // An array of accessory view controllers belonging to the page layout panel.
@@ -108,8 +116,8 @@ func (p_ PageLayout) AccessoryControllers() []ViewController {
 // The printing information object used when the page layout panel is run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspagelayout/printinfo
-func (p_ PageLayout) PrintInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("printInfo"))
+func (p_ PageLayout) PrintInfo() NSPrintInfo {
+	rv := objc.Send[NSPrintInfo](p_.ID, objc.Sel("printInfo"))
 	return rv
 }
 
@@ -119,7 +127,7 @@ func (p_ PageLayout) PrintInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspagelayout/printinfo
-func (p_ PageLayout) SetPrintInfo(value unsafe.Pointer) {
+func (p_ PageLayout) SetPrintInfo(value IPrintInfo) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintInfo:"), value)
 }
 

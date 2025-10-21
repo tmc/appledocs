@@ -84,8 +84,8 @@ func NewTypesetter() Typesetter {
 // Returns the text backing store, usually an instance of
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributedstring
-func (t_ Typesetter) AttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("attributedString"))
+func (t_ Typesetter) AttributedString() AttributedString {
+	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (t_ Typesetter) AttributedString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributedstring
-func (t_ Typesetter) SetAttributedString(value unsafe.Pointer) {
+func (t_ Typesetter) SetAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 
@@ -138,8 +138,8 @@ func (t_ Typesetter) SetBidiProcessingEnabled(value bool) {
 // Returns the paragraph style object for the text being typeset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/currentparagraphstyle
-func (t_ Typesetter) CurrentParagraphStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("currentParagraphStyle"))
+func (t_ Typesetter) CurrentParagraphStyle() NSParagraphStyle {
+	rv := objc.Send[NSParagraphStyle](t_.ID, objc.Sel("currentParagraphStyle"))
 	return rv
 }
 
@@ -149,15 +149,15 @@ func (t_ Typesetter) CurrentParagraphStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/currentparagraphstyle
-func (t_ Typesetter) SetCurrentParagraphStyle(value unsafe.Pointer) {
+func (t_ Typesetter) SetCurrentParagraphStyle(value NSParagraphStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentParagraphStyle:"), value)
 }
 
 // Returns the text container for the text being typeset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/currenttextcontainer
-func (t_ Typesetter) CurrentTextContainer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("currentTextContainer"))
+func (t_ Typesetter) CurrentTextContainer() NSTextContainer {
+	rv := objc.Send[NSTextContainer](t_.ID, objc.Sel("currentTextContainer"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (t_ Typesetter) CurrentTextContainer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/currenttextcontainer
-func (t_ Typesetter) SetCurrentTextContainer(value unsafe.Pointer) {
+func (t_ Typesetter) SetCurrentTextContainer(value ITextContainer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentTextContainer:"), value)
 }
 
@@ -192,8 +192,8 @@ func (t_ Typesetter) SetHyphenationFactor(value unsafe.Pointer) {
 // Returns the layout manager for the text being typeset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/layoutmanager
-func (t_ Typesetter) LayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutManager"))
+func (t_ Typesetter) LayoutManager() NSLayoutManager {
+	rv := objc.Send[NSLayoutManager](t_.ID, objc.Sel("layoutManager"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (t_ Typesetter) LayoutManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/layoutmanager
-func (t_ Typesetter) SetLayoutManager(value unsafe.Pointer) {
+func (t_ Typesetter) SetLayoutManager(value ILayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManager:"), value)
 }
 
@@ -239,7 +239,7 @@ func (t_ Typesetter) ParagraphCharacterRange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphcharacterrange
-func (t_ Typesetter) SetParagraphCharacterRange(value foundation.Range) {
+func (t_ Typesetter) SetParagraphCharacterRange(value foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphCharacterRange:"), value)
 }
 
@@ -257,7 +257,7 @@ func (t_ Typesetter) ParagraphGlyphRange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphglyphrange
-func (t_ Typesetter) SetParagraphGlyphRange(value foundation.Range) {
+func (t_ Typesetter) SetParagraphGlyphRange(value foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphGlyphRange:"), value)
 }
 
@@ -275,7 +275,7 @@ func (t_ Typesetter) ParagraphSeparatorCharacterRange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphseparatorcharacterrange
-func (t_ Typesetter) SetParagraphSeparatorCharacterRange(value foundation.Range) {
+func (t_ Typesetter) SetParagraphSeparatorCharacterRange(value foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphSeparatorCharacterRange:"), value)
 }
 
@@ -293,7 +293,7 @@ func (t_ Typesetter) ParagraphSeparatorGlyphRange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphseparatorglyphrange
-func (t_ Typesetter) SetParagraphSeparatorGlyphRange(value foundation.Range) {
+func (t_ Typesetter) SetParagraphSeparatorGlyphRange(value foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphSeparatorGlyphRange:"), value)
 }
 

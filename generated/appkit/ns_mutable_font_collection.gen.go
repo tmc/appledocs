@@ -84,8 +84,8 @@ func NewMutableFontCollection() MutableFontCollection {
 // The font descriptors to exclude from query results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/exclusiondescriptors
-func (m_ MutableFontCollection) ExclusionDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("exclusionDescriptors"))
+func (m_ MutableFontCollection) ExclusionDescriptors() NSFontDescriptor {
+	rv := objc.Send[NSFontDescriptor](m_.ID, objc.Sel("exclusionDescriptors"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (m_ MutableFontCollection) ExclusionDescriptors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/exclusiondescriptors
-func (m_ MutableFontCollection) SetExclusionDescriptors(value unsafe.Pointer) {
+func (m_ MutableFontCollection) SetExclusionDescriptors(value IFontDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExclusionDescriptors:"), value)
 }
 
 // The font descriptors to include in query results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/querydescriptors
-func (m_ MutableFontCollection) QueryDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("queryDescriptors"))
+func (m_ MutableFontCollection) QueryDescriptors() NSFontDescriptor {
+	rv := objc.Send[NSFontDescriptor](m_.ID, objc.Sel("queryDescriptors"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (m_ MutableFontCollection) QueryDescriptors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/querydescriptors
-func (m_ MutableFontCollection) SetQueryDescriptors(value unsafe.Pointer) {
+func (m_ MutableFontCollection) SetQueryDescriptors(value IFontDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryDescriptors:"), value)
 }
 

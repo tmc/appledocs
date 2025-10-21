@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Window] class.
@@ -31,25 +32,25 @@ type _WindowClass struct {
 // An interface definition for the [Window] class.
 type IWindow interface {
 	IResponder
-	AddChildWindowOrdered(childWin unsafe.Pointer, place WindowOrderingMode)
-	AddTabbedWindowOrdered(window unsafe.Pointer, ordered WindowOrderingMode)
-	AddTitlebarAccessoryViewController(childViewController unsafe.Pointer)
-	AnchorAttributeForOrientation(orientation unsafe.Pointer) unsafe.Pointer
+	AddChildWindowOrdered(childWin IWindow, place WindowOrderingMode)
+	AddTabbedWindowOrdered(window IWindow, ordered WindowOrderingMode)
+	AddTitlebarAccessoryViewController(childViewController ITitlebarAccessoryViewController)
+	AnchorAttributeForOrientation(orientation LayoutConstraintOrientation) LayoutAttribute
 	AnimationResizeTime(newFrame coregraphics.CGRect) float64
 	AutorecalculatesContentBorderThicknessForEdge(edge int) bool
 	BackingAlignedRectOptions(rect coregraphics.CGRect, options unsafe.Pointer) coregraphics.CGRect
 	BecomeKeyWindow()
 	BecomeMainWindow()
-	BeginCriticalSheetCompletionHandler(sheetWindow unsafe.Pointer, handler unsafe.Pointer)
-	BeginDraggingSessionWithItemsEventSource(items unsafe.Pointer, event unsafe.Pointer, source objc.ID) unsafe.Pointer
-	BeginSheetCompletionHandler(sheetWindow unsafe.Pointer, handler unsafe.Pointer)
+	BeginCriticalSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
+	BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) DraggingSession
+	BeginSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
 	CacheImageInRect(rect coregraphics.CGRect)
-	CanRepresentDisplayGamut(displayGamut unsafe.Pointer) bool
+	CanRepresentDisplayGamut(displayGamut DisplayGamut) bool
 	CanStoreColor() bool
 	CascadeTopLeftFromPoint(topLeftPoint coregraphics.CGPoint) coregraphics.CGPoint
 	Center()
 	Close()
-	ConstrainFrameRectToScreen(frameRect coregraphics.CGRect, screen unsafe.Pointer) coregraphics.CGRect
+	ConstrainFrameRectToScreen(frameRect coregraphics.CGRect, screen IScreen) coregraphics.CGRect
 	ContentBorderThicknessForEdge(edge int) float64
 	ContentRectForFrameRect(frameRect coregraphics.CGRect) coregraphics.CGRect
 	ConvertBaseToScreen(point coregraphics.CGPoint) coregraphics.CGPoint
@@ -62,9 +63,9 @@ type IWindow interface {
 	ConvertScreenToBase(point coregraphics.CGPoint) coregraphics.CGPoint
 	ConvertRectToBacking(rect coregraphics.CGRect) coregraphics.CGRect
 	ConvertRectToScreen(rect coregraphics.CGRect) coregraphics.CGRect
-	DataWithEPSInsideRect(rect coregraphics.CGRect) unsafe.Pointer
-	DataWithPDFInsideRect(rect coregraphics.CGRect) unsafe.Pointer
-	Deminiaturize(sender objc.ID)
+	DataWithEPSInsideRect(rect coregraphics.CGRect) foundation.Data
+	DataWithPDFInsideRect(rect coregraphics.CGRect) foundation.Data
+	Deminiaturize(sender objectivec.IObject)
 	DisableCursorRects()
 	DisableFlushWindow()
 	DisableKeyEquivalentForDefaultButtonCell()
@@ -72,19 +73,19 @@ type IWindow interface {
 	DisableSnapshotRestoration()
 	DiscardCachedImage()
 	DiscardCursorRects()
-	DiscardEventsMatchingMaskBeforeEvent(mask unsafe.Pointer, lastEvent unsafe.Pointer)
+	DiscardEventsMatchingMaskBeforeEvent(mask EventMask, lastEvent IEvent)
 	Display()
 	DisplayIfNeeded()
-	DisplayLinkWithTargetSelector(target objc.ID, selector objc.SEL) unsafe.Pointer
-	DragImageAtOffsetEventPasteboardSourceSlideBack(image unsafe.Pointer, baseLocation coregraphics.CGPoint, initialOffset coregraphics.CGSize, event unsafe.Pointer, pboard unsafe.Pointer, sourceObj objc.ID, slideFlag bool)
+	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) unsafe.Pointer
+	DragImageAtOffsetEventPasteboardSourceSlideBack(image IImage, baseLocation coregraphics.CGPoint, initialOffset coregraphics.CGSize, event IEvent, pboard IPasteboard, sourceObj objectivec.IObject, slideFlag bool)
 	EnableCursorRects()
 	EnableFlushWindow()
 	EnableKeyEquivalentForDefaultButtonCell()
 	EnableSnapshotRestoration()
-	EndEditingFor(object objc.ID)
-	EndSheet(sheetWindow unsafe.Pointer)
-	EndSheetReturnCode(sheetWindow unsafe.Pointer, returnCode unsafe.Pointer)
-	FieldEditorForObject(createFlag bool, object objc.ID) unsafe.Pointer
+	EndEditingFor(object objectivec.IObject)
+	EndSheet(sheetWindow IWindow)
+	EndSheetReturnCode(sheetWindow IWindow, returnCode IModalResponse)
+	FieldEditorForObject(createFlag bool, object objectivec.IObject) Text
 	FlushWindow()
 	FlushWindowIfNeeded()
 	FrameRectForContentRect(contentRect coregraphics.CGRect) coregraphics.CGRect
@@ -92,78 +93,78 @@ type IWindow interface {
 	HandleCloseScriptCommand(command unsafe.Pointer) objc.ID
 	HandlePrintScriptCommand(command unsafe.Pointer) objc.ID
 	HandleSaveScriptCommand(command unsafe.Pointer) objc.ID
-	InsertTitlebarAccessoryViewControllerAtIndex(childViewController unsafe.Pointer, index int)
-	InvalidateCursorRectsForView(view unsafe.Pointer)
+	InsertTitlebarAccessoryViewControllerAtIndex(childViewController ITitlebarAccessoryViewController, index int)
+	InvalidateCursorRectsForView(view IView)
 	InvalidateShadow()
 	LayoutIfNeeded()
-	MakeFirstResponder(responder unsafe.Pointer) bool
+	MakeFirstResponder(responder IResponder) bool
 	MakeKeyWindow()
-	MakeKeyAndOrderFront(sender objc.ID)
+	MakeKeyAndOrderFront(sender objectivec.IObject)
 	MakeMainWindow()
-	MergeAllWindows(sender objc.ID)
-	Miniaturize(sender objc.ID)
-	MoveTabToNewWindow(sender objc.ID)
-	NextEventMatchingMask(mask unsafe.Pointer) unsafe.Pointer
-	NextEventMatchingMaskUntilDateInModeDequeue(mask unsafe.Pointer, expiration unsafe.Pointer, mode unsafe.Pointer, deqFlag bool) unsafe.Pointer
+	MergeAllWindows(sender objectivec.IObject)
+	Miniaturize(sender objectivec.IObject)
+	MoveTabToNewWindow(sender objectivec.IObject)
+	NextEventMatchingMask(mask EventMask) Event
+	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration foundation.IDate, mode unsafe.Pointer, deqFlag bool) Event
 	OrderWindowRelativeTo(place WindowOrderingMode, otherWin int)
-	OrderBack(sender objc.ID)
-	OrderFront(sender objc.ID)
+	OrderBack(sender objectivec.IObject)
+	OrderFront(sender objectivec.IObject)
 	OrderFrontRegardless()
-	OrderOut(sender objc.ID)
-	PerformClose(sender objc.ID)
-	PerformWindowDragWithEvent(event unsafe.Pointer)
-	PerformMiniaturize(sender objc.ID)
-	PerformZoom(sender objc.ID)
-	PostEventAtStart(event unsafe.Pointer, flag bool)
-	Print(sender objc.ID)
+	OrderOut(sender objectivec.IObject)
+	PerformClose(sender objectivec.IObject)
+	PerformWindowDragWithEvent(event IEvent)
+	PerformMiniaturize(sender objectivec.IObject)
+	PerformZoom(sender objectivec.IObject)
+	PostEventAtStart(event IEvent, flag bool)
+	Print(sender objectivec.IObject)
 	RecalculateKeyViewLoop()
-	RegisterForDraggedTypes(newTypes unsafe.Pointer)
-	RemoveChildWindow(childWin unsafe.Pointer)
+	RegisterForDraggedTypes(newTypes []string)
+	RemoveChildWindow(childWin IWindow)
 	RemoveTitlebarAccessoryViewControllerAtIndex(index int)
-	RequestSharingOfWindowCompletionHandler(window unsafe.Pointer, completionHandler unsafe.Pointer)
-	RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image unsafe.Pointer, title string, completionHandler unsafe.Pointer)
+	RequestSharingOfWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer)
+	RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title string, completionHandler unsafe.Pointer)
 	ResetCursorRects()
 	ResignKeyWindow()
 	ResignMainWindow()
 	RestoreCachedImage()
-	RunToolbarCustomizationPalette(sender objc.ID)
-	SaveFrameUsingName(name unsafe.Pointer)
-	SelectKeyViewFollowingView(view unsafe.Pointer)
-	SelectKeyViewPrecedingView(view unsafe.Pointer)
-	SelectNextKeyView(sender objc.ID)
-	SelectNextTab(sender objc.ID)
-	SelectPreviousKeyView(sender objc.ID)
-	SelectPreviousTab(sender objc.ID)
-	SendEvent(event unsafe.Pointer)
-	SetAnchorAttributeForOrientation(attr unsafe.Pointer, orientation unsafe.Pointer)
+	RunToolbarCustomizationPalette(sender objectivec.IObject)
+	SaveFrameUsingName(name IWindowFrameAutosaveName)
+	SelectKeyViewFollowingView(view IView)
+	SelectKeyViewPrecedingView(view IView)
+	SelectNextKeyView(sender objectivec.IObject)
+	SelectNextTab(sender objectivec.IObject)
+	SelectPreviousKeyView(sender objectivec.IObject)
+	SelectPreviousTab(sender objectivec.IObject)
+	SendEvent(event IEvent)
+	SetAnchorAttributeForOrientation(attr LayoutAttribute, orientation LayoutConstraintOrientation)
 	SetAutorecalculatesContentBorderThicknessForEdge(flag bool, edge int)
 	SetContentBorderThicknessForEdge(thickness float64, edge int)
 	SetContentSize(size coregraphics.CGSize)
 	SetDynamicDepthLimit(flag bool)
 	SetFrameDisplay(frameRect coregraphics.CGRect, flag bool)
 	SetFrameDisplayAnimate(frameRect coregraphics.CGRect, displayFlag bool, animateFlag bool)
-	SetFrameFromString(string_ unsafe.Pointer)
+	SetFrameFromString(string_ IWindowPersistableFrameDescriptor)
 	SetFrameOrigin(point coregraphics.CGPoint)
 	SetFrameTopLeftPoint(point coregraphics.CGPoint)
-	SetFrameUsingName(name unsafe.Pointer) bool
-	SetFrameUsingNameForce(name unsafe.Pointer, force bool) bool
+	SetFrameUsingName(name IWindowFrameAutosaveName) bool
+	SetFrameUsingNameForce(name IWindowFrameAutosaveName, force bool) bool
 	SetTitleWithRepresentedFilename(filename string)
-	StandardWindowButton(b unsafe.Pointer) unsafe.Pointer
-	ToggleFullScreen(sender objc.ID)
-	ToggleTabBar(sender objc.ID)
-	ToggleTabOverview(sender objc.ID)
-	ToggleToolbarShown(sender objc.ID)
-	TrackEventsMatchingMaskTimeoutModeHandler(mask unsafe.Pointer, timeout float64, mode unsafe.Pointer, trackingHandler unsafe.Pointer)
-	TransferWindowSharingToWindowCompletionHandler(window unsafe.Pointer, completionHandler unsafe.Pointer)
-	TryToPerformWith(action objc.SEL, object objc.ID) bool
+	StandardWindowButton(b IWindowButton) Button
+	ToggleFullScreen(sender objectivec.IObject)
+	ToggleTabBar(sender objectivec.IObject)
+	ToggleTabOverview(sender objectivec.IObject)
+	ToggleToolbarShown(sender objectivec.IObject)
+	TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout float64, mode unsafe.Pointer, trackingHandler unsafe.Pointer)
+	TransferWindowSharingToWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer)
+	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool
 	UnregisterDraggedTypes()
 	Update()
 	UpdateConstraintsIfNeeded()
 	UseOptimizedDrawing(flag bool)
 	UserSpaceScaleFactor() float64
-	ValidRequestorForSendTypeReturnType(sendType unsafe.Pointer, returnType unsafe.Pointer) objc.ID
-	VisualizeConstraints(constraints unsafe.Pointer)
-	Zoom(sender objc.ID)
+	ValidRequestorForSendTypeReturnType(sendType PasteboardType, returnType PasteboardType) objc.ID
+	VisualizeConstraints(constraints []LayoutConstraint)
+	Zoom(sender objectivec.IObject)
 }
 
 // A window that an app displays on the screen.
@@ -233,7 +234,7 @@ func NewWindowWithContentRectStyleMaskBackingDefer(contentRect coregraphics.CGRe
 // Initializes an allocated window with the specified values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:screen:)
-func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphics.CGRect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool, screen unsafe.Pointer) Window {
+func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphics.CGRect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool, screen IScreen) Window {
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:screen:"), contentRect, style, backingStoreType, flag, screen)
 	rv.Autorelease()
@@ -245,7 +246,7 @@ func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphic
 // Creates a titled window that contains the specified content view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
-func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
+func NewWindowWithContentViewController(contentViewController IViewController) Window {
 	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
 	return rv
 }
@@ -282,7 +283,7 @@ func (wc _WindowClass) FrameRectForContentRectStyleMask(cRect coregraphics.CGRec
 // Creates a titled window that contains the specified content view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
-func (wc _WindowClass) WindowWithContentViewController(contentViewController unsafe.Pointer) unsafe.Pointer {
+func (wc _WindowClass) WindowWithContentViewController(contentViewController IViewController) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("windowWithContentViewController:"), contentViewController)
 	return rv
 }
@@ -290,7 +291,7 @@ func (wc _WindowClass) WindowWithContentViewController(contentViewController uns
 // This method does nothing; it is here for backward compatibility.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/menuChanged(_:)
-func (wc _WindowClass) MenuChanged(menu unsafe.Pointer) {
+func (wc _WindowClass) MenuChanged(menu IMenu) {
 	objc.Send[objc.ID](objc.ID(wc.class), objc.Sel("menuChanged:"), menu)
 }
 
@@ -305,15 +306,15 @@ func (wc _WindowClass) MinFrameWidthWithTitleStyleMask(title string, style Windo
 // Removes the frame data stored under a given name from the application’s user defaults.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/removeFrame(usingName:)
-func (wc _WindowClass) RemoveFrameUsingName(name unsafe.Pointer) {
+func (wc _WindowClass) RemoveFrameUsingName(name IWindowFrameAutosaveName) {
 	objc.Send[objc.ID](objc.ID(wc.class), objc.Sel("removeFrameUsingName:"), name)
 }
 
 // Returns a new instance of a given standard window button, sized appropriately for a given window style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/standardWindowButton(_:for:)
-func (wc _WindowClass) StandardWindowButtonForStyleMask(b unsafe.Pointer, styleMask WindowStyleMask) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("standardWindowButton:forStyleMask:"), b, styleMask)
+func (wc _WindowClass) StandardWindowButtonForStyleMask(b IWindowButton, styleMask WindowStyleMask) Button {
+	rv := objc.Send[Button](objc.ID(wc.class), objc.Sel("standardWindowButton:forStyleMask:"), b, styleMask)
 	return rv
 }
 
@@ -328,7 +329,7 @@ func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point core
 // Returns the window numbers for all visible windows satisfying the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumbers(options:)
-func (wc _WindowClass) WindowNumbersWithOptions(options unsafe.Pointer) []foundation.Number {
+func (wc _WindowClass) WindowNumbersWithOptions(options WindowNumberListOptions) []foundation.Number {
 	rv := objc.Send[[]foundation.Number](objc.ID(wc.class), objc.Sel("windowNumbersWithOptions:"), options)
 	return rv
 }
@@ -343,43 +344,43 @@ func (wc _WindowClass) AllowsAutomaticWindowTabbing() bool {
 // Returns the default depth limit for instances of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultDepthLimit
-func (wc _WindowClass) DefaultDepthLimit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("defaultDepthLimit"))
+func (wc _WindowClass) DefaultDepthLimit() WindowDepth {
+	rv := objc.Send[WindowDepth](objc.ID(wc.class), objc.Sel("defaultDepthLimit"))
 	return rv
 }
 // A value that indicates the user’s preference for window tabbing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/userTabbingPreference-swift.type.property
-func (wc _WindowClass) UserTabbingPreference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("userTabbingPreference"))
+func (wc _WindowClass) UserTabbingPreference() WindowUserTabbingPreference {
+	rv := objc.Send[WindowUserTabbingPreference](objc.ID(wc.class), objc.Sel("userTabbingPreference"))
 	return rv
 }
 // Adds a given window as a child window of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/addChildWindow(_:ordered:)
-func (w_ Window) AddChildWindowOrdered(childWin unsafe.Pointer, place WindowOrderingMode) {
+func (w_ Window) AddChildWindowOrdered(childWin IWindow, place WindowOrderingMode) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("addChildWindow:ordered:"), childWin, place)
 }
 
 // Adds the provided window as a new tab in a tabbed window using the specified ordering instruction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/addTabbedWindow(_:ordered:)
-func (w_ Window) AddTabbedWindowOrdered(window unsafe.Pointer, ordered WindowOrderingMode) {
+func (w_ Window) AddTabbedWindowOrdered(window IWindow, ordered WindowOrderingMode) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("addTabbedWindow:ordered:"), window, ordered)
 }
 
 // Adds the specified title bar accessory view controller to the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/addTitlebarAccessoryViewController(_:)
-func (w_ Window) AddTitlebarAccessoryViewController(childViewController unsafe.Pointer) {
+func (w_ Window) AddTitlebarAccessoryViewController(childViewController ITitlebarAccessoryViewController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("addTitlebarAccessoryViewController:"), childViewController)
 }
 
 // Returns the part of the window that stays stationary during constraint-based layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/anchorAttribute(for:)
-func (w_ Window) AnchorAttributeForOrientation(orientation unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("anchorAttributeForOrientation:"), orientation)
+func (w_ Window) AnchorAttributeForOrientation(orientation LayoutConstraintOrientation) LayoutAttribute {
+	rv := objc.Send[LayoutAttribute](w_.ID, objc.Sel("anchorAttributeForOrientation:"), orientation)
 	return rv
 }
 
@@ -424,21 +425,21 @@ func (w_ Window) BecomeMainWindow() {
 // Starts a document-modal session and presents the specified critical sheet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/beginCriticalSheet(_:completionHandler:)
-func (w_ Window) BeginCriticalSheetCompletionHandler(sheetWindow unsafe.Pointer, handler unsafe.Pointer) {
+func (w_ Window) BeginCriticalSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("beginCriticalSheet:completionHandler:"), sheetWindow, handler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/beginDraggingSession(items:event:source:)
-func (w_ Window) BeginDraggingSessionWithItemsEventSource(items unsafe.Pointer, event unsafe.Pointer, source objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("beginDraggingSessionWithItems:event:source:"), items, event, source)
+func (w_ Window) BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) DraggingSession {
+	rv := objc.Send[DraggingSession](w_.ID, objc.Sel("beginDraggingSessionWithItems:event:source:"), items, event, source)
 	return rv
 }
 
 // Starts a document-modal session and presents—or queues for presentation—a sheet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/beginSheet(_:completionHandler:)
-func (w_ Window) BeginSheetCompletionHandler(sheetWindow unsafe.Pointer, handler unsafe.Pointer) {
+func (w_ Window) BeginSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("beginSheet:completionHandler:"), sheetWindow, handler)
 }
 
@@ -452,7 +453,7 @@ func (w_ Window) CacheImageInRect(rect coregraphics.CGRect) {
 // A Boolean value that indicates if the window and its screen use a color space that can represent the specified display gamut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canRepresent(_:)
-func (w_ Window) CanRepresentDisplayGamut(displayGamut unsafe.Pointer) bool {
+func (w_ Window) CanRepresentDisplayGamut(displayGamut DisplayGamut) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canRepresentDisplayGamut:"), displayGamut)
 	return rv
 }
@@ -490,7 +491,7 @@ func (w_ Window) Close() {
 // Modifies and returns a frame rectangle so that its top edge lies on a specific screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/constrainFrameRect(_:to:)
-func (w_ Window) ConstrainFrameRectToScreen(frameRect coregraphics.CGRect, screen unsafe.Pointer) coregraphics.CGRect {
+func (w_ Window) ConstrainFrameRectToScreen(frameRect coregraphics.CGRect, screen IScreen) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("constrainFrameRect:toScreen:"), frameRect, screen)
 	return rv
 }
@@ -594,23 +595,23 @@ func (w_ Window) ConvertRectToScreen(rect coregraphics.CGRect) coregraphics.CGRe
 // Returns EPS data that draws the region of the window within a given rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/dataWithEPS(inside:)
-func (w_ Window) DataWithEPSInsideRect(rect coregraphics.CGRect) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("dataWithEPSInsideRect:"), rect)
+func (w_ Window) DataWithEPSInsideRect(rect coregraphics.CGRect) foundation.Data {
+	rv := objc.Send[foundation.Data](w_.ID, objc.Sel("dataWithEPSInsideRect:"), rect)
 	return rv
 }
 
 // Returns PDF data that draws the region of the window within a given rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/dataWithPDF(inside:)
-func (w_ Window) DataWithPDFInsideRect(rect coregraphics.CGRect) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("dataWithPDFInsideRect:"), rect)
+func (w_ Window) DataWithPDFInsideRect(rect coregraphics.CGRect) foundation.Data {
+	rv := objc.Send[foundation.Data](w_.ID, objc.Sel("dataWithPDFInsideRect:"), rect)
 	return rv
 }
 
 // De-minimizes the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/deminiaturize(_:)
-func (w_ Window) Deminiaturize(sender objc.ID) {
+func (w_ Window) Deminiaturize(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("deminiaturize:"), sender)
 }
 
@@ -666,7 +667,7 @@ func (w_ Window) DiscardCursorRects() {
 // Forwards the message to the global application object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/discardEvents(matching:before:)
-func (w_ Window) DiscardEventsMatchingMaskBeforeEvent(mask unsafe.Pointer, lastEvent unsafe.Pointer) {
+func (w_ Window) DiscardEventsMatchingMaskBeforeEvent(mask EventMask, lastEvent IEvent) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("discardEventsMatchingMask:beforeEvent:"), mask, lastEvent)
 }
 
@@ -686,7 +687,7 @@ func (w_ Window) DisplayIfNeeded() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/displayLink(target:selector:)
-func (w_ Window) DisplayLinkWithTargetSelector(target objc.ID, selector objc.SEL) unsafe.Pointer {
+func (w_ Window) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
 	return rv
 }
@@ -694,7 +695,7 @@ func (w_ Window) DisplayLinkWithTargetSelector(target objc.ID, selector objc.SEL
 // Begins a dragging session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/drag(_:at:offset:event:pasteboard:source:slideBack:)
-func (w_ Window) DragImageAtOffsetEventPasteboardSourceSlideBack(image unsafe.Pointer, baseLocation coregraphics.CGPoint, initialOffset coregraphics.CGSize, event unsafe.Pointer, pboard unsafe.Pointer, sourceObj objc.ID, slideFlag bool) {
+func (w_ Window) DragImageAtOffsetEventPasteboardSourceSlideBack(image IImage, baseLocation coregraphics.CGPoint, initialOffset coregraphics.CGSize, event IEvent, pboard IPasteboard, sourceObj objectivec.IObject, slideFlag bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("dragImage:at:offset:event:pasteboard:source:slideBack:"), image, baseLocation, initialOffset, event, pboard, sourceObj, slideFlag)
 }
 
@@ -729,28 +730,28 @@ func (w_ Window) EnableSnapshotRestoration() {
 // Forces the field editor to give up its first responder status and prepares it for its next assignment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/endEditing(for:)
-func (w_ Window) EndEditingFor(object objc.ID) {
+func (w_ Window) EndEditingFor(object objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("endEditingFor:"), object)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/endSheet(_:)-4dmmq
-func (w_ Window) EndSheet(sheetWindow unsafe.Pointer) {
+func (w_ Window) EndSheet(sheetWindow IWindow) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("endSheet:"), sheetWindow)
 }
 
 // Ends a document-modal session and dismisses the specified sheet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/endSheet(_:returnCode:)
-func (w_ Window) EndSheetReturnCode(sheetWindow unsafe.Pointer, returnCode unsafe.Pointer) {
+func (w_ Window) EndSheetReturnCode(sheetWindow IWindow, returnCode IModalResponse) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("endSheet:returnCode:"), sheetWindow, returnCode)
 }
 
 // Returns the window’s field editor, creating it if requested.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/fieldEditor(_:for:)
-func (w_ Window) FieldEditorForObject(createFlag bool, object objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("fieldEditor:forObject:"), createFlag, object)
+func (w_ Window) FieldEditorForObject(createFlag bool, object objectivec.IObject) Text {
+	rv := objc.Send[Text](w_.ID, objc.Sel("fieldEditor:forObject:"), createFlag, object)
 	return rv
 }
 
@@ -811,14 +812,14 @@ func (w_ Window) HandleSaveScriptCommand(command unsafe.Pointer) objc.ID {
 // Inserts the view controller into the window’s array of title bar accessory view controllers at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/insertTitlebarAccessoryViewController(_:at:)
-func (w_ Window) InsertTitlebarAccessoryViewControllerAtIndex(childViewController unsafe.Pointer, index int) {
+func (w_ Window) InsertTitlebarAccessoryViewControllerAtIndex(childViewController ITitlebarAccessoryViewController, index int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("insertTitlebarAccessoryViewController:atIndex:"), childViewController, index)
 }
 
 // Marks as invalid the cursor rectangles of a given view object in the window, so they’ll be set up again when the window becomes key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/invalidateCursorRects(for:)
-func (w_ Window) InvalidateCursorRectsForView(view unsafe.Pointer) {
+func (w_ Window) InvalidateCursorRectsForView(view IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("invalidateCursorRectsForView:"), view)
 }
 
@@ -839,7 +840,7 @@ func (w_ Window) LayoutIfNeeded() {
 // Attempts to make a given responder the first responder for the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/makeFirstResponder(_:)
-func (w_ Window) MakeFirstResponder(responder unsafe.Pointer) bool {
+func (w_ Window) MakeFirstResponder(responder IResponder) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("makeFirstResponder:"), responder)
 	return rv
 }
@@ -854,7 +855,7 @@ func (w_ Window) MakeKeyWindow() {
 // Moves the window to the front of the screen list, within its level, and makes it the key window; that is, it shows the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/makeKeyAndOrderFront(_:)
-func (w_ Window) MakeKeyAndOrderFront(sender objc.ID) {
+func (w_ Window) MakeKeyAndOrderFront(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("makeKeyAndOrderFront:"), sender)
 }
 
@@ -868,37 +869,37 @@ func (w_ Window) MakeMainWindow() {
 // Merges all open windows into a single tabbed window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/mergeAllWindows(_:)
-func (w_ Window) MergeAllWindows(sender objc.ID) {
+func (w_ Window) MergeAllWindows(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("mergeAllWindows:"), sender)
 }
 
 // Removes the window from the screen list and displays the minimized window in the Dock.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/miniaturize(_:)
-func (w_ Window) Miniaturize(sender objc.ID) {
+func (w_ Window) Miniaturize(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("miniaturize:"), sender)
 }
 
 // Moves the tab to a new containing window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/moveTabToNewWindow(_:)
-func (w_ Window) MoveTabToNewWindow(sender objc.ID) {
+func (w_ Window) MoveTabToNewWindow(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("moveTabToNewWindow:"), sender)
 }
 
 // Returns the next event matching a given mask.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/nextEvent(matching:)
-func (w_ Window) NextEventMatchingMask(mask unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("nextEventMatchingMask:"), mask)
+func (w_ Window) NextEventMatchingMask(mask EventMask) Event {
+	rv := objc.Send[Event](w_.ID, objc.Sel("nextEventMatchingMask:"), mask)
 	return rv
 }
 
 // Forwards the message to the global application object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/nextEvent(matching:until:inMode:dequeue:)
-func (w_ Window) NextEventMatchingMaskUntilDateInModeDequeue(mask unsafe.Pointer, expiration unsafe.Pointer, mode unsafe.Pointer, deqFlag bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("nextEventMatchingMask:untilDate:inMode:dequeue:"), mask, expiration, mode, deqFlag)
+func (w_ Window) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration foundation.IDate, mode unsafe.Pointer, deqFlag bool) Event {
+	rv := objc.Send[Event](w_.ID, objc.Sel("nextEventMatchingMask:untilDate:inMode:dequeue:"), mask, expiration, mode, deqFlag)
 	return rv
 }
 
@@ -912,14 +913,14 @@ func (w_ Window) OrderWindowRelativeTo(place WindowOrderingMode, otherWin int) {
 // Moves the window to the back of its level in the screen list, without changing either the key window or the main window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/orderBack(_:)
-func (w_ Window) OrderBack(sender objc.ID) {
+func (w_ Window) OrderBack(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("orderBack:"), sender)
 }
 
 // Moves the window to the front of its level in the screen list, without changing either the key window or the main window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/orderFront(_:)
-func (w_ Window) OrderFront(sender objc.ID) {
+func (w_ Window) OrderFront(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("orderFront:"), sender)
 }
 
@@ -933,49 +934,49 @@ func (w_ Window) OrderFrontRegardless() {
 // Removes the window from the screen list, which hides the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/orderOut(_:)
-func (w_ Window) OrderOut(sender objc.ID) {
+func (w_ Window) OrderOut(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("orderOut:"), sender)
 }
 
 // Simulates the user clicking the close button by momentarily highlighting the button and then closing the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/performClose(_:)
-func (w_ Window) PerformClose(sender objc.ID) {
+func (w_ Window) PerformClose(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("performClose:"), sender)
 }
 
 // Starts a window drag based on the specified mouse-down event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/performDrag(with:)
-func (w_ Window) PerformWindowDragWithEvent(event unsafe.Pointer) {
+func (w_ Window) PerformWindowDragWithEvent(event IEvent) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("performWindowDragWithEvent:"), event)
 }
 
 // Simulates the user clicking the minimize button by momentarily highlighting the button, then minimizing the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/performMiniaturize(_:)
-func (w_ Window) PerformMiniaturize(sender objc.ID) {
+func (w_ Window) PerformMiniaturize(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("performMiniaturize:"), sender)
 }
 
 // This action method simulates the user clicking the zoom box by momentarily highlighting the button and then zooming the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/performZoom(_:)
-func (w_ Window) PerformZoom(sender objc.ID) {
+func (w_ Window) PerformZoom(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("performZoom:"), sender)
 }
 
 // Forwards the message to the global application object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/postEvent(_:atStart:)
-func (w_ Window) PostEventAtStart(event unsafe.Pointer, flag bool) {
+func (w_ Window) PostEventAtStart(event IEvent, flag bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("postEvent:atStart:"), event, flag)
 }
 
 // Runs the Print panel, and if the user chooses an option other than canceling, prints the window (its frame view and all subviews).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/printWindow(_:)
-func (w_ Window) Print(sender objc.ID) {
+func (w_ Window) Print(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("print:"), sender)
 }
 
@@ -989,14 +990,14 @@ func (w_ Window) RecalculateKeyViewLoop() {
 // Registers a set of pasteboard types that the window accepts as the destination of an image-dragging session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/registerForDraggedTypes(_:)
-func (w_ Window) RegisterForDraggedTypes(newTypes unsafe.Pointer) {
+func (w_ Window) RegisterForDraggedTypes(newTypes []string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("registerForDraggedTypes:"), newTypes)
 }
 
 // Detaches a given child window from the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/removeChildWindow(_:)
-func (w_ Window) RemoveChildWindow(childWin unsafe.Pointer) {
+func (w_ Window) RemoveChildWindow(childWin IWindow) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("removeChildWindow:"), childWin)
 }
 
@@ -1009,13 +1010,13 @@ func (w_ Window) RemoveTitlebarAccessoryViewControllerAtIndex(index int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/requestSharingOfWindow(_:completionHandler:)
-func (w_ Window) RequestSharingOfWindowCompletionHandler(window unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ Window) RequestSharingOfWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("requestSharingOfWindow:completionHandler:"), window, completionHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/requestSharingOfWindow(usingPreview:title:completionHandler:)
-func (w_ Window) RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image unsafe.Pointer, title string, completionHandler unsafe.Pointer) {
+func (w_ Window) RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("requestSharingOfWindowUsingPreview:title:completionHandler:"), image, objc.String(title), completionHandler)
 }
 
@@ -1050,70 +1051,70 @@ func (w_ Window) RestoreCachedImage() {
 // Presents the toolbar customization user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/runToolbarCustomizationPalette(_:)
-func (w_ Window) RunToolbarCustomizationPalette(sender objc.ID) {
+func (w_ Window) RunToolbarCustomizationPalette(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("runToolbarCustomizationPalette:"), sender)
 }
 
 // Saves the window’s frame rectangle in the user defaults system under a given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/saveFrame(usingName:)
-func (w_ Window) SaveFrameUsingName(name unsafe.Pointer) {
+func (w_ Window) SaveFrameUsingName(name IWindowFrameAutosaveName) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("saveFrameUsingName:"), name)
 }
 
 // Gives key view status to the view that follows the given view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/selectKeyView(following:)
-func (w_ Window) SelectKeyViewFollowingView(view unsafe.Pointer) {
+func (w_ Window) SelectKeyViewFollowingView(view IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("selectKeyViewFollowingView:"), view)
 }
 
 // Gives key view status to the view that precedes the given view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/selectKeyView(preceding:)
-func (w_ Window) SelectKeyViewPrecedingView(view unsafe.Pointer) {
+func (w_ Window) SelectKeyViewPrecedingView(view IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("selectKeyViewPrecedingView:"), view)
 }
 
 // Searches for a candidate next key view and, if it finds one, tries to make it the first responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/selectNextKeyView(_:)
-func (w_ Window) SelectNextKeyView(sender objc.ID) {
+func (w_ Window) SelectNextKeyView(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("selectNextKeyView:"), sender)
 }
 
 // Selects the next tab in the tab group in the trailing direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/selectNextTab(_:)
-func (w_ Window) SelectNextTab(sender objc.ID) {
+func (w_ Window) SelectNextTab(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("selectNextTab:"), sender)
 }
 
 // Searches for a candidate previous key view and, if it finds one, tries to make it the first responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/selectPreviousKeyView(_:)
-func (w_ Window) SelectPreviousKeyView(sender objc.ID) {
+func (w_ Window) SelectPreviousKeyView(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("selectPreviousKeyView:"), sender)
 }
 
 // Selects the previous tab in the tab group in the leading direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/selectPreviousTab(_:)
-func (w_ Window) SelectPreviousTab(sender objc.ID) {
+func (w_ Window) SelectPreviousTab(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("selectPreviousTab:"), sender)
 }
 
 // This action method dispatches mouse and keyboard events the global application object sends to the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sendEvent(_:)
-func (w_ Window) SendEvent(event unsafe.Pointer) {
+func (w_ Window) SendEvent(event IEvent) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("sendEvent:"), event)
 }
 
 // Sets the part of the window that stays stationary during constraint-based layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setAnchorAttribute(_:for:)
-func (w_ Window) SetAnchorAttributeForOrientation(attr unsafe.Pointer, orientation unsafe.Pointer) {
+func (w_ Window) SetAnchorAttributeForOrientation(attr LayoutAttribute, orientation LayoutConstraintOrientation) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAnchorAttribute:forOrientation:"), attr, orientation)
 }
 
@@ -1162,7 +1163,7 @@ func (w_ Window) SetFrameDisplayAnimate(frameRect coregraphics.CGRect, displayFl
 // Sets the window’s frame rectangle from a given string representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrame(from:)
-func (w_ Window) SetFrameFromString(string_ unsafe.Pointer) {
+func (w_ Window) SetFrameFromString(string_ IWindowPersistableFrameDescriptor) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameFromString:"), string_)
 }
 
@@ -1183,7 +1184,7 @@ func (w_ Window) SetFrameTopLeftPoint(point coregraphics.CGPoint) {
 // Sets the window’s frame rectangle by reading the rectangle data stored under a given name from the defaults system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrameUsingName(_:)
-func (w_ Window) SetFrameUsingName(name unsafe.Pointer) bool {
+func (w_ Window) SetFrameUsingName(name IWindowFrameAutosaveName) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("setFrameUsingName:"), name)
 	return rv
 }
@@ -1191,7 +1192,7 @@ func (w_ Window) SetFrameUsingName(name unsafe.Pointer) bool {
 // Sets the window’s frame rectangle by reading the rectangle data stored under a given name from the defaults system. Can operate on non-resizable windows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrameUsingName(_:force:)
-func (w_ Window) SetFrameUsingNameForce(name unsafe.Pointer, force bool) bool {
+func (w_ Window) SetFrameUsingNameForce(name IWindowFrameAutosaveName, force bool) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("setFrameUsingName:force:"), name, force)
 	return rv
 }
@@ -1206,56 +1207,56 @@ func (w_ Window) SetTitleWithRepresentedFilename(filename string) {
 // Returns the window button of a given window button kind in the window’s view hierarchy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/standardWindowButton(_:)
-func (w_ Window) StandardWindowButton(b unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("standardWindowButton:"), b)
+func (w_ Window) StandardWindowButton(b IWindowButton) Button {
+	rv := objc.Send[Button](w_.ID, objc.Sel("standardWindowButton:"), b)
 	return rv
 }
 
 // Takes the window into or out of fullscreen mode,
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toggleFullScreen(_:)
-func (w_ Window) ToggleFullScreen(sender objc.ID) {
+func (w_ Window) ToggleFullScreen(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("toggleFullScreen:"), sender)
 }
 
 // Shows or hides the tab bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toggleTabBar(_:)
-func (w_ Window) ToggleTabBar(sender objc.ID) {
+func (w_ Window) ToggleTabBar(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("toggleTabBar:"), sender)
 }
 
 // Shows or hides the tab overview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toggleTabOverview(_:)
-func (w_ Window) ToggleTabOverview(sender objc.ID) {
+func (w_ Window) ToggleTabOverview(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("toggleTabOverview:"), sender)
 }
 
 // Toggles the visibility of the window’s toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toggleToolbarShown(_:)
-func (w_ Window) ToggleToolbarShown(sender objc.ID) {
+func (w_ Window) ToggleToolbarShown(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("toggleToolbarShown:"), sender)
 }
 
 // Tracks events that match the specified mask using the specified tracking handler until the tracking handler explicitly terminates tracking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/trackEvents(matching:timeout:mode:handler:)
-func (w_ Window) TrackEventsMatchingMaskTimeoutModeHandler(mask unsafe.Pointer, timeout float64, mode unsafe.Pointer, trackingHandler unsafe.Pointer) {
+func (w_ Window) TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout float64, mode unsafe.Pointer, trackingHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("trackEventsMatchingMask:timeout:mode:handler:"), mask, timeout, mode, trackingHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/transferWindowSharing(to:completionHandler:)
-func (w_ Window) TransferWindowSharingToWindowCompletionHandler(window unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ Window) TransferWindowSharingToWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("transferWindowSharingToWindow:completionHandler:"), window, completionHandler)
 }
 
 // Dispatches action messages with a given argument.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tryToPerform(_:with:)
-func (w_ Window) TryToPerformWith(action objc.SEL, object objc.ID) bool {
+func (w_ Window) TryToPerformWith(action objc.SEL, object objectivec.IObject) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("tryToPerform:with:"), action, object)
 	return rv
 }
@@ -1299,7 +1300,7 @@ func (w_ Window) UserSpaceScaleFactor() float64 {
 // Searches for an object that responds to a Services request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/validRequestor(forSendType:returnType:)
-func (w_ Window) ValidRequestorForSendTypeReturnType(sendType unsafe.Pointer, returnType unsafe.Pointer) objc.ID {
+func (w_ Window) ValidRequestorForSendTypeReturnType(sendType PasteboardType, returnType PasteboardType) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("validRequestorForSendType:returnType:"), sendType, returnType)
 	return rv
 }
@@ -1307,14 +1308,14 @@ func (w_ Window) ValidRequestorForSendTypeReturnType(sendType unsafe.Pointer, re
 // Displays a visual representation of the supplied constraints in the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/visualizeConstraints(_:)
-func (w_ Window) VisualizeConstraints(constraints unsafe.Pointer) {
+func (w_ Window) VisualizeConstraints(constraints []LayoutConstraint) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("visualizeConstraints:"), constraints)
 }
 
 // Toggles the size and location of the window between its standard state (which the application provides as the best size to display the window’s data) and its user state (a new size and location the user may have set by moving or resizing the window).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/zoom(_:)
-func (w_ Window) Zoom(sender objc.ID) {
+func (w_ Window) Zoom(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("zoom:"), sender)
 }
 
@@ -1411,8 +1412,8 @@ func (w_ Window) SetAlphaValue(value float64) {
 // The window’s automatic animation behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/animationBehavior-swift.property
-func (w_ Window) AnimationBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("animationBehavior"))
+func (w_ Window) AnimationBehavior() WindowAnimationBehavior {
+	rv := objc.Send[WindowAnimationBehavior](w_.ID, objc.Sel("animationBehavior"))
 	return rv
 }
 
@@ -1422,7 +1423,7 @@ func (w_ Window) AnimationBehavior() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/animationBehavior-swift.property
-func (w_ Window) SetAnimationBehavior(value unsafe.Pointer) {
+func (w_ Window) SetAnimationBehavior(value WindowAnimationBehavior) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAnimationBehavior:"), value)
 }
 
@@ -1473,8 +1474,8 @@ func (w_ Window) SetAspectRatio(value coregraphics.CGSize) {
 // The sheet attached to the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/attachedSheet
-func (w_ Window) AttachedSheet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("attachedSheet"))
+func (w_ Window) AttachedSheet() NSWindow {
+	rv := objc.Send[NSWindow](w_.ID, objc.Sel("attachedSheet"))
 	return rv
 }
 
@@ -1499,8 +1500,8 @@ func (w_ Window) SetAutorecalculatesKeyViewLoop(value bool) {
 // The color of the window’s background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backgroundColor
-func (w_ Window) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("backgroundColor"))
+func (w_ Window) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](w_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -1510,15 +1511,15 @@ func (w_ Window) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backgroundColor
-func (w_ Window) SetBackgroundColor(value unsafe.Pointer) {
+func (w_ Window) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 // The location of the window’s backing store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backingLocation-swift.property
-func (w_ Window) BackingLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("backingLocation"))
+func (w_ Window) BackingLocation() WindowBackingLocation {
+	rv := objc.Send[WindowBackingLocation](w_.ID, objc.Sel("backingLocation"))
 	return rv
 }
 
@@ -1618,8 +1619,8 @@ func (w_ Window) ChildWindows() []Window {
 // A value that identifies the window’s behavior in window collections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/collectionBehavior-swift.property
-func (w_ Window) CollectionBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("collectionBehavior"))
+func (w_ Window) CollectionBehavior() WindowCollectionBehavior {
+	rv := objc.Send[WindowCollectionBehavior](w_.ID, objc.Sel("collectionBehavior"))
 	return rv
 }
 
@@ -1629,15 +1630,15 @@ func (w_ Window) CollectionBehavior() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/collectionBehavior-swift.property
-func (w_ Window) SetCollectionBehavior(value unsafe.Pointer) {
+func (w_ Window) SetCollectionBehavior(value WindowCollectionBehavior) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCollectionBehavior:"), value)
 }
 
 // The window’s color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/colorSpace
-func (w_ Window) ColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("colorSpace"))
+func (w_ Window) ColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](w_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
@@ -1647,7 +1648,7 @@ func (w_ Window) ColorSpace() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/colorSpace
-func (w_ Window) SetColorSpace(value unsafe.Pointer) {
+func (w_ Window) SetColorSpace(value IColorSpace) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setColorSpace:"), value)
 }
 
@@ -1742,8 +1743,8 @@ func (w_ Window) SetContentResizeIncrements(value coregraphics.CGSize) {
 // The window’s content view, the highest accessible view object in the window’s view hierarchy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentView
-func (w_ Window) ContentView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("contentView"))
+func (w_ Window) ContentView() NSView {
+	rv := objc.Send[NSView](w_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -1753,15 +1754,15 @@ func (w_ Window) ContentView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentView
-func (w_ Window) SetContentView(value unsafe.Pointer) {
+func (w_ Window) SetContentView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentView:"), value)
 }
 
 // The main content view controller for the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentViewController
-func (w_ Window) ContentViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("contentViewController"))
+func (w_ Window) ContentViewController() NSViewController {
+	rv := objc.Send[NSViewController](w_.ID, objc.Sel("contentViewController"))
 	return rv
 }
 
@@ -1771,31 +1772,31 @@ func (w_ Window) ContentViewController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentViewController
-func (w_ Window) SetContentViewController(value unsafe.Pointer) {
+func (w_ Window) SetContentViewController(value IViewController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentViewController:"), value)
 }
 
 // The event currently being processed by the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/currentEvent
-func (w_ Window) CurrentEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("currentEvent"))
+func (w_ Window) CurrentEvent() NSEvent {
+	rv := objc.Send[NSEvent](w_.ID, objc.Sel("currentEvent"))
 	return rv
 }
 
 // The deepest screen the window is on (it may be split over several screens).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/deepestScreen
-func (w_ Window) DeepestScreen() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("deepestScreen"))
+func (w_ Window) DeepestScreen() NSScreen {
+	rv := objc.Send[NSScreen](w_.ID, objc.Sel("deepestScreen"))
 	return rv
 }
 
 // The button cell that performs as if clicked when the window receives a Return (or Enter) key event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultButtonCell
-func (w_ Window) DefaultButtonCell() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("defaultButtonCell"))
+func (w_ Window) DefaultButtonCell() NSButtonCell {
+	rv := objc.Send[NSButtonCell](w_.ID, objc.Sel("defaultButtonCell"))
 	return rv
 }
 
@@ -1805,15 +1806,15 @@ func (w_ Window) DefaultButtonCell() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultButtonCell
-func (w_ Window) SetDefaultButtonCell(value unsafe.Pointer) {
+func (w_ Window) SetDefaultButtonCell(value IButtonCell) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultButtonCell:"), value)
 }
 
 // Returns the default depth limit for instances of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultDepthLimit
-func (w_ Window) DefaultDepthLimit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("defaultDepthLimit"))
+func (w_ Window) DefaultDepthLimit() WindowDepth {
+	rv := objc.Send[WindowDepth](w_.ID, objc.Sel("defaultDepthLimit"))
 	return rv
 }
 
@@ -1838,8 +1839,8 @@ func (w_ Window) SetDelegate(value objc.ID) {
 // The depth limit of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/depthLimit
-func (w_ Window) DepthLimit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("depthLimit"))
+func (w_ Window) DepthLimit() WindowDepth {
+	rv := objc.Send[WindowDepth](w_.ID, objc.Sel("depthLimit"))
 	return rv
 }
 
@@ -1849,7 +1850,7 @@ func (w_ Window) DepthLimit() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/depthLimit
-func (w_ Window) SetDepthLimit(value unsafe.Pointer) {
+func (w_ Window) SetDepthLimit(value IWindowDepth) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDepthLimit:"), value)
 }
 
@@ -1882,8 +1883,8 @@ func (w_ Window) SetDisplaysWhenScreenProfileChanges(value bool) {
 // The application’s Dock tile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/dockTile
-func (w_ Window) DockTile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("dockTile"))
+func (w_ Window) DockTile() NSDockTile {
+	rv := objc.Send[NSDockTile](w_.ID, objc.Sel("dockTile"))
 	return rv
 }
 
@@ -1898,8 +1899,8 @@ func (w_ Window) Drawers() []Drawer {
 // The window’s first responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/firstResponder
-func (w_ Window) FirstResponder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("firstResponder"))
+func (w_ Window) FirstResponder() NSResponder {
+	rv := objc.Send[NSResponder](w_.ID, objc.Sel("firstResponder"))
 	return rv
 }
 
@@ -1914,24 +1915,24 @@ func (w_ Window) Frame() coregraphics.CGRect {
 // The name used to automatically save the window’s frame rectangle data in the defaults system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/frameAutosaveName-swift.property
-func (w_ Window) FrameAutosaveName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("frameAutosaveName"))
+func (w_ Window) FrameAutosaveName() WindowFrameAutosaveName {
+	rv := objc.Send[WindowFrameAutosaveName](w_.ID, objc.Sel("frameAutosaveName"))
 	return rv
 }
 
 // A string representation of the window’s frame rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/frameDescriptor
-func (w_ Window) StringWithSavedFrame() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("stringWithSavedFrame"))
+func (w_ Window) StringWithSavedFrame() WindowPersistableFrameDescriptor {
+	rv := objc.Send[WindowPersistableFrameDescriptor](w_.ID, objc.Sel("stringWithSavedFrame"))
 	return rv
 }
 
 // The graphics context associated with the window for the current thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/graphicsContext
-func (w_ Window) GraphicsContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("graphicsContext"))
+func (w_ Window) GraphicsContext() NSGraphicsContext {
+	rv := objc.Send[NSGraphicsContext](w_.ID, objc.Sel("graphicsContext"))
 	return rv
 }
 
@@ -2031,8 +2032,8 @@ func (w_ Window) InLiveResize() bool {
 // The view that’s made first responder (also called the key view) the first time the window is placed onscreen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/initialFirstResponder
-func (w_ Window) InitialFirstResponder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("initialFirstResponder"))
+func (w_ Window) InitialFirstResponder() NSView {
+	rv := objc.Send[NSView](w_.ID, objc.Sel("initialFirstResponder"))
 	return rv
 }
 
@@ -2042,7 +2043,7 @@ func (w_ Window) InitialFirstResponder() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/initialFirstResponder
-func (w_ Window) SetInitialFirstResponder(value unsafe.Pointer) {
+func (w_ Window) SetInitialFirstResponder(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setInitialFirstResponder:"), value)
 }
 
@@ -2315,8 +2316,8 @@ func (w_ Window) Zoomed() bool {
 // The direction the window is currently using to change the key view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/keyViewSelectionDirection
-func (w_ Window) KeyViewSelectionDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("keyViewSelectionDirection"))
+func (w_ Window) KeyViewSelectionDirection() SelectionDirection {
+	rv := objc.Send[SelectionDirection](w_.ID, objc.Sel("keyViewSelectionDirection"))
 	return rv
 }
 
@@ -2413,8 +2414,8 @@ func (w_ Window) SetMinSize(value coregraphics.CGSize) {
 // The custom miniaturized window image of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/miniwindowImage
-func (w_ Window) MiniwindowImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("miniwindowImage"))
+func (w_ Window) MiniwindowImage() Image {
+	rv := objc.Send[Image](w_.ID, objc.Sel("miniwindowImage"))
 	return rv
 }
 
@@ -2424,7 +2425,7 @@ func (w_ Window) MiniwindowImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/miniwindowImage
-func (w_ Window) SetMiniwindowImage(value unsafe.Pointer) {
+func (w_ Window) SetMiniwindowImage(value IImage) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMiniwindowImage:"), value)
 }
 
@@ -2457,8 +2458,8 @@ func (w_ Window) MouseLocationOutsideOfEventStream() coregraphics.CGPoint {
 // The occlusion state of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/occlusionState-swift.property
-func (w_ Window) OcclusionState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("occlusionState"))
+func (w_ Window) OcclusionState() WindowOcclusionState {
+	rv := objc.Send[WindowOcclusionState](w_.ID, objc.Sel("occlusionState"))
 	return rv
 }
 
@@ -2483,8 +2484,8 @@ func (w_ Window) SetOrderedIndex(value int) {
 // The parent window to which the window is attached as a child.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/parent
-func (w_ Window) ParentWindow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("parentWindow"))
+func (w_ Window) ParentWindow() NSWindow {
+	rv := objc.Send[NSWindow](w_.ID, objc.Sel("parentWindow"))
 	return rv
 }
 
@@ -2494,15 +2495,15 @@ func (w_ Window) ParentWindow() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/parent
-func (w_ Window) SetParentWindow(value unsafe.Pointer) {
+func (w_ Window) SetParentWindow(value IWindow) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setParentWindow:"), value)
 }
 
 // A Boolean value that indicates the preferred location for the window’s backing store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preferredBackingLocation
-func (w_ Window) PreferredBackingLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferredBackingLocation"))
+func (w_ Window) PreferredBackingLocation() WindowBackingLocation {
+	rv := objc.Send[WindowBackingLocation](w_.ID, objc.Sel("preferredBackingLocation"))
 	return rv
 }
 
@@ -2512,7 +2513,7 @@ func (w_ Window) PreferredBackingLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preferredBackingLocation
-func (w_ Window) SetPreferredBackingLocation(value unsafe.Pointer) {
+func (w_ Window) SetPreferredBackingLocation(value IWindowBackingLocation) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredBackingLocation:"), value)
 }
 
@@ -2584,7 +2585,7 @@ func (w_ Window) RepresentedURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedURL
-func (w_ Window) SetRepresentedURL(value foundation.URL) {
+func (w_ Window) SetRepresentedURL(value foundation.IURL) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRepresentedURL:"), value)
 }
 
@@ -2635,16 +2636,16 @@ func (w_ Window) SetRestorationClass(value unsafe.Pointer) {
 // The screen the window is on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/screen
-func (w_ Window) Screen() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("screen"))
+func (w_ Window) Screen() NSScreen {
+	rv := objc.Send[NSScreen](w_.ID, objc.Sel("screen"))
 	return rv
 }
 
 // A Boolean value that indicates the level of access other processes have to the window’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sharingType-swift.property
-func (w_ Window) SharingType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("sharingType"))
+func (w_ Window) SharingType() WindowSharingType {
+	rv := objc.Send[WindowSharingType](w_.ID, objc.Sel("sharingType"))
 	return rv
 }
 
@@ -2654,15 +2655,15 @@ func (w_ Window) SharingType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sharingType-swift.property
-func (w_ Window) SetSharingType(value unsafe.Pointer) {
+func (w_ Window) SetSharingType(value WindowSharingType) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setSharingType:"), value)
 }
 
 // The window to which the sheet is attached.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sheetParent
-func (w_ Window) SheetParent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("sheetParent"))
+func (w_ Window) SheetParent() NSWindow {
+	rv := objc.Send[NSWindow](w_.ID, objc.Sel("sheetParent"))
 	return rv
 }
 
@@ -2749,16 +2750,16 @@ func (w_ Window) SetSubtitle(value string) {
 // An object that represents information about a window when it displays as a tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tab
-func (w_ Window) Tab() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tab"))
+func (w_ Window) Tab() NSWindowTab {
+	rv := objc.Send[NSWindowTab](w_.ID, objc.Sel("tab"))
 	return rv
 }
 
 // A group of windows that display together as a tab group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabGroup
-func (w_ Window) TabGroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tabGroup"))
+func (w_ Window) TabGroup() NSWindowTabGroup {
+	rv := objc.Send[NSWindowTabGroup](w_.ID, objc.Sel("tabGroup"))
 	return rv
 }
 
@@ -2773,8 +2774,8 @@ func (w_ Window) TabbedWindows() []Window {
 // A value that allows a group of related windows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabbingIdentifier-swift.property
-func (w_ Window) TabbingIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tabbingIdentifier"))
+func (w_ Window) TabbingIdentifier() WindowTabbingIdentifier {
+	rv := objc.Send[WindowTabbingIdentifier](w_.ID, objc.Sel("tabbingIdentifier"))
 	return rv
 }
 
@@ -2784,15 +2785,15 @@ func (w_ Window) TabbingIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabbingIdentifier-swift.property
-func (w_ Window) SetTabbingIdentifier(value unsafe.Pointer) {
+func (w_ Window) SetTabbingIdentifier(value IWindowTabbingIdentifier) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTabbingIdentifier:"), value)
 }
 
 // A value that indicates when a window displays tabs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabbingMode-swift.property
-func (w_ Window) TabbingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tabbingMode"))
+func (w_ Window) TabbingMode() WindowTabbingMode {
+	rv := objc.Send[WindowTabbingMode](w_.ID, objc.Sel("tabbingMode"))
 	return rv
 }
 
@@ -2802,7 +2803,7 @@ func (w_ Window) TabbingMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabbingMode-swift.property
-func (w_ Window) SetTabbingMode(value unsafe.Pointer) {
+func (w_ Window) SetTabbingMode(value WindowTabbingMode) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTabbingMode:"), value)
 }
 
@@ -2827,8 +2828,8 @@ func (w_ Window) SetTitle(value string) {
 // A value that indicates the visibility of the window’s title and title bar buttons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titleVisibility-swift.property
-func (w_ Window) TitleVisibility() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("titleVisibility"))
+func (w_ Window) TitleVisibility() WindowTitleVisibility {
+	rv := objc.Send[WindowTitleVisibility](w_.ID, objc.Sel("titleVisibility"))
 	return rv
 }
 
@@ -2838,7 +2839,7 @@ func (w_ Window) TitleVisibility() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titleVisibility-swift.property
-func (w_ Window) SetTitleVisibility(value unsafe.Pointer) {
+func (w_ Window) SetTitleVisibility(value IWindowTitleVisibility) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitleVisibility:"), value)
 }
 
@@ -2891,8 +2892,8 @@ func (w_ Window) SetTitlebarAppearsTransparent(value bool) {
 // The type of separator that the app displays between the title bar and content of a window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarSeparatorStyle
-func (w_ Window) TitlebarSeparatorStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("titlebarSeparatorStyle"))
+func (w_ Window) TitlebarSeparatorStyle() TitlebarSeparatorStyle {
+	rv := objc.Send[TitlebarSeparatorStyle](w_.ID, objc.Sel("titlebarSeparatorStyle"))
 	return rv
 }
 
@@ -2902,15 +2903,15 @@ func (w_ Window) TitlebarSeparatorStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarSeparatorStyle
-func (w_ Window) SetTitlebarSeparatorStyle(value unsafe.Pointer) {
+func (w_ Window) SetTitlebarSeparatorStyle(value TitlebarSeparatorStyle) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitlebarSeparatorStyle:"), value)
 }
 
 // The window’s toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toolbar
-func (w_ Window) Toolbar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("toolbar"))
+func (w_ Window) Toolbar() NSToolbar {
+	rv := objc.Send[NSToolbar](w_.ID, objc.Sel("toolbar"))
 	return rv
 }
 
@@ -2920,15 +2921,15 @@ func (w_ Window) Toolbar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toolbar
-func (w_ Window) SetToolbar(value unsafe.Pointer) {
+func (w_ Window) SetToolbar(value IToolbar) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolbar:"), value)
 }
 
 // The style that determines the appearance and location of the toolbar in relation to the title bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toolbarStyle-swift.property
-func (w_ Window) ToolbarStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("toolbarStyle"))
+func (w_ Window) ToolbarStyle() WindowToolbarStyle {
+	rv := objc.Send[WindowToolbarStyle](w_.ID, objc.Sel("toolbarStyle"))
 	return rv
 }
 
@@ -2938,15 +2939,15 @@ func (w_ Window) ToolbarStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toolbarStyle-swift.property
-func (w_ Window) SetToolbarStyle(value unsafe.Pointer) {
+func (w_ Window) SetToolbarStyle(value WindowToolbarStyle) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolbarStyle:"), value)
 }
 
 // A value that indicates the user’s preference for window tabbing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/userTabbingPreference-swift.type.property
-func (w_ Window) UserTabbingPreference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("userTabbingPreference"))
+func (w_ Window) UserTabbingPreference() WindowUserTabbingPreference {
+	rv := objc.Send[WindowUserTabbingPreference](w_.ID, objc.Sel("userTabbingPreference"))
 	return rv
 }
 
@@ -2971,8 +2972,8 @@ func (w_ Window) SetViewsNeedDisplay(value bool) {
 // The window’s window controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowController
-func (w_ Window) WindowController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowController"))
+func (w_ Window) WindowController() NSWindowController {
+	rv := objc.Send[NSWindowController](w_.ID, objc.Sel("windowController"))
 	return rv
 }
 
@@ -2982,7 +2983,7 @@ func (w_ Window) WindowController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowController
-func (w_ Window) SetWindowController(value unsafe.Pointer) {
+func (w_ Window) SetWindowController(value IWindowController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowController:"), value)
 }
 
@@ -2994,11 +2995,19 @@ func (w_ Window) WindowNumber() int {
 	return rv
 }
 
+// The Carbon window reference associated with the window, creating one if necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowRef
+func (w_ Window) WindowRef() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowRef"))
+	return rv
+}
+
 // The direction the window’s title bar lays text out, either left to right or right to left.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowTitlebarLayoutDirection
-func (w_ Window) WindowTitlebarLayoutDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowTitlebarLayoutDirection"))
+func (w_ Window) WindowTitlebarLayoutDirection() UserInterfaceLayoutDirection {
+	rv := objc.Send[UserInterfaceLayoutDirection](w_.ID, objc.Sel("windowTitlebarLayoutDirection"))
 	return rv
 }
 
@@ -3067,8 +3076,8 @@ func (w_ Window) SetBitsPerSample(value int) {
 // Returns the name of the color space corresponding to the passed window depth.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/colorspacename
-func (w_ Window) ColorSpaceName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("colorSpaceName"))
+func (w_ Window) ColorSpaceName() ColorSpaceName {
+	rv := objc.Send[ColorSpaceName](w_.ID, objc.Sel("colorSpaceName"))
 	return rv
 }
 
@@ -3078,7 +3087,7 @@ func (w_ Window) ColorSpaceName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/colorspacename
-func (w_ Window) SetColorSpaceName(value unsafe.Pointer) {
+func (w_ Window) SetColorSpaceName(value IColorSpaceName) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setColorSpaceName:"), value)
 }
 
@@ -3499,8 +3508,8 @@ func (w_ Window) SetIsZoomed(value bool) {
 // The parent window to which the window is attached as a child.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/parent
-func (w_ Window) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("parent"))
+func (w_ Window) Parent() NSWindow {
+	rv := objc.Send[NSWindow](w_.ID, objc.Sel("parent"))
 	return rv
 }
 
@@ -3510,7 +3519,7 @@ func (w_ Window) Parent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/parent
-func (w_ Window) SetParent(value unsafe.Pointer) {
+func (w_ Window) SetParent(value IWindow) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setParent:"), value)
 }
 

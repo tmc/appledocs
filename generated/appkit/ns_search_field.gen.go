@@ -202,8 +202,8 @@ func (s_ SearchField) SetRecentSearches(value []string) {
 // The name under which the search field automatically archives the list of recent search strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/recentsAutosaveName-swift.property
-func (s_ SearchField) RecentsAutosaveName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("recentsAutosaveName"))
+func (s_ SearchField) RecentsAutosaveName() SearchFieldRecentsAutosaveName {
+	rv := objc.Send[SearchFieldRecentsAutosaveName](s_.ID, objc.Sel("recentsAutosaveName"))
 	return rv
 }
 
@@ -213,7 +213,7 @@ func (s_ SearchField) RecentsAutosaveName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/recentsAutosaveName-swift.property
-func (s_ SearchField) SetRecentsAutosaveName(value unsafe.Pointer) {
+func (s_ SearchField) SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveName) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentsAutosaveName:"), value)
 }
 
@@ -228,8 +228,8 @@ func (s_ SearchField) SearchButtonBounds() coregraphics.CGRect {
 // The menu object used to dynamically construct the search field’s pop-up icon menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/searchMenuTemplate
-func (s_ SearchField) SearchMenuTemplate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("searchMenuTemplate"))
+func (s_ SearchField) SearchMenuTemplate() NSMenu {
+	rv := objc.Send[NSMenu](s_.ID, objc.Sel("searchMenuTemplate"))
 	return rv
 }
 
@@ -239,7 +239,7 @@ func (s_ SearchField) SearchMenuTemplate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/searchMenuTemplate
-func (s_ SearchField) SetSearchMenuTemplate(value unsafe.Pointer) {
+func (s_ SearchField) SetSearchMenuTemplate(value IMenu) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchMenuTemplate:"), value)
 }
 

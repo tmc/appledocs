@@ -83,8 +83,8 @@ func NewTextTab() TextTab {
 // The text alignment of the text tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/alignment
-func (t_ TextTab) Alignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("alignment"))
+func (t_ TextTab) Alignment() TextAlignment {
+	rv := objc.Send[TextAlignment](t_.ID, objc.Sel("alignment"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (t_ TextTab) Alignment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/alignment
-func (t_ TextTab) SetAlignment(value unsafe.Pointer) {
+func (t_ TextTab) SetAlignment(value TextAlignment) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignment:"), value)
 }
 

@@ -138,8 +138,8 @@ func (i_ ImageCell) SetImageFrameStyle(value unsafe.Pointer) {
 // The scaling mode used to fit the receiver’s image into the frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagescaling
-func (i_ ImageCell) ImageScaling() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageScaling"))
+func (i_ ImageCell) ImageScaling() ImageScaling {
+	rv := objc.Send[ImageScaling](i_.ID, objc.Sel("imageScaling"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (i_ ImageCell) ImageScaling() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagescaling
-func (i_ ImageCell) SetImageScaling(value unsafe.Pointer) {
+func (i_ ImageCell) SetImageScaling(value ImageScaling) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageScaling:"), value)
 }
 

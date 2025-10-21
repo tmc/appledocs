@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BitmapImageRep] class.
@@ -174,8 +175,8 @@ func (b_ BitmapImageRep) SetBytesPerRow(value int) {
 // A Core Graphics image object based on the bitmap image representation’s data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/cgimage
-func (b_ BitmapImageRep) CgImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("cgImage"))
+func (b_ BitmapImageRep) CgImage() Image {
+	rv := objc.Send[Image](b_.ID, objc.Sel("cgImage"))
 	return rv
 }
 
@@ -185,15 +186,15 @@ func (b_ BitmapImageRep) CgImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/cgimage
-func (b_ BitmapImageRep) SetCgImage(value unsafe.Pointer) {
+func (b_ BitmapImageRep) SetCgImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCgImage:"), value)
 }
 
 // The color space of the bitmap.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/colorspace
-func (b_ BitmapImageRep) ColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("colorSpace"))
+func (b_ BitmapImageRep) ColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](b_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
@@ -203,7 +204,7 @@ func (b_ BitmapImageRep) ColorSpace() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/colorspace
-func (b_ BitmapImageRep) SetColorSpace(value unsafe.Pointer) {
+func (b_ BitmapImageRep) SetColorSpace(value IColorSpace) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setColorSpace:"), value)
 }
 
@@ -264,8 +265,8 @@ func (b_ BitmapImageRep) SetSamplesPerPixel(value int) {
 // A TIFF representation of the bitmap image data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffrepresentation
-func (b_ BitmapImageRep) TiffRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("tiffRepresentation"))
+func (b_ BitmapImageRep) TiffRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("tiffRepresentation"))
 	return rv
 }
 
@@ -275,7 +276,7 @@ func (b_ BitmapImageRep) TiffRepresentation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffrepresentation
-func (b_ BitmapImageRep) SetTiffRepresentation(value unsafe.Pointer) {
+func (b_ BitmapImageRep) SetTiffRepresentation(value foundation.IData) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTiffRepresentation:"), value)
 }
 

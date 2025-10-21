@@ -131,8 +131,8 @@ func (t_ TextStorage) SetTextStorageObserver(value objc.ID) {
 // The text storage contents as an array of attribute runs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/attributeruns
-func (t_ TextStorage) AttributeRuns() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("attributeRuns"))
+func (t_ TextStorage) AttributeRuns() NSTextStorage {
+	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("attributeRuns"))
 	return rv
 }
 
@@ -142,7 +142,7 @@ func (t_ TextStorage) AttributeRuns() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/attributeruns
-func (t_ TextStorage) SetAttributeRuns(value unsafe.Pointer) {
+func (t_ TextStorage) SetAttributeRuns(value ITextStorage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributeRuns:"), value)
 }
 
@@ -214,7 +214,7 @@ func (t_ TextStorage) EditedRange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedrange
-func (t_ TextStorage) SetEditedRange(value foundation.Range) {
+func (t_ TextStorage) SetEditedRange(value foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditedRange:"), value)
 }
 
@@ -239,8 +239,8 @@ func (t_ TextStorage) SetFixesAttributesLazily(value bool) {
 // The font for the text storage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/font
-func (t_ TextStorage) Font() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("font"))
+func (t_ TextStorage) Font() NSFont {
+	rv := objc.Send[NSFont](t_.ID, objc.Sel("font"))
 	return rv
 }
 
@@ -250,15 +250,15 @@ func (t_ TextStorage) Font() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/font
-func (t_ TextStorage) SetFont(value unsafe.Pointer) {
+func (t_ TextStorage) SetFont(value IFont) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFont:"), value)
 }
 
 // The color for the text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/foregroundcolor
-func (t_ TextStorage) ForegroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("foregroundColor"))
+func (t_ TextStorage) ForegroundColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("foregroundColor"))
 	return rv
 }
 
@@ -268,15 +268,15 @@ func (t_ TextStorage) ForegroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/foregroundcolor
-func (t_ TextStorage) SetForegroundColor(value unsafe.Pointer) {
+func (t_ TextStorage) SetForegroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setForegroundColor:"), value)
 }
 
 // The layout managers for the text storage object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/layoutmanagers
-func (t_ TextStorage) LayoutManagers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutManagers"))
+func (t_ TextStorage) LayoutManagers() NSLayoutManager {
+	rv := objc.Send[NSLayoutManager](t_.ID, objc.Sel("layoutManagers"))
 	return rv
 }
 
@@ -286,15 +286,15 @@ func (t_ TextStorage) LayoutManagers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/layoutmanagers
-func (t_ TextStorage) SetLayoutManagers(value unsafe.Pointer) {
+func (t_ TextStorage) SetLayoutManagers(value ILayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManagers:"), value)
 }
 
 // The text storage contents as an array of paragraphs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/paragraphs
-func (t_ TextStorage) Paragraphs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("paragraphs"))
+func (t_ TextStorage) Paragraphs() NSTextStorage {
+	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("paragraphs"))
 	return rv
 }
 
@@ -304,15 +304,15 @@ func (t_ TextStorage) Paragraphs() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/paragraphs
-func (t_ TextStorage) SetParagraphs(value unsafe.Pointer) {
+func (t_ TextStorage) SetParagraphs(value ITextStorage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphs:"), value)
 }
 
 // The text storage contents as an array of words.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/words
-func (t_ TextStorage) Words() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("words"))
+func (t_ TextStorage) Words() NSTextStorage {
+	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("words"))
 	return rv
 }
 
@@ -322,7 +322,7 @@ func (t_ TextStorage) Words() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/words
-func (t_ TextStorage) SetWords(value unsafe.Pointer) {
+func (t_ TextStorage) SetWords(value ITextStorage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWords:"), value)
 }
 

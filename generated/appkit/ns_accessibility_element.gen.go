@@ -31,7 +31,7 @@ type _AccessibilityElementClass struct {
 // An interface definition for the [AccessibilityElement] class.
 type IAccessibilityElement interface {
 	objectivec.IObject
-	AccessibilityAddChildElement(childElement unsafe.Pointer)
+	AccessibilityAddChildElement(childElement IAccessibilityElement)
 }
 
 // The basic infrastructure necessary for interacting with an assistive app.
@@ -85,7 +85,7 @@ func NewAccessibilityElement() AccessibilityElement {
 // Instantiates and configures a new accessibility element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/element(withRole:frame:label:parent:)
-func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParent(role unsafe.Pointer, frame coregraphics.CGRect, label string, parent objc.ID) objc.ID {
+func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParent(role IAccessibilityRole, frame coregraphics.CGRect, label string, parent objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("accessibilityElementWithRole:frame:label:parent:"), role, frame, objc.String(label), parent)
 	return rv
 }
@@ -93,7 +93,7 @@ func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParen
 // Adds a child to the accessibility element in the accessibility hierarchy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/accessibilityAddChildElement(_:)
-func (a_ AccessibilityElement) AccessibilityAddChildElement(childElement unsafe.Pointer) {
+func (a_ AccessibilityElement) AccessibilityAddChildElement(childElement IAccessibilityElement) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("accessibilityAddChildElement:"), childElement)
 }
 

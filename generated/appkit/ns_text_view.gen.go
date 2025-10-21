@@ -86,16 +86,16 @@ func NewTextView() TextView {
 // The layout manager that lays out text for the receiver’s text container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/layoutManager
-func (t_ TextView) LayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutManager"))
+func (t_ TextView) LayoutManager() NSLayoutManager {
+	rv := objc.Send[NSLayoutManager](t_.ID, objc.Sel("layoutManager"))
 	return rv
 }
 
 // The receiver’s text container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textContainer
-func (t_ TextView) TextContainer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textContainer"))
+func (t_ TextView) TextContainer() NSTextContainer {
+	rv := objc.Send[NSTextContainer](t_.ID, objc.Sel("textContainer"))
 	return rv
 }
 
@@ -105,23 +105,23 @@ func (t_ TextView) TextContainer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textContainer
-func (t_ TextView) SetTextContainer(value unsafe.Pointer) {
+func (t_ TextView) SetTextContainer(value ITextContainer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
 }
 
 // The receiver’s text storage object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textStorage
-func (t_ TextView) TextStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textStorage"))
+func (t_ TextView) TextStorage() NSTextStorage {
+	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("textStorage"))
 	return rv
 }
 
 // The data types that the receiver accepts as the destination view of a dragging operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/acceptabledragtypes
-func (t_ TextView) AcceptableDragTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("acceptableDragTypes"))
+func (t_ TextView) AcceptableDragTypes() PasteboardType {
+	rv := objc.Send[PasteboardType](t_.ID, objc.Sel("acceptableDragTypes"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (t_ TextView) AcceptableDragTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/acceptabledragtypes
-func (t_ TextView) SetAcceptableDragTypes(value unsafe.Pointer) {
+func (t_ TextView) SetAcceptableDragTypes(value PasteboardType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptableDragTypes:"), value)
 }
 
@@ -173,8 +173,8 @@ func (t_ TextView) SetAllowedInputSourceLocales(value string) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowedwritingtoolsresultoptions
-func (t_ TextView) AllowedWritingToolsResultOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("allowedWritingToolsResultOptions"))
+func (t_ TextView) AllowedWritingToolsResultOptions() WritingToolsResultOptions {
+	rv := objc.Send[WritingToolsResultOptions](t_.ID, objc.Sel("allowedWritingToolsResultOptions"))
 	return rv
 }
 
@@ -182,7 +182,7 @@ func (t_ TextView) AllowedWritingToolsResultOptions() unsafe.Pointer {
 // SetAllowedWritingToolsResultOptions sets the value of the allowedWritingToolsResultOptions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowedwritingtoolsresultoptions
-func (t_ TextView) SetAllowedWritingToolsResultOptions(value unsafe.Pointer) {
+func (t_ TextView) SetAllowedWritingToolsResultOptions(value WritingToolsResultOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedWritingToolsResultOptions:"), value)
 }
 
@@ -258,8 +258,8 @@ func (t_ TextView) SetAllowsUndo(value bool) {
 // The receiver’s background color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/backgroundcolor
-func (t_ TextView) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+func (t_ TextView) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -269,14 +269,14 @@ func (t_ TextView) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/backgroundcolor
-func (t_ TextView) SetBackgroundColor(value unsafe.Pointer) {
+func (t_ TextView) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/candidatelisttouchbaritem
-func (t_ TextView) CandidateListTouchBarItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("candidateListTouchBarItem"))
+func (t_ TextView) CandidateListTouchBarItem() NSCandidateListTouchBarItem {
+	rv := objc.Send[NSCandidateListTouchBarItem](t_.ID, objc.Sel("candidateListTouchBarItem"))
 	return rv
 }
 
@@ -284,15 +284,15 @@ func (t_ TextView) CandidateListTouchBarItem() unsafe.Pointer {
 // SetCandidateListTouchBarItem sets the value of the candidateListTouchBarItem property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/candidatelisttouchbaritem
-func (t_ TextView) SetCandidateListTouchBarItem(value unsafe.Pointer) {
+func (t_ TextView) SetCandidateListTouchBarItem(value ICandidateListTouchBarItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCandidateListTouchBarItem:"), value)
 }
 
 // The receiver’s default paragraph style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/defaultparagraphstyle
-func (t_ TextView) DefaultParagraphStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("defaultParagraphStyle"))
+func (t_ TextView) DefaultParagraphStyle() NSParagraphStyle {
+	rv := objc.Send[NSParagraphStyle](t_.ID, objc.Sel("defaultParagraphStyle"))
 	return rv
 }
 
@@ -302,7 +302,7 @@ func (t_ TextView) DefaultParagraphStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/defaultparagraphstyle
-func (t_ TextView) SetDefaultParagraphStyle(value unsafe.Pointer) {
+func (t_ TextView) SetDefaultParagraphStyle(value NSParagraphStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultParagraphStyle:"), value)
 }
 
@@ -398,8 +398,8 @@ func (t_ TextView) SetImportsGraphics(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/inlinepredictiontype
-func (t_ TextView) InlinePredictionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("inlinePredictionType"))
+func (t_ TextView) InlinePredictionType() TextInputTraitType {
+	rv := objc.Send[TextInputTraitType](t_.ID, objc.Sel("inlinePredictionType"))
 	return rv
 }
 
@@ -407,15 +407,15 @@ func (t_ TextView) InlinePredictionType() unsafe.Pointer {
 // SetInlinePredictionType sets the value of the inlinePredictionType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/inlinepredictiontype
-func (t_ TextView) SetInlinePredictionType(value unsafe.Pointer) {
+func (t_ TextView) SetInlinePredictionType(value TextInputTraitType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInlinePredictionType:"), value)
 }
 
 // The color of the insertion point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/insertionpointcolor
-func (t_ TextView) InsertionPointColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("insertionPointColor"))
+func (t_ TextView) InsertionPointColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("insertionPointColor"))
 	return rv
 }
 
@@ -425,7 +425,7 @@ func (t_ TextView) InsertionPointColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/insertionpointcolor
-func (t_ TextView) SetInsertionPointColor(value unsafe.Pointer) {
+func (t_ TextView) SetInsertionPointColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInsertionPointColor:"), value)
 }
 
@@ -770,8 +770,8 @@ func (t_ TextView) SetMarkedTextAttributes(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/mathexpressioncompletiontype
-func (t_ TextView) MathExpressionCompletionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("mathExpressionCompletionType"))
+func (t_ TextView) MathExpressionCompletionType() TextInputTraitType {
+	rv := objc.Send[TextInputTraitType](t_.ID, objc.Sel("mathExpressionCompletionType"))
 	return rv
 }
 
@@ -779,7 +779,7 @@ func (t_ TextView) MathExpressionCompletionType() unsafe.Pointer {
 // SetMathExpressionCompletionType sets the value of the mathExpressionCompletionType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/mathexpressioncompletiontype
-func (t_ TextView) SetMathExpressionCompletionType(value unsafe.Pointer) {
+func (t_ TextView) SetMathExpressionCompletionType(value TextInputTraitType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMathExpressionCompletionType:"), value)
 }
 
@@ -797,7 +797,7 @@ func (t_ TextView) RangeForUserCharacterAttributeChange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusercharacterattributechange
-func (t_ TextView) SetRangeForUserCharacterAttributeChange(value foundation.Range) {
+func (t_ TextView) SetRangeForUserCharacterAttributeChange(value foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserCharacterAttributeChange:"), value)
 }
 
@@ -815,7 +815,7 @@ func (t_ TextView) RangeForUserCompletion() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusercompletion
-func (t_ TextView) SetRangeForUserCompletion(value foundation.Range) {
+func (t_ TextView) SetRangeForUserCompletion(value foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserCompletion:"), value)
 }
 
@@ -833,7 +833,7 @@ func (t_ TextView) RangeForUserParagraphAttributeChange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforuserparagraphattributechange
-func (t_ TextView) SetRangeForUserParagraphAttributeChange(value foundation.Range) {
+func (t_ TextView) SetRangeForUserParagraphAttributeChange(value foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserParagraphAttributeChange:"), value)
 }
 
@@ -851,15 +851,15 @@ func (t_ TextView) RangeForUserTextChange() foundation.Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusertextchange
-func (t_ TextView) SetRangeForUserTextChange(value foundation.Range) {
+func (t_ TextView) SetRangeForUserTextChange(value foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserTextChange:"), value)
 }
 
 // An array containing the ranges of characters affected by an action method that changes character (not paragraph) attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusercharacterattributechange
-func (t_ TextView) RangesForUserCharacterAttributeChange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rangesForUserCharacterAttributeChange"))
+func (t_ TextView) RangesForUserCharacterAttributeChange() Value {
+	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserCharacterAttributeChange"))
 	return rv
 }
 
@@ -869,15 +869,15 @@ func (t_ TextView) RangesForUserCharacterAttributeChange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusercharacterattributechange
-func (t_ TextView) SetRangesForUserCharacterAttributeChange(value unsafe.Pointer) {
+func (t_ TextView) SetRangesForUserCharacterAttributeChange(value IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserCharacterAttributeChange:"), value)
 }
 
 // An array containing the ranges of characters affected by a method that changes paragraph (not character) attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforuserparagraphattributechange
-func (t_ TextView) RangesForUserParagraphAttributeChange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rangesForUserParagraphAttributeChange"))
+func (t_ TextView) RangesForUserParagraphAttributeChange() Value {
+	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserParagraphAttributeChange"))
 	return rv
 }
 
@@ -887,15 +887,15 @@ func (t_ TextView) RangesForUserParagraphAttributeChange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforuserparagraphattributechange
-func (t_ TextView) SetRangesForUserParagraphAttributeChange(value unsafe.Pointer) {
+func (t_ TextView) SetRangesForUserParagraphAttributeChange(value IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserParagraphAttributeChange:"), value)
 }
 
 // An array containing the ranges of characters affected by a method that changes characters (as opposed to attributes).
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusertextchange
-func (t_ TextView) RangesForUserTextChange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rangesForUserTextChange"))
+func (t_ TextView) RangesForUserTextChange() Value {
+	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserTextChange"))
 	return rv
 }
 
@@ -905,15 +905,15 @@ func (t_ TextView) RangesForUserTextChange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusertextchange
-func (t_ TextView) SetRangesForUserTextChange(value unsafe.Pointer) {
+func (t_ TextView) SetRangesForUserTextChange(value IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserTextChange:"), value)
 }
 
 // The types this text view can read immediately from the pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/readablepasteboardtypes
-func (t_ TextView) ReadablePasteboardTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("readablePasteboardTypes"))
+func (t_ TextView) ReadablePasteboardTypes() PasteboardType {
+	rv := objc.Send[PasteboardType](t_.ID, objc.Sel("readablePasteboardTypes"))
 	return rv
 }
 
@@ -923,15 +923,15 @@ func (t_ TextView) ReadablePasteboardTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/readablepasteboardtypes
-func (t_ TextView) SetReadablePasteboardTypes(value unsafe.Pointer) {
+func (t_ TextView) SetReadablePasteboardTypes(value PasteboardType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReadablePasteboardTypes:"), value)
 }
 
 // An array containing the ranges of characters selected in the receiver’s layout manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedranges
-func (t_ TextView) SelectedRanges() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedRanges"))
+func (t_ TextView) SelectedRanges() Value {
+	rv := objc.Send[Value](t_.ID, objc.Sel("selectedRanges"))
 	return rv
 }
 
@@ -941,7 +941,7 @@ func (t_ TextView) SelectedRanges() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedranges
-func (t_ TextView) SetSelectedRanges(value unsafe.Pointer) {
+func (t_ TextView) SetSelectedRanges(value IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRanges:"), value)
 }
 
@@ -1092,8 +1092,8 @@ func (t_ TextView) SetTextContainerOrigin(value coregraphics.CGPoint) {
 // The receiver’s text storage object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontentstorage
-func (t_ TextView) TextContentStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textContentStorage"))
+func (t_ TextView) TextContentStorage() NSTextContentStorage {
+	rv := objc.Send[NSTextContentStorage](t_.ID, objc.Sel("textContentStorage"))
 	return rv
 }
 
@@ -1103,7 +1103,7 @@ func (t_ TextView) TextContentStorage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontentstorage
-func (t_ TextView) SetTextContentStorage(value unsafe.Pointer) {
+func (t_ TextView) SetTextContentStorage(value ITextContentStorage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContentStorage:"), value)
 }
 
@@ -1128,8 +1128,8 @@ func (t_ TextView) SetTextHighlightAttributes(value unsafe.Pointer) {
 // The manager that lays out text for the receiver’s text container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textlayoutmanager
-func (t_ TextView) TextLayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textLayoutManager"))
+func (t_ TextView) TextLayoutManager() NSTextLayoutManager {
+	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 
@@ -1139,7 +1139,7 @@ func (t_ TextView) TextLayoutManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textlayoutmanager
-func (t_ TextView) SetTextLayoutManager(value unsafe.Pointer) {
+func (t_ TextView) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
 
@@ -1287,8 +1287,8 @@ func (t_ TextView) SetUsesRuler(value bool) {
 // The pasteboard types that can be provided from the current selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/writablepasteboardtypes
-func (t_ TextView) WritablePasteboardTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("writablePasteboardTypes"))
+func (t_ TextView) WritablePasteboardTypes() PasteboardType {
+	rv := objc.Send[PasteboardType](t_.ID, objc.Sel("writablePasteboardTypes"))
 	return rv
 }
 
@@ -1298,14 +1298,14 @@ func (t_ TextView) WritablePasteboardTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/writablepasteboardtypes
-func (t_ TextView) SetWritablePasteboardTypes(value unsafe.Pointer) {
+func (t_ TextView) SetWritablePasteboardTypes(value PasteboardType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWritablePasteboardTypes:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/writingtoolsbehavior
-func (t_ TextView) WritingToolsBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("writingToolsBehavior"))
+func (t_ TextView) WritingToolsBehavior() WritingToolsBehavior {
+	rv := objc.Send[WritingToolsBehavior](t_.ID, objc.Sel("writingToolsBehavior"))
 	return rv
 }
 
@@ -1313,7 +1313,7 @@ func (t_ TextView) WritingToolsBehavior() unsafe.Pointer {
 // SetWritingToolsBehavior sets the value of the writingToolsBehavior property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/writingtoolsbehavior
-func (t_ TextView) SetWritingToolsBehavior(value unsafe.Pointer) {
+func (t_ TextView) SetWritingToolsBehavior(value WritingToolsBehavior) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWritingToolsBehavior:"), value)
 }
 

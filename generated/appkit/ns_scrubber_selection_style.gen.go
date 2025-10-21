@@ -30,7 +30,7 @@ type _ScrubberSelectionStyleClass struct {
 // An interface definition for the [ScrubberSelectionStyle] class.
 type IScrubberSelectionStyle interface {
 	objectivec.IObject
-	MakeSelectionView() unsafe.Pointer
+	MakeSelectionView() ScrubberSelectionView
 }
 
 // An abstract class that provides decorative accessory views for selected and highlighted items within a scrubber control.
@@ -86,7 +86,7 @@ func NewScrubberSelectionStyle() ScrubberSelectionStyle {
 // Initializes a scrubber selection style when included from a nib or Storyboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/init(coder:)
-func NewScrubberSelectionStyleWithCoder(coder unsafe.Pointer) ScrubberSelectionStyle {
+func NewScrubberSelectionStyleWithCoder(coder ICoder) ScrubberSelectionStyle {
 	instance := getScrubberSelectionStyleClass().Alloc()
 	rv := objc.Send[ScrubberSelectionStyle](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -97,23 +97,23 @@ func NewScrubberSelectionStyleWithCoder(coder unsafe.Pointer) ScrubberSelectionS
 // A built-in selection style that draws the outline of the scrubber item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
-func (sc _ScrubberSelectionStyleClass) OutlineOverlayStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("outlineOverlayStyle"))
+func (sc _ScrubberSelectionStyleClass) OutlineOverlayStyle() NSScrubberSelectionStyle {
+	rv := objc.Send[NSScrubberSelectionStyle](objc.ID(sc.class), objc.Sel("outlineOverlayStyle"))
 	return rv
 }
 // Provides an opportunity to create a customized scrubber selection style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/makeSelectionView()
-func (s_ ScrubberSelectionStyle) MakeSelectionView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("makeSelectionView"))
+func (s_ ScrubberSelectionStyle) MakeSelectionView() ScrubberSelectionView {
+	rv := objc.Send[ScrubberSelectionView](s_.ID, objc.Sel("makeSelectionView"))
 	return rv
 }
 
 // A built-in selection style that draws the outline of the scrubber item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
-func (s_ ScrubberSelectionStyle) OutlineOverlayStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("outlineOverlayStyle"))
+func (s_ ScrubberSelectionStyle) OutlineOverlayStyle() NSScrubberSelectionStyle {
+	rv := objc.Send[NSScrubberSelectionStyle](s_.ID, objc.Sel("outlineOverlayStyle"))
 	return rv
 }
 

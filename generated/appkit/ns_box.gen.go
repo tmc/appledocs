@@ -109,8 +109,8 @@ func (b_ Box) SizeToFit() {
 // The color of the receiver’s border when the receiver is a custom box with a simple line border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderColor
-func (b_ Box) BorderColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("borderColor"))
+func (b_ Box) BorderColor() NSColor {
+	rv := objc.Send[NSColor](b_.ID, objc.Sel("borderColor"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (b_ Box) BorderColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderColor
-func (b_ Box) SetBorderColor(value unsafe.Pointer) {
+func (b_ Box) SetBorderColor(value IColor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBorderColor:"), value)
 }
 
@@ -135,8 +135,8 @@ func (b_ Box) BorderRect() coregraphics.CGRect {
 // The receiver’s border type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderType
-func (b_ Box) BorderType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("borderType"))
+func (b_ Box) BorderType() BorderType {
+	rv := objc.Send[BorderType](b_.ID, objc.Sel("borderType"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (b_ Box) BorderType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderType
-func (b_ Box) SetBorderType(value unsafe.Pointer) {
+func (b_ Box) SetBorderType(value BorderType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBorderType:"), value)
 }
 
@@ -171,8 +171,8 @@ func (b_ Box) SetBorderWidth(value float64) {
 // The receiver’s box type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/boxType-swift.property
-func (b_ Box) BoxType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("boxType"))
+func (b_ Box) BoxType() BoxType {
+	rv := objc.Send[BoxType](b_.ID, objc.Sel("boxType"))
 	return rv
 }
 
@@ -182,15 +182,15 @@ func (b_ Box) BoxType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/boxType-swift.property
-func (b_ Box) SetBoxType(value unsafe.Pointer) {
+func (b_ Box) SetBoxType(value BoxType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBoxType:"), value)
 }
 
 // The receiver’s content view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/contentView
-func (b_ Box) ContentView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("contentView"))
+func (b_ Box) ContentView() NSView {
+	rv := objc.Send[NSView](b_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -200,7 +200,7 @@ func (b_ Box) ContentView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/contentView
-func (b_ Box) SetContentView(value unsafe.Pointer) {
+func (b_ Box) SetContentView(value IView) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setContentView:"), value)
 }
 
@@ -243,8 +243,8 @@ func (b_ Box) SetCornerRadius(value float64) {
 // The color of the receiver’s background when the receiver is a custom box with a simple line border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/fillColor
-func (b_ Box) FillColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("fillColor"))
+func (b_ Box) FillColor() NSColor {
+	rv := objc.Send[NSColor](b_.ID, objc.Sel("fillColor"))
 	return rv
 }
 
@@ -254,7 +254,7 @@ func (b_ Box) FillColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/fillColor
-func (b_ Box) SetFillColor(value unsafe.Pointer) {
+func (b_ Box) SetFillColor(value IColor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setFillColor:"), value)
 }
 
@@ -305,8 +305,8 @@ func (b_ Box) TitleCell() objc.ID {
 // The font object used to draw the receiver’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/titleFont
-func (b_ Box) TitleFont() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("titleFont"))
+func (b_ Box) TitleFont() NSFont {
+	rv := objc.Send[NSFont](b_.ID, objc.Sel("titleFont"))
 	return rv
 }
 
@@ -316,15 +316,15 @@ func (b_ Box) TitleFont() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/titleFont
-func (b_ Box) SetTitleFont(value unsafe.Pointer) {
+func (b_ Box) SetTitleFont(value IFont) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitleFont:"), value)
 }
 
 // A constant representing the title position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/titlePosition-swift.property
-func (b_ Box) TitlePosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("titlePosition"))
+func (b_ Box) TitlePosition() TitlePosition {
+	rv := objc.Send[TitlePosition](b_.ID, objc.Sel("titlePosition"))
 	return rv
 }
 
@@ -334,7 +334,7 @@ func (b_ Box) TitlePosition() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/titlePosition-swift.property
-func (b_ Box) SetTitlePosition(value unsafe.Pointer) {
+func (b_ Box) SetTitlePosition(value TitlePosition) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitlePosition:"), value)
 }
 

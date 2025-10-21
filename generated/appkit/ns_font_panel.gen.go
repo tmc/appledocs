@@ -102,8 +102,8 @@ func (f_ FontPanel) SetWorksWhenModal(value bool) {
 // The specified view as the receiver’s accessory view, allowing you to add custom controls to your application’s Font panel without having to create a subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontpanel/accessoryview
-func (f_ FontPanel) AccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("accessoryView"))
+func (f_ FontPanel) AccessoryView() NSView {
+	rv := objc.Send[NSView](f_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (f_ FontPanel) AccessoryView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontpanel/accessoryview
-func (f_ FontPanel) SetAccessoryView(value unsafe.Pointer) {
+func (f_ FontPanel) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAccessoryView:"), value)
 }
 

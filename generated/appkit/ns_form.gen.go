@@ -30,7 +30,7 @@ type _FormClass struct {
 type IForm interface {
 	IMatrix
 	SelectTextAtIndex(index int)
-	SetTextAlignment(mode unsafe.Pointer)
+	SetTextAlignment(mode TextAlignment)
 }
 
 // An object is a vertical matrix of objects to implement the fields.
@@ -91,7 +91,7 @@ func (f_ Form) SelectTextAtIndex(index int) {
 // Sets the alignment for all of the receiver’s editable text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSForm/setTextAlignment(_:)
-func (f_ Form) SetTextAlignment(mode unsafe.Pointer) {
+func (f_ Form) SetTextAlignment(mode TextAlignment) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTextAlignment:"), mode)
 }
 

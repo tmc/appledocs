@@ -115,8 +115,8 @@ func (s_ SharingServicePickerTouchBarItem) SetEnabled(value bool) {
 // The image displayed in the sharing service picker item button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttonimage
-func (s_ SharingServicePickerTouchBarItem) ButtonImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("buttonImage"))
+func (s_ SharingServicePickerTouchBarItem) ButtonImage() Image {
+	rv := objc.Send[Image](s_.ID, objc.Sel("buttonImage"))
 	return rv
 }
 
@@ -126,7 +126,7 @@ func (s_ SharingServicePickerTouchBarItem) ButtonImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttonimage
-func (s_ SharingServicePickerTouchBarItem) SetButtonImage(value unsafe.Pointer) {
+func (s_ SharingServicePickerTouchBarItem) SetButtonImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setButtonImage:"), value)
 }
 

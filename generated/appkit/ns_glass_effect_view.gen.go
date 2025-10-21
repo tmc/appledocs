@@ -82,8 +82,8 @@ func NewGlassEffectView() GlassEffectView {
 // The view to embed in glass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/contentView
-func (g_ GlassEffectView) ContentView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("contentView"))
+func (g_ GlassEffectView) ContentView() NSView {
+	rv := objc.Send[NSView](g_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (g_ GlassEffectView) ContentView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/contentView
-func (g_ GlassEffectView) SetContentView(value unsafe.Pointer) {
+func (g_ GlassEffectView) SetContentView(value IView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setContentView:"), value)
 }
 
@@ -118,8 +118,8 @@ func (g_ GlassEffectView) SetCornerRadius(value float64) {
 // The style of glass this view uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
-func (g_ GlassEffectView) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("style"))
+func (g_ GlassEffectView) Style() GlassEffectViewStyle {
+	rv := objc.Send[GlassEffectViewStyle](g_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -129,15 +129,15 @@ func (g_ GlassEffectView) Style() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
-func (g_ GlassEffectView) SetStyle(value unsafe.Pointer) {
+func (g_ GlassEffectView) SetStyle(value GlassEffectViewStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStyle:"), value)
 }
 
 // The color the glass effect view uses to tint the background and glass effect toward.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/tintColor
-func (g_ GlassEffectView) TintColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("tintColor"))
+func (g_ GlassEffectView) TintColor() NSColor {
+	rv := objc.Send[NSColor](g_.ID, objc.Sel("tintColor"))
 	return rv
 }
 
@@ -147,7 +147,7 @@ func (g_ GlassEffectView) TintColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/tintColor
-func (g_ GlassEffectView) SetTintColor(value unsafe.Pointer) {
+func (g_ GlassEffectView) SetTintColor(value IColor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTintColor:"), value)
 }
 

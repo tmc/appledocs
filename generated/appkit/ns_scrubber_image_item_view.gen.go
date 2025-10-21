@@ -102,16 +102,16 @@ func (s_ ScrubberImageItemView) SetImageAlignment(value unsafe.Pointer) {
 // The image view that the scrubber item uses to display its image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageView
-func (s_ ScrubberImageItemView) ImageView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageView"))
+func (s_ ScrubberImageItemView) ImageView() NSImageView {
+	rv := objc.Send[NSImageView](s_.ID, objc.Sel("imageView"))
 	return rv
 }
 
 // The image displayed by the scrubber item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/image
-func (s_ ScrubberImageItemView) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("image"))
+func (s_ ScrubberImageItemView) Image() Image {
+	rv := objc.Send[Image](s_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -121,7 +121,7 @@ func (s_ ScrubberImageItemView) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/image
-func (s_ ScrubberImageItemView) SetImage(value unsafe.Pointer) {
+func (s_ ScrubberImageItemView) SetImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), value)
 }
 

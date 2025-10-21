@@ -88,6 +88,11 @@ type NSAnimationProgress uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppKitVersion
 // NSAppKitVersion has base type: double
 type NSAppKitVersion uintptr
+// NSAppearanceName type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/Name-swift.struct
+// NSAppearanceName has base type: NSString *
+type NSAppearanceName uintptr
 // NSAboutPanelOptionKey - Keys to include in the options dictionary when displaying an About panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/AboutPanelOptionKey
@@ -210,6 +215,16 @@ type NSImageHintKey uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct
 // NSLayoutPriority has base type: float
 type NSLayoutPriority uintptr
+// NSNibName type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/Name
+// NSNibName has base type: NSString *
+type NSNibName uintptr
+// NSPasteboardName - Constants that represent the standard pasteboard names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/Name-swift.struct
+// NSPasteboardName has base type: NSString *
+type NSPasteboardName uintptr
 // NSPasteboardType - The supported pasteboard types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType
@@ -225,6 +240,11 @@ type NSPasteboardTypeFindPanelSearchOptionKey uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/TextFinderOptionKey
 // NSPasteboardTypeTextFinderOptionKey has base type: NSString *
 type NSPasteboardTypeTextFinderOptionKey uintptr
+// NSPasteboardReadingOptionKey - Options for reading pasteboard data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptionKey
+// NSPasteboardReadingOptionKey has base type: NSString *
+type NSPasteboardReadingOptionKey uintptr
 // NSPrintInfoAttributeKey - Constants that specify print job attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/AttributeKey
@@ -245,11 +265,76 @@ type NSSearchFieldRecentsAutosaveName uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/Name
 // NSSharingServiceName has base type: NSString *
 type NSSharingServiceName uintptr
+// NSSliderAccessoryWidth type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory/Width
+// NSSliderAccessoryWidth has base type: CGFloat
+type NSSliderAccessoryWidth uintptr
+// NSSoundName type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSound/Name-swift.typealias
+// NSSoundName has base type: NSString *
+type NSSoundName uintptr
+// NSSoundPlaybackDeviceIdentifier type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSound/PlaybackDeviceIdentifier-swift.typealias
+// NSSoundPlaybackDeviceIdentifier has base type: NSString *
+type NSSoundPlaybackDeviceIdentifier uintptr
+// NSSpeechDictionaryKey - These constants identify key-value pairs used to add vocabulary to the dictionary using  .
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/DictionaryKey
+// NSSpeechDictionaryKey has base type: NSString *
+type NSSpeechDictionaryKey uintptr
+// NSSpeechPropertyKey - These constants are used with   and   to get or set the characteristics of a synthesizer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey
+// NSSpeechPropertyKey has base type: NSString *
+type NSSpeechPropertyKey uintptr
+// NSSpeechCommandDelimiterKey - Keys for the command delimiters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/CommandDelimiterKey
+// NSSpeechCommandDelimiterKey has base type: NSString *
+type NSSpeechCommandDelimiterKey uintptr
+// NSSpeechErrorKey - Keys that identify errors that may occur during speech synthesis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/ErrorKey
+// NSSpeechErrorKey has base type: NSString *
+type NSSpeechErrorKey uintptr
+// NSSpeechMode - Keys for the speaking mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/Mode
+// NSSpeechMode has base type: NSString *
+type NSSpeechMode uintptr
+// NSSpeechPhonemeInfoKey - Keys for the speech phoneme information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/PhonemeInfoKey
+// NSSpeechPhonemeInfoKey has base type: NSString *
+type NSSpeechPhonemeInfoKey uintptr
 // NSSpeechStatusKey - Keys for the speech synthesizier status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/StatusKey
 // NSSpeechStatusKey has base type: NSString *
 type NSSpeechStatusKey uintptr
+// NSSpeechSynthesizerInfoKey - Keys for the speech synthesizier information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/SynthesizerInfoKey
+// NSSpeechSynthesizerInfoKey has base type: NSString *
+type NSSpeechSynthesizerInfoKey uintptr
+// NSVoiceAttributeKey - The following constants are keys for the dictionary returned by  .
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/VoiceAttributeKey
+// NSVoiceAttributeKey has base type: NSString *
+type NSVoiceAttributeKey uintptr
+// NSVoiceGenderName - The following constants define voice gender attributes, which are the allowable values of the   key returned by  .
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/VoiceGender
+// NSVoiceGenderName has base type: NSString *
+type NSVoiceGenderName uintptr
+// NSSpeechSynthesizerVoiceName type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/VoiceName
+// NSSpeechSynthesizerVoiceName has base type: NSString *
+type NSSpeechSynthesizerVoiceName uintptr
 // NSSplitViewAutosaveName - The type that specifies the split view’s autosave name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/AutosaveName-swift.typealias
@@ -260,6 +345,26 @@ type NSSplitViewAutosaveName uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/VisibilityPriority
 // NSStackViewVisibilityPriority has base type: float
 type NSStackViewVisibilityPriority uintptr
+// NSStatusItemAutosaveName type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/AutosaveName-swift.typealias
+// NSStatusItemAutosaveName has base type: NSString *
+type NSStatusItemAutosaveName uintptr
+// NSStoryboardName - The name of the storyboard file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/Name
+// NSStoryboardName has base type: NSString *
+type NSStoryboardName uintptr
+// NSStoryboardSceneIdentifier - A string that uniquely identifies a view controller or window controller in your storyboard file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/SceneIdentifier
+// NSStoryboardSceneIdentifier has base type: NSString *
+type NSStoryboardSceneIdentifier uintptr
+// NSStoryboardSegueIdentifier type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/Identifier-swift.typealias
+// NSStoryboardSegueIdentifier has base type: NSString *
+type NSStoryboardSegueIdentifier uintptr
 // NSTextContentType - Constants that identify the semantic meaning for a text-entry area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentType

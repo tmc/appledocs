@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ColorPanel] class.
@@ -29,10 +30,10 @@ type _ColorPanelClass struct {
 // An interface definition for the [ColorPanel] class.
 type IColorPanel interface {
 	IPanel
-	AttachColorList(colorList unsafe.Pointer)
-	DetachColorList(colorList unsafe.Pointer)
+	AttachColorList(colorList IColorList)
+	DetachColorList(colorList IColorList)
 	SetAction(selector objc.SEL)
-	SetTarget(target objc.ID)
+	SetTarget(target objectivec.IObject)
 }
 
 // A standard user interface for selecting color in an app.
@@ -88,7 +89,7 @@ func NewColorPanel() ColorPanel {
 // Drags a color into a destination view from the specified source view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/dragColor(_:with:from:)
-func (cc _ColorPanelClass) DragColorWithEventFromView(color unsafe.Pointer, event unsafe.Pointer, sourceView unsafe.Pointer) bool {
+func (cc _ColorPanelClass) DragColorWithEventFromView(color IColor, event IEvent, sourceView IView) bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("dragColor:withEvent:fromView:"), color, event, sourceView)
 	return rv
 }
@@ -96,22 +97,22 @@ func (cc _ColorPanelClass) DragColorWithEventFromView(color unsafe.Pointer, even
 // Determines which color selection modes are available in an application’s .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/setPickerMask(_:)
-func (cc _ColorPanelClass) SetPickerMask(mask unsafe.Pointer) {
+func (cc _ColorPanelClass) SetPickerMask(mask ColorPanelOptions) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("setPickerMask:"), mask)
 }
 
 // Specifies the color panel’s initial picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/setPickerMode(_:)
-func (cc _ColorPanelClass) SetPickerMode(mode unsafe.Pointer) {
+func (cc _ColorPanelClass) SetPickerMode(mode ColorPanelMode) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("setPickerMode:"), mode)
 }
 
 // Returns the shared instance, creating it if necessary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/shared
-func (cc _ColorPanelClass) SharedColorPanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedColorPanel"))
+func (cc _ColorPanelClass) SharedColorPanel() NSColorPanel {
+	rv := objc.Send[NSColorPanel](objc.ID(cc.class), objc.Sel("sharedColorPanel"))
 	return rv
 }
 // Returns a Boolean value indicating whether the has been created already.
@@ -124,14 +125,14 @@ func (cc _ColorPanelClass) SharedColorPanelExists() bool {
 // Adds the list of objects specified to all the color pickers in the receiver that display color lists by invoking on all color pickers in the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/attachColorList(_:)
-func (c_ ColorPanel) AttachColorList(colorList unsafe.Pointer) {
+func (c_ ColorPanel) AttachColorList(colorList IColorList) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("attachColorList:"), colorList)
 }
 
 // Removes the list of colors from all the color pickers in the receiver that display color lists by invoking on all color pickers in the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/detachColorList(_:)
-func (c_ ColorPanel) DetachColorList(colorList unsafe.Pointer) {
+func (c_ ColorPanel) DetachColorList(colorList IColorList) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("detachColorList:"), colorList)
 }
 
@@ -145,15 +146,15 @@ func (c_ ColorPanel) SetAction(selector objc.SEL) {
 // Sets the target of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/setTarget(_:)
-func (c_ ColorPanel) SetTarget(target objc.ID) {
+func (c_ ColorPanel) SetTarget(target objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), target)
 }
 
 // The accessory view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/accessoryView
-func (c_ ColorPanel) AccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("accessoryView"))
+func (c_ ColorPanel) AccessoryView() NSView {
+	rv := objc.Send[NSView](c_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -163,7 +164,7 @@ func (c_ ColorPanel) AccessoryView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/accessoryView
-func (c_ ColorPanel) SetAccessoryView(value unsafe.Pointer) {
+func (c_ ColorPanel) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAccessoryView:"), value)
 }
 
@@ -178,8 +179,8 @@ func (c_ ColorPanel) Alpha() float64 {
 // The color of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/color
-func (c_ ColorPanel) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("color"))
+func (c_ ColorPanel) Color() NSColor {
+	rv := objc.Send[NSColor](c_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -189,7 +190,7 @@ func (c_ ColorPanel) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/color
-func (c_ ColorPanel) SetColor(value unsafe.Pointer) {
+func (c_ ColorPanel) SetColor(value IColor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
 }
 
@@ -232,8 +233,8 @@ func (c_ ColorPanel) SetMaximumLinearExposure(value float64) {
 // The mode of the receiver the mode is one of the modes allowed by the color mask.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/mode-swift.property
-func (c_ ColorPanel) Mode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mode"))
+func (c_ ColorPanel) Mode() ColorPanelMode {
+	rv := objc.Send[ColorPanelMode](c_.ID, objc.Sel("mode"))
 	return rv
 }
 
@@ -243,15 +244,15 @@ func (c_ ColorPanel) Mode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/mode-swift.property
-func (c_ ColorPanel) SetMode(value unsafe.Pointer) {
+func (c_ ColorPanel) SetMode(value ColorPanelMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMode:"), value)
 }
 
 // Returns the shared instance, creating it if necessary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/shared
-func (c_ ColorPanel) SharedColorPanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sharedColorPanel"))
+func (c_ ColorPanel) SharedColorPanel() NSColorPanel {
+	rv := objc.Send[NSColorPanel](c_.ID, objc.Sel("sharedColorPanel"))
 	return rv
 }
 

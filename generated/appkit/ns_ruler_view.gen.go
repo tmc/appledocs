@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RulerView] class.
@@ -30,13 +31,13 @@ type _RulerViewClass struct {
 // An interface definition for the [RulerView] class.
 type IRulerView interface {
 	IView
-	AddMarker(marker unsafe.Pointer)
+	AddMarker(marker IRulerMarker)
 	DrawHashMarksAndLabelsInRect(rect coregraphics.CGRect)
 	DrawMarkersInRect(rect coregraphics.CGRect)
 	InvalidateHashMarks()
 	MoveRulerlineFromLocationToLocation(oldLocation float64, newLocation float64)
-	RemoveMarker(marker unsafe.Pointer)
-	TrackMarkerWithMouseEvent(marker unsafe.Pointer, event unsafe.Pointer) bool
+	RemoveMarker(marker IRulerMarker)
+	TrackMarkerWithMouseEvent(marker IRulerMarker, event IEvent) bool
 }
 
 // A ruler and the markers above or to the side of a scroll view’s document view.
@@ -91,7 +92,7 @@ func NewRulerView() RulerView {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
-func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
+func NewRulerViewWithCoder(coder ICoder) RulerView {
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -103,7 +104,7 @@ func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
 // Initializes a newly allocated NSRulerView to have ( or ) within .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(scrollView:orientation:)
-func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientation unsafe.Pointer) RulerView {
+func NewRulerViewWithScrollViewOrientation(scrollView IScrollView, orientation RulerOrientation) RulerView {
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithScrollView:orientation:"), scrollView, orientation)
 	rv.Autorelease()
@@ -114,14 +115,14 @@ func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientatio
 // Registers a new unit of measurement with the NSRulerView class, making it available to all instances of NSRulerView.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/registerUnit(withName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)
-func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(unitName unsafe.Pointer, abbreviation string, conversionFactor float64, stepUpCycle unsafe.Pointer, stepDownCycle unsafe.Pointer) {
+func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(unitName IRulerViewUnitName, abbreviation string, conversionFactor float64, stepUpCycle []foundation.INumber, stepDownCycle []foundation.INumber) {
 	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:"), unitName, objc.String(abbreviation), conversionFactor, stepUpCycle, stepDownCycle)
 }
 
 // Adds to the receiver, without consulting the client view for approval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/addMarker(_:)
-func (r_ RulerView) AddMarker(marker unsafe.Pointer) {
+func (r_ RulerView) AddMarker(marker IRulerMarker) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addMarker:"), marker)
 }
 
@@ -156,14 +157,14 @@ func (r_ RulerView) MoveRulerlineFromLocationToLocation(oldLocation float64, new
 // Removes from the receiver, without consulting the client view for approval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/removeMarker(_:)
-func (r_ RulerView) RemoveMarker(marker unsafe.Pointer) {
+func (r_ RulerView) RemoveMarker(marker IRulerMarker) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("removeMarker:"), marker)
 }
 
 // Tracks the mouse to add based on the initial mouse-down or mouse-dragged event .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/trackMarker(_:withMouseEvent:)
-func (r_ RulerView) TrackMarkerWithMouseEvent(marker unsafe.Pointer, event unsafe.Pointer) bool {
+func (r_ RulerView) TrackMarkerWithMouseEvent(marker IRulerMarker, event IEvent) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("trackMarker:withMouseEvent:"), marker, event)
 	return rv
 }
@@ -171,8 +172,8 @@ func (r_ RulerView) TrackMarkerWithMouseEvent(marker unsafe.Pointer, event unsaf
 // The receiver’s accessory view to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/accessoryView
-func (r_ RulerView) AccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("accessoryView"))
+func (r_ RulerView) AccessoryView() NSView {
+	rv := objc.Send[NSView](r_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -182,7 +183,7 @@ func (r_ RulerView) AccessoryView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/accessoryView
-func (r_ RulerView) SetAccessoryView(value unsafe.Pointer) {
+func (r_ RulerView) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAccessoryView:"), value)
 }
 
@@ -197,8 +198,8 @@ func (r_ RulerView) BaselineLocation() float64 {
 // The receiver’s client view, if it has one.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/clientView
-func (r_ RulerView) ClientView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("clientView"))
+func (r_ RulerView) ClientView() NSView {
+	rv := objc.Send[NSView](r_.ID, objc.Sel("clientView"))
 	return rv
 }
 
@@ -208,7 +209,7 @@ func (r_ RulerView) ClientView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/clientView
-func (r_ RulerView) SetClientView(value unsafe.Pointer) {
+func (r_ RulerView) SetClientView(value IView) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setClientView:"), value)
 }
 
@@ -251,8 +252,8 @@ func (r_ RulerView) SetMarkers(value []RulerMarker) {
 // The measurement units used by the ruler to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/measurementUnits
-func (r_ RulerView) MeasurementUnits() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("measurementUnits"))
+func (r_ RulerView) MeasurementUnits() RulerViewUnitName {
+	rv := objc.Send[RulerViewUnitName](r_.ID, objc.Sel("measurementUnits"))
 	return rv
 }
 
@@ -262,15 +263,15 @@ func (r_ RulerView) MeasurementUnits() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/measurementUnits
-func (r_ RulerView) SetMeasurementUnits(value unsafe.Pointer) {
+func (r_ RulerView) SetMeasurementUnits(value IRulerViewUnitName) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMeasurementUnits:"), value)
 }
 
 // The orientation of the receiver to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/orientation-swift.property
-func (r_ RulerView) Orientation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("orientation"))
+func (r_ RulerView) Orientation() RulerOrientation {
+	rv := objc.Send[RulerOrientation](r_.ID, objc.Sel("orientation"))
 	return rv
 }
 
@@ -280,7 +281,7 @@ func (r_ RulerView) Orientation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/orientation-swift.property
-func (r_ RulerView) SetOrientation(value unsafe.Pointer) {
+func (r_ RulerView) SetOrientation(value RulerOrientation) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setOrientation:"), value)
 }
 
@@ -367,8 +368,8 @@ func (r_ RulerView) SetRuleThickness(value float64) {
 // The NSScrollView that owns the receiver to , without retaining it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/scrollView
-func (r_ RulerView) ScrollView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("scrollView"))
+func (r_ RulerView) ScrollView() NSScrollView {
+	rv := objc.Send[NSScrollView](r_.ID, objc.Sel("scrollView"))
 	return rv
 }
 
@@ -378,7 +379,7 @@ func (r_ RulerView) ScrollView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/scrollView
-func (r_ RulerView) SetScrollView(value unsafe.Pointer) {
+func (r_ RulerView) SetScrollView(value IScrollView) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setScrollView:"), value)
 }
 

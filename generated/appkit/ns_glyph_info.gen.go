@@ -127,8 +127,8 @@ func (g_ GlyphInfo) SetCharacterCollection(value unsafe.Pointer) {
 // The glyph identifier, specified as the index into the internal glyph table of the font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphid
-func (g_ GlyphInfo) GlyphID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("glyphID"))
+func (g_ GlyphInfo) GlyphID() Glyph {
+	rv := objc.Send[Glyph](g_.ID, objc.Sel("glyphID"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (g_ GlyphInfo) GlyphID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphid
-func (g_ GlyphInfo) SetGlyphID(value unsafe.Pointer) {
+func (g_ GlyphInfo) SetGlyphID(value IGlyph) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGlyphID:"), value)
 }
 

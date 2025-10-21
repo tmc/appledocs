@@ -29,8 +29,8 @@ type _LayoutXAxisAnchorClass struct {
 // An interface definition for the [LayoutXAxisAnchor] class.
 type ILayoutXAxisAnchor interface {
 	ILayoutAnchor
-	ConstraintGreaterThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor unsafe.Pointer, multiplier float64) unsafe.Pointer
-	ConstraintLessThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor unsafe.Pointer, multiplier float64) unsafe.Pointer
+	ConstraintGreaterThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) LayoutConstraint
+	ConstraintLessThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) LayoutConstraint
 }
 
 // A factory class for creating horizontal layout constraint objects using a fluent API.
@@ -86,16 +86,16 @@ func NewLayoutXAxisAnchor() LayoutXAxisAnchor {
 // Returns a constraint that defines the minimum amount by which the current anchor trails the specified anchor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor/constraint(greaterThanOrEqualToSystemSpacingAfter:multiplier:)
-func (l_ LayoutXAxisAnchor) ConstraintGreaterThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor unsafe.Pointer, multiplier float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:"), anchor, multiplier)
+func (l_ LayoutXAxisAnchor) ConstraintGreaterThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) LayoutConstraint {
+	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:"), anchor, multiplier)
 	return rv
 }
 
 // Returns a constraint that defines the maximum amount by which the current anchor trails the specified anchor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor/constraint(lessThanOrEqualToSystemSpacingAfter:multiplier:)
-func (l_ LayoutXAxisAnchor) ConstraintLessThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor unsafe.Pointer, multiplier float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:"), anchor, multiplier)
+func (l_ LayoutXAxisAnchor) ConstraintLessThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) LayoutConstraint {
+	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:"), anchor, multiplier)
 	return rv
 }
 

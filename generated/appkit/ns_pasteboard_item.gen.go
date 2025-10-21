@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,17 @@ type _PasteboardItemClass struct {
 // An interface definition for the [PasteboardItem] class.
 type IPasteboardItem interface {
 	objectivec.IObject
-	StringForType(type_ unsafe.Pointer) string
+	AvailableTypeFromArray(types []string) PasteboardType
+	DataForType(type_ PasteboardType) foundation.Data
+	DetectMetadataForTypesCompletionHandler(types unsafe.Pointer, completionHandler unsafe.Pointer)
+	DetectPatternsForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer)
+	DetectValuesForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer)
+	PropertyListForType(type_ PasteboardType) objc.ID
+	SetDataForType(data foundation.IData, type_ PasteboardType) bool
+	SetDataProviderForTypes(dataProvider objectivec.IObject, types []string) bool
+	SetPropertyListForType(propertyList objectivec.IObject, type_ PasteboardType) bool
+	SetStringForType(string_ string, type_ PasteboardType) bool
+	StringForType(type_ PasteboardType) foundation.String
 }
 
 // An item on a pasteboard.
@@ -81,11 +92,88 @@ func NewPasteboardItem() PasteboardItem {
 }
 
 
+// Returns from a given array of types the first type within the pasteboard item, according to the ordering of types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/availableType(from:)
+func (p_ PasteboardItem) AvailableTypeFromArray(types []string) PasteboardType {
+	rv := objc.Send[PasteboardType](p_.ID, objc.Sel("availableTypeFromArray:"), types)
+	return rv
+}
+
+// Returns the value for the specified type as a data object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/data(forType:)
+func (p_ PasteboardItem) DataForType(type_ PasteboardType) foundation.Data {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("dataForType:"), type_)
+	return rv
+}
+
+// Determines available metadata from the specified metadata types for this pasteboard item, without notifying the person using the app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/detectMetadataForTypes:completionHandler:
+func (p_ PasteboardItem) DetectMetadataForTypesCompletionHandler(types unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("detectMetadataForTypes:completionHandler:"), types, completionHandler)
+}
+
+// Determines whether this pasteboard item matches the specified patterns, without notifying the person using the app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/detectPatternsForPatterns:completionHandler:
+func (p_ PasteboardItem) DetectPatternsForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("detectPatternsForPatterns:completionHandler:"), patterns, completionHandler)
+}
+
+// Determines whether this pasteboard item matches the specified patterns, reading the contents if it finds a match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/detectValuesForPatterns:completionHandler:
+func (p_ PasteboardItem) DetectValuesForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("detectValuesForPatterns:completionHandler:"), patterns, completionHandler)
+}
+
+// Returns the value for the specified type as a property list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/propertyList(forType:)
+func (p_ PasteboardItem) PropertyListForType(type_ PasteboardType) objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("propertyListForType:"), type_)
+	return rv
+}
+
+// Sets the value for a specified type as a data object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/setData(_:forType:)
+func (p_ PasteboardItem) SetDataForType(data foundation.IData, type_ PasteboardType) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("setData:forType:"), data, type_)
+	return rv
+}
+
+// Sets the data provider for the specified types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/setDataProvider(_:forTypes:)
+func (p_ PasteboardItem) SetDataProviderForTypes(dataProvider objectivec.IObject, types []string) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("setDataProvider:forTypes:"), dataProvider, types)
+	return rv
+}
+
+// Sets the value for a specified type as a property list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/setPropertyList(_:forType:)
+func (p_ PasteboardItem) SetPropertyListForType(propertyList objectivec.IObject, type_ PasteboardType) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("setPropertyList:forType:"), propertyList, type_)
+	return rv
+}
+
+// Sets the value for a specified type as a string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/setString(_:forType:)
+func (p_ PasteboardItem) SetStringForType(string_ string, type_ PasteboardType) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("setString:forType:"), objc.String(string_), type_)
+	return rv
+}
+
 // Returns the value for the specified type as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/string(forType:)
-func (p_ PasteboardItem) StringForType(type_ unsafe.Pointer) string {
-	rv := objc.Send[string](p_.ID, objc.Sel("stringForType:"), type_)
+func (p_ PasteboardItem) StringForType(type_ PasteboardType) foundation.String {
+	rv := objc.Send[foundation.String](p_.ID, objc.Sel("stringForType:"), type_)
 	return rv
 }
 
@@ -107,11 +195,19 @@ func (p_ PasteboardItem) SetCollaborationMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollaborationMetadata:"), value)
 }
 
+// An array of uniform type identifier strings of the data types that the receiver supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/types
+func (p_ PasteboardItem) Types() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("types"))
+	return rv
+}
+
 // An array that contains all the items held by the pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboarditems
-func (p_ PasteboardItem) PasteboardItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pasteboardItems"))
+func (p_ PasteboardItem) PasteboardItems() NSPasteboardItem {
+	rv := objc.Send[NSPasteboardItem](p_.ID, objc.Sel("pasteboardItems"))
 	return rv
 }
 
@@ -121,26 +217,8 @@ func (p_ PasteboardItem) PasteboardItems() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboarditems
-func (p_ PasteboardItem) SetPasteboardItems(value unsafe.Pointer) {
+func (p_ PasteboardItem) SetPasteboardItems(value IPasteboardItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPasteboardItems:"), value)
-}
-
-// An array of uniform type identifier strings of the data types that the receiver supports.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboarditem/types
-func (p_ PasteboardItem) Types() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("types"))
-	return rv
-}
-
-
-// SetTypes sets the value of the types property.
-// An array of uniform type identifier strings of the data types that the receiver supports.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboarditem/types
-func (p_ PasteboardItem) SetTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTypes:"), value)
 }
 
 

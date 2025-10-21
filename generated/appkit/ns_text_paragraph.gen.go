@@ -82,8 +82,8 @@ func NewTextParagraph() TextParagraph {
 // Returns the source attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
-func (t_ TextParagraph) AttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("attributedString"))
+func (t_ TextParagraph) AttributedString() AttributedString {
+	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -93,15 +93,15 @@ func (t_ TextParagraph) AttributedString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
-func (t_ TextParagraph) SetAttributedString(value unsafe.Pointer) {
+func (t_ TextParagraph) SetAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 
 // Returns the range of the paragraph in the containing text’s attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
-func (t_ TextParagraph) ParagraphContentRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("paragraphContentRange"))
+func (t_ TextParagraph) ParagraphContentRange() NSTextRange {
+	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("paragraphContentRange"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (t_ TextParagraph) ParagraphContentRange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
-func (t_ TextParagraph) SetParagraphContentRange(value unsafe.Pointer) {
+func (t_ TextParagraph) SetParagraphContentRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphContentRange:"), value)
 }
 
 // Returns the range of the paragraph separator in the containing text’s attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
-func (t_ TextParagraph) ParagraphSeparatorRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("paragraphSeparatorRange"))
+func (t_ TextParagraph) ParagraphSeparatorRange() NSTextRange {
+	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("paragraphSeparatorRange"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (t_ TextParagraph) ParagraphSeparatorRange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
-func (t_ TextParagraph) SetParagraphSeparatorRange(value unsafe.Pointer) {
+func (t_ TextParagraph) SetParagraphSeparatorRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphSeparatorRange:"), value)
 }
 

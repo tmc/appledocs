@@ -16,3 +16,10 @@ func ExampleNewSearchFieldCellTextCell() {
 	)
 	// Output:
 }
+// ExampleNewSearchFieldCellWithCoder demonstrates how to create a SearchFieldCell instance using NewSearchFieldCellWithCoder.
+func ExampleNewSearchFieldCellWithCoder() {
+	_ = appkit.NewSearchFieldCellWithCoder(
+		appkit.Coder{}, // coder Coder
+	)
+	// Output:
+}

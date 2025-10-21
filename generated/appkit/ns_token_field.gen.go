@@ -153,8 +153,8 @@ func (t_ TokenField) SetDelegate(value unsafe.Pointer) {
 // The token style of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.property
-func (t_ TokenField) TokenStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tokenStyle"))
+func (t_ TokenField) TokenStyle() TokenStyle {
+	rv := objc.Send[TokenStyle](t_.ID, objc.Sel("tokenStyle"))
 	return rv
 }
 
@@ -164,7 +164,7 @@ func (t_ TokenField) TokenStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.property
-func (t_ TokenField) SetTokenStyle(value unsafe.Pointer) {
+func (t_ TokenField) SetTokenStyle(value TokenStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenStyle:"), value)
 }
 

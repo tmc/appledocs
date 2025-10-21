@@ -98,7 +98,7 @@ func NewSearchFieldCellTextCell(string_ string) SearchFieldCell {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/init(coder:)
-func NewSearchFieldCellWithCoder(coder unsafe.Pointer) SearchFieldCell {
+func NewSearchFieldCellWithCoder(coder ICoder) SearchFieldCell {
 	instance := getSearchFieldCellClass().Alloc()
 	rv := objc.Send[SearchFieldCell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -147,8 +147,8 @@ func (s_ SearchFieldCell) SearchTextRectForBounds(rect coregraphics.CGRect) core
 // The button cell used to display the cancel-button image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/cancelButtonCell
-func (s_ SearchFieldCell) CancelButtonCell() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("cancelButtonCell"))
+func (s_ SearchFieldCell) CancelButtonCell() NSButtonCell {
+	rv := objc.Send[NSButtonCell](s_.ID, objc.Sel("cancelButtonCell"))
 	return rv
 }
 
@@ -158,7 +158,7 @@ func (s_ SearchFieldCell) CancelButtonCell() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/cancelButtonCell
-func (s_ SearchFieldCell) SetCancelButtonCell(value unsafe.Pointer) {
+func (s_ SearchFieldCell) SetCancelButtonCell(value IButtonCell) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCancelButtonCell:"), value)
 }
 
@@ -211,8 +211,8 @@ func (s_ SearchFieldCell) SetRecentSearches(value []string) {
 // The autosave name under which the search field automatically saves the list of recent search strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentsAutosaveName
-func (s_ SearchFieldCell) RecentsAutosaveName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("recentsAutosaveName"))
+func (s_ SearchFieldCell) RecentsAutosaveName() SearchFieldRecentsAutosaveName {
+	rv := objc.Send[SearchFieldRecentsAutosaveName](s_.ID, objc.Sel("recentsAutosaveName"))
 	return rv
 }
 
@@ -222,15 +222,15 @@ func (s_ SearchFieldCell) RecentsAutosaveName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentsAutosaveName
-func (s_ SearchFieldCell) SetRecentsAutosaveName(value unsafe.Pointer) {
+func (s_ SearchFieldCell) SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveName) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentsAutosaveName:"), value)
 }
 
 // The button cell used to display the search-button image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchButtonCell
-func (s_ SearchFieldCell) SearchButtonCell() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("searchButtonCell"))
+func (s_ SearchFieldCell) SearchButtonCell() NSButtonCell {
+	rv := objc.Send[NSButtonCell](s_.ID, objc.Sel("searchButtonCell"))
 	return rv
 }
 
@@ -240,15 +240,15 @@ func (s_ SearchFieldCell) SearchButtonCell() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchButtonCell
-func (s_ SearchFieldCell) SetSearchButtonCell(value unsafe.Pointer) {
+func (s_ SearchFieldCell) SetSearchButtonCell(value IButtonCell) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchButtonCell:"), value)
 }
 
 // The menu object used to dynamically construct the search field’s pop-up icon menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchMenuTemplate
-func (s_ SearchFieldCell) SearchMenuTemplate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("searchMenuTemplate"))
+func (s_ SearchFieldCell) SearchMenuTemplate() NSMenu {
+	rv := objc.Send[NSMenu](s_.ID, objc.Sel("searchMenuTemplate"))
 	return rv
 }
 
@@ -258,7 +258,7 @@ func (s_ SearchFieldCell) SearchMenuTemplate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchMenuTemplate
-func (s_ SearchFieldCell) SetSearchMenuTemplate(value unsafe.Pointer) {
+func (s_ SearchFieldCell) SetSearchMenuTemplate(value IMenu) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchMenuTemplate:"), value)
 }
 

@@ -91,24 +91,24 @@ func (t_ TouchBarItem) CustomizationLabel() string {
 // The view associated with this item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/view
-func (t_ TouchBarItem) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("view"))
+func (t_ TouchBarItem) View() NSView {
+	rv := objc.Send[NSView](t_.ID, objc.Sel("view"))
 	return rv
 }
 
 // The view controller associated with this item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/viewController
-func (t_ TouchBarItem) ViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("viewController"))
+func (t_ TouchBarItem) ViewController() NSViewController {
+	rv := objc.Send[NSViewController](t_.ID, objc.Sel("viewController"))
 	return rv
 }
 
 // Determines which items are shown in a bar when space is limited.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/visibilityPriority
-func (t_ TouchBarItem) VisibilityPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("visibilityPriority"))
+func (t_ TouchBarItem) VisibilityPriority() TouchBarItemPriority {
+	rv := objc.Send[TouchBarItemPriority](t_.ID, objc.Sel("visibilityPriority"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (t_ TouchBarItem) VisibilityPriority() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/visibilityPriority
-func (t_ TouchBarItem) SetVisibilityPriority(value unsafe.Pointer) {
+func (t_ TouchBarItem) SetVisibilityPriority(value TouchBarItemPriority) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
 }
 
@@ -143,8 +143,8 @@ func (t_ TouchBarItem) SetIsContinuous(value bool) {
 // A bar that holds this group’s items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
-func (t_ TouchBarItem) GroupTouchBar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("groupTouchBar"))
+func (t_ TouchBarItem) GroupTouchBar() NSTouchBar {
+	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("groupTouchBar"))
 	return rv
 }
 
@@ -154,15 +154,15 @@ func (t_ TouchBarItem) GroupTouchBar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
-func (t_ TouchBarItem) SetGroupTouchBar(value unsafe.Pointer) {
+func (t_ TouchBarItem) SetGroupTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGroupTouchBar:"), value)
 }
 
 // The view displayed when this item is displayed in its parent bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentation
-func (t_ TouchBarItem) CollapsedRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("collapsedRepresentation"))
+func (t_ TouchBarItem) CollapsedRepresentation() NSView {
+	rv := objc.Send[NSView](t_.ID, objc.Sel("collapsedRepresentation"))
 	return rv
 }
 
@@ -172,15 +172,15 @@ func (t_ TouchBarItem) CollapsedRepresentation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentation
-func (t_ TouchBarItem) SetCollapsedRepresentation(value unsafe.Pointer) {
+func (t_ TouchBarItem) SetCollapsedRepresentation(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCollapsedRepresentation:"), value)
 }
 
 // The bar displayed when this item is “popped.”
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-func (t_ TouchBarItem) PopoverTouchBar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("popoverTouchBar"))
+func (t_ TouchBarItem) PopoverTouchBar() NSTouchBar {
+	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("popoverTouchBar"))
 	return rv
 }
 
@@ -190,15 +190,15 @@ func (t_ TouchBarItem) PopoverTouchBar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-func (t_ TouchBarItem) SetPopoverTouchBar(value unsafe.Pointer) {
+func (t_ TouchBarItem) SetPopoverTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPopoverTouchBar:"), value)
 }
 
 // The bar that is displayed when a user press-and-holds on the popover item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-func (t_ TouchBarItem) PressAndHoldTouchBar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("pressAndHoldTouchBar"))
+func (t_ TouchBarItem) PressAndHoldTouchBar() NSTouchBar {
+	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("pressAndHoldTouchBar"))
 	return rv
 }
 
@@ -208,7 +208,7 @@ func (t_ TouchBarItem) PressAndHoldTouchBar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-func (t_ TouchBarItem) SetPressAndHoldTouchBar(value unsafe.Pointer) {
+func (t_ TouchBarItem) SetPressAndHoldTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
 }
 

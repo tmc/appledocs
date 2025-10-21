@@ -84,7 +84,7 @@ func NewColorPickerTouchBarItem() ColorPickerTouchBarItem {
 // Creates a bar item with the standard color picker icon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorPicker(withIdentifier:)
-func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifier(identifier unsafe.Pointer) unsafe.Pointer {
+func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifier(identifier ITouchBarItemIdentifier) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorPickerWithIdentifier:"), identifier)
 	return rv
 }
@@ -92,7 +92,7 @@ func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifier(identifier uns
 // Creates a color picker bar item using the supplied image as its icon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorPicker(withIdentifier:buttonImage:)
-func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifierButtonImage(identifier unsafe.Pointer, image unsafe.Pointer) unsafe.Pointer {
+func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifierButtonImage(identifier ITouchBarItemIdentifier, image IImage) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorPickerWithIdentifier:buttonImage:"), identifier, image)
 	return rv
 }
@@ -128,8 +128,8 @@ func (c_ ColorPickerTouchBarItem) SetAllowedColorSpaces(value []ColorSpace) {
 // The list of colors displayed in the color picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorList
-func (c_ ColorPickerTouchBarItem) ColorList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorList"))
+func (c_ ColorPickerTouchBarItem) ColorList() NSColorList {
+	rv := objc.Send[NSColorList](c_.ID, objc.Sel("colorList"))
 	return rv
 }
 
@@ -139,7 +139,7 @@ func (c_ ColorPickerTouchBarItem) ColorList() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorList
-func (c_ ColorPickerTouchBarItem) SetColorList(value unsafe.Pointer) {
+func (c_ ColorPickerTouchBarItem) SetColorList(value IColorList) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColorList:"), value)
 }
 
@@ -182,8 +182,8 @@ func (c_ ColorPickerTouchBarItem) SetAction(value unsafe.Pointer) {
 // The picker’s currently selected color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/color
-func (c_ ColorPickerTouchBarItem) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("color"))
+func (c_ ColorPickerTouchBarItem) Color() Color {
+	rv := objc.Send[Color](c_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -193,7 +193,7 @@ func (c_ ColorPickerTouchBarItem) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/color
-func (c_ ColorPickerTouchBarItem) SetColor(value unsafe.Pointer) {
+func (c_ ColorPickerTouchBarItem) SetColor(value IColor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -119,8 +120,8 @@ func (a_ AdaptiveImageGlyph) SetContentIdentifier(value string) {
 // The raw data for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/imagecontent
-func (a_ AdaptiveImageGlyph) ImageContent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("imageContent"))
+func (a_ AdaptiveImageGlyph) ImageContent() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("imageContent"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (a_ AdaptiveImageGlyph) ImageContent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/imagecontent
-func (a_ AdaptiveImageGlyph) SetImageContent(value unsafe.Pointer) {
+func (a_ AdaptiveImageGlyph) SetImageContent(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setImageContent:"), value)
 }
 

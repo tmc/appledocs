@@ -103,8 +103,8 @@ func (d_ Drawer) SetContentSize(value coregraphics.CGSize) {
 // The receiver’s content view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentview
-func (d_ Drawer) ContentView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("contentView"))
+func (d_ Drawer) ContentView() NSView {
+	rv := objc.Send[NSView](d_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (d_ Drawer) ContentView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentview
-func (d_ Drawer) SetContentView(value unsafe.Pointer) {
+func (d_ Drawer) SetContentView(value IView) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContentView:"), value)
 }
 
@@ -211,8 +211,8 @@ func (d_ Drawer) SetMinContentSize(value coregraphics.CGSize) {
 // The receiver’s parent window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/parentwindow
-func (d_ Drawer) ParentWindow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("parentWindow"))
+func (d_ Drawer) ParentWindow() NSWindow {
+	rv := objc.Send[NSWindow](d_.ID, objc.Sel("parentWindow"))
 	return rv
 }
 
@@ -222,7 +222,7 @@ func (d_ Drawer) ParentWindow() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/parentwindow
-func (d_ Drawer) SetParentWindow(value unsafe.Pointer) {
+func (d_ Drawer) SetParentWindow(value IWindow) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setParentWindow:"), value)
 }
 

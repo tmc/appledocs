@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDFImageRep] class.
@@ -85,7 +86,7 @@ func NewPDFImageRep() PDFImageRep {
 // Returns a representation of an image initialized with the specified PDF data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/init(data:)
-func NewPDFImageRepWithData(pdfData unsafe.Pointer) PDFImageRep {
+func NewPDFImageRepWithData(pdfData foundation.IData) PDFImageRep {
 	instance := getPDFImageRepClass().Alloc()
 	rv := objc.Send[PDFImageRep](instance.ID, objc.Sel("initWithData:"), pdfData)
 	rv.Autorelease()
@@ -150,8 +151,8 @@ func (p_ PDFImageRep) SetPageCount(value int) {
 // The PDF representation of the representation’s image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfimagerep/pdfrepresentation
-func (p_ PDFImageRep) PdfRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pdfRepresentation"))
+func (p_ PDFImageRep) PdfRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("pdfRepresentation"))
 	return rv
 }
 
@@ -161,7 +162,7 @@ func (p_ PDFImageRep) PdfRepresentation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfimagerep/pdfrepresentation
-func (p_ PDFImageRep) SetPdfRepresentation(value unsafe.Pointer) {
+func (p_ PDFImageRep) SetPdfRepresentation(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPdfRepresentation:"), value)
 }
 

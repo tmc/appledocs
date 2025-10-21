@@ -31,7 +31,7 @@ type _RulerMarkerClass struct {
 // An interface definition for the [RulerMarker] class.
 type IRulerMarker interface {
 	objectivec.IObject
-	TrackMouseAdding(mouseDownEvent unsafe.Pointer, isAdding bool) bool
+	TrackMouseAdding(mouseDownEvent IEvent, isAdding bool) bool
 }
 
 // A symbol on a ruler view, indicating a location for the graphics element it represents in the client of the ruler view.
@@ -85,7 +85,7 @@ func NewRulerMarker() RulerMarker {
 // Handles user manipulation of the receiver in its ruler view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/trackMouse(with:adding:)
-func (r_ RulerMarker) TrackMouseAdding(mouseDownEvent unsafe.Pointer, isAdding bool) bool {
+func (r_ RulerMarker) TrackMouseAdding(mouseDownEvent IEvent, isAdding bool) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("trackMouse:adding:"), mouseDownEvent, isAdding)
 	return rv
 }
@@ -93,8 +93,8 @@ func (r_ RulerMarker) TrackMouseAdding(mouseDownEvent unsafe.Pointer, isAdding b
 // The receiver’s image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/image
-func (r_ RulerMarker) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("image"))
+func (r_ RulerMarker) Image() Image {
+	rv := objc.Send[Image](r_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -104,15 +104,15 @@ func (r_ RulerMarker) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/image
-func (r_ RulerMarker) SetImage(value unsafe.Pointer) {
+func (r_ RulerMarker) SetImage(value IImage) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setImage:"), value)
 }
 
 // The receiver’s ruler view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/ruler
-func (r_ RulerMarker) Ruler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("ruler"))
+func (r_ RulerMarker) Ruler() NSRulerView {
+	rv := objc.Send[NSRulerView](r_.ID, objc.Sel("ruler"))
 	return rv
 }
 

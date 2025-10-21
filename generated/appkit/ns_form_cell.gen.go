@@ -83,7 +83,7 @@ func NewFormCell() FormCell {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFormCell/init(coder:)
-func NewFormCellWithCoder(coder unsafe.Pointer) FormCell {
+func NewFormCellWithCoder(coder ICoder) FormCell {
 	instance := getFormCellClass().Alloc()
 	rv := objc.Send[FormCell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -102,8 +102,8 @@ func (f_ FormCell) Opaque() bool {
 // The title of the cell as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/attributedtitle
-func (f_ FormCell) AttributedTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributedTitle"))
+func (f_ FormCell) AttributedTitle() AttributedString {
+	rv := objc.Send[AttributedString](f_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (f_ FormCell) AttributedTitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/attributedtitle
-func (f_ FormCell) SetAttributedTitle(value unsafe.Pointer) {
+func (f_ FormCell) SetAttributedTitle(value IAttributedString) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 
@@ -138,8 +138,8 @@ func (f_ FormCell) SetIsOpaque(value bool) {
 // The cell’s attributed placeholder string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/placeholderattributedstring
-func (f_ FormCell) PlaceholderAttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("placeholderAttributedString"))
+func (f_ FormCell) PlaceholderAttributedString() AttributedString {
+	rv := objc.Send[AttributedString](f_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (f_ FormCell) PlaceholderAttributedString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/placeholderattributedstring
-func (f_ FormCell) SetPlaceholderAttributedString(value unsafe.Pointer) {
+func (f_ FormCell) SetPlaceholderAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
 
@@ -210,8 +210,8 @@ func (f_ FormCell) SetTitle(value string) {
 // The alignment of the title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlealignment
-func (f_ FormCell) TitleAlignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("titleAlignment"))
+func (f_ FormCell) TitleAlignment() TextAlignment {
+	rv := objc.Send[TextAlignment](f_.ID, objc.Sel("titleAlignment"))
 	return rv
 }
 
@@ -221,15 +221,15 @@ func (f_ FormCell) TitleAlignment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlealignment
-func (f_ FormCell) SetTitleAlignment(value unsafe.Pointer) {
+func (f_ FormCell) SetTitleAlignment(value TextAlignment) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTitleAlignment:"), value)
 }
 
 // The default writing direction used to render the form cell’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlebasewritingdirection
-func (f_ FormCell) TitleBaseWritingDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("titleBaseWritingDirection"))
+func (f_ FormCell) TitleBaseWritingDirection() WritingDirection {
+	rv := objc.Send[WritingDirection](f_.ID, objc.Sel("titleBaseWritingDirection"))
 	return rv
 }
 
@@ -239,15 +239,15 @@ func (f_ FormCell) TitleBaseWritingDirection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlebasewritingdirection
-func (f_ FormCell) SetTitleBaseWritingDirection(value unsafe.Pointer) {
+func (f_ FormCell) SetTitleBaseWritingDirection(value WritingDirection) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTitleBaseWritingDirection:"), value)
 }
 
 // The font used to draw cell’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlefont
-func (f_ FormCell) TitleFont() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("titleFont"))
+func (f_ FormCell) TitleFont() NSFont {
+	rv := objc.Send[NSFont](f_.ID, objc.Sel("titleFont"))
 	return rv
 }
 
@@ -257,7 +257,7 @@ func (f_ FormCell) TitleFont() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlefont
-func (f_ FormCell) SetTitleFont(value unsafe.Pointer) {
+func (f_ FormCell) SetTitleFont(value IFont) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTitleFont:"), value)
 }
 

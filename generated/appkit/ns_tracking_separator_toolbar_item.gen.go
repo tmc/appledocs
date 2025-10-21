@@ -84,8 +84,8 @@ func NewTrackingSeparatorToolbarItem() TrackingSeparatorToolbarItem {
 // The vertical split view to align with the toolbar separator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/splitView
-func (t_ TrackingSeparatorToolbarItem) SplitView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("splitView"))
+func (t_ TrackingSeparatorToolbarItem) SplitView() NSSplitView {
+	rv := objc.Send[NSSplitView](t_.ID, objc.Sel("splitView"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (t_ TrackingSeparatorToolbarItem) SplitView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/splitView
-func (t_ TrackingSeparatorToolbarItem) SetSplitView(value unsafe.Pointer) {
+func (t_ TrackingSeparatorToolbarItem) SetSplitView(value ISplitView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSplitView:"), value)
 }
 

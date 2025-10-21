@@ -102,8 +102,8 @@ func (b_ BackgroundExtensionView) SetAutomaticallyPlacesContentView(value bool) 
 // The content view to extend to fill the .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/contentView
-func (b_ BackgroundExtensionView) ContentView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("contentView"))
+func (b_ BackgroundExtensionView) ContentView() NSView {
+	rv := objc.Send[NSView](b_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (b_ BackgroundExtensionView) ContentView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/contentView
-func (b_ BackgroundExtensionView) SetContentView(value unsafe.Pointer) {
+func (b_ BackgroundExtensionView) SetContentView(value IView) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setContentView:"), value)
 }
 

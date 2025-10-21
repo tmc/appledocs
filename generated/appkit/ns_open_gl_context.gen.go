@@ -31,7 +31,7 @@ type _OpenGLContextClass struct {
 type IOpenGLContext interface {
 	objectivec.IObject
 	ClearDrawable()
-	CopyAttributesFromContextWithMask(context unsafe.Pointer, mask unsafe.Pointer)
+	CopyAttributesFromContextWithMask(context IOpenGLContext, mask unsafe.Pointer)
 }
 
 // An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered.
@@ -92,7 +92,7 @@ func (o_ OpenGLContext) ClearDrawable() {
 // Copies selected groups of state variables to the OpenGL context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/copyAttributesFromContext:withMask:
-func (o_ OpenGLContext) CopyAttributesFromContextWithMask(context unsafe.Pointer, mask unsafe.Pointer) {
+func (o_ OpenGLContext) CopyAttributesFromContextWithMask(context IOpenGLContext, mask unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("copyAttributesFromContext:withMask:"), context, mask)
 }
 
@@ -125,8 +125,8 @@ func (o_ OpenGLContext) SetCurrentVirtualScreen(value unsafe.Pointer) {
 // The pixel format of the OpenGL context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/pixelformat
-func (o_ OpenGLContext) PixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("pixelFormat"))
+func (o_ OpenGLContext) PixelFormat() NSOpenGLPixelFormat {
+	rv := objc.Send[NSOpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
 	return rv
 }
 
@@ -136,15 +136,15 @@ func (o_ OpenGLContext) PixelFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/pixelformat
-func (o_ OpenGLContext) SetPixelFormat(value unsafe.Pointer) {
+func (o_ OpenGLContext) SetPixelFormat(value NSOpenGLPixelFormat) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPixelFormat:"), value)
 }
 
 // Returns the OpenGL context’s view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/view
-func (o_ OpenGLContext) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("view"))
+func (o_ OpenGLContext) View() NSView {
+	rv := objc.Send[NSView](o_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (o_ OpenGLContext) View() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/view
-func (o_ OpenGLContext) SetView(value unsafe.Pointer) {
+func (o_ OpenGLContext) SetView(value IView) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setView:"), value)
 }
 

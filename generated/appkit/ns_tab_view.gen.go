@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [TabView] class.
@@ -30,21 +31,21 @@ type _TabViewClass struct {
 // An interface definition for the [TabView] class.
 type ITabView interface {
 	IView
-	AddTabViewItem(tabViewItem unsafe.Pointer)
-	IndexOfTabViewItem(tabViewItem unsafe.Pointer) int
-	IndexOfTabViewItemWithIdentifier(identifier objc.ID) int
-	InsertTabViewItemAtIndex(tabViewItem unsafe.Pointer, index int)
-	RemoveTabViewItem(tabViewItem unsafe.Pointer)
-	SelectFirstTabViewItem(sender objc.ID)
-	SelectLastTabViewItem(sender objc.ID)
-	SelectNextTabViewItem(sender objc.ID)
-	SelectPreviousTabViewItem(sender objc.ID)
-	SelectTabViewItem(tabViewItem unsafe.Pointer)
+	AddTabViewItem(tabViewItem ITabViewItem)
+	IndexOfTabViewItem(tabViewItem ITabViewItem) int
+	IndexOfTabViewItemWithIdentifier(identifier objectivec.IObject) int
+	InsertTabViewItemAtIndex(tabViewItem ITabViewItem, index int)
+	RemoveTabViewItem(tabViewItem ITabViewItem)
+	SelectFirstTabViewItem(sender objectivec.IObject)
+	SelectLastTabViewItem(sender objectivec.IObject)
+	SelectNextTabViewItem(sender objectivec.IObject)
+	SelectPreviousTabViewItem(sender objectivec.IObject)
+	SelectTabViewItem(tabViewItem ITabViewItem)
 	SelectTabViewItemAtIndex(index int)
-	SelectTabViewItemWithIdentifier(identifier objc.ID)
-	TabViewItemAtIndex(index int) unsafe.Pointer
-	TabViewItemAtPoint(point coregraphics.CGPoint) unsafe.Pointer
-	TakeSelectedTabViewItemFromSender(sender objc.ID)
+	SelectTabViewItemWithIdentifier(identifier objectivec.IObject)
+	TabViewItemAtIndex(index int) TabViewItem
+	TabViewItemAtPoint(point coregraphics.CGPoint) TabViewItem
+	TakeSelectedTabViewItemFromSender(sender objectivec.IObject)
 }
 
 // A multipage interface that displays one page at a time.
@@ -100,14 +101,14 @@ func NewTabView() TabView {
 // Adds the specified tab item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/addTabViewItem(_:)
-func (t_ TabView) AddTabViewItem(tabViewItem unsafe.Pointer) {
+func (t_ TabView) AddTabViewItem(tabViewItem ITabViewItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("addTabViewItem:"), tabViewItem)
 }
 
 // Returns the index of the specified item in the tab view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/indexOfTabViewItem(_:)
-func (t_ TabView) IndexOfTabViewItem(tabViewItem unsafe.Pointer) int {
+func (t_ TabView) IndexOfTabViewItem(tabViewItem ITabViewItem) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("indexOfTabViewItem:"), tabViewItem)
 	return rv
 }
@@ -115,7 +116,7 @@ func (t_ TabView) IndexOfTabViewItem(tabViewItem unsafe.Pointer) int {
 // Returns the index of the item that matches the specified identifier or if the item is not found.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/indexOfTabViewItem(withIdentifier:)
-func (t_ TabView) IndexOfTabViewItemWithIdentifier(identifier objc.ID) int {
+func (t_ TabView) IndexOfTabViewItemWithIdentifier(identifier objectivec.IObject) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("indexOfTabViewItemWithIdentifier:"), identifier)
 	return rv
 }
@@ -123,49 +124,49 @@ func (t_ TabView) IndexOfTabViewItemWithIdentifier(identifier objc.ID) int {
 // Inserts the specified item into the tab view’s array of tab view items at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/insertTabViewItem(_:at:)
-func (t_ TabView) InsertTabViewItemAtIndex(tabViewItem unsafe.Pointer, index int) {
+func (t_ TabView) InsertTabViewItemAtIndex(tabViewItem ITabViewItem, index int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("insertTabViewItem:atIndex:"), tabViewItem, index)
 }
 
 // Removes the specified item from the tab view’s array of tab view items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/removeTabViewItem(_:)
-func (t_ TabView) RemoveTabViewItem(tabViewItem unsafe.Pointer) {
+func (t_ TabView) RemoveTabViewItem(tabViewItem ITabViewItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeTabViewItem:"), tabViewItem)
 }
 
 // This action method selects the first tab view item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/selectFirstTabViewItem(_:)
-func (t_ TabView) SelectFirstTabViewItem(sender objc.ID) {
+func (t_ TabView) SelectFirstTabViewItem(sender objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("selectFirstTabViewItem:"), sender)
 }
 
 // This action method selects the last tab view item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/selectLastTabViewItem(_:)
-func (t_ TabView) SelectLastTabViewItem(sender objc.ID) {
+func (t_ TabView) SelectLastTabViewItem(sender objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("selectLastTabViewItem:"), sender)
 }
 
 // This action method selects the next tab view item in the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/selectNextTabViewItem(_:)
-func (t_ TabView) SelectNextTabViewItem(sender objc.ID) {
+func (t_ TabView) SelectNextTabViewItem(sender objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("selectNextTabViewItem:"), sender)
 }
 
 // This action method selects the previous tab view item in the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/selectPreviousTabViewItem(_:)
-func (t_ TabView) SelectPreviousTabViewItem(sender objc.ID) {
+func (t_ TabView) SelectPreviousTabViewItem(sender objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("selectPreviousTabViewItem:"), sender)
 }
 
 // Selects the specified tab view item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/selectTabViewItem(_:)
-func (t_ TabView) SelectTabViewItem(tabViewItem unsafe.Pointer) {
+func (t_ TabView) SelectTabViewItem(tabViewItem ITabViewItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("selectTabViewItem:"), tabViewItem)
 }
 
@@ -179,30 +180,30 @@ func (t_ TabView) SelectTabViewItemAtIndex(index int) {
 // Selects the tab view item specified by .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/selectTabViewItem(withIdentifier:)
-func (t_ TabView) SelectTabViewItemWithIdentifier(identifier objc.ID) {
+func (t_ TabView) SelectTabViewItemWithIdentifier(identifier objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("selectTabViewItemWithIdentifier:"), identifier)
 }
 
 // Returns the tab view item at in the tab view’s array of items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabViewItem(at:)-7r3at
-func (t_ TabView) TabViewItemAtIndex(index int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabViewItemAtIndex:"), index)
+func (t_ TabView) TabViewItemAtIndex(index int) TabViewItem {
+	rv := objc.Send[TabViewItem](t_.ID, objc.Sel("tabViewItemAtIndex:"), index)
 	return rv
 }
 
 // Returns the tab view item at the specified point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabViewItem(at:)-8gnqw
-func (t_ TabView) TabViewItemAtPoint(point coregraphics.CGPoint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabViewItemAtPoint:"), point)
+func (t_ TabView) TabViewItemAtPoint(point coregraphics.CGPoint) TabViewItem {
+	rv := objc.Send[TabViewItem](t_.ID, objc.Sel("tabViewItemAtPoint:"), point)
 	return rv
 }
 
 // Sets the selected tab view item to the selected item obtained from the sender.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/takeSelectedTabViewItemFromSender(_:)
-func (t_ TabView) TakeSelectedTabViewItemFromSender(sender objc.ID) {
+func (t_ TabView) TakeSelectedTabViewItemFromSender(sender objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("takeSelectedTabViewItemFromSender:"), sender)
 }
 
@@ -235,8 +236,8 @@ func (t_ TabView) ContentRect() coregraphics.CGRect {
 // The size of the tab view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/controlSize
-func (t_ TabView) ControlSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("controlSize"))
+func (t_ TabView) ControlSize() ControlSize {
+	rv := objc.Send[ControlSize](t_.ID, objc.Sel("controlSize"))
 	return rv
 }
 
@@ -246,15 +247,15 @@ func (t_ TabView) ControlSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/controlSize
-func (t_ TabView) SetControlSize(value unsafe.Pointer) {
+func (t_ TabView) SetControlSize(value IControlSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setControlSize:"), value)
 }
 
 // The tab view’s control tint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/controlTint
-func (t_ TabView) ControlTint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("controlTint"))
+func (t_ TabView) ControlTint() ControlTint {
+	rv := objc.Send[ControlTint](t_.ID, objc.Sel("controlTint"))
 	return rv
 }
 
@@ -264,7 +265,7 @@ func (t_ TabView) ControlTint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/controlTint
-func (t_ TabView) SetControlTint(value unsafe.Pointer) {
+func (t_ TabView) SetControlTint(value IControlTint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setControlTint:"), value)
 }
 
@@ -307,8 +308,8 @@ func (t_ TabView) SetDrawsBackground(value bool) {
 // The font used for the tab view’s label text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/font
-func (t_ TabView) Font() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("font"))
+func (t_ TabView) Font() NSFont {
+	rv := objc.Send[NSFont](t_.ID, objc.Sel("font"))
 	return rv
 }
 
@@ -318,7 +319,7 @@ func (t_ TabView) Font() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/font
-func (t_ TabView) SetFont(value unsafe.Pointer) {
+func (t_ TabView) SetFont(value IFont) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFont:"), value)
 }
 
@@ -341,15 +342,15 @@ func (t_ TabView) NumberOfTabViewItems() int {
 // The tab view item for the currently selected tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/selectedTabViewItem
-func (t_ TabView) SelectedTabViewItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedTabViewItem"))
+func (t_ TabView) SelectedTabViewItem() NSTabViewItem {
+	rv := objc.Send[NSTabViewItem](t_.ID, objc.Sel("selectedTabViewItem"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabPosition-swift.property
-func (t_ TabView) TabPosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabPosition"))
+func (t_ TabView) TabPosition() TabPosition {
+	rv := objc.Send[TabPosition](t_.ID, objc.Sel("tabPosition"))
 	return rv
 }
 
@@ -357,14 +358,14 @@ func (t_ TabView) TabPosition() unsafe.Pointer {
 // SetTabPosition sets the value of the tabPosition property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabPosition-swift.property
-func (t_ TabView) SetTabPosition(value unsafe.Pointer) {
+func (t_ TabView) SetTabPosition(value TabPosition) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTabPosition:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabViewBorderType-swift.property
-func (t_ TabView) TabViewBorderType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabViewBorderType"))
+func (t_ TabView) TabViewBorderType() TabViewBorderType {
+	rv := objc.Send[TabViewBorderType](t_.ID, objc.Sel("tabViewBorderType"))
 	return rv
 }
 
@@ -372,7 +373,7 @@ func (t_ TabView) TabViewBorderType() unsafe.Pointer {
 // SetTabViewBorderType sets the value of the tabViewBorderType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabViewBorderType-swift.property
-func (t_ TabView) SetTabViewBorderType(value unsafe.Pointer) {
+func (t_ TabView) SetTabViewBorderType(value TabViewBorderType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTabViewBorderType:"), value)
 }
 
@@ -407,8 +408,8 @@ func (t_ TabView) SetTabViewItems(value []TabViewItem) {
 // The tab type to display the tabs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabViewType
-func (t_ TabView) TabViewType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabViewType"))
+func (t_ TabView) TabViewType() TabViewType {
+	rv := objc.Send[TabViewType](t_.ID, objc.Sel("tabViewType"))
 	return rv
 }
 
@@ -418,7 +419,7 @@ func (t_ TabView) TabViewType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabViewType
-func (t_ TabView) SetTabViewType(value unsafe.Pointer) {
+func (t_ TabView) SetTabViewType(value TabViewType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTabViewType:"), value)
 }
 

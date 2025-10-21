@@ -84,16 +84,16 @@ func NewFont() Font {
 // Returns the font used for menu bar items, in the specified size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/menuBarFont(ofSize:)
-func (fc _FontClass) MenuBarFontOfSize(fontSize float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("menuBarFontOfSize:"), fontSize)
+func (fc _FontClass) MenuBarFontOfSize(fontSize float64) Font {
+	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("menuBarFontOfSize:"), fontSize)
 	return rv
 }
 
 // Returns the standard system font with the specified size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/systemFont(ofSize:)
-func (fc _FontClass) SystemFontOfSize(fontSize float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("systemFontOfSize:"), fontSize)
+func (fc _FontClass) SystemFontOfSize(fontSize float64) Font {
+	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("systemFontOfSize:"), fontSize)
 	return rv
 }
 
@@ -115,8 +115,8 @@ func (f_ Font) CoveredCharacterSet() unsafe.Pointer {
 // The scalable PostScript font corresponding to current font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/printer
-func (f_ Font) PrinterFont() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("printerFont"))
+func (f_ Font) PrinterFont() NSFont {
+	rv := objc.Send[NSFont](f_.ID, objc.Sel("printerFont"))
 	return rv
 }
 
@@ -177,8 +177,8 @@ func (f_ Font) SetFamilyName(value string) {
 // The font descriptor object for the font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/fontdescriptor
-func (f_ Font) FontDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fontDescriptor"))
+func (f_ Font) FontDescriptor() NSFontDescriptor {
+	rv := objc.Send[NSFontDescriptor](f_.ID, objc.Sel("fontDescriptor"))
 	return rv
 }
 
@@ -188,7 +188,7 @@ func (f_ Font) FontDescriptor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/fontdescriptor
-func (f_ Font) SetFontDescriptor(value unsafe.Pointer) {
+func (f_ Font) SetFontDescriptor(value IFontDescriptor) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFontDescriptor:"), value)
 }
 
@@ -303,8 +303,8 @@ func (f_ Font) SetPointSize(value float64) {
 // The scalable PostScript font corresponding to current font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/printer
-func (f_ Font) Printer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("printer"))
+func (f_ Font) Printer() NSFont {
+	rv := objc.Send[NSFont](f_.ID, objc.Sel("printer"))
 	return rv
 }
 
@@ -314,15 +314,15 @@ func (f_ Font) Printer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/printer
-func (f_ Font) SetPrinter(value unsafe.Pointer) {
+func (f_ Font) SetPrinter(value IFont) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPrinter:"), value)
 }
 
 // The rendering mode of the font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/renderingmode
-func (f_ Font) RenderingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("renderingMode"))
+func (f_ Font) RenderingMode() FontRenderingMode {
+	rv := objc.Send[FontRenderingMode](f_.ID, objc.Sel("renderingMode"))
 	return rv
 }
 
@@ -332,15 +332,15 @@ func (f_ Font) RenderingMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/renderingmode
-func (f_ Font) SetRenderingMode(value unsafe.Pointer) {
+func (f_ Font) SetRenderingMode(value FontRenderingMode) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRenderingMode:"), value)
 }
 
 // The bitmapped screen font for the current font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/screen
-func (f_ Font) Screen() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("screen"))
+func (f_ Font) Screen() NSFont {
+	rv := objc.Send[NSFont](f_.ID, objc.Sel("screen"))
 	return rv
 }
 
@@ -350,15 +350,15 @@ func (f_ Font) Screen() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/screen
-func (f_ Font) SetScreen(value unsafe.Pointer) {
+func (f_ Font) SetScreen(value IFont) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setScreen:"), value)
 }
 
 // A vertical version of the font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/vertical-6ym79
-func (f_ Font) Vertical() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("vertical"))
+func (f_ Font) Vertical() NSFont {
+	rv := objc.Send[NSFont](f_.ID, objc.Sel("vertical"))
 	return rv
 }
 
@@ -368,7 +368,7 @@ func (f_ Font) Vertical() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/vertical-6ym79
-func (f_ Font) SetVertical(value unsafe.Pointer) {
+func (f_ Font) SetVertical(value IFont) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setVertical:"), value)
 }
 

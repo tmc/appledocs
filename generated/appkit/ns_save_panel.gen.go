@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
@@ -32,10 +33,10 @@ type _SavePanelClass struct {
 type ISavePanel interface {
 	IPanel
 	BeginWithCompletionHandler(handler unsafe.Pointer)
-	BeginSheetModalForWindowCompletionHandler(window unsafe.Pointer, handler unsafe.Pointer)
-	Cancel(sender objc.ID)
-	Ok(sender objc.ID)
-	RunModal() unsafe.Pointer
+	BeginSheetModalForWindowCompletionHandler(window IWindow, handler unsafe.Pointer)
+	Cancel(sender objectivec.IObject)
+	Ok(sender objectivec.IObject)
+	RunModal() ModalResponse
 	ValidateVisibleColumns()
 }
 
@@ -92,8 +93,8 @@ func NewSavePanel() SavePanel {
 // Creates a new Save panel and initializes it with default information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/savePanel
-func (sc _SavePanelClass) SavePanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("savePanel"))
+func (sc _SavePanelClass) SavePanel() SavePanel {
+	rv := objc.Send[SavePanel](objc.ID(sc.class), objc.Sel("savePanel"))
 	return rv
 }
 
@@ -107,29 +108,29 @@ func (s_ SavePanel) BeginWithCompletionHandler(handler unsafe.Pointer) {
 // Presents the panel as a sheet modal to the specified window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/beginSheetModal(for:completionHandler:)
-func (s_ SavePanel) BeginSheetModalForWindowCompletionHandler(window unsafe.Pointer, handler unsafe.Pointer) {
+func (s_ SavePanel) BeginSheetModalForWindowCompletionHandler(window IWindow, handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetModalForWindow:completionHandler:"), window, handler)
 }
 
 // The action method that the panel calls when the user clicks the Cancel button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/cancel(_:)
-func (s_ SavePanel) Cancel(sender objc.ID) {
+func (s_ SavePanel) Cancel(sender objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("cancel:"), sender)
 }
 
 // The action method that the panel calls when the user clicks the OK button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/ok(_:)
-func (s_ SavePanel) Ok(sender objc.ID) {
+func (s_ SavePanel) Ok(sender objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("ok:"), sender)
 }
 
 // Displays the panel and begins its event loop with the current working (or last-selected) directory as the default starting point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/runModal()
-func (s_ SavePanel) RunModal() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("runModal"))
+func (s_ SavePanel) RunModal() ModalResponse {
+	rv := objc.Send[ModalResponse](s_.ID, objc.Sel("runModal"))
 	return rv
 }
 
@@ -143,8 +144,8 @@ func (s_ SavePanel) ValidateVisibleColumns() {
 // The custom accessory view for the current app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/accessoryView
-func (s_ SavePanel) AccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("accessoryView"))
+func (s_ SavePanel) AccessoryView() NSView {
+	rv := objc.Send[NSView](s_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -154,7 +155,7 @@ func (s_ SavePanel) AccessoryView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/accessoryView
-func (s_ SavePanel) SetAccessoryView(value unsafe.Pointer) {
+func (s_ SavePanel) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAccessoryView:"), value)
 }
 
@@ -243,8 +244,8 @@ func (s_ SavePanel) SetCanSelectHiddenExtension(value bool) {
 // :The current type. If set to , resets to the first allowed content type. Returns if is empty. : Not used.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/currentContentType
-func (s_ SavePanel) CurrentContentType() uniformtypeidentifiers.UTType {
-	rv := objc.Send[uniformtypeidentifiers.UTType](s_.ID, objc.Sel("currentContentType"))
+func (s_ SavePanel) CurrentContentType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentContentType"))
 	return rv
 }
 
@@ -254,7 +255,7 @@ func (s_ SavePanel) CurrentContentType() uniformtypeidentifiers.UTType {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/currentContentType
-func (s_ SavePanel) SetCurrentContentType(value uniformtypeidentifiers.UTType) {
+func (s_ SavePanel) SetCurrentContentType(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentContentType:"), value)
 }
 
@@ -290,14 +291,14 @@ func (s_ SavePanel) DirectoryURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/directoryURL
-func (s_ SavePanel) SetDirectoryURL(value foundation.URL) {
+func (s_ SavePanel) SetDirectoryURL(value foundation.IURL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDirectoryURL:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/identifier
-func (s_ SavePanel) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("identifier"))
+func (s_ SavePanel) Identifier() UserInterfaceItemIdentifier {
+	rv := objc.Send[UserInterfaceItemIdentifier](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -305,7 +306,7 @@ func (s_ SavePanel) Identifier() unsafe.Pointer {
 // SetIdentifier sets the value of the identifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/identifier
-func (s_ SavePanel) SetIdentifier(value unsafe.Pointer) {
+func (s_ SavePanel) SetIdentifier(value IUserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
 }
 

@@ -84,16 +84,16 @@ func NewCollectionViewItem() CollectionViewItem {
 // The collection view that owns the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/collectionView
-func (c_ CollectionViewItem) CollectionView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("collectionView"))
+func (c_ CollectionViewItem) CollectionView() NSCollectionView {
+	rv := objc.Send[NSCollectionView](c_.ID, objc.Sel("collectionView"))
 	return rv
 }
 
 // A text field outlet that you can use to display a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/textField
-func (c_ CollectionViewItem) TextField() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("textField"))
+func (c_ CollectionViewItem) TextField() NSTextField {
+	rv := objc.Send[NSTextField](c_.ID, objc.Sel("textField"))
 	return rv
 }
 
@@ -103,15 +103,15 @@ func (c_ CollectionViewItem) TextField() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/textField
-func (c_ CollectionViewItem) SetTextField(value unsafe.Pointer) {
+func (c_ CollectionViewItem) SetTextField(value ITextField) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTextField:"), value)
 }
 
 // The receiver’s collection view item prototype.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/itemprototype
-func (c_ CollectionViewItem) ItemPrototype() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("itemPrototype"))
+func (c_ CollectionViewItem) ItemPrototype() NSCollectionViewItem {
+	rv := objc.Send[NSCollectionViewItem](c_.ID, objc.Sel("itemPrototype"))
 	return rv
 }
 
@@ -121,15 +121,15 @@ func (c_ CollectionViewItem) ItemPrototype() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/itemprototype
-func (c_ CollectionViewItem) SetItemPrototype(value unsafe.Pointer) {
+func (c_ CollectionViewItem) SetItemPrototype(value ICollectionViewItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setItemPrototype:"), value)
 }
 
 // Dragging images for multi-image drag and drop support.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/draggingimagecomponents
-func (c_ CollectionViewItem) DraggingImageComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("draggingImageComponents"))
+func (c_ CollectionViewItem) DraggingImageComponents() NSDraggingImageComponent {
+	rv := objc.Send[NSDraggingImageComponent](c_.ID, objc.Sel("draggingImageComponents"))
 	return rv
 }
 
@@ -139,7 +139,7 @@ func (c_ CollectionViewItem) DraggingImageComponents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/draggingimagecomponents
-func (c_ CollectionViewItem) SetDraggingImageComponents(value unsafe.Pointer) {
+func (c_ CollectionViewItem) SetDraggingImageComponents(value IDraggingImageComponent) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDraggingImageComponents:"), value)
 }
 
@@ -164,8 +164,8 @@ func (c_ CollectionViewItem) SetHighlightState(value unsafe.Pointer) {
 // An image view outlet that you can use to display images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/imageview
-func (c_ CollectionViewItem) ImageView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("imageView"))
+func (c_ CollectionViewItem) ImageView() NSImageView {
+	rv := objc.Send[NSImageView](c_.ID, objc.Sel("imageView"))
 	return rv
 }
 
@@ -175,7 +175,7 @@ func (c_ CollectionViewItem) ImageView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/imageview
-func (c_ CollectionViewItem) SetImageView(value unsafe.Pointer) {
+func (c_ CollectionViewItem) SetImageView(value IImageView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImageView:"), value)
 }
 
@@ -200,8 +200,8 @@ func (c_ CollectionViewItem) SetIsSelected(value bool) {
 // The view controller’s primary view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/view
-func (c_ CollectionViewItem) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("view"))
+func (c_ CollectionViewItem) View() NSView {
+	rv := objc.Send[NSView](c_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -211,7 +211,7 @@ func (c_ CollectionViewItem) View() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/view
-func (c_ CollectionViewItem) SetView(value unsafe.Pointer) {
+func (c_ CollectionViewItem) SetView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setView:"), value)
 }
 

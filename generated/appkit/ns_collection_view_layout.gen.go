@@ -84,8 +84,8 @@ func NewCollectionViewLayout() CollectionViewLayout {
 // The layout object used to organize the collection view’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout
-func (c_ CollectionViewLayout) CollectionViewLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("collectionViewLayout"))
+func (c_ CollectionViewLayout) CollectionViewLayout() NSCollectionViewLayout {
+	rv := objc.Send[NSCollectionViewLayout](c_.ID, objc.Sel("collectionViewLayout"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (c_ CollectionViewLayout) CollectionViewLayout() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout
-func (c_ CollectionViewLayout) SetCollectionViewLayout(value unsafe.Pointer) {
+func (c_ CollectionViewLayout) SetCollectionViewLayout(value ICollectionViewLayout) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionViewLayout:"), value)
 }
 
 // The collection view object currently using this layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionview
-func (c_ CollectionViewLayout) CollectionView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("collectionView"))
+func (c_ CollectionViewLayout) CollectionView() NSCollectionView {
+	rv := objc.Send[NSCollectionView](c_.ID, objc.Sel("collectionView"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (c_ CollectionViewLayout) CollectionView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionview
-func (c_ CollectionViewLayout) SetCollectionView(value unsafe.Pointer) {
+func (c_ CollectionViewLayout) SetCollectionView(value ICollectionView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionView:"), value)
 }
 

@@ -83,8 +83,8 @@ func NewWindowTab() WindowTab {
 // An optional accessory view for the tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
-func (w_ WindowTab) AccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("accessoryView"))
+func (w_ WindowTab) AccessoryView() NSView {
+	rv := objc.Send[NSView](w_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (w_ WindowTab) AccessoryView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
-func (w_ WindowTab) SetAccessoryView(value unsafe.Pointer) {
+func (w_ WindowTab) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessoryView:"), value)
 }
 
 // The title for the window tab, specified as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
-func (w_ WindowTab) AttributedTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("attributedTitle"))
+func (w_ WindowTab) AttributedTitle() AttributedString {
+	rv := objc.Send[AttributedString](w_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (w_ WindowTab) AttributedTitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
-func (w_ WindowTab) SetAttributedTitle(value unsafe.Pointer) {
+func (w_ WindowTab) SetAttributedTitle(value IAttributedString) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 
@@ -155,8 +155,8 @@ func (w_ WindowTab) SetToolTip(value string) {
 // An object that represents information about a window when it displays as a tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tab
-func (w_ WindowTab) Tab() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tab"))
+func (w_ WindowTab) Tab() NSWindowTab {
+	rv := objc.Send[NSWindowTab](w_.ID, objc.Sel("tab"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (w_ WindowTab) Tab() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tab
-func (w_ WindowTab) SetTab(value unsafe.Pointer) {
+func (w_ WindowTab) SetTab(value IWindowTab) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTab:"), value)
 }
 

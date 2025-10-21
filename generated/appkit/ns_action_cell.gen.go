@@ -138,8 +138,8 @@ func (a_ ActionCell) SetTarget(value objc.ID) {
 // The view associated with the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlview
-func (a_ ActionCell) ControlView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("controlView"))
+func (a_ ActionCell) ControlView() NSView {
+	rv := objc.Send[NSView](a_.ID, objc.Sel("controlView"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (a_ ActionCell) ControlView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlview
-func (a_ ActionCell) SetControlView(value unsafe.Pointer) {
+func (a_ ActionCell) SetControlView(value IView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setControlView:"), value)
 }
 

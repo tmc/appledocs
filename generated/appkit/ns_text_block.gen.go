@@ -83,8 +83,8 @@ func NewTextBlock() TextBlock {
 // The background color of the text block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/backgroundcolor
-func (t_ TextBlock) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+func (t_ TextBlock) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (t_ TextBlock) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/backgroundcolor
-func (t_ TextBlock) SetBackgroundColor(value unsafe.Pointer) {
+func (t_ TextBlock) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 

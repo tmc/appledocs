@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,6 +31,8 @@ type _TabViewItemClass struct {
 // An interface definition for the [TabViewItem] class.
 type ITabViewItem interface {
 	objectivec.IObject
+	DrawLabelInRect(shouldTruncateLabel bool, labelRect coregraphics.CGRect)
+	SizeOfLabel(computeMin bool) coregraphics.CGSize
 }
 
 // An item in a tab view.
@@ -80,11 +83,53 @@ func NewTabViewItem() TabViewItem {
 }
 
 
+
+
+// Performs default initialization for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/init(identifier:)
+func NewTabViewItemWithIdentifier(identifier objectivec.IObject) TabViewItem {
+	instance := getTabViewItemClass().Alloc()
+	rv := objc.Send[TabViewItem](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/init(viewController:)
+func NewTabViewItemWithViewController(viewController IViewController) TabViewItem {
+	rv := objc.Send[TabViewItem](objc.ID(getTabViewItemClass().class), objc.Sel("tabViewItemWithViewController:"), viewController)
+	return rv
+}
+
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/init(viewController:)
+func (tc _TabViewItemClass) TabViewItemWithViewController(viewController IViewController) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("tabViewItemWithViewController:"), viewController)
+	return rv
+}
+
+// Draws the receiver’s label in , which is the area between the curved end caps.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/drawLabel(_:in:)
+func (t_ TabViewItem) DrawLabelInRect(shouldTruncateLabel bool, labelRect coregraphics.CGRect) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("drawLabel:inRect:"), shouldTruncateLabel, labelRect)
+}
+
+// Calculates the size of the receiver’s label.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/sizeOfLabel(_:)
+func (t_ TabViewItem) SizeOfLabel(computeMin bool) coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("sizeOfLabel:"), computeMin)
+	return rv
+}
+
 // Sets the background color for content in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/color
-func (t_ TabViewItem) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("color"))
+func (t_ TabViewItem) Color() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -94,80 +139,64 @@ func (t_ TabViewItem) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/color
-func (t_ TabViewItem) SetColor(value unsafe.Pointer) {
+func (t_ TabViewItem) SetColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
 }
 
-// Returns the current display state of the tab associated with the receiver.
+// Sets the receiver’s optional identifier object to .
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/tabState
-func (t_ TabViewItem) TabState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabState"))
-	return rv
-}
-
-// Returns the parent tab view for the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/tabView
-func (t_ TabViewItem) TabView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabView"))
-	return rv
-}
-
-// Sets the receiver’s optional identifier object to
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/identifier
-func (t_ TabViewItem) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identifier"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/identifier
+func (t_ TabViewItem) Identifier() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
 // SetIdentifier sets the value of the identifier property.
-// Sets the receiver’s optional identifier object to
+// Sets the receiver’s optional identifier object to .
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/identifier
-func (t_ TabViewItem) SetIdentifier(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/identifier
+func (t_ TabViewItem) SetIdentifier(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/image
-func (t_ TabViewItem) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("image"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/image
+func (t_ TabViewItem) Image() Image {
+	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
 	return rv
 }
 
 
 // SetImage sets the value of the image property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/image
-func (t_ TabViewItem) SetImage(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/image
+func (t_ TabViewItem) SetImage(value IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
 }
 
-// Sets the initial first responder for the view associated with the receiver (the view that is displayed when a user clicks on the tab) to
+// Sets the initial first responder for the view associated with the receiver (the view that is displayed when a user clicks on the tab) to .
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/initialfirstresponder
-func (t_ TabViewItem) InitialFirstResponder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("initialFirstResponder"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/initialFirstResponder
+func (t_ TabViewItem) InitialFirstResponder() NSView {
+	rv := objc.Send[NSView](t_.ID, objc.Sel("initialFirstResponder"))
 	return rv
 }
 
 
 // SetInitialFirstResponder sets the value of the initialFirstResponder property.
-// Sets the initial first responder for the view associated with the receiver (the view that is displayed when a user clicks on the tab) to
+// Sets the initial first responder for the view associated with the receiver (the view that is displayed when a user clicks on the tab) to .
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/initialfirstresponder
-func (t_ TabViewItem) SetInitialFirstResponder(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/initialFirstResponder
+func (t_ TabViewItem) SetInitialFirstResponder(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInitialFirstResponder:"), value)
 }
 
-// Sets the label text for the receiver to
+// Sets the label text for the receiver to .
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/label
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/label
 func (t_ TabViewItem) Label() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("label"))
 	return rv
@@ -175,17 +204,33 @@ func (t_ TabViewItem) Label() string {
 
 
 // SetLabel sets the value of the label property.
-// Sets the label text for the receiver to
+// Sets the label text for the receiver to .
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/label
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/label
 func (t_ TabViewItem) SetLabel(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
+// Returns the current display state of the tab associated with the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/tabState
+func (t_ TabViewItem) TabState() TabState {
+	rv := objc.Send[TabState](t_.ID, objc.Sel("tabState"))
+	return rv
+}
+
+// Returns the parent tab view for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/tabView
+func (t_ TabViewItem) TabView() NSTabView {
+	rv := objc.Send[NSTabView](t_.ID, objc.Sel("tabView"))
+	return rv
+}
+
 // Sets the tooltip displayed for the tab view item.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/tooltip
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/toolTip
 func (t_ TabViewItem) ToolTip() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("toolTip"))
 	return rv
@@ -196,43 +241,42 @@ func (t_ TabViewItem) ToolTip() string {
 // Sets the tooltip displayed for the tab view item.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/tooltip
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/toolTip
 func (t_ TabViewItem) SetToolTip(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
 
-// Sets the view associated with the receiver to
+// Sets the view associated with the receiver to .
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/view
-func (t_ TabViewItem) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("view"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/view
+func (t_ TabViewItem) View() NSView {
+	rv := objc.Send[NSView](t_.ID, objc.Sel("view"))
 	return rv
 }
 
 
 // SetView sets the value of the view property.
-// Sets the view associated with the receiver to
+// Sets the view associated with the receiver to .
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/view
-func (t_ TabViewItem) SetView(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/view
+func (t_ TabViewItem) SetView(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setView:"), value)
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/viewcontroller
-func (t_ TabViewItem) ViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("viewController"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/viewController
+func (t_ TabViewItem) ViewController() NSViewController {
+	rv := objc.Send[NSViewController](t_.ID, objc.Sel("viewController"))
 	return rv
 }
 
 
 // SetViewController sets the value of the viewController property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewitem/viewcontroller
-func (t_ TabViewItem) SetViewController(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/viewController
+func (t_ TabViewItem) SetViewController(value IViewController) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setViewController:"), value)
 }
-
 
 

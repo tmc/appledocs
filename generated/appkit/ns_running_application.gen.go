@@ -131,7 +131,7 @@ func (r_ RunningApplication) BundleURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/bundleurl
-func (r_ RunningApplication) SetBundleURL(value foundation.URL) {
+func (r_ RunningApplication) SetBundleURL(value foundation.IURL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBundleURL:"), value)
 }
 
@@ -167,15 +167,15 @@ func (r_ RunningApplication) ExecutableURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/executableurl
-func (r_ RunningApplication) SetExecutableURL(value foundation.URL) {
+func (r_ RunningApplication) SetExecutableURL(value foundation.IURL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setExecutableURL:"), value)
 }
 
 // Returns the icon for the receiver’s application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/icon
-func (r_ RunningApplication) Icon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("icon"))
+func (r_ RunningApplication) Icon() Image {
+	rv := objc.Send[Image](r_.ID, objc.Sel("icon"))
 	return rv
 }
 
@@ -185,7 +185,7 @@ func (r_ RunningApplication) Icon() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/icon
-func (r_ RunningApplication) SetIcon(value unsafe.Pointer) {
+func (r_ RunningApplication) SetIcon(value IImage) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIcon:"), value)
 }
 
@@ -264,8 +264,8 @@ func (r_ RunningApplication) SetIsTerminated(value bool) {
 // Indicates the date when the application was launched.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/launchdate
-func (r_ RunningApplication) LaunchDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("launchDate"))
+func (r_ RunningApplication) LaunchDate() foundation.Date {
+	rv := objc.Send[foundation.Date](r_.ID, objc.Sel("launchDate"))
 	return rv
 }
 
@@ -275,7 +275,7 @@ func (r_ RunningApplication) LaunchDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/launchdate
-func (r_ RunningApplication) SetLaunchDate(value unsafe.Pointer) {
+func (r_ RunningApplication) SetLaunchDate(value foundation.IDate) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLaunchDate:"), value)
 }
 
@@ -336,8 +336,8 @@ func (r_ RunningApplication) SetProcessIdentifier(value unsafe.Pointer) {
 // Returns an array of running apps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/runningapplications
-func (r_ RunningApplication) RunningApplications() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("runningApplications"))
+func (r_ RunningApplication) RunningApplications() NSRunningApplication {
+	rv := objc.Send[NSRunningApplication](r_.ID, objc.Sel("runningApplications"))
 	return rv
 }
 
@@ -347,7 +347,7 @@ func (r_ RunningApplication) RunningApplications() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/runningapplications
-func (r_ RunningApplication) SetRunningApplications(value unsafe.Pointer) {
+func (r_ RunningApplication) SetRunningApplications(value IRunningApplication) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRunningApplications:"), value)
 }
 

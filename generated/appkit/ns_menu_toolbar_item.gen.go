@@ -84,8 +84,8 @@ func NewMenuToolbarItem() MenuToolbarItem {
 // The menu presented from the toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/menu
-func (m_ MenuToolbarItem) Menu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("menu"))
+func (m_ MenuToolbarItem) Menu() NSMenu {
+	rv := objc.Send[NSMenu](m_.ID, objc.Sel("menu"))
 	return rv
 }
 
@@ -95,14 +95,14 @@ func (m_ MenuToolbarItem) Menu() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/menu
-func (m_ MenuToolbarItem) SetMenu(value unsafe.Pointer) {
+func (m_ MenuToolbarItem) SetMenu(value IMenu) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenu:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/itemmenu
-func (m_ MenuToolbarItem) ItemMenu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("itemMenu"))
+func (m_ MenuToolbarItem) ItemMenu() Menu {
+	rv := objc.Send[Menu](m_.ID, objc.Sel("itemMenu"))
 	return rv
 }
 
@@ -110,7 +110,7 @@ func (m_ MenuToolbarItem) ItemMenu() unsafe.Pointer {
 // SetItemMenu sets the value of the itemMenu property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/itemmenu
-func (m_ MenuToolbarItem) SetItemMenu(value unsafe.Pointer) {
+func (m_ MenuToolbarItem) SetItemMenu(value IMenu) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItemMenu:"), value)
 }
 

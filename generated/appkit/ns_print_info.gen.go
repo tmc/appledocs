@@ -291,8 +291,8 @@ func (p_ PrintInfo) SetLocalizedPaperName(value string) {
 // The orientation attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/orientation-swift.property
-func (p_ PrintInfo) Orientation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("orientation"))
+func (p_ PrintInfo) Orientation() PaperOrientation {
+	rv := objc.Send[PaperOrientation](p_.ID, objc.Sel("orientation"))
 	return rv
 }
 
@@ -302,7 +302,7 @@ func (p_ PrintInfo) Orientation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/orientation-swift.property
-func (p_ PrintInfo) SetOrientation(value unsafe.Pointer) {
+func (p_ PrintInfo) SetOrientation(value PaperOrientation) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
 }
 
@@ -345,8 +345,8 @@ func (p_ PrintInfo) SetPaperSize(value coregraphics.CGSize) {
 // A mutable dictionary containing the print settings from Core Printing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/printsettings
-func (p_ PrintInfo) PrintSettings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("printSettings"))
+func (p_ PrintInfo) PrintSettings() MutableDictionary {
+	rv := objc.Send[MutableDictionary](p_.ID, objc.Sel("printSettings"))
 	return rv
 }
 
@@ -356,15 +356,15 @@ func (p_ PrintInfo) PrintSettings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/printsettings
-func (p_ PrintInfo) SetPrintSettings(value unsafe.Pointer) {
+func (p_ PrintInfo) SetPrintSettings(value IMutableDictionary) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintSettings:"), value)
 }
 
 // The printer object to be used for printing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/printer
-func (p_ PrintInfo) Printer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("printer"))
+func (p_ PrintInfo) Printer() NSPrinter {
+	rv := objc.Send[NSPrinter](p_.ID, objc.Sel("printer"))
 	return rv
 }
 
@@ -374,7 +374,7 @@ func (p_ PrintInfo) Printer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/printer
-func (p_ PrintInfo) SetPrinter(value unsafe.Pointer) {
+func (p_ PrintInfo) SetPrinter(value IPrinter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrinter:"), value)
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Popover] class.
@@ -30,7 +31,7 @@ type _PopoverClass struct {
 // An interface definition for the [Popover] class.
 type IPopover interface {
 	IResponder
-	PerformClose(sender objc.ID)
+	PerformClose(sender objectivec.IObject)
 }
 
 // A means to display additional content related to existing content on the screen.
@@ -86,15 +87,15 @@ func NewPopover() Popover {
 // Attempts to close the popover.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/performClose(_:)
-func (p_ Popover) PerformClose(sender objc.ID) {
+func (p_ Popover) PerformClose(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("performClose:"), sender)
 }
 
 // Specifies the behavior of the popover.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/behavior-swift.property
-func (p_ Popover) Behavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("behavior"))
+func (p_ Popover) Behavior() PopoverBehavior {
+	rv := objc.Send[PopoverBehavior](p_.ID, objc.Sel("behavior"))
 	return rv
 }
 
@@ -104,15 +105,15 @@ func (p_ Popover) Behavior() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/behavior-swift.property
-func (p_ Popover) SetBehavior(value unsafe.Pointer) {
+func (p_ Popover) SetBehavior(value PopoverBehavior) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBehavior:"), value)
 }
 
 // The view controller that manages the content of the popover.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/contentViewController
-func (p_ Popover) ContentViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentViewController"))
+func (p_ Popover) ContentViewController() NSViewController {
+	rv := objc.Send[NSViewController](p_.ID, objc.Sel("contentViewController"))
 	return rv
 }
 
@@ -122,15 +123,15 @@ func (p_ Popover) ContentViewController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/contentViewController
-func (p_ Popover) SetContentViewController(value unsafe.Pointer) {
+func (p_ Popover) SetContentViewController(value IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentViewController:"), value)
 }
 
 // The appearance that will be used when the popover is displayed onscreen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/effectiveAppearance
-func (p_ Popover) EffectiveAppearance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("effectiveAppearance"))
+func (p_ Popover) EffectiveAppearance() NSAppearance {
+	rv := objc.Send[NSAppearance](p_.ID, objc.Sel("effectiveAppearance"))
 	return rv
 }
 
@@ -181,8 +182,8 @@ func (p_ Popover) SetAnimates(value bool) {
 // The appearance of the popover.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.property
-func (p_ Popover) Appearance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("appearance"))
+func (p_ Popover) Appearance() NSAppearance {
+	rv := objc.Send[NSAppearance](p_.ID, objc.Sel("appearance"))
 	return rv
 }
 
@@ -192,7 +193,7 @@ func (p_ Popover) Appearance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.property
-func (p_ Popover) SetAppearance(value unsafe.Pointer) {
+func (p_ Popover) SetAppearance(value IAppearance) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAppearance:"), value)
 }
 

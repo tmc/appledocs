@@ -10,7 +10,7 @@ import (
 )
 
 
-// AppKit Functions (63 total)
+// AppKit Functions (85 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -40,15 +40,28 @@ var (
 	_NSCountWindowsForContext func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSDisableScreenUpdates func() unsafe.Pointer
 	_NSDottedFrameRect func(coregraphics.CGRect) unsafe.Pointer
+	_NSDrawButton func(coregraphics.CGRect, coregraphics.CGRect) unsafe.Pointer
 	_NSDrawColorTiledRects func(coregraphics.CGRect, coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
 	_NSDrawDarkBezel func(coregraphics.CGRect, coregraphics.CGRect) unsafe.Pointer
+	_NSDrawGrayBezel func(coregraphics.CGRect, coregraphics.CGRect) unsafe.Pointer
+	_NSDrawGroove func(coregraphics.CGRect, coregraphics.CGRect) unsafe.Pointer
+	_NSDrawLightBezel func(coregraphics.CGRect, coregraphics.CGRect) unsafe.Pointer
 	_NSDrawNinePartImage func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
+	_NSDrawThreePartImage func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
 	_NSDrawTiledRects func(coregraphics.CGRect, coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
+	_NSDrawWhiteBezel func(coregraphics.CGRect, coregraphics.CGRect) unsafe.Pointer
+	_NSDrawWindowBackground func(coregraphics.CGRect) unsafe.Pointer
 	_NSEnableScreenUpdates func() unsafe.Pointer
+	_NSEraseRect func(coregraphics.CGRect) unsafe.Pointer
+	_NSSetFocusRingStyle func(unsafe.Pointer) unsafe.Pointer
+	_NSFrameRect func(coregraphics.CGRect) unsafe.Pointer
+	_NSFrameRectWithWidth func(coregraphics.CGRect, float64) unsafe.Pointer
+	_NSFrameRectWithWidthUsingOperation func(coregraphics.CGRect, float64, unsafe.Pointer) unsafe.Pointer
 	_NSGetAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSGetCriticalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSGetInformationalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSGetWindowServerMemory func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSHighlightRect func(coregraphics.CGRect) unsafe.Pointer
 	_NSInterfaceStyleForKey func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSIsControllerMarker func(unsafe.Pointer) unsafe.Pointer
 	_NSOpenGLGetOption func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -60,6 +73,15 @@ var (
 	_NSGetFileTypes func(unsafe.Pointer) unsafe.Pointer
 	_NSPerformService func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSReadPixel func(coregraphics.CGPoint) unsafe.Pointer
+	_NSRectClip func(coregraphics.CGRect) unsafe.Pointer
+	_NSRectClipList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRectFill func(coregraphics.CGRect) unsafe.Pointer
+	_NSRectFillList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRectFillListUsingOperation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRectFillListWithColors func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRectFillListWithColorsUsingOperation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRectFillListWithGrays func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRectFillUsingOperation func(coregraphics.CGRect, unsafe.Pointer) unsafe.Pointer
 	_NSRegisterServicesProvider func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSReleaseAlertPanel func(unsafe.Pointer) unsafe.Pointer
 	_NSRunAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -110,15 +132,28 @@ func init() {
 	tryRegister(&_NSCountWindowsForContext, lib, "NSCountWindowsForContext")
 	tryRegister(&_NSDisableScreenUpdates, lib, "NSDisableScreenUpdates")
 	tryRegister(&_NSDottedFrameRect, lib, "NSDottedFrameRect")
+	tryRegister(&_NSDrawButton, lib, "NSDrawButton")
 	tryRegister(&_NSDrawColorTiledRects, lib, "NSDrawColorTiledRects")
 	tryRegister(&_NSDrawDarkBezel, lib, "NSDrawDarkBezel")
+	tryRegister(&_NSDrawGrayBezel, lib, "NSDrawGrayBezel")
+	tryRegister(&_NSDrawGroove, lib, "NSDrawGroove")
+	tryRegister(&_NSDrawLightBezel, lib, "NSDrawLightBezel")
 	tryRegister(&_NSDrawNinePartImage, lib, "NSDrawNinePartImage")
+	tryRegister(&_NSDrawThreePartImage, lib, "NSDrawThreePartImage")
 	tryRegister(&_NSDrawTiledRects, lib, "NSDrawTiledRects")
+	tryRegister(&_NSDrawWhiteBezel, lib, "NSDrawWhiteBezel")
+	tryRegister(&_NSDrawWindowBackground, lib, "NSDrawWindowBackground")
 	tryRegister(&_NSEnableScreenUpdates, lib, "NSEnableScreenUpdates")
+	tryRegister(&_NSEraseRect, lib, "NSEraseRect")
+	tryRegister(&_NSSetFocusRingStyle, lib, "NSSetFocusRingStyle")
+	tryRegister(&_NSFrameRect, lib, "NSFrameRect")
+	tryRegister(&_NSFrameRectWithWidth, lib, "NSFrameRectWithWidth")
+	tryRegister(&_NSFrameRectWithWidthUsingOperation, lib, "NSFrameRectWithWidthUsingOperation")
 	tryRegister(&_NSGetAlertPanel, lib, "NSGetAlertPanel")
 	tryRegister(&_NSGetCriticalAlertPanel, lib, "NSGetCriticalAlertPanel")
 	tryRegister(&_NSGetInformationalAlertPanel, lib, "NSGetInformationalAlertPanel")
 	tryRegister(&_NSGetWindowServerMemory, lib, "NSGetWindowServerMemory")
+	tryRegister(&_NSHighlightRect, lib, "NSHighlightRect")
 	tryRegister(&_NSInterfaceStyleForKey, lib, "NSInterfaceStyleForKey")
 	tryRegister(&_NSIsControllerMarker, lib, "NSIsControllerMarker")
 	tryRegister(&_NSOpenGLGetOption, lib, "NSOpenGLGetOption")
@@ -130,6 +165,15 @@ func init() {
 	tryRegister(&_NSGetFileTypes, lib, "NSGetFileTypes")
 	tryRegister(&_NSPerformService, lib, "NSPerformService")
 	tryRegister(&_NSReadPixel, lib, "NSReadPixel")
+	tryRegister(&_NSRectClip, lib, "NSRectClip")
+	tryRegister(&_NSRectClipList, lib, "NSRectClipList")
+	tryRegister(&_NSRectFill, lib, "NSRectFill")
+	tryRegister(&_NSRectFillList, lib, "NSRectFillList")
+	tryRegister(&_NSRectFillListUsingOperation, lib, "NSRectFillListUsingOperation")
+	tryRegister(&_NSRectFillListWithColors, lib, "NSRectFillListWithColors")
+	tryRegister(&_NSRectFillListWithColorsUsingOperation, lib, "NSRectFillListWithColorsUsingOperation")
+	tryRegister(&_NSRectFillListWithGrays, lib, "NSRectFillListWithGrays")
+	tryRegister(&_NSRectFillUsingOperation, lib, "NSRectFillUsingOperation")
 	tryRegister(&_NSRegisterServicesProvider, lib, "NSRegisterServicesProvider")
 	tryRegister(&_NSReleaseAlertPanel, lib, "NSReleaseAlertPanel")
 	tryRegister(&_NSRunAlertPanel, lib, "NSRunAlertPanel")
@@ -399,6 +443,14 @@ func NSDottedFrameRect(rect coregraphics.CGRect) {
 	}
 
 
+// Draws a gray-filled rectangle representing a user-interface button. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawButton(_:_:)
+func NSDrawButton(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+	_NSDrawButton(rect, clipRect)
+	}
+
+
 // Draws a single-color, bordered rectangle. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawColorTiledRects(_:_:_:_:_:)
@@ -415,6 +467,30 @@ func NSDrawDarkBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
 	}
 
 
+// Draws a gray-filled rectangle with a bezel border. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawGrayBezel(_:_:)
+func NSDrawGrayBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+	_NSDrawGrayBezel(rect, clipRect)
+	}
+
+
+// Draws a gray-filled rectangle with a groove border. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawGroove(_:_:)
+func NSDrawGroove(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+	_NSDrawGroove(rect, clipRect)
+	}
+
+
+// Draws a white-filled rectangle with a bezel border. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawLightBezel(_:_:)
+func NSDrawLightBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+	_NSDrawLightBezel(rect, clipRect)
+	}
+
+
 // Draws a nine-part tiled image. [Full Topic]
 //
 // Added in macOS 10.5.
@@ -425,11 +501,37 @@ func NSDrawNinePartImage(frame coregraphics.CGRect, topLeftCorner unsafe.Pointer
 	}
 
 
+// Draws a three-part tiled image. [Full Topic]
+//
+// Added in macOS 10.5.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawThreePartImage(_:_:_:_:_:_:_:_:)
+func NSDrawThreePartImage(frame coregraphics.CGRect, startCap unsafe.Pointer, centerFill unsafe.Pointer, endCap unsafe.Pointer, vertical unsafe.Pointer, op unsafe.Pointer, alphaFraction float64, flipped unsafe.Pointer) {
+	_NSDrawThreePartImage(frame, startCap, centerFill, endCap, vertical, op, alphaFraction, flipped)
+	}
+
+
 // Draws rectangles with borders. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawTiledRects(_:_:_:_:_:)
 func NSDrawTiledRects(boundsRect coregraphics.CGRect, clipRect coregraphics.CGRect, sides unsafe.Pointer, grays unsafe.Pointer, count unsafe.Pointer) coregraphics.CGRect {
 	return _NSDrawTiledRects(boundsRect, clipRect, sides, grays, count)
+	}
+
+
+// Draws a white-filled rectangle with a bezel border. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawWhiteBezel(_:_:)
+func NSDrawWhiteBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+	_NSDrawWhiteBezel(rect, clipRect)
+	}
+
+
+// Draws the window’s default background pattern into the specified rectangle of the currently focused view. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawWindowBackground(_:)
+func NSDrawWindowBackground(rect coregraphics.CGRect) {
+	_NSDrawWindowBackground(rect)
 	}
 
 
@@ -442,6 +544,46 @@ func NSDrawTiledRects(boundsRect coregraphics.CGRect, clipRect coregraphics.CGRe
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEnableScreenUpdates()
 func NSEnableScreenUpdates() {
 	_NSEnableScreenUpdates()
+	}
+
+
+// Erases the specified rect by filling it with white. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEraseRect(_:)
+func NSEraseRect(rect coregraphics.CGRect) {
+	_NSEraseRect(rect)
+	}
+
+
+// Specifies how the system draws the focus ring. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFocusRingPlacement/set()
+func NSSetFocusRingStyle(placement unsafe.Pointer) {
+	_NSSetFocusRingStyle(placement)
+	}
+
+
+// Draws a bordered rectangle. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFrameRect
+func NSFrameRect(rect coregraphics.CGRect) {
+	_NSFrameRect(rect)
+	}
+
+
+// Draws a bordered rectangle. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFrameRectWithWidth
+func NSFrameRectWithWidth(rect coregraphics.CGRect, frameWidth float64) {
+	_NSFrameRectWithWidth(rect, frameWidth)
+	}
+
+
+// Draws a bordered rectangle using the specified compositing operation. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFrameRectWithWidthUsingOperation
+func NSFrameRectWithWidthUsingOperation(rect coregraphics.CGRect, frameWidth float64, op unsafe.Pointer) {
+	_NSFrameRectWithWidthUsingOperation(rect, frameWidth, op)
 	}
 
 
@@ -490,6 +632,18 @@ func NSGetInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGetWindowServerMemory(_:_:_:_:)
 func NSGetWindowServerMemory(context unsafe.Pointer, virtualMemory unsafe.Pointer, windowBackingMemory unsafe.Pointer, windowDumpString unsafe.Pointer) unsafe.Pointer {
 	return _NSGetWindowServerMemory(context, virtualMemory, windowBackingMemory, windowDumpString)
+	}
+
+
+// Highlights the specified rect by filling it with white. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.0.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHighlightRect
+func NSHighlightRect(rect coregraphics.CGRect) {
+	_NSHighlightRect(rect)
 	}
 
 
@@ -598,6 +752,78 @@ func NSPerformService(itemName unsafe.Pointer, pboard unsafe.Pointer) unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSReadPixel(_:)
 func NSReadPixel(passedPoint coregraphics.CGPoint) unsafe.Pointer {
 	return _NSReadPixel(passedPoint)
+	}
+
+
+// Modifies the current clipping path by intersecting it with the passed rect. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectClip
+func NSRectClip(rect coregraphics.CGRect) {
+	_NSRectClip(rect)
+	}
+
+
+// Modifies the current clipping path by intersecting it with the passed rect. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectClipList
+func NSRectClipList(rects unsafe.Pointer, count unsafe.Pointer) {
+	_NSRectClipList(rects, count)
+	}
+
+
+// Fills the passed rectangle with the current color. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFill
+func NSRectFill(rect coregraphics.CGRect) {
+	_NSRectFill(rect)
+	}
+
+
+// Fills the rectangles in the passed list with the current fill color. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillList
+func NSRectFillList(rects unsafe.Pointer, count unsafe.Pointer) {
+	_NSRectFillList(rects, count)
+	}
+
+
+// Fills the rectangles in a list using the current fill color and specified compositing operation. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillListUsingOperation
+func NSRectFillListUsingOperation(rects unsafe.Pointer, count unsafe.Pointer, op unsafe.Pointer) {
+	_NSRectFillListUsingOperation(rects, count, op)
+	}
+
+
+// Fills the rectangles in the passed list with the passed list of colors. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillListWithColors
+func NSRectFillListWithColors(rects unsafe.Pointer, colors unsafe.Pointer, num unsafe.Pointer) {
+	_NSRectFillListWithColors(rects, colors, num)
+	}
+
+
+// Fills the rectangles in a list using the specified colors and compositing operation. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillListWithColorsUsingOperation
+func NSRectFillListWithColorsUsingOperation(rects unsafe.Pointer, colors unsafe.Pointer, num unsafe.Pointer, op unsafe.Pointer) {
+	_NSRectFillListWithColorsUsingOperation(rects, colors, num, op)
+	}
+
+
+// Fills the rectangles in the passed list with the passed list of grays. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillListWithGrays
+func NSRectFillListWithGrays(rects unsafe.Pointer, grays unsafe.Pointer, num unsafe.Pointer) {
+	_NSRectFillListWithGrays(rects, grays, num)
+	}
+
+
+// Fills a rectangle using the current fill color and the specified compositing operation. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillUsingOperation
+func NSRectFillUsingOperation(rect coregraphics.CGRect, op unsafe.Pointer) {
+	_NSRectFillUsingOperation(rect, op)
 	}
 
 

@@ -30,7 +30,8 @@ type _NibConnectorClass struct {
 // An interface definition for the [NibConnector] class.
 type INibConnector interface {
 	objectivec.IObject
-	ReplaceObjectWithObject(oldObject objc.ID, newObject objc.ID)
+	EstablishConnection()
+	ReplaceObjectWithObject(oldObject objectivec.IObject, newObject objectivec.IObject)
 }
 
 // A connection between two nibs.
@@ -80,9 +81,45 @@ func NewNibConnector() NibConnector {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/establishConnection
+func (n_ NibConnector) EstablishConnection() {
+	objc.Send[objc.ID](n_.ID, objc.Sel("establishConnection"))
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/replaceObject:withObject:
-func (n_ NibConnector) ReplaceObjectWithObject(oldObject objc.ID, newObject objc.ID) {
+func (n_ NibConnector) ReplaceObjectWithObject(oldObject objectivec.IObject, newObject objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("replaceObject:withObject:"), oldObject, newObject)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/destination
+func (n_ NibConnector) Destination() objc.ID {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("destination"))
+	return rv
+}
+
+
+// SetDestination sets the value of the destination property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/destination
+func (n_ NibConnector) SetDestination(value objc.ID) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestination:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/label
+func (n_ NibConnector) Label() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/label
+func (n_ NibConnector) SetLabel(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

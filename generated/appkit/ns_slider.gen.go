@@ -31,7 +31,7 @@ type _SliderClass struct {
 type ISlider interface {
 	IControl
 	IndexOfTickMarkAtPoint(point coregraphics.CGPoint) int
-	SetTitleFont(fontObj unsafe.Pointer)
+	SetTitleFont(fontObj IFont)
 }
 
 // A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value.
@@ -95,7 +95,7 @@ func (s_ Slider) IndexOfTickMarkAtPoint(point coregraphics.CGPoint) int {
 // Sets the font used to draw the slider’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/setTitleFont:
-func (s_ Slider) SetTitleFont(fontObj unsafe.Pointer) {
+func (s_ Slider) SetTitleFont(fontObj IFont) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitleFont:"), fontObj)
 }
 
@@ -146,8 +146,8 @@ func (s_ Slider) SetMaxValue(value unsafe.Pointer) {
 // The color of the filled portion of the slider track, in appearances that support it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/trackFillColor
-func (s_ Slider) TrackFillColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("trackFillColor"))
+func (s_ Slider) TrackFillColor() NSColor {
+	rv := objc.Send[NSColor](s_.ID, objc.Sel("trackFillColor"))
 	return rv
 }
 
@@ -157,7 +157,7 @@ func (s_ Slider) TrackFillColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/trackFillColor
-func (s_ Slider) SetTrackFillColor(value unsafe.Pointer) {
+func (s_ Slider) SetTrackFillColor(value IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackFillColor:"), value)
 }
 
@@ -272,8 +272,8 @@ func (s_ Slider) SetNumberOfTickMarks(value int) {
 // The type of the slider, such as vertical or circular.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.property
-func (s_ Slider) SliderType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sliderType"))
+func (s_ Slider) SliderType() SliderType {
+	rv := objc.Send[SliderType](s_.ID, objc.Sel("sliderType"))
 	return rv
 }
 
@@ -283,7 +283,7 @@ func (s_ Slider) SliderType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.property
-func (s_ Slider) SetSliderType(value unsafe.Pointer) {
+func (s_ Slider) SetSliderType(value SliderType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSliderType:"), value)
 }
 
@@ -308,8 +308,8 @@ func (s_ Slider) SetTickMarkPosition(value unsafe.Pointer) {
 // The tint prominence of the slider. The automatic behavior for a regular slider tints its track fill, while a slider with tick marks is untinted. Setting the tint prominence will override this default behavior and choose an explicit track fill tint behavior. See
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tintprominence
-func (s_ Slider) TintProminence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("tintProminence"))
+func (s_ Slider) TintProminence() TintProminence {
+	rv := objc.Send[TintProminence](s_.ID, objc.Sel("tintProminence"))
 	return rv
 }
 
@@ -319,7 +319,7 @@ func (s_ Slider) TintProminence() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tintprominence
-func (s_ Slider) SetTintProminence(value unsafe.Pointer) {
+func (s_ Slider) SetTintProminence(value ITintProminence) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTintProminence:"), value)
 }
 

@@ -83,16 +83,16 @@ func NewPDFPanel() PDFPanel {
 // Returns a new object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel/panel
-func (pc _PDFPanelClass) Panel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("panel"))
+func (pc _PDFPanelClass) Panel() PDFPanel {
+	rv := objc.Send[PDFPanel](objc.ID(pc.class), objc.Sel("panel"))
 	return rv
 }
 
 // A view controller for the accessory view that the panel can present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/accessorycontroller
-func (p_ PDFPanel) AccessoryController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("accessoryController"))
+func (p_ PDFPanel) AccessoryController() NSViewController {
+	rv := objc.Send[NSViewController](p_.ID, objc.Sel("accessoryController"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (p_ PDFPanel) AccessoryController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/accessorycontroller
-func (p_ PDFPanel) SetAccessoryController(value unsafe.Pointer) {
+func (p_ PDFPanel) SetAccessoryController(value IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAccessoryController:"), value)
 }
 

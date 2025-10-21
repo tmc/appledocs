@@ -157,7 +157,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	// This must come before the block check so that mapped block types (e.g., void (^)(void) -> func())
 	// are handled correctly
 	if goType, found := lookupTypeMapping(objcType, framework); found {
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "CellAttribute") {
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "CellAttribute") || strings.Contains(objcType, "Coder")) {
 			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: found in registry objcType=%s goType=%s framework=%s\n", objcType, goType, framework)
 		}
 		return goType

@@ -87,7 +87,7 @@ func NewToolbarItem() ToolbarItem {
 // Creates a toolbar item with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:)
-func NewToolbarItemWithItemIdentifier(itemIdentifier unsafe.Pointer) ToolbarItem {
+func NewToolbarItemWithItemIdentifier(itemIdentifier IToolbarItemIdentifier) ToolbarItem {
 	instance := getToolbarItemClass().Alloc()
 	rv := objc.Send[ToolbarItem](instance.ID, objc.Sel("initWithItemIdentifier:"), itemIdentifier)
 	rv.Autorelease()
@@ -99,7 +99,7 @@ func NewToolbarItemWithItemIdentifier(itemIdentifier unsafe.Pointer) ToolbarItem
 // Creates a toolbar item with property values from the specified bar button item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:barButtonItem:)
-func NewToolbarItemWithItemIdentifierBarButtonItem(itemIdentifier unsafe.Pointer, barButtonItem unsafe.Pointer) ToolbarItem {
+func NewToolbarItemWithItemIdentifierBarButtonItem(itemIdentifier IToolbarItemIdentifier, barButtonItem unsafe.Pointer) ToolbarItem {
 	rv := objc.Send[ToolbarItem](objc.ID(getToolbarItemClass().class), objc.Sel("itemWithItemIdentifier:barButtonItem:"), itemIdentifier, barButtonItem)
 	return rv
 }
@@ -108,7 +108,7 @@ func NewToolbarItemWithItemIdentifierBarButtonItem(itemIdentifier unsafe.Pointer
 // Creates a toolbar item with property values from the specified bar button item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:barButtonItem:)
-func (tc _ToolbarItemClass) ItemWithItemIdentifierBarButtonItem(itemIdentifier unsafe.Pointer, barButtonItem unsafe.Pointer) unsafe.Pointer {
+func (tc _ToolbarItemClass) ItemWithItemIdentifierBarButtonItem(itemIdentifier IToolbarItemIdentifier, barButtonItem unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("itemWithItemIdentifier:barButtonItem:"), itemIdentifier, barButtonItem)
 	return rv
 }
@@ -166,8 +166,8 @@ func (t_ ToolbarItem) SetAutovalidates(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/backgroundTintColor
-func (t_ ToolbarItem) BackgroundTintColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundTintColor"))
+func (t_ ToolbarItem) BackgroundTintColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundTintColor"))
 	return rv
 }
 
@@ -175,15 +175,15 @@ func (t_ ToolbarItem) BackgroundTintColor() unsafe.Pointer {
 // SetBackgroundTintColor sets the value of the backgroundTintColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/backgroundTintColor
-func (t_ ToolbarItem) SetBackgroundTintColor(value unsafe.Pointer) {
+func (t_ ToolbarItem) SetBackgroundTintColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundTintColor:"), value)
 }
 
 // A badge that can be attached to an NSToolbarItem. This provides a way to display small visual indicators that can be used to highlight important information, such as unread notifications or status indicators.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/badge-2b38p
-func (t_ ToolbarItem) Badge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("badge"))
+func (t_ ToolbarItem) Badge() NSItemBadge {
+	rv := objc.Send[NSItemBadge](t_.ID, objc.Sel("badge"))
 	return rv
 }
 
@@ -193,15 +193,15 @@ func (t_ ToolbarItem) Badge() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/badge-2b38p
-func (t_ ToolbarItem) SetBadge(value unsafe.Pointer) {
+func (t_ ToolbarItem) SetBadge(value IItemBadge) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBadge:"), value)
 }
 
 // The image to display for the toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/image
-func (t_ ToolbarItem) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("image"))
+func (t_ ToolbarItem) Image() Image {
+	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -211,7 +211,7 @@ func (t_ ToolbarItem) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/image
-func (t_ ToolbarItem) SetImage(value unsafe.Pointer) {
+func (t_ ToolbarItem) SetImage(value IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
 }
 
@@ -295,8 +295,8 @@ func (t_ ToolbarItem) Visible() bool {
 // The value you use to identify the toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/itemIdentifier
-func (t_ ToolbarItem) ItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("itemIdentifier"))
+func (t_ ToolbarItem) ItemIdentifier() ToolbarItemIdentifier {
+	rv := objc.Send[ToolbarItemIdentifier](t_.ID, objc.Sel("itemIdentifier"))
 	return rv
 }
 
@@ -357,8 +357,8 @@ func (t_ ToolbarItem) SetMaxSize(value coregraphics.CGSize) {
 // The menu item to use when the toolbar item is in the overflow menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/menuFormRepresentation
-func (t_ ToolbarItem) MenuFormRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("menuFormRepresentation"))
+func (t_ ToolbarItem) MenuFormRepresentation() NSMenuItem {
+	rv := objc.Send[NSMenuItem](t_.ID, objc.Sel("menuFormRepresentation"))
 	return rv
 }
 
@@ -368,7 +368,7 @@ func (t_ ToolbarItem) MenuFormRepresentation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/menuFormRepresentation
-func (t_ ToolbarItem) SetMenuFormRepresentation(value unsafe.Pointer) {
+func (t_ ToolbarItem) SetMenuFormRepresentation(value IMenuItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMenuFormRepresentation:"), value)
 }
 
@@ -429,8 +429,8 @@ func (t_ ToolbarItem) SetPossibleLabels(value unsafe.Pointer) {
 // Defines the toolbar item’s appearance. The default style is plain. Prominent style tints the background. If a background tint color is set, it uses it; otherwise, it uses the app’s or system’s accent color. If grouped with other items, it moves to its own to avoid tinting other items’ background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/style-swift.property
-func (t_ ToolbarItem) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("style"))
+func (t_ ToolbarItem) Style() ToolbarItemStyle {
+	rv := objc.Send[ToolbarItemStyle](t_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -440,7 +440,7 @@ func (t_ ToolbarItem) Style() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/style-swift.property
-func (t_ ToolbarItem) SetStyle(value unsafe.Pointer) {
+func (t_ ToolbarItem) SetStyle(value ToolbarItemStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStyle:"), value)
 }
 
@@ -519,16 +519,16 @@ func (t_ ToolbarItem) SetToolTip(value string) {
 // The toolbar that currently includes the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolbar
-func (t_ ToolbarItem) Toolbar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("toolbar"))
+func (t_ ToolbarItem) Toolbar() NSToolbar {
+	rv := objc.Send[NSToolbar](t_.ID, objc.Sel("toolbar"))
 	return rv
 }
 
 // The custom view you use to draw the toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/view
-func (t_ ToolbarItem) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("view"))
+func (t_ ToolbarItem) View() NSView {
+	rv := objc.Send[NSView](t_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -538,15 +538,15 @@ func (t_ ToolbarItem) View() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/view
-func (t_ ToolbarItem) SetView(value unsafe.Pointer) {
+func (t_ ToolbarItem) SetView(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setView:"), value)
 }
 
 // The display priority associated with the toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/visibilityPriority-swift.property
-func (t_ ToolbarItem) VisibilityPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("visibilityPriority"))
+func (t_ ToolbarItem) VisibilityPriority() ToolbarItemVisibilityPriority {
+	rv := objc.Send[ToolbarItemVisibilityPriority](t_.ID, objc.Sel("visibilityPriority"))
 	return rv
 }
 
@@ -556,7 +556,7 @@ func (t_ ToolbarItem) VisibilityPriority() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/visibilityPriority-swift.property
-func (t_ ToolbarItem) SetVisibilityPriority(value unsafe.Pointer) {
+func (t_ ToolbarItem) SetVisibilityPriority(value ToolbarItemVisibilityPriority) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
 }
 

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"os"
 	"strings"
 )
 
@@ -374,6 +376,27 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 
 	// Check cross-framework type registry (auto-discovered types)
 	// Try with both ObjC names (NSColor, NSImageScaling) and Go names (Color, ImageScaling)
+	// First try the stripped name (preferred) to avoid returning NSCellAttribute when we want CellAttribute
+	strippedType := stripObjCPrefix(objcType)
+	if strippedType != objcType {
+		if frameworkPkg, found := crossFrameworkTypeRegistry[strippedType]; found {
+			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "Coder") {
+				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped objcType=%s strippedType=%s frameworkPkg=%s currentFramework=%s\n",
+					objcType, strippedType, frameworkPkg, framework)
+			}
+			// Don't qualify types with their own framework name
+			if strings.ToLower(framework) == frameworkPkg {
+				return strippedType, true
+			}
+			result := frameworkPkg + "." + strippedType
+			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "Coder") {
+				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: returning qualified type: %s\n", result)
+			}
+			return result, true
+		}
+	}
+
+	// Then try the original name as fallback
 	if frameworkPkg, found := crossFrameworkTypeRegistry[objcType]; found {
 		// Don't qualify types with their own framework name
 		if strings.ToLower(framework) == frameworkPkg {

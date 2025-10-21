@@ -30,10 +30,10 @@ type _ToolbarClass struct {
 // An interface definition for the [Toolbar] class.
 type IToolbar interface {
 	objectivec.IObject
-	InsertItemWithItemIdentifierAtIndex(itemIdentifier unsafe.Pointer, index int)
+	InsertItemWithItemIdentifierAtIndex(itemIdentifier IToolbarItemIdentifier, index int)
 	RemoveItemAtIndex(index int)
-	RemoveItemWithItemIdentifier(itemIdentifier unsafe.Pointer)
-	RunCustomizationPalette(sender objc.ID)
+	RemoveItemWithItemIdentifier(itemIdentifier IToolbarItemIdentifier)
+	RunCustomizationPalette(sender objectivec.IObject)
 	SetConfigurationFromDictionary(configDict unsafe.Pointer)
 	ValidateVisibleItems()
 }
@@ -91,7 +91,7 @@ func NewToolbar() Toolbar {
 // Creates a newly allocated toolbar with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/init(identifier:)
-func NewToolbarWithIdentifier(identifier unsafe.Pointer) Toolbar {
+func NewToolbarWithIdentifier(identifier IToolbarIdentifier) Toolbar {
 	instance := getToolbarClass().Alloc()
 	rv := objc.Send[Toolbar](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()
@@ -102,7 +102,7 @@ func NewToolbarWithIdentifier(identifier unsafe.Pointer) Toolbar {
 // Inserts an item into the toolbar at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/insertItem(withItemIdentifier:at:)
-func (t_ Toolbar) InsertItemWithItemIdentifierAtIndex(itemIdentifier unsafe.Pointer, index int) {
+func (t_ Toolbar) InsertItemWithItemIdentifierAtIndex(itemIdentifier IToolbarItemIdentifier, index int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("insertItemWithItemIdentifier:atIndex:"), itemIdentifier, index)
 }
 
@@ -116,14 +116,14 @@ func (t_ Toolbar) RemoveItemAtIndex(index int) {
 // Removes the item with matching in the receiving toolbar. If multiple items share the same identifier (as is the case with space items) all matching items will be removed. To remove only a single space item, use instead.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/removeItem(identifier:)
-func (t_ Toolbar) RemoveItemWithItemIdentifier(itemIdentifier unsafe.Pointer) {
+func (t_ Toolbar) RemoveItemWithItemIdentifier(itemIdentifier IToolbarItemIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeItemWithItemIdentifier:"), itemIdentifier)
 }
 
 // Displays the toolbar’s customization palette and handles any user-initiated customizations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/runCustomizationPalette(_:)
-func (t_ Toolbar) RunCustomizationPalette(sender objc.ID) {
+func (t_ Toolbar) RunCustomizationPalette(sender objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("runCustomizationPalette:"), sender)
 }
 
@@ -216,8 +216,8 @@ func (t_ Toolbar) SetAutosavesConfiguration(value bool) {
 // The item to display in the center of the toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/centeredItemIdentifier
-func (t_ Toolbar) CenteredItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("centeredItemIdentifier"))
+func (t_ Toolbar) CenteredItemIdentifier() ToolbarItemIdentifier {
+	rv := objc.Send[ToolbarItemIdentifier](t_.ID, objc.Sel("centeredItemIdentifier"))
 	return rv
 }
 
@@ -227,7 +227,7 @@ func (t_ Toolbar) CenteredItemIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/centeredItemIdentifier
-func (t_ Toolbar) SetCenteredItemIdentifier(value unsafe.Pointer) {
+func (t_ Toolbar) SetCenteredItemIdentifier(value IToolbarItemIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCenteredItemIdentifier:"), value)
 }
 
@@ -286,8 +286,8 @@ func (t_ Toolbar) SetDelegate(value objc.ID) {
 // A value that indicates whether the toolbar displays items using a name, icon, or combination of elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/displayMode-swift.property
-func (t_ Toolbar) DisplayMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("displayMode"))
+func (t_ Toolbar) DisplayMode() ToolbarDisplayMode {
+	rv := objc.Send[ToolbarDisplayMode](t_.ID, objc.Sel("displayMode"))
 	return rv
 }
 
@@ -297,15 +297,15 @@ func (t_ Toolbar) DisplayMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/displayMode-swift.property
-func (t_ Toolbar) SetDisplayMode(value unsafe.Pointer) {
+func (t_ Toolbar) SetDisplayMode(value ToolbarDisplayMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDisplayMode:"), value)
 }
 
 // The toolbar’s full screen accessory view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/fullScreenAccessoryView
-func (t_ Toolbar) FullScreenAccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("fullScreenAccessoryView"))
+func (t_ Toolbar) FullScreenAccessoryView() NSView {
+	rv := objc.Send[NSView](t_.ID, objc.Sel("fullScreenAccessoryView"))
 	return rv
 }
 
@@ -315,7 +315,7 @@ func (t_ Toolbar) FullScreenAccessoryView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/fullScreenAccessoryView
-func (t_ Toolbar) SetFullScreenAccessoryView(value unsafe.Pointer) {
+func (t_ Toolbar) SetFullScreenAccessoryView(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFullScreenAccessoryView:"), value)
 }
 
@@ -358,8 +358,8 @@ func (t_ Toolbar) SetFullScreenAccessoryViewMinHeight(value float64) {
 // The value you use to identify the toolbar in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/identifier-swift.property
-func (t_ Toolbar) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identifier"))
+func (t_ Toolbar) Identifier() ToolbarIdentifier {
+	rv := objc.Send[ToolbarIdentifier](t_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -420,8 +420,8 @@ func (t_ Toolbar) Items() []ToolbarItem {
 // The identifier of the toolbar’s currently selected item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/selectedItemIdentifier
-func (t_ Toolbar) SelectedItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedItemIdentifier"))
+func (t_ Toolbar) SelectedItemIdentifier() ToolbarItemIdentifier {
+	rv := objc.Send[ToolbarItemIdentifier](t_.ID, objc.Sel("selectedItemIdentifier"))
 	return rv
 }
 
@@ -431,7 +431,7 @@ func (t_ Toolbar) SelectedItemIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/selectedItemIdentifier
-func (t_ Toolbar) SetSelectedItemIdentifier(value unsafe.Pointer) {
+func (t_ Toolbar) SetSelectedItemIdentifier(value IToolbarItemIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedItemIdentifier:"), value)
 }
 
@@ -456,8 +456,8 @@ func (t_ Toolbar) SetShowsBaselineSeparator(value bool) {
 // The toolbar’s size mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/sizeMode-swift.property
-func (t_ Toolbar) SizeMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("sizeMode"))
+func (t_ Toolbar) SizeMode() ToolbarSizeMode {
+	rv := objc.Send[ToolbarSizeMode](t_.ID, objc.Sel("sizeMode"))
 	return rv
 }
 
@@ -467,7 +467,7 @@ func (t_ Toolbar) SizeMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/sizeMode-swift.property
-func (t_ Toolbar) SetSizeMode(value unsafe.Pointer) {
+func (t_ Toolbar) SetSizeMode(value ToolbarSizeMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSizeMode:"), value)
 }
 

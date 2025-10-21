@@ -84,8 +84,8 @@ func NewScrubberTextItemView() ScrubberTextItemView {
 // The text field that the scrubber item uses to display its text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/textField
-func (s_ ScrubberTextItemView) TextField() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("textField"))
+func (s_ ScrubberTextItemView) TextField() NSTextField {
+	rv := objc.Send[NSTextField](s_.ID, objc.Sel("textField"))
 	return rv
 }
 

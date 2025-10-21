@@ -31,11 +31,11 @@ type _GestureRecognizerClass struct {
 // An interface definition for the [GestureRecognizer] class.
 type IGestureRecognizer interface {
 	objectivec.IObject
-	LocationInView(view unsafe.Pointer) coregraphics.CGPoint
-	TouchesBeganWithEvent(event unsafe.Pointer)
-	TouchesCancelledWithEvent(event unsafe.Pointer)
-	TouchesEndedWithEvent(event unsafe.Pointer)
-	TouchesMovedWithEvent(event unsafe.Pointer)
+	LocationInView(view IView) coregraphics.CGPoint
+	TouchesBeganWithEvent(event IEvent)
+	TouchesCancelledWithEvent(event IEvent)
+	TouchesEndedWithEvent(event IEvent)
+	TouchesMovedWithEvent(event IEvent)
 }
 
 // An object that monitors events and calls its action method when a predefined sequence of events occur.
@@ -89,7 +89,7 @@ func NewGestureRecognizer() GestureRecognizer {
 // Returns the point computed as the location of the gesture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/location(in:)
-func (g_ GestureRecognizer) LocationInView(view unsafe.Pointer) coregraphics.CGPoint {
+func (g_ GestureRecognizer) LocationInView(view IView) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](g_.ID, objc.Sel("locationInView:"), view)
 	return rv
 }
@@ -97,35 +97,35 @@ func (g_ GestureRecognizer) LocationInView(view unsafe.Pointer) coregraphics.CGP
 // Called when one or more fingers first make contact with an instance on the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/touchesBegan(with:)
-func (g_ GestureRecognizer) TouchesBeganWithEvent(event unsafe.Pointer) {
+func (g_ GestureRecognizer) TouchesBeganWithEvent(event IEvent) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("touchesBeganWithEvent:"), event)
 }
 
 // Called when a system event, such as a low-memory warning, cancels an in-progress touch event in an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/touchesCancelled(with:)
-func (g_ GestureRecognizer) TouchesCancelledWithEvent(event unsafe.Pointer) {
+func (g_ GestureRecognizer) TouchesCancelledWithEvent(event IEvent) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("touchesCancelledWithEvent:"), event)
 }
 
 // Called when one or more fingers are removed from contact with an instance on the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/touchesEnded(with:)
-func (g_ GestureRecognizer) TouchesEndedWithEvent(event unsafe.Pointer) {
+func (g_ GestureRecognizer) TouchesEndedWithEvent(event IEvent) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("touchesEndedWithEvent:"), event)
 }
 
 // Called when one or more fingers, associated with an in-progress event, move within an instance on the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/touchesMoved(with:)
-func (g_ GestureRecognizer) TouchesMovedWithEvent(event unsafe.Pointer) {
+func (g_ GestureRecognizer) TouchesMovedWithEvent(event IEvent) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("touchesMovedWithEvent:"), event)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/allowedTouchTypes
-func (g_ GestureRecognizer) AllowedTouchTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("allowedTouchTypes"))
+func (g_ GestureRecognizer) AllowedTouchTypes() TouchTypeMask {
+	rv := objc.Send[TouchTypeMask](g_.ID, objc.Sel("allowedTouchTypes"))
 	return rv
 }
 
@@ -133,7 +133,7 @@ func (g_ GestureRecognizer) AllowedTouchTypes() unsafe.Pointer {
 // SetAllowedTouchTypes sets the value of the allowedTouchTypes property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/allowedTouchTypes
-func (g_ GestureRecognizer) SetAllowedTouchTypes(value unsafe.Pointer) {
+func (g_ GestureRecognizer) SetAllowedTouchTypes(value TouchTypeMask) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAllowedTouchTypes:"), value)
 }
 
@@ -332,8 +332,8 @@ func (g_ GestureRecognizer) SetName(value string) {
 // Configures the behavior and progression of the Force Touch trackpad when responding to recognized pressure gestures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/pressureconfiguration
-func (g_ GestureRecognizer) PressureConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("pressureConfiguration"))
+func (g_ GestureRecognizer) PressureConfiguration() NSPressureConfiguration {
+	rv := objc.Send[NSPressureConfiguration](g_.ID, objc.Sel("pressureConfiguration"))
 	return rv
 }
 
@@ -343,7 +343,7 @@ func (g_ GestureRecognizer) PressureConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/pressureconfiguration
-func (g_ GestureRecognizer) SetPressureConfiguration(value unsafe.Pointer) {
+func (g_ GestureRecognizer) SetPressureConfiguration(value IPressureConfiguration) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPressureConfiguration:"), value)
 }
 
@@ -386,8 +386,8 @@ func (g_ GestureRecognizer) SetTarget(value unsafe.Pointer) {
 // The view to which the gesture recognizer is attached.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/view
-func (g_ GestureRecognizer) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("view"))
+func (g_ GestureRecognizer) View() NSView {
+	rv := objc.Send[NSView](g_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -397,7 +397,7 @@ func (g_ GestureRecognizer) View() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/view
-func (g_ GestureRecognizer) SetView(value unsafe.Pointer) {
+func (g_ GestureRecognizer) SetView(value IView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setView:"), value)
 }
 

@@ -93,8 +93,8 @@ func (s_ SegmentedControl) SelectSegmentWithTag(tag int) bool {
 // The color of the selected segment’s bezel, in appearances that support it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectedSegmentBezelColor
-func (s_ SegmentedControl) SelectedSegmentBezelColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("selectedSegmentBezelColor"))
+func (s_ SegmentedControl) SelectedSegmentBezelColor() NSColor {
+	rv := objc.Send[NSColor](s_.ID, objc.Sel("selectedSegmentBezelColor"))
 	return rv
 }
 
@@ -104,14 +104,14 @@ func (s_ SegmentedControl) SelectedSegmentBezelColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectedSegmentBezelColor
-func (s_ SegmentedControl) SetSelectedSegmentBezelColor(value unsafe.Pointer) {
+func (s_ SegmentedControl) SetSelectedSegmentBezelColor(value IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegmentBezelColor:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/activecompressionoptions
-func (s_ SegmentedControl) ActiveCompressionOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("activeCompressionOptions"))
+func (s_ SegmentedControl) ActiveCompressionOptions() NSUserInterfaceCompressionOptions {
+	rv := objc.Send[NSUserInterfaceCompressionOptions](s_.ID, objc.Sel("activeCompressionOptions"))
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (s_ SegmentedControl) ActiveCompressionOptions() unsafe.Pointer {
 // SetActiveCompressionOptions sets the value of the activeCompressionOptions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/activecompressionoptions
-func (s_ SegmentedControl) SetActiveCompressionOptions(value unsafe.Pointer) {
+func (s_ SegmentedControl) SetActiveCompressionOptions(value NSUserInterfaceCompressionOptions) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActiveCompressionOptions:"), value)
 }
 

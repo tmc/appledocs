@@ -117,8 +117,8 @@ func (s_ Scroller) SetArrowsPosition(value unsafe.Pointer) {
 // The size of the scroller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controlsize
-func (s_ Scroller) ControlSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("controlSize"))
+func (s_ Scroller) ControlSize() ControlSize {
+	rv := objc.Send[ControlSize](s_.ID, objc.Sel("controlSize"))
 	return rv
 }
 
@@ -128,15 +128,15 @@ func (s_ Scroller) ControlSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controlsize
-func (s_ Scroller) SetControlSize(value unsafe.Pointer) {
+func (s_ Scroller) SetControlSize(value IControlSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlSize:"), value)
 }
 
 // The scroller’s control tint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controltint
-func (s_ Scroller) ControlTint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("controlTint"))
+func (s_ Scroller) ControlTint() ControlTint {
+	rv := objc.Send[ControlTint](s_.ID, objc.Sel("controlTint"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (s_ Scroller) ControlTint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controltint
-func (s_ Scroller) SetControlTint(value unsafe.Pointer) {
+func (s_ Scroller) SetControlTint(value IControlTint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlTint:"), value)
 }
 

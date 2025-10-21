@@ -30,7 +30,7 @@ type _TouchBarClass struct {
 // An interface definition for the [TouchBar] class.
 type ITouchBar interface {
 	objectivec.IObject
-	ItemForIdentifier(identifier unsafe.Pointer) unsafe.Pointer
+	ItemForIdentifier(identifier ITouchBarItemIdentifier) TouchBarItem
 }
 
 // An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.
@@ -86,7 +86,7 @@ func NewTouchBar() TouchBar {
 // Creates a Touch Bar object from a coder object provided by a storyboard or NIB file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
-func NewTouchBarWithCoder(coder unsafe.Pointer) TouchBar {
+func NewTouchBarWithCoder(coder ICoder) TouchBar {
 	instance := getTouchBarClass().Alloc()
 	rv := objc.Send[TouchBar](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -104,8 +104,8 @@ func (tc _TouchBarClass) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
 // Returns the Touch Bar item that corresponds to a given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/item(forIdentifier:)
-func (t_ TouchBar) ItemForIdentifier(identifier unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("itemForIdentifier:"), identifier)
+func (t_ TouchBar) ItemForIdentifier(identifier ITouchBarItemIdentifier) TouchBarItem {
+	rv := objc.Send[TouchBarItem](t_.ID, objc.Sel("itemForIdentifier:"), identifier)
 	return rv
 }
 
@@ -140,8 +140,8 @@ func (t_ TouchBar) SetCustomizationAllowedItemIdentifiers(value []string) {
 // A globally unique string that makes the Touch Bar eligible for user customization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationIdentifier-swift.property
-func (t_ TouchBar) CustomizationIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("customizationIdentifier"))
+func (t_ TouchBar) CustomizationIdentifier() TouchBarCustomizationIdentifier {
+	rv := objc.Send[TouchBarCustomizationIdentifier](t_.ID, objc.Sel("customizationIdentifier"))
 	return rv
 }
 
@@ -151,7 +151,7 @@ func (t_ TouchBar) CustomizationIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationIdentifier-swift.property
-func (t_ TouchBar) SetCustomizationIdentifier(value unsafe.Pointer) {
+func (t_ TouchBar) SetCustomizationIdentifier(value ITouchBarCustomizationIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationIdentifier:"), value)
 }
 
@@ -232,8 +232,8 @@ func (t_ TouchBar) SetDelegate(value objc.ID) {
 // The identifier of an item that replaces the system-provided button in the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/escapeKeyReplacementItemIdentifier
-func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("escapeKeyReplacementItemIdentifier"))
+func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() TouchBarItemIdentifier {
+	rv := objc.Send[TouchBarItemIdentifier](t_.ID, objc.Sel("escapeKeyReplacementItemIdentifier"))
 	return rv
 }
 
@@ -243,7 +243,7 @@ func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/escapeKeyReplacementItemIdentifier
-func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value unsafe.Pointer) {
+func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value ITouchBarItemIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEscapeKeyReplacementItemIdentifier:"), value)
 }
 
@@ -284,8 +284,8 @@ func (t_ TouchBar) ItemIdentifiers() []string {
 // The identifier of an item you want the system to center in the Touch Bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/principalItemIdentifier
-func (t_ TouchBar) PrincipalItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("principalItemIdentifier"))
+func (t_ TouchBar) PrincipalItemIdentifier() TouchBarItemIdentifier {
+	rv := objc.Send[TouchBarItemIdentifier](t_.ID, objc.Sel("principalItemIdentifier"))
 	return rv
 }
 
@@ -295,7 +295,7 @@ func (t_ TouchBar) PrincipalItemIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/principalItemIdentifier
-func (t_ TouchBar) SetPrincipalItemIdentifier(value unsafe.Pointer) {
+func (t_ TouchBar) SetPrincipalItemIdentifier(value ITouchBarItemIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPrincipalItemIdentifier:"), value)
 }
 
@@ -338,8 +338,8 @@ func (t_ TouchBar) SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
 // The color of the button’s bezel, in appearances that support it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/bezelcolor
-func (t_ TouchBar) BezelColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bezelColor"))
+func (t_ TouchBar) BezelColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("bezelColor"))
 	return rv
 }
 
@@ -349,14 +349,14 @@ func (t_ TouchBar) BezelColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/bezelcolor
-func (t_ TouchBar) SetBezelColor(value unsafe.Pointer) {
+func (t_ TouchBar) SetBezelColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBezelColor:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
-func (t_ TouchBar) AllowedTouchTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("allowedTouchTypes"))
+func (t_ TouchBar) AllowedTouchTypes() TouchTypeMask {
+	rv := objc.Send[TouchTypeMask](t_.ID, objc.Sel("allowedTouchTypes"))
 	return rv
 }
 
@@ -364,15 +364,15 @@ func (t_ TouchBar) AllowedTouchTypes() unsafe.Pointer {
 // SetAllowedTouchTypes sets the value of the allowedTouchTypes property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
-func (t_ TouchBar) SetAllowedTouchTypes(value unsafe.Pointer) {
+func (t_ TouchBar) SetAllowedTouchTypes(value TouchTypeMask) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedTouchTypes:"), value)
 }
 
 // A bar that holds this group’s items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
-func (t_ TouchBar) GroupTouchBar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("groupTouchBar"))
+func (t_ TouchBar) GroupTouchBar() NSTouchBar {
+	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("groupTouchBar"))
 	return rv
 }
 
@@ -382,15 +382,15 @@ func (t_ TouchBar) GroupTouchBar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
-func (t_ TouchBar) SetGroupTouchBar(value unsafe.Pointer) {
+func (t_ TouchBar) SetGroupTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGroupTouchBar:"), value)
 }
 
 // The bar displayed when this item is “popped.”
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-func (t_ TouchBar) PopoverTouchBar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("popoverTouchBar"))
+func (t_ TouchBar) PopoverTouchBar() NSTouchBar {
+	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("popoverTouchBar"))
 	return rv
 }
 
@@ -400,15 +400,15 @@ func (t_ TouchBar) PopoverTouchBar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-func (t_ TouchBar) SetPopoverTouchBar(value unsafe.Pointer) {
+func (t_ TouchBar) SetPopoverTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPopoverTouchBar:"), value)
 }
 
 // The bar that is displayed when a user press-and-holds on the popover item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-func (t_ TouchBar) PressAndHoldTouchBar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("pressAndHoldTouchBar"))
+func (t_ TouchBar) PressAndHoldTouchBar() NSTouchBar {
+	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("pressAndHoldTouchBar"))
 	return rv
 }
 
@@ -418,15 +418,15 @@ func (t_ TouchBar) PressAndHoldTouchBar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-func (t_ TouchBar) SetPressAndHoldTouchBar(value unsafe.Pointer) {
+func (t_ TouchBar) SetPressAndHoldTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
 }
 
 // The color of the selected segment’s bezel, in appearances that support it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegmentbezelcolor
-func (t_ TouchBar) SelectedSegmentBezelColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedSegmentBezelColor"))
+func (t_ TouchBar) SelectedSegmentBezelColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("selectedSegmentBezelColor"))
 	return rv
 }
 
@@ -436,15 +436,15 @@ func (t_ TouchBar) SelectedSegmentBezelColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegmentbezelcolor
-func (t_ TouchBar) SetSelectedSegmentBezelColor(value unsafe.Pointer) {
+func (t_ TouchBar) SetSelectedSegmentBezelColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedSegmentBezelColor:"), value)
 }
 
 // The color of the filled portion of the slider track, in appearances that support it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/trackfillcolor
-func (t_ TouchBar) TrackFillColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("trackFillColor"))
+func (t_ TouchBar) TrackFillColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("trackFillColor"))
 	return rv
 }
 
@@ -454,7 +454,7 @@ func (t_ TouchBar) TrackFillColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/trackfillcolor
-func (t_ TouchBar) SetTrackFillColor(value unsafe.Pointer) {
+func (t_ TouchBar) SetTrackFillColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTrackFillColor:"), value)
 }
 
@@ -497,8 +497,8 @@ func (t_ TouchBar) SetCustomizationLabel(value string) {
 // The property you implement to provide a Touch Bar object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbarprovider/touchbar
-func (t_ TouchBar) TouchBar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("touchBar"))
+func (t_ TouchBar) TouchBar() NSTouchBar {
+	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("touchBar"))
 	return rv
 }
 
@@ -508,7 +508,7 @@ func (t_ TouchBar) TouchBar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbarprovider/touchbar
-func (t_ TouchBar) SetTouchBar(value unsafe.Pointer) {
+func (t_ TouchBar) SetTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTouchBar:"), value)
 }
 

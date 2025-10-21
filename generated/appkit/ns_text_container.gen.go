@@ -84,8 +84,8 @@ func NewTextContainer() TextContainer {
 // The text container’s layout manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer/layoutManager
-func (t_ TextContainer) LayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutManager"))
+func (t_ TextContainer) LayoutManager() NSLayoutManager {
+	rv := objc.Send[NSLayoutManager](t_.ID, objc.Sel("layoutManager"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (t_ TextContainer) LayoutManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer/layoutManager
-func (t_ TextContainer) SetLayoutManager(value unsafe.Pointer) {
+func (t_ TextContainer) SetLayoutManager(value ILayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManager:"), value)
 }
 
@@ -120,8 +120,8 @@ func (t_ TextContainer) SetContainerSize(value coregraphics.CGSize) {
 // An array of path objects that represents the regions where text doesn’t display in the text container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/exclusionpaths
-func (t_ TextContainer) ExclusionPaths() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("exclusionPaths"))
+func (t_ TextContainer) ExclusionPaths() NSBezierPath {
+	rv := objc.Send[NSBezierPath](t_.ID, objc.Sel("exclusionPaths"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (t_ TextContainer) ExclusionPaths() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/exclusionpaths
-func (t_ TextContainer) SetExclusionPaths(value unsafe.Pointer) {
+func (t_ TextContainer) SetExclusionPaths(value IBezierPath) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExclusionPaths:"), value)
 }
 
@@ -174,8 +174,8 @@ func (t_ TextContainer) SetIsSimpleRectangularTextContainer(value bool) {
 // The behavior of the last line inside the text container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linebreakmode
-func (t_ TextContainer) LineBreakMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("lineBreakMode"))
+func (t_ TextContainer) LineBreakMode() LineBreakMode {
+	rv := objc.Send[LineBreakMode](t_.ID, objc.Sel("lineBreakMode"))
 	return rv
 }
 
@@ -185,7 +185,7 @@ func (t_ TextContainer) LineBreakMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linebreakmode
-func (t_ TextContainer) SetLineBreakMode(value unsafe.Pointer) {
+func (t_ TextContainer) SetLineBreakMode(value LineBreakMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLineBreakMode:"), value)
 }
 
@@ -245,8 +245,8 @@ func (t_ TextContainer) SetSize(value coregraphics.CGSize) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textlayoutmanager
-func (t_ TextContainer) TextLayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textLayoutManager"))
+func (t_ TextContainer) TextLayoutManager() NSTextLayoutManager {
+	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 
@@ -254,15 +254,15 @@ func (t_ TextContainer) TextLayoutManager() unsafe.Pointer {
 // SetTextLayoutManager sets the value of the textLayoutManager property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textlayoutmanager
-func (t_ TextContainer) SetTextLayoutManager(value unsafe.Pointer) {
+func (t_ TextContainer) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
 
 // The text container’s text view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textview
-func (t_ TextContainer) TextView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textView"))
+func (t_ TextContainer) TextView() NSTextView {
+	rv := objc.Send[NSTextView](t_.ID, objc.Sel("textView"))
 	return rv
 }
 
@@ -272,7 +272,7 @@ func (t_ TextContainer) TextView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textview
-func (t_ TextContainer) SetTextView(value unsafe.Pointer) {
+func (t_ TextContainer) SetTextView(value ITextView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextView:"), value)
 }
 

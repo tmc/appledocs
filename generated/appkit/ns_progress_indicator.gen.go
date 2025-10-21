@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ProgressIndicator] class.
@@ -29,13 +30,13 @@ type _ProgressIndicatorClass struct {
 // An interface definition for the [ProgressIndicator] class.
 type IProgressIndicator interface {
 	IView
-	Animate(sender objc.ID)
+	Animate(sender objectivec.IObject)
 	AnimationDelay() float64
 	IncrementBy(delta unsafe.Pointer)
 	SetAnimationDelay(delay float64)
 	SizeToFit()
-	StartAnimation(sender objc.ID)
-	StopAnimation(sender objc.ID)
+	StartAnimation(sender objectivec.IObject)
+	StopAnimation(sender objectivec.IObject)
 }
 
 // An interface that provides visual feedback to the user about the status of an ongoing task.
@@ -91,7 +92,7 @@ func NewProgressIndicator() ProgressIndicator {
 // This action method advances the progress animation of an indeterminate progress animator by one step.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/animate:
-func (p_ ProgressIndicator) Animate(sender objc.ID) {
+func (p_ ProgressIndicator) Animate(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("animate:"), sender)
 }
 
@@ -127,22 +128,22 @@ func (p_ ProgressIndicator) SizeToFit() {
 // Starts the animation of an indeterminate progress indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/startAnimation(_:)
-func (p_ ProgressIndicator) StartAnimation(sender objc.ID) {
+func (p_ ProgressIndicator) StartAnimation(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startAnimation:"), sender)
 }
 
 // Stops the animation of an indeterminate progress indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/stopAnimation(_:)
-func (p_ ProgressIndicator) StopAnimation(sender objc.ID) {
+func (p_ ProgressIndicator) StopAnimation(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("stopAnimation:"), sender)
 }
 
 // The size of the progress indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/controlSize
-func (p_ ProgressIndicator) ControlSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("controlSize"))
+func (p_ ProgressIndicator) ControlSize() ControlSize {
+	rv := objc.Send[ControlSize](p_.ID, objc.Sel("controlSize"))
 	return rv
 }
 
@@ -152,15 +153,15 @@ func (p_ ProgressIndicator) ControlSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/controlSize
-func (p_ ProgressIndicator) SetControlSize(value unsafe.Pointer) {
+func (p_ ProgressIndicator) SetControlSize(value IControlSize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlSize:"), value)
 }
 
 // The progress indicator’s control tint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/controlTint
-func (p_ ProgressIndicator) ControlTint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("controlTint"))
+func (p_ ProgressIndicator) ControlTint() ControlTint {
+	rv := objc.Send[ControlTint](p_.ID, objc.Sel("controlTint"))
 	return rv
 }
 
@@ -170,7 +171,7 @@ func (p_ ProgressIndicator) ControlTint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/controlTint
-func (p_ ProgressIndicator) SetControlTint(value unsafe.Pointer) {
+func (p_ ProgressIndicator) SetControlTint(value IControlTint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlTint:"), value)
 }
 
@@ -303,8 +304,8 @@ func (p_ ProgressIndicator) SetObservedProgress(value unsafe.Pointer) {
 // The style of the progress indicator (bar or spinning).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/style-swift.property
-func (p_ ProgressIndicator) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
+func (p_ ProgressIndicator) Style() ProgressIndicatorStyle {
+	rv := objc.Send[ProgressIndicatorStyle](p_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -314,7 +315,7 @@ func (p_ ProgressIndicator) Style() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/style-swift.property
-func (p_ ProgressIndicator) SetStyle(value unsafe.Pointer) {
+func (p_ ProgressIndicator) SetStyle(value ProgressIndicatorStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
 

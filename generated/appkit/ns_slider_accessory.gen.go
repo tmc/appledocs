@@ -77,8 +77,8 @@ func NewSliderAccessory() SliderAccessory {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/behavior
-func (s_ SliderAccessory) Behavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("behavior"))
+func (s_ SliderAccessory) Behavior() NSSliderAccessoryBehavior {
+	rv := objc.Send[NSSliderAccessoryBehavior](s_.ID, objc.Sel("behavior"))
 	return rv
 }
 
@@ -86,7 +86,7 @@ func (s_ SliderAccessory) Behavior() unsafe.Pointer {
 // SetBehavior sets the value of the behavior property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/behavior
-func (s_ SliderAccessory) SetBehavior(value unsafe.Pointer) {
+func (s_ SliderAccessory) SetBehavior(value NSSliderAccessoryBehavior) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBehavior:"), value)
 }
 

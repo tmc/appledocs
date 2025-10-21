@@ -86,7 +86,7 @@ func NewDraggingItem() DraggingItem {
 // Creates and returns a dragging item using the specified content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/init(pasteboardWriter:)
-func NewDraggingItemWithPasteboardWriter(pasteboardWriter objc.ID) DraggingItem {
+func NewDraggingItemWithPasteboardWriter(pasteboardWriter objectivec.IObject) DraggingItem {
 	instance := getDraggingItemClass().Alloc()
 	rv := objc.Send[DraggingItem](instance.ID, objc.Sel("initWithPasteboardWriter:"), pasteboardWriter)
 	rv.Autorelease()
@@ -143,8 +143,8 @@ func (d_ DraggingItem) SetDraggingFrame(value coregraphics.CGRect) {
 // An array of dragging image components to use to create the drag image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponents
-func (d_ DraggingItem) ImageComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("imageComponents"))
+func (d_ DraggingItem) ImageComponents() NSDraggingImageComponent {
+	rv := objc.Send[NSDraggingImageComponent](d_.ID, objc.Sel("imageComponents"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (d_ DraggingItem) ImageComponents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponents
-func (d_ DraggingItem) SetImageComponents(value unsafe.Pointer) {
+func (d_ DraggingItem) SetImageComponents(value IDraggingImageComponent) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setImageComponents:"), value)
 }
 

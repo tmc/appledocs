@@ -85,8 +85,8 @@ func (s_ SplitViewItemAccessoryViewController) ViewWillDisappear() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/bottomalignedaccessoryviewcontrollers
-func (s_ SplitViewItemAccessoryViewController) BottomAlignedAccessoryViewControllers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("bottomAlignedAccessoryViewControllers"))
+func (s_ SplitViewItemAccessoryViewController) BottomAlignedAccessoryViewControllers() NSSplitViewItemAccessoryViewController {
+	rv := objc.Send[NSSplitViewItemAccessoryViewController](s_.ID, objc.Sel("bottomAlignedAccessoryViewControllers"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (s_ SplitViewItemAccessoryViewController) BottomAlignedAccessoryViewControl
 // SetBottomAlignedAccessoryViewControllers sets the value of the bottomAlignedAccessoryViewControllers property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/bottomalignedaccessoryviewcontrollers
-func (s_ SplitViewItemAccessoryViewController) SetBottomAlignedAccessoryViewControllers(value unsafe.Pointer) {
+func (s_ SplitViewItemAccessoryViewController) SetBottomAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBottomAlignedAccessoryViewControllers:"), value)
 }
 
 // The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/topalignedaccessoryviewcontrollers
-func (s_ SplitViewItemAccessoryViewController) TopAlignedAccessoryViewControllers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
+func (s_ SplitViewItemAccessoryViewController) TopAlignedAccessoryViewControllers() NSSplitViewItemAccessoryViewController {
+	rv := objc.Send[NSSplitViewItemAccessoryViewController](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (s_ SplitViewItemAccessoryViewController) TopAlignedAccessoryViewController
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/topalignedaccessoryviewcontrollers
-func (s_ SplitViewItemAccessoryViewController) SetTopAlignedAccessoryViewControllers(value unsafe.Pointer) {
+func (s_ SplitViewItemAccessoryViewController) SetTopAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTopAlignedAccessoryViewControllers:"), value)
 }
 

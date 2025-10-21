@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ComboBoxCell] class.
@@ -30,8 +31,8 @@ type _ComboBoxCellClass struct {
 // An interface definition for the [ComboBoxCell] class.
 type IComboBoxCell interface {
 	ITextFieldCell
-	AddItemsWithObjectValues(objects objc.ID)
-	InsertItemWithObjectValueAtIndex(object objc.ID, index int)
+	AddItemsWithObjectValues(objects objectivec.IObject)
+	InsertItemWithObjectValueAtIndex(object objectivec.IObject, index int)
 	ItemObjectValueAtIndex(index int) objc.ID
 	RemoveAllItems()
 	RemoveItemAtIndex(index int)
@@ -90,14 +91,14 @@ func NewComboBoxCell() ComboBoxCell {
 // Adds multiple objects to the internal item list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell/addItems(withObjectValues:)
-func (c_ ComboBoxCell) AddItemsWithObjectValues(objects objc.ID) {
+func (c_ ComboBoxCell) AddItemsWithObjectValues(objects objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addItemsWithObjectValues:"), objects)
 }
 
 // Inserts an object at the specified location in the internal item list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell/insertItem(withObjectValue:at:)
-func (c_ ComboBoxCell) InsertItemWithObjectValueAtIndex(object objc.ID, index int) {
+func (c_ ComboBoxCell) InsertItemWithObjectValueAtIndex(object objectivec.IObject, index int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("insertItemWithObjectValue:atIndex:"), object, index)
 }
 
@@ -165,6 +166,24 @@ func (c_ ComboBoxCell) ButtonBordered() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell/isButtonBordered
 func (c_ ComboBoxCell) SetButtonBordered(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setButtonBordered:"), value)
+}
+
+// The height of each item in the combo box’s pop-up list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell/itemHeight
+func (c_ ComboBoxCell) ItemHeight() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("itemHeight"))
+	return rv
+}
+
+
+// SetItemHeight sets the value of the itemHeight property.
+// The height of each item in the combo box’s pop-up list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell/itemHeight
+func (c_ ComboBoxCell) SetItemHeight(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setItemHeight:"), value)
 }
 
 // The maximum number of items visible in the pop-up list at any one time.
@@ -255,24 +274,6 @@ func (c_ ComboBoxCell) IsButtonBordered() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscomboboxcell/isbuttonbordered
 func (c_ ComboBoxCell) SetIsButtonBordered(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsButtonBordered:"), value)
-}
-
-// The height of each item in the combo box’s pop-up list.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscomboboxcell/itemheight
-func (c_ ComboBoxCell) ItemHeight() float64 {
-	rv := objc.Send[float64](c_.ID, objc.Sel("itemHeight"))
-	return rv
-}
-
-
-// SetItemHeight sets the value of the itemHeight property.
-// The height of each item in the combo box’s pop-up list.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscomboboxcell/itemheight
-func (c_ ComboBoxCell) SetItemHeight(value float64) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setItemHeight:"), value)
 }
 
 // The total number of items in the pop-up list.

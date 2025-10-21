@@ -142,6 +142,24 @@ func (w_ WorkspaceOpenConfiguration) SetAllowsRunningApplicationSubstitution(val
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsRunningApplicationSubstitution:"), value)
 }
 
+// The first Apple event to send to the new app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
+func (w_ WorkspaceOpenConfiguration) AppleEvent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("appleEvent"))
+	return rv
+}
+
+
+// SetAppleEvent sets the value of the appleEvent property.
+// The first Apple event to send to the new app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
+func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAppleEvent:"), value)
+}
+
 // The architecture version of the app to launch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/architecture
@@ -294,24 +312,6 @@ func (w_ WorkspaceOpenConfiguration) RequiresUniversalLinks() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/requiresUniversalLinks
 func (w_ WorkspaceOpenConfiguration) SetRequiresUniversalLinks(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRequiresUniversalLinks:"), value)
-}
-
-// The first Apple event to send to the new app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/openconfiguration/appleevent
-func (w_ WorkspaceOpenConfiguration) AppleEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("appleEvent"))
-	return rv
-}
-
-
-// SetAppleEvent sets the value of the appleEvent property.
-// The first Apple event to send to the new app.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/openconfiguration/appleevent
-func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setAppleEvent:"), value)
 }
 
 // A Boolean value indicating whether you want to print the contents of documents and URLs instead of opening them.

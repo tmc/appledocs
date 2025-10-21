@@ -109,8 +109,8 @@ func (l_ LayoutConstraint) SetConstant(value float64) {
 // The first anchor that defines the constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/firstanchor
-func (l_ LayoutConstraint) FirstAnchor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("firstAnchor"))
+func (l_ LayoutConstraint) FirstAnchor() NSLayoutAnchor {
+	rv := objc.Send[NSLayoutAnchor](l_.ID, objc.Sel("firstAnchor"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (l_ LayoutConstraint) FirstAnchor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/firstanchor
-func (l_ LayoutConstraint) SetFirstAnchor(value unsafe.Pointer) {
+func (l_ LayoutConstraint) SetFirstAnchor(value ILayoutAnchor) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setFirstAnchor:"), value)
 }
 
@@ -253,8 +253,8 @@ func (l_ LayoutConstraint) SetRelation(value unsafe.Pointer) {
 // The second anchor that defines the constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/secondanchor
-func (l_ LayoutConstraint) SecondAnchor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("secondAnchor"))
+func (l_ LayoutConstraint) SecondAnchor() NSLayoutAnchor {
+	rv := objc.Send[NSLayoutAnchor](l_.ID, objc.Sel("secondAnchor"))
 	return rv
 }
 
@@ -264,7 +264,7 @@ func (l_ LayoutConstraint) SecondAnchor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/secondanchor
-func (l_ LayoutConstraint) SetSecondAnchor(value unsafe.Pointer) {
+func (l_ LayoutConstraint) SetSecondAnchor(value ILayoutAnchor) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSecondAnchor:"), value)
 }
 

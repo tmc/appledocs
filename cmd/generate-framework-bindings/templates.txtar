@@ -831,6 +831,7 @@ func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
 }
 {{ $isReadOnly := contains .Attributes "readonly"}}
 {{- if not $isReadOnly}}
+{{- $setterParamType := typeToInterfaceType $goType}}
 
 // Set{{$capitalizedName}} sets the value of the {{.Name}} property.
 {{- if .Abstract}}
@@ -840,7 +841,7 @@ func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
-func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$goType}}) {
+func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$setterParamType}}) {
 	{{- if hasPrefix $goType "[]"}}
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -855,6 +856,8 @@ func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$goType
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), nsArray)
 	{{- else if eq $goType "string"}}
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), objc.String(value))
+	{{- else if ne $setterParamType $goType}}
+	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
 	{{- else}}
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
 	{{- end}}

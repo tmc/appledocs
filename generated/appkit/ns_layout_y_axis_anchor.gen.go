@@ -29,7 +29,7 @@ type _LayoutYAxisAnchorClass struct {
 // An interface definition for the [LayoutYAxisAnchor] class.
 type ILayoutYAxisAnchor interface {
 	ILayoutAnchor
-	ConstraintEqualToSystemSpacingBelowAnchorMultiplier(anchor unsafe.Pointer, multiplier float64) unsafe.Pointer
+	ConstraintEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) LayoutConstraint
 }
 
 // A factory class for creating vertical layout constraint objects using a fluent API.
@@ -85,8 +85,8 @@ func NewLayoutYAxisAnchor() LayoutYAxisAnchor {
 // Returns a constraint that defines the specific distance at which the current anchor is positioned below the specified anchor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutYAxisAnchor/constraint(equalToSystemSpacingBelow:multiplier:)
-func (l_ LayoutYAxisAnchor) ConstraintEqualToSystemSpacingBelowAnchorMultiplier(anchor unsafe.Pointer, multiplier float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("constraintEqualToSystemSpacingBelowAnchor:multiplier:"), anchor, multiplier)
+func (l_ LayoutYAxisAnchor) ConstraintEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) LayoutConstraint {
+	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintEqualToSystemSpacingBelowAnchor:multiplier:"), anchor, multiplier)
 	return rv
 }
 

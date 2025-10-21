@@ -118,6 +118,26 @@ const (
 	RemoteNotificationTypeSound RemoteNotificationType = 0
 )
 
+// NSBezierPathElement - Constants that specify basic path element commands.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/ElementType
+type BezierPathElement uint
+
+// NSLineCapStyle - Constants that specify the shape of endpoints for an open path when it is stroked.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineCapStyle-swift.enum
+type LineCapStyle uint
+
+// NSLineJoinStyle - Constants that specify the shape of the joins between connected segments of a stroked path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineJoinStyle-swift.enum
+type LineJoinStyle uint
+
+// NSWindingRule - Constants that specify the winding rule a Bézier path uses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/WindingRule-swift.enum
+type WindingRule uint
+
 // NSBorderType - These constants specify the type of a view’s border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBorderType
@@ -170,6 +190,22 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/BezelStyle-swift.enum/toolbar
 	BezelStyleToolbar BezelStyle = 0
+)
+
+// NSButtonType - Button types that you can specify using 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/ButtonType
+type ButtonType uint
+
+const (
+	// ButtonTypeAccelerator - A button that sends repeating actions as pressure changes occur.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/ButtonType/accelerator
+	ButtonTypeAccelerator ButtonType = 0
+	// ButtonTypeMultiLevelAccelerator - A button that allows for a configurable number of stepped pressure levels and provides tactile feedback as the user reaches each step.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/ButtonType/multiLevelAccelerator
+	ButtonTypeMultiLevelAccelerator ButtonType = 0
 )
 
 // NSGradientType - Specify the gradients used by the 
@@ -342,6 +378,30 @@ const (
 	CompositingOperationClear CompositingOperation = 0
 )
 
+// NSControlBorderShape enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/BorderShape
+type ControlBorderShape uint
+
+const (
+	// ControlBorderShapeAutomatic - The control will resolve this to an appropriate shape for the given control size and context
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/BorderShape/automatic
+	ControlBorderShapeAutomatic ControlBorderShape = 0
+	// ControlBorderShapeCapsule - The control will resolve this to an appropriate shape for the given control size and context
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/BorderShape/capsule
+	ControlBorderShapeCapsule ControlBorderShape = 0
+	// ControlBorderShapeCircle - The control will resolve this to an appropriate shape for the given control size and context
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/BorderShape/circle
+	ControlBorderShapeCircle ControlBorderShape = 0
+	// ControlBorderShapeRoundedRectangle - The control will resolve this to an appropriate shape for the given control size and context
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/BorderShape/roundedRectangle
+	ControlBorderShapeRoundedRectangle ControlBorderShape = 0
+)
+
 // NSControlSize - A constant for specifying a cell’s size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/ControlSize-swift.enum
@@ -448,6 +508,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/SaveOperationType/saveOperation
 	SaveOperation SaveOperationType = 0
+	// SaveToOperation - An operation that writes a copy of the document’s contents to the specified location, without changing the original document’s location.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/SaveOperationType/saveToOperation
+	SaveToOperation SaveOperationType = 0
 )
 
 // NSDragOperation - A group of constants that represent which operations the dragging source can perform on dragging items.
@@ -468,6 +532,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDragOperation/every
 	DragOperationEvery DragOperation = 0
+	// DragOperationMove - A constant that indicates the drag can move the data.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDragOperation/move
+	DragOperationMove DragOperation = 0
 )
 
 // NSEventButtonMask - Constants you use to identify the activated tablet buttons in an event.
@@ -558,6 +626,16 @@ const (
 	EventSwipeTrackingLockDirection EventSwipeTrackingOptions = 0
 )
 
+// NSFocusRingPlacement - Constants that indicate how the system draws the focus ring.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFocusRingPlacement
+type FocusRingPlacement uint
+
+// NSFocusRingType - Constants that describe the style of the focus ring.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFocusRingType
+type FocusRingType uint
+
 // NSFontCollectionOptions - Constants that support font collection management.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontCollectionOptions
@@ -625,6 +703,11 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInscription
 type GlyphInscription uint
 
+// NSGradientDrawingOptions - Constants that specify gradient drawing options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/DrawingOptions
+type GradientDrawingOptions uint
+
 // NSHapticFeedbackPattern - A pattern of haptic feedback to be provided to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager/FeedbackPattern
@@ -691,6 +774,11 @@ type ImageSymbolScale uint
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolVariableValueMode
 type ImageSymbolVariableValueMode uint
 
+// NSImageInterpolation - Constants that specify the interpolation, or image smoothing, behavior used by the image interpolation property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageInterpolation
+type ImageInterpolation uint
+
 // NSImageScaling - Constants that specify a cell’s image scaling behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageScaling
@@ -721,6 +809,16 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/Orientation
 type LayoutConstraintOrientation uint
 
+// NSLevelIndicatorPlaceholderVisibility enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/PlaceholderVisibility-swift.enum
+type LevelIndicatorPlaceholderVisibility uint
+
+// NSLevelIndicatorStyle - Constants that specify a level indicator’s appearance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/Style
+type LevelIndicatorStyle uint
+
 // NSLineBreakMode - Constants that specify what happens when a line is too long for a container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLineBreakMode
@@ -743,6 +841,43 @@ type LineMovementDirection uint
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLineSweepDirection
 type LineSweepDirection uint
 
+// NSMatrixMode - These constants determine how 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMatrix/Mode-swift.enum
+type MatrixMode uint
+
+// NSMediaLibrary - These constants are masks used to configure a Media Library Browser to display specific types of media. Combined masks are not yet supported.  In other words, only one nonzero mask value is supported at a time.  If masks are combined, the lowest mask value is used.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/Library
+type MediaLibrary uint
+
+// NSMenuPresentationStyle - Specifies the style of a menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/PresentationStyle-swift.enum
+type MenuPresentationStyle uint
+
+// NSMenuProperties - These constants are used as a bitmask for specifying a set of menu or menu item properties, and are contained by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/Properties
+type MenuProperties uint
+
+// NSMenuSelectionMode - Describes how the menu manages selection states of the menu items that belong to the same selection group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/SelectionMode-swift.enum
+type MenuSelectionMode uint
+
+// NSMenuItemBadgeType - Constants that define types of badges for display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/BadgeType
+type MenuItemBadgeType uint
+
+const (
+	// MenuItemBadgeTypeNone - A badge with no string portion.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/BadgeType/none
+	MenuItemBadgeTypeNone MenuItemBadgeType = 0
+)
+
 // NSMultibyteGlyphPacking - A constant for glyph packing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMultibyteGlyphPacking
@@ -764,6 +899,11 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel/Options-swift.struct
 type PDFPanelOptions uint
+
+// NSPageControllerTransitionStyle - These constants control the transition style of the page controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/TransitionStyle-swift.enum
+type PageControllerTransitionStyle uint
 
 // NSPageLayoutResult enum type
 //
@@ -809,6 +949,23 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ContentsOptions/currentHostOnly
 	PasteboardContentsCurrentHostOnly PasteboardContentsOptions = 0
+)
+
+// NSPasteboardReadingOptions - Options that specify how to interpret data on the pasteboard when initializing pasteboard data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptions
+type PasteboardReadingOptions uint
+
+// NSPasteboardWritingOptions - Type to specify options for writing to a pasteboard.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/WritingOptions
+type PasteboardWritingOptions uint
+
+const (
+	// PasteboardWritingPromised - Data for a type with this option is promised, not immediately written.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/WritingOptions/promised
+	PasteboardWritingPromised PasteboardWritingOptions = 0
 )
 
 // NSPickerTouchBarItemControlRepresentation - Constants that specify display styles for picker bar items.
@@ -896,6 +1053,16 @@ type ProgressIndicatorThickness uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectAlignment
 type RectAlignment uint
+
+// NSRuleEditorNestingMode - Specifies a type for nesting modes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/NestingMode-swift.enum
+type RuleEditorNestingMode uint
+
+// NSRuleEditorRowType - Specifies a type for row types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/RowType
+type RuleEditorRowType uint
 
 // NSRulerOrientation - These constants are defined to specify a ruler’s orientation and are used by 
 //
@@ -998,10 +1165,25 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/SliderType-swift.enum
 type SliderType uint
 
+// NSSpeechBoundary - These constants are used to indicate where speech should be stopped and paused. See 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/Boundary
+type SpeechBoundary uint
+
 // NSSplitViewDividerStyle - Constants that specify the style of the split view’s dividers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/DividerStyle-swift.enum
 type SplitViewDividerStyle uint
+
+// NSSplitViewItemBehavior - Constants that describe the behavior of the split view item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/Behavior-swift.enum
+type SplitViewItemBehavior uint
+
+// NSSplitViewItemCollapseBehavior - Constants that describe the split view item’s collapsing behavior.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/CollapseBehavior-swift.enum
+type SplitViewItemCollapseBehavior uint
 
 // NSSpringLoadingHighlight - A group of constants that indicate a highlighting style for your app’s user interface to display during a spring-loading operation.
 //
@@ -1018,12 +1200,25 @@ type StackViewDistribution uint
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/Gravity
 type StackViewGravity uint
 
+// NSStatusItemBehavior - A set of optional status item behaviors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/Behavior-swift.struct
+type StatusItemBehavior uint
+
 // NSStringDrawingOptions - Constants that specify the rendering options for drawing a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingOptions
 type StringDrawingOptions uint
 
 const (
+	// StringDrawingDisableScreenFontSubstitution - An option that disables screen font substitution.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingOptions/NSStringDrawingDisableScreenFontSubstitution
+	StringDrawingDisableScreenFontSubstitution StringDrawingOptions = 0
+	// StringDrawingOptionsResolvesNaturalAlignmentWithBaseWritingDirection - Specifies the behavior for resolving   to the visual alignment.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingOptions/NSStringDrawingOptionsResolvesNaturalAlignmentWithBaseWritingDirection
+	StringDrawingOptionsResolvesNaturalAlignmentWithBaseWritingDirection StringDrawingOptions = 0
 	// StringDrawingTruncatesLastVisibleLine - Truncates and adds the ellipsis character to the last visible line if the text doesn’t fit into the specified bounds.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingOptions/NSStringDrawingTruncatesLastVisibleLine
@@ -1032,6 +1227,14 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingOptions/NSStringDrawingUsesDeviceMetrics
 	StringDrawingUsesDeviceMetrics StringDrawingOptions = 0
+	// StringDrawingUsesFontLeading - Uses the font leading for calculating line heights.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingOptions/NSStringDrawingUsesFontLeading
+	StringDrawingUsesFontLeading StringDrawingOptions = 0
+	// StringDrawingUsesLineFragmentOrigin - Uses the line fragment origin instead of the baseline origin.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingOptions/NSStringDrawingUsesLineFragmentOrigin
+	StringDrawingUsesLineFragmentOrigin StringDrawingOptions = 0
 )
 
 // NSTabPosition enum type
@@ -1048,6 +1251,16 @@ type TabViewType uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/TabViewBorderType-swift.enum
 type TabViewBorderType uint
+
+// NSTabViewControllerTabStyle - Tab control style options for a tab view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/TabStyle-swift.enum
+type TabViewControllerTabStyle uint
+
+// NSTabState - These constants describe the current display state of a tab:
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/State
+type TabState uint
 
 // NSTableColumnResizingOptions enum type
 //
@@ -1074,6 +1287,22 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/DraggingDestinationFeedbackStyle-swift.enum/sourceList
 	TableViewDraggingDestinationFeedbackStyleSourceList TableViewDraggingDestinationFeedbackStyle = 0
+)
+
+// NSTableViewDropOperation enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/DropOperation
+type TableViewDropOperation uint
+
+const (
+	// TableViewDropAbove - Specifies that the drop should occur above the specified row.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/DropOperation/above
+	TableViewDropAbove TableViewDropOperation = 0
+	// TableViewDropOn - Specifies that the drop should occur on the specified row.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/DropOperation/on
+	TableViewDropOn TableViewDropOperation = 0
 )
 
 // NSTableViewGridLineStyle enum type
@@ -1196,6 +1425,21 @@ type TextMovement uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTintProminence
 type TintProminence uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTintProminence/automatic
+	TintProminenceAutomatic TintProminence = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTintProminence/none
+	TintProminenceNone TintProminence = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTintProminence/primary
+	TintProminencePrimary TintProminence = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTintProminence/secondary
+	TintProminenceSecondary TintProminence = 0
+)
 
 // NSTitlebarSeparatorStyle - Styles that determine the type of separator displayed between the title bar and content of a window.
 //
@@ -1339,6 +1583,54 @@ const (
 	TouchTypeMaskDirect TouchTypeMask = 0
 )
 
+// NSTrackingAreaOptions - The data type defined for the constants specified in the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct
+type TrackingAreaOptions uint
+
+const (
+	// TrackingActiveAlways - The owner receives messages regardless of first-responder status, window status, or application status. The   message is   sent when the   option is specified along with this constant. This value specifies when the tracking area defined by an   object is active.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeAlways
+	TrackingActiveAlways TrackingAreaOptions = 0
+	// TrackingActiveInActiveApp - The owner receives messages when the application is active. This value specifies when the tracking area defined by an   object is active.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeInActiveApp
+	TrackingActiveInActiveApp TrackingAreaOptions = 0
+	// TrackingActiveInKeyWindow - The owner receives messages when the view is in the key window. This value specifies when the tracking area defined by an   object is active.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeInKeyWindow
+	TrackingActiveInKeyWindow TrackingAreaOptions = 0
+	// TrackingActiveWhenFirstResponder - The owner receives messages when the view is the first responder. This value specifies when the tracking area defined by an   object is active.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeWhenFirstResponder
+	TrackingActiveWhenFirstResponder TrackingAreaOptions = 0
+	// TrackingAssumeInside - The first event is generated when the cursor leaves the tracking area, regardless if the cursor is inside the area when the   is added to a view.  If this option is not specified, the first event is generated when the cursor leaves the tracking area if the cursor is initially inside the area, or when the cursor enters the area if the cursor is initially outside it. Generally, you do not want to request this behavior. This value specifies a behavior of the tracking area defined by the  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct/assumeInside
+	TrackingAssumeInside TrackingAreaOptions = 0
+	// TrackingCursorUpdate - A tracking option that receives events when the mouse cursor enters and exits the tracking area.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct/cursorUpdate
+	TrackingCursorUpdate TrackingAreaOptions = 0
+	// TrackingEnabledDuringMouseDrag - The owner receives   events when the mouse cursor is dragged into the tracking area. If this option is not specified, the owner receives mouse-entered events when the mouse is moved (no buttons pressed) into the tracking area and on   events after a mouse drag.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct/enabledDuringMouseDrag
+	TrackingEnabledDuringMouseDrag TrackingAreaOptions = 0
+	// TrackingInVisibleRect - Mouse tracking occurs only in the visible rectangle of the view—in other words, that region of the tracking rectangle that is unobscured. Otherwise, the entire tracking area is active regardless of overlapping views. The   object is automatically synchronized with changes in the view’s visible area ( ) and the value returned from   is ignored. This value specifies a behavior of the tracking area defined by the  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct/inVisibleRect
+	TrackingInVisibleRect TrackingAreaOptions = 0
+	// TrackingMouseEnteredAndExited - The owner of the tracking area receives   when the mouse cursor enters the area and   events when the mouse leaves the area. This value specifies a type of tracking area.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct/mouseEnteredAndExited
+	TrackingMouseEnteredAndExited TrackingAreaOptions = 0
+	// TrackingMouseMoved - The owner of the tracking area receives   messages while the mouse cursor is within the area. This value specifies a type of tracking area.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/Options-swift.struct/mouseMoved
+	TrackingMouseMoved TrackingAreaOptions = 0
+)
+
 // NSUserInterfaceLayoutDirection - Specifies the directional flow of the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceLayoutDirection
@@ -1428,6 +1720,10 @@ type VisualEffectBlendingMode uint
 type VisualEffectMaterial uint
 
 const (
+	// VisualEffectMaterialLight - A material with a light effect.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/Material-swift.enum/light
+	VisualEffectMaterialLight VisualEffectMaterial = 0
 	// VisualEffectMaterialSidebar - The material for the background of window sidebars.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/Material-swift.enum/sidebar

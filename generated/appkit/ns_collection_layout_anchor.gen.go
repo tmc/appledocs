@@ -81,11 +81,19 @@ func NewCollectionLayoutAnchor() CollectionLayoutAnchor {
 }
 
 
+// A Boolean value that indicates whether the anchor’s offset is expressed as a fraction of its supplementary item’s dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/isFractionalOffset
+func (c_ CollectionLayoutAnchor) IsFractionalOffset() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isFractionalOffset"))
+	return rv
+}
+
 // The edges of the item an anchor is attached to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/edges
-func (c_ CollectionLayoutAnchor) Edges() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("edges"))
+func (c_ CollectionLayoutAnchor) Edges() DirectionalRectEdge {
+	rv := objc.Send[DirectionalRectEdge](c_.ID, objc.Sel("edges"))
 	return rv
 }
 
@@ -95,7 +103,7 @@ func (c_ CollectionLayoutAnchor) Edges() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/edges
-func (c_ CollectionLayoutAnchor) SetEdges(value unsafe.Pointer) {
+func (c_ CollectionLayoutAnchor) SetEdges(value IDirectionalRectEdge) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEdges:"), value)
 }
 
@@ -115,24 +123,6 @@ func (c_ CollectionLayoutAnchor) IsAbsoluteOffset() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/isabsoluteoffset
 func (c_ CollectionLayoutAnchor) SetIsAbsoluteOffset(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAbsoluteOffset:"), value)
-}
-
-// A Boolean value that indicates whether the anchor’s offset is expressed as a fraction of its supplementary item’s dimension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/isfractionaloffset
-func (c_ CollectionLayoutAnchor) IsFractionalOffset() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isFractionalOffset"))
-	return rv
-}
-
-
-// SetIsFractionalOffset sets the value of the isFractionalOffset property.
-// A Boolean value that indicates whether the anchor’s offset is expressed as a fraction of its supplementary item’s dimension.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/isfractionaloffset
-func (c_ CollectionLayoutAnchor) SetIsFractionalOffset(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFractionalOffset:"), value)
 }
 
 // The floating-point value of the anchor’s offset from the item it’s attached to.

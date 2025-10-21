@@ -81,76 +81,49 @@ func NewTrackingArea() TrackingArea {
 }
 
 
-// The options specified for the receiver.
+
+
+// Initializes and returns an object defining a region of a view to receive mouse-tracking events, mouse-moved events, cursor-update events, or possibly all these events.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.property
-func (t_ TrackingArea) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("options"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)
+func NewTrackingAreaWithRectOptionsOwnerUserInfo(rect coregraphics.CGRect, options TrackingAreaOptions, owner objectivec.IObject, userInfo unsafe.Pointer) TrackingArea {
+	instance := getTrackingAreaClass().Alloc()
+	rv := objc.Send[TrackingArea](instance.ID, objc.Sel("initWithRect:options:owner:userInfo:"), rect, options, owner, userInfo)
+	rv.Autorelease()
 	return rv
 }
 
 
-// SetOptions sets the value of the options property.
 // The options specified for the receiver.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.property
-func (t_ TrackingArea) SetOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setOptions:"), value)
-}
-
-// The object owning the receiver, which is the recipient of mouse-tracking, mouse-movement, and cursor-update messages.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/owner
-func (t_ TrackingArea) Owner() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("owner"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/options-swift.property
+func (t_ TrackingArea) Options() TrackingAreaOptions {
+	rv := objc.Send[TrackingAreaOptions](t_.ID, objc.Sel("options"))
 	return rv
 }
 
-
-// SetOwner sets the value of the owner property.
 // The object owning the receiver, which is the recipient of mouse-tracking, mouse-movement, and cursor-update messages.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/owner
-func (t_ TrackingArea) SetOwner(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setOwner:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/owner
+func (t_ TrackingArea) Owner() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("owner"))
+	return rv
 }
 
 // The rectangle defining the area encompassed by the receiver.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/rect
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/rect
 func (t_ TrackingArea) Rect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("rect"))
 	return rv
 }
 
-
-// SetRect sets the value of the rect property.
-// The rectangle defining the area encompassed by the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/rect
-func (t_ TrackingArea) SetRect(value coregraphics.CGRect) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setRect:"), value)
-}
-
 // The dictionary containing the data associated with the receiver when it was created.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/userinfo
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/userInfo
 func (t_ TrackingArea) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("userInfo"))
 	return rv
-}
-
-
-// SetUserInfo sets the value of the userInfo property.
-// The dictionary containing the data associated with the receiver when it was created.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/userinfo
-func (t_ TrackingArea) SetUserInfo(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setUserInfo:"), value)
 }
 
 // The portion of the view that isn’t clipped by its superviews.
@@ -170,6 +143,5 @@ func (t_ TrackingArea) VisibleRect() coregraphics.CGRect {
 func (t_ TrackingArea) SetVisibleRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibleRect:"), value)
 }
-
 
 

@@ -102,8 +102,8 @@ func (s_ Switch) SetAction(value unsafe.Pointer) {
 // The receiver’s cell object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/cell
-func (s_ Switch) Cell() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("cell"))
+func (s_ Switch) Cell() NSCell {
+	rv := objc.Send[NSCell](s_.ID, objc.Sel("cell"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (s_ Switch) Cell() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/cell
-func (s_ Switch) SetCell(value unsafe.Pointer) {
+func (s_ Switch) SetCell(value ICell) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCell:"), value)
 }
 

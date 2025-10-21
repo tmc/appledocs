@@ -101,16 +101,16 @@ func (p_ PrintPanel) SetJobStyleHint(value unsafe.Pointer) {
 // The information associated with the running Print panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/printInfo
-func (p_ PrintPanel) PrintInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("printInfo"))
+func (p_ PrintPanel) PrintInfo() NSPrintInfo {
+	rv := objc.Send[NSPrintInfo](p_.ID, objc.Sel("printInfo"))
 	return rv
 }
 
 // The array of controller objects that manage the Print panel’s accessory views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/accessorycontrollers
-func (p_ PrintPanel) AccessoryControllers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("accessoryControllers"))
+func (p_ PrintPanel) AccessoryControllers() NSViewController {
+	rv := objc.Send[NSViewController](p_.ID, objc.Sel("accessoryControllers"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (p_ PrintPanel) AccessoryControllers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/accessorycontrollers
-func (p_ PrintPanel) SetAccessoryControllers(value unsafe.Pointer) {
+func (p_ PrintPanel) SetAccessoryControllers(value IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAccessoryControllers:"), value)
 }
 

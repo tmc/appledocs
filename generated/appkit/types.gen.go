@@ -22,23 +22,19 @@ type CGImage unsafe.Pointer
 
 type CIFilter unsafe.Pointer
 
-type CIImage unsafe.Pointer
-
 type Class unsafe.Pointer
 
 type NSAccessibilityCustomRotorItemSearchDelegate unsafe.Pointer
 
 type NSAccessibilityElementLoading unsafe.Pointer
 
-type NSAffineTransform unsafe.Pointer
-
 type NSAlignmentOptions unsafe.Pointer
-
-type NSAppearanceName unsafe.Pointer
 
 type NSAppleEventDescriptor unsafe.Pointer
 
 type NSApplicationDelegateReply unsafe.Pointer
+
+type NSAttributeType unsafe.Pointer
 
 type NSAttributedString unsafe.Pointer
 
@@ -66,8 +62,6 @@ type NSColorSpaceModel unsafe.Pointer
 
 type NSComparisonResult unsafe.Pointer
 
-type NSControlBorderShape unsafe.Pointer
-
 type NSCopying unsafe.Pointer
 
 type NSDraggingFormation unsafe.Pointer
@@ -78,13 +72,13 @@ type NSError unsafe.Pointer
 
 type NSException unsafe.Pointer
 
+type NSExpression unsafe.Pointer
+
 type NSExtensionContext unsafe.Pointer
 
 type NSFileVersion unsafe.Pointer
 
 type NSFileWrapper unsafe.Pointer
-
-type NSFocusRingType unsafe.Pointer
 
 type NSFontAction unsafe.Pointer
 
@@ -96,8 +90,6 @@ type NSFontWeight unsafe.Pointer
 
 type NSFormatter unsafe.Pointer
 
-type NSGradientDrawingOptions unsafe.Pointer
-
 type NSGridCellPlacement unsafe.Pointer
 
 type NSGridRow unsafe.Pointer
@@ -106,7 +98,7 @@ type NSGridRowAlignment unsafe.Pointer
 
 type NSImageAlignment unsafe.Pointer
 
-type NSImageInterpolation unsafe.Pointer
+type NSImageFrameStyle unsafe.Pointer
 
 type NSImageName unsafe.Pointer
 
@@ -124,8 +116,6 @@ type NSManagedObjectContext unsafe.Pointer
 
 type NSManagedObjectModel unsafe.Pointer
 
-type NSMenuItemBadgeType unsafe.Pointer
-
 type NSModalSession unsafe.Pointer
 
 type NSMutableArray unsafe.Pointer
@@ -133,8 +123,6 @@ type NSMutableArray unsafe.Pointer
 type NSMutableData unsafe.Pointer
 
 type NSMutableDictionary unsafe.Pointer
-
-type NSNibName unsafe.Pointer
 
 type NSNotification unsafe.Pointer
 
@@ -146,17 +134,15 @@ type NSOperationQueue unsafe.Pointer
 
 type NSOrthography unsafe.Pointer
 
-type NSPageControllerDelegate unsafe.Pointer
-
 type NSPathControlDelegate unsafe.Pointer
 
 type NSPathControlItem unsafe.Pointer
 
+type NSPointArray unsafe.Pointer
+
 type NSPointPointer unsafe.Pointer
 
 type NSPredicate unsafe.Pointer
-
-type NSPredicateEditorRowTemplate unsafe.Pointer
 
 type NSPrintJobDispositionValue unsafe.Pointer
 
@@ -173,8 +159,6 @@ type NSProgress unsafe.Pointer
 type NSRangePointer unsafe.Pointer
 
 type NSRectEdge unsafe.Pointer
-
-type NSRuleEditorDelegate unsafe.Pointer
 
 type NSRunLoopMode unsafe.Pointer
 
@@ -194,29 +178,15 @@ type NSServiceProviderName unsafe.Pointer
 
 type NSSharingServiceDelegate unsafe.Pointer
 
-type NSSliderAccessoryBehavior unsafe.Pointer
-
 type NSSortDescriptor unsafe.Pointer
-
-type NSSoundDelegate unsafe.Pointer
-
-type NSSpeechRecognizerDelegate unsafe.Pointer
-
-type NSSpeechSynthesizerDelegate unsafe.Pointer
-
-type NSSplitViewItemBehavior unsafe.Pointer
 
 type NSStoryboardControllerCreator unsafe.Pointer
 
-type NSStoryboardSceneIdentifier unsafe.Pointer
-
-type NSStoryboardSegueIdentifier unsafe.Pointer
+type NSSymbolContentTransition unsafe.Pointer
 
 type NSSymbolEffect unsafe.Pointer
 
 type NSSymbolEffectOptions unsafe.Pointer
-
-type NSTabState unsafe.Pointer
 
 type NSTableViewDelegate unsafe.Pointer
 
@@ -246,6 +216,8 @@ type NSTextSuggestionsDelegate unsafe.Pointer
 
 type NSTextViewportLayoutControllerDelegate unsafe.Pointer
 
+type NSTickMarkPosition unsafe.Pointer
+
 type NSTimeInterval unsafe.Pointer
 
 type NSTokenFieldCellDelegate unsafe.Pointer
@@ -262,6 +234,8 @@ type NSUndoManager unsafe.Pointer
 
 type NSUserActivity unsafe.Pointer
 
+type NSUserDefaults unsafe.Pointer
+
 type NSValue unsafe.Pointer
 
 type NSWorkspaceAuthorizationType unsafe.Pointer
@@ -270,7 +244,11 @@ type NSWorkspaceLaunchOptions unsafe.Pointer
 
 type NSWritingToolsCoordinatorTextUpdateReason unsafe.Pointer
 
+type NSZone unsafe.Pointer
+
 type OperationQueue unsafe.Pointer
+
+type PasteboardType unsafe.Pointer
 
 type UIColor unsafe.Pointer
 

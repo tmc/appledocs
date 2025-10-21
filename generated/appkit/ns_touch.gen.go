@@ -31,8 +31,8 @@ type _TouchClass struct {
 // An interface definition for the [Touch] class.
 type ITouch interface {
 	objectivec.IObject
-	LocationInView(view unsafe.Pointer) coregraphics.CGPoint
-	PreviousLocationInView(view unsafe.Pointer) coregraphics.CGPoint
+	LocationInView(view IView) coregraphics.CGPoint
+	PreviousLocationInView(view IView) coregraphics.CGPoint
 }
 
 // A snapshot of a particular touch at an instant in time.
@@ -86,7 +86,7 @@ func NewTouch() Touch {
 // Indicates the location of the touch in the view’s coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/location(in:)
-func (t_ Touch) LocationInView(view unsafe.Pointer) coregraphics.CGPoint {
+func (t_ Touch) LocationInView(view IView) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("locationInView:"), view)
 	return rv
 }
@@ -94,7 +94,7 @@ func (t_ Touch) LocationInView(view unsafe.Pointer) coregraphics.CGPoint {
 // Indicates the previous location of the touch in the view’s coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/previousLocation(in:)
-func (t_ Touch) PreviousLocationInView(view unsafe.Pointer) coregraphics.CGPoint {
+func (t_ Touch) PreviousLocationInView(view IView) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("previousLocationInView:"), view)
 	return rv
 }
@@ -198,8 +198,8 @@ func (t_ Touch) SetIsResting(value bool) {
 // A type of touch from a Touch Bar interaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/type
-func (t_ Touch) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("type"))
+func (t_ Touch) Type() TouchType {
+	rv := objc.Send[TouchType](t_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -209,7 +209,7 @@ func (t_ Touch) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/type
-func (t_ Touch) SetType(value unsafe.Pointer) {
+func (t_ Touch) SetType(value TouchType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setType:"), value)
 }
 

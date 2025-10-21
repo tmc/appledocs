@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [UserDefaultsController] class.
@@ -29,7 +30,9 @@ type _UserDefaultsControllerClass struct {
 // An interface definition for the [UserDefaultsController] class.
 type IUserDefaultsController interface {
 	IController
-	Revert(sender objc.ID)
+	Revert(sender objectivec.IObject)
+	RevertToInitialValues(sender objectivec.IObject)
+	Save(sender objectivec.IObject)
 }
 
 // A controller that accesses user preference information for your app from the user’s defaults database.
@@ -84,7 +87,7 @@ func NewUserDefaultsController() UserDefaultsController {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/init(coder:)
-func NewUserDefaultsControllerWithCoder(coder unsafe.Pointer) UserDefaultsController {
+func NewUserDefaultsControllerWithCoder(coder ICoder) UserDefaultsController {
 	instance := getUserDefaultsControllerClass().Alloc()
 	rv := objc.Send[UserDefaultsController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -92,24 +95,49 @@ func NewUserDefaultsControllerWithCoder(coder unsafe.Pointer) UserDefaultsContro
 }
 
 
+
+// Returns an initialized NSUserDefaultsController object using the NSUserDefaults instance specified in and the initial default values contained in the dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/init(defaults:initialValues:)
+func NewUserDefaultsControllerWithDefaultsInitialValues(defaults unsafe.Pointer, initialValues unsafe.Pointer) UserDefaultsController {
+	instance := getUserDefaultsControllerClass().Alloc()
+	rv := objc.Send[UserDefaultsController](instance.ID, objc.Sel("initWithDefaults:initialValues:"), defaults, initialValues)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns the shared instance of NSUserDefaultsController, creating it if necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/shared
+func (uc _UserDefaultsControllerClass) SharedUserDefaultsController() NSUserDefaultsController {
+	rv := objc.Send[NSUserDefaultsController](objc.ID(uc.class), objc.Sel("sharedUserDefaultsController"))
+	return rv
+}
 // Causes the receiver to discard any unsaved changes to bound user default properties, restoring their previous values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/revert(_:)
-func (u_ UserDefaultsController) Revert(sender objc.ID) {
+func (u_ UserDefaultsController) Revert(sender objectivec.IObject) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("revert:"), sender)
 }
 
-// Returns a key value coding compliant object that is used to access the user default properties.
+// Causes the receiver to discard all edits and replace the values of all the user default properties with any corresponding values in the dictionary.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/values
-func (u_ UserDefaultsController) Values() objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("values"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/revertToInitialValues(_:)
+func (u_ UserDefaultsController) RevertToInitialValues(sender objectivec.IObject) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("revertToInitialValues:"), sender)
+}
+
+// Saves the values of the receiver’s user default properties.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/save(_:)
+func (u_ UserDefaultsController) Save(sender objectivec.IObject) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("save:"), sender)
 }
 
 // Returns whether any changes made to bound user default properties are saved immediately.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/appliesimmediately
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/appliesImmediately
 func (u_ UserDefaultsController) AppliesImmediately() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("appliesImmediately"))
 	return rv
@@ -120,52 +148,32 @@ func (u_ UserDefaultsController) AppliesImmediately() bool {
 // Returns whether any changes made to bound user default properties are saved immediately.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/appliesimmediately
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/appliesImmediately
 func (u_ UserDefaultsController) SetAppliesImmediately(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAppliesImmediately:"), value)
 }
 
 // Returns the instance of NSUserDefaults in use by the receiver.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/defaults
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/defaults
 func (u_ UserDefaultsController) Defaults() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("defaults"))
 	return rv
 }
 
-
-// SetDefaults sets the value of the defaults property.
-// Returns the instance of NSUserDefaults in use by the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/defaults
-func (u_ UserDefaultsController) SetDefaults(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDefaults:"), value)
-}
-
 // Returns whether the receiver has user default values that have not been saved to NSUserDefaults.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/hasunappliedchanges
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/hasUnappliedChanges
 func (u_ UserDefaultsController) HasUnappliedChanges() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("hasUnappliedChanges"))
 	return rv
 }
 
-
-// SetHasUnappliedChanges sets the value of the hasUnappliedChanges property.
-// Returns whether the receiver has user default values that have not been saved to NSUserDefaults.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/hasunappliedchanges
-func (u_ UserDefaultsController) SetHasUnappliedChanges(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHasUnappliedChanges:"), value)
-}
-
 // Returns a dictionary containing the receiver’s initial default values.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/initialvalues
-func (u_ UserDefaultsController) InitialValues() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("initialValues"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/initialValues
+func (u_ UserDefaultsController) InitialValues() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("initialValues"))
 	return rv
 }
 
@@ -174,9 +182,25 @@ func (u_ UserDefaultsController) InitialValues() string {
 // Returns a dictionary containing the receiver’s initial default values.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/initialvalues
-func (u_ UserDefaultsController) SetInitialValues(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setInitialValues:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/initialValues
+func (u_ UserDefaultsController) SetInitialValues(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setInitialValues:"), value)
+}
+
+// Returns the shared instance of NSUserDefaultsController, creating it if necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/shared
+func (u_ UserDefaultsController) SharedUserDefaultsController() NSUserDefaultsController {
+	rv := objc.Send[NSUserDefaultsController](u_.ID, objc.Sel("sharedUserDefaultsController"))
+	return rv
+}
+
+// Returns a key value coding compliant object that is used to access the user default properties.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/values
+func (u_ UserDefaultsController) Values() objc.ID {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("values"))
+	return rv
 }
 
 

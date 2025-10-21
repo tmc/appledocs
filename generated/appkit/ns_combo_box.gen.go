@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ComboBox] class.
@@ -30,17 +31,17 @@ type _ComboBoxClass struct {
 // An interface definition for the [ComboBox] class.
 type IComboBox interface {
 	ITextField
-	AddItemWithObjectValue(object objc.ID)
-	AddItemsWithObjectValues(objects objc.ID)
-	IndexOfItemWithObjectValue(object objc.ID) int
-	InsertItemWithObjectValueAtIndex(object objc.ID, index int)
+	AddItemWithObjectValue(object objectivec.IObject)
+	AddItemsWithObjectValues(objects objectivec.IObject)
+	IndexOfItemWithObjectValue(object objectivec.IObject) int
+	InsertItemWithObjectValueAtIndex(object objectivec.IObject, index int)
 	ItemObjectValueAtIndex(index int) objc.ID
 	ReloadData()
 	RemoveAllItems()
 	RemoveItemAtIndex(index int)
 	ScrollItemAtIndexToTop(index int)
 	ScrollItemAtIndexToVisible(index int)
-	SelectItemWithObjectValue(object objc.ID)
+	SelectItemWithObjectValue(object objectivec.IObject)
 }
 
 // A view that displays a list of values in a pop-up menu where the user selects a value or types in a custom value.
@@ -96,21 +97,21 @@ func NewComboBox() ComboBox {
 // Adds an object to the end of the receiver’s internal item list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/addItem(withObjectValue:)
-func (c_ ComboBox) AddItemWithObjectValue(object objc.ID) {
+func (c_ ComboBox) AddItemWithObjectValue(object objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addItemWithObjectValue:"), object)
 }
 
 // Adds multiple objects to the end of the receiver’s internal item list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/addItems(withObjectValues:)
-func (c_ ComboBox) AddItemsWithObjectValues(objects objc.ID) {
+func (c_ ComboBox) AddItemsWithObjectValues(objects objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addItemsWithObjectValues:"), objects)
 }
 
 // Searches the receiver’s internal item list for the specified object and returns the lowest matching index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/indexOfItem(withObjectValue:)
-func (c_ ComboBox) IndexOfItemWithObjectValue(object objc.ID) int {
+func (c_ ComboBox) IndexOfItemWithObjectValue(object objectivec.IObject) int {
 	rv := objc.Send[int](c_.ID, objc.Sel("indexOfItemWithObjectValue:"), object)
 	return rv
 }
@@ -118,7 +119,7 @@ func (c_ ComboBox) IndexOfItemWithObjectValue(object objc.ID) int {
 // Inserts an object at the specified location in the receiver’s internal item list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/insertItem(withObjectValue:at:)
-func (c_ ComboBox) InsertItemWithObjectValueAtIndex(object objc.ID, index int) {
+func (c_ ComboBox) InsertItemWithObjectValueAtIndex(object objectivec.IObject, index int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("insertItemWithObjectValue:atIndex:"), object, index)
 }
 
@@ -168,7 +169,7 @@ func (c_ ComboBox) ScrollItemAtIndexToVisible(index int) {
 // Selects the first pop-up list item that corresponds to the given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/selectItem(withObjectValue:)
-func (c_ ComboBox) SelectItemWithObjectValue(object objc.ID) {
+func (c_ ComboBox) SelectItemWithObjectValue(object objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("selectItemWithObjectValue:"), object)
 }
 

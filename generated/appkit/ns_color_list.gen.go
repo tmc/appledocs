@@ -31,7 +31,7 @@ type _ColorListClass struct {
 // An interface definition for the [ColorList] class.
 type IColorList interface {
 	objectivec.IObject
-	WriteToURLError(url foundation.URL, errPtr unsafe.Pointer) bool
+	WriteToURLError(url foundation.IURL, errPtr unsafe.Pointer) bool
 }
 
 // An ordered list of color objects, identified by keys.
@@ -85,7 +85,7 @@ func NewColorList() ColorList {
 // Saves the color list to the file at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/write(to:)
-func (c_ ColorList) WriteToURLError(url foundation.URL, errPtr unsafe.Pointer) bool {
+func (c_ ColorList) WriteToURLError(url foundation.IURL, errPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeToURL:error:"), url, errPtr)
 	return rv
 }

@@ -91,7 +91,7 @@ func NewOpenGLView() OpenGLView {
 // Returns an object initialized with the specified frame rectangle and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
-func NewOpenGLViewWithFramePixelFormat(frameRect coregraphics.CGRect, format unsafe.Pointer) OpenGLView {
+func NewOpenGLViewWithFramePixelFormat(frameRect coregraphics.CGRect, format NSOpenGLPixelFormat) OpenGLView {
 	instance := getOpenGLViewClass().Alloc()
 	rv := objc.Send[OpenGLView](instance.ID, objc.Sel("initWithFrame:pixelFormat:"), frameRect, format)
 	rv.Autorelease()
@@ -102,8 +102,8 @@ func NewOpenGLViewWithFramePixelFormat(frameRect coregraphics.CGRect, format uns
 // Returns a default object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/defaultPixelFormat()
-func (oc _OpenGLViewClass) DefaultPixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("defaultPixelFormat"))
+func (oc _OpenGLViewClass) DefaultPixelFormat() OpenGLPixelFormat {
+	rv := objc.Send[OpenGLPixelFormat](objc.ID(oc.class), objc.Sel("defaultPixelFormat"))
 	return rv
 }
 
@@ -138,8 +138,8 @@ func (o_ OpenGLView) Update() {
 // The object associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/openGLContext
-func (o_ OpenGLView) OpenGLContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("openGLContext"))
+func (o_ OpenGLView) OpenGLContext() NSOpenGLContext {
+	rv := objc.Send[NSOpenGLContext](o_.ID, objc.Sel("openGLContext"))
 	return rv
 }
 
@@ -149,15 +149,15 @@ func (o_ OpenGLView) OpenGLContext() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/openGLContext
-func (o_ OpenGLView) SetOpenGLContext(value unsafe.Pointer) {
+func (o_ OpenGLView) SetOpenGLContext(value IOpenGLContext) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLContext:"), value)
 }
 
 // The object associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/pixelFormat
-func (o_ OpenGLView) PixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("pixelFormat"))
+func (o_ OpenGLView) PixelFormat() NSOpenGLPixelFormat {
+	rv := objc.Send[NSOpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (o_ OpenGLView) PixelFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/pixelFormat
-func (o_ OpenGLView) SetPixelFormat(value unsafe.Pointer) {
+func (o_ OpenGLView) SetPixelFormat(value NSOpenGLPixelFormat) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPixelFormat:"), value)
 }
 

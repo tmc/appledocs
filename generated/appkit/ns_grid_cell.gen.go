@@ -82,8 +82,8 @@ func NewGridCell() GridCell {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/column
-func (g_ GridCell) Column() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("column"))
+func (g_ GridCell) Column() NSGridColumn {
+	rv := objc.Send[NSGridColumn](g_.ID, objc.Sel("column"))
 	return rv
 }
 
@@ -91,14 +91,14 @@ func (g_ GridCell) Column() unsafe.Pointer {
 // SetColumn sets the value of the column property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/column
-func (g_ GridCell) SetColumn(value unsafe.Pointer) {
+func (g_ GridCell) SetColumn(value IGridColumn) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColumn:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/contentview
-func (g_ GridCell) ContentView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("contentView"))
+func (g_ GridCell) ContentView() NSView {
+	rv := objc.Send[NSView](g_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -106,14 +106,14 @@ func (g_ GridCell) ContentView() unsafe.Pointer {
 // SetContentView sets the value of the contentView property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/contentview
-func (g_ GridCell) SetContentView(value unsafe.Pointer) {
+func (g_ GridCell) SetContentView(value IView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setContentView:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/customplacementconstraints
-func (g_ GridCell) CustomPlacementConstraints() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("customPlacementConstraints"))
+func (g_ GridCell) CustomPlacementConstraints() NSLayoutConstraint {
+	rv := objc.Send[NSLayoutConstraint](g_.ID, objc.Sel("customPlacementConstraints"))
 	return rv
 }
 
@@ -121,7 +121,7 @@ func (g_ GridCell) CustomPlacementConstraints() unsafe.Pointer {
 // SetCustomPlacementConstraints sets the value of the customPlacementConstraints property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/customplacementconstraints
-func (g_ GridCell) SetCustomPlacementConstraints(value unsafe.Pointer) {
+func (g_ GridCell) SetCustomPlacementConstraints(value ILayoutConstraint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCustomPlacementConstraints:"), value)
 }
 

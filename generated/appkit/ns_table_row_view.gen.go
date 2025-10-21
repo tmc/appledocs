@@ -126,8 +126,8 @@ func (t_ TableRowView) ViewAtColumn(column int) objc.ID {
 // The background color of the row.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/backgroundColor
-func (t_ TableRowView) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+func (t_ TableRowView) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -137,15 +137,15 @@ func (t_ TableRowView) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/backgroundColor
-func (t_ TableRowView) SetBackgroundColor(value unsafe.Pointer) {
+func (t_ TableRowView) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 // Specifies the dragging destination feedback style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/draggingDestinationFeedbackStyle
-func (t_ TableRowView) DraggingDestinationFeedbackStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("draggingDestinationFeedbackStyle"))
+func (t_ TableRowView) DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle {
+	rv := objc.Send[TableViewDraggingDestinationFeedbackStyle](t_.ID, objc.Sel("draggingDestinationFeedbackStyle"))
 	return rv
 }
 
@@ -155,7 +155,7 @@ func (t_ TableRowView) DraggingDestinationFeedbackStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/draggingDestinationFeedbackStyle
-func (t_ TableRowView) SetDraggingDestinationFeedbackStyle(value unsafe.Pointer) {
+func (t_ TableRowView) SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDraggingDestinationFeedbackStyle:"), value)
 }
 
@@ -180,8 +180,8 @@ func (t_ TableRowView) SetIndentationForDropOperation(value float64) {
 // Specifies how the subviews should draw.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/interiorBackgroundStyle
-func (t_ TableRowView) InteriorBackgroundStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("interiorBackgroundStyle"))
+func (t_ TableRowView) InteriorBackgroundStyle() BackgroundStyle {
+	rv := objc.Send[BackgroundStyle](t_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
 }
 

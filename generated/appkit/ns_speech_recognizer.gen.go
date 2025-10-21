@@ -30,6 +30,7 @@ type _SpeechRecognizerClass struct {
 // An interface definition for the [SpeechRecognizer] class.
 type ISpeechRecognizer interface {
 	objectivec.IObject
+	StartListening()
 	StopListening()
 }
 
@@ -81,11 +82,37 @@ func NewSpeechRecognizer() SpeechRecognizer {
 }
 
 
+
+// Tells the speech recognition engine to begin listening for commands.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/startListening()
+func (s_ SpeechRecognizer) StartListening() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("startListening"))
+}
+
 // Tells the speech recognition engine to suspend listening for commands.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/stopListening()
 func (s_ SpeechRecognizer) StopListening() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stopListening"))
+}
+
+// A Boolean value that indicates whether the speech recognizer object should block all other recognizers (that is, other applications attempting to understand spoken commands) when listening.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/blocksOtherRecognizers
+func (s_ SpeechRecognizer) BlocksOtherRecognizers() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("blocksOtherRecognizers"))
+	return rv
+}
+
+
+// SetBlocksOtherRecognizers sets the value of the blocksOtherRecognizers property.
+// A Boolean value that indicates whether the speech recognizer object should block all other recognizers (that is, other applications attempting to understand spoken commands) when listening.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/blocksOtherRecognizers
+func (s_ SpeechRecognizer) SetBlocksOtherRecognizers(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setBlocksOtherRecognizers:"), value)
 }
 
 // An array of strings defining the commands for which the speech recognizer object should listen.
@@ -116,29 +143,11 @@ func (s_ SpeechRecognizer) SetCommands(value []string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCommands:"), nsArray)
 }
 
-// A Boolean value that indicates whether the speech recognizer object should block all other recognizers (that is, other applications attempting to understand spoken commands) when listening.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/blocksotherrecognizers
-func (s_ SpeechRecognizer) BlocksOtherRecognizers() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("blocksOtherRecognizers"))
-	return rv
-}
-
-
-// SetBlocksOtherRecognizers sets the value of the blocksOtherRecognizers property.
-// A Boolean value that indicates whether the speech recognizer object should block all other recognizers (that is, other applications attempting to understand spoken commands) when listening.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/blocksotherrecognizers
-func (s_ SpeechRecognizer) SetBlocksOtherRecognizers(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setBlocksOtherRecognizers:"), value)
-}
-
 // The delegate for the speech recognizer object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/delegate
-func (s_ SpeechRecognizer) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/delegate
+func (s_ SpeechRecognizer) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -147,14 +156,14 @@ func (s_ SpeechRecognizer) Delegate() unsafe.Pointer {
 // The delegate for the speech recognizer object.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/delegate
-func (s_ SpeechRecognizer) SetDelegate(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/delegate
+func (s_ SpeechRecognizer) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
-// The title of the commands section in the Speech Commands window or
+// The title of the commands section in the Speech Commands window or if there is no title.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/displayedcommandstitle
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/displayedCommandsTitle
 func (s_ SpeechRecognizer) DisplayedCommandsTitle() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("displayedCommandsTitle"))
 	return rv
@@ -162,17 +171,17 @@ func (s_ SpeechRecognizer) DisplayedCommandsTitle() string {
 
 
 // SetDisplayedCommandsTitle sets the value of the displayedCommandsTitle property.
-// The title of the commands section in the Speech Commands window or
+// The title of the commands section in the Speech Commands window or if there is no title.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/displayedcommandstitle
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/displayedCommandsTitle
 func (s_ SpeechRecognizer) SetDisplayedCommandsTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDisplayedCommandsTitle:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the speech recognizer object should only enable its commands when its application is the frontmost one.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/listensinforegroundonly
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/listensInForegroundOnly
 func (s_ SpeechRecognizer) ListensInForegroundOnly() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("listensInForegroundOnly"))
 	return rv
@@ -183,10 +192,9 @@ func (s_ SpeechRecognizer) ListensInForegroundOnly() bool {
 // A Boolean value that indicates whether the speech recognizer object should only enable its commands when its application is the frontmost one.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/listensinforegroundonly
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/listensInForegroundOnly
 func (s_ SpeechRecognizer) SetListensInForegroundOnly(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setListensInForegroundOnly:"), value)
 }
-
 
 

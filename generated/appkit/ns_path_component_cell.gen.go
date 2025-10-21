@@ -85,8 +85,8 @@ func NewPathComponentCell() PathComponentCell {
 // The image displayed for this component cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
-func (p_ PathComponentCell) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("image"))
+func (p_ PathComponentCell) Image() Image {
+	rv := objc.Send[Image](p_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (p_ PathComponentCell) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
-func (p_ PathComponentCell) SetImage(value unsafe.Pointer) {
+func (p_ PathComponentCell) SetImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImage:"), value)
 }
 
@@ -114,7 +114,7 @@ func (p_ PathComponentCell) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
-func (p_ PathComponentCell) SetUrl(value foundation.URL) {
+func (p_ PathComponentCell) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

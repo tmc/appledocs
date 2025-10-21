@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Control] class.
@@ -31,29 +32,29 @@ type _ControlClass struct {
 type IControl interface {
 	IView
 	AbortEditing() bool
-	CurrentEditor() unsafe.Pointer
-	DrawWithExpansionFrameInView(contentFrame coregraphics.CGRect, view unsafe.Pointer)
-	DrawCell(cell unsafe.Pointer)
-	EditWithFrameEditorDelegateEvent(rect coregraphics.CGRect, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer)
-	EndEditing(textObj unsafe.Pointer)
+	CurrentEditor() Text
+	DrawWithExpansionFrameInView(contentFrame coregraphics.CGRect, view IView)
+	DrawCell(cell ICell)
+	EditWithFrameEditorDelegateEvent(rect coregraphics.CGRect, textObj IText, delegate objectivec.IObject, event IEvent)
+	EndEditing(textObj IText)
 	ExpansionFrameWithFrame(contentFrame coregraphics.CGRect) coregraphics.CGRect
-	InvalidateIntrinsicContentSizeForCell(cell unsafe.Pointer)
-	PerformClick(sender objc.ID)
-	SelectWithFrameEditorDelegateStartLength(rect coregraphics.CGRect, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int)
-	SelectCell(cell unsafe.Pointer)
-	SelectedCell() unsafe.Pointer
-	SendActionTo(action objc.SEL, target objc.ID) bool
-	SendActionOn(mask unsafe.Pointer) int
+	InvalidateIntrinsicContentSizeForCell(cell ICell)
+	PerformClick(sender objectivec.IObject)
+	SelectWithFrameEditorDelegateStartLength(rect coregraphics.CGRect, textObj IText, delegate objectivec.IObject, selStart int, selLength int)
+	SelectCell(cell ICell)
+	SelectedCell() Cell
+	SendActionTo(action objc.SEL, target objectivec.IObject) bool
+	SendActionOn(mask EventMask) int
 	SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, rightDigits uint)
 	SetNeedsDisplay()
 	SizeThatFits(size coregraphics.CGSize) coregraphics.CGSize
 	SizeToFit()
-	TakeDoubleValueFrom(sender objc.ID)
-	TakeFloatValueFrom(sender objc.ID)
-	TakeIntValueFrom(sender objc.ID)
-	TakeIntegerValueFrom(sender objc.ID)
-	TakeObjectValueFrom(sender objc.ID)
-	TakeStringValueFrom(sender objc.ID)
+	TakeDoubleValueFrom(sender objectivec.IObject)
+	TakeFloatValueFrom(sender objectivec.IObject)
+	TakeIntValueFrom(sender objectivec.IObject)
+	TakeIntegerValueFrom(sender objectivec.IObject)
+	TakeObjectValueFrom(sender objectivec.IObject)
+	TakeStringValueFrom(sender objectivec.IObject)
 	ValidateEditing()
 }
 
@@ -112,7 +113,7 @@ func NewControl() Control {
 // Initializes a control with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(coder:)
-func NewControlWithCoder(coder unsafe.Pointer) Control {
+func NewControlWithCoder(coder ICoder) Control {
 	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -143,36 +144,36 @@ func (c_ Control) AbortEditing() bool {
 // Returns the current field editor for the control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/currentEditor()
-func (c_ Control) CurrentEditor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentEditor"))
+func (c_ Control) CurrentEditor() Text {
+	rv := objc.Send[Text](c_.ID, objc.Sel("currentEditor"))
 	return rv
 }
 
 // Performs custom expansion tool tip drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/draw(withExpansionFrame:in:)
-func (c_ Control) DrawWithExpansionFrameInView(contentFrame coregraphics.CGRect, view unsafe.Pointer) {
+func (c_ Control) DrawWithExpansionFrameInView(contentFrame coregraphics.CGRect, view IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawWithExpansionFrame:inView:"), contentFrame, view)
 }
 
 // Draws the specified cell, as long as it belongs to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/drawCell(_:)
-func (c_ Control) DrawCell(cell unsafe.Pointer) {
+func (c_ Control) DrawCell(cell ICell) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawCell:"), cell)
 }
 
 // Begins editing of the receiver’s text using the specified field editor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/edit(withFrame:editor:delegate:event:)
-func (c_ Control) EditWithFrameEditorDelegateEvent(rect coregraphics.CGRect, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer) {
+func (c_ Control) EditWithFrameEditorDelegateEvent(rect coregraphics.CGRect, textObj IText, delegate objectivec.IObject, event IEvent) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("editWithFrame:editor:delegate:event:"), rect, textObj, delegate, event)
 }
 
 // Ends the editing of text in the receiver using the specified field editor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/endEditing(_:)
-func (c_ Control) EndEditing(textObj unsafe.Pointer) {
+func (c_ Control) EndEditing(textObj IText) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("endEditing:"), textObj)
 }
 
@@ -187,43 +188,43 @@ func (c_ Control) ExpansionFrameWithFrame(contentFrame coregraphics.CGRect) core
 // Notifies the control that the intrinsic content size for its cell is no longer valid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/invalidateIntrinsicContentSize(for:)
-func (c_ Control) InvalidateIntrinsicContentSizeForCell(cell unsafe.Pointer) {
+func (c_ Control) InvalidateIntrinsicContentSizeForCell(cell ICell) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("invalidateIntrinsicContentSizeForCell:"), cell)
 }
 
 // Simulates a single mouse click on the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/performClick(_:)
-func (c_ Control) PerformClick(sender objc.ID) {
+func (c_ Control) PerformClick(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("performClick:"), sender)
 }
 
 // Selects the specified text range in the receiver’s field editor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/select(withFrame:editor:delegate:start:length:)
-func (c_ Control) SelectWithFrameEditorDelegateStartLength(rect coregraphics.CGRect, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int) {
+func (c_ Control) SelectWithFrameEditorDelegateStartLength(rect coregraphics.CGRect, textObj IText, delegate objectivec.IObject, selStart int, selLength int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("selectWithFrame:editor:delegate:start:length:"), rect, textObj, delegate, selStart, selLength)
 }
 
 // Selects the specified cell and redraws the control as needed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/selectCell(_:)
-func (c_ Control) SelectCell(cell unsafe.Pointer) {
+func (c_ Control) SelectCell(cell ICell) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("selectCell:"), cell)
 }
 
 // Returns the receiver’s selected cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/selectedCell()
-func (c_ Control) SelectedCell() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("selectedCell"))
+func (c_ Control) SelectedCell() Cell {
+	rv := objc.Send[Cell](c_.ID, objc.Sel("selectedCell"))
 	return rv
 }
 
 // Causes the specified action to be sent to the target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/sendAction(_:to:)
-func (c_ Control) SendActionTo(action objc.SEL, target objc.ID) bool {
+func (c_ Control) SendActionTo(action objc.SEL, target objectivec.IObject) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("sendAction:to:"), action, target)
 	return rv
 }
@@ -231,7 +232,7 @@ func (c_ Control) SendActionTo(action objc.SEL, target objc.ID) bool {
 // Sets the conditions on which the receiver sends action messages to its target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/sendAction(on:)
-func (c_ Control) SendActionOn(mask unsafe.Pointer) int {
+func (c_ Control) SendActionOn(mask EventMask) int {
 	rv := objc.Send[int](c_.ID, objc.Sel("sendActionOn:"), mask)
 	return rv
 }
@@ -268,42 +269,42 @@ func (c_ Control) SizeToFit() {
 // Sets the value of the receiver’s cell to a double-precision floating-point value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeDoubleValueFrom(_:)
-func (c_ Control) TakeDoubleValueFrom(sender objc.ID) {
+func (c_ Control) TakeDoubleValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeDoubleValueFrom:"), sender)
 }
 
 // Sets the value of the receiver’s cell to a single-precision floating-point value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeFloatValueFrom(_:)
-func (c_ Control) TakeFloatValueFrom(sender objc.ID) {
+func (c_ Control) TakeFloatValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeFloatValueFrom:"), sender)
 }
 
 // Sets the value of the receiver’s cell to an integer value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeIntValueFrom(_:)
-func (c_ Control) TakeIntValueFrom(sender objc.ID) {
+func (c_ Control) TakeIntValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeIntValueFrom:"), sender)
 }
 
 // Sets the value of the receiver’s cell to an value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeIntegerValueFrom(_:)
-func (c_ Control) TakeIntegerValueFrom(sender objc.ID) {
+func (c_ Control) TakeIntegerValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeIntegerValueFrom:"), sender)
 }
 
 // Sets the value of the receiver’s cell to the object value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeObjectValueFrom(_:)
-func (c_ Control) TakeObjectValueFrom(sender objc.ID) {
+func (c_ Control) TakeObjectValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeObjectValueFrom:"), sender)
 }
 
 // Sets the value of the receiver’s cell to the string value obtained from the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeStringValueFrom(_:)
-func (c_ Control) TakeStringValueFrom(sender objc.ID) {
+func (c_ Control) TakeStringValueFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("takeStringValueFrom:"), sender)
 }
 
@@ -335,8 +336,8 @@ func (c_ Control) SetAction(value objc.SEL) {
 // The alignment mode of the text in the receiver’s cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/alignment
-func (c_ Control) Alignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alignment"))
+func (c_ Control) Alignment() TextAlignment {
+	rv := objc.Send[TextAlignment](c_.ID, objc.Sel("alignment"))
 	return rv
 }
 
@@ -346,7 +347,7 @@ func (c_ Control) Alignment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/alignment
-func (c_ Control) SetAlignment(value unsafe.Pointer) {
+func (c_ Control) SetAlignment(value TextAlignment) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -371,8 +372,8 @@ func (c_ Control) SetAllowsExpansionToolTips(value bool) {
 // The value of the receiver’s cell as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/attributedStringValue
-func (c_ Control) AttributedStringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attributedStringValue"))
+func (c_ Control) AttributedStringValue() AttributedString {
+	rv := objc.Send[AttributedString](c_.ID, objc.Sel("attributedStringValue"))
 	return rv
 }
 
@@ -382,15 +383,15 @@ func (c_ Control) AttributedStringValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/attributedStringValue
-func (c_ Control) SetAttributedStringValue(value unsafe.Pointer) {
+func (c_ Control) SetAttributedStringValue(value IAttributedString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringValue:"), value)
 }
 
 // The initial writing direction used to determine the actual writing direction for text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/baseWritingDirection
-func (c_ Control) BaseWritingDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("baseWritingDirection"))
+func (c_ Control) BaseWritingDirection() WritingDirection {
+	rv := objc.Send[WritingDirection](c_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -400,15 +401,15 @@ func (c_ Control) BaseWritingDirection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/baseWritingDirection
-func (c_ Control) SetBaseWritingDirection(value unsafe.Pointer) {
+func (c_ Control) SetBaseWritingDirection(value WritingDirection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
 // The size of the control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/controlSize-swift.property
-func (c_ Control) ControlSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlSize"))
+func (c_ Control) ControlSize() ControlSize {
+	rv := objc.Send[ControlSize](c_.ID, objc.Sel("controlSize"))
 	return rv
 }
 
@@ -418,7 +419,7 @@ func (c_ Control) ControlSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/controlSize-swift.property
-func (c_ Control) SetControlSize(value unsafe.Pointer) {
+func (c_ Control) SetControlSize(value IControlSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlSize:"), value)
 }
 
@@ -461,8 +462,8 @@ func (c_ Control) SetFloatValue(value unsafe.Pointer) {
 // The font used to draw text in the receiver’s cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/font
-func (c_ Control) Font() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("font"))
+func (c_ Control) Font() NSFont {
+	rv := objc.Send[NSFont](c_.ID, objc.Sel("font"))
 	return rv
 }
 
@@ -472,7 +473,7 @@ func (c_ Control) Font() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/font
-func (c_ Control) SetFont(value unsafe.Pointer) {
+func (c_ Control) SetFont(value IFont) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFont:"), value)
 }
 
@@ -605,8 +606,8 @@ func (c_ Control) SetHighlighted(value bool) {
 // The line break mode to use for text in the control’s cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/lineBreakMode
-func (c_ Control) LineBreakMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lineBreakMode"))
+func (c_ Control) LineBreakMode() LineBreakMode {
+	rv := objc.Send[LineBreakMode](c_.ID, objc.Sel("lineBreakMode"))
 	return rv
 }
 
@@ -616,7 +617,7 @@ func (c_ Control) LineBreakMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/lineBreakMode
-func (c_ Control) SetLineBreakMode(value unsafe.Pointer) {
+func (c_ Control) SetLineBreakMode(value LineBreakMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLineBreakMode:"), value)
 }
 

@@ -174,8 +174,8 @@ func (b_ Browser) SetAutohidesScroller(value bool) {
 // The browser’s background color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/backgroundcolor
-func (b_ Browser) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backgroundColor"))
+func (b_ Browser) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](b_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -185,7 +185,7 @@ func (b_ Browser) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/backgroundcolor
-func (b_ Browser) SetBackgroundColor(value unsafe.Pointer) {
+func (b_ Browser) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
@@ -552,8 +552,8 @@ func (b_ Browser) SetRowHeight(value float64) {
 // All cells selected in the rightmost column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectedcells
-func (b_ Browser) SelectedCells() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("selectedCells"))
+func (b_ Browser) SelectedCells() NSCell {
+	rv := objc.Send[NSCell](b_.ID, objc.Sel("selectedCells"))
 	return rv
 }
 
@@ -563,7 +563,7 @@ func (b_ Browser) SelectedCells() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectedcells
-func (b_ Browser) SetSelectedCells(value unsafe.Pointer) {
+func (b_ Browser) SetSelectedCells(value ICell) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSelectedCells:"), value)
 }
 

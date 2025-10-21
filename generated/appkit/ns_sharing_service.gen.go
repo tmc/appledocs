@@ -86,7 +86,7 @@ func NewSharingService() SharingService {
 // Returns a sharing service instance representing the specified service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(named:)
-func NewSharingServiceNamed(serviceName unsafe.Pointer) SharingService {
+func NewSharingServiceNamed(serviceName ISharingServiceName) SharingService {
 	rv := objc.Send[SharingService](objc.ID(getSharingServiceClass().class), objc.Sel("sharingServiceNamed:"), serviceName)
 	return rv
 }
@@ -96,7 +96,7 @@ func NewSharingServiceNamed(serviceName unsafe.Pointer) SharingService {
 // Creates a custom sharing service object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(title:image:alternateImage:handler:)
-func NewSharingServiceWithTitleImageAlternateImageHandler(title string, image unsafe.Pointer, alternateImage unsafe.Pointer, block unsafe.Pointer) SharingService {
+func NewSharingServiceWithTitleImageAlternateImageHandler(title string, image IImage, alternateImage IImage, block unsafe.Pointer) SharingService {
 	instance := getSharingServiceClass().Alloc()
 	rv := objc.Send[SharingService](instance.ID, objc.Sel("initWithTitle:image:alternateImage:handler:"), objc.String(title), image, alternateImage, block)
 	rv.Autorelease()
@@ -107,15 +107,15 @@ func NewSharingServiceWithTitleImageAlternateImageHandler(title string, image un
 // Returns a sharing service instance representing the specified service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(named:)
-func (sc _SharingServiceClass) SharingServiceNamed(serviceName unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sharingServiceNamed:"), serviceName)
+func (sc _SharingServiceClass) SharingServiceNamed(serviceName ISharingServiceName) SharingService {
+	rv := objc.Send[SharingService](objc.ID(sc.class), objc.Sel("sharingServiceNamed:"), serviceName)
 	return rv
 }
 
 // Returns a list of sharing services which could share all the provided items together.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/sharingServices(forItems:)
-func (sc _SharingServiceClass) SharingServicesForItems(items objc.ID) []SharingService {
+func (sc _SharingServiceClass) SharingServicesForItems(items objectivec.IObject) []SharingService {
 	rv := objc.Send[[]SharingService](objc.ID(sc.class), objc.Sel("sharingServicesForItems:"), items)
 	return rv
 }
@@ -141,8 +141,8 @@ func (s_ SharingService) SetAccountName(value string) {
 // The alternate image representing the sharing service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/alternateimage
-func (s_ SharingService) AlternateImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("alternateImage"))
+func (s_ SharingService) AlternateImage() Image {
+	rv := objc.Send[Image](s_.ID, objc.Sel("alternateImage"))
 	return rv
 }
 
@@ -152,7 +152,7 @@ func (s_ SharingService) AlternateImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/alternateimage
-func (s_ SharingService) SetAlternateImage(value unsafe.Pointer) {
+func (s_ SharingService) SetAlternateImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateImage:"), value)
 }
 
@@ -170,7 +170,7 @@ func (s_ SharingService) AttachmentFileURLs() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/attachmentfileurls
-func (s_ SharingService) SetAttachmentFileURLs(value foundation.URL) {
+func (s_ SharingService) SetAttachmentFileURLs(value foundation.IURL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAttachmentFileURLs:"), value)
 }
 
@@ -195,8 +195,8 @@ func (s_ SharingService) SetDelegate(value unsafe.Pointer) {
 // The primary image representing the sharing service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/image
-func (s_ SharingService) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("image"))
+func (s_ SharingService) Image() Image {
+	rv := objc.Send[Image](s_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -206,7 +206,7 @@ func (s_ SharingService) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/image
-func (s_ SharingService) SetImage(value unsafe.Pointer) {
+func (s_ SharingService) SetImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), value)
 }
 
@@ -260,7 +260,7 @@ func (s_ SharingService) PermanentLink() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/permanentlink
-func (s_ SharingService) SetPermanentLink(value foundation.URL) {
+func (s_ SharingService) SetPermanentLink(value foundation.IURL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPermanentLink:"), value)
 }
 

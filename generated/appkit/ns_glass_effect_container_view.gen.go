@@ -82,8 +82,8 @@ func NewGlassEffectContainerView() GlassEffectContainerView {
 // The view that contains descendant views to merge together when in proximity to each other.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/contentView
-func (g_ GlassEffectContainerView) ContentView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("contentView"))
+func (g_ GlassEffectContainerView) ContentView() NSView {
+	rv := objc.Send[NSView](g_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (g_ GlassEffectContainerView) ContentView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/contentView
-func (g_ GlassEffectContainerView) SetContentView(value unsafe.Pointer) {
+func (g_ GlassEffectContainerView) SetContentView(value IView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setContentView:"), value)
 }
 

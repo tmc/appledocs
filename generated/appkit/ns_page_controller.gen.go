@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PageController] class.
@@ -29,7 +30,11 @@ type _PageControllerClass struct {
 // An interface definition for the [PageController] class.
 type IPageController interface {
 	IViewController
-	NavigateForwardToObject(object objc.ID)
+	CompleteTransition()
+	NavigateBack(sender objectivec.IObject)
+	NavigateForward(sender objectivec.IObject)
+	NavigateForwardToObject(object objectivec.IObject)
+	TakeSelectedIndexFrom(sender objectivec.IObject)
 }
 
 // An object that controls swipe navigation and animations between views or view content.
@@ -82,18 +87,46 @@ func NewPageController() PageController {
 }
 
 
+// Invoked when the page transition is completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/completeTransition()
+func (p_ PageController) CompleteTransition() {
+	objc.Send[objc.ID](p_.ID, objc.Sel("completeTransition"))
+}
+
+// Navigates backwards in the page controller’s arranged objects array.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/navigateBack(_:)
+func (p_ PageController) NavigateBack(sender objectivec.IObject) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("navigateBack:"), sender)
+}
+
+// Navigates to the next object in the page controller’s arranged objects array, if appropriate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/navigateForward(_:)
+func (p_ PageController) NavigateForward(sender objectivec.IObject) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("navigateForward:"), sender)
+}
+
 // Navigates to the specific object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/navigateForward(to:)
-func (p_ PageController) NavigateForwardToObject(object objc.ID) {
+func (p_ PageController) NavigateForwardToObject(object objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("navigateForwardToObject:"), object)
+}
+
+// Navigates to the selected index, which is taken from the sender.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/takeSelectedIndexFrom(_:)
+func (p_ PageController) TakeSelectedIndexFrom(sender objectivec.IObject) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("takeSelectedIndexFrom:"), sender)
 }
 
 // An array containing the objects displayed in the page controller’s view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/arrangedObjects
-func (p_ PageController) ArrangedObjects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("arrangedObjects"))
+func (p_ PageController) ArrangedObjects() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("arrangedObjects"))
 	return rv
 }
 
@@ -103,8 +136,26 @@ func (p_ PageController) ArrangedObjects() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/arrangedObjects
-func (p_ PageController) SetArrangedObjects(value unsafe.Pointer) {
+func (p_ PageController) SetArrangedObjects(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setArrangedObjects:"), value)
+}
+
+// The page controller’s delegate object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/delegate
+func (p_ PageController) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The page controller’s delegate object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/delegate
+func (p_ PageController) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
 // The currently selected object in the arranged objects array.
@@ -128,34 +179,16 @@ func (p_ PageController) SetSelectedIndex(value int) {
 // The view controller associated with the selected object..
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/selectedViewController
-func (p_ PageController) SelectedViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectedViewController"))
+func (p_ PageController) SelectedViewController() NSViewController {
+	rv := objc.Send[NSViewController](p_.ID, objc.Sel("selectedViewController"))
 	return rv
-}
-
-// The page controller’s delegate object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagecontroller/delegate
-func (p_ PageController) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The page controller’s delegate object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagecontroller/delegate
-func (p_ PageController) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
 // The transition style the page controller uses when changing pages.
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.property
-func (p_ PageController) TransitionStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transitionStyle"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/transitionStyle-swift.property
+func (p_ PageController) TransitionStyle() PageControllerTransitionStyle {
+	rv := objc.Send[PageControllerTransitionStyle](p_.ID, objc.Sel("transitionStyle"))
 	return rv
 }
 
@@ -164,8 +197,8 @@ func (p_ PageController) TransitionStyle() unsafe.Pointer {
 // The transition style the page controller uses when changing pages.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.property
-func (p_ PageController) SetTransitionStyle(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/transitionStyle-swift.property
+func (p_ PageController) SetTransitionStyle(value PageControllerTransitionStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransitionStyle:"), value)
 }
 

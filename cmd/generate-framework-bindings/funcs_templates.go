@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/tmc/appledocs/occ2go"
@@ -234,7 +235,13 @@ func formatMethodParams(method *occ2go.ParsedMethod, framework string) string {
 		if isGoKeyword(paramName) {
 			paramName += "_"
 		}
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(p.Type, "CellAttribute") {
+			fmt.Fprintf(os.Stderr, "DEBUG formatMethodParams: p.Type=%s framework=%s\n", p.Type, framework)
+		}
 		goType := mapObjCTypeToGo(p.Type, framework)
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(p.Type, "CellAttribute") {
+			fmt.Fprintf(os.Stderr, "DEBUG formatMethodParams: after mapObjCTypeToGo goType=%s\n", goType)
+		}
 
 		// Convert objc.ID to objectivec.IObject for better type safety
 		// This allows users to pass any Objective-C object wrapper instead of raw objc.ID

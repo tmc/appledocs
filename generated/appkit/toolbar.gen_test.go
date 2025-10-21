@@ -15,3 +15,11 @@ func ExampleNewToolbar() {
 	_ = appkit.NewToolbar()
 	// Output:
 }
+// ExampleNewToolbarWithIdentifier demonstrates how to create a Toolbar instance using NewToolbarWithIdentifier.
+// Creates a newly allocated toolbar with the specified identifier.
+func ExampleNewToolbarWithIdentifier() {
+	_ = appkit.NewToolbarWithIdentifier(
+		appkit.ToolbarIdentifier{}, // identifier ToolbarIdentifier
+	)
+	// Output:
+}

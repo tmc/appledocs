@@ -32,10 +32,10 @@ type _WorkspaceClass struct {
 type IWorkspace interface {
 	objectivec.IObject
 	HideOtherApplications()
-	LaunchApplicationAtURLOptionsConfigurationError(url foundation.URL, options unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	OpenURL(url foundation.URL) bool
-	OpenURLConfigurationCompletionHandler(url foundation.URL, configuration unsafe.Pointer, completionHandler unsafe.Pointer)
-	OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls unsafe.Pointer, applicationURL foundation.URL, configuration unsafe.Pointer, completionHandler unsafe.Pointer)
+	LaunchApplicationAtURLOptionsConfigurationError(url foundation.IURL, options unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) RunningApplication
+	OpenURL(url foundation.IURL) bool
+	OpenURLConfigurationCompletionHandler(url foundation.IURL, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer)
+	OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls []foundation.IURL, applicationURL foundation.IURL, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer)
 	RequestAuthorizationOfTypeCompletionHandler(type_ unsafe.Pointer, completionHandler unsafe.Pointer)
 }
 
@@ -90,8 +90,8 @@ func NewWorkspace() Workspace {
 // The shared workspace object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/shared
-func (wc _WorkspaceClass) SharedWorkspace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("sharedWorkspace"))
+func (wc _WorkspaceClass) SharedWorkspace() NSWorkspace {
+	rv := objc.Send[NSWorkspace](objc.ID(wc.class), objc.Sel("sharedWorkspace"))
 	return rv
 }
 // Hides all applications other than the sender.
@@ -104,15 +104,15 @@ func (w_ Workspace) HideOtherApplications() {
 // Launches the app at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/launchApplication(at:options:configuration:)
-func (w_ Workspace) LaunchApplicationAtURLOptionsConfigurationError(url foundation.URL, options unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("launchApplicationAtURL:options:configuration:error:"), url, options, configuration, error_)
+func (w_ Workspace) LaunchApplicationAtURLOptionsConfigurationError(url foundation.IURL, options unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) RunningApplication {
+	rv := objc.Send[RunningApplication](w_.ID, objc.Sel("launchApplicationAtURL:options:configuration:error:"), url, options, configuration, error_)
 	return rv
 }
 
 // Opens the location at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:)
-func (w_ Workspace) OpenURL(url foundation.URL) bool {
+func (w_ Workspace) OpenURL(url foundation.IURL) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("openURL:"), url)
 	return rv
 }
@@ -120,14 +120,14 @@ func (w_ Workspace) OpenURL(url foundation.URL) bool {
 // Opens a URL asynchronously using the provided options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:configuration:completionHandler:)
-func (w_ Workspace) OpenURLConfigurationCompletionHandler(url foundation.URL, configuration unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ Workspace) OpenURLConfigurationCompletionHandler(url foundation.IURL, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("openURL:configuration:completionHandler:"), url, configuration, completionHandler)
 }
 
 // Opens one or more URLs asynchronously in the specified app using the provided options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:withApplicationAt:configuration:completionHandler:)
-func (w_ Workspace) OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls unsafe.Pointer, applicationURL foundation.URL, configuration unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ Workspace) OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls []foundation.IURL, applicationURL foundation.IURL, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("openURLs:withApplicationAtURL:configuration:completionHandler:"), urls, applicationURL, configuration, completionHandler)
 }
 
@@ -157,8 +157,8 @@ func (w_ Workspace) RunningApplications() []RunningApplication {
 // The shared workspace object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/shared
-func (w_ Workspace) SharedWorkspace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("sharedWorkspace"))
+func (w_ Workspace) SharedWorkspace() NSWorkspace {
+	rv := objc.Send[NSWorkspace](w_.ID, objc.Sel("sharedWorkspace"))
 	return rv
 }
 
@@ -255,8 +255,8 @@ func (w_ Workspace) SetAccessibilityDisplayShouldReduceTransparency(value bool) 
 // The array of colors for the file labels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/filelabelcolors
-func (w_ Workspace) FileLabelColors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("fileLabelColors"))
+func (w_ Workspace) FileLabelColors() NSColor {
+	rv := objc.Send[NSColor](w_.ID, objc.Sel("fileLabelColors"))
 	return rv
 }
 
@@ -266,7 +266,7 @@ func (w_ Workspace) FileLabelColors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/filelabelcolors
-func (w_ Workspace) SetFileLabelColors(value unsafe.Pointer) {
+func (w_ Workspace) SetFileLabelColors(value IColor) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFileLabelColors:"), value)
 }
 
@@ -291,8 +291,8 @@ func (w_ Workspace) SetFileLabels(value string) {
 // Returns the frontmost app, which is the app that receives key events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/frontmostapplication
-func (w_ Workspace) FrontmostApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("frontmostApplication"))
+func (w_ Workspace) FrontmostApplication() NSRunningApplication {
+	rv := objc.Send[NSRunningApplication](w_.ID, objc.Sel("frontmostApplication"))
 	return rv
 }
 
@@ -302,7 +302,7 @@ func (w_ Workspace) FrontmostApplication() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/frontmostapplication
-func (w_ Workspace) SetFrontmostApplication(value unsafe.Pointer) {
+func (w_ Workspace) SetFrontmostApplication(value IRunningApplication) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrontmostApplication:"), value)
 }
 
@@ -345,8 +345,8 @@ func (w_ Workspace) SetIsVoiceOverEnabled(value bool) {
 // Returns the app that owns the currently displayed menu bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/menubarowningapplication
-func (w_ Workspace) MenuBarOwningApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("menuBarOwningApplication"))
+func (w_ Workspace) MenuBarOwningApplication() NSRunningApplication {
+	rv := objc.Send[NSRunningApplication](w_.ID, objc.Sel("menuBarOwningApplication"))
 	return rv
 }
 
@@ -356,7 +356,7 @@ func (w_ Workspace) MenuBarOwningApplication() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/menubarowningapplication
-func (w_ Workspace) SetMenuBarOwningApplication(value unsafe.Pointer) {
+func (w_ Workspace) SetMenuBarOwningApplication(value IRunningApplication) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMenuBarOwningApplication:"), value)
 }
 

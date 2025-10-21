@@ -81,7 +81,7 @@ func NewStepperTouchBarItem() StepperTouchBarItem {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/init(identifier:formatter:)
-func NewStepperTouchBarItemWithIdentifierFormatter(identifier unsafe.Pointer, formatter unsafe.Pointer) StepperTouchBarItem {
+func NewStepperTouchBarItemWithIdentifierFormatter(identifier ITouchBarItemIdentifier, formatter unsafe.Pointer) StepperTouchBarItem {
 	rv := objc.Send[StepperTouchBarItem](objc.ID(getStepperTouchBarItemClass().class), objc.Sel("stepperTouchBarItemWithIdentifier:formatter:"), identifier, formatter)
 	return rv
 }
@@ -89,7 +89,7 @@ func NewStepperTouchBarItemWithIdentifierFormatter(identifier unsafe.Pointer, fo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/init(identifier:formatter:)
-func (sc _StepperTouchBarItemClass) StepperTouchBarItemWithIdentifierFormatter(identifier unsafe.Pointer, formatter unsafe.Pointer) unsafe.Pointer {
+func (sc _StepperTouchBarItemClass) StepperTouchBarItemWithIdentifierFormatter(identifier ITouchBarItemIdentifier, formatter unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stepperTouchBarItemWithIdentifier:formatter:"), identifier, formatter)
 	return rv
 }

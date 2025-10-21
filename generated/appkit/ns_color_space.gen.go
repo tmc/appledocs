@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -110,7 +111,7 @@ func NewColorSpaceWithColorSyncProfile(prof unsafe.Pointer) ColorSpace {
 // Initializes and returns a color space object from the specified ICC profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/init(iccProfileData:)
-func NewColorSpaceWithICCProfileData(iccData unsafe.Pointer) ColorSpace {
+func NewColorSpaceWithICCProfileData(iccData foundation.IData) ColorSpace {
 	instance := getColorSpaceClass().Alloc()
 	rv := objc.Send[ColorSpace](instance.ID, objc.Sel("initWithICCProfileData:"), iccData)
 	rv.Autorelease()
@@ -129,68 +130,68 @@ func (cc _ColorSpaceClass) AvailableColorSpacesWithModel(model unsafe.Pointer) [
 // A color space object that represents an Adobe RGB (1998) color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/adobeRGB1998
-func (cc _ColorSpaceClass) AdobeRGB1998ColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("adobeRGB1998ColorSpace"))
+func (cc _ColorSpaceClass) AdobeRGB1998ColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("adobeRGB1998ColorSpace"))
 	return rv
 }
 // A color space object that represents a calibrated or device-dependent gray color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/deviceGray
-func (cc _ColorSpaceClass) DeviceGrayColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("deviceGrayColorSpace"))
+func (cc _ColorSpaceClass) DeviceGrayColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("deviceGrayColorSpace"))
 	return rv
 }
 // A color space object that represents an extended gray color space with a gamma value of 2.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedGenericGamma22Gray
-func (cc _ColorSpaceClass) ExtendedGenericGamma22GrayColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("extendedGenericGamma22GrayColorSpace"))
+func (cc _ColorSpaceClass) ExtendedGenericGamma22GrayColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("extendedGenericGamma22GrayColorSpace"))
 	return rv
 }
 // A color space object that represents an extended sRGB color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedSRGB
-func (cc _ColorSpaceClass) ExtendedSRGBColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("extendedSRGBColorSpace"))
+func (cc _ColorSpaceClass) ExtendedSRGBColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("extendedSRGBColorSpace"))
 	return rv
 }
 // A color space object that represents an Adobe RGB (1998) color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/adobeRGB1998
-func (c_ ColorSpace) AdobeRGB1998ColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("adobeRGB1998ColorSpace"))
+func (c_ ColorSpace) AdobeRGB1998ColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](c_.ID, objc.Sel("adobeRGB1998ColorSpace"))
 	return rv
 }
 
 // A color space object that represents a calibrated or device-dependent gray color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/deviceGray
-func (c_ ColorSpace) DeviceGrayColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("deviceGrayColorSpace"))
+func (c_ ColorSpace) DeviceGrayColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](c_.ID, objc.Sel("deviceGrayColorSpace"))
 	return rv
 }
 
 // A color space object that represents an extended gray color space with a gamma value of 2.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedGenericGamma22Gray
-func (c_ ColorSpace) ExtendedGenericGamma22GrayColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("extendedGenericGamma22GrayColorSpace"))
+func (c_ ColorSpace) ExtendedGenericGamma22GrayColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](c_.ID, objc.Sel("extendedGenericGamma22GrayColorSpace"))
 	return rv
 }
 
 // A color space object that represents an extended sRGB color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedSRGB
-func (c_ ColorSpace) ExtendedSRGBColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("extendedSRGBColorSpace"))
+func (c_ ColorSpace) ExtendedSRGBColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](c_.ID, objc.Sel("extendedSRGBColorSpace"))
 	return rv
 }
 
 // The Core Graphics color-space object that represents a color space equivalent to the color space’s.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/cgcolorspace
-func (c_ ColorSpace) CgColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cgColorSpace"))
+func (c_ ColorSpace) CgColorSpace() ColorSpace {
+	rv := objc.Send[ColorSpace](c_.ID, objc.Sel("cgColorSpace"))
 	return rv
 }
 
@@ -200,7 +201,7 @@ func (c_ ColorSpace) CgColorSpace() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/cgcolorspace
-func (c_ ColorSpace) SetCgColorSpace(value unsafe.Pointer) {
+func (c_ ColorSpace) SetCgColorSpace(value IColorSpace) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCgColorSpace:"), value)
 }
 
@@ -243,8 +244,8 @@ func (c_ ColorSpace) SetColorSyncProfile(value unsafe.Pointer) {
 // The ICC profile data from which the color space was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/iccprofiledata
-func (c_ ColorSpace) IccProfileData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("iccProfileData"))
+func (c_ ColorSpace) IccProfileData() foundation.Data {
+	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("iccProfileData"))
 	return rv
 }
 
@@ -254,7 +255,7 @@ func (c_ ColorSpace) IccProfileData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/iccprofiledata
-func (c_ ColorSpace) SetIccProfileData(value unsafe.Pointer) {
+func (c_ ColorSpace) SetIccProfileData(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIccProfileData:"), value)
 }
 

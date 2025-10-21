@@ -31,6 +31,7 @@ type _ShadowClass struct {
 // An interface definition for the [Shadow] class.
 type IShadow interface {
 	objectivec.IObject
+	Set()
 }
 
 // An object you use to specify attributes to create and style a drop shadow during drawing operations.
@@ -81,6 +82,50 @@ func NewShadow() Shadow {
 }
 
 
+
+// Sets the shadow of subsequent drawing operations to the current shadow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/set()
+func (s_ Shadow) Set() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("set"))
+}
+
+// The blur radius of the shadow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
+func (s_ Shadow) ShadowBlurRadius() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("shadowBlurRadius"))
+	return rv
+}
+
+
+// SetShadowBlurRadius sets the value of the shadowBlurRadius property.
+// The blur radius of the shadow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
+func (s_ Shadow) SetShadowBlurRadius(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowBlurRadius:"), value)
+}
+
+// The color of the shadow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowColor
+func (s_ Shadow) ShadowColor() NSColor {
+	rv := objc.Send[NSColor](s_.ID, objc.Sel("shadowColor"))
+	return rv
+}
+
+
+// SetShadowColor sets the value of the shadowColor property.
+// The color of the shadow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowColor
+func (s_ Shadow) SetShadowColor(value IColor) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowColor:"), value)
+}
+
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
@@ -98,42 +143,5 @@ func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 func (s_ Shadow) SetShadowOffset(value coregraphics.CGSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowOffset:"), value)
 }
-
-// The blur radius of the shadow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowblurradius
-func (s_ Shadow) ShadowBlurRadius() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("shadowBlurRadius"))
-	return rv
-}
-
-
-// SetShadowBlurRadius sets the value of the shadowBlurRadius property.
-// The blur radius of the shadow.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowblurradius
-func (s_ Shadow) SetShadowBlurRadius(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowBlurRadius:"), value)
-}
-
-// The color of the shadow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowcolor
-func (s_ Shadow) ShadowColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("shadowColor"))
-	return rv
-}
-
-
-// SetShadowColor sets the value of the shadowColor property.
-// The color of the shadow.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowcolor
-func (s_ Shadow) SetShadowColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowColor:"), value)
-}
-
 
 

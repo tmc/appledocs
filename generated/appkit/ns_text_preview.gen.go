@@ -84,8 +84,8 @@ func NewTextPreview() TextPreview {
 // Rectangles that define the specific portions of text to highlight.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
-func (t_ TextPreview) CandidateRects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("candidateRects"))
+func (t_ TextPreview) CandidateRects() Value {
+	rv := objc.Send[Value](t_.ID, objc.Sel("candidateRects"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (t_ TextPreview) CandidateRects() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
-func (t_ TextPreview) SetCandidateRects(value unsafe.Pointer) {
+func (t_ TextPreview) SetCandidateRects(value IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCandidateRects:"), value)
 }
 
@@ -120,8 +120,8 @@ func (t_ TextPreview) SetPresentationFrame(value coregraphics.CGRect) {
 // The image that contains the requested text from your view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/previewimage
-func (t_ TextPreview) PreviewImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("previewImage"))
+func (t_ TextPreview) PreviewImage() Image {
+	rv := objc.Send[Image](t_.ID, objc.Sel("previewImage"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (t_ TextPreview) PreviewImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/previewimage
-func (t_ TextPreview) SetPreviewImage(value unsafe.Pointer) {
+func (t_ TextPreview) SetPreviewImage(value IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreviewImage:"), value)
 }
 

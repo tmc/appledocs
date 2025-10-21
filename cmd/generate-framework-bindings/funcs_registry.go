@@ -67,6 +67,17 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 				if _, exists := crossFrameworkTypeRegistry[typeName]; !exists {
 					crossFrameworkTypeRegistry[typeName] = frameworkPkg
 				}
+
+				// Also register stripped name (NSCellAttribute → CellAttribute)
+				// This allows lookups with ObjC names to find the stripped Go type
+				strippedName := stripObjCPrefix(typeName)
+				if strippedName != typeName {
+					// Register stripped name pointing to the STRIPPED type, not the original
+					// So NSCellAttribute lookup finds CellAttribute, not NSCellAttribute
+					if _, exists := crossFrameworkTypeRegistry[strippedName]; !exists {
+						crossFrameworkTypeRegistry[strippedName] = frameworkPkg
+					}
+				}
 			}
 		}
 	}

@@ -32,7 +32,7 @@ type _ScrubberLayoutClass struct {
 type IScrubberLayout interface {
 	objectivec.IObject
 	InvalidateLayout()
-	LayoutAttributesForItemAtIndex(index int) unsafe.Pointer
+	LayoutAttributesForItemAtIndex(index int) ScrubberLayoutAttributes
 	LayoutAttributesForItemsInRect(rect coregraphics.CGRect) unsafe.Pointer
 	PrepareLayout()
 	ShouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(fromVisibleRect coregraphics.CGRect, toVisibleRect coregraphics.CGRect) bool
@@ -91,7 +91,7 @@ func NewScrubberLayout() ScrubberLayout {
 // Initializes and returns a newly allocated scrubber layout object from a storyboard or nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/init(coder:)
-func NewScrubberLayoutWithCoder(coder unsafe.Pointer) ScrubberLayout {
+func NewScrubberLayoutWithCoder(coder ICoder) ScrubberLayout {
 	instance := getScrubberLayoutClass().Alloc()
 	rv := objc.Send[ScrubberLayout](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -116,8 +116,8 @@ func (s_ ScrubberLayout) InvalidateLayout() {
 // The layout attributes for the item with the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/layoutAttributesForItem(at:)
-func (s_ ScrubberLayout) LayoutAttributesForItemAtIndex(index int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("layoutAttributesForItemAtIndex:"), index)
+func (s_ ScrubberLayout) LayoutAttributesForItemAtIndex(index int) ScrubberLayoutAttributes {
+	rv := objc.Send[ScrubberLayoutAttributes](s_.ID, objc.Sel("layoutAttributesForItemAtIndex:"), index)
 	return rv
 }
 
@@ -163,8 +163,8 @@ func (s_ ScrubberLayout) LayoutAttributesClass() objc.Class {
 // The scrubber control that this layout is assigned to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/scrubber
-func (s_ ScrubberLayout) Scrubber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("scrubber"))
+func (s_ ScrubberLayout) Scrubber() NSScrubber {
+	rv := objc.Send[NSScrubber](s_.ID, objc.Sel("scrubber"))
 	return rv
 }
 

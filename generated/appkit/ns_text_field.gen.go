@@ -30,7 +30,7 @@ type _TextFieldClass struct {
 type ITextField interface {
 	IControl
 	TextDidBeginEditing(notification unsafe.Pointer)
-	TextShouldEndEditing(textObject unsafe.Pointer) bool
+	TextShouldEndEditing(textObject IText) bool
 }
 
 // Text the user can select or edit to send an action message to a target when the user presses the Return key.
@@ -88,7 +88,7 @@ func NewTextField() TextField {
 // Creates a text field for use as a static label that displays styled text, doesn’t wrap, and doesn’t have selectable text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/init(labelWithAttributedString:)
-func NewTextFieldLabelWithAttributedString(attributedStringValue unsafe.Pointer) TextField {
+func NewTextFieldLabelWithAttributedString(attributedStringValue IAttributedString) TextField {
 	rv := objc.Send[TextField](objc.ID(getTextFieldClass().class), objc.Sel("labelWithAttributedString:"), attributedStringValue)
 	return rv
 }
@@ -97,7 +97,7 @@ func NewTextFieldLabelWithAttributedString(attributedStringValue unsafe.Pointer)
 // Creates a text field for use as a static label that displays styled text, doesn’t wrap, and doesn’t have selectable text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/init(labelWithAttributedString:)
-func (tc _TextFieldClass) LabelWithAttributedString(attributedStringValue unsafe.Pointer) unsafe.Pointer {
+func (tc _TextFieldClass) LabelWithAttributedString(attributedStringValue IAttributedString) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("labelWithAttributedString:"), attributedStringValue)
 	return rv
 }
@@ -112,7 +112,7 @@ func (t_ TextField) TextDidBeginEditing(notification unsafe.Pointer) {
 // Performs validation on the text field’s new value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/textShouldEndEditing(_:)
-func (t_ TextField) TextShouldEndEditing(textObject unsafe.Pointer) bool {
+func (t_ TextField) TextShouldEndEditing(textObject IText) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("textShouldEndEditing:"), textObject)
 	return rv
 }
@@ -264,8 +264,8 @@ func (t_ TextField) SetEditable(value bool) {
 // The attributed string the text field displays when empty to help the user understand the text field’s purpose.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/placeholderAttributedString
-func (t_ TextField) PlaceholderAttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("placeholderAttributedString"))
+func (t_ TextField) PlaceholderAttributedString() AttributedString {
+	rv := objc.Send[AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 
@@ -275,7 +275,7 @@ func (t_ TextField) PlaceholderAttributedString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/placeholderAttributedString
-func (t_ TextField) SetPlaceholderAttributedString(value unsafe.Pointer) {
+func (t_ TextField) SetPlaceholderAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
 
@@ -427,8 +427,8 @@ func (t_ TextField) SetAllowsWritingToolsAffordance(value bool) {
 // The color of the background the text field’s cell draws behind the text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/backgroundcolor
-func (t_ TextField) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+func (t_ TextField) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -438,15 +438,15 @@ func (t_ TextField) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/backgroundcolor
-func (t_ TextField) SetBackgroundColor(value unsafe.Pointer) {
+func (t_ TextField) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 // The text field’s bezel style, square or rounded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/bezelstyle-swift.property
-func (t_ TextField) BezelStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bezelStyle"))
+func (t_ TextField) BezelStyle() BezelStyle {
+	rv := objc.Send[BezelStyle](t_.ID, objc.Sel("bezelStyle"))
 	return rv
 }
 
@@ -456,7 +456,7 @@ func (t_ TextField) BezelStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/bezelstyle-swift.property
-func (t_ TextField) SetBezelStyle(value unsafe.Pointer) {
+func (t_ TextField) SetBezelStyle(value BezelStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBezelStyle:"), value)
 }
 
@@ -553,8 +553,8 @@ func (t_ TextField) SetIsSelectable(value bool) {
 // The strategy that the system uses to break lines when laying out multiple lines of text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/linebreakstrategy
-func (t_ TextField) LineBreakStrategy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("lineBreakStrategy"))
+func (t_ TextField) LineBreakStrategy() LineBreakStrategy {
+	rv := objc.Send[LineBreakStrategy](t_.ID, objc.Sel("lineBreakStrategy"))
 	return rv
 }
 
@@ -564,7 +564,7 @@ func (t_ TextField) LineBreakStrategy() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/linebreakstrategy
-func (t_ TextField) SetLineBreakStrategy(value unsafe.Pointer) {
+func (t_ TextField) SetLineBreakStrategy(value LineBreakStrategy) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLineBreakStrategy:"), value)
 }
 
@@ -588,8 +588,8 @@ func (t_ TextField) SetMaximumNumberOfLines(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderattributedstrings
-func (t_ TextField) PlaceholderAttributedStrings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("placeholderAttributedStrings"))
+func (t_ TextField) PlaceholderAttributedStrings() AttributedString {
+	rv := objc.Send[AttributedString](t_.ID, objc.Sel("placeholderAttributedStrings"))
 	return rv
 }
 
@@ -597,7 +597,7 @@ func (t_ TextField) PlaceholderAttributedStrings() unsafe.Pointer {
 // SetPlaceholderAttributedStrings sets the value of the placeholderAttributedStrings property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderattributedstrings
-func (t_ TextField) SetPlaceholderAttributedStrings(value unsafe.Pointer) {
+func (t_ TextField) SetPlaceholderAttributedStrings(value IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedStrings:"), value)
 }
 
@@ -658,8 +658,8 @@ func (t_ TextField) SetSuggestionsDelegate(value unsafe.Pointer) {
 // The color of the text field’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/textcolor
-func (t_ TextField) TextColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textColor"))
+func (t_ TextField) TextColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("textColor"))
 	return rv
 }
 
@@ -669,7 +669,7 @@ func (t_ TextField) TextColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/textcolor
-func (t_ TextField) SetTextColor(value unsafe.Pointer) {
+func (t_ TextField) SetTextColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:"), value)
 }
 

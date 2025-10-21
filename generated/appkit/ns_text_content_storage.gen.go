@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [TextContentStorage] class.
@@ -29,10 +30,10 @@ type _TextContentStorageClass struct {
 // An interface definition for the [TextContentStorage] class.
 type ITextContentStorage interface {
 	ITextContentManager
-	AdjustedRangeFromRangeForEditingTextSelection(textRange unsafe.Pointer, forEditingTextSelection bool) unsafe.Pointer
-	LocationFromLocationWithOffset(location objc.ID, offset int) objc.ID
-	OffsetFromLocationToLocation(from objc.ID, to objc.ID) int
-	TextElementForAttributedString(attributedString unsafe.Pointer) unsafe.Pointer
+	AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) TextRange
+	LocationFromLocationWithOffset(location objectivec.IObject, offset int) objc.ID
+	OffsetFromLocationToLocation(from objectivec.IObject, to objectivec.IObject) int
+	TextElementForAttributedString(attributedString IAttributedString) TextElement
 }
 
 // A concrete object for managing your view’s text content and generating the text elements necessary for layout.
@@ -88,15 +89,15 @@ func NewTextContentStorage() TextContentStorage {
 // Returns the text range, if any, in the backing store that required manual adjustment after editing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/adjustedRange(from:forEditingTextSelection:)
-func (t_ TextContentStorage) AdjustedRangeFromRangeForEditingTextSelection(textRange unsafe.Pointer, forEditingTextSelection bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("adjustedRangeFromRange:forEditingTextSelection:"), textRange, forEditingTextSelection)
+func (t_ TextContentStorage) AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) TextRange {
+	rv := objc.Send[TextRange](t_.ID, objc.Sel("adjustedRangeFromRange:forEditingTextSelection:"), textRange, forEditingTextSelection)
 	return rv
 }
 
 // Returns a new text location object based on an existing location and offset you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/location(_:offsetBy:)
-func (t_ TextContentStorage) LocationFromLocationWithOffset(location objc.ID, offset int) objc.ID {
+func (t_ TextContentStorage) LocationFromLocationWithOffset(location objectivec.IObject, offset int) objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("locationFromLocation:withOffset:"), location, offset)
 	return rv
 }
@@ -104,7 +105,7 @@ func (t_ TextContentStorage) LocationFromLocationWithOffset(location objc.ID, of
 // Returns the number of characters between the specified locations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/offset(from:to:)
-func (t_ TextContentStorage) OffsetFromLocationToLocation(from objc.ID, to objc.ID) int {
+func (t_ TextContentStorage) OffsetFromLocationToLocation(from objectivec.IObject, to objectivec.IObject) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("offsetFromLocation:toLocation:"), from, to)
 	return rv
 }
@@ -112,16 +113,16 @@ func (t_ TextContentStorage) OffsetFromLocationToLocation(from objc.ID, to objc.
 // Returns the text element corresponding to object’s attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/textElement(for:)
-func (t_ TextContentStorage) TextElementForAttributedString(attributedString unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textElementForAttributedString:"), attributedString)
+func (t_ TextContentStorage) TextElementForAttributedString(attributedString IAttributedString) TextElement {
+	rv := objc.Send[TextElement](t_.ID, objc.Sel("textElementForAttributedString:"), attributedString)
 	return rv
 }
 
 // An attributed string that contains the contents of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
-func (t_ TextContentStorage) AttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("attributedString"))
+func (t_ TextContentStorage) AttributedString() AttributedString {
+	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (t_ TextContentStorage) AttributedString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
-func (t_ TextContentStorage) SetAttributedString(value unsafe.Pointer) {
+func (t_ TextContentStorage) SetAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 
@@ -171,8 +172,8 @@ func (t_ TextContentStorage) SetDelegate(value unsafe.Pointer) {
 // Describes the starting and ending locations for the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelementprovider/documentrange
-func (t_ TextContentStorage) DocumentRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("documentRange"))
+func (t_ TextContentStorage) DocumentRange() NSTextRange {
+	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("documentRange"))
 	return rv
 }
 
@@ -182,7 +183,7 @@ func (t_ TextContentStorage) DocumentRange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelementprovider/documentrange
-func (t_ TextContentStorage) SetDocumentRange(value unsafe.Pointer) {
+func (t_ TextContentStorage) SetDocumentRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDocumentRange:"), value)
 }
 

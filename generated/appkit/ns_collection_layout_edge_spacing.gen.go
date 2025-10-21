@@ -80,6 +80,25 @@ func NewCollectionLayoutEdgeSpacing() CollectionLayoutEdgeSpacing {
 }
 
 
+
+
+// Creates an edge spacing object with the specified leading, top, trailing, and bottom spacing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing/init(leading:top:trailing:bottom:)
+func NewCollectionLayoutEdgeSpacingForLeadingTopTrailingBottom(leading unsafe.Pointer, top unsafe.Pointer, trailing unsafe.Pointer, bottom unsafe.Pointer) CollectionLayoutEdgeSpacing {
+	rv := objc.Send[CollectionLayoutEdgeSpacing](objc.ID(getCollectionLayoutEdgeSpacingClass().class), objc.Sel("spacingForLeading:top:trailing:bottom:"), leading, top, trailing, bottom)
+	return rv
+}
+
+
+// Creates an edge spacing object with the specified leading, top, trailing, and bottom spacing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing/init(leading:top:trailing:bottom:)
+func (cc _CollectionLayoutEdgeSpacingClass) SpacingForLeadingTopTrailingBottom(leading unsafe.Pointer, top unsafe.Pointer, trailing unsafe.Pointer, bottom unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("spacingForLeading:top:trailing:bottom:"), leading, top, trailing, bottom)
+	return rv
+}
+
 // The bottom edge spacing value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/bottom
@@ -151,6 +170,5 @@ func (c_ CollectionLayoutEdgeSpacing) Trailing() unsafe.Pointer {
 func (c_ CollectionLayoutEdgeSpacing) SetTrailing(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTrailing:"), value)
 }
-
 
 

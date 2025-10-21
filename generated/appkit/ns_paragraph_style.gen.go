@@ -99,16 +99,16 @@ func (p_ ParagraphStyle) HyphenationFactor() unsafe.Pointer {
 // The mode for breaking lines in the paragraph that don’t fit within a container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/lineBreakMode
-func (p_ ParagraphStyle) LineBreakMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("lineBreakMode"))
+func (p_ ParagraphStyle) LineBreakMode() LineBreakMode {
+	rv := objc.Send[LineBreakMode](p_.ID, objc.Sel("lineBreakMode"))
 	return rv
 }
 
 // The strategy for breaking lines while laying out paragraphs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/lineBreakStrategy-swift.property
-func (p_ ParagraphStyle) LineBreakStrategy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("lineBreakStrategy"))
+func (p_ ParagraphStyle) LineBreakStrategy() LineBreakStrategy {
+	rv := objc.Send[LineBreakStrategy](p_.ID, objc.Sel("lineBreakStrategy"))
 	return rv
 }
 
@@ -131,8 +131,8 @@ func (p_ ParagraphStyle) UsesDefaultHyphenation() bool {
 // The text alignment of the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/alignment
-func (p_ ParagraphStyle) Alignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("alignment"))
+func (p_ ParagraphStyle) Alignment() TextAlignment {
+	rv := objc.Send[TextAlignment](p_.ID, objc.Sel("alignment"))
 	return rv
 }
 
@@ -142,15 +142,15 @@ func (p_ ParagraphStyle) Alignment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/alignment
-func (p_ ParagraphStyle) SetAlignment(value unsafe.Pointer) {
+func (p_ ParagraphStyle) SetAlignment(value TextAlignment) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAlignment:"), value)
 }
 
 // The base writing direction for the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/basewritingdirection
-func (p_ ParagraphStyle) BaseWritingDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("baseWritingDirection"))
+func (p_ ParagraphStyle) BaseWritingDirection() WritingDirection {
+	rv := objc.Send[WritingDirection](p_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -160,7 +160,7 @@ func (p_ ParagraphStyle) BaseWritingDirection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/basewritingdirection
-func (p_ ParagraphStyle) SetBaseWritingDirection(value unsafe.Pointer) {
+func (p_ ParagraphStyle) SetBaseWritingDirection(value WritingDirection) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
@@ -347,8 +347,8 @@ func (p_ ParagraphStyle) SetParagraphSpacingBefore(value float64) {
 // The text tab objects that represent the paragraph’s tab stops.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/tabstops
-func (p_ ParagraphStyle) TabStops() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("tabStops"))
+func (p_ ParagraphStyle) TabStops() NSTextTab {
+	rv := objc.Send[NSTextTab](p_.ID, objc.Sel("tabStops"))
 	return rv
 }
 
@@ -358,7 +358,7 @@ func (p_ ParagraphStyle) TabStops() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/tabstops
-func (p_ ParagraphStyle) SetTabStops(value unsafe.Pointer) {
+func (p_ ParagraphStyle) SetTabStops(value ITextTab) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTabStops:"), value)
 }
 
@@ -383,8 +383,8 @@ func (p_ ParagraphStyle) SetTailIndent(value float64) {
 // The text blocks that contain the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/textblocks
-func (p_ ParagraphStyle) TextBlocks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("textBlocks"))
+func (p_ ParagraphStyle) TextBlocks() NSTextBlock {
+	rv := objc.Send[NSTextBlock](p_.ID, objc.Sel("textBlocks"))
 	return rv
 }
 
@@ -394,15 +394,15 @@ func (p_ ParagraphStyle) TextBlocks() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/textblocks
-func (p_ ParagraphStyle) SetTextBlocks(value unsafe.Pointer) {
+func (p_ ParagraphStyle) SetTextBlocks(value ITextBlock) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTextBlocks:"), value)
 }
 
 // The text lists that contain the paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/textlists
-func (p_ ParagraphStyle) TextLists() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("textLists"))
+func (p_ ParagraphStyle) TextLists() NSTextList {
+	rv := objc.Send[NSTextList](p_.ID, objc.Sel("textLists"))
 	return rv
 }
 
@@ -412,7 +412,7 @@ func (p_ ParagraphStyle) TextLists() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/textlists
-func (p_ ParagraphStyle) SetTextLists(value unsafe.Pointer) {
+func (p_ ParagraphStyle) SetTextLists(value ITextList) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTextLists:"), value)
 }
 

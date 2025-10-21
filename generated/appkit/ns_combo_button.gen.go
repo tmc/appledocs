@@ -84,8 +84,8 @@ func NewComboButton() ComboButton {
 // The image that the button displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/image
-func (c_ ComboButton) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("image"))
+func (c_ ComboButton) Image() Image {
+	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (c_ ComboButton) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/image
-func (c_ ComboButton) SetImage(value unsafe.Pointer) {
+func (c_ ComboButton) SetImage(value IImage) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
 }
 
 // The scaling behavior to apply to the button’s image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/imagescaling
-func (c_ ComboButton) ImageScaling() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("imageScaling"))
+func (c_ ComboButton) ImageScaling() ImageScaling {
+	rv := objc.Send[ImageScaling](c_.ID, objc.Sel("imageScaling"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (c_ ComboButton) ImageScaling() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/imagescaling
-func (c_ ComboButton) SetImageScaling(value unsafe.Pointer) {
+func (c_ ComboButton) SetImageScaling(value ImageScaling) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImageScaling:"), value)
 }
 
 // The menu that contains the button’s alternate actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/menu
-func (c_ ComboButton) Menu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("menu"))
+func (c_ ComboButton) Menu() NSMenu {
+	rv := objc.Send[NSMenu](c_.ID, objc.Sel("menu"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (c_ ComboButton) Menu() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/menu
-func (c_ ComboButton) SetMenu(value unsafe.Pointer) {
+func (c_ ComboButton) SetMenu(value IMenu) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMenu:"), value)
 }
 

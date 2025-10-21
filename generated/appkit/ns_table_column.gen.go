@@ -119,8 +119,8 @@ func (t_ TableColumn) SetEditable(value bool) {
 // The cell used to draw the table column’s header.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headercell
-func (t_ TableColumn) HeaderCell() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("headerCell"))
+func (t_ TableColumn) HeaderCell() NSTableHeaderCell {
+	rv := objc.Send[NSTableHeaderCell](t_.ID, objc.Sel("headerCell"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (t_ TableColumn) HeaderCell() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headercell
-func (t_ TableColumn) SetHeaderCell(value unsafe.Pointer) {
+func (t_ TableColumn) SetHeaderCell(value ITableHeaderCell) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderCell:"), value)
 }
 
@@ -155,8 +155,8 @@ func (t_ TableColumn) SetHeaderToolTip(value string) {
 // The identifier string for the table column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/identifier
-func (t_ TableColumn) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identifier"))
+func (t_ TableColumn) Identifier() UserInterfaceItemIdentifier {
+	rv := objc.Send[UserInterfaceItemIdentifier](t_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (t_ TableColumn) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/identifier
-func (t_ TableColumn) SetIdentifier(value unsafe.Pointer) {
+func (t_ TableColumn) SetIdentifier(value IUserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -281,8 +281,8 @@ func (t_ TableColumn) SetSortDescriptorPrototype(value unsafe.Pointer) {
 // The table view that contains the table column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/tableview
-func (t_ TableColumn) TableView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tableView"))
+func (t_ TableColumn) TableView() NSTableView {
+	rv := objc.Send[NSTableView](t_.ID, objc.Sel("tableView"))
 	return rv
 }
 
@@ -292,7 +292,7 @@ func (t_ TableColumn) TableView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/tableview
-func (t_ TableColumn) SetTableView(value unsafe.Pointer) {
+func (t_ TableColumn) SetTableView(value ITableView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
 }
 

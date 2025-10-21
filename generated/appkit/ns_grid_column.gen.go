@@ -125,8 +125,8 @@ func (g_ GridColumn) SetXPlacement(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/gridview
-func (g_ GridColumn) GridView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gridView"))
+func (g_ GridColumn) GridView() NSGridView {
+	rv := objc.Send[NSGridView](g_.ID, objc.Sel("gridView"))
 	return rv
 }
 
@@ -134,7 +134,7 @@ func (g_ GridColumn) GridView() unsafe.Pointer {
 // SetGridView sets the value of the gridView property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/gridview
-func (g_ GridColumn) SetGridView(value unsafe.Pointer) {
+func (g_ GridColumn) SetGridView(value IGridView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGridView:"), value)
 }
 

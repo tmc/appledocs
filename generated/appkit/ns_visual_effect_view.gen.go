@@ -30,7 +30,7 @@ type _VisualEffectViewClass struct {
 type IVisualEffectView interface {
 	IView
 	ViewDidMoveToWindow()
-	ViewWillMoveToWindow(newWindow unsafe.Pointer)
+	ViewWillMoveToWindow(newWindow IWindow)
 }
 
 // A view that adds translucency and vibrancy effects to the views in your interface.
@@ -93,15 +93,15 @@ func (v_ VisualEffectView) ViewDidMoveToWindow() {
 // Notifies the view immediately before it moves to a new window (which may be ).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/viewWillMove(toWindow:)
-func (v_ VisualEffectView) ViewWillMoveToWindow(newWindow unsafe.Pointer) {
+func (v_ VisualEffectView) ViewWillMoveToWindow(newWindow IWindow) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewWillMoveToWindow:"), newWindow)
 }
 
 // A value indicating how the view’s contents blend with the surrounding content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/blendingMode-swift.property
-func (v_ VisualEffectView) BlendingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("blendingMode"))
+func (v_ VisualEffectView) BlendingMode() VisualEffectBlendingMode {
+	rv := objc.Send[VisualEffectBlendingMode](v_.ID, objc.Sel("blendingMode"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (v_ VisualEffectView) BlendingMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/blendingMode-swift.property
-func (v_ VisualEffectView) SetBlendingMode(value unsafe.Pointer) {
+func (v_ VisualEffectView) SetBlendingMode(value VisualEffectBlendingMode) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBlendingMode:"), value)
 }
 
 // The view’s interior background style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/interiorBackgroundStyle
-func (v_ VisualEffectView) InteriorBackgroundStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("interiorBackgroundStyle"))
+func (v_ VisualEffectView) InteriorBackgroundStyle() BackgroundStyle {
+	rv := objc.Send[BackgroundStyle](v_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
 }
 
@@ -144,8 +144,8 @@ func (v_ VisualEffectView) SetEmphasized(value bool) {
 // An image whose alpha channel masks the visual effect view’s material.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/maskImage
-func (v_ VisualEffectView) MaskImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("maskImage"))
+func (v_ VisualEffectView) MaskImage() Image {
+	rv := objc.Send[Image](v_.ID, objc.Sel("maskImage"))
 	return rv
 }
 
@@ -155,15 +155,15 @@ func (v_ VisualEffectView) MaskImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/maskImage
-func (v_ VisualEffectView) SetMaskImage(value unsafe.Pointer) {
+func (v_ VisualEffectView) SetMaskImage(value IImage) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaskImage:"), value)
 }
 
 // The material shown by the visual effect view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/material-swift.property
-func (v_ VisualEffectView) Material() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("material"))
+func (v_ VisualEffectView) Material() VisualEffectMaterial {
+	rv := objc.Send[VisualEffectMaterial](v_.ID, objc.Sel("material"))
 	return rv
 }
 
@@ -173,15 +173,15 @@ func (v_ VisualEffectView) Material() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/material-swift.property
-func (v_ VisualEffectView) SetMaterial(value unsafe.Pointer) {
+func (v_ VisualEffectView) SetMaterial(value IVisualEffectMaterial) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaterial:"), value)
 }
 
 // A value that indicates whether a view has a visual effect applied.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/state-swift.property
-func (v_ VisualEffectView) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("state"))
+func (v_ VisualEffectView) State() VisualEffectState {
+	rv := objc.Send[VisualEffectState](v_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -191,7 +191,7 @@ func (v_ VisualEffectView) State() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/state-swift.property
-func (v_ VisualEffectView) SetState(value unsafe.Pointer) {
+func (v_ VisualEffectView) SetState(value VisualEffectState) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setState:"), value)
 }
 

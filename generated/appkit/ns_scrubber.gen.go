@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Scrubber] class.
@@ -31,16 +32,16 @@ type _ScrubberClass struct {
 type IScrubber interface {
 	IView
 	InsertItemsAtIndexes(indexes unsafe.Pointer)
-	ItemViewForItemAtIndex(index int) unsafe.Pointer
-	MakeItemWithIdentifierOwner(itemIdentifier unsafe.Pointer, owner objc.ID) unsafe.Pointer
+	ItemViewForItemAtIndex(index int) ScrubberItemView
+	MakeItemWithIdentifierOwner(itemIdentifier IUserInterfaceItemIdentifier, owner objectivec.IObject) ScrubberItemView
 	MoveItemAtIndexToIndex(oldIndex int, newIndex int)
 	PerformSequentialBatchUpdates(updateBlock unsafe.Pointer)
-	RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier unsafe.Pointer)
-	RegisterNibForItemIdentifier(nib unsafe.Pointer, itemIdentifier unsafe.Pointer)
+	RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier IUserInterfaceItemIdentifier)
+	RegisterNibForItemIdentifier(nib INib, itemIdentifier IUserInterfaceItemIdentifier)
 	ReloadData()
 	ReloadItemsAtIndexes(indexes unsafe.Pointer)
 	RemoveItemsAtIndexes(indexes unsafe.Pointer)
-	ScrollItemAtIndexToAlignment(index int, alignment unsafe.Pointer)
+	ScrollItemAtIndexToAlignment(index int, alignment ScrubberAlignment)
 }
 
 // A customizable item picker control for the Touch Bar.
@@ -98,7 +99,7 @@ func NewScrubber() Scrubber {
 // Initializes and returns a newly allocated scrubber object from a storyboard or nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
-func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
+func NewScrubberWithCoder(coder ICoder) Scrubber {
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -128,16 +129,16 @@ func (s_ Scrubber) InsertItemsAtIndexes(indexes unsafe.Pointer) {
 // Returns the view for the item at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/itemViewForItem(at:)
-func (s_ Scrubber) ItemViewForItemAtIndex(index int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("itemViewForItemAtIndex:"), index)
+func (s_ Scrubber) ItemViewForItemAtIndex(index int) ScrubberItemView {
+	rv := objc.Send[ScrubberItemView](s_.ID, objc.Sel("itemViewForItemAtIndex:"), index)
 	return rv
 }
 
 // Creates or returns a reusable item object with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/makeItem(withIdentifier:owner:)
-func (s_ Scrubber) MakeItemWithIdentifierOwner(itemIdentifier unsafe.Pointer, owner objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("makeItemWithIdentifier:owner:"), itemIdentifier, owner)
+func (s_ Scrubber) MakeItemWithIdentifierOwner(itemIdentifier IUserInterfaceItemIdentifier, owner objectivec.IObject) ScrubberItemView {
+	rv := objc.Send[ScrubberItemView](s_.ID, objc.Sel("makeItemWithIdentifier:owner:"), itemIdentifier, owner)
 	return rv
 }
 
@@ -158,14 +159,14 @@ func (s_ Scrubber) PerformSequentialBatchUpdates(updateBlock unsafe.Pointer) {
 // Registers a class for the scrubber to use when it creates new items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/register(_:forItemIdentifier:)-2rb69
-func (s_ Scrubber) RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier unsafe.Pointer) {
+func (s_ Scrubber) RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier IUserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerClass:forItemIdentifier:"), itemViewClass, itemIdentifier)
 }
 
 // Registers a nib file for the scrubber to use when it creates new items in the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/register(_:forItemIdentifier:)-6jye0
-func (s_ Scrubber) RegisterNibForItemIdentifier(nib unsafe.Pointer, itemIdentifier unsafe.Pointer) {
+func (s_ Scrubber) RegisterNibForItemIdentifier(nib INib, itemIdentifier IUserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerNib:forItemIdentifier:"), nib, itemIdentifier)
 }
 
@@ -193,15 +194,15 @@ func (s_ Scrubber) RemoveItemsAtIndexes(indexes unsafe.Pointer) {
 // Scrolls an item to a specified alignment within the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/scrollItem(at:to:)
-func (s_ Scrubber) ScrollItemAtIndexToAlignment(index int, alignment unsafe.Pointer) {
+func (s_ Scrubber) ScrollItemAtIndexToAlignment(index int, alignment ScrubberAlignment) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("scrollItemAtIndex:toAlignment:"), index, alignment)
 }
 
 // The color displayed behind the scrubber content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundColor
-func (s_ Scrubber) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("backgroundColor"))
+func (s_ Scrubber) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](s_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -211,15 +212,15 @@ func (s_ Scrubber) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundColor
-func (s_ Scrubber) SetBackgroundColor(value unsafe.Pointer) {
+func (s_ Scrubber) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 // A view that is displayed behind the scrubber content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundView
-func (s_ Scrubber) BackgroundView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("backgroundView"))
+func (s_ Scrubber) BackgroundView() NSView {
+	rv := objc.Send[NSView](s_.ID, objc.Sel("backgroundView"))
 	return rv
 }
 
@@ -229,7 +230,7 @@ func (s_ Scrubber) BackgroundView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundView
-func (s_ Scrubber) SetBackgroundView(value unsafe.Pointer) {
+func (s_ Scrubber) SetBackgroundView(value IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBackgroundView:"), value)
 }
 
@@ -316,8 +317,8 @@ func (s_ Scrubber) SetContinuous(value bool) {
 // A setting that specifies the snapping behavior of items in the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/itemAlignment
-func (s_ Scrubber) ItemAlignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("itemAlignment"))
+func (s_ Scrubber) ItemAlignment() ScrubberAlignment {
+	rv := objc.Send[ScrubberAlignment](s_.ID, objc.Sel("itemAlignment"))
 	return rv
 }
 
@@ -327,15 +328,15 @@ func (s_ Scrubber) ItemAlignment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/itemAlignment
-func (s_ Scrubber) SetItemAlignment(value unsafe.Pointer) {
+func (s_ Scrubber) SetItemAlignment(value ScrubberAlignment) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemAlignment:"), value)
 }
 
 // A setting that determines whether interaction with the scrubber is fixed or free.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/mode-swift.property
-func (s_ Scrubber) Mode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mode"))
+func (s_ Scrubber) Mode() ScrubberMode {
+	rv := objc.Send[ScrubberMode](s_.ID, objc.Sel("mode"))
 	return rv
 }
 
@@ -345,7 +346,7 @@ func (s_ Scrubber) Mode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/mode-swift.property
-func (s_ Scrubber) SetMode(value unsafe.Pointer) {
+func (s_ Scrubber) SetMode(value ScrubberMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMode:"), value)
 }
 
@@ -360,8 +361,8 @@ func (s_ Scrubber) NumberOfItems() int {
 // An object used to describe the layout of items within the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/scrubberLayout
-func (s_ Scrubber) ScrubberLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("scrubberLayout"))
+func (s_ Scrubber) ScrubberLayout() NSScrubberLayout {
+	rv := objc.Send[NSScrubberLayout](s_.ID, objc.Sel("scrubberLayout"))
 	return rv
 }
 
@@ -371,7 +372,7 @@ func (s_ Scrubber) ScrubberLayout() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/scrubberLayout
-func (s_ Scrubber) SetScrubberLayout(value unsafe.Pointer) {
+func (s_ Scrubber) SetScrubberLayout(value IScrubberLayout) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrubberLayout:"), value)
 }
 
@@ -396,8 +397,8 @@ func (s_ Scrubber) SetSelectedIndex(value int) {
 // The style applied to the background of selected items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionBackgroundStyle
-func (s_ Scrubber) SelectionBackgroundStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("selectionBackgroundStyle"))
+func (s_ Scrubber) SelectionBackgroundStyle() NSScrubberSelectionStyle {
+	rv := objc.Send[NSScrubberSelectionStyle](s_.ID, objc.Sel("selectionBackgroundStyle"))
 	return rv
 }
 
@@ -407,15 +408,15 @@ func (s_ Scrubber) SelectionBackgroundStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionBackgroundStyle
-func (s_ Scrubber) SetSelectionBackgroundStyle(value unsafe.Pointer) {
+func (s_ Scrubber) SetSelectionBackgroundStyle(value NSScrubberSelectionStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectionBackgroundStyle:"), value)
 }
 
 // The style overlaid on selected items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionOverlayStyle
-func (s_ Scrubber) SelectionOverlayStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("selectionOverlayStyle"))
+func (s_ Scrubber) SelectionOverlayStyle() NSScrubberSelectionStyle {
+	rv := objc.Send[NSScrubberSelectionStyle](s_.ID, objc.Sel("selectionOverlayStyle"))
 	return rv
 }
 
@@ -425,7 +426,7 @@ func (s_ Scrubber) SelectionOverlayStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionOverlayStyle
-func (s_ Scrubber) SetSelectionOverlayStyle(value unsafe.Pointer) {
+func (s_ Scrubber) SetSelectionOverlayStyle(value NSScrubberSelectionStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectionOverlayStyle:"), value)
 }
 
@@ -504,8 +505,8 @@ func (s_ Scrubber) SetImageAlignment(value unsafe.Pointer) {
 // The image view that the scrubber item uses to display its image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imageview
-func (s_ Scrubber) ImageView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageView"))
+func (s_ Scrubber) ImageView() NSImageView {
+	rv := objc.Send[NSImageView](s_.ID, objc.Sel("imageView"))
 	return rv
 }
 
@@ -515,7 +516,7 @@ func (s_ Scrubber) ImageView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imageview
-func (s_ Scrubber) SetImageView(value unsafe.Pointer) {
+func (s_ Scrubber) SetImageView(value IImageView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImageView:"), value)
 }
 
@@ -630,8 +631,8 @@ func (s_ Scrubber) SetItemIndex(value int) {
 // The text field that the scrubber item uses to display its text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
-func (s_ Scrubber) TextField() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("textField"))
+func (s_ Scrubber) TextField() NSTextField {
+	rv := objc.Send[NSTextField](s_.ID, objc.Sel("textField"))
 	return rv
 }
 
@@ -641,7 +642,7 @@ func (s_ Scrubber) TextField() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
-func (s_ Scrubber) SetTextField(value unsafe.Pointer) {
+func (s_ Scrubber) SetTextField(value ITextField) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTextField:"), value)
 }
 

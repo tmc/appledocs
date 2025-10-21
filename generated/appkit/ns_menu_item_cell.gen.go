@@ -118,8 +118,8 @@ func (m_ MenuItemCell) SetKeyEquivalentWidth(value float64) {
 // The menu item object associated with the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/menuitem
-func (m_ MenuItemCell) MenuItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("menuItem"))
+func (m_ MenuItemCell) MenuItem() NSMenuItem {
+	rv := objc.Send[NSMenuItem](m_.ID, objc.Sel("menuItem"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (m_ MenuItemCell) MenuItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/menuitem
-func (m_ MenuItemCell) SetMenuItem(value unsafe.Pointer) {
+func (m_ MenuItemCell) SetMenuItem(value IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuItem:"), value)
 }
 

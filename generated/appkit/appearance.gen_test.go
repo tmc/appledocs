@@ -9,3 +9,18 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewAppearance
 
+// ExampleNewAppearanceNamed demonstrates how to create a Appearance instance using NewAppearanceNamed.
+// Creates an appearance object based on the name of one of the standard system appearances.
+func ExampleNewAppearanceNamed() {
+	_ = appkit.NewAppearanceNamed(
+		appkit.AppearanceName{}, // name AppearanceName
+	)
+	// Output:
+}
+// ExampleNewAppearanceWithCoder demonstrates how to create a Appearance instance using NewAppearanceWithCoder.
+func ExampleNewAppearanceWithCoder() {
+	_ = appkit.NewAppearanceWithCoder(
+		appkit.Coder{}, // coder Coder
+	)
+	// Output:
+}

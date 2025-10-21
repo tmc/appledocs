@@ -192,8 +192,8 @@ func (o_ OutlineView) SetIndentationMarkerFollowsCell(value bool) {
 // The table column in which hierarchical data is displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/outlinetablecolumn
-func (o_ OutlineView) OutlineTableColumn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("outlineTableColumn"))
+func (o_ OutlineView) OutlineTableColumn() NSTableColumn {
+	rv := objc.Send[NSTableColumn](o_.ID, objc.Sel("outlineTableColumn"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (o_ OutlineView) OutlineTableColumn() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/outlinetablecolumn
-func (o_ OutlineView) SetOutlineTableColumn(value unsafe.Pointer) {
+func (o_ OutlineView) SetOutlineTableColumn(value ITableColumn) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOutlineTableColumn:"), value)
 }
 
@@ -228,8 +228,8 @@ func (o_ OutlineView) SetStronglyReferencesItems(value bool) {
 // The user interface layout direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/userinterfacelayoutdirection
-func (o_ OutlineView) UserInterfaceLayoutDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("userInterfaceLayoutDirection"))
+func (o_ OutlineView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
+	rv := objc.Send[UserInterfaceLayoutDirection](o_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
 
@@ -239,7 +239,7 @@ func (o_ OutlineView) UserInterfaceLayoutDirection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/userinterfacelayoutdirection
-func (o_ OutlineView) SetUserInterfaceLayoutDirection(value unsafe.Pointer) {
+func (o_ OutlineView) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 

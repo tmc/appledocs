@@ -83,24 +83,24 @@ func NewItemBadge() ItemBadge {
 // Creates a badge displaying a localized numerical count.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/badgeWithCount:
-func (ic _ItemBadgeClass) BadgeWithCount(count int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("badgeWithCount:"), count)
+func (ic _ItemBadgeClass) BadgeWithCount(count int) ItemBadge {
+	rv := objc.Send[ItemBadge](objc.ID(ic.class), objc.Sel("badgeWithCount:"), count)
 	return rv
 }
 
 // Creates a badge displaying a text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/badgeWithText:
-func (ic _ItemBadgeClass) BadgeWithText(text string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("badgeWithText:"), objc.String(text))
+func (ic _ItemBadgeClass) BadgeWithText(text string) ItemBadge {
+	rv := objc.Send[ItemBadge](objc.ID(ic.class), objc.Sel("badgeWithText:"), objc.String(text))
 	return rv
 }
 
 // Creates a badge styled as an indicator. In this context, an indicator is simply a badge without any text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/indicatorBadge
-func (ic _ItemBadgeClass) IndicatorBadge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indicatorBadge"))
+func (ic _ItemBadgeClass) IndicatorBadge() ItemBadge {
+	rv := objc.Send[ItemBadge](objc.ID(ic.class), objc.Sel("indicatorBadge"))
 	return rv
 }
 

@@ -101,8 +101,8 @@ func (t_ TextAttachmentViewProvider) SetLocation(value unsafe.Pointer) {
 // The text attachment for this view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textattachment
-func (t_ TextAttachmentViewProvider) TextAttachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textAttachment"))
+func (t_ TextAttachmentViewProvider) TextAttachment() NSTextAttachment {
+	rv := objc.Send[NSTextAttachment](t_.ID, objc.Sel("textAttachment"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (t_ TextAttachmentViewProvider) TextAttachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textattachment
-func (t_ TextAttachmentViewProvider) SetTextAttachment(value unsafe.Pointer) {
+func (t_ TextAttachmentViewProvider) SetTextAttachment(value ITextAttachment) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextAttachment:"), value)
 }
 
 // The text layout manager for this view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textlayoutmanager
-func (t_ TextAttachmentViewProvider) TextLayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textLayoutManager"))
+func (t_ TextAttachmentViewProvider) TextLayoutManager() NSTextLayoutManager {
+	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (t_ TextAttachmentViewProvider) TextLayoutManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textlayoutmanager
-func (t_ TextAttachmentViewProvider) SetTextLayoutManager(value unsafe.Pointer) {
+func (t_ TextAttachmentViewProvider) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
 
@@ -155,8 +155,8 @@ func (t_ TextAttachmentViewProvider) SetTracksTextAttachmentViewBounds(value boo
 // The text attachment’s view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/view
-func (t_ TextAttachmentViewProvider) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("view"))
+func (t_ TextAttachmentViewProvider) View() NSView {
+	rv := objc.Send[NSView](t_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (t_ TextAttachmentViewProvider) View() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/view
-func (t_ TextAttachmentViewProvider) SetView(value unsafe.Pointer) {
+func (t_ TextAttachmentViewProvider) SetView(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setView:"), value)
 }
 

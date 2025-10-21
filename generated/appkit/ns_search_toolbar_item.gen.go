@@ -128,8 +128,8 @@ func (s_ SearchToolbarItem) SetResignsFirstResponderWithCancel(value bool) {
 // The search field inside the toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/searchfield
-func (s_ SearchToolbarItem) SearchField() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("searchField"))
+func (s_ SearchToolbarItem) SearchField() NSSearchField {
+	rv := objc.Send[NSSearchField](s_.ID, objc.Sel("searchField"))
 	return rv
 }
 
@@ -139,7 +139,7 @@ func (s_ SearchToolbarItem) SearchField() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/searchfield
-func (s_ SearchToolbarItem) SetSearchField(value unsafe.Pointer) {
+func (s_ SearchToolbarItem) SetSearchField(value ISearchField) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchField:"), value)
 }
 

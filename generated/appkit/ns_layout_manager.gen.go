@@ -32,9 +32,9 @@ type _LayoutManagerClass struct {
 // An interface definition for the [LayoutManager] class.
 type ILayoutManager interface {
 	objectivec.IObject
-	AddTemporaryAttributeValueForCharacterRange(attrName unsafe.Pointer, value objc.ID, charRange foundation.Range)
-	AddTemporaryAttributesForCharacterRange(attrs unsafe.Pointer, charRange foundation.Range)
-	RemoveTemporaryAttributeForCharacterRange(attrName unsafe.Pointer, charRange foundation.Range)
+	AddTemporaryAttributeValueForCharacterRange(attrName unsafe.Pointer, value objectivec.IObject, charRange foundation.IRange)
+	AddTemporaryAttributesForCharacterRange(attrs unsafe.Pointer, charRange foundation.IRange)
+	RemoveTemporaryAttributeForCharacterRange(attrName unsafe.Pointer, charRange foundation.IRange)
 }
 
 // An object that coordinates the layout and display of text characters.
@@ -88,21 +88,21 @@ func NewLayoutManager() LayoutManager {
 // Adds a temporary attribute to the characters in the specified range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/addTemporaryAttribute(_:value:forCharacterRange:)
-func (l_ LayoutManager) AddTemporaryAttributeValueForCharacterRange(attrName unsafe.Pointer, value objc.ID, charRange foundation.Range) {
+func (l_ LayoutManager) AddTemporaryAttributeValueForCharacterRange(attrName unsafe.Pointer, value objectivec.IObject, charRange foundation.IRange) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("addTemporaryAttribute:value:forCharacterRange:"), attrName, value, charRange)
 }
 
 // Appends one or more temporary attributes to the attributes dictionary of the specified character range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/addTemporaryAttributes(_:forCharacterRange:)
-func (l_ LayoutManager) AddTemporaryAttributesForCharacterRange(attrs unsafe.Pointer, charRange foundation.Range) {
+func (l_ LayoutManager) AddTemporaryAttributesForCharacterRange(attrs unsafe.Pointer, charRange foundation.IRange) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("addTemporaryAttributes:forCharacterRange:"), attrs, charRange)
 }
 
 // Removes a temporary attribute from the list of attributes for the specified character range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/removeTemporaryAttribute(_:forCharacterRange:)
-func (l_ LayoutManager) RemoveTemporaryAttributeForCharacterRange(attrName unsafe.Pointer, charRange foundation.Range) {
+func (l_ LayoutManager) RemoveTemporaryAttributeForCharacterRange(attrName unsafe.Pointer, charRange foundation.IRange) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("removeTemporaryAttribute:forCharacterRange:"), attrName, charRange)
 }
 
@@ -163,8 +163,8 @@ func (l_ LayoutManager) SetBackgroundLayoutEnabled(value bool) {
 // The default amount of scaling to apply when an attachment image is too large to fit in a text container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/defaultattachmentscaling
-func (l_ LayoutManager) DefaultAttachmentScaling() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("defaultAttachmentScaling"))
+func (l_ LayoutManager) DefaultAttachmentScaling() ImageScaling {
+	rv := objc.Send[ImageScaling](l_.ID, objc.Sel("defaultAttachmentScaling"))
 	return rv
 }
 
@@ -174,7 +174,7 @@ func (l_ LayoutManager) DefaultAttachmentScaling() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/defaultattachmentscaling
-func (l_ LayoutManager) SetDefaultAttachmentScaling(value unsafe.Pointer) {
+func (l_ LayoutManager) SetDefaultAttachmentScaling(value ImageScaling) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDefaultAttachmentScaling:"), value)
 }
 
@@ -217,8 +217,8 @@ func (l_ LayoutManager) SetExtraLineFragmentRect(value coregraphics.CGRect) {
 // The text container for the extra line fragment rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/extralinefragmenttextcontainer
-func (l_ LayoutManager) ExtraLineFragmentTextContainer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("extraLineFragmentTextContainer"))
+func (l_ LayoutManager) ExtraLineFragmentTextContainer() NSTextContainer {
+	rv := objc.Send[NSTextContainer](l_.ID, objc.Sel("extraLineFragmentTextContainer"))
 	return rv
 }
 
@@ -228,7 +228,7 @@ func (l_ LayoutManager) ExtraLineFragmentTextContainer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/extralinefragmenttextcontainer
-func (l_ LayoutManager) SetExtraLineFragmentTextContainer(value unsafe.Pointer) {
+func (l_ LayoutManager) SetExtraLineFragmentTextContainer(value ITextContainer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setExtraLineFragmentTextContainer:"), value)
 }
 
@@ -253,8 +253,8 @@ func (l_ LayoutManager) SetExtraLineFragmentUsedRect(value coregraphics.CGRect) 
 // The first text view in the layout manager’s series of text views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/firsttextview
-func (l_ LayoutManager) FirstTextView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("firstTextView"))
+func (l_ LayoutManager) FirstTextView() NSTextView {
+	rv := objc.Send[NSTextView](l_.ID, objc.Sel("firstTextView"))
 	return rv
 }
 
@@ -264,15 +264,15 @@ func (l_ LayoutManager) FirstTextView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/firsttextview
-func (l_ LayoutManager) SetFirstTextView(value unsafe.Pointer) {
+func (l_ LayoutManager) SetFirstTextView(value ITextView) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setFirstTextView:"), value)
 }
 
 // The glyph generator that the layout manager uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphgenerator
-func (l_ LayoutManager) GlyphGenerator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("glyphGenerator"))
+func (l_ LayoutManager) GlyphGenerator() NSGlyphGenerator {
+	rv := objc.Send[NSGlyphGenerator](l_.ID, objc.Sel("glyphGenerator"))
 	return rv
 }
 
@@ -282,7 +282,7 @@ func (l_ LayoutManager) GlyphGenerator() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphgenerator
-func (l_ LayoutManager) SetGlyphGenerator(value unsafe.Pointer) {
+func (l_ LayoutManager) SetGlyphGenerator(value IGlyphGenerator) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setGlyphGenerator:"), value)
 }
 
@@ -379,8 +379,8 @@ func (l_ LayoutManager) SetShowsInvisibleCharacters(value bool) {
 // The current text containers of the layout manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/textcontainers
-func (l_ LayoutManager) TextContainers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("textContainers"))
+func (l_ LayoutManager) TextContainers() NSTextContainer {
+	rv := objc.Send[NSTextContainer](l_.ID, objc.Sel("textContainers"))
 	return rv
 }
 
@@ -390,15 +390,15 @@ func (l_ LayoutManager) TextContainers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/textcontainers
-func (l_ LayoutManager) SetTextContainers(value unsafe.Pointer) {
+func (l_ LayoutManager) SetTextContainers(value ITextContainer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTextContainers:"), value)
 }
 
 // The text storage object that contains the content to lay out.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/textstorage
-func (l_ LayoutManager) TextStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("textStorage"))
+func (l_ LayoutManager) TextStorage() NSTextStorage {
+	rv := objc.Send[NSTextStorage](l_.ID, objc.Sel("textStorage"))
 	return rv
 }
 
@@ -408,15 +408,15 @@ func (l_ LayoutManager) TextStorage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/textstorage
-func (l_ LayoutManager) SetTextStorage(value unsafe.Pointer) {
+func (l_ LayoutManager) SetTextStorage(value ITextStorage) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTextStorage:"), value)
 }
 
 // The text view that contains the first glyph in the selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/textviewforbeginningofselection
-func (l_ LayoutManager) TextViewForBeginningOfSelection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("textViewForBeginningOfSelection"))
+func (l_ LayoutManager) TextViewForBeginningOfSelection() NSTextView {
+	rv := objc.Send[NSTextView](l_.ID, objc.Sel("textViewForBeginningOfSelection"))
 	return rv
 }
 
@@ -426,15 +426,15 @@ func (l_ LayoutManager) TextViewForBeginningOfSelection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/textviewforbeginningofselection
-func (l_ LayoutManager) SetTextViewForBeginningOfSelection(value unsafe.Pointer) {
+func (l_ LayoutManager) SetTextViewForBeginningOfSelection(value ITextView) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTextViewForBeginningOfSelection:"), value)
 }
 
 // The current typesetter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetter
-func (l_ LayoutManager) Typesetter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("typesetter"))
+func (l_ LayoutManager) Typesetter() NSTypesetter {
+	rv := objc.Send[NSTypesetter](l_.ID, objc.Sel("typesetter"))
 	return rv
 }
 
@@ -444,7 +444,7 @@ func (l_ LayoutManager) Typesetter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetter
-func (l_ LayoutManager) SetTypesetter(value unsafe.Pointer) {
+func (l_ LayoutManager) SetTypesetter(value ITypesetter) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTypesetter:"), value)
 }
 

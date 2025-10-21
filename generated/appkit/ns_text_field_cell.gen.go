@@ -120,8 +120,8 @@ func (t_ TextFieldCell) SetAllowedInputSourceLocales(value []string) {
 // The color of the cell’s background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/backgroundColor
-func (t_ TextFieldCell) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+func (t_ TextFieldCell) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (t_ TextFieldCell) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/backgroundColor
-func (t_ TextFieldCell) SetBackgroundColor(value unsafe.Pointer) {
+func (t_ TextFieldCell) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
@@ -156,8 +156,8 @@ func (t_ TextFieldCell) SetBezelStyle(value unsafe.Pointer) {
 // The placeholder text for the cell, specified as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderAttributedString
-func (t_ TextFieldCell) PlaceholderAttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("placeholderAttributedString"))
+func (t_ TextFieldCell) PlaceholderAttributedString() AttributedString {
+	rv := objc.Send[AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (t_ TextFieldCell) PlaceholderAttributedString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderAttributedString
-func (t_ TextFieldCell) SetPlaceholderAttributedString(value unsafe.Pointer) {
+func (t_ TextFieldCell) SetPlaceholderAttributedString(value IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
 
@@ -192,8 +192,8 @@ func (t_ TextFieldCell) SetPlaceholderString(value string) {
 // The color to use to draw the cell’s text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/textColor
-func (t_ TextFieldCell) TextColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textColor"))
+func (t_ TextFieldCell) TextColor() NSColor {
+	rv := objc.Send[NSColor](t_.ID, objc.Sel("textColor"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (t_ TextFieldCell) TextColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/textColor
-func (t_ TextFieldCell) SetTextColor(value unsafe.Pointer) {
+func (t_ TextFieldCell) SetTextColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:"), value)
 }
 

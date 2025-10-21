@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewUserDefaultsController
 
+// ExampleNewUserDefaultsControllerWithCoder demonstrates how to create a UserDefaultsController instance using NewUserDefaultsControllerWithCoder.
+func ExampleNewUserDefaultsControllerWithCoder() {
+	_ = appkit.NewUserDefaultsControllerWithCoder(
+		appkit.Coder{}, // coder Coder
+	)
+	// Output:
+}

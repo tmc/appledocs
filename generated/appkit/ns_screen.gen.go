@@ -31,8 +31,8 @@ type _ScreenClass struct {
 // An interface definition for the [Screen] class.
 type IScreen interface {
 	objectivec.IObject
-	CanRepresentDisplayGamut(displayGamut unsafe.Pointer) bool
-	DisplayLinkWithTargetSelector(target objc.ID, selector objc.SEL) unsafe.Pointer
+	CanRepresentDisplayGamut(displayGamut DisplayGamut) bool
+	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) unsafe.Pointer
 	UserSpaceScaleFactor() float64
 }
 
@@ -87,15 +87,15 @@ func NewScreen() Screen {
 // Returns a screen object representing the screen that can best represent color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/deepest
-func (sc _ScreenClass) DeepestScreen() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("deepestScreen"))
+func (sc _ScreenClass) DeepestScreen() NSScreen {
+	rv := objc.Send[NSScreen](objc.ID(sc.class), objc.Sel("deepestScreen"))
 	return rv
 }
 // Returns the screen object containing the window with the keyboard focus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/main
-func (sc _ScreenClass) MainScreen() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("mainScreen"))
+func (sc _ScreenClass) MainScreen() NSScreen {
+	rv := objc.Send[NSScreen](objc.ID(sc.class), objc.Sel("mainScreen"))
 	return rv
 }
 // Returns an array of screen objects representing all of the screens available on the system.
@@ -115,14 +115,14 @@ func (sc _ScreenClass) ScreensHaveSeparateSpaces() bool {
 // A Boolean value indicating whether the color space of the screen is capable of representing the specified display gamut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/canRepresent(_:)
-func (s_ Screen) CanRepresentDisplayGamut(displayGamut unsafe.Pointer) bool {
+func (s_ Screen) CanRepresentDisplayGamut(displayGamut DisplayGamut) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canRepresentDisplayGamut:"), displayGamut)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/displayLink(target:selector:)
-func (s_ Screen) DisplayLinkWithTargetSelector(target objc.ID, selector objc.SEL) unsafe.Pointer {
+func (s_ Screen) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
 	return rv
 }
@@ -146,24 +146,24 @@ func (s_ Screen) CGDirectDisplayID() unsafe.Pointer {
 // The color space of the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/colorSpace
-func (s_ Screen) ColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("colorSpace"))
+func (s_ Screen) ColorSpace() NSColorSpace {
+	rv := objc.Send[NSColorSpace](s_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
 // Returns a screen object representing the screen that can best represent color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/deepest
-func (s_ Screen) DeepestScreen() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("deepestScreen"))
+func (s_ Screen) DeepestScreen() NSScreen {
+	rv := objc.Send[NSScreen](s_.ID, objc.Sel("deepestScreen"))
 	return rv
 }
 
 // The current bit depth and colorspace information of the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/depth
-func (s_ Screen) Depth() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("depth"))
+func (s_ Screen) Depth() WindowDepth {
+	rv := objc.Send[WindowDepth](s_.ID, objc.Sel("depth"))
 	return rv
 }
 
@@ -202,8 +202,8 @@ func (s_ Screen) LocalizedName() string {
 // Returns the screen object containing the window with the keyboard focus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/main
-func (s_ Screen) MainScreen() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mainScreen"))
+func (s_ Screen) MainScreen() NSScreen {
+	rv := objc.Send[NSScreen](s_.ID, objc.Sel("mainScreen"))
 	return rv
 }
 
@@ -274,8 +274,8 @@ func (s_ Screen) ScreensHaveSeparateSpaces() bool {
 // A zero-terminated array of the window depths supported by the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/supportedWindowDepths
-func (s_ Screen) SupportedWindowDepths() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("supportedWindowDepths"))
+func (s_ Screen) SupportedWindowDepths() NSWindowDepth {
+	rv := objc.Send[NSWindowDepth](s_.ID, objc.Sel("supportedWindowDepths"))
 	return rv
 }
 

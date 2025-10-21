@@ -85,8 +85,8 @@ func NewOpenPanel() OpenPanel {
 // Creates a new Open panel and initializes it with a default configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/openPanel
-func (oc _OpenPanelClass) OpenPanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("openPanel"))
+func (oc _OpenPanelClass) OpenPanel() OpenPanel {
+	rv := objc.Send[OpenPanel](objc.ID(oc.class), objc.Sel("openPanel"))
 	return rv
 }
 
@@ -230,7 +230,7 @@ func (o_ OpenPanel) Urls() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/urls
-func (o_ OpenPanel) SetUrls(value foundation.URL) {
+func (o_ OpenPanel) SetUrls(value foundation.IURL) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUrls:"), value)
 }
 
