@@ -2506,14 +2506,15 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 
 	// Check struct embedding for import needs by using getStructEmbeddedField
 	// This ensures we catch all cases where objectivec.Object is embedded
+	// Don't import a framework into itself
 	embeddedField := getStructEmbeddedField(class, framework)
 	if strings.HasPrefix(embeddedField, "objectivec.") {
 		imports.NeedsObjectiveC = true
-	} else if strings.HasPrefix(embeddedField, "foundation.") {
+	} else if strings.HasPrefix(embeddedField, "foundation.") && framework != "Foundation" {
 		imports.NeedsFoundation = true
-	} else if strings.HasPrefix(embeddedField, "quartzcore.") {
+	} else if strings.HasPrefix(embeddedField, "quartzcore.") && framework != "QuartzCore" {
 		imports.NeedsQuartzCore = true
-	} else if strings.HasPrefix(embeddedField, "appkit.") {
+	} else if strings.HasPrefix(embeddedField, "appkit.") && framework != "AppKit" {
 		imports.NeedsAppKit = true
 	}
 
@@ -2524,11 +2525,12 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 		isSelfReferential := (superStructName == structName)
 
 		// If superclass has a framework prefix, we need that import
-		if strings.HasPrefix(superResolved, "foundation.") {
+		// Don't import a framework into itself
+		if strings.HasPrefix(superResolved, "foundation.") && framework != "Foundation" {
 			imports.NeedsFoundation = true
-		} else if strings.HasPrefix(superResolved, "quartzcore.") {
+		} else if strings.HasPrefix(superResolved, "quartzcore.") && framework != "QuartzCore" {
 			imports.NeedsQuartzCore = true
-		} else if strings.HasPrefix(superResolved, "appkit.") {
+		} else if strings.HasPrefix(superResolved, "appkit.") && framework != "AppKit" {
 			imports.NeedsAppKit = true
 		} else if strings.HasPrefix(superResolved, "objectivec.") {
 			imports.NeedsObjectiveC = true
@@ -2561,24 +2563,26 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 		// Check return type
 		if method.ReturnType != "" {
 			goType := mapObjCTypeToGo(method.ReturnType, framework)
-			if typeReferencesFramework(goType, "appkit") {
+			// Don't import a framework into itself
+			if typeReferencesFramework(goType, "appkit") && framework != "AppKit" {
 				imports.NeedsAppKit = true
-			} else if typeReferencesFramework(goType, "quartzcore") {
+			} else if typeReferencesFramework(goType, "quartzcore") && framework != "QuartzCore" {
 				imports.NeedsQuartzCore = true
-			} else if typeReferencesFramework(goType, "cloudkit") {
+			} else if typeReferencesFramework(goType, "cloudkit") && framework != "CloudKit" {
 				imports.NeedsCloudKit = true
 			}
 		}
 		// Check parameters
 		for _, param := range method.Parameters {
 			goType := mapObjCTypeToGo(param.Type, framework)
-			if typeReferencesFramework(goType, "foundation") {
+			// Don't import a framework into itself
+			if typeReferencesFramework(goType, "foundation") && framework != "Foundation" {
 				imports.NeedsFoundation = true
-			} else if typeReferencesFramework(goType, "appkit") {
+			} else if typeReferencesFramework(goType, "appkit") && framework != "AppKit" {
 				imports.NeedsAppKit = true
-			} else if typeReferencesFramework(goType, "quartzcore") {
+			} else if typeReferencesFramework(goType, "quartzcore") && framework != "QuartzCore" {
 				imports.NeedsQuartzCore = true
-			} else if typeReferencesFramework(goType, "cloudkit") {
+			} else if typeReferencesFramework(goType, "cloudkit") && framework != "CloudKit" {
 				imports.NeedsCloudKit = true
 			}
 		}
