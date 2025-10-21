@@ -99,24 +99,6 @@ func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier stri
 	return rv
 }
 
-// An additional action selected by the user.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction
-func (u_ UserNotificationAction) AdditionalActivationAction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("additionalActivationAction"))
-	return rv
-}
-
-
-// SetAdditionalActivationAction sets the value of the additionalActivationAction property.
-// An additional action selected by the user.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction
-func (u_ UserNotificationAction) SetAdditionalActivationAction(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActivationAction:"), value)
-}
-
 // The actions that can be taken on a notification in addition to the default action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactions
@@ -133,6 +115,24 @@ func (u_ UserNotificationAction) AdditionalActions() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactions
 func (u_ UserNotificationAction) SetAdditionalActions(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActions:"), value)
+}
+
+// An additional action selected by the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction
+func (u_ UserNotificationAction) AdditionalActivationAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("additionalActivationAction"))
+	return rv
+}
+
+
+// SetAdditionalActivationAction sets the value of the additionalActivationAction property.
+// An additional action selected by the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction
+func (u_ UserNotificationAction) SetAdditionalActivationAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActivationAction:"), value)
 }
 
 // The identifier for the user notification action.

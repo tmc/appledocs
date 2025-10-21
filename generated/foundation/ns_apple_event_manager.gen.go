@@ -88,24 +88,6 @@ func (ac _AppleEventManagerClass) SharedAppleEventManager() unsafe.Pointer {
 	return rv
 }
 
-// Returns the corresponding reply event descriptor if an Apple event is being handled on the current thread.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentreplyappleevent
-func (a_ AppleEventManager) CurrentReplyAppleEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentReplyAppleEvent"))
-	return rv
-}
-
-
-// SetCurrentReplyAppleEvent sets the value of the currentReplyAppleEvent property.
-// Returns the corresponding reply event descriptor if an Apple event is being handled on the current thread.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentreplyappleevent
-func (a_ AppleEventManager) SetCurrentReplyAppleEvent(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentReplyAppleEvent:"), value)
-}
-
 // Returns the descriptor for
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentappleevent
@@ -122,6 +104,24 @@ func (a_ AppleEventManager) CurrentAppleEvent() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentappleevent
 func (a_ AppleEventManager) SetCurrentAppleEvent(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentAppleEvent:"), value)
+}
+
+// Returns the corresponding reply event descriptor if an Apple event is being handled on the current thread.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentreplyappleevent
+func (a_ AppleEventManager) CurrentReplyAppleEvent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentReplyAppleEvent"))
+	return rv
+}
+
+
+// SetCurrentReplyAppleEvent sets the value of the currentReplyAppleEvent property.
+// Returns the corresponding reply event descriptor if an Apple event is being handled on the current thread.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentreplyappleevent
+func (a_ AppleEventManager) SetCurrentReplyAppleEvent(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentReplyAppleEvent:"), value)
 }
 
 

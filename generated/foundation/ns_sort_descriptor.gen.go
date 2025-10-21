@@ -164,22 +164,22 @@ func (s_ SortDescriptor) SetSortDescriptors(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 
-// Returns a sort descriptor that reverses the sort order.
+// A Boolean value that indicates whether the receiver specifies sorting in ascending order.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/reversedsortdescriptor
-func (s_ SortDescriptor) ReversedSortDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("reversedSortDescriptor"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/ascending
+func (s_ SortDescriptor) Ascending() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("ascending"))
 	return rv
 }
 
 
-// SetReversedSortDescriptor sets the value of the reversedSortDescriptor property.
-// Returns a sort descriptor that reverses the sort order.
+// SetAscending sets the value of the ascending property.
+// A Boolean value that indicates whether the receiver specifies sorting in ascending order.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/reversedsortdescriptor
-func (s_ SortDescriptor) SetReversedSortDescriptor(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setReversedSortDescriptor:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/ascending
+func (s_ SortDescriptor) SetAscending(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAscending:"), value)
 }
 
 // The comparator for the sort descriptor.
@@ -218,22 +218,22 @@ func (s_ SortDescriptor) SetKeyPath(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKeyPath:"), value)
 }
 
-// A Boolean value that indicates whether the receiver specifies sorting in ascending order.
+// Returns a sort descriptor that reverses the sort order.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/ascending
-func (s_ SortDescriptor) Ascending() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("ascending"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/reversedsortdescriptor
+func (s_ SortDescriptor) ReversedSortDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("reversedSortDescriptor"))
 	return rv
 }
 
 
-// SetAscending sets the value of the ascending property.
-// A Boolean value that indicates whether the receiver specifies sorting in ascending order.
+// SetReversedSortDescriptor sets the value of the reversedSortDescriptor property.
+// Returns a sort descriptor that reverses the sort order.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/ascending
-func (s_ SortDescriptor) SetAscending(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAscending:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/reversedsortdescriptor
+func (s_ SortDescriptor) SetReversedSortDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setReversedSortDescriptor:"), value)
 }
 
 // The key that specifies the property to compare during sorting.

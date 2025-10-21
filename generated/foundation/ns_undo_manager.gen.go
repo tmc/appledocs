@@ -178,66 +178,20 @@ func (u_ UndoManager) UndoNestedGroup() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("undoNestedGroup"))
 }
 
+// A priority to use when using a run loop to close an undo group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsundoclosegroupingrunloopordering
+func (u_ UndoManager) NSUndoCloseGroupingRunLoopOrdering() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("NSUndoCloseGroupingRunLoopOrdering"))
+	return rv
+}
+
 // A key, used in a notification’s user info, that indicates the undo group contains only discardable actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsundomanagergroupisdiscardablekey
 func (u_ UndoManager) NSUndoManagerGroupIsDiscardableKey() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("NSUndoManagerGroupIsDiscardableKey"))
 	return rv
-}
-
-// A Boolean value that indicates whether the recording of undo operations is enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoregistrationenabled
-func (u_ UndoManager) IsUndoRegistrationEnabled() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("isUndoRegistrationEnabled"))
-	return rv
-}
-
-
-// SetIsUndoRegistrationEnabled sets the value of the isUndoRegistrationEnabled property.
-// A Boolean value that indicates whether the recording of undo operations is enabled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoregistrationenabled
-func (u_ UndoManager) SetIsUndoRegistrationEnabled(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIsUndoRegistrationEnabled:"), value)
-}
-
-// The title of the Undo menu command, such as Undo Paste.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/undomenuitemtitle
-func (u_ UndoManager) UndoMenuItemTitle() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("undoMenuItemTitle"))
-	return rv
-}
-
-
-// SetUndoMenuItemTitle sets the value of the undoMenuItemTitle property.
-// The title of the Undo menu command, such as Undo Paste.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/undomenuitemtitle
-func (u_ UndoManager) SetUndoMenuItemTitle(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setUndoMenuItemTitle:"), objc.String(value))
-}
-
-// The name identifying the redo action.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/redoactionname
-func (u_ UndoManager) RedoActionName() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("redoActionName"))
-	return rv
-}
-
-
-// SetRedoActionName sets the value of the redoActionName property.
-// The name identifying the redo action.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/redoactionname
-func (u_ UndoManager) SetRedoActionName(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRedoActionName:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the manager has any actions to undo.
@@ -276,30 +230,40 @@ func (u_ UndoManager) SetIsRedoing(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsRedoing:"), value)
 }
 
-// A Boolean value that indicates whether the next redo action is discardable.
+// A Boolean value that indicates whether the recording of undo operations is enabled.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/redoactionisdiscardable
-func (u_ UndoManager) RedoActionIsDiscardable() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("redoActionIsDiscardable"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoregistrationenabled
+func (u_ UndoManager) IsUndoRegistrationEnabled() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isUndoRegistrationEnabled"))
 	return rv
 }
 
 
-// SetRedoActionIsDiscardable sets the value of the redoActionIsDiscardable property.
-// A Boolean value that indicates whether the next redo action is discardable.
+// SetIsUndoRegistrationEnabled sets the value of the isUndoRegistrationEnabled property.
+// A Boolean value that indicates whether the recording of undo operations is enabled.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/redoactionisdiscardable
-func (u_ UndoManager) SetRedoActionIsDiscardable(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRedoActionIsDiscardable:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoregistrationenabled
+func (u_ UndoManager) SetIsUndoRegistrationEnabled(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsUndoRegistrationEnabled:"), value)
 }
 
-// A priority to use when using a run loop to close an undo group.
+// Returns a Boolean value that indicates whether the manager is in the process of performing an undo action.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsundoclosegroupingrunloopordering
-func (u_ UndoManager) NSUndoCloseGroupingRunLoopOrdering() int {
-	rv := objc.Send[int](u_.ID, objc.Sel("NSUndoCloseGroupingRunLoopOrdering"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoing
+func (u_ UndoManager) IsUndoing() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isUndoing"))
 	return rv
+}
+
+
+// SetIsUndoing sets the value of the isUndoing property.
+// Returns a Boolean value that indicates whether the manager is in the process of performing an undo action.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoing
+func (u_ UndoManager) SetIsUndoing(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsUndoing:"), value)
 }
 
 // The maximum number of top-level undo groups the undo manager holds.
@@ -320,22 +284,40 @@ func (u_ UndoManager) SetLevelsOfUndo(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setLevelsOfUndo:"), value)
 }
 
-// Returns a Boolean value that indicates whether the manager is in the process of performing an undo action.
+// A Boolean value that indicates whether the next redo action is discardable.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoing
-func (u_ UndoManager) IsUndoing() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("isUndoing"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/redoactionisdiscardable
+func (u_ UndoManager) RedoActionIsDiscardable() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("redoActionIsDiscardable"))
 	return rv
 }
 
 
-// SetIsUndoing sets the value of the isUndoing property.
-// Returns a Boolean value that indicates whether the manager is in the process of performing an undo action.
+// SetRedoActionIsDiscardable sets the value of the redoActionIsDiscardable property.
+// A Boolean value that indicates whether the next redo action is discardable.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoing
-func (u_ UndoManager) SetIsUndoing(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIsUndoing:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/redoactionisdiscardable
+func (u_ UndoManager) SetRedoActionIsDiscardable(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRedoActionIsDiscardable:"), value)
+}
+
+// The name identifying the redo action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/redoactionname
+func (u_ UndoManager) RedoActionName() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("redoActionName"))
+	return rv
+}
+
+
+// SetRedoActionName sets the value of the redoActionName property.
+// The name identifying the redo action.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/redoactionname
+func (u_ UndoManager) SetRedoActionName(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRedoActionName:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the next undo action is discardable.
@@ -372,6 +354,24 @@ func (u_ UndoManager) UndoCount() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/undocount
 func (u_ UndoManager) SetUndoCount(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUndoCount:"), value)
+}
+
+// The title of the Undo menu command, such as Undo Paste.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/undomenuitemtitle
+func (u_ UndoManager) UndoMenuItemTitle() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("undoMenuItemTitle"))
+	return rv
+}
+
+
+// SetUndoMenuItemTitle sets the value of the undoMenuItemTitle property.
+// The title of the Undo menu command, such as Undo Paste.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/undomenuitemtitle
+func (u_ UndoManager) SetUndoMenuItemTitle(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUndoMenuItemTitle:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the manager has any actions to redo.

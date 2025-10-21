@@ -153,22 +153,22 @@ func (x_ XMLDocument) SetRootElement(root unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRootElement:"), root)
 }
 
-// Sets the version of the receiver’s XML.
+// Sets the character encoding of the receiver to
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
-func (x_ XMLDocument) Version() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("version"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
+func (x_ XMLDocument) CharacterEncoding() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("characterEncoding"))
 	return rv
 }
 
 
-// SetVersion sets the value of the version property.
-// Sets the version of the receiver’s XML.
+// SetCharacterEncoding sets the value of the characterEncoding property.
+// Sets the character encoding of the receiver to
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
-func (x_ XMLDocument) SetVersion(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setVersion:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
+func (x_ XMLDocument) SetCharacterEncoding(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setCharacterEncoding:"), objc.String(value))
 }
 
 // Sets the kind of output content for the receiver.
@@ -207,24 +207,6 @@ func (x_ XMLDocument) SetDtd(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDtd:"), value)
 }
 
-// Sets the character encoding of the receiver to
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
-func (x_ XMLDocument) CharacterEncoding() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("characterEncoding"))
-	return rv
-}
-
-
-// SetCharacterEncoding sets the value of the characterEncoding property.
-// Sets the character encoding of the receiver to
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
-func (x_ XMLDocument) SetCharacterEncoding(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setCharacterEncoding:"), objc.String(value))
-}
-
 // Sets a Boolean value that specifies whether the receiver represents a standalone XML document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
@@ -241,6 +223,24 @@ func (x_ XMLDocument) IsStandalone() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
 func (x_ XMLDocument) SetIsStandalone(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setIsStandalone:"), value)
+}
+
+// Sets the version of the receiver’s XML.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
+func (x_ XMLDocument) Version() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("version"))
+	return rv
+}
+
+
+// SetVersion sets the value of the version property.
+// Sets the version of the receiver’s XML.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
+func (x_ XMLDocument) SetVersion(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 
 // Returns the MIME type for the receiver.

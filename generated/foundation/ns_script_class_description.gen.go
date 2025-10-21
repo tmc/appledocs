@@ -126,22 +126,22 @@ func (s_ ScriptClassDescription) SetClassName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setClassName:"), objc.String(value))
 }
 
-// Returns the class description instance for the superclass of the receiver’s class.
+// Returns the value of the
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
-func (s_ ScriptClassDescription) Superclass() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("superclass"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
+func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("defaultSubcontainerAttributeKey"))
 	return rv
 }
 
 
-// SetSuperclass sets the value of the superclass property.
-// Returns the class description instance for the superclass of the receiver’s class.
+// SetDefaultSubcontainerAttributeKey sets the value of the defaultSubcontainerAttributeKey property.
+// Returns the value of the
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
-func (s_ ScriptClassDescription) SetSuperclass(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSuperclass:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
+func (s_ ScriptClassDescription) SetDefaultSubcontainerAttributeKey(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultSubcontainerAttributeKey:"), objc.String(value))
 }
 
 // Returns the name of the Objective-C class instantiated to implement the scripting class.
@@ -162,24 +162,6 @@ func (s_ ScriptClassDescription) SetImplementationClassName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImplementationClassName:"), objc.String(value))
 }
 
-// Returns the value of the
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
-func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("defaultSubcontainerAttributeKey"))
-	return rv
-}
-
-
-// SetDefaultSubcontainerAttributeKey sets the value of the defaultSubcontainerAttributeKey property.
-// Returns the value of the
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
-func (s_ ScriptClassDescription) SetDefaultSubcontainerAttributeKey(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultSubcontainerAttributeKey:"), objc.String(value))
-}
-
 // Returns the name of the receiver’s suite.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
@@ -196,6 +178,24 @@ func (s_ ScriptClassDescription) SuiteName() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
 func (s_ ScriptClassDescription) SetSuiteName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), objc.String(value))
+}
+
+// Returns the class description instance for the superclass of the receiver’s class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
+func (s_ ScriptClassDescription) Superclass() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("superclass"))
+	return rv
+}
+
+
+// SetSuperclass sets the value of the superclass property.
+// Returns the class description instance for the superclass of the receiver’s class.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
+func (s_ ScriptClassDescription) SetSuperclass(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSuperclass:"), value)
 }
 
 

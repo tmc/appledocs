@@ -620,22 +620,19 @@ func (u_ URL) WriteToPasteboard(pasteBoard unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("writeToPasteboard:"), pasteBoard)
 }
 
-// A boolean value that determines whether the receiver is a file URL.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/isfileurl
-func (u_ URL) IsFileURL() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("isFileURL"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/customplaygroundquicklook
+func (u_ URL) CustomPlaygroundQuickLook() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("customPlaygroundQuickLook"))
 	return rv
 }
 
 
-// SetIsFileURL sets the value of the isFileURL property.
-// A boolean value that determines whether the receiver is a file URL.
-
+// SetCustomPlaygroundQuickLook sets the value of the customPlaygroundQuickLook property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/isfileurl
-func (u_ URL) SetIsFileURL(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIsFileURL:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/customplaygroundquicklook
+func (u_ URL) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
 }
 
 // A URL you create by removing the last path component from the receiver. (read-only)
@@ -656,21 +653,6 @@ func (u_ URL) SetDeletingLastPathComponent(value URL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletingLastPathComponent:"), value)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/customplaygroundquicklook
-func (u_ URL) CustomPlaygroundQuickLook() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("customPlaygroundQuickLook"))
-	return rv
-}
-
-
-// SetCustomPlaygroundQuickLook sets the value of the customPlaygroundQuickLook property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/customplaygroundquicklook
-func (u_ URL) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
-}
-
 // A URL you create by removing the path extension from the receiver, if any. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletingpathextension
@@ -687,6 +669,24 @@ func (u_ URL) DeletingPathExtension() URL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletingpathextension
 func (u_ URL) SetDeletingPathExtension(value URL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletingPathExtension:"), value)
+}
+
+// A boolean value that determines whether the receiver is a file URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/isfileurl
+func (u_ URL) IsFileURL() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isFileURL"))
+	return rv
+}
+
+
+// SetIsFileURL sets the value of the isFileURL property.
+// A boolean value that determines whether the receiver is a file URL.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/isfileurl
+func (u_ URL) SetIsFileURL(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsFileURL:"), value)
 }
 
 // A URL that points to the same resource as the receiver and includes no symbolic links. (read-only)

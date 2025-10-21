@@ -88,6 +88,24 @@ func (p_ PositionalSpecifier) SetInsertionClassDescription(classDescription unsa
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionClassDescription:"), classDescription)
 }
 
+// Returns the container in which the new or copied object or objects should be placed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertioncontainer
+func (p_ PositionalSpecifier) InsertionContainer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("insertionContainer"))
+	return rv
+}
+
+
+// SetInsertionContainer sets the value of the insertionContainer property.
+// Returns the container in which the new or copied object or objects should be placed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertioncontainer
+func (p_ PositionalSpecifier) SetInsertionContainer(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionContainer:"), value)
+}
+
 // Returns an insertion index that indicates where the new or copied object or objects should be placed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionindex
@@ -104,24 +122,6 @@ func (p_ PositionalSpecifier) InsertionIndex() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionindex
 func (p_ PositionalSpecifier) SetInsertionIndex(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionIndex:"), value)
-}
-
-// Returns a Boolean value that indicates whether evaluation has been successful and the object to be inserted should actually replace the keyed, indexed object in the insertion container.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionreplaces
-func (p_ PositionalSpecifier) InsertionReplaces() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("insertionReplaces"))
-	return rv
-}
-
-
-// SetInsertionReplaces sets the value of the insertionReplaces property.
-// Returns a Boolean value that indicates whether evaluation has been successful and the object to be inserted should actually replace the keyed, indexed object in the insertion container.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionreplaces
-func (p_ PositionalSpecifier) SetInsertionReplaces(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionReplaces:"), value)
 }
 
 // Returns the key that identifies the relationship into which the new or copied object or objects should be inserted.
@@ -142,22 +142,22 @@ func (p_ PositionalSpecifier) SetInsertionKey(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionKey:"), objc.String(value))
 }
 
-// Returns the container in which the new or copied object or objects should be placed.
+// Returns a Boolean value that indicates whether evaluation has been successful and the object to be inserted should actually replace the keyed, indexed object in the insertion container.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertioncontainer
-func (p_ PositionalSpecifier) InsertionContainer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("insertionContainer"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionreplaces
+func (p_ PositionalSpecifier) InsertionReplaces() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("insertionReplaces"))
 	return rv
 }
 
 
-// SetInsertionContainer sets the value of the insertionContainer property.
-// Returns the container in which the new or copied object or objects should be placed.
+// SetInsertionReplaces sets the value of the insertionReplaces property.
+// Returns a Boolean value that indicates whether evaluation has been successful and the object to be inserted should actually replace the keyed, indexed object in the insertion container.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertioncontainer
-func (p_ PositionalSpecifier) SetInsertionContainer(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionContainer:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionreplaces
+func (p_ PositionalSpecifier) SetInsertionReplaces(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionReplaces:"), value)
 }
 
 // Returns the object specifier specified at initialization time.

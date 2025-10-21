@@ -206,202 +206,22 @@ func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep unsafe.Po
 	return rv
 }
 
-// A list of short standalone month symbols for this calendar.
+// The symbol used to represent “AM” for this calendar.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortstandalonemonthsymbols
-func (c_ Calendar) ShortStandaloneMonthSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("shortStandaloneMonthSymbols"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/amsymbol
+func (c_ Calendar) AmSymbol() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("amSymbol"))
 	return rv
 }
 
 
-// SetShortStandaloneMonthSymbols sets the value of the shortStandaloneMonthSymbols property.
-// A list of short standalone month symbols for this calendar.
+// SetAmSymbol sets the value of the amSymbol property.
+// The symbol used to represent “AM” for this calendar.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortstandalonemonthsymbols
-func (c_ Calendar) SetShortStandaloneMonthSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortStandaloneMonthSymbols:"), objc.String(value))
-}
-
-// A list of very short standalone weekday symbols for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandaloneweekdaysymbols
-func (c_ Calendar) VeryShortStandaloneWeekdaySymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
-	return rv
-}
-
-
-// SetVeryShortStandaloneWeekdaySymbols sets the value of the veryShortStandaloneWeekdaySymbols property.
-// A list of very short standalone weekday symbols for this calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandaloneweekdaysymbols
-func (c_ Calendar) SetVeryShortStandaloneWeekdaySymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortStandaloneWeekdaySymbols:"), objc.String(value))
-}
-
-// A list of very short month symbols for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortmonthsymbols
-func (c_ Calendar) VeryShortMonthSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("veryShortMonthSymbols"))
-	return rv
-}
-
-
-// SetVeryShortMonthSymbols sets the value of the veryShortMonthSymbols property.
-// A list of very short month symbols for this calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortmonthsymbols
-func (c_ Calendar) SetVeryShortMonthSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortMonthSymbols:"), objc.String(value))
-}
-
-// A list of shorter-named weekdays in this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortweekdaysymbols
-func (c_ Calendar) ShortWeekdaySymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("shortWeekdaySymbols"))
-	return rv
-}
-
-
-// SetShortWeekdaySymbols sets the value of the shortWeekdaySymbols property.
-// A list of shorter-named weekdays in this calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortweekdaysymbols
-func (c_ Calendar) SetShortWeekdaySymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortWeekdaySymbols:"), objc.String(value))
-}
-
-// A list of short month symbols for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortmonthsymbols
-func (c_ Calendar) ShortMonthSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("shortMonthSymbols"))
-	return rv
-}
-
-
-// SetShortMonthSymbols sets the value of the shortMonthSymbols property.
-// A list of short month symbols for this calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortmonthsymbols
-func (c_ Calendar) SetShortMonthSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortMonthSymbols:"), objc.String(value))
-}
-
-// The minimum number of days in the first week of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/minimumdaysinfirstweek
-func (c_ Calendar) MinimumDaysInFirstWeek() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("minimumDaysInFirstWeek"))
-	return rv
-}
-
-
-// SetMinimumDaysInFirstWeek sets the value of the minimumDaysInFirstWeek property.
-// The minimum number of days in the first week of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/minimumdaysinfirstweek
-func (c_ Calendar) SetMinimumDaysInFirstWeek(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMinimumDaysInFirstWeek:"), value)
-}
-
-// A list of quarter symbols for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/quartersymbols
-func (c_ Calendar) QuarterSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("quarterSymbols"))
-	return rv
-}
-
-
-// SetQuarterSymbols sets the value of the quarterSymbols property.
-// A list of quarter symbols for this calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/quartersymbols
-func (c_ Calendar) SetQuarterSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setQuarterSymbols:"), objc.String(value))
-}
-
-// A list of standalone weekday symbols for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standaloneweekdaysymbols
-func (c_ Calendar) StandaloneWeekdaySymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("standaloneWeekdaySymbols"))
-	return rv
-}
-
-
-// SetStandaloneWeekdaySymbols sets the value of the standaloneWeekdaySymbols property.
-// A list of standalone weekday symbols for this calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standaloneweekdaysymbols
-func (c_ Calendar) SetStandaloneWeekdaySymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneWeekdaySymbols:"), objc.String(value))
-}
-
-// A list of short quarter symbols for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortquartersymbols
-func (c_ Calendar) ShortQuarterSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("shortQuarterSymbols"))
-	return rv
-}
-
-
-// SetShortQuarterSymbols sets the value of the shortQuarterSymbols property.
-// A list of short quarter symbols for this calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortquartersymbols
-func (c_ Calendar) SetShortQuarterSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortQuarterSymbols:"), objc.String(value))
-}
-
-// The symbol used to represent “PM” for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/pmsymbol
-func (c_ Calendar) PmSymbol() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("pmSymbol"))
-	return rv
-}
-
-
-// SetPmSymbol sets the value of the pmSymbol property.
-// The symbol used to represent “PM” for this calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/pmsymbol
-func (c_ Calendar) SetPmSymbol(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPmSymbol:"), objc.String(value))
-}
-
-// A list of long era symbols for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/longerasymbols
-func (c_ Calendar) LongEraSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("longEraSymbols"))
-	return rv
-}
-
-
-// SetLongEraSymbols sets the value of the longEraSymbols property.
-// A list of long era symbols for this calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/longerasymbols
-func (c_ Calendar) SetLongEraSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLongEraSymbols:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/amsymbol
+func (c_ Calendar) SetAmSymbol(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAmSymbol:"), objc.String(value))
 }
 
 // A list of era symbols for this calendar.
@@ -422,22 +242,40 @@ func (c_ Calendar) SetEraSymbols(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEraSymbols:"), objc.String(value))
 }
 
-// A list of very-shortly-named weekdays in this calendar.
+// A list of long era symbols for this calendar.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortweekdaysymbols
-func (c_ Calendar) VeryShortWeekdaySymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("veryShortWeekdaySymbols"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/longerasymbols
+func (c_ Calendar) LongEraSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("longEraSymbols"))
 	return rv
 }
 
 
-// SetVeryShortWeekdaySymbols sets the value of the veryShortWeekdaySymbols property.
-// A list of very-shortly-named weekdays in this calendar.
+// SetLongEraSymbols sets the value of the longEraSymbols property.
+// A list of long era symbols for this calendar.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortweekdaysymbols
-func (c_ Calendar) SetVeryShortWeekdaySymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortWeekdaySymbols:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/longerasymbols
+func (c_ Calendar) SetLongEraSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLongEraSymbols:"), objc.String(value))
+}
+
+// The minimum number of days in the first week of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/minimumdaysinfirstweek
+func (c_ Calendar) MinimumDaysInFirstWeek() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("minimumDaysInFirstWeek"))
+	return rv
+}
+
+
+// SetMinimumDaysInFirstWeek sets the value of the minimumDaysInFirstWeek property.
+// The minimum number of days in the first week of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/minimumdaysinfirstweek
+func (c_ Calendar) SetMinimumDaysInFirstWeek(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMinimumDaysInFirstWeek:"), value)
 }
 
 // A list of month symbols for this calendar.
@@ -458,22 +296,130 @@ func (c_ Calendar) SetMonthSymbols(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMonthSymbols:"), objc.String(value))
 }
 
-// The symbol used to represent “AM” for this calendar.
+// The symbol used to represent “PM” for this calendar.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/amsymbol
-func (c_ Calendar) AmSymbol() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("amSymbol"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/pmsymbol
+func (c_ Calendar) PmSymbol() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("pmSymbol"))
 	return rv
 }
 
 
-// SetAmSymbol sets the value of the amSymbol property.
-// The symbol used to represent “AM” for this calendar.
+// SetPmSymbol sets the value of the pmSymbol property.
+// The symbol used to represent “PM” for this calendar.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/amsymbol
-func (c_ Calendar) SetAmSymbol(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAmSymbol:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/pmsymbol
+func (c_ Calendar) SetPmSymbol(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPmSymbol:"), objc.String(value))
+}
+
+// A list of quarter symbols for this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/quartersymbols
+func (c_ Calendar) QuarterSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("quarterSymbols"))
+	return rv
+}
+
+
+// SetQuarterSymbols sets the value of the quarterSymbols property.
+// A list of quarter symbols for this calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/quartersymbols
+func (c_ Calendar) SetQuarterSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQuarterSymbols:"), objc.String(value))
+}
+
+// A list of short month symbols for this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortmonthsymbols
+func (c_ Calendar) ShortMonthSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("shortMonthSymbols"))
+	return rv
+}
+
+
+// SetShortMonthSymbols sets the value of the shortMonthSymbols property.
+// A list of short month symbols for this calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortmonthsymbols
+func (c_ Calendar) SetShortMonthSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShortMonthSymbols:"), objc.String(value))
+}
+
+// A list of short quarter symbols for this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortquartersymbols
+func (c_ Calendar) ShortQuarterSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("shortQuarterSymbols"))
+	return rv
+}
+
+
+// SetShortQuarterSymbols sets the value of the shortQuarterSymbols property.
+// A list of short quarter symbols for this calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortquartersymbols
+func (c_ Calendar) SetShortQuarterSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShortQuarterSymbols:"), objc.String(value))
+}
+
+// A list of short standalone month symbols for this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortstandalonemonthsymbols
+func (c_ Calendar) ShortStandaloneMonthSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("shortStandaloneMonthSymbols"))
+	return rv
+}
+
+
+// SetShortStandaloneMonthSymbols sets the value of the shortStandaloneMonthSymbols property.
+// A list of short standalone month symbols for this calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortstandalonemonthsymbols
+func (c_ Calendar) SetShortStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShortStandaloneMonthSymbols:"), objc.String(value))
+}
+
+// A list of shorter-named weekdays in this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortweekdaysymbols
+func (c_ Calendar) ShortWeekdaySymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("shortWeekdaySymbols"))
+	return rv
+}
+
+
+// SetShortWeekdaySymbols sets the value of the shortWeekdaySymbols property.
+// A list of shorter-named weekdays in this calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortweekdaysymbols
+func (c_ Calendar) SetShortWeekdaySymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShortWeekdaySymbols:"), objc.String(value))
+}
+
+// A list of standalone month symbols for this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonemonthsymbols
+func (c_ Calendar) StandaloneMonthSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("standaloneMonthSymbols"))
+	return rv
+}
+
+
+// SetStandaloneMonthSymbols sets the value of the standaloneMonthSymbols property.
+// A list of standalone month symbols for this calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonemonthsymbols
+func (c_ Calendar) SetStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneMonthSymbols:"), objc.String(value))
 }
 
 // A list of standalone quarter symbols for this calendar.
@@ -494,6 +440,42 @@ func (c_ Calendar) SetStandaloneQuarterSymbols(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneQuarterSymbols:"), objc.String(value))
 }
 
+// A list of standalone weekday symbols for this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standaloneweekdaysymbols
+func (c_ Calendar) StandaloneWeekdaySymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("standaloneWeekdaySymbols"))
+	return rv
+}
+
+
+// SetStandaloneWeekdaySymbols sets the value of the standaloneWeekdaySymbols property.
+// A list of standalone weekday symbols for this calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standaloneweekdaysymbols
+func (c_ Calendar) SetStandaloneWeekdaySymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneWeekdaySymbols:"), objc.String(value))
+}
+
+// A list of very short month symbols for this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortmonthsymbols
+func (c_ Calendar) VeryShortMonthSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("veryShortMonthSymbols"))
+	return rv
+}
+
+
+// SetVeryShortMonthSymbols sets the value of the veryShortMonthSymbols property.
+// A list of very short month symbols for this calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortmonthsymbols
+func (c_ Calendar) SetVeryShortMonthSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortMonthSymbols:"), objc.String(value))
+}
+
 // A list of very short month symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandalonemonthsymbols
@@ -512,6 +494,42 @@ func (c_ Calendar) SetVeryShortStandaloneMonthSymbols(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortStandaloneMonthSymbols:"), objc.String(value))
 }
 
+// A list of very short standalone weekday symbols for this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandaloneweekdaysymbols
+func (c_ Calendar) VeryShortStandaloneWeekdaySymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
+	return rv
+}
+
+
+// SetVeryShortStandaloneWeekdaySymbols sets the value of the veryShortStandaloneWeekdaySymbols property.
+// A list of very short standalone weekday symbols for this calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandaloneweekdaysymbols
+func (c_ Calendar) SetVeryShortStandaloneWeekdaySymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortStandaloneWeekdaySymbols:"), objc.String(value))
+}
+
+// A list of very-shortly-named weekdays in this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortweekdaysymbols
+func (c_ Calendar) VeryShortWeekdaySymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("veryShortWeekdaySymbols"))
+	return rv
+}
+
+
+// SetVeryShortWeekdaySymbols sets the value of the veryShortWeekdaySymbols property.
+// A list of very-shortly-named weekdays in this calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortweekdaysymbols
+func (c_ Calendar) SetVeryShortWeekdaySymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortWeekdaySymbols:"), objc.String(value))
+}
+
 // A list of weekdays in this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/weekdaysymbols
@@ -528,24 +546,6 @@ func (c_ Calendar) WeekdaySymbols() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/weekdaysymbols
 func (c_ Calendar) SetWeekdaySymbols(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeekdaySymbols:"), objc.String(value))
-}
-
-// A list of standalone month symbols for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonemonthsymbols
-func (c_ Calendar) StandaloneMonthSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("standaloneMonthSymbols"))
-	return rv
-}
-
-
-// SetStandaloneMonthSymbols sets the value of the standaloneMonthSymbols property.
-// A list of standalone month symbols for this calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonemonthsymbols
-func (c_ Calendar) SetStandaloneMonthSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneMonthSymbols:"), objc.String(value))
 }
 
 // A calendar that tracks changes to user’s preferred calendar.

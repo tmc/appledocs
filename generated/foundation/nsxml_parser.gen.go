@@ -114,6 +114,24 @@ func (x_ XMLParser) Parse() bool {
 	return rv
 }
 
+// The column number of the XML document being processed by the parser.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
+func (x_ XMLParser) ColumnNumber() int {
+	rv := objc.Send[int](x_.ID, objc.Sel("columnNumber"))
+	return rv
+}
+
+
+// SetColumnNumber sets the value of the columnNumber property.
+// The column number of the XML document being processed by the parser.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
+func (x_ XMLParser) SetColumnNumber(value int) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setColumnNumber:"), value)
+}
+
 // A delegate object that receives messages about the parsing process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/delegate
@@ -147,24 +165,6 @@ func (x_ XMLParser) SetExternalEntityResolvingPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExternalEntityResolvingPolicy:"), value)
 }
 
-// The system identifier of the external entity referenced in the XML document.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
-func (x_ XMLParser) SystemID() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
-	return rv
-}
-
-
-// SetSystemID sets the value of the systemID property.
-// The system identifier of the external entity referenced in the XML document.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
-func (x_ XMLParser) SetSystemID(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
-}
-
 // A Boolean value that determines whether the parser reports the namespaces and qualified names of elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldprocessnamespaces
@@ -183,24 +183,6 @@ func (x_ XMLParser) SetShouldProcessNamespaces(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldProcessNamespaces:"), value)
 }
 
-// The column number of the XML document being processed by the parser.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
-func (x_ XMLParser) ColumnNumber() int {
-	rv := objc.Send[int](x_.ID, objc.Sel("columnNumber"))
-	return rv
-}
-
-
-// SetColumnNumber sets the value of the columnNumber property.
-// The column number of the XML document being processed by the parser.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
-func (x_ XMLParser) SetColumnNumber(value int) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setColumnNumber:"), value)
-}
-
 // A Boolean value that determines whether the parser reports declarations of external entities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldresolveexternalentities
@@ -217,6 +199,24 @@ func (x_ XMLParser) ShouldResolveExternalEntities() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldresolveexternalentities
 func (x_ XMLParser) SetShouldResolveExternalEntities(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldResolveExternalEntities:"), value)
+}
+
+// The system identifier of the external entity referenced in the XML document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
+func (x_ XMLParser) SystemID() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
+	return rv
+}
+
+
+// SetSystemID sets the value of the systemID property.
+// The system identifier of the external entity referenced in the XML document.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
+func (x_ XMLParser) SetSystemID(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }
 
 //

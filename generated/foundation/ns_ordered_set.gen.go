@@ -115,24 +115,6 @@ func (o_ OrderedSet) ObjectAtIndex(idx uint) unsafe.Pointer {
 	return rv
 }
 
-// The first object in the ordered set.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/firstobject
-func (o_ OrderedSet) FirstObject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("firstObject"))
-	return rv
-}
-
-
-// SetFirstObject sets the value of the firstObject property.
-// The first object in the ordered set.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/firstobject
-func (o_ OrderedSet) SetFirstObject(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setFirstObject:"), value)
-}
-
 // A representation of the ordered set as an array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/array
@@ -169,24 +151,6 @@ func (o_ OrderedSet) SetCount(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCount:"), value)
 }
 
-// A representation of the set containing the contents of the ordered set.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/set
-func (o_ OrderedSet) Set() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("set"))
-	return rv
-}
-
-
-// SetSet sets the value of the set property.
-// A representation of the set containing the contents of the ordered set.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/set
-func (o_ OrderedSet) SetSet(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setSet:"), value)
-}
-
 // A string that represents the contents of the ordered set, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/description
@@ -205,6 +169,24 @@ func (o_ OrderedSet) SetDescription(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
+// The first object in the ordered set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/firstobject
+func (o_ OrderedSet) FirstObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("firstObject"))
+	return rv
+}
+
+
+// SetFirstObject sets the value of the firstObject property.
+// The first object in the ordered set.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/firstobject
+func (o_ OrderedSet) SetFirstObject(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setFirstObject:"), value)
+}
+
 // An ordered set in the reverse order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/reversed
@@ -221,6 +203,24 @@ func (o_ OrderedSet) Reversed() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/reversed
 func (o_ OrderedSet) SetReversed(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setReversed:"), value)
+}
+
+// A representation of the set containing the contents of the ordered set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/set
+func (o_ OrderedSet) Set() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("set"))
+	return rv
+}
+
+
+// SetSet sets the value of the set property.
+// A representation of the set containing the contents of the ordered set.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/set
+func (o_ OrderedSet) SetSet(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setSet:"), value)
 }
 
 // The last object in the ordered set.

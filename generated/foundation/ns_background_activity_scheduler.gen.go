@@ -93,6 +93,78 @@ func NewBackgroundActivitySchedulerWithIdentifier(identifier string) BackgroundA
 }
 
 
+// A unique reverse DNS notation string, such as
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
+func (b_ BackgroundActivityScheduler) Identifier() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A unique reverse DNS notation string, such as
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
+func (b_ BackgroundActivityScheduler) SetIdentifier(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// An integer providing a suggested interval between scheduling and invoking the activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/interval
+func (b_ BackgroundActivityScheduler) Interval() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("interval"))
+	return rv
+}
+
+
+// SetInterval sets the value of the interval property.
+// An integer providing a suggested interval between scheduling and invoking the activity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/interval
+func (b_ BackgroundActivityScheduler) SetInterval(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setInterval:"), value)
+}
+
+// A value of type
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
+func (b_ BackgroundActivityScheduler) QualityOfService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("qualityOfService"))
+	return rv
+}
+
+
+// SetQualityOfService sets the value of the qualityOfService property.
+// A value of type
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
+func (b_ BackgroundActivityScheduler) SetQualityOfService(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setQualityOfService:"), value)
+}
+
+// A Boolean value indicating whether the activity should be rescheduled after it completes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/repeats
+func (b_ BackgroundActivityScheduler) Repeats() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("repeats"))
+	return rv
+}
+
+
+// SetRepeats sets the value of the repeats property.
+// A Boolean value indicating whether the activity should be rescheduled after it completes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/repeats
+func (b_ BackgroundActivityScheduler) SetRepeats(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setRepeats:"), value)
+}
+
 // A Boolean value indicating whether your app should stop performing background activity and resume at a more optimal time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/shoulddefer
@@ -127,78 +199,6 @@ func (b_ BackgroundActivityScheduler) Tolerance() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/tolerance
 func (b_ BackgroundActivityScheduler) SetTolerance(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTolerance:"), value)
-}
-
-// A Boolean value indicating whether the activity should be rescheduled after it completes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/repeats
-func (b_ BackgroundActivityScheduler) Repeats() bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("repeats"))
-	return rv
-}
-
-
-// SetRepeats sets the value of the repeats property.
-// A Boolean value indicating whether the activity should be rescheduled after it completes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/repeats
-func (b_ BackgroundActivityScheduler) SetRepeats(value bool) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setRepeats:"), value)
-}
-
-// A value of type
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
-func (b_ BackgroundActivityScheduler) QualityOfService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("qualityOfService"))
-	return rv
-}
-
-
-// SetQualityOfService sets the value of the qualityOfService property.
-// A value of type
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
-func (b_ BackgroundActivityScheduler) SetQualityOfService(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setQualityOfService:"), value)
-}
-
-// An integer providing a suggested interval between scheduling and invoking the activity.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/interval
-func (b_ BackgroundActivityScheduler) Interval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("interval"))
-	return rv
-}
-
-
-// SetInterval sets the value of the interval property.
-// An integer providing a suggested interval between scheduling and invoking the activity.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/interval
-func (b_ BackgroundActivityScheduler) SetInterval(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setInterval:"), value)
-}
-
-// A unique reverse DNS notation string, such as
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
-func (b_ BackgroundActivityScheduler) Identifier() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// SetIdentifier sets the value of the identifier property.
-// A unique reverse DNS notation string, such as
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
-func (b_ BackgroundActivityScheduler) SetIdentifier(value string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 

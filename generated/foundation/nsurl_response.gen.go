@@ -98,24 +98,6 @@ func (u_ URLResponse) SetExpectedContentLength(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setExpectedContentLength:"), value)
 }
 
-// The name of the text encoding provided by the response’s originating source.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
-func (u_ URLResponse) TextEncodingName() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("textEncodingName"))
-	return rv
-}
-
-
-// SetTextEncodingName sets the value of the textEncodingName property.
-// The name of the text encoding provided by the response’s originating source.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
-func (u_ URLResponse) SetTextEncodingName(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTextEncodingName:"), objc.String(value))
-}
-
 // The MIME type of the response.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/mimetype
@@ -150,6 +132,24 @@ func (u_ URLResponse) SuggestedFilename() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
 func (u_ URLResponse) SetSuggestedFilename(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedFilename:"), objc.String(value))
+}
+
+// The name of the text encoding provided by the response’s originating source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
+func (u_ URLResponse) TextEncodingName() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("textEncodingName"))
+	return rv
+}
+
+
+// SetTextEncodingName sets the value of the textEncodingName property.
+// The name of the text encoding provided by the response’s originating source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
+func (u_ URLResponse) SetTextEncodingName(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTextEncodingName:"), objc.String(value))
 }
 
 // The URL for the response.

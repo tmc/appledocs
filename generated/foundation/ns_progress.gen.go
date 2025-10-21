@@ -190,94 +190,22 @@ func (p_ Progress) Resume() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("resume"))
 }
 
-// A Boolean value that indicates when the observed progress object invokes the publish method before you subscribe to it.
+// A Boolean value that indicates whether the receiver is tracking work that you can cancel.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isold
-func (p_ Progress) IsOld() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isOld"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancellable
+func (p_ Progress) IsCancellable() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isCancellable"))
 	return rv
 }
 
 
-// SetIsOld sets the value of the isOld property.
-// A Boolean value that indicates when the observed progress object invokes the publish method before you subscribe to it.
+// SetIsCancellable sets the value of the isCancellable property.
+// A Boolean value that indicates whether the receiver is tracking work that you can cancel.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isold
-func (p_ Progress) SetIsOld(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOld:"), value)
-}
-
-// A dictionary of arbitrary values for the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/userinfo
-func (p_ Progress) UserInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("userInfo"))
-	return rv
-}
-
-
-// SetUserInfo sets the value of the userInfo property.
-// A dictionary of arbitrary values for the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/userinfo
-func (p_ Progress) SetUserInfo(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
-}
-
-// A value that represents the speed of data processing, in bytes per second.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/throughput
-func (p_ Progress) Throughput() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("throughput"))
-	return rv
-}
-
-
-// SetThroughput sets the value of the throughput property.
-// A value that represents the speed of data processing, in bytes per second.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/throughput
-func (p_ Progress) SetThroughput(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setThroughput:"), value)
-}
-
-// A Boolean value that indicates whether the receiver is tracking paused work.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispaused
-func (p_ Progress) IsPaused() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isPaused"))
-	return rv
-}
-
-
-// SetIsPaused sets the value of the isPaused property.
-// A Boolean value that indicates whether the receiver is tracking paused work.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispaused
-func (p_ Progress) SetIsPaused(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPaused:"), value)
-}
-
-// A Boolean value that indicates the progress object is complete.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isfinished
-func (p_ Progress) IsFinished() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isFinished"))
-	return rv
-}
-
-
-// SetIsFinished sets the value of the isFinished property.
-// A Boolean value that indicates the progress object is complete.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isfinished
-func (p_ Progress) SetIsFinished(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFinished:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancellable
+func (p_ Progress) SetIsCancellable(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCancellable:"), value)
 }
 
 // A Boolean value that Indicates whether the receiver is tracking canceled work.
@@ -298,22 +226,22 @@ func (p_ Progress) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
-// A Boolean value that indicates whether the receiver is tracking work that you can cancel.
+// A Boolean value that indicates the progress object is complete.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancellable
-func (p_ Progress) IsCancellable() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("isCancellable"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isfinished
+func (p_ Progress) IsFinished() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isFinished"))
 	return rv
 }
 
 
-// SetIsCancellable sets the value of the isCancellable property.
-// A Boolean value that indicates whether the receiver is tracking work that you can cancel.
+// SetIsFinished sets the value of the isFinished property.
+// A Boolean value that indicates the progress object is complete.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancellable
-func (p_ Progress) SetIsCancellable(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCancellable:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isfinished
+func (p_ Progress) SetIsFinished(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFinished:"), value)
 }
 
 // A Boolean value that indicates whether the tracked progress is indeterminate.
@@ -334,6 +262,24 @@ func (p_ Progress) SetIsIndeterminate(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndeterminate:"), value)
 }
 
+// A Boolean value that indicates when the observed progress object invokes the publish method before you subscribe to it.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isold
+func (p_ Progress) IsOld() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isOld"))
+	return rv
+}
+
+
+// SetIsOld sets the value of the isOld property.
+// A Boolean value that indicates when the observed progress object invokes the publish method before you subscribe to it.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isold
+func (p_ Progress) SetIsOld(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOld:"), value)
+}
+
 // A Boolean value that indicates whether the receiver is tracking work that you can pause.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispausable
@@ -350,6 +296,60 @@ func (p_ Progress) IsPausable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispausable
 func (p_ Progress) SetIsPausable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPausable:"), value)
+}
+
+// A Boolean value that indicates whether the receiver is tracking paused work.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispaused
+func (p_ Progress) IsPaused() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isPaused"))
+	return rv
+}
+
+
+// SetIsPaused sets the value of the isPaused property.
+// A Boolean value that indicates whether the receiver is tracking paused work.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispaused
+func (p_ Progress) SetIsPaused(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPaused:"), value)
+}
+
+// A value that represents the speed of data processing, in bytes per second.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/throughput
+func (p_ Progress) Throughput() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("throughput"))
+	return rv
+}
+
+
+// SetThroughput sets the value of the throughput property.
+// A value that represents the speed of data processing, in bytes per second.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/throughput
+func (p_ Progress) SetThroughput(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setThroughput:"), value)
+}
+
+// A dictionary of arbitrary values for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/userinfo
+func (p_ Progress) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+
+// SetUserInfo sets the value of the userInfo property.
+// A dictionary of arbitrary values for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/userinfo
+func (p_ Progress) SetUserInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
 }
 
 // A value that indicates the estimated amount of time remaining to complete the progress.

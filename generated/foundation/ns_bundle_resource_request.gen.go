@@ -117,58 +117,40 @@ func (b_ BundleResourceRequest) EndAccessingResources() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("endAccessingResources"))
 }
 
-// A set of strings, with each string specifying a tag used to mark on-demand resources managed by the request. (read-only)
+// The end of the range of error codes reserved for bundle errors.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/tags
-func (b_ BundleResourceRequest) Tags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("tags"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrormaximum-swift.var
+func (b_ BundleResourceRequest) NSBundleErrorMaximum() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleErrorMaximum"))
 	return rv
 }
 
 
-// SetTags sets the value of the tags property.
-// A set of strings, with each string specifying a tag used to mark on-demand resources managed by the request. (read-only)
+// SetNSBundleErrorMaximum sets the value of the NSBundleErrorMaximum property.
+// The end of the range of error codes reserved for bundle errors.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/tags
-func (b_ BundleResourceRequest) SetTags(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTags:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrormaximum-swift.var
+func (b_ BundleResourceRequest) SetNSBundleErrorMaximum(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleErrorMaximum:"), value)
 }
 
-// A reference to the bundle used for storing the downloaded resources. (read-only)
+// The start of the range of error codes reserved for bundle errors.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/bundle
-func (b_ BundleResourceRequest) Bundle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bundle"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrorminimum-swift.var
+func (b_ BundleResourceRequest) NSBundleErrorMinimum() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleErrorMinimum"))
 	return rv
 }
 
 
-// SetBundle sets the value of the bundle property.
-// A reference to the bundle used for storing the downloaded resources. (read-only)
+// SetNSBundleErrorMinimum sets the value of the NSBundleErrorMinimum property.
+// The start of the range of error codes reserved for bundle errors.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/bundle
-func (b_ BundleResourceRequest) SetBundle(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setBundle:"), value)
-}
-
-// A hint to the system of the relative priority of the resource request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/loadingpriority
-func (b_ BundleResourceRequest) LoadingPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("loadingPriority"))
-	return rv
-}
-
-
-// SetLoadingPriority sets the value of the loadingPriority property.
-// A hint to the system of the relative priority of the resource request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/loadingpriority
-func (b_ BundleResourceRequest) SetLoadingPriority(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setLoadingPriority:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrorminimum-swift.var
+func (b_ BundleResourceRequest) SetNSBundleErrorMinimum(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleErrorMinimum:"), value)
 }
 
 // The application exceeded the amount of on-demand resources content in use at one time.
@@ -207,24 +189,6 @@ func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceInvalidTagError(value
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleOnDemandResourceInvalidTagError:"), value)
 }
 
-// The end of the range of error codes reserved for bundle errors.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrormaximum-swift.var
-func (b_ BundleResourceRequest) NSBundleErrorMaximum() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleErrorMaximum"))
-	return rv
-}
-
-
-// SetNSBundleErrorMaximum sets the value of the NSBundleErrorMaximum property.
-// The end of the range of error codes reserved for bundle errors.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrormaximum-swift.var
-func (b_ BundleResourceRequest) SetNSBundleErrorMaximum(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleErrorMaximum:"), value)
-}
-
 // Insufficient space available to download the requested on-demand resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceoutofspaceerror-swift.var
@@ -243,29 +207,65 @@ func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceOutOfSpaceError(value
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleOnDemandResourceOutOfSpaceError:"), value)
 }
 
+// A reference to the bundle used for storing the downloaded resources. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/bundle
+func (b_ BundleResourceRequest) Bundle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bundle"))
+	return rv
+}
+
+
+// SetBundle sets the value of the bundle property.
+// A reference to the bundle used for storing the downloaded resources. (read-only)
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/bundle
+func (b_ BundleResourceRequest) SetBundle(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setBundle:"), value)
+}
+
+// A hint to the system of the relative priority of the resource request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/loadingpriority
+func (b_ BundleResourceRequest) LoadingPriority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("loadingPriority"))
+	return rv
+}
+
+
+// SetLoadingPriority sets the value of the loadingPriority property.
+// A hint to the system of the relative priority of the resource request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/loadingpriority
+func (b_ BundleResourceRequest) SetLoadingPriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setLoadingPriority:"), value)
+}
+
+// A set of strings, with each string specifying a tag used to mark on-demand resources managed by the request. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/tags
+func (b_ BundleResourceRequest) Tags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("tags"))
+	return rv
+}
+
+
+// SetTags sets the value of the tags property.
+// A set of strings, with each string specifying a tag used to mark on-demand resources managed by the request. (read-only)
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/tags
+func (b_ BundleResourceRequest) SetTags(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTags:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent
 func (b_ BundleResourceRequest) NSBundleResourceRequestLoadingPriorityUrgent() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("NSBundleResourceRequestLoadingPriorityUrgent"))
 	return rv
-}
-
-// The start of the range of error codes reserved for bundle errors.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrorminimum-swift.var
-func (b_ BundleResourceRequest) NSBundleErrorMinimum() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleErrorMinimum"))
-	return rv
-}
-
-
-// SetNSBundleErrorMinimum sets the value of the NSBundleErrorMinimum property.
-// The start of the range of error codes reserved for bundle errors.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrorminimum-swift.var
-func (b_ BundleResourceRequest) SetNSBundleErrorMinimum(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleErrorMinimum:"), value)
 }
 
 // A reference to the progress object associated with the specified resource request. (read-only)

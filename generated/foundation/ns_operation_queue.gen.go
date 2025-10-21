@@ -104,42 +104,6 @@ func (o_ OperationQueue) CancelAllOperations() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("cancelAllOperations"))
 }
 
-// The execution priority of the operation in an operation queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
-func (o_ OperationQueue) QueuePriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("queuePriority"))
-	return rv
-}
-
-
-// SetQueuePriority sets the value of the queuePriority property.
-// The execution priority of the operation in an operation queue.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
-func (o_ OperationQueue) SetQueuePriority(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
-}
-
-// The dispatch queue that the operation queue uses to invoke operations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/underlyingqueue
-func (o_ OperationQueue) UnderlyingQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("underlyingQueue"))
-	return rv
-}
-
-
-// SetUnderlyingQueue sets the value of the underlyingQueue property.
-// The dispatch queue that the operation queue uses to invoke operations.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/underlyingqueue
-func (o_ OperationQueue) SetUnderlyingQueue(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setUnderlyingQueue:"), value)
-}
-
 // A Boolean value indicating whether the operation can be performed now.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
@@ -158,40 +122,22 @@ func (o_ OperationQueue) SetIsReady(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsReady:"), value)
 }
 
-// An object that represents the total progress of the operations executing in the queue.
+// The execution priority of the operation in an operation queue.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
-func (o_ OperationQueue) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("progress"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
+func (o_ OperationQueue) QueuePriority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("queuePriority"))
 	return rv
 }
 
 
-// SetProgress sets the value of the progress property.
-// An object that represents the total progress of the operations executing in the queue.
+// SetQueuePriority sets the value of the queuePriority property.
+// The execution priority of the operation in an operation queue.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
-func (o_ OperationQueue) SetProgress(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setProgress:"), value)
-}
-
-// The name of the operation queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
-func (o_ OperationQueue) Name() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-// The name of the operation queue.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
-func (o_ OperationQueue) SetName(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
+func (o_ OperationQueue) SetQueuePriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
 }
 
 // A Boolean value indicating whether the queue is actively scheduling operations for execution.
@@ -230,6 +176,42 @@ func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setMaxConcurrentOperationCount:"), value)
 }
 
+// The name of the operation queue.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
+func (o_ OperationQueue) Name() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the operation queue.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
+func (o_ OperationQueue) SetName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// An object that represents the total progress of the operations executing in the queue.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
+func (o_ OperationQueue) Progress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("progress"))
+	return rv
+}
+
+
+// SetProgress sets the value of the progress property.
+// An object that represents the total progress of the operations executing in the queue.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
+func (o_ OperationQueue) SetProgress(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setProgress:"), value)
+}
+
 // The default service level to apply to operations that the queue invokes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/qualityofservice
@@ -246,6 +228,24 @@ func (o_ OperationQueue) QualityOfService() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/qualityofservice
 func (o_ OperationQueue) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
+}
+
+// The dispatch queue that the operation queue uses to invoke operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/underlyingqueue
+func (o_ OperationQueue) UnderlyingQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("underlyingQueue"))
+	return rv
+}
+
+
+// SetUnderlyingQueue sets the value of the underlyingQueue property.
+// The dispatch queue that the operation queue uses to invoke operations.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/underlyingqueue
+func (o_ OperationQueue) SetUnderlyingQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setUnderlyingQueue:"), value)
 }
 
 // The number of operations currently in the queue.

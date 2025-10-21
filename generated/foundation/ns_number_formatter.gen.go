@@ -131,40 +131,22 @@ func (n_ NumberFormatter) StringFromNumber(number Number) string {
 	return rv
 }
 
-// The text attributes used to display the NaN (“not a number”) string.
+// Determines whether the receiver creates instances of
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
-func (n_ NumberFormatter) TextAttributesForNotANumber() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("textAttributesForNotANumber"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
+func (n_ NumberFormatter) GeneratesDecimalNumbers() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("generatesDecimalNumbers"))
 	return rv
 }
 
 
-// SetTextAttributesForNotANumber sets the value of the textAttributesForNotANumber property.
-// The text attributes used to display the NaN (“not a number”) string.
+// SetGeneratesDecimalNumbers sets the value of the generatesDecimalNumbers property.
+// Determines whether the receiver creates instances of
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
-func (n_ NumberFormatter) SetTextAttributesForNotANumber(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNotANumber:"), objc.String(value))
-}
-
-// The string the receiver uses as the prefix for positive values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
-func (n_ NumberFormatter) PositivePrefix() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("positivePrefix"))
-	return rv
-}
-
-
-// SetPositivePrefix sets the value of the positivePrefix property.
-// The string the receiver uses as the prefix for positive values.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
-func (n_ NumberFormatter) SetPositivePrefix(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setPositivePrefix:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
+func (n_ NumberFormatter) SetGeneratesDecimalNumbers(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setGeneratesDecimalNumbers:"), value)
 }
 
 // Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
@@ -203,22 +185,40 @@ func (n_ NumberFormatter) SetIsPartialStringValidationEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsPartialStringValidationEnabled:"), value)
 }
 
-// Determines whether the receiver creates instances of
+// The string the receiver uses as the prefix for positive values.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
-func (n_ NumberFormatter) GeneratesDecimalNumbers() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("generatesDecimalNumbers"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
+func (n_ NumberFormatter) PositivePrefix() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("positivePrefix"))
 	return rv
 }
 
 
-// SetGeneratesDecimalNumbers sets the value of the generatesDecimalNumbers property.
-// Determines whether the receiver creates instances of
+// SetPositivePrefix sets the value of the positivePrefix property.
+// The string the receiver uses as the prefix for positive values.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
-func (n_ NumberFormatter) SetGeneratesDecimalNumbers(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setGeneratesDecimalNumbers:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
+func (n_ NumberFormatter) SetPositivePrefix(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPositivePrefix:"), objc.String(value))
+}
+
+// The text attributes used to display the NaN (“not a number”) string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
+func (n_ NumberFormatter) TextAttributesForNotANumber() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("textAttributesForNotANumber"))
+	return rv
+}
+
+
+// SetTextAttributesForNotANumber sets the value of the textAttributesForNotANumber property.
+// The text attributes used to display the NaN (“not a number”) string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
+func (n_ NumberFormatter) SetTextAttributesForNotANumber(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNotANumber:"), objc.String(value))
 }
 
 // Determines whether the receiver allows as input floating-point values (that is, values that include the period character [ ]).

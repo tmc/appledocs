@@ -88,6 +88,24 @@ func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g ui
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKey:cost:"), obj, key, g)
 }
 
+// The maximum number of objects the cache should hold.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
+func (c_ Cache) CountLimit() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("countLimit"))
+	return rv
+}
+
+
+// SetCountLimit sets the value of the countLimit property.
+// The maximum number of objects the cache should hold.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
+func (c_ Cache) SetCountLimit(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCountLimit:"), value)
+}
+
 // The cache’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
@@ -122,24 +140,6 @@ func (c_ Cache) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
 func (c_ Cache) SetName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// The maximum number of objects the cache should hold.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
-func (c_ Cache) CountLimit() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("countLimit"))
-	return rv
-}
-
-
-// SetCountLimit sets the value of the countLimit property.
-// The maximum number of objects the cache should hold.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
-func (c_ Cache) SetCountLimit(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCountLimit:"), value)
 }
 
 // The maximum total cost that the cache can hold before it starts evicting objects.

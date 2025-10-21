@@ -137,11 +137,11 @@ func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain unsafe.Pointer)
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("userInfoValueProviderForDomain:"), errorDomain)
 }
 
-// URL loading system errors
+// Cocoa errors
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlerrordomain
-func (e_ Error) NSURLErrorDomain() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("NSURLErrorDomain"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscocoaerrordomain
+func (e_ Error) NSCocoaErrorDomain() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSCocoaErrorDomain"))
 	return rv
 }
 
@@ -153,19 +153,11 @@ func (e_ Error) NSMachErrorDomain() string {
 	return rv
 }
 
-// Cocoa errors
+// Mac OS 9/Carbon errors
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscocoaerrordomain
-func (e_ Error) NSCocoaErrorDomain() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("NSCocoaErrorDomain"))
-	return rv
-}
-
-// The error domain used by
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
-func (e_ Error) NSStreamSOCKSErrorDomain() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsosstatuserrordomain
+func (e_ Error) NSOSStatusErrorDomain() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSOSStatusErrorDomain"))
 	return rv
 }
 
@@ -187,17 +179,25 @@ func (e_ Error) NSRecoveryAttempterErrorKey() string {
 
 // The error domain used by
 //
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
+func (e_ Error) NSStreamSOCKSErrorDomain() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
+	return rv
+}
+
+// The error domain used by
+//
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
 func (e_ Error) NSStreamSocketSSLErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
 }
 
-// Mac OS 9/Carbon errors
+// URL loading system errors
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsosstatuserrordomain
-func (e_ Error) NSOSStatusErrorDomain() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("NSOSStatusErrorDomain"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlerrordomain
+func (e_ Error) NSURLErrorDomain() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSURLErrorDomain"))
 	return rv
 }
 

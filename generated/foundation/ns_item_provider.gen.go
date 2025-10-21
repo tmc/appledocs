@@ -191,76 +191,22 @@ func (i_ ItemProvider) SetContainerFrame(value Rect) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContainerFrame:"), value)
 }
 
-// The collection of data an app uses to hold private team information during drag and drop.
+// The ideal presentation size of the item.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/teamdata
-func (i_ ItemProvider) TeamData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("teamData"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/preferredpresentationsize
+func (i_ ItemProvider) PreferredPresentationSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](i_.ID, objc.Sel("preferredPresentationSize"))
 	return rv
 }
 
 
-// SetTeamData sets the value of the teamData property.
-// The collection of data an app uses to hold private team information during drag and drop.
+// SetPreferredPresentationSize sets the value of the preferredPresentationSize property.
+// The ideal presentation size of the item.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/teamdata
-func (i_ ItemProvider) SetTeamData(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTeamData:"), value)
-}
-
-// The filename to use when writing the provided data to a file on disk.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/suggestedname
-func (i_ ItemProvider) SuggestedName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("suggestedName"))
-	return rv
-}
-
-
-// SetSuggestedName sets the value of the suggestedName property.
-// The filename to use when writing the provided data to a file on disk.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/suggestedname
-func (i_ ItemProvider) SetSuggestedName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedName:"), objc.String(value))
-}
-
-// Returns the array of type identifiers for the item provider, in the same order they were registered.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredtypeidentifiers
-func (i_ ItemProvider) RegisteredTypeIdentifiers() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("registeredTypeIdentifiers"))
-	return rv
-}
-
-
-// SetRegisteredTypeIdentifiers sets the value of the registeredTypeIdentifiers property.
-// Returns the array of type identifiers for the item provider, in the same order they were registered.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredtypeidentifiers
-func (i_ ItemProvider) SetRegisteredTypeIdentifiers(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredTypeIdentifiers:"), objc.String(value))
-}
-
-// Registered content types that the system can load as open-in-place files.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypesforopeninplace
-func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("registeredContentTypesForOpenInPlace"))
-	return rv
-}
-
-
-// SetRegisteredContentTypesForOpenInPlace sets the value of the registeredContentTypesForOpenInPlace property.
-// Registered content types that the system can load as open-in-place files.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypesforopeninplace
-func (i_ ItemProvider) SetRegisteredContentTypesForOpenInPlace(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredContentTypesForOpenInPlace:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/preferredpresentationsize
+func (i_ ItemProvider) SetPreferredPresentationSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredPresentationSize:"), value)
 }
 
 // The custom preview image handler block for the item provider.
@@ -281,24 +227,6 @@ func (i_ ItemProvider) SetPreviewImageHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreviewImageHandler:"), value)
 }
 
-// The ideal presentation size of the item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/preferredpresentationsize
-func (i_ ItemProvider) PreferredPresentationSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](i_.ID, objc.Sel("preferredPresentationSize"))
-	return rv
-}
-
-
-// SetPreferredPresentationSize sets the value of the preferredPresentationSize property.
-// The ideal presentation size of the item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/preferredpresentationsize
-func (i_ ItemProvider) SetPreferredPresentationSize(value coregraphics.CGSize) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredPresentationSize:"), value)
-}
-
 // Registered content types in the order the app registers each type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypes
@@ -315,6 +243,78 @@ func (i_ ItemProvider) RegisteredContentTypes() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypes
 func (i_ ItemProvider) SetRegisteredContentTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredContentTypes:"), value)
+}
+
+// Registered content types that the system can load as open-in-place files.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypesforopeninplace
+func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("registeredContentTypesForOpenInPlace"))
+	return rv
+}
+
+
+// SetRegisteredContentTypesForOpenInPlace sets the value of the registeredContentTypesForOpenInPlace property.
+// Registered content types that the system can load as open-in-place files.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypesforopeninplace
+func (i_ ItemProvider) SetRegisteredContentTypesForOpenInPlace(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredContentTypesForOpenInPlace:"), value)
+}
+
+// Returns the array of type identifiers for the item provider, in the same order they were registered.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredtypeidentifiers
+func (i_ ItemProvider) RegisteredTypeIdentifiers() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("registeredTypeIdentifiers"))
+	return rv
+}
+
+
+// SetRegisteredTypeIdentifiers sets the value of the registeredTypeIdentifiers property.
+// Returns the array of type identifiers for the item provider, in the same order they were registered.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredtypeidentifiers
+func (i_ ItemProvider) SetRegisteredTypeIdentifiers(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredTypeIdentifiers:"), objc.String(value))
+}
+
+// The filename to use when writing the provided data to a file on disk.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/suggestedname
+func (i_ ItemProvider) SuggestedName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("suggestedName"))
+	return rv
+}
+
+
+// SetSuggestedName sets the value of the suggestedName property.
+// The filename to use when writing the provided data to a file on disk.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/suggestedname
+func (i_ ItemProvider) SetSuggestedName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedName:"), objc.String(value))
+}
+
+// The collection of data an app uses to hold private team information during drag and drop.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/teamdata
+func (i_ ItemProvider) TeamData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("teamData"))
+	return rv
+}
+
+
+// SetTeamData sets the value of the teamData property.
+// The collection of data an app uses to hold private team information during drag and drop.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/teamdata
+func (i_ ItemProvider) SetTeamData(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTeamData:"), value)
 }
 
 // The preferred style for presenting the item provider’s data.

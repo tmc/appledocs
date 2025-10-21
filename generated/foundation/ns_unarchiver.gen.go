@@ -109,24 +109,6 @@ func (uc _UnarchiverClass) UnarchiveObjectWithData(data unsafe.Pointer) objc.ID 
 	return rv
 }
 
-// The system version number in effect when the archive was created.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/systemversion-swift.property
-func (u_ Unarchiver) SystemVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("systemVersion"))
-	return rv
-}
-
-
-// SetSystemVersion sets the value of the systemVersion property.
-// The system version number in effect when the archive was created.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/systemversion-swift.property
-func (u_ Unarchiver) SetSystemVersion(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSystemVersion:"), value)
-}
-
 // A Boolean value that indicates whether the receiver has reached the end of the encoded data while decoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
@@ -143,6 +125,24 @@ func (u_ Unarchiver) IsAtEnd() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
 func (u_ Unarchiver) SetIsAtEnd(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsAtEnd:"), value)
+}
+
+// The system version number in effect when the archive was created.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/systemversion-swift.property
+func (u_ Unarchiver) SystemVersion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("systemVersion"))
+	return rv
+}
+
+
+// SetSystemVersion sets the value of the systemVersion property.
+// The system version number in effect when the archive was created.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/systemversion-swift.property
+func (u_ Unarchiver) SetSystemVersion(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSystemVersion:"), value)
 }
 
 

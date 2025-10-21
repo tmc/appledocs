@@ -393,6 +393,24 @@ func (f_ FileHandle) SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, 
 	return rv
 }
 
+// The data currently available in the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
+func (f_ FileHandle) AvailableData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("availableData"))
+	return rv
+}
+
+
+// SetAvailableData sets the value of the availableData property.
+// The data currently available in the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
+func (f_ FileHandle) SetAvailableData(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableData:"), value)
+}
+
 // The file’s contents, as an asynchronous sequence of bytes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/bytes
@@ -435,24 +453,6 @@ func (f_ FileHandle) SetFileDescriptor(value unsafe.Pointer) {
 func (f_ FileHandle) NSFileHandleNotificationMonitorModes() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("NSFileHandleNotificationMonitorModes"))
 	return rv
-}
-
-// The data currently available in the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
-func (f_ FileHandle) AvailableData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("availableData"))
-	return rv
-}
-
-
-// SetAvailableData sets the value of the availableData property.
-// The data currently available in the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
-func (f_ FileHandle) SetAvailableData(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableData:"), value)
 }
 
 // The file handle associated with a null device.

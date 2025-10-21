@@ -90,21 +90,6 @@ func (d_ DateComponentsFormatter) StringForObjectValue(obj objc.ID) string {
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
-func (d_ DateComponentsFormatter) FormattingContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("formattingContext"))
-	return rv
-}
-
-
-// SetFormattingContext sets the value of the formattingContext property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
-func (d_ DateComponentsFormatter) SetFormattingContext(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setFormattingContext:"), value)
-}
-
 // The bitmask of calendrical units such as day and month to include in the output string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/allowedunits
@@ -141,22 +126,22 @@ func (d_ DateComponentsFormatter) SetAllowsFractionalUnits(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAllowsFractionalUnits:"), value)
 }
 
-// The maximum number of time units to include in the output string.
+// The default calendar to use when formatting date components.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/maximumunitcount
-func (d_ DateComponentsFormatter) MaximumUnitCount() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("maximumUnitCount"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/calendar
+func (d_ DateComponentsFormatter) Calendar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("calendar"))
 	return rv
 }
 
 
-// SetMaximumUnitCount sets the value of the maximumUnitCount property.
-// The maximum number of time units to include in the output string.
+// SetCalendar sets the value of the calendar property.
+// The default calendar to use when formatting date components.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/maximumunitcount
-func (d_ DateComponentsFormatter) SetMaximumUnitCount(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumUnitCount:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/calendar
+func (d_ DateComponentsFormatter) SetCalendar(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
 
 // A Boolean value indicating whether to collapse the largest unit into smaller units when a certain threshold is met.
@@ -177,55 +162,19 @@ func (d_ DateComponentsFormatter) SetCollapsesLargestUnit(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCollapsesLargestUnit:"), value)
 }
 
-// The formatting style for unit names.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.property
-func (d_ DateComponentsFormatter) UnitsStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("unitsStyle"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
+func (d_ DateComponentsFormatter) FormattingContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("formattingContext"))
 	return rv
 }
 
 
-// SetUnitsStyle sets the value of the unitsStyle property.
-// The formatting style for unit names.
-
+// SetFormattingContext sets the value of the formattingContext property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.property
-func (d_ DateComponentsFormatter) SetUnitsStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setUnitsStyle:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/referencedate
-func (d_ DateComponentsFormatter) ReferenceDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("referenceDate"))
-	return rv
-}
-
-
-// SetReferenceDate sets the value of the referenceDate property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/referencedate
-func (d_ DateComponentsFormatter) SetReferenceDate(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setReferenceDate:"), value)
-}
-
-// The default calendar to use when formatting date components.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/calendar
-func (d_ DateComponentsFormatter) Calendar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("calendar"))
-	return rv
-}
-
-
-// SetCalendar sets the value of the calendar property.
-// The default calendar to use when formatting date components.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/calendar
-func (d_ DateComponentsFormatter) SetCalendar(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
+func (d_ DateComponentsFormatter) SetFormattingContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setFormattingContext:"), value)
 }
 
 // A Boolean value indicating whether the resulting phrase reflects an inexact time value.
@@ -262,6 +211,57 @@ func (d_ DateComponentsFormatter) IncludesTimeRemainingPhrase() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/includestimeremainingphrase
 func (d_ DateComponentsFormatter) SetIncludesTimeRemainingPhrase(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludesTimeRemainingPhrase:"), value)
+}
+
+// The maximum number of time units to include in the output string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/maximumunitcount
+func (d_ DateComponentsFormatter) MaximumUnitCount() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("maximumUnitCount"))
+	return rv
+}
+
+
+// SetMaximumUnitCount sets the value of the maximumUnitCount property.
+// The maximum number of time units to include in the output string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/maximumunitcount
+func (d_ DateComponentsFormatter) SetMaximumUnitCount(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumUnitCount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/referencedate
+func (d_ DateComponentsFormatter) ReferenceDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("referenceDate"))
+	return rv
+}
+
+
+// SetReferenceDate sets the value of the referenceDate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/referencedate
+func (d_ DateComponentsFormatter) SetReferenceDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setReferenceDate:"), value)
+}
+
+// The formatting style for unit names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.property
+func (d_ DateComponentsFormatter) UnitsStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("unitsStyle"))
+	return rv
+}
+
+
+// SetUnitsStyle sets the value of the unitsStyle property.
+// The formatting style for unit names.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.property
+func (d_ DateComponentsFormatter) SetUnitsStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setUnitsStyle:"), value)
 }
 
 // The formatting style for units whose value is 0.

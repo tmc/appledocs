@@ -133,40 +133,22 @@ func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unregisterClass:"), protocolClass)
 }
 
-// An array of extra protocol subclasses that handle requests in a session.
+// The protocol’s cached response.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
-func (u_ URLProtocol) ProtocolClasses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("protocolClasses"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
+func (u_ URLProtocol) CachedResponse() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("cachedResponse"))
 	return rv
 }
 
 
-// SetProtocolClasses sets the value of the protocolClasses property.
-// An array of extra protocol subclasses that handle requests in a session.
+// SetCachedResponse sets the value of the cachedResponse property.
+// The protocol’s cached response.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
-func (u_ URLProtocol) SetProtocolClasses(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocolClasses:"), value)
-}
-
-// The protocol’s request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
-func (u_ URLProtocol) Request() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("request"))
-	return rv
-}
-
-
-// SetRequest sets the value of the request property.
-// The protocol’s request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
-func (u_ URLProtocol) SetRequest(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
+func (u_ URLProtocol) SetCachedResponse(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCachedResponse:"), value)
 }
 
 // The object the protocol uses to communicate with the URL loading system.
@@ -187,22 +169,22 @@ func (u_ URLProtocol) SetClient(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setClient:"), value)
 }
 
-// The protocol’s cached response.
+// The protocol’s request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
-func (u_ URLProtocol) CachedResponse() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("cachedResponse"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
+func (u_ URLProtocol) Request() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("request"))
 	return rv
 }
 
 
-// SetCachedResponse sets the value of the cachedResponse property.
-// The protocol’s cached response.
+// SetRequest sets the value of the request property.
+// The protocol’s request.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
-func (u_ URLProtocol) SetCachedResponse(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCachedResponse:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
+func (u_ URLProtocol) SetRequest(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
 }
 
 // The protocol’s task.
@@ -221,6 +203,24 @@ func (u_ URLProtocol) Task() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/task
 func (u_ URLProtocol) SetTask(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTask:"), value)
+}
+
+// An array of extra protocol subclasses that handle requests in a session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
+func (u_ URLProtocol) ProtocolClasses() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("protocolClasses"))
+	return rv
+}
+
+
+// SetProtocolClasses sets the value of the protocolClasses property.
+// An array of extra protocol subclasses that handle requests in a session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
+func (u_ URLProtocol) SetProtocolClasses(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocolClasses:"), value)
 }
 
 

@@ -99,24 +99,6 @@ func (m_ MeasurementFormatter) SetLocale(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
 
-// The options for how the unit is formatted.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
-func (m_ MeasurementFormatter) UnitOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitOptions"))
-	return rv
-}
-
-
-// SetUnitOptions sets the value of the unitOptions property.
-// The options for how the unit is formatted.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
-func (m_ MeasurementFormatter) SetUnitOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitOptions:"), value)
-}
-
 // The number formatter used to format the quantity of a measurement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
@@ -133,6 +115,24 @@ func (m_ MeasurementFormatter) NumberFormatter() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
 func (m_ MeasurementFormatter) SetNumberFormatter(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
+}
+
+// The options for how the unit is formatted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
+func (m_ MeasurementFormatter) UnitOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitOptions"))
+	return rv
+}
+
+
+// SetUnitOptions sets the value of the unitOptions property.
+// The options for how the unit is formatted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
+func (m_ MeasurementFormatter) SetUnitOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitOptions:"), value)
 }
 
 // The unit style.

@@ -108,24 +108,6 @@ func (k_ KeyedUnarchiver) DecodeObjectForKey(key string) objc.ID {
 	return rv
 }
 
-// Indicates whether the receiver requires all unarchived classes to conform to
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/requiressecurecoding
-func (k_ KeyedUnarchiver) RequiresSecureCoding() bool {
-	rv := objc.Send[bool](k_.ID, objc.Sel("requiresSecureCoding"))
-	return rv
-}
-
-
-// SetRequiresSecureCoding sets the value of the requiresSecureCoding property.
-// Indicates whether the receiver requires all unarchived classes to conform to
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/requiressecurecoding
-func (k_ KeyedUnarchiver) SetRequiresSecureCoding(value bool) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
-}
-
 // The receiver’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/delegate
@@ -142,6 +124,24 @@ func (k_ KeyedUnarchiver) Delegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/delegate
 func (k_ KeyedUnarchiver) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// Indicates whether the receiver requires all unarchived classes to conform to
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/requiressecurecoding
+func (k_ KeyedUnarchiver) RequiresSecureCoding() bool {
+	rv := objc.Send[bool](k_.ID, objc.Sel("requiresSecureCoding"))
+	return rv
+}
+
+
+// SetRequiresSecureCoding sets the value of the requiresSecureCoding property.
+// Indicates whether the receiver requires all unarchived classes to conform to
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/requiressecurecoding
+func (k_ KeyedUnarchiver) SetRequiresSecureCoding(value bool) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
 }
 
 // The action to take when this unarchiver fails to decode an entry.

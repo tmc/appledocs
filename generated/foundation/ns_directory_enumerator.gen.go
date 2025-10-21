@@ -99,6 +99,24 @@ func (d_ DirectoryEnumerator) SetDirectoryAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDirectoryAttributes:"), value)
 }
 
+// A dictionary with the attributes of the most recently returned file or subdirectory (as referenced by the pathname).
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
+func (d_ DirectoryEnumerator) FileAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileAttributes"))
+	return rv
+}
+
+
+// SetFileAttributes sets the value of the fileAttributes property.
+// A dictionary with the attributes of the most recently returned file or subdirectory (as referenced by the pathname).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
+func (d_ DirectoryEnumerator) SetFileAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setFileAttributes:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/isenumeratingdirectorypostorder
 func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool {
@@ -130,24 +148,6 @@ func (d_ DirectoryEnumerator) Level() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/level
 func (d_ DirectoryEnumerator) SetLevel(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLevel:"), value)
-}
-
-// A dictionary with the attributes of the most recently returned file or subdirectory (as referenced by the pathname).
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
-func (d_ DirectoryEnumerator) FileAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileAttributes"))
-	return rv
-}
-
-
-// SetFileAttributes sets the value of the fileAttributes property.
-// A dictionary with the attributes of the most recently returned file or subdirectory (as referenced by the pathname).
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
-func (d_ DirectoryEnumerator) SetFileAttributes(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setFileAttributes:"), value)
 }
 
 

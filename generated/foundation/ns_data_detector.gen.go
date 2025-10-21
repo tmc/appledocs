@@ -81,24 +81,6 @@ func NewDataDetector() DataDetector {
 }
 
 
-// The URL of a type checking result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
-func (d_ DataDetector) Url() URL {
-	rv := objc.Send[URL](d_.ID, objc.Sel("url"))
-	return rv
-}
-
-
-// SetUrl sets the value of the url property.
-// The URL of a type checking result.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
-func (d_ DataDetector) SetUrl(value URL) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setUrl:"), value)
-}
-
 // Returns the checking types for the data detector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
@@ -115,6 +97,14 @@ func (d_ DataDetector) CheckingTypes() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
 func (d_ DataDetector) SetCheckingTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCheckingTypes:"), value)
+}
+
+// A value indicating that a requested item couldn’t be found or doesn’t exist.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
+func (d_ DataDetector) NSNotFound() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("NSNotFound"))
+	return rv
 }
 
 // The date component of a type checking result.
@@ -153,14 +143,6 @@ func (d_ DataDetector) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
 }
 
-// A value indicating that a requested item couldn’t be found or doesn’t exist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (d_ DataDetector) NSNotFound() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("NSNotFound"))
-	return rv
-}
-
 // The time zone component of a type checking result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
@@ -177,6 +159,24 @@ func (d_ DataDetector) TimeZone() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
 func (d_ DataDetector) SetTimeZone(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
+}
+
+// The URL of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
+func (d_ DataDetector) Url() URL {
+	rv := objc.Send[URL](d_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL of a type checking result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
+func (d_ DataDetector) SetUrl(value URL) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setUrl:"), value)
 }
 
 

@@ -605,19 +605,40 @@ func (v_ Value) IsEqualToValue(value unsafe.Pointer) bool {
 	return rv
 }
 
+// Returns an integer that can be used as a table address in a hash table structure.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/videodimensionsvalue
-func (v_ Value) VideoDimensionsValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("videoDimensionsValue"))
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
+func (v_ Value) Hash() int {
+	rv := objc.Send[int](v_.ID, objc.Sel("hash"))
 	return rv
 }
 
 
-// SetVideoDimensionsValue sets the value of the videoDimensionsValue property.
+// SetHash sets the value of the hash property.
+// Returns an integer that can be used as a table address in a hash table structure.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/videodimensionsvalue
-func (v_ Value) SetVideoDimensionsValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setVideoDimensionsValue:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
+func (v_ Value) SetHash(value int) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setHash:"), value)
+}
+
+// The CoreMedia time mapping structure representation of the value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timemappingvalue
+func (v_ Value) TimeMappingValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("timeMappingValue"))
+	return rv
+}
+
+
+// SetTimeMappingValue sets the value of the timeMappingValue property.
+// The CoreMedia time mapping structure representation of the value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timemappingvalue
+func (v_ Value) SetTimeMappingValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeMappingValue:"), value)
 }
 
 // The CoreMedia time range structure representation of the value.
@@ -656,40 +677,19 @@ func (v_ Value) SetTimeValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeValue:"), value)
 }
 
-// Returns an integer that can be used as a table address in a hash table structure.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-func (v_ Value) Hash() int {
-	rv := objc.Send[int](v_.ID, objc.Sel("hash"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/videodimensionsvalue
+func (v_ Value) VideoDimensionsValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("videoDimensionsValue"))
 	return rv
 }
 
 
-// SetHash sets the value of the hash property.
-// Returns an integer that can be used as a table address in a hash table structure.
-
+// SetVideoDimensionsValue sets the value of the videoDimensionsValue property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-func (v_ Value) SetHash(value int) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setHash:"), value)
-}
-
-// The CoreMedia time mapping structure representation of the value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timemappingvalue
-func (v_ Value) TimeMappingValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("timeMappingValue"))
-	return rv
-}
-
-
-// SetTimeMappingValue sets the value of the timeMappingValue property.
-// The CoreMedia time mapping structure representation of the value.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timemappingvalue
-func (v_ Value) SetTimeMappingValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeMappingValue:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/videodimensionsvalue
+func (v_ Value) SetVideoDimensionsValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setVideoDimensionsValue:"), value)
 }
 
 // The CoreAnimation transform structure representation of the value.

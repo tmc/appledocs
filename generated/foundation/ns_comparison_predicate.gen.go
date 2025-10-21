@@ -81,22 +81,22 @@ func NewComparisonPredicate() ComparisonPredicate {
 }
 
 
-// The left expression for the receiver.
+// The comparison predicate modifier for the receiver.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
-func (c_ ComparisonPredicate) LeftExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leftExpression"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/comparisonpredicatemodifier
+func (c_ ComparisonPredicate) ComparisonPredicateModifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("comparisonPredicateModifier"))
 	return rv
 }
 
 
-// SetLeftExpression sets the value of the leftExpression property.
-// The left expression for the receiver.
+// SetComparisonPredicateModifier sets the value of the comparisonPredicateModifier property.
+// The comparison predicate modifier for the receiver.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
-func (c_ ComparisonPredicate) SetLeftExpression(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLeftExpression:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/comparisonpredicatemodifier
+func (c_ ComparisonPredicate) SetComparisonPredicateModifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setComparisonPredicateModifier:"), value)
 }
 
 // The selector for the receiver.
@@ -117,6 +117,24 @@ func (c_ ComparisonPredicate) SetCustomSelector(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomSelector:"), value)
 }
 
+// The left expression for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
+func (c_ ComparisonPredicate) LeftExpression() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leftExpression"))
+	return rv
+}
+
+
+// SetLeftExpression sets the value of the leftExpression property.
+// The left expression for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
+func (c_ ComparisonPredicate) SetLeftExpression(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLeftExpression:"), value)
+}
+
 // The options to use for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.property
@@ -133,24 +151,6 @@ func (c_ ComparisonPredicate) Options() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.property
 func (c_ ComparisonPredicate) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOptions:"), value)
-}
-
-// The comparison predicate modifier for the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/comparisonpredicatemodifier
-func (c_ ComparisonPredicate) ComparisonPredicateModifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("comparisonPredicateModifier"))
-	return rv
-}
-
-
-// SetComparisonPredicateModifier sets the value of the comparisonPredicateModifier property.
-// The comparison predicate modifier for the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/comparisonpredicatemodifier
-func (c_ ComparisonPredicate) SetComparisonPredicateModifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setComparisonPredicateModifier:"), value)
 }
 
 // The predicate type for the receiver.

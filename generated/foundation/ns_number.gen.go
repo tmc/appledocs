@@ -418,132 +418,6 @@ func (n_ Number) IsEqualToNumber(number Number) bool {
 	return rv
 }
 
-// The number object’s value expressed as an
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uintvalue
-func (n_ Number) UintValue() uint {
-	rv := objc.Send[uint](n_.ID, objc.Sel("uintValue"))
-	return rv
-}
-
-
-// SetUintValue sets the value of the uintValue property.
-// The number object’s value expressed as an
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uintvalue
-func (n_ Number) SetUintValue(value uint) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setUintValue:"), value)
-}
-
-// The number object’s value expressed as an unsigned
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint64value
-func (n_ Number) Uint64Value() uint64 {
-	rv := objc.Send[uint64](n_.ID, objc.Sel("uint64Value"))
-	return rv
-}
-
-
-// SetUint64Value sets the value of the uint64Value property.
-// The number object’s value expressed as an unsigned
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint64value
-func (n_ Number) SetUint64Value(value uint64) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setUint64Value:"), value)
-}
-
-// The number object’s value expressed as a
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int64value
-func (n_ Number) Int64Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("int64Value"))
-	return rv
-}
-
-
-// SetInt64Value sets the value of the int64Value property.
-// The number object’s value expressed as a
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int64value
-func (n_ Number) SetInt64Value(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setInt64Value:"), value)
-}
-
-// The number object’s value expressed as an unsigned
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint32value
-func (n_ Number) Uint32Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("uint32Value"))
-	return rv
-}
-
-
-// SetUint32Value sets the value of the uint32Value property.
-// The number object’s value expressed as an unsigned
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint32value
-func (n_ Number) SetUint32Value(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setUint32Value:"), value)
-}
-
-// The number object’s value expressed as a
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int8value
-func (n_ Number) Int8Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("int8Value"))
-	return rv
-}
-
-
-// SetInt8Value sets the value of the int8Value property.
-// The number object’s value expressed as a
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int8value
-func (n_ Number) SetInt8Value(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setInt8Value:"), value)
-}
-
-// A C string containing the Objective-C type of the data contained in the value object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/objctype
-func (n_ Number) ObjCType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("objCType"))
-	return rv
-}
-
-
-// SetObjCType sets the value of the objCType property.
-// A C string containing the Objective-C type of the data contained in the value object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/objctype
-func (n_ Number) SetObjCType(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setObjCType:"), value)
-}
-
-// The number object’s value expressed as an unsigned
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint8value
-func (n_ Number) Uint8Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("uint8Value"))
-	return rv
-}
-
-
-// SetUint8Value sets the value of the uint8Value property.
-// The number object’s value expressed as an unsigned
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint8value
-func (n_ Number) SetUint8Value(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setUint8Value:"), value)
-}
-
 // The number object’s value expressed as a
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int16value
@@ -580,6 +454,42 @@ func (n_ Number) SetInt32Value(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setInt32Value:"), value)
 }
 
+// The number object’s value expressed as a
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int64value
+func (n_ Number) Int64Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("int64Value"))
+	return rv
+}
+
+
+// SetInt64Value sets the value of the int64Value property.
+// The number object’s value expressed as a
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int64value
+func (n_ Number) SetInt64Value(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setInt64Value:"), value)
+}
+
+// The number object’s value expressed as a
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int8value
+func (n_ Number) Int8Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("int8Value"))
+	return rv
+}
+
+
+// SetInt8Value sets the value of the int8Value property.
+// The number object’s value expressed as a
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int8value
+func (n_ Number) SetInt8Value(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setInt8Value:"), value)
+}
+
 // The number object’s value expressed as an unsigned
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint16value
@@ -596,6 +506,96 @@ func (n_ Number) Uint16Value() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint16value
 func (n_ Number) SetUint16Value(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUint16Value:"), value)
+}
+
+// The number object’s value expressed as an unsigned
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint32value
+func (n_ Number) Uint32Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("uint32Value"))
+	return rv
+}
+
+
+// SetUint32Value sets the value of the uint32Value property.
+// The number object’s value expressed as an unsigned
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint32value
+func (n_ Number) SetUint32Value(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setUint32Value:"), value)
+}
+
+// The number object’s value expressed as an unsigned
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint64value
+func (n_ Number) Uint64Value() uint64 {
+	rv := objc.Send[uint64](n_.ID, objc.Sel("uint64Value"))
+	return rv
+}
+
+
+// SetUint64Value sets the value of the uint64Value property.
+// The number object’s value expressed as an unsigned
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint64value
+func (n_ Number) SetUint64Value(value uint64) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setUint64Value:"), value)
+}
+
+// The number object’s value expressed as an unsigned
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint8value
+func (n_ Number) Uint8Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("uint8Value"))
+	return rv
+}
+
+
+// SetUint8Value sets the value of the uint8Value property.
+// The number object’s value expressed as an unsigned
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint8value
+func (n_ Number) SetUint8Value(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setUint8Value:"), value)
+}
+
+// The number object’s value expressed as an
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uintvalue
+func (n_ Number) UintValue() uint {
+	rv := objc.Send[uint](n_.ID, objc.Sel("uintValue"))
+	return rv
+}
+
+
+// SetUintValue sets the value of the uintValue property.
+// The number object’s value expressed as an
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uintvalue
+func (n_ Number) SetUintValue(value uint) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setUintValue:"), value)
+}
+
+// A C string containing the Objective-C type of the data contained in the value object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/objctype
+func (n_ Number) ObjCType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("objCType"))
+	return rv
+}
+
+
+// SetObjCType sets the value of the objCType property.
+// A C string containing the Objective-C type of the data contained in the value object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/objctype
+func (n_ Number) SetObjCType(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setObjCType:"), value)
 }
 
 // The number object’s value expressed as a Boolean value.

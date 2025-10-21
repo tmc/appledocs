@@ -199,42 +199,6 @@ func (t_ TimeZone) NextDaylightSavingTimeTransitionAfterDate(aDate unsafe.Pointe
 	return rv
 }
 
-// The current daylight saving time offset of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/daylightsavingtimeoffset
-func (t_ TimeZone) DaylightSavingTimeOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("daylightSavingTimeOffset"))
-	return rv
-}
-
-
-// SetDaylightSavingTimeOffset sets the value of the daylightSavingTimeOffset property.
-// The current daylight saving time offset of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/daylightsavingtimeoffset
-func (t_ TimeZone) SetDaylightSavingTimeOffset(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDaylightSavingTimeOffset:"), value)
-}
-
-// The current difference in seconds between the receiver and Greenwich Mean Time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/secondsfromgmt
-func (t_ TimeZone) SecondsFromGMT() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("secondsFromGMT"))
-	return rv
-}
-
-
-// SetSecondsFromGMT sets the value of the secondsFromGMT property.
-// The current difference in seconds between the receiver and Greenwich Mean Time.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/secondsfromgmt
-func (t_ TimeZone) SetSecondsFromGMT(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSecondsFromGMT:"), value)
-}
-
 // The abbreviation for the receiver, such as “EDT” (Eastern Daylight Time).
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/abbreviation
@@ -251,6 +215,24 @@ func (t_ TimeZone) Abbreviation() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/abbreviation
 func (t_ TimeZone) SetAbbreviation(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAbbreviation:"), objc.String(value))
+}
+
+// The current daylight saving time offset of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/daylightsavingtimeoffset
+func (t_ TimeZone) DaylightSavingTimeOffset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("daylightSavingTimeOffset"))
+	return rv
+}
+
+
+// SetDaylightSavingTimeOffset sets the value of the daylightSavingTimeOffset property.
+// The current daylight saving time offset of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/daylightsavingtimeoffset
+func (t_ TimeZone) SetDaylightSavingTimeOffset(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDaylightSavingTimeOffset:"), value)
 }
 
 // A Boolean value that indicates whether the receiver is currently using daylight saving time.
@@ -287,6 +269,24 @@ func (t_ TimeZone) NextDaylightSavingTimeTransition() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/nextdaylightsavingtimetransition
 func (t_ TimeZone) SetNextDaylightSavingTimeTransition(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNextDaylightSavingTimeTransition:"), value)
+}
+
+// The current difference in seconds between the receiver and Greenwich Mean Time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/secondsfromgmt
+func (t_ TimeZone) SecondsFromGMT() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("secondsFromGMT"))
+	return rv
+}
+
+
+// SetSecondsFromGMT sets the value of the secondsFromGMT property.
+// The current difference in seconds between the receiver and Greenwich Mean Time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/secondsfromgmt
+func (t_ TimeZone) SetSecondsFromGMT(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSecondsFromGMT:"), value)
 }
 
 // Returns a dictionary holding the mappings of time zone abbreviations to time zone names.

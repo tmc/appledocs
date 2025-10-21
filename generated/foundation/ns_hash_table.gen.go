@@ -115,6 +115,24 @@ func (h_ HashTable) AddObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("addObject:"), object)
 }
 
+// The hash table’s members.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
+func (h_ HashTable) AllObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("allObjects"))
+	return rv
+}
+
+
+// SetAllObjects sets the value of the allObjects property.
+// The hash table’s members.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
+func (h_ HashTable) SetAllObjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAllObjects:"), value)
+}
+
 // One of the objects in the hash table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/anyobject
@@ -149,24 +167,6 @@ func (h_ HashTable) PointerFunctions() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
 func (h_ HashTable) SetPointerFunctions(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPointerFunctions:"), value)
-}
-
-// The hash table’s members.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
-func (h_ HashTable) AllObjects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("allObjects"))
-	return rv
-}
-
-
-// SetAllObjects sets the value of the allObjects property.
-// The hash table’s members.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
-func (h_ HashTable) SetAllObjects(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAllObjects:"), value)
 }
 
 // A set that contains the hash table’s members.

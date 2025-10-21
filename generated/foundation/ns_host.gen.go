@@ -132,24 +132,6 @@ func (hc _HostClass) SetHostCacheEnabled(flag bool) {
 	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("setHostCacheEnabled:"), flag)
 }
 
-// Returns all the hostnames of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
-func (h_ Host) Names() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("names"))
-	return rv
-}
-
-
-// SetNames sets the value of the names property.
-// Returns all the hostnames of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
-func (h_ Host) SetNames(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setNames:"), objc.String(value))
-}
-
 // Returns one of the network addresses of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
@@ -166,6 +148,24 @@ func (h_ Host) Address() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
 func (h_ Host) SetAddress(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAddress:"), objc.String(value))
+}
+
+// Returns all the hostnames of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
+func (h_ Host) Names() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("names"))
+	return rv
+}
+
+
+// SetNames sets the value of the names property.
+// Returns all the hostnames of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
+func (h_ Host) SetNames(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setNames:"), objc.String(value))
 }
 
 // Returns all the network addresses of the receiver.
