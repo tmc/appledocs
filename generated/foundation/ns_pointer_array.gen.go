@@ -120,24 +120,6 @@ func (p_ PointerArray) RemovePointerAtIndex(index uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removePointerAtIndex:"), index)
 }
 
-// The functions in use by the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/pointerfunctions
-func (p_ PointerArray) PointerFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pointerFunctions"))
-	return rv
-}
-
-
-// SetPointerFunctions sets the value of the pointerFunctions property.
-// The functions in use by the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/pointerfunctions
-func (p_ PointerArray) SetPointerFunctions(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPointerFunctions:"), value)
-}
-
 // All the objects in the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/allObjects
@@ -162,6 +144,24 @@ func (p_ PointerArray) Count() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/count
 func (p_ PointerArray) SetCount(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCount:"), value)
+}
+
+// The functions in use by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/pointerfunctions
+func (p_ PointerArray) PointerFunctions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pointerFunctions"))
+	return rv
+}
+
+
+// SetPointerFunctions sets the value of the pointerFunctions property.
+// The functions in use by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/pointerfunctions
+func (p_ PointerArray) SetPointerFunctions(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPointerFunctions:"), value)
 }
 
 

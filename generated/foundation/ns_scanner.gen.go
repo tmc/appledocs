@@ -231,19 +231,19 @@ func (s_ Scanner) SetScanLocation(value int) {
 // The string the scanner will scan.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
-func (s_ Scanner) String_() string {
+func (s_ Scanner) String() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("string"))
 	return rv
 }
 
 
-// SetString_ sets the value of the string property.
+// SetString sets the value of the string property.
 // The string the scanner will scan.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
-func (s_ Scanner) SetString_(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setString_:"), objc.String(value))
+func (s_ Scanner) SetString(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setString:"), objc.String(value))
 }
 
 

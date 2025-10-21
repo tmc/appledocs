@@ -207,24 +207,6 @@ func (x_ XMLDTD) SetChildren(children unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), children)
 }
 
-// Returns an
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
-func (x_ XMLDTD) Dtd() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("dtd"))
-	return rv
-}
-
-
-// SetDtd sets the value of the dtd property.
-// Returns an
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
-func (x_ XMLDTD) SetDtd(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setDtd:"), value)
-}
-
 // Returns the receiver’s public identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/publicID
@@ -259,6 +241,24 @@ func (x_ XMLDTD) SystemID() string {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/systemID
 func (x_ XMLDTD) SetSystemID(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
+}
+
+// Returns an
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
+func (x_ XMLDTD) Dtd() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("dtd"))
+	return rv
+}
+
+
+// SetDtd sets the value of the dtd property.
+// Returns an
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
+func (x_ XMLDTD) SetDtd(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setDtd:"), value)
 }
 
 

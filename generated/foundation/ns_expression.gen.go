@@ -97,6 +97,30 @@ func (e_ Expression) ExpressionValueWithObjectContext(object objc.ID, context un
 	return rv
 }
 
+// An expression to evalutate if a conditional expression’s predicate evaluates to false.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/false
+func (e_ Expression) FalseExpression() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("falseExpression"))
+	return rv
+}
+
+// The predicate of a subquery expression.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/predicate
+func (e_ Expression) Predicate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("predicate"))
+	return rv
+}
+
+// An expression to evalutate if a conditional expression’s predicate evaluates to true.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/true
+func (e_ Expression) TrueExpression() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("trueExpression"))
+	return rv
+}
+
 // The arguments for the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
@@ -190,19 +214,19 @@ func (e_ Expression) SetExpressionType(value unsafe.Pointer) {
 // An expression to evalutate if a conditional expression’s predicate evaluates to false.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
-func (e_ Expression) `false`() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("`false`"))
+func (e_ Expression) False() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("false"))
 	return rv
 }
 
 
-// Set`false` sets the value of the `false` property.
+// SetFalse sets the value of the false property.
 // An expression to evalutate if a conditional expression’s predicate evaluates to false.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
-func (e_ Expression) Set`false`(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("set`false`:"), value)
+func (e_ Expression) SetFalse(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setFalse:"), value)
 }
 
 // The function for the expression.
@@ -298,19 +322,19 @@ func (e_ Expression) SetRight(value unsafe.Pointer) {
 // An expression to evalutate if a conditional expression’s predicate evaluates to true.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
-func (e_ Expression) `true`() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("`true`"))
+func (e_ Expression) True() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("true"))
 	return rv
 }
 
 
-// Set`true` sets the value of the `true` property.
+// SetTrue sets the value of the true property.
 // An expression to evalutate if a conditional expression’s predicate evaluates to true.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
-func (e_ Expression) Set`true`(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("set`true`:"), value)
+func (e_ Expression) SetTrue(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTrue:"), value)
 }
 
 // The variable for the expression.
@@ -329,30 +353,6 @@ func (e_ Expression) Variable() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/variable
 func (e_ Expression) SetVariable(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVariable:"), objc.String(value))
-}
-
-// An expression to evalutate if a conditional expression’s predicate evaluates to false.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/false
-func (e_ Expression) FalseExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("falseExpression"))
-	return rv
-}
-
-// The predicate of a subquery expression.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/predicate
-func (e_ Expression) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("predicate"))
-	return rv
-}
-
-// An expression to evalutate if a conditional expression’s predicate evaluates to true.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/true
-func (e_ Expression) TrueExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("trueExpression"))
-	return rv
 }
 
 

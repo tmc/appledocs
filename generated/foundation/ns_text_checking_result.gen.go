@@ -112,6 +112,54 @@ func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ Range) un
 	return rv
 }
 
+// The date component of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/date
+func (t_ TextCheckingResult) Date() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("date"))
+	return rv
+}
+
+// The duration component of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/duration
+func (t_ TextCheckingResult) Duration() TimeInterval {
+	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("duration"))
+	return rv
+}
+
+// The phone number of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumber
+func (t_ TextCheckingResult) PhoneNumber() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("phoneNumber"))
+	return rv
+}
+
+// Returns the range of the result that the receiver represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/range
+func (t_ TextCheckingResult) Range() Range {
+	rv := objc.Send[Range](t_.ID, objc.Sel("range"))
+	return rv
+}
+
+// The regular expression of a type checking result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/regularExpression
+func (t_ TextCheckingResult) RegularExpression() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("regularExpression"))
+	return rv
+}
+
+// Returns the text checking result type that the receiver represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/resultType
+func (t_ TextCheckingResult) ResultType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("resultType"))
+	return rv
+}
+
 // A value indicating that a requested item couldn’t be found or doesn’t exist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
@@ -277,54 +325,6 @@ func (t_ TextCheckingResult) Url() URL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
 func (t_ TextCheckingResult) SetUrl(value URL) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUrl:"), value)
-}
-
-// The date component of a type checking result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/date
-func (t_ TextCheckingResult) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("date"))
-	return rv
-}
-
-// The duration component of a type checking result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/duration
-func (t_ TextCheckingResult) Duration() TimeInterval {
-	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("duration"))
-	return rv
-}
-
-// The phone number of a type checking result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumber
-func (t_ TextCheckingResult) PhoneNumber() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("phoneNumber"))
-	return rv
-}
-
-// Returns the range of the result that the receiver represents.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/range
-func (t_ TextCheckingResult) Range_() Range {
-	rv := objc.Send[Range](t_.ID, objc.Sel("range"))
-	return rv
-}
-
-// The regular expression of a type checking result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/regularExpression
-func (t_ TextCheckingResult) RegularExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("regularExpression"))
-	return rv
-}
-
-// Returns the text checking result type that the receiver represents.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/resultType
-func (t_ TextCheckingResult) ResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("resultType"))
-	return rv
 }
 
 

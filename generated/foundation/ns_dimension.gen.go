@@ -102,6 +102,14 @@ func (dc _DimensionClass) BaseUnit() unsafe.Pointer {
 	return rv
 }
 
+// The unit converter that represents the unit in terms of the dimension’s base unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/converter
+func (d_ Dimension) Converter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("converter"))
+	return rv
+}
+
 // The coefficient to use in the linear unit conversion calculation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
@@ -118,14 +126,6 @@ func (d_ Dimension) Coefficient() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
 func (d_ Dimension) SetCoefficient(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCoefficient:"), value)
-}
-
-// The unit converter that represents the unit in terms of the dimension’s base unit.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/converter
-func (d_ Dimension) Converter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("converter"))
-	return rv
 }
 
 

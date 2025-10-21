@@ -94,22 +94,28 @@ func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family unsafe.Poin
 }
 
 
-// The protocol that the receiver uses for communication.
+// The receiver’s socket address structure stored inside an object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/socketport/protocol
-func (s_ SocketPort) `protocol`() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("`protocol`"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/address
+func (s_ SocketPort) Address() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("address"))
 	return rv
 }
 
-
-// Set`protocol` sets the value of the `protocol` property.
 // The protocol that the receiver uses for communication.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/foundation/socketport/protocol
-func (s_ SocketPort) Set`protocol`(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("set`protocol`:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/protocol
+func (s_ SocketPort) Protocol() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("protocol"))
+	return rv
+}
+
+// The receiver’s native socket identifier on the platform.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/socket
+func (s_ SocketPort) Socket() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("socket"))
+	return rv
 }
 
 // The protocol family that the receiver uses for communication.
@@ -146,30 +152,6 @@ func (s_ SocketPort) SocketType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/socketport/sockettype
 func (s_ SocketPort) SetSocketType(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSocketType:"), value)
-}
-
-// The receiver’s socket address structure stored inside an object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/address
-func (s_ SocketPort) Address() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("address"))
-	return rv
-}
-
-// The protocol that the receiver uses for communication.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/protocol
-func (s_ SocketPort) Protocol_() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("protocol"))
-	return rv
-}
-
-// The receiver’s native socket identifier on the platform.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/socket
-func (s_ SocketPort) Socket() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("socket"))
-	return rv
 }
 
 

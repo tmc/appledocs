@@ -131,96 +131,6 @@ func (n_ NumberFormatter) StringFromNumber(number Number) string {
 	return rv
 }
 
-// Determines whether the receiver creates instances of
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
-func (n_ NumberFormatter) GeneratesDecimalNumbers() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("generatesDecimalNumbers"))
-	return rv
-}
-
-
-// SetGeneratesDecimalNumbers sets the value of the generatesDecimalNumbers property.
-// Determines whether the receiver creates instances of
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
-func (n_ NumberFormatter) SetGeneratesDecimalNumbers(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setGeneratesDecimalNumbers:"), value)
-}
-
-// Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/islenient
-func (n_ NumberFormatter) IsLenient() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isLenient"))
-	return rv
-}
-
-
-// SetIsLenient sets the value of the isLenient property.
-// Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/islenient
-func (n_ NumberFormatter) SetIsLenient(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIsLenient:"), value)
-}
-
-// Determines whether partial string validation is enabled for the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/ispartialstringvalidationenabled
-func (n_ NumberFormatter) IsPartialStringValidationEnabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isPartialStringValidationEnabled"))
-	return rv
-}
-
-
-// SetIsPartialStringValidationEnabled sets the value of the isPartialStringValidationEnabled property.
-// Determines whether partial string validation is enabled for the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/ispartialstringvalidationenabled
-func (n_ NumberFormatter) SetIsPartialStringValidationEnabled(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIsPartialStringValidationEnabled:"), value)
-}
-
-// The string the receiver uses as the prefix for positive values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
-func (n_ NumberFormatter) PositivePrefix() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("positivePrefix"))
-	return rv
-}
-
-
-// SetPositivePrefix sets the value of the positivePrefix property.
-// The string the receiver uses as the prefix for positive values.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
-func (n_ NumberFormatter) SetPositivePrefix(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setPositivePrefix:"), objc.String(value))
-}
-
-// The text attributes used to display the NaN (“not a number”) string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
-func (n_ NumberFormatter) TextAttributesForNotANumber() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("textAttributesForNotANumber"))
-	return rv
-}
-
-
-// SetTextAttributesForNotANumber sets the value of the textAttributesForNotANumber property.
-// The text attributes used to display the NaN (“not a number”) string.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
-func (n_ NumberFormatter) SetTextAttributesForNotANumber(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNotANumber:"), objc.String(value))
-}
-
 // Determines whether the receiver allows as input floating-point values (that is, values that include the period character [ ]).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/allowsFloats
@@ -1350,6 +1260,96 @@ func (n_ NumberFormatter) ZeroSymbol() string {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/zeroSymbol
 func (n_ NumberFormatter) SetZeroSymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setZeroSymbol:"), objc.String(value))
+}
+
+// Determines whether the receiver creates instances of
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
+func (n_ NumberFormatter) GeneratesDecimalNumbers() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("generatesDecimalNumbers"))
+	return rv
+}
+
+
+// SetGeneratesDecimalNumbers sets the value of the generatesDecimalNumbers property.
+// Determines whether the receiver creates instances of
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
+func (n_ NumberFormatter) SetGeneratesDecimalNumbers(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setGeneratesDecimalNumbers:"), value)
+}
+
+// Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/islenient
+func (n_ NumberFormatter) IsLenient() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isLenient"))
+	return rv
+}
+
+
+// SetIsLenient sets the value of the isLenient property.
+// Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/islenient
+func (n_ NumberFormatter) SetIsLenient(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsLenient:"), value)
+}
+
+// Determines whether partial string validation is enabled for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/ispartialstringvalidationenabled
+func (n_ NumberFormatter) IsPartialStringValidationEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isPartialStringValidationEnabled"))
+	return rv
+}
+
+
+// SetIsPartialStringValidationEnabled sets the value of the isPartialStringValidationEnabled property.
+// Determines whether partial string validation is enabled for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/ispartialstringvalidationenabled
+func (n_ NumberFormatter) SetIsPartialStringValidationEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsPartialStringValidationEnabled:"), value)
+}
+
+// The string the receiver uses as the prefix for positive values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
+func (n_ NumberFormatter) PositivePrefix() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("positivePrefix"))
+	return rv
+}
+
+
+// SetPositivePrefix sets the value of the positivePrefix property.
+// The string the receiver uses as the prefix for positive values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
+func (n_ NumberFormatter) SetPositivePrefix(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPositivePrefix:"), objc.String(value))
+}
+
+// The text attributes used to display the NaN (“not a number”) string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
+func (n_ NumberFormatter) TextAttributesForNotANumber() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("textAttributesForNotANumber"))
+	return rv
+}
+
+
+// SetTextAttributesForNotANumber sets the value of the textAttributesForNotANumber property.
+// The text attributes used to display the NaN (“not a number”) string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/textattributesfornotanumber
+func (n_ NumberFormatter) SetTextAttributesForNotANumber(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNotANumber:"), objc.String(value))
 }
 
 

@@ -143,22 +143,6 @@ func (s_ Stream) SetPropertyForKey(property objc.ID, key unsafe.Pointer) bool {
 	return rv
 }
 
-// The error domain used by
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
-func (s_ Stream) NSStreamSOCKSErrorDomain() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
-	return rv
-}
-
-// The error domain used by
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
-func (s_ Stream) NSStreamSocketSSLErrorDomain() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
-	return rv
-}
-
 // Sets the receiver’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/delegate
@@ -190,6 +174,22 @@ func (s_ Stream) StreamError() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamStatus
 func (s_ Stream) StreamStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("streamStatus"))
+	return rv
+}
+
+// The error domain used by
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
+func (s_ Stream) NSStreamSOCKSErrorDomain() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
+	return rv
+}
+
+// The error domain used by
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
+func (s_ Stream) NSStreamSocketSSLErrorDomain() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
 }
 

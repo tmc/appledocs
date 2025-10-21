@@ -98,6 +98,65 @@ func (t_ Task) Terminate() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("terminate"))
 }
 
+// The environment for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/environment
+func (t_ Task) Environment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("environment"))
+	return rv
+}
+
+
+// SetEnvironment sets the value of the environment property.
+// The environment for the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/environment
+func (t_ Task) SetEnvironment(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setEnvironment:"), value)
+}
+
+// The receiver’s executable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
+func (t_ Task) ExecutableURL() URL {
+	rv := objc.Send[URL](t_.ID, objc.Sel("executableURL"))
+	return rv
+}
+
+
+// SetExecutableURL sets the value of the executableURL property.
+// The receiver’s executable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
+func (t_ Task) SetExecutableURL(value URL) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setExecutableURL:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
+func (t_ Task) LaunchRequirementData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("launchRequirementData"))
+	return rv
+}
+
+
+// SetLaunchRequirementData sets the value of the launchRequirementData property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
+func (t_ Task) SetLaunchRequirementData(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchRequirementData:"), value)
+}
+
+// The receiver’s process identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/processIdentifier
+func (t_ Task) ProcessIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("processIdentifier"))
+	return rv
+}
+
 // The command arguments that the system uses to launch the executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/arguments
@@ -327,65 +386,6 @@ func (t_ Task) TerminationStatus() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationstatus
 func (t_ Task) SetTerminationStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTerminationStatus:"), value)
-}
-
-// The environment for the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/environment
-func (t_ Task) Environment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("environment"))
-	return rv
-}
-
-
-// SetEnvironment sets the value of the environment property.
-// The environment for the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/environment
-func (t_ Task) SetEnvironment(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setEnvironment:"), value)
-}
-
-// The receiver’s executable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
-func (t_ Task) ExecutableURL() URL {
-	rv := objc.Send[URL](t_.ID, objc.Sel("executableURL"))
-	return rv
-}
-
-
-// SetExecutableURL sets the value of the executableURL property.
-// The receiver’s executable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
-func (t_ Task) SetExecutableURL(value URL) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setExecutableURL:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
-func (t_ Task) LaunchRequirementData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("launchRequirementData"))
-	return rv
-}
-
-
-// SetLaunchRequirementData sets the value of the launchRequirementData property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
-func (t_ Task) SetLaunchRequirementData(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchRequirementData:"), value)
-}
-
-// The receiver’s process identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/processIdentifier
-func (t_ Task) ProcessIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("processIdentifier"))
-	return rv
 }
 
 

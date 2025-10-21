@@ -146,6 +146,22 @@ func (s_ SortDescriptor) CompareObjectToObject(object1 objc.ID, object2 objc.ID)
 	return rv
 }
 
+// The key that specifies the property to compare during sorting.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/key
+func (s_ SortDescriptor) Key() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("key"))
+	return rv
+}
+
+// The selector for comparing objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/selector
+func (s_ SortDescriptor) Selector() objc.SEL {
+	rv := objc.Send[objc.SEL](s_.ID, objc.Sel("selector"))
+	return rv
+}
+
 // The sort descriptors of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
@@ -234,22 +250,6 @@ func (s_ SortDescriptor) ReversedSortDescriptor() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nssortdescriptor/reversedsortdescriptor
 func (s_ SortDescriptor) SetReversedSortDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setReversedSortDescriptor:"), value)
-}
-
-// The key that specifies the property to compare during sorting.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/key
-func (s_ SortDescriptor) Key() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("key"))
-	return rv
-}
-
-// The selector for comparing objects.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/selector
-func (s_ SortDescriptor) Selector() objc.SEL {
-	rv := objc.Send[objc.SEL](s_.ID, objc.Sel("selector"))
-	return rv
 }
 
 

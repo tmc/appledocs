@@ -203,86 +203,6 @@ func (t_ Thread) Start() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("start"))
 }
 
-// A key with a corresponding value in the thread dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsassertionhandlerkey
-func (t_ Thread) NSAssertionHandlerKey() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("NSAssertionHandlerKey"))
-	return rv
-}
-
-// A Boolean value that indicates whether the receiver is cancelled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
-func (t_ Thread) IsCancelled() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("isCancelled"))
-	return rv
-}
-
-
-// SetIsCancelled sets the value of the isCancelled property.
-// A Boolean value that indicates whether the receiver is cancelled.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
-func (t_ Thread) SetIsCancelled(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIsCancelled:"), value)
-}
-
-// A Boolean value that indicates whether the receiver is executing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isexecuting
-func (t_ Thread) IsExecuting() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("isExecuting"))
-	return rv
-}
-
-
-// SetIsExecuting sets the value of the isExecuting property.
-// A Boolean value that indicates whether the receiver is executing.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isexecuting
-func (t_ Thread) SetIsExecuting(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIsExecuting:"), value)
-}
-
-// A Boolean value that indicates whether the receiver has finished execution.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
-func (t_ Thread) IsFinished() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("isFinished"))
-	return rv
-}
-
-
-// SetIsFinished sets the value of the isFinished property.
-// A Boolean value that indicates whether the receiver has finished execution.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
-func (t_ Thread) SetIsFinished(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFinished:"), value)
-}
-
-// The thread object’s dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) ThreadDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("threadDictionary"))
-	return rv
-}
-
-
-// SetThreadDictionary sets the value of the threadDictionary property.
-// The thread object’s dictionary.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) SetThreadDictionary(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadDictionary:"), value)
-}
-
 // Returns an array containing the call stack return addresses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackReturnAddresses
@@ -414,6 +334,86 @@ func (t_ Thread) ThreadPriority() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadPriority
 func (t_ Thread) SetThreadPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadPriority:"), value)
+}
+
+// A key with a corresponding value in the thread dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsassertionhandlerkey
+func (t_ Thread) NSAssertionHandlerKey() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("NSAssertionHandlerKey"))
+	return rv
+}
+
+// A Boolean value that indicates whether the receiver is cancelled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
+func (t_ Thread) IsCancelled() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isCancelled"))
+	return rv
+}
+
+
+// SetIsCancelled sets the value of the isCancelled property.
+// A Boolean value that indicates whether the receiver is cancelled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
+func (t_ Thread) SetIsCancelled(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsCancelled:"), value)
+}
+
+// A Boolean value that indicates whether the receiver is executing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isexecuting
+func (t_ Thread) IsExecuting() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isExecuting"))
+	return rv
+}
+
+
+// SetIsExecuting sets the value of the isExecuting property.
+// A Boolean value that indicates whether the receiver is executing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isexecuting
+func (t_ Thread) SetIsExecuting(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsExecuting:"), value)
+}
+
+// A Boolean value that indicates whether the receiver has finished execution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
+func (t_ Thread) IsFinished() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isFinished"))
+	return rv
+}
+
+
+// SetIsFinished sets the value of the isFinished property.
+// A Boolean value that indicates whether the receiver has finished execution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
+func (t_ Thread) SetIsFinished(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFinished:"), value)
+}
+
+// The thread object’s dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
+func (t_ Thread) ThreadDictionary() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("threadDictionary"))
+	return rv
+}
+
+
+// SetThreadDictionary sets the value of the threadDictionary property.
+// The thread object’s dictionary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
+func (t_ Thread) SetThreadDictionary(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadDictionary:"), value)
 }
 
 

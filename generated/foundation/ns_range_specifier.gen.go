@@ -81,24 +81,6 @@ func NewRangeSpecifier() RangeSpecifier {
 }
 
 
-// Sets the object specifier representing the last object of the range to a given object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrangespecifier/endspecifier
-func (r_ RangeSpecifier) EndSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("endSpecifier"))
-	return rv
-}
-
-
-// SetEndSpecifier sets the value of the endSpecifier property.
-// Sets the object specifier representing the last object of the range to a given object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrangespecifier/endspecifier
-func (r_ RangeSpecifier) SetEndSpecifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setEndSpecifier:"), value)
-}
-
 // Returns the object specifier representing the first object of the range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/startSpecifier
@@ -115,6 +97,24 @@ func (r_ RangeSpecifier) StartSpecifier() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/startSpecifier
 func (r_ RangeSpecifier) SetStartSpecifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStartSpecifier:"), value)
+}
+
+// Sets the object specifier representing the last object of the range to a given object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrangespecifier/endspecifier
+func (r_ RangeSpecifier) EndSpecifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("endSpecifier"))
+	return rv
+}
+
+
+// SetEndSpecifier sets the value of the endSpecifier property.
+// Sets the object specifier representing the last object of the range to a given object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrangespecifier/endspecifier
+func (r_ RangeSpecifier) SetEndSpecifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setEndSpecifier:"), value)
 }
 
 

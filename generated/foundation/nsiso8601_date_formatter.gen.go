@@ -90,24 +90,6 @@ func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date un
 	return rv
 }
 
-// The time zone used to create and parse date representations. When unspecified, GMT is used.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/iso8601dateformatter/timezone
-func (i_ ISO8601DateFormatter) TimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("timeZone"))
-	return rv
-}
-
-
-// SetTimeZone sets the value of the timeZone property.
-// The time zone used to create and parse date representations. When unspecified, GMT is used.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/iso8601dateformatter/timezone
-func (i_ ISO8601DateFormatter) SetTimeZone(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTimeZone:"), value)
-}
-
 // Options for generating and parsing ISO 8601 date representations. See for possible values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/formatOptions
@@ -124,6 +106,24 @@ func (i_ ISO8601DateFormatter) FormatOptions() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/formatOptions
 func (i_ ISO8601DateFormatter) SetFormatOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFormatOptions:"), value)
+}
+
+// The time zone used to create and parse date representations. When unspecified, GMT is used.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/iso8601dateformatter/timezone
+func (i_ ISO8601DateFormatter) TimeZone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("timeZone"))
+	return rv
+}
+
+
+// SetTimeZone sets the value of the timeZone property.
+// The time zone used to create and parse date representations. When unspecified, GMT is used.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/iso8601dateformatter/timezone
+func (i_ ISO8601DateFormatter) SetTimeZone(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTimeZone:"), value)
 }
 
 

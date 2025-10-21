@@ -178,6 +178,92 @@ func (u_ UndoManager) UndoNestedGroup() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("undoNestedGroup"))
 }
 
+// A Boolean value that indicates whether the manager has any actions to redo.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/canRedo
+func (u_ UndoManager) CanRedo() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("canRedo"))
+	return rv
+}
+
+// The number of nested undo groups (or redo groups, if redo is the most recent operation) in the current event loop.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/groupingLevel
+func (u_ UndoManager) GroupingLevel() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("groupingLevel"))
+	return rv
+}
+
+// A Boolean value that indicates whether the manager automatically creates undo groups around each pass of the run loop.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/groupsByEvent
+func (u_ UndoManager) GroupsByEvent() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("groupsByEvent"))
+	return rv
+}
+
+
+// SetGroupsByEvent sets the value of the groupsByEvent property.
+// A Boolean value that indicates whether the manager automatically creates undo groups around each pass of the run loop.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/groupsByEvent
+func (u_ UndoManager) SetGroupsByEvent(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setGroupsByEvent:"), value)
+}
+
+// The number of times you can invoke redo before there are no actions left to redo.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoCount
+func (u_ UndoManager) RedoCount() uint {
+	rv := objc.Send[uint](u_.ID, objc.Sel("redoCount"))
+	return rv
+}
+
+// The title of the Redo menu command, such as Redo Paste.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoMenuItemTitle
+func (u_ UndoManager) RedoMenuItemTitle() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("redoMenuItemTitle"))
+	return rv
+}
+
+// The modes governing the types of input to handle during a cycle of the run loop.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/runLoopModes
+func (u_ UndoManager) RunLoopModes() []string {
+	rv := objc.Send[[]string](u_.ID, objc.Sel("runLoopModes"))
+	return rv
+}
+
+
+// SetRunLoopModes sets the value of the runLoopModes property.
+// The modes governing the types of input to handle during a cycle of the run loop.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/runLoopModes
+func (u_ UndoManager) SetRunLoopModes(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRunLoopModes:"), nsArray)
+}
+
+// The name identifying the undo action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoActionName
+func (u_ UndoManager) UndoActionName() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("undoActionName"))
+	return rv
+}
+
 // A priority to use when using a run loop to close an undo group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsundoclosegroupingrunloopordering
@@ -372,92 +458,6 @@ func (u_ UndoManager) UndoMenuItemTitle() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/undomenuitemtitle
 func (u_ UndoManager) SetUndoMenuItemTitle(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUndoMenuItemTitle:"), objc.String(value))
-}
-
-// A Boolean value that indicates whether the manager has any actions to redo.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/canRedo
-func (u_ UndoManager) CanRedo() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("canRedo"))
-	return rv
-}
-
-// The number of nested undo groups (or redo groups, if redo is the most recent operation) in the current event loop.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/groupingLevel
-func (u_ UndoManager) GroupingLevel() int {
-	rv := objc.Send[int](u_.ID, objc.Sel("groupingLevel"))
-	return rv
-}
-
-// A Boolean value that indicates whether the manager automatically creates undo groups around each pass of the run loop.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/groupsByEvent
-func (u_ UndoManager) GroupsByEvent() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("groupsByEvent"))
-	return rv
-}
-
-
-// SetGroupsByEvent sets the value of the groupsByEvent property.
-// A Boolean value that indicates whether the manager automatically creates undo groups around each pass of the run loop.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/groupsByEvent
-func (u_ UndoManager) SetGroupsByEvent(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setGroupsByEvent:"), value)
-}
-
-// The number of times you can invoke redo before there are no actions left to redo.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoCount
-func (u_ UndoManager) RedoCount() uint {
-	rv := objc.Send[uint](u_.ID, objc.Sel("redoCount"))
-	return rv
-}
-
-// The title of the Redo menu command, such as Redo Paste.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoMenuItemTitle
-func (u_ UndoManager) RedoMenuItemTitle() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("redoMenuItemTitle"))
-	return rv
-}
-
-// The modes governing the types of input to handle during a cycle of the run loop.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/runLoopModes
-func (u_ UndoManager) RunLoopModes() []string {
-	rv := objc.Send[[]string](u_.ID, objc.Sel("runLoopModes"))
-	return rv
-}
-
-
-// SetRunLoopModes sets the value of the runLoopModes property.
-// The modes governing the types of input to handle during a cycle of the run loop.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/runLoopModes
-func (u_ UndoManager) SetRunLoopModes(value []string) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRunLoopModes:"), nsArray)
-}
-
-// The name identifying the undo action.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoActionName
-func (u_ UndoManager) UndoActionName() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("undoActionName"))
-	return rv
 }
 
 

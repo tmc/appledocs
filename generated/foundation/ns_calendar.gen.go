@@ -206,6 +206,100 @@ func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep unsafe.Po
 	return rv
 }
 
+// A calendar that tracks changes to user’s preferred calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/autoupdatingCurrent
+func (c_ Calendar) AutoupdatingCurrentCalendar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("autoupdatingCurrentCalendar"))
+	return rv
+}
+
+// An identifier for the calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/calendarIdentifier
+func (c_ Calendar) CalendarIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("calendarIdentifier"))
+	return rv
+}
+
+// The user’s current calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/current
+func (c_ Calendar) CurrentCalendar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentCalendar"))
+	return rv
+}
+
+// The index of the first weekday of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/firstWeekday
+func (c_ Calendar) FirstWeekday() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("firstWeekday"))
+	return rv
+}
+
+
+// SetFirstWeekday sets the value of the firstWeekday property.
+// The index of the first weekday of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/firstWeekday
+func (c_ Calendar) SetFirstWeekday(value uint) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFirstWeekday:"), value)
+}
+
+// The locale of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/locale
+func (c_ Calendar) Locale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("locale"))
+	return rv
+}
+
+
+// SetLocale sets the value of the locale property.
+// The locale of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/locale
+func (c_ Calendar) SetLocale(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocale:"), value)
+}
+
+// A list of short standalone quarter symbols for this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/shortStandaloneQuarterSymbols
+func (c_ Calendar) ShortStandaloneQuarterSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("shortStandaloneQuarterSymbols"))
+	return rv
+}
+
+// A list of short standalone weekday symbols for this calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/shortStandaloneWeekdaySymbols
+func (c_ Calendar) ShortStandaloneWeekdaySymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
+	return rv
+}
+
+// The time zone for the calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/timeZone
+func (c_ Calendar) TimeZone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeZone"))
+	return rv
+}
+
+
+// SetTimeZone sets the value of the timeZone property.
+// The time zone for the calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/timeZone
+func (c_ Calendar) SetTimeZone(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeZone:"), value)
+}
+
 // The symbol used to represent “AM” for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/amsymbol
@@ -546,100 +640,6 @@ func (c_ Calendar) WeekdaySymbols() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/weekdaysymbols
 func (c_ Calendar) SetWeekdaySymbols(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeekdaySymbols:"), objc.String(value))
-}
-
-// A calendar that tracks changes to user’s preferred calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/autoupdatingCurrent
-func (c_ Calendar) AutoupdatingCurrentCalendar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("autoupdatingCurrentCalendar"))
-	return rv
-}
-
-// An identifier for the calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/calendarIdentifier
-func (c_ Calendar) CalendarIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("calendarIdentifier"))
-	return rv
-}
-
-// The user’s current calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/current
-func (c_ Calendar) CurrentCalendar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentCalendar"))
-	return rv
-}
-
-// The index of the first weekday of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/firstWeekday
-func (c_ Calendar) FirstWeekday() uint {
-	rv := objc.Send[uint](c_.ID, objc.Sel("firstWeekday"))
-	return rv
-}
-
-
-// SetFirstWeekday sets the value of the firstWeekday property.
-// The index of the first weekday of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/firstWeekday
-func (c_ Calendar) SetFirstWeekday(value uint) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFirstWeekday:"), value)
-}
-
-// The locale of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/locale
-func (c_ Calendar) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("locale"))
-	return rv
-}
-
-
-// SetLocale sets the value of the locale property.
-// The locale of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/locale
-func (c_ Calendar) SetLocale(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocale:"), value)
-}
-
-// A list of short standalone quarter symbols for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/shortStandaloneQuarterSymbols
-func (c_ Calendar) ShortStandaloneQuarterSymbols() []string {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("shortStandaloneQuarterSymbols"))
-	return rv
-}
-
-// A list of short standalone weekday symbols for this calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/shortStandaloneWeekdaySymbols
-func (c_ Calendar) ShortStandaloneWeekdaySymbols() []string {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
-	return rv
-}
-
-// The time zone for the calendar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/timeZone
-func (c_ Calendar) TimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeZone"))
-	return rv
-}
-
-
-// SetTimeZone sets the value of the timeZone property.
-// The time zone for the calendar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/timeZone
-func (c_ Calendar) SetTimeZone(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeZone:"), value)
 }
 
 

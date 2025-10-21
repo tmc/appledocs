@@ -457,6 +457,30 @@ func (d_ Data) WriteToFileOptionsError(path string, writeOptionsMask unsafe.Poin
 	return rv
 }
 
+// A pointer to the data object’s contents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/bytes
+func (d_ Data) Bytes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("bytes"))
+	return rv
+}
+
+// A string that contains a hexadecimal representation of the data object’s contents in a property list format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/description
+func (d_ Data) Description() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("description"))
+	return rv
+}
+
+// The number of bytes contained by the data object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/length
+func (d_ Data) Length() uint {
+	rv := objc.Send[uint](d_.ID, objc.Sel("length"))
+	return rv
+}
+
 // The end of the range of error codes reserved for compression errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
@@ -527,30 +551,6 @@ func (d_ Data) NSDecompressionFailedError() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
 func (d_ Data) SetNSDecompressionFailedError(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
-}
-
-// A pointer to the data object’s contents.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/bytes
-func (d_ Data) Bytes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("bytes"))
-	return rv
-}
-
-// A string that contains a hexadecimal representation of the data object’s contents in a property list format.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/description
-func (d_ Data) Description() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("description"))
-	return rv
-}
-
-// The number of bytes contained by the data object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/length
-func (d_ Data) Length() uint {
-	rv := objc.Send[uint](d_.ID, objc.Sel("length"))
-	return rv
 }
 
 

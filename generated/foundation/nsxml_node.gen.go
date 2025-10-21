@@ -243,6 +243,110 @@ func (x_ XMLNode) XMLStringWithOptions(options unsafe.Pointer) string {
 	return rv
 }
 
+// Returns the index of the receiver identifying its position relative to its sibling nodes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/index
+func (x_ XMLNode) Index() uint {
+	rv := objc.Send[uint](x_.ID, objc.Sel("index"))
+	return rv
+}
+
+// Returns the kind of node the receiver is as a constant of type .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/kind-swift.property
+func (x_ XMLNode) Kind() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("kind"))
+	return rv
+}
+
+// Returns the nesting level of the receiver within the tree hierarchy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/level
+func (x_ XMLNode) Level() uint {
+	rv := objc.Send[uint](x_.ID, objc.Sel("level"))
+	return rv
+}
+
+// Returns the name of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
+func (x_ XMLNode) Name() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// Returns the name of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
+func (x_ XMLNode) SetName(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// Returns the object value of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
+func (x_ XMLNode) ObjectValue() objc.ID {
+	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectValue"))
+	return rv
+}
+
+
+// SetObjectValue sets the value of the objectValue property.
+// Returns the object value of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
+func (x_ XMLNode) SetObjectValue(value objc.ID) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setObjectValue:"), value)
+}
+
+// Returns the parent node of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/parent
+func (x_ XMLNode) Parent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("parent"))
+	return rv
+}
+
+// Returns the content of the receiver as a string value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
+func (x_ XMLNode) StringValue() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("stringValue"))
+	return rv
+}
+
+
+// SetStringValue sets the value of the stringValue property.
+// Returns the content of the receiver as a string value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
+func (x_ XMLNode) SetStringValue(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:"), objc.String(value))
+}
+
+// Returns the URI associated with the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
+func (x_ XMLNode) URI() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("URI"))
+	return rv
+}
+
+
+// SetURI sets the value of the URI property.
+// Returns the URI associated with the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
+func (x_ XMLNode) SetURI(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setURI:"), objc.String(value))
+}
+
 // Returns the number of child nodes the receiver has.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/childcount
@@ -454,110 +558,6 @@ func (x_ XMLNode) XmlString() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xmlstring
 func (x_ XMLNode) SetXmlString(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setXmlString:"), objc.String(value))
-}
-
-// Returns the index of the receiver identifying its position relative to its sibling nodes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/index
-func (x_ XMLNode) Index() uint {
-	rv := objc.Send[uint](x_.ID, objc.Sel("index"))
-	return rv
-}
-
-// Returns the kind of node the receiver is as a constant of type .
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/kind-swift.property
-func (x_ XMLNode) Kind() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("kind"))
-	return rv
-}
-
-// Returns the nesting level of the receiver within the tree hierarchy.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/level
-func (x_ XMLNode) Level() uint {
-	rv := objc.Send[uint](x_.ID, objc.Sel("level"))
-	return rv
-}
-
-// Returns the name of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
-func (x_ XMLNode) Name() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-// Returns the name of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
-func (x_ XMLNode) SetName(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// Returns the object value of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
-func (x_ XMLNode) ObjectValue() objc.ID {
-	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectValue"))
-	return rv
-}
-
-
-// SetObjectValue sets the value of the objectValue property.
-// Returns the object value of the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
-func (x_ XMLNode) SetObjectValue(value objc.ID) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setObjectValue:"), value)
-}
-
-// Returns the parent node of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/parent
-func (x_ XMLNode) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("parent"))
-	return rv
-}
-
-// Returns the content of the receiver as a string value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
-func (x_ XMLNode) StringValue() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("stringValue"))
-	return rv
-}
-
-
-// SetStringValue sets the value of the stringValue property.
-// Returns the content of the receiver as a string value.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
-func (x_ XMLNode) SetStringValue(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:"), objc.String(value))
-}
-
-// Returns the URI associated with the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
-func (x_ XMLNode) URI() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("URI"))
-	return rv
-}
-
-
-// SetURI sets the value of the URI property.
-// Returns the URI associated with the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
-func (x_ XMLNode) SetURI(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setURI:"), objc.String(value))
 }
 
 

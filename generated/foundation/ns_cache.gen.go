@@ -88,6 +88,24 @@ func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g ui
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKey:cost:"), obj, key, g)
 }
 
+// Whether the cache will automatically evict discardable-content objects whose content has been discarded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
+func (c_ Cache) EvictsObjectsWithDiscardedContent() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("evictsObjectsWithDiscardedContent"))
+	return rv
+}
+
+
+// SetEvictsObjectsWithDiscardedContent sets the value of the evictsObjectsWithDiscardedContent property.
+// Whether the cache will automatically evict discardable-content objects whose content has been discarded.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
+func (c_ Cache) SetEvictsObjectsWithDiscardedContent(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEvictsObjectsWithDiscardedContent:"), value)
+}
+
 // The maximum number of objects the cache should hold.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
@@ -158,24 +176,6 @@ func (c_ Cache) TotalCostLimit() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/totalcostlimit
 func (c_ Cache) SetTotalCostLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTotalCostLimit:"), value)
-}
-
-// Whether the cache will automatically evict discardable-content objects whose content has been discarded.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
-func (c_ Cache) EvictsObjectsWithDiscardedContent() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("evictsObjectsWithDiscardedContent"))
-	return rv
-}
-
-
-// SetEvictsObjectsWithDiscardedContent sets the value of the evictsObjectsWithDiscardedContent property.
-// Whether the cache will automatically evict discardable-content objects whose content has been discarded.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
-func (c_ Cache) SetEvictsObjectsWithDiscardedContent(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEvictsObjectsWithDiscardedContent:"), value)
 }
 
 

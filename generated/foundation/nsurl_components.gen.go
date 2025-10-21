@@ -150,6 +150,40 @@ func (u_ URLComponents) URLRelativeToURL(baseURL URL) URL {
 	return rv
 }
 
+// The host URL subcomponent expressed as a URL-encoded string, or if not present.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
+func (u_ URLComponents) PercentEncodedHost() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedHost"))
+	return rv
+}
+
+
+// SetPercentEncodedHost sets the value of the percentEncodedHost property.
+// The host URL subcomponent expressed as a URL-encoded string, or if not present.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
+func (u_ URLComponents) SetPercentEncodedHost(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), objc.String(value))
+}
+
+// A URL derived from the components object, in string form.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/string
+func (u_ URLComponents) String() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("string"))
+	return rv
+}
+
+// A URL object derived from the components object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/url
+func (u_ URLComponents) URL() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("URL"))
+	return rv
+}
+
 // The host subcomponent, percent-encoded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/encodedhost
@@ -577,40 +611,6 @@ func (u_ URLComponents) User() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/user
 func (u_ URLComponents) SetUser(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUser:"), objc.String(value))
-}
-
-// The host URL subcomponent expressed as a URL-encoded string, or if not present.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
-func (u_ URLComponents) PercentEncodedHost() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedHost"))
-	return rv
-}
-
-
-// SetPercentEncodedHost sets the value of the percentEncodedHost property.
-// The host URL subcomponent expressed as a URL-encoded string, or if not present.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
-func (u_ URLComponents) SetPercentEncodedHost(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), objc.String(value))
-}
-
-// A URL derived from the components object, in string form.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/string
-func (u_ URLComponents) String_() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("string"))
-	return rv
-}
-
-// A URL object derived from the components object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/url
-func (u_ URLComponents) URL() URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("URL"))
-	return rv
 }
 
 

@@ -199,6 +199,82 @@ func (t_ TimeZone) NextDaylightSavingTimeTransitionAfterDate(aDate unsafe.Pointe
 	return rv
 }
 
+// Returns a dictionary holding the mappings of time zone abbreviations to time zone names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviationDictionary
+func (t_ TimeZone) AbbreviationDictionary() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("abbreviationDictionary"))
+	return rv
+}
+
+
+// SetAbbreviationDictionary sets the value of the abbreviationDictionary property.
+// Returns a dictionary holding the mappings of time zone abbreviations to time zone names.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviationDictionary
+func (t_ TimeZone) SetAbbreviationDictionary(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAbbreviationDictionary:"), value)
+}
+
+// The data that stores the information used by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/data
+func (t_ TimeZone) Data() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("data"))
+	return rv
+}
+
+// The default time zone for the current app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/default
+func (t_ TimeZone) DefaultTimeZone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("defaultTimeZone"))
+	return rv
+}
+
+
+// SetDefaultTimeZone sets the value of the defaultTimeZone property.
+// The default time zone for the current app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/default
+func (t_ TimeZone) SetDefaultTimeZone(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultTimeZone:"), value)
+}
+
+// A textual description of the time zone including the name, abbreviation, offset from GMT, and whether or not daylight saving time is currently in effect.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/description
+func (t_ TimeZone) Description() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("description"))
+	return rv
+}
+
+// An object that tracks the current system time zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/local
+func (t_ TimeZone) LocalTimeZone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("localTimeZone"))
+	return rv
+}
+
+// The geopolitical region ID that identifies the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/name
+func (t_ TimeZone) Name() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("name"))
+	return rv
+}
+
+// The time zone currently used by the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/system
+func (t_ TimeZone) SystemTimeZone() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("systemTimeZone"))
+	return rv
+}
+
 // The abbreviation for the receiver, such as “EDT” (Eastern Daylight Time).
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/abbreviation
@@ -287,82 +363,6 @@ func (t_ TimeZone) SecondsFromGMT() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/secondsfromgmt
 func (t_ TimeZone) SetSecondsFromGMT(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSecondsFromGMT:"), value)
-}
-
-// Returns a dictionary holding the mappings of time zone abbreviations to time zone names.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviationDictionary
-func (t_ TimeZone) AbbreviationDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("abbreviationDictionary"))
-	return rv
-}
-
-
-// SetAbbreviationDictionary sets the value of the abbreviationDictionary property.
-// Returns a dictionary holding the mappings of time zone abbreviations to time zone names.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviationDictionary
-func (t_ TimeZone) SetAbbreviationDictionary(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAbbreviationDictionary:"), value)
-}
-
-// The data that stores the information used by the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/data
-func (t_ TimeZone) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("data"))
-	return rv
-}
-
-// The default time zone for the current app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/default
-func (t_ TimeZone) DefaultTimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("defaultTimeZone"))
-	return rv
-}
-
-
-// SetDefaultTimeZone sets the value of the defaultTimeZone property.
-// The default time zone for the current app.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/default
-func (t_ TimeZone) SetDefaultTimeZone(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultTimeZone:"), value)
-}
-
-// A textual description of the time zone including the name, abbreviation, offset from GMT, and whether or not daylight saving time is currently in effect.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/description
-func (t_ TimeZone) Description() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("description"))
-	return rv
-}
-
-// An object that tracks the current system time zone.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/local
-func (t_ TimeZone) LocalTimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("localTimeZone"))
-	return rv
-}
-
-// The geopolitical region ID that identifies the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/name
-func (t_ TimeZone) Name() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("name"))
-	return rv
-}
-
-// The time zone currently used by the system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/system
-func (t_ TimeZone) SystemTimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("systemTimeZone"))
-	return rv
 }
 
 

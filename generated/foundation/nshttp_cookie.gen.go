@@ -80,6 +80,14 @@ func NewHTTPCookie() HTTPCookie {
 }
 
 
+// The cookie’s properties.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/properties
+func (h_ HTTPCookie) Properties() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("properties"))
+	return rv
+}
+
 // The cookie’s comment string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/comment
@@ -312,14 +320,6 @@ func (h_ HTTPCookie) Version() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/version
 func (h_ HTTPCookie) SetVersion(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), value)
-}
-
-// The cookie’s properties.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/properties
-func (h_ HTTPCookie) Properties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("properties"))
-	return rv
 }
 
 

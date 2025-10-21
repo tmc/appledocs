@@ -620,129 +620,6 @@ func (u_ URL) WriteToPasteboard(pasteBoard unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("writeToPasteboard:"), pasteBoard)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/customplaygroundquicklook
-func (u_ URL) CustomPlaygroundQuickLook() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("customPlaygroundQuickLook"))
-	return rv
-}
-
-
-// SetCustomPlaygroundQuickLook sets the value of the customPlaygroundQuickLook property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/customplaygroundquicklook
-func (u_ URL) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
-}
-
-// A URL you create by removing the last path component from the receiver. (read-only)
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletinglastpathcomponent
-func (u_ URL) DeletingLastPathComponent() URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("deletingLastPathComponent"))
-	return rv
-}
-
-
-// SetDeletingLastPathComponent sets the value of the deletingLastPathComponent property.
-// A URL you create by removing the last path component from the receiver. (read-only)
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletinglastpathcomponent
-func (u_ URL) SetDeletingLastPathComponent(value URL) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletingLastPathComponent:"), value)
-}
-
-// A URL you create by removing the path extension from the receiver, if any. (read-only)
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletingpathextension
-func (u_ URL) DeletingPathExtension() URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("deletingPathExtension"))
-	return rv
-}
-
-
-// SetDeletingPathExtension sets the value of the deletingPathExtension property.
-// A URL you create by removing the path extension from the receiver, if any. (read-only)
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletingpathextension
-func (u_ URL) SetDeletingPathExtension(value URL) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletingPathExtension:"), value)
-}
-
-// A boolean value that determines whether the receiver is a file URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/isfileurl
-func (u_ URL) IsFileURL() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("isFileURL"))
-	return rv
-}
-
-
-// SetIsFileURL sets the value of the isFileURL property.
-// A boolean value that determines whether the receiver is a file URL.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/isfileurl
-func (u_ URL) SetIsFileURL(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIsFileURL:"), value)
-}
-
-// A URL that points to the same resource as the receiver and includes no symbolic links. (read-only)
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/resolvingsymlinksinpath
-func (u_ URL) ResolvingSymlinksInPath() URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("resolvingSymlinksInPath"))
-	return rv
-}
-
-
-// SetResolvingSymlinksInPath sets the value of the resolvingSymlinksInPath property.
-// A URL that points to the same resource as the receiver and includes no symbolic links. (read-only)
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/resolvingsymlinksinpath
-func (u_ URL) SetResolvingSymlinksInPath(value URL) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setResolvingSymlinksInPath:"), value)
-}
-
-// A copy of the URL with any instances of
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardized
-func (u_ URL) Standardized() URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("standardized"))
-	return rv
-}
-
-
-// SetStandardized sets the value of the standardized property.
-// A copy of the URL with any instances of
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardized
-func (u_ URL) SetStandardized(value URL) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardized:"), value)
-}
-
-// A URL that points to the same resource as the original URL using an absolute path. (read-only)
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardizingpath
-func (u_ URL) StandardizingPath() URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("standardizingPath"))
-	return rv
-}
-
-
-// SetStandardizingPath sets the value of the standardizingPath property.
-// A URL that points to the same resource as the original URL using an absolute path. (read-only)
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardizingpath
-func (u_ URL) SetStandardizingPath(value URL) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardizingPath:"), value)
-}
-
 // The URL string for the receiver as an absolute URL. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/absoluteString
@@ -964,6 +841,129 @@ func (u_ URL) URLByStandardizingPath() URL {
 func (u_ URL) User() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("user"))
 	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/customplaygroundquicklook
+func (u_ URL) CustomPlaygroundQuickLook() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("customPlaygroundQuickLook"))
+	return rv
+}
+
+
+// SetCustomPlaygroundQuickLook sets the value of the customPlaygroundQuickLook property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/customplaygroundquicklook
+func (u_ URL) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
+}
+
+// A URL you create by removing the last path component from the receiver. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletinglastpathcomponent
+func (u_ URL) DeletingLastPathComponent() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("deletingLastPathComponent"))
+	return rv
+}
+
+
+// SetDeletingLastPathComponent sets the value of the deletingLastPathComponent property.
+// A URL you create by removing the last path component from the receiver. (read-only)
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletinglastpathcomponent
+func (u_ URL) SetDeletingLastPathComponent(value URL) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletingLastPathComponent:"), value)
+}
+
+// A URL you create by removing the path extension from the receiver, if any. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletingpathextension
+func (u_ URL) DeletingPathExtension() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("deletingPathExtension"))
+	return rv
+}
+
+
+// SetDeletingPathExtension sets the value of the deletingPathExtension property.
+// A URL you create by removing the path extension from the receiver, if any. (read-only)
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletingpathextension
+func (u_ URL) SetDeletingPathExtension(value URL) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletingPathExtension:"), value)
+}
+
+// A boolean value that determines whether the receiver is a file URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/isfileurl
+func (u_ URL) IsFileURL() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isFileURL"))
+	return rv
+}
+
+
+// SetIsFileURL sets the value of the isFileURL property.
+// A boolean value that determines whether the receiver is a file URL.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/isfileurl
+func (u_ URL) SetIsFileURL(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsFileURL:"), value)
+}
+
+// A URL that points to the same resource as the receiver and includes no symbolic links. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/resolvingsymlinksinpath
+func (u_ URL) ResolvingSymlinksInPath() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("resolvingSymlinksInPath"))
+	return rv
+}
+
+
+// SetResolvingSymlinksInPath sets the value of the resolvingSymlinksInPath property.
+// A URL that points to the same resource as the receiver and includes no symbolic links. (read-only)
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/resolvingsymlinksinpath
+func (u_ URL) SetResolvingSymlinksInPath(value URL) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setResolvingSymlinksInPath:"), value)
+}
+
+// A copy of the URL with any instances of
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardized
+func (u_ URL) Standardized() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("standardized"))
+	return rv
+}
+
+
+// SetStandardized sets the value of the standardized property.
+// A copy of the URL with any instances of
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardized
+func (u_ URL) SetStandardized(value URL) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardized:"), value)
+}
+
+// A URL that points to the same resource as the original URL using an absolute path. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardizingpath
+func (u_ URL) StandardizingPath() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("standardizingPath"))
+	return rv
+}
+
+
+// SetStandardizingPath sets the value of the standardizingPath property.
+// A URL that points to the same resource as the original URL using an absolute path. (read-only)
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardizingpath
+func (u_ URL) SetStandardizingPath(value URL) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardizingPath:"), value)
 }
 
 

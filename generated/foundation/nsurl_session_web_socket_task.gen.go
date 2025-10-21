@@ -113,6 +113,40 @@ func (u_ URLSessionWebSocketTask) SendPingWithPongReceiveHandler(pongReceiveHand
 	objc.Send[objc.ID](u_.ID, objc.Sel("sendPingWithPongReceiveHandler:"), pongReceiveHandler)
 }
 
+// A code that indicates the reason a connection closed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/closeCode-swift.property
+func (u_ URLSessionWebSocketTask) CloseCode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("closeCode"))
+	return rv
+}
+
+// A block of data that provides further information about why a connection closed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/closeReason
+func (u_ URLSessionWebSocketTask) CloseReason() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("closeReason"))
+	return rv
+}
+
+// The maximum number of bytes to buffer before the receive call fails with an error.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/maximumMessageSize
+func (u_ URLSessionWebSocketTask) MaximumMessageSize() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("maximumMessageSize"))
+	return rv
+}
+
+
+// SetMaximumMessageSize sets the value of the maximumMessageSize property.
+// The maximum number of bytes to buffer before the receive call fails with an error.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/maximumMessageSize
+func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setMaximumMessageSize:"), value)
+}
+
 // The delegate assigned when this object was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/delegate
@@ -147,40 +181,6 @@ func (u_ URLSessionWebSocketTask) HttpCookieStorage() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
 func (u_ URLSessionWebSocketTask) SetHttpCookieStorage(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpCookieStorage:"), value)
-}
-
-// A code that indicates the reason a connection closed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/closeCode-swift.property
-func (u_ URLSessionWebSocketTask) CloseCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("closeCode"))
-	return rv
-}
-
-// A block of data that provides further information about why a connection closed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/closeReason
-func (u_ URLSessionWebSocketTask) CloseReason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("closeReason"))
-	return rv
-}
-
-// The maximum number of bytes to buffer before the receive call fails with an error.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/maximumMessageSize
-func (u_ URLSessionWebSocketTask) MaximumMessageSize() int {
-	rv := objc.Send[int](u_.ID, objc.Sel("maximumMessageSize"))
-	return rv
-}
-
-
-// SetMaximumMessageSize sets the value of the maximumMessageSize property.
-// The maximum number of bytes to buffer before the receive call fails with an error.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/maximumMessageSize
-func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setMaximumMessageSize:"), value)
 }
 
 

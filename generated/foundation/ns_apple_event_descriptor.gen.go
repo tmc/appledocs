@@ -151,6 +151,21 @@ func (a_ AppleEventDescriptor) RemoveDescriptorWithKeyword(keyword unsafe.Pointe
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeDescriptorWithKeyword:"), keyword)
 }
 
+// The structure encapsulated by the receiver, if it has one.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/aeDesc
+func (a_ AppleEventDescriptor) AeDesc() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("aeDesc"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/doubleValue
+func (a_ AppleEventDescriptor) DoubleValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("doubleValue"))
+	return rv
+}
+
 // The contents of the receiver as a Boolean value, coercing (to
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/booleanvalue
@@ -410,21 +425,6 @@ func (a_ AppleEventDescriptor) TypeCodeValue() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/typecodevalue
 func (a_ AppleEventDescriptor) SetTypeCodeValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTypeCodeValue:"), value)
-}
-
-// The structure encapsulated by the receiver, if it has one.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/aeDesc
-func (a_ AppleEventDescriptor) AeDesc() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("aeDesc"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/doubleValue
-func (a_ AppleEventDescriptor) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("doubleValue"))
-	return rv
 }
 
 

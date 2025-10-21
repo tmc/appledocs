@@ -115,6 +115,14 @@ func (o_ OrderedSet) ObjectAtIndex(idx uint) unsafe.Pointer {
 	return rv
 }
 
+// The last object in the ordered set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/lastObject
+func (o_ OrderedSet) LastObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("lastObject"))
+	return rv
+}
+
 // A representation of the ordered set as an array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/array
@@ -221,14 +229,6 @@ func (o_ OrderedSet) Set() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/set
 func (o_ OrderedSet) SetSet(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSet:"), value)
-}
-
-// The last object in the ordered set.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/lastObject
-func (o_ OrderedSet) LastObject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("lastObject"))
-	return rv
 }
 
 

@@ -81,6 +81,29 @@ func NewFileVersion() FileVersion {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/hasLocalContents
+func (f_ FileVersion) HasLocalContents() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("hasLocalContents"))
+	return rv
+}
+
+// The identifier for this version of the file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/persistentIdentifier
+func (f_ FileVersion) PersistentIdentifier() objc.ID {
+	rv := objc.Send[objc.ID](f_.ID, objc.Sel("persistentIdentifier"))
+	return rv
+}
+
+// The URL identifying the location of the file associated with the file version object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/url
+func (f_ FileVersion) URL() URL {
+	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
+	return rv
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
 func (f_ FileVersion) HasThumbnail() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasThumbnail"))
@@ -216,29 +239,6 @@ func (f_ FileVersion) OriginatorNameComponents() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
 func (f_ FileVersion) SetOriginatorNameComponents(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOriginatorNameComponents:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/hasLocalContents
-func (f_ FileVersion) HasLocalContents() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("hasLocalContents"))
-	return rv
-}
-
-// The identifier for this version of the file.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/persistentIdentifier
-func (f_ FileVersion) PersistentIdentifier() objc.ID {
-	rv := objc.Send[objc.ID](f_.ID, objc.Sel("persistentIdentifier"))
-	return rv
-}
-
-// The URL identifying the location of the file associated with the file version object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/url
-func (f_ FileVersion) URL() URL {
-	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
-	return rv
 }
 
 

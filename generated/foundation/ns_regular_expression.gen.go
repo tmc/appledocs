@@ -145,19 +145,19 @@ func (r_ RegularExpression) SetPattern(value string) {
 // Returns the range of the result that the receiver represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-func (r_ RegularExpression) Range_() Range {
+func (r_ RegularExpression) Range() Range {
 	rv := objc.Send[Range](r_.ID, objc.Sel("range"))
 	return rv
 }
 
 
-// SetRange_ sets the value of the range property.
+// SetRange sets the value of the range property.
 // Returns the range of the result that the receiver represents.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-func (r_ RegularExpression) SetRange_(value Range) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRange_:"), value)
+func (r_ RegularExpression) SetRange(value Range) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRange:"), value)
 }
 
 

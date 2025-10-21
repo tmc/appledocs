@@ -115,6 +115,14 @@ func (h_ HashTable) AddObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("addObject:"), object)
 }
 
+// The number of elements in the hash table.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/count
+func (h_ HashTable) Count() uint {
+	rv := objc.Send[uint](h_.ID, objc.Sel("count"))
+	return rv
+}
+
 // The hash table’s members.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
@@ -185,14 +193,6 @@ func (h_ HashTable) SetRepresentation() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/setrepresentation
 func (h_ HashTable) SetSetRepresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSetRepresentation:"), value)
-}
-
-// The number of elements in the hash table.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/count
-func (h_ HashTable) Count() uint {
-	rv := objc.Send[uint](h_.ID, objc.Sel("count"))
-	return rv
 }
 
 

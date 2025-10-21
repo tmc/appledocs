@@ -116,6 +116,32 @@ func (f_ FileWrapper) WriteToFileAtomicallyUpdateFilenames(path string, atomicFl
 	return rv
 }
 
+// The filename of the file wrapper object
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
+func (f_ FileWrapper) Filename() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("filename"))
+	return rv
+}
+
+
+// SetFilename sets the value of the filename property.
+// The filename of the file wrapper object
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
+func (f_ FileWrapper) SetFilename(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), objc.String(value))
+}
+
+// The contents of the file wrapper as an opaque data object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/serializedRepresentation
+func (f_ FileWrapper) SerializedRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("serializedRepresentation"))
+	return rv
+}
+
 // A dictionary of file attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/fileattributes
@@ -276,32 +302,6 @@ func (f_ FileWrapper) SymbolicLinkDestinationURL() URL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/symboliclinkdestinationurl
 func (f_ FileWrapper) SetSymbolicLinkDestinationURL(value URL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSymbolicLinkDestinationURL:"), value)
-}
-
-// The filename of the file wrapper object
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-func (f_ FileWrapper) Filename() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("filename"))
-	return rv
-}
-
-
-// SetFilename sets the value of the filename property.
-// The filename of the file wrapper object
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-func (f_ FileWrapper) SetFilename(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), objc.String(value))
-}
-
-// The contents of the file wrapper as an opaque data object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/serializedRepresentation
-func (f_ FileWrapper) SerializedRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("serializedRepresentation"))
-	return rv
 }
 
 

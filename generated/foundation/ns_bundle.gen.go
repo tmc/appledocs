@@ -526,158 +526,6 @@ func (b_ Bundle) LocalizedStringForKeyValueTableLocalizations(key string, value 
 	return rv
 }
 
-// The load status of a bundle.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/isloaded
-func (b_ Bundle) IsLoaded() bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("isLoaded"))
-	return rv
-}
-
-
-// SetIsLoaded sets the value of the isLoaded property.
-// The load status of a bundle.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/isloaded
-func (b_ Bundle) SetIsLoaded(value bool) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLoaded:"), value)
-}
-
-// The executable doesn’t provide an architecture compatible with the current process.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-swift.var
-func (b_ Bundle) NSExecutableArchitectureMismatchError() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableArchitectureMismatchError"))
-	return rv
-}
-
-
-// SetNSExecutableArchitectureMismatchError sets the value of the NSExecutableArchitectureMismatchError property.
-// The executable doesn’t provide an architecture compatible with the current process.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-swift.var
-func (b_ Bundle) SetNSExecutableArchitectureMismatchError(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableArchitectureMismatchError:"), value)
-}
-
-// The end of the range of error codes reserved for errors related to executable files.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-swift.var
-func (b_ Bundle) NSExecutableErrorMaximum() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableErrorMaximum"))
-	return rv
-}
-
-
-// SetNSExecutableErrorMaximum sets the value of the NSExecutableErrorMaximum property.
-// The end of the range of error codes reserved for errors related to executable files.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-swift.var
-func (b_ Bundle) SetNSExecutableErrorMaximum(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableErrorMaximum:"), value)
-}
-
-// The beginning of the range of error codes reserved for errors related to executable files.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-swift.var
-func (b_ Bundle) NSExecutableErrorMinimum() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableErrorMinimum"))
-	return rv
-}
-
-
-// SetNSExecutableErrorMinimum sets the value of the NSExecutableErrorMinimum property.
-// The beginning of the range of error codes reserved for errors related to executable files.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-swift.var
-func (b_ Bundle) SetNSExecutableErrorMinimum(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableErrorMinimum:"), value)
-}
-
-// The executable failed due to linking issues.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-swift.var
-func (b_ Bundle) NSExecutableLinkError() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableLinkError"))
-	return rv
-}
-
-
-// SetNSExecutableLinkError sets the value of the NSExecutableLinkError property.
-// The executable failed due to linking issues.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-swift.var
-func (b_ Bundle) SetNSExecutableLinkError(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableLinkError:"), value)
-}
-
-// Executable cannot be loaded for an otherwise-unspecified reason.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableloaderror-swift.var
-func (b_ Bundle) NSExecutableLoadError() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableLoadError"))
-	return rv
-}
-
-
-// SetNSExecutableLoadError sets the value of the NSExecutableLoadError property.
-// Executable cannot be loaded for an otherwise-unspecified reason.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableloaderror-swift.var
-func (b_ Bundle) SetNSExecutableLoadError(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableLoadError:"), value)
-}
-
-// The executable type isn’t loadable in the current process.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-swift.var
-func (b_ Bundle) NSExecutableNotLoadableError() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableNotLoadableError"))
-	return rv
-}
-
-
-// SetNSExecutableNotLoadableError sets the value of the NSExecutableNotLoadableError property.
-// The executable type isn’t loadable in the current process.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-swift.var
-func (b_ Bundle) SetNSExecutableNotLoadableError(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableNotLoadableError:"), value)
-}
-
-// The executable has Objective-C runtime information that’s incompatible with the current process.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-swift.var
-func (b_ Bundle) NSExecutableRuntimeMismatchError() int {
-	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableRuntimeMismatchError"))
-	return rv
-}
-
-
-// SetNSExecutableRuntimeMismatchError sets the value of the NSExecutableRuntimeMismatchError property.
-// The executable has Objective-C runtime information that’s incompatible with the current process.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-swift.var
-func (b_ Bundle) SetNSExecutableRuntimeMismatchError(value int) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableRuntimeMismatchError:"), value)
-}
-
-// A constant used as a key for the
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsloadedclasses
-func (b_ Bundle) NSLoadedClasses() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("NSLoadedClasses"))
-	return rv
-}
-
 // Returns an array of all the application’s non-framework bundles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/allBundles
@@ -891,6 +739,158 @@ func (b_ Bundle) SharedSupportPath() string {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/sharedSupportURL
 func (b_ Bundle) SharedSupportURL() URL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("sharedSupportURL"))
+	return rv
+}
+
+// The load status of a bundle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/isloaded
+func (b_ Bundle) IsLoaded() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isLoaded"))
+	return rv
+}
+
+
+// SetIsLoaded sets the value of the isLoaded property.
+// The load status of a bundle.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/isloaded
+func (b_ Bundle) SetIsLoaded(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLoaded:"), value)
+}
+
+// The executable doesn’t provide an architecture compatible with the current process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-swift.var
+func (b_ Bundle) NSExecutableArchitectureMismatchError() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableArchitectureMismatchError"))
+	return rv
+}
+
+
+// SetNSExecutableArchitectureMismatchError sets the value of the NSExecutableArchitectureMismatchError property.
+// The executable doesn’t provide an architecture compatible with the current process.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-swift.var
+func (b_ Bundle) SetNSExecutableArchitectureMismatchError(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableArchitectureMismatchError:"), value)
+}
+
+// The end of the range of error codes reserved for errors related to executable files.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-swift.var
+func (b_ Bundle) NSExecutableErrorMaximum() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableErrorMaximum"))
+	return rv
+}
+
+
+// SetNSExecutableErrorMaximum sets the value of the NSExecutableErrorMaximum property.
+// The end of the range of error codes reserved for errors related to executable files.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-swift.var
+func (b_ Bundle) SetNSExecutableErrorMaximum(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableErrorMaximum:"), value)
+}
+
+// The beginning of the range of error codes reserved for errors related to executable files.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-swift.var
+func (b_ Bundle) NSExecutableErrorMinimum() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableErrorMinimum"))
+	return rv
+}
+
+
+// SetNSExecutableErrorMinimum sets the value of the NSExecutableErrorMinimum property.
+// The beginning of the range of error codes reserved for errors related to executable files.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-swift.var
+func (b_ Bundle) SetNSExecutableErrorMinimum(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableErrorMinimum:"), value)
+}
+
+// The executable failed due to linking issues.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-swift.var
+func (b_ Bundle) NSExecutableLinkError() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableLinkError"))
+	return rv
+}
+
+
+// SetNSExecutableLinkError sets the value of the NSExecutableLinkError property.
+// The executable failed due to linking issues.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-swift.var
+func (b_ Bundle) SetNSExecutableLinkError(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableLinkError:"), value)
+}
+
+// Executable cannot be loaded for an otherwise-unspecified reason.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableloaderror-swift.var
+func (b_ Bundle) NSExecutableLoadError() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableLoadError"))
+	return rv
+}
+
+
+// SetNSExecutableLoadError sets the value of the NSExecutableLoadError property.
+// Executable cannot be loaded for an otherwise-unspecified reason.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableloaderror-swift.var
+func (b_ Bundle) SetNSExecutableLoadError(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableLoadError:"), value)
+}
+
+// The executable type isn’t loadable in the current process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-swift.var
+func (b_ Bundle) NSExecutableNotLoadableError() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableNotLoadableError"))
+	return rv
+}
+
+
+// SetNSExecutableNotLoadableError sets the value of the NSExecutableNotLoadableError property.
+// The executable type isn’t loadable in the current process.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-swift.var
+func (b_ Bundle) SetNSExecutableNotLoadableError(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableNotLoadableError:"), value)
+}
+
+// The executable has Objective-C runtime information that’s incompatible with the current process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-swift.var
+func (b_ Bundle) NSExecutableRuntimeMismatchError() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableRuntimeMismatchError"))
+	return rv
+}
+
+
+// SetNSExecutableRuntimeMismatchError sets the value of the NSExecutableRuntimeMismatchError property.
+// The executable has Objective-C runtime information that’s incompatible with the current process.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-swift.var
+func (b_ Bundle) SetNSExecutableRuntimeMismatchError(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableRuntimeMismatchError:"), value)
+}
+
+// A constant used as a key for the
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsloadedclasses
+func (b_ Bundle) NSLoadedClasses() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("NSLoadedClasses"))
 	return rv
 }
 

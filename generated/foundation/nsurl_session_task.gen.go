@@ -105,14 +105,6 @@ func (u_ URLSessionTask) Suspend() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("suspend"))
 }
 
-// The total size of the transfer cannot be determined.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlsessiontransfersizeunknown
-func (u_ URLSessionTask) NSURLSessionTransferSizeUnknown() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("NSURLSessionTransferSizeUnknown"))
-	return rv
-}
-
 // A best-guess upper bound on the number of bytes the client expects to receive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesClientExpectsToReceive
@@ -228,7 +220,7 @@ func (u_ URLSessionTask) SetEarliestBeginDate(value unsafe.Pointer) {
 // An error object that indicates why the task failed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/error
-func (u_ URLSessionTask) Error_() unsafe.Pointer {
+func (u_ URLSessionTask) Error() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("error"))
 	return rv
 }
@@ -324,6 +316,14 @@ func (u_ URLSessionTask) SetTaskDescription(value string) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskIdentifier
 func (u_ URLSessionTask) TaskIdentifier() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("taskIdentifier"))
+	return rv
+}
+
+// The total size of the transfer cannot be determined.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlsessiontransfersizeunknown
+func (u_ URLSessionTask) NSURLSessionTransferSizeUnknown() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("NSURLSessionTransferSizeUnknown"))
 	return rv
 }
 

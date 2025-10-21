@@ -80,6 +80,14 @@ func NewURLQueryItem() URLQueryItem {
 }
 
 
+// The value for the query item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value
+func (u_ URLQueryItem) Value() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("value"))
+	return rv
+}
+
 // The query URL component as an array of name/value pairs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
@@ -114,14 +122,6 @@ func (u_ URLQueryItem) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
 func (u_ URLQueryItem) SetName(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-// The value for the query item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value
-func (u_ URLQueryItem) Value() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("value"))
-	return rv
 }
 
 

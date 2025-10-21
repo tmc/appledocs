@@ -114,6 +114,22 @@ func (o_ OrderedCollectionDifference) InverseDifference() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean value that indicates if the difference has changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/hasChanges
+func (o_ OrderedCollectionDifference) HasChanges() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("hasChanges"))
+	return rv
+}
+
+// A collection of removal change objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/removals
+func (o_ OrderedCollectionDifference) Removals() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](o_.ID, objc.Sel("removals"))
+	return rv
+}
+
 // A collection of insertion change objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference/insertions
@@ -130,22 +146,6 @@ func (o_ OrderedCollectionDifference) Insertions() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference/insertions
 func (o_ OrderedCollectionDifference) SetInsertions(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setInsertions:"), value)
-}
-
-// A Boolean value that indicates if the difference has changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/hasChanges
-func (o_ OrderedCollectionDifference) HasChanges() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("hasChanges"))
-	return rv
-}
-
-// A collection of removal change objects.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/removals
-func (o_ OrderedCollectionDifference) Removals() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](o_.ID, objc.Sel("removals"))
-	return rv
 }
 
 

@@ -117,6 +117,14 @@ func (b_ BundleResourceRequest) EndAccessingResources() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("endAccessingResources"))
 }
 
+// A reference to the progress object associated with the specified resource request. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/progress
+func (b_ BundleResourceRequest) Progress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("progress"))
+	return rv
+}
+
 // The end of the range of error codes reserved for bundle errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrormaximum-swift.var
@@ -265,14 +273,6 @@ func (b_ BundleResourceRequest) SetTags(value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent
 func (b_ BundleResourceRequest) NSBundleResourceRequestLoadingPriorityUrgent() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("NSBundleResourceRequestLoadingPriorityUrgent"))
-	return rv
-}
-
-// A reference to the progress object associated with the specified resource request. (read-only)
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/progress
-func (b_ BundleResourceRequest) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("progress"))
 	return rv
 }
 

@@ -393,6 +393,38 @@ func (f_ FileHandle) SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, 
 	return rv
 }
 
+// The file handle associated with a null device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/nullDevice
+func (f_ FileHandle) FileHandleWithNullDevice() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileHandleWithNullDevice"))
+	return rv
+}
+
+// The position of the file pointer within the file represented by the file handle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/offsetInFile
+func (f_ FileHandle) OffsetInFile() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("offsetInFile"))
+	return rv
+}
+
+// The file handle associated with the standard error file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardError
+func (f_ FileHandle) FileHandleWithStandardError() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileHandleWithStandardError"))
+	return rv
+}
+
+// The file handle associated with the standard input file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardInput
+func (f_ FileHandle) FileHandleWithStandardInput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileHandleWithStandardInput"))
+	return rv
+}
+
 // The data currently available in the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
@@ -452,38 +484,6 @@ func (f_ FileHandle) SetFileDescriptor(value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes
 func (f_ FileHandle) NSFileHandleNotificationMonitorModes() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("NSFileHandleNotificationMonitorModes"))
-	return rv
-}
-
-// The file handle associated with a null device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/nullDevice
-func (f_ FileHandle) FileHandleWithNullDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileHandleWithNullDevice"))
-	return rv
-}
-
-// The position of the file pointer within the file represented by the file handle.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/offsetInFile
-func (f_ FileHandle) OffsetInFile() uint64 {
-	rv := objc.Send[uint64](f_.ID, objc.Sel("offsetInFile"))
-	return rv
-}
-
-// The file handle associated with the standard error file.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardError
-func (f_ FileHandle) FileHandleWithStandardError() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileHandleWithStandardError"))
-	return rv
-}
-
-// The file handle associated with the standard input file.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardInput
-func (f_ FileHandle) FileHandleWithStandardInput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileHandleWithStandardInput"))
 	return rv
 }
 

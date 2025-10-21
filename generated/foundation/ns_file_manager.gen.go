@@ -712,32 +712,6 @@ func (f_ FileManager) RemoveFileAtPathHandler(path string, handler objc.ID) bool
 	return rv
 }
 
-// The process identifier of the process that prevented a volume from unmounting.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilemanagerunmountdissentingprocessidentifiererrorkey
-func (f_ FileManager) NSFileManagerUnmountDissentingProcessIdentifierErrorKey() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("NSFileManagerUnmountDissentingProcessIdentifierErrorKey"))
-	return rv
-}
-
-// The version of the Foundation framework in which
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport
-func (f_ FileManager) NSFoundationVersionWithFileManagerResourceForkSupport() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("NSFoundationVersionWithFileManagerResourceForkSupport"))
-	return rv
-}
-
-
-// SetNSFoundationVersionWithFileManagerResourceForkSupport sets the value of the NSFoundationVersionWithFileManagerResourceForkSupport property.
-// The version of the Foundation framework in which
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport
-func (f_ FileManager) SetNSFoundationVersionWithFileManagerResourceForkSupport(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setNSFoundationVersionWithFileManagerResourceForkSupport:"), value)
-}
-
 // The path to the program’s current directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/currentDirectoryPath
@@ -794,6 +768,32 @@ func (f_ FileManager) TemporaryDirectory() URL {
 func (f_ FileManager) UbiquityIdentityToken() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("ubiquityIdentityToken"))
 	return rv
+}
+
+// The process identifier of the process that prevented a volume from unmounting.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilemanagerunmountdissentingprocessidentifiererrorkey
+func (f_ FileManager) NSFileManagerUnmountDissentingProcessIdentifierErrorKey() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("NSFileManagerUnmountDissentingProcessIdentifierErrorKey"))
+	return rv
+}
+
+// The version of the Foundation framework in which
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport
+func (f_ FileManager) NSFoundationVersionWithFileManagerResourceForkSupport() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("NSFoundationVersionWithFileManagerResourceForkSupport"))
+	return rv
+}
+
+
+// SetNSFoundationVersionWithFileManagerResourceForkSupport sets the value of the NSFoundationVersionWithFileManagerResourceForkSupport property.
+// The version of the Foundation framework in which
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport
+func (f_ FileManager) SetNSFoundationVersionWithFileManagerResourceForkSupport(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setNSFoundationVersionWithFileManagerResourceForkSupport:"), value)
 }
 
 

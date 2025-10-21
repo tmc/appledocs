@@ -171,6 +171,135 @@ func (p_ ProcessInfo) PerformExpiringActivityWithReasonUsingBlock(reason string,
 	objc.Send[objc.ID](p_.ID, objc.Sel("performExpiringActivityWithReason:usingBlock:"), objc.String(reason), block)
 }
 
+// The number of active processing cores available on the computer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/activeProcessorCount
+func (p_ ProcessInfo) ActiveProcessorCount() uint {
+	rv := objc.Send[uint](p_.ID, objc.Sel("activeProcessorCount"))
+	return rv
+}
+
+// Array of strings with the command-line arguments for the process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/arguments
+func (p_ ProcessInfo) Arguments() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("arguments"))
+	return rv
+}
+
+// The variable names (keys) and their values in the environment from which the process was launched.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/environment
+func (p_ ProcessInfo) Environment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("environment"))
+	return rv
+}
+
+// Returns the full name of the current user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/fullUserName
+func (p_ ProcessInfo) FullUserName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("fullUserName"))
+	return rv
+}
+
+// Global unique identifier for the process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/globallyUniqueString
+func (p_ ProcessInfo) GloballyUniqueString() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("globallyUniqueString"))
+	return rv
+}
+
+// A Boolean value that indicates the current state of Low Power Mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isLowPowerModeEnabled
+func (p_ ProcessInfo) LowPowerModeEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("lowPowerModeEnabled"))
+	return rv
+}
+
+// A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isMacCatalystApp
+func (p_ ProcessInfo) MacCatalystApp() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("macCatalystApp"))
+	return rv
+}
+
+// A Boolean value that indicates whether the process is an iPhone or iPad app running on a Mac.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isiOSAppOnMac
+func (p_ ProcessInfo) IOSAppOnMac() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("iOSAppOnMac"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isiOSAppOnVision
+func (p_ ProcessInfo) IOSAppOnVision() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("iOSAppOnVision"))
+	return rv
+}
+
+// A string containing the version of the operating system on which the process is executing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/operatingSystemVersionString
+func (p_ ProcessInfo) OperatingSystemVersionString() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("operatingSystemVersionString"))
+	return rv
+}
+
+// The amount of physical memory on the computer in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/physicalMemory
+func (p_ ProcessInfo) PhysicalMemory() uint64 {
+	rv := objc.Send[uint64](p_.ID, objc.Sel("physicalMemory"))
+	return rv
+}
+
+// The identifier of the process (often called process ID).
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processIdentifier
+func (p_ ProcessInfo) ProcessIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("processIdentifier"))
+	return rv
+}
+
+// Returns the process information agent for the process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processInfo
+func (p_ ProcessInfo) ProcessInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("processInfo"))
+	return rv
+}
+
+// The name of the process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processName
+func (p_ ProcessInfo) ProcessName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("processName"))
+	return rv
+}
+
+
+// SetProcessName sets the value of the processName property.
+// The name of the process.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processName
+func (p_ ProcessInfo) SetProcessName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessName:"), objc.String(value))
+}
+
+// The amount of time the system has been awake since the last time it was restarted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/systemUptime
+func (p_ ProcessInfo) SystemUptime() TimeInterval {
+	rv := objc.Send[TimeInterval](p_.ID, objc.Sel("systemUptime"))
+	return rv
+}
+
 // A Boolean value indicating whether the app supports automatic termination.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/automaticterminationsupportenabled
@@ -346,135 +475,6 @@ func (p_ ProcessInfo) UserName() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/username
 func (p_ ProcessInfo) SetUserName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
-}
-
-// The number of active processing cores available on the computer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/activeProcessorCount
-func (p_ ProcessInfo) ActiveProcessorCount() uint {
-	rv := objc.Send[uint](p_.ID, objc.Sel("activeProcessorCount"))
-	return rv
-}
-
-// Array of strings with the command-line arguments for the process.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/arguments
-func (p_ ProcessInfo) Arguments() []string {
-	rv := objc.Send[[]string](p_.ID, objc.Sel("arguments"))
-	return rv
-}
-
-// The variable names (keys) and their values in the environment from which the process was launched.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/environment
-func (p_ ProcessInfo) Environment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("environment"))
-	return rv
-}
-
-// Returns the full name of the current user.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/fullUserName
-func (p_ ProcessInfo) FullUserName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("fullUserName"))
-	return rv
-}
-
-// Global unique identifier for the process.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/globallyUniqueString
-func (p_ ProcessInfo) GloballyUniqueString() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("globallyUniqueString"))
-	return rv
-}
-
-// A Boolean value that indicates the current state of Low Power Mode.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isLowPowerModeEnabled
-func (p_ ProcessInfo) LowPowerModeEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("lowPowerModeEnabled"))
-	return rv
-}
-
-// A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isMacCatalystApp
-func (p_ ProcessInfo) MacCatalystApp() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("macCatalystApp"))
-	return rv
-}
-
-// A Boolean value that indicates whether the process is an iPhone or iPad app running on a Mac.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isiOSAppOnMac
-func (p_ ProcessInfo) IOSAppOnMac() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("iOSAppOnMac"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isiOSAppOnVision
-func (p_ ProcessInfo) IOSAppOnVision() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("iOSAppOnVision"))
-	return rv
-}
-
-// A string containing the version of the operating system on which the process is executing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/operatingSystemVersionString
-func (p_ ProcessInfo) OperatingSystemVersionString() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("operatingSystemVersionString"))
-	return rv
-}
-
-// The amount of physical memory on the computer in bytes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/physicalMemory
-func (p_ ProcessInfo) PhysicalMemory() uint64 {
-	rv := objc.Send[uint64](p_.ID, objc.Sel("physicalMemory"))
-	return rv
-}
-
-// The identifier of the process (often called process ID).
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processIdentifier
-func (p_ ProcessInfo) ProcessIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("processIdentifier"))
-	return rv
-}
-
-// Returns the process information agent for the process.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processInfo
-func (p_ ProcessInfo) ProcessInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("processInfo"))
-	return rv
-}
-
-// The name of the process.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processName
-func (p_ ProcessInfo) ProcessName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("processName"))
-	return rv
-}
-
-
-// SetProcessName sets the value of the processName property.
-// The name of the process.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processName
-func (p_ ProcessInfo) SetProcessName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessName:"), objc.String(value))
-}
-
-// The amount of time the system has been awake since the last time it was restarted.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/systemUptime
-func (p_ ProcessInfo) SystemUptime() TimeInterval {
-	rv := objc.Send[TimeInterval](p_.ID, objc.Sel("systemUptime"))
-	return rv
 }
 
 

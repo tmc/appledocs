@@ -80,6 +80,37 @@ func NewURLRequest() URLRequest {
 }
 
 
+// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/allowsConstrainedNetworkAccess
+func (u_ URLRequest) AllowsConstrainedNetworkAccess() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("allowsConstrainedNetworkAccess"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/allowsPersistentDNS
+func (u_ URLRequest) AllowsPersistentDNS() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("allowsPersistentDNS"))
+	return rv
+}
+
+// A Boolean value that indicates whether the default cookie handling will be used for this request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/httpShouldHandleCookies
+func (u_ URLRequest) HTTPShouldHandleCookies() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("HTTPShouldHandleCookies"))
+	return rv
+}
+
+// The network service type of the request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/networkServiceType-swift.property
+func (u_ URLRequest) NetworkServiceType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("networkServiceType"))
+	return rv
+}
+
 // A dictionary containing all of the HTTP header fields for a request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allhttpheaderfields
@@ -354,37 +385,6 @@ func (u_ URLRequest) Url() URL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/url
 func (u_ URLRequest) SetUrl(value URL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUrl:"), value)
-}
-
-// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/allowsConstrainedNetworkAccess
-func (u_ URLRequest) AllowsConstrainedNetworkAccess() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("allowsConstrainedNetworkAccess"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/allowsPersistentDNS
-func (u_ URLRequest) AllowsPersistentDNS() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("allowsPersistentDNS"))
-	return rv
-}
-
-// A Boolean value that indicates whether the default cookie handling will be used for this request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/httpShouldHandleCookies
-func (u_ URLRequest) HTTPShouldHandleCookies() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("HTTPShouldHandleCookies"))
-	return rv
-}
-
-// The network service type of the request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/networkServiceType-swift.property
-func (u_ URLRequest) NetworkServiceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("networkServiceType"))
-	return rv
 }
 
 

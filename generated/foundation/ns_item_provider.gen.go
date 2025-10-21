@@ -155,6 +155,32 @@ func (i_ ItemProvider) RegisterFileRepresentationForTypeIdentifierFileOptionsVis
 	objc.Send[objc.ID](i_.ID, objc.Sel("registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:"), objc.String(typeIdentifier), fileOptions, visibility, loadHandler)
 }
 
+// The preferred style for presenting the item provider’s data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/preferredPresentationStyle-swift.property
+func (i_ ItemProvider) PreferredPresentationStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("preferredPresentationStyle"))
+	return rv
+}
+
+
+// SetPreferredPresentationStyle sets the value of the preferredPresentationStyle property.
+// The preferred style for presenting the item provider’s data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/preferredPresentationStyle-swift.property
+func (i_ ItemProvider) SetPreferredPresentationStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredPresentationStyle:"), value)
+}
+
+// The rectangle that the item occupies in the host app’s source window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/sourceFrame
+func (i_ ItemProvider) SourceFrame() Rect {
+	rv := objc.Send[Rect](i_.ID, objc.Sel("sourceFrame"))
+	return rv
+}
+
 // An optional array of media data associated with the extension item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitem/attachments
@@ -315,32 +341,6 @@ func (i_ ItemProvider) TeamData() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/teamdata
 func (i_ ItemProvider) SetTeamData(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTeamData:"), value)
-}
-
-// The preferred style for presenting the item provider’s data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/preferredPresentationStyle-swift.property
-func (i_ ItemProvider) PreferredPresentationStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("preferredPresentationStyle"))
-	return rv
-}
-
-
-// SetPreferredPresentationStyle sets the value of the preferredPresentationStyle property.
-// The preferred style for presenting the item provider’s data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/preferredPresentationStyle-swift.property
-func (i_ ItemProvider) SetPreferredPresentationStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredPresentationStyle:"), value)
-}
-
-// The rectangle that the item occupies in the host app’s source window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/sourceFrame
-func (i_ ItemProvider) SourceFrame() Rect {
-	rv := objc.Send[Rect](i_.ID, objc.Sel("sourceFrame"))
-	return rv
 }
 
 

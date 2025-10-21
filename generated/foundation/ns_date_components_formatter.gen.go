@@ -90,6 +90,24 @@ func (d_ DateComponentsFormatter) StringForObjectValue(obj objc.ID) string {
 	return rv
 }
 
+// The formatting style for units whose value is 0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/zeroFormattingBehavior-swift.property
+func (d_ DateComponentsFormatter) ZeroFormattingBehavior() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("zeroFormattingBehavior"))
+	return rv
+}
+
+
+// SetZeroFormattingBehavior sets the value of the zeroFormattingBehavior property.
+// The formatting style for units whose value is 0.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/zeroFormattingBehavior-swift.property
+func (d_ DateComponentsFormatter) SetZeroFormattingBehavior(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setZeroFormattingBehavior:"), value)
+}
+
 // The bitmask of calendrical units such as day and month to include in the output string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/allowedunits
@@ -262,24 +280,6 @@ func (d_ DateComponentsFormatter) UnitsStyle() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.property
 func (d_ DateComponentsFormatter) SetUnitsStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUnitsStyle:"), value)
-}
-
-// The formatting style for units whose value is 0.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/zeroFormattingBehavior-swift.property
-func (d_ DateComponentsFormatter) ZeroFormattingBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("zeroFormattingBehavior"))
-	return rv
-}
-
-
-// SetZeroFormattingBehavior sets the value of the zeroFormattingBehavior property.
-// The formatting style for units whose value is 0.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/zeroFormattingBehavior-swift.property
-func (d_ DateComponentsFormatter) SetZeroFormattingBehavior(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setZeroFormattingBehavior:"), value)
 }
 
 

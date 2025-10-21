@@ -175,14 +175,6 @@ func (e_ ExtensionContext) WidgetMaximumSizeForDisplayMode(displayMode unsafe.Po
 	return rv
 }
 
-// The extension items and errors key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey
-func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("NSExtensionItemsAndErrorsKey"))
-	return rv
-}
-
 // The maximum size for a Siri hosted view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/hostedViewMaximumAllowedSize
@@ -264,6 +256,14 @@ func (e_ ExtensionContext) WidgetLargestAvailableDisplayMode() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/widgetLargestAvailableDisplayMode
 func (e_ ExtensionContext) SetWidgetLargestAvailableDisplayMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setWidgetLargestAvailableDisplayMode:"), value)
+}
+
+// The extension items and errors key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey
+func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSExtensionItemsAndErrorsKey"))
+	return rv
 }
 
 

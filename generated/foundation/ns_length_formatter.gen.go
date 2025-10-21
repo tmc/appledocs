@@ -88,6 +88,24 @@ func (l_ LengthFormatter) UnitStringFromValueUnit(value unsafe.Pointer, unit uns
 	return rv
 }
 
+// The number formatter used to format the numbers in length strings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/numberFormatter
+func (l_ LengthFormatter) NumberFormatter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("numberFormatter"))
+	return rv
+}
+
+
+// SetNumberFormatter sets the value of the numberFormatter property.
+// The number formatter used to format the numbers in length strings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/numberFormatter
+func (l_ LengthFormatter) SetNumberFormatter(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberFormatter:"), value)
+}
+
 // A Boolean value that indicates whether the resulting string represents a person’s height.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/lengthformatter/isforpersonheightuse
@@ -122,24 +140,6 @@ func (l_ LengthFormatter) UnitStyle() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/lengthformatter/unitstyle
 func (l_ LengthFormatter) SetUnitStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setUnitStyle:"), value)
-}
-
-// The number formatter used to format the numbers in length strings.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/numberFormatter
-func (l_ LengthFormatter) NumberFormatter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("numberFormatter"))
-	return rv
-}
-
-
-// SetNumberFormatter sets the value of the numberFormatter property.
-// The number formatter used to format the numbers in length strings.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/numberFormatter
-func (l_ LengthFormatter) SetNumberFormatter(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberFormatter:"), value)
 }
 
 

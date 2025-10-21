@@ -1517,273 +1517,6 @@ func (s_ String) WriteToFileAtomicallyEncodingError(path string, useAuxiliaryFil
 	return rv
 }
 
-// A new string that replaces the current home directory portion of the current path with a tilde (
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/abbreviatingwithtildeinpath
-func (s_ String) AbbreviatingWithTildeInPath() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("abbreviatingWithTildeInPath"))
-	return rv
-}
-
-
-// SetAbbreviatingWithTildeInPath sets the value of the abbreviatingWithTildeInPath property.
-// A new string that replaces the current home directory portion of the current path with a tilde (
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/abbreviatingwithtildeinpath
-func (s_ String) SetAbbreviatingWithTildeInPath(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAbbreviatingWithTildeInPath:"), objc.String(value))
-}
-
-// A capitalized representation of the string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/capitalized
-func (s_ String) Capitalized() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("capitalized"))
-	return rv
-}
-
-
-// SetCapitalized sets the value of the capitalized property.
-// A capitalized representation of the string.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/capitalized
-func (s_ String) SetCapitalized(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCapitalized:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/customplaygroundquicklook
-func (s_ String) CustomPlaygroundQuickLook() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("customPlaygroundQuickLook"))
-	return rv
-}
-
-
-// SetCustomPlaygroundQuickLook sets the value of the customPlaygroundQuickLook property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/customplaygroundquicklook
-func (s_ String) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
-}
-
-// A new string made by deleting the last path component from the receiver, along with any final path separator.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletinglastpathcomponent
-func (s_ String) DeletingLastPathComponent() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("deletingLastPathComponent"))
-	return rv
-}
-
-
-// SetDeletingLastPathComponent sets the value of the deletingLastPathComponent property.
-// A new string made by deleting the last path component from the receiver, along with any final path separator.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletinglastpathcomponent
-func (s_ String) SetDeletingLastPathComponent(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingLastPathComponent:"), objc.String(value))
-}
-
-// A new string made by deleting the extension (if any, and only the last) from the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletingpathextension
-func (s_ String) DeletingPathExtension() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("deletingPathExtension"))
-	return rv
-}
-
-
-// SetDeletingPathExtension sets the value of the deletingPathExtension property.
-// A new string made by deleting the extension (if any, and only the last) from the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletingpathextension
-func (s_ String) SetDeletingPathExtension(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingPathExtension:"), objc.String(value))
-}
-
-// A new string made by expanding the initial component of the receiver to its full path value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/expandingtildeinpath
-func (s_ String) ExpandingTildeInPath() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("expandingTildeInPath"))
-	return rv
-}
-
-
-// SetExpandingTildeInPath sets the value of the expandingTildeInPath property.
-// A new string made by expanding the initial component of the receiver to its full path value.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/expandingtildeinpath
-func (s_ String) SetExpandingTildeInPath(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setExpandingTildeInPath:"), objc.String(value))
-}
-
-// A Boolean value that indicates whether the receiver represents an absolute path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/isabsolutepath
-func (s_ String) IsAbsolutePath() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isAbsolutePath"))
-	return rv
-}
-
-
-// SetIsAbsolutePath sets the value of the isAbsolutePath property.
-// A Boolean value that indicates whether the receiver represents an absolute path.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/isabsolutepath
-func (s_ String) SetIsAbsolutePath(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAbsolutePath:"), value)
-}
-
-// Returns a capitalized representation of the receiver using the current locale.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedcapitalized
-func (s_ String) LocalizedCapitalized() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("localizedCapitalized"))
-	return rv
-}
-
-
-// SetLocalizedCapitalized sets the value of the localizedCapitalized property.
-// Returns a capitalized representation of the receiver using the current locale.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedcapitalized
-func (s_ String) SetLocalizedCapitalized(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedCapitalized:"), objc.String(value))
-}
-
-// Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedlowercase
-func (s_ String) LocalizedLowercase() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("localizedLowercase"))
-	return rv
-}
-
-
-// SetLocalizedLowercase sets the value of the localizedLowercase property.
-// Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedlowercase
-func (s_ String) SetLocalizedLowercase(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedLowercase:"), objc.String(value))
-}
-
-// Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizeduppercase
-func (s_ String) LocalizedUppercase() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("localizedUppercase"))
-	return rv
-}
-
-
-// SetLocalizedUppercase sets the value of the localizedUppercase property.
-// Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizeduppercase
-func (s_ String) SetLocalizedUppercase(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedUppercase:"), objc.String(value))
-}
-
-// A lowercase representation of the string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/lowercased
-func (s_ String) Lowercased() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("lowercased"))
-	return rv
-}
-
-
-// SetLowercased sets the value of the lowercased property.
-// A lowercase representation of the string.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/lowercased
-func (s_ String) SetLowercased(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLowercased:"), objc.String(value))
-}
-
-// Returns a new string made from the receiver by replacing all percent encoded sequences with the matching UTF-8 characters.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/removingpercentencoding
-func (s_ String) RemovingPercentEncoding() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("removingPercentEncoding"))
-	return rv
-}
-
-
-// SetRemovingPercentEncoding sets the value of the removingPercentEncoding property.
-// Returns a new string made from the receiver by replacing all percent encoded sequences with the matching UTF-8 characters.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/removingpercentencoding
-func (s_ String) SetRemovingPercentEncoding(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRemovingPercentEncoding:"), objc.String(value))
-}
-
-// A new string made from the receiver by resolving all symbolic links and standardizing path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/resolvingsymlinksinpath
-func (s_ String) ResolvingSymlinksInPath() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("resolvingSymlinksInPath"))
-	return rv
-}
-
-
-// SetResolvingSymlinksInPath sets the value of the resolvingSymlinksInPath property.
-// A new string made from the receiver by resolving all symbolic links and standardizing path.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/resolvingsymlinksinpath
-func (s_ String) SetResolvingSymlinksInPath(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setResolvingSymlinksInPath:"), objc.String(value))
-}
-
-// A new string made by removing extraneous path components from the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/standardizingpath
-func (s_ String) StandardizingPath() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("standardizingPath"))
-	return rv
-}
-
-
-// SetStandardizingPath sets the value of the standardizingPath property.
-// A new string made by removing extraneous path components from the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/standardizingpath
-func (s_ String) SetStandardizingPath(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardizingPath:"), objc.String(value))
-}
-
-// An uppercase representation of the string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/uppercased
-func (s_ String) Uppercased() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("uppercased"))
-	return rv
-}
-
-
-// SetUppercased sets the value of the uppercased property.
-// An uppercase representation of the string.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/uppercased
-func (s_ String) SetUppercased(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setUppercased:"), objc.String(value))
-}
-
 // A new string that replaces the current home directory portion of the current path with a tilde ( ) character.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/abbreviatingWithTildeInPath
@@ -2069,6 +1802,273 @@ func (s_ String) UppercaseString() string {
 func (s_ String) UTF8String() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("UTF8String"))
 	return rv
+}
+
+// A new string that replaces the current home directory portion of the current path with a tilde (
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/abbreviatingwithtildeinpath
+func (s_ String) AbbreviatingWithTildeInPath() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("abbreviatingWithTildeInPath"))
+	return rv
+}
+
+
+// SetAbbreviatingWithTildeInPath sets the value of the abbreviatingWithTildeInPath property.
+// A new string that replaces the current home directory portion of the current path with a tilde (
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/abbreviatingwithtildeinpath
+func (s_ String) SetAbbreviatingWithTildeInPath(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAbbreviatingWithTildeInPath:"), objc.String(value))
+}
+
+// A capitalized representation of the string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/capitalized
+func (s_ String) Capitalized() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("capitalized"))
+	return rv
+}
+
+
+// SetCapitalized sets the value of the capitalized property.
+// A capitalized representation of the string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/capitalized
+func (s_ String) SetCapitalized(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCapitalized:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/customplaygroundquicklook
+func (s_ String) CustomPlaygroundQuickLook() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("customPlaygroundQuickLook"))
+	return rv
+}
+
+
+// SetCustomPlaygroundQuickLook sets the value of the customPlaygroundQuickLook property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/customplaygroundquicklook
+func (s_ String) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
+}
+
+// A new string made by deleting the last path component from the receiver, along with any final path separator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletinglastpathcomponent
+func (s_ String) DeletingLastPathComponent() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("deletingLastPathComponent"))
+	return rv
+}
+
+
+// SetDeletingLastPathComponent sets the value of the deletingLastPathComponent property.
+// A new string made by deleting the last path component from the receiver, along with any final path separator.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletinglastpathcomponent
+func (s_ String) SetDeletingLastPathComponent(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingLastPathComponent:"), objc.String(value))
+}
+
+// A new string made by deleting the extension (if any, and only the last) from the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletingpathextension
+func (s_ String) DeletingPathExtension() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("deletingPathExtension"))
+	return rv
+}
+
+
+// SetDeletingPathExtension sets the value of the deletingPathExtension property.
+// A new string made by deleting the extension (if any, and only the last) from the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletingpathextension
+func (s_ String) SetDeletingPathExtension(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingPathExtension:"), objc.String(value))
+}
+
+// A new string made by expanding the initial component of the receiver to its full path value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/expandingtildeinpath
+func (s_ String) ExpandingTildeInPath() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("expandingTildeInPath"))
+	return rv
+}
+
+
+// SetExpandingTildeInPath sets the value of the expandingTildeInPath property.
+// A new string made by expanding the initial component of the receiver to its full path value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/expandingtildeinpath
+func (s_ String) SetExpandingTildeInPath(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setExpandingTildeInPath:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the receiver represents an absolute path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/isabsolutepath
+func (s_ String) IsAbsolutePath() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isAbsolutePath"))
+	return rv
+}
+
+
+// SetIsAbsolutePath sets the value of the isAbsolutePath property.
+// A Boolean value that indicates whether the receiver represents an absolute path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/isabsolutepath
+func (s_ String) SetIsAbsolutePath(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAbsolutePath:"), value)
+}
+
+// Returns a capitalized representation of the receiver using the current locale.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedcapitalized
+func (s_ String) LocalizedCapitalized() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("localizedCapitalized"))
+	return rv
+}
+
+
+// SetLocalizedCapitalized sets the value of the localizedCapitalized property.
+// Returns a capitalized representation of the receiver using the current locale.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedcapitalized
+func (s_ String) SetLocalizedCapitalized(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedCapitalized:"), objc.String(value))
+}
+
+// Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedlowercase
+func (s_ String) LocalizedLowercase() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("localizedLowercase"))
+	return rv
+}
+
+
+// SetLocalizedLowercase sets the value of the localizedLowercase property.
+// Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedlowercase
+func (s_ String) SetLocalizedLowercase(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedLowercase:"), objc.String(value))
+}
+
+// Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizeduppercase
+func (s_ String) LocalizedUppercase() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("localizedUppercase"))
+	return rv
+}
+
+
+// SetLocalizedUppercase sets the value of the localizedUppercase property.
+// Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizeduppercase
+func (s_ String) SetLocalizedUppercase(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedUppercase:"), objc.String(value))
+}
+
+// A lowercase representation of the string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/lowercased
+func (s_ String) Lowercased() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("lowercased"))
+	return rv
+}
+
+
+// SetLowercased sets the value of the lowercased property.
+// A lowercase representation of the string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/lowercased
+func (s_ String) SetLowercased(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLowercased:"), objc.String(value))
+}
+
+// Returns a new string made from the receiver by replacing all percent encoded sequences with the matching UTF-8 characters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/removingpercentencoding
+func (s_ String) RemovingPercentEncoding() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("removingPercentEncoding"))
+	return rv
+}
+
+
+// SetRemovingPercentEncoding sets the value of the removingPercentEncoding property.
+// Returns a new string made from the receiver by replacing all percent encoded sequences with the matching UTF-8 characters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/removingpercentencoding
+func (s_ String) SetRemovingPercentEncoding(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRemovingPercentEncoding:"), objc.String(value))
+}
+
+// A new string made from the receiver by resolving all symbolic links and standardizing path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/resolvingsymlinksinpath
+func (s_ String) ResolvingSymlinksInPath() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("resolvingSymlinksInPath"))
+	return rv
+}
+
+
+// SetResolvingSymlinksInPath sets the value of the resolvingSymlinksInPath property.
+// A new string made from the receiver by resolving all symbolic links and standardizing path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/resolvingsymlinksinpath
+func (s_ String) SetResolvingSymlinksInPath(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setResolvingSymlinksInPath:"), objc.String(value))
+}
+
+// A new string made by removing extraneous path components from the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/standardizingpath
+func (s_ String) StandardizingPath() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("standardizingPath"))
+	return rv
+}
+
+
+// SetStandardizingPath sets the value of the standardizingPath property.
+// A new string made by removing extraneous path components from the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/standardizingpath
+func (s_ String) SetStandardizingPath(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardizingPath:"), objc.String(value))
+}
+
+// An uppercase representation of the string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/uppercased
+func (s_ String) Uppercased() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("uppercased"))
+	return rv
+}
+
+
+// SetUppercased sets the value of the uppercased property.
+// An uppercase representation of the string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/uppercased
+func (s_ String) SetUppercased(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUppercased:"), objc.String(value))
 }
 
 

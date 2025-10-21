@@ -88,6 +88,22 @@ func (p_ PositionalSpecifier) SetInsertionClassDescription(classDescription unsa
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionClassDescription:"), classDescription)
 }
 
+// Returns the object specifier specified at initialization time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/objectSpecifier
+func (p_ PositionalSpecifier) ObjectSpecifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectSpecifier"))
+	return rv
+}
+
+// Returns the insertion position specified at initialization time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/position
+func (p_ PositionalSpecifier) Position() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("position"))
+	return rv
+}
+
 // Returns the container in which the new or copied object or objects should be placed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertioncontainer
@@ -158,22 +174,6 @@ func (p_ PositionalSpecifier) InsertionReplaces() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionreplaces
 func (p_ PositionalSpecifier) SetInsertionReplaces(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionReplaces:"), value)
-}
-
-// Returns the object specifier specified at initialization time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/objectSpecifier
-func (p_ PositionalSpecifier) ObjectSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectSpecifier"))
-	return rv
-}
-
-// Returns the insertion position specified at initialization time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/position
-func (p_ PositionalSpecifier) Position() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("position"))
-	return rv
 }
 
 

@@ -125,6 +125,14 @@ func (u_ UserDefaults) StringForKey(defaultName string) string {
 	return rv
 }
 
+// Returns the shared defaults object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/standard
+func (u_ UserDefaults) StandardUserDefaults() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("standardUserDefaults"))
+	return rv
+}
+
 // The current volatile domain names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/userdefaults/volatiledomainnames
@@ -141,14 +149,6 @@ func (u_ UserDefaults) VolatileDomainNames() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/userdefaults/volatiledomainnames
 func (u_ UserDefaults) SetVolatileDomainNames(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setVolatileDomainNames:"), objc.String(value))
-}
-
-// Returns the shared defaults object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/standard
-func (u_ UserDefaults) StandardUserDefaults() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("standardUserDefaults"))
-	return rv
 }
 
 

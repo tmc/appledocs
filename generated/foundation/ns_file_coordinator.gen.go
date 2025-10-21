@@ -115,6 +115,14 @@ func (f_ FileCoordinator) CoordinateAccessWithIntentsQueueByAccessor(intents uns
 	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateAccessWithIntents:queue:byAccessor:"), intents, queue, accessor)
 }
 
+// Returns an array containing the currently registered file presenter objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/filePresenters
+func (f_ FileCoordinator) FilePresenters() []objc.ID {
+	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("filePresenters"))
+	return rv
+}
+
 // A string that uniquely identifies the file access that was performed by this file coordinator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilecoordinator/purposeidentifier
@@ -149,14 +157,6 @@ func (f_ FileCoordinator) NSUserCancelledError() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusercancellederror-swift.var
 func (f_ FileCoordinator) SetNSUserCancelledError(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setNSUserCancelledError:"), value)
-}
-
-// Returns an array containing the currently registered file presenter objects.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/filePresenters
-func (f_ FileCoordinator) FilePresenters() []objc.ID {
-	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("filePresenters"))
-	return rv
 }
 
 

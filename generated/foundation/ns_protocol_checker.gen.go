@@ -84,19 +84,19 @@ func NewProtocolChecker() ProtocolChecker {
 // Returns the protocol object the receiver uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsprotocolchecker/protocol
-func (p_ ProtocolChecker) `protocol`() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("`protocol`"))
+func (p_ ProtocolChecker) Protocol() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("protocol"))
 	return rv
 }
 
 
-// Set`protocol` sets the value of the `protocol` property.
+// SetProtocol sets the value of the protocol property.
 // Returns the protocol object the receiver uses.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsprotocolchecker/protocol
-func (p_ ProtocolChecker) Set`protocol`(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("set`protocol`:"), value)
+func (p_ ProtocolChecker) SetProtocol(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProtocol:"), value)
 }
 
 // Returns the target of the receiver.

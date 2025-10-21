@@ -88,6 +88,24 @@ func (u_ UserNotificationCenter) RemoveDeliveredNotification(notification unsafe
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeDeliveredNotification:"), notification)
 }
 
+// Specifies the notification center delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/delegate
+func (u_ UserNotificationCenter) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// Specifies the notification center delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/delegate
+func (u_ UserNotificationCenter) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
+}
+
 // The date this notification was actually delivered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
@@ -176,24 +194,6 @@ func (u_ UserNotificationCenter) ScheduledNotifications() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
 func (u_ UserNotificationCenter) SetScheduledNotifications(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setScheduledNotifications:"), value)
-}
-
-// Specifies the notification center delegate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/delegate
-func (u_ UserNotificationCenter) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// Specifies the notification center delegate.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/delegate
-func (u_ UserNotificationCenter) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

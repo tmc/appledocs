@@ -114,6 +114,63 @@ func (x_ XMLParser) Parse() bool {
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
+func (x_ XMLParser) AllowedExternalEntityURLs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("allowedExternalEntityURLs"))
+	return rv
+}
+
+
+// SetAllowedExternalEntityURLs sets the value of the allowedExternalEntityURLs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
+func (x_ XMLParser) SetAllowedExternalEntityURLs(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setAllowedExternalEntityURLs:"), value)
+}
+
+// The line number of the XML document being processed by the parser.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/lineNumber
+func (x_ XMLParser) LineNumber() int {
+	rv := objc.Send[int](x_.ID, objc.Sel("lineNumber"))
+	return rv
+}
+
+// An object from which you can obtain information about a parsing error.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/parserError
+func (x_ XMLParser) ParserError() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("parserError"))
+	return rv
+}
+
+// The public identifier of the external entity referenced in the XML document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/publicID
+func (x_ XMLParser) PublicID() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("publicID"))
+	return rv
+}
+
+// A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/shouldReportNamespacePrefixes
+func (x_ XMLParser) ShouldReportNamespacePrefixes() bool {
+	rv := objc.Send[bool](x_.ID, objc.Sel("shouldReportNamespacePrefixes"))
+	return rv
+}
+
+
+// SetShouldReportNamespacePrefixes sets the value of the shouldReportNamespacePrefixes property.
+// A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/shouldReportNamespacePrefixes
+func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldReportNamespacePrefixes:"), value)
+}
+
 // The column number of the XML document being processed by the parser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
@@ -217,63 +274,6 @@ func (x_ XMLParser) SystemID() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
 func (x_ XMLParser) SetSystemID(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
-func (x_ XMLParser) AllowedExternalEntityURLs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("allowedExternalEntityURLs"))
-	return rv
-}
-
-
-// SetAllowedExternalEntityURLs sets the value of the allowedExternalEntityURLs property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
-func (x_ XMLParser) SetAllowedExternalEntityURLs(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setAllowedExternalEntityURLs:"), value)
-}
-
-// The line number of the XML document being processed by the parser.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/lineNumber
-func (x_ XMLParser) LineNumber() int {
-	rv := objc.Send[int](x_.ID, objc.Sel("lineNumber"))
-	return rv
-}
-
-// An object from which you can obtain information about a parsing error.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/parserError
-func (x_ XMLParser) ParserError() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("parserError"))
-	return rv
-}
-
-// The public identifier of the external entity referenced in the XML document.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/publicID
-func (x_ XMLParser) PublicID() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("publicID"))
-	return rv
-}
-
-// A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/shouldReportNamespacePrefixes
-func (x_ XMLParser) ShouldReportNamespacePrefixes() bool {
-	rv := objc.Send[bool](x_.ID, objc.Sel("shouldReportNamespacePrefixes"))
-	return rv
-}
-
-
-// SetShouldReportNamespacePrefixes sets the value of the shouldReportNamespacePrefixes property.
-// A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/shouldReportNamespacePrefixes
-func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldReportNamespacePrefixes:"), value)
 }
 
 

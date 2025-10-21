@@ -109,19 +109,19 @@ func (l_ LinguisticTagger) SetDominantLanguage(value string) {
 // The string being analyzed by the linguistic tagger.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/string
-func (l_ LinguisticTagger) String_() string {
+func (l_ LinguisticTagger) String() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("string"))
 	return rv
 }
 
 
-// SetString_ sets the value of the string property.
+// SetString sets the value of the string property.
 // The string being analyzed by the linguistic tagger.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/string
-func (l_ LinguisticTagger) SetString_(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setString_:"), objc.String(value))
+func (l_ LinguisticTagger) SetString(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setString:"), objc.String(value))
 }
 
 // Returns the tag schemes configured for this linguistic tagger. For possible values, see

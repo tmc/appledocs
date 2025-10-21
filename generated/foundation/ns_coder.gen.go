@@ -326,6 +326,30 @@ func (c_ Coder) EncodeNXObject(object objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeNXObject:"), object)
 }
 
+// A Boolean value that indicates whether the receiver supports keyed coding of objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/allowsKeyedCoding
+func (c_ Coder) AllowsKeyedCoding() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("allowsKeyedCoding"))
+	return rv
+}
+
+// The action the coder should take when decoding fails.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodingFailurePolicy-swift.property
+func (c_ Coder) DecodingFailurePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodingFailurePolicy"))
+	return rv
+}
+
+// Indicates whether the archiver requires all archived classes to resist object substitution attacks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/requiresSecureCoding
+func (c_ Coder) RequiresSecureCoding() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("requiresSecureCoding"))
+	return rv
+}
+
 // The set of coded classes allowed for secure coding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/allowedclasses
@@ -347,19 +371,19 @@ func (c_ Coder) SetAllowedClasses(value unsafe.Pointer) {
 // An error in the top-level encode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/error
-func (c_ Coder) Error_() unsafe.Pointer {
+func (c_ Coder) Error() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("error"))
 	return rv
 }
 
 
-// SetError_ sets the value of the error property.
+// SetError sets the value of the error property.
 // An error in the top-level encode.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/error
-func (c_ Coder) SetError_(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setError_:"), value)
+func (c_ Coder) SetError(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setError:"), value)
 }
 
 // The system version in effect for the archive.
@@ -468,30 +492,6 @@ func (c_ Coder) NSCoderValueNotFoundError() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscodervaluenotfounderror-swift.var
 func (c_ Coder) SetNSCoderValueNotFoundError(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderValueNotFoundError:"), value)
-}
-
-// A Boolean value that indicates whether the receiver supports keyed coding of objects.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/allowsKeyedCoding
-func (c_ Coder) AllowsKeyedCoding() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("allowsKeyedCoding"))
-	return rv
-}
-
-// The action the coder should take when decoding fails.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodingFailurePolicy-swift.property
-func (c_ Coder) DecodingFailurePolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodingFailurePolicy"))
-	return rv
-}
-
-// Indicates whether the archiver requires all archived classes to resist object substitution attacks.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/requiresSecureCoding
-func (c_ Coder) RequiresSecureCoding() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("requiresSecureCoding"))
-	return rv
 }
 
 

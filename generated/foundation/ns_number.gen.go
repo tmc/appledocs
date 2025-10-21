@@ -418,6 +418,142 @@ func (n_ Number) IsEqualToNumber(number Number) bool {
 	return rv
 }
 
+// The number object’s value expressed as a Boolean value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/boolValue
+func (n_ Number) BoolValue() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("boolValue"))
+	return rv
+}
+
+// The number object’s value expressed as an structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/decimalValue
+func (n_ Number) DecimalValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("decimalValue"))
+	return rv
+}
+
+// The number object’s value expressed as a , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/doubleValue
+func (n_ Number) DoubleValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("doubleValue"))
+	return rv
+}
+
+// The number object’s value expressed as a , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/floatValue
+func (n_ Number) FloatValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("floatValue"))
+	return rv
+}
+
+// The number object’s value expressed as a , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int16Value
+func (n_ Number) ShortValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("shortValue"))
+	return rv
+}
+
+// The number object’s value expressed as an , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int32Value
+func (n_ Number) IntValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("intValue"))
+	return rv
+}
+
+// The number object’s value expressed as a , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int64Value
+func (n_ Number) LongLongValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("longLongValue"))
+	return rv
+}
+
+// The number object’s value expressed as a .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int8Value
+func (n_ Number) CharValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("charValue"))
+	return rv
+}
+
+// The number object’s value expressed as an object, converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/intValue-95zzp
+func (n_ Number) IntegerValue() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("integerValue"))
+	return rv
+}
+
+// The number object’s value expressed as a , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/longValue
+func (n_ Number) LongValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("longValue"))
+	return rv
+}
+
+// The number object’s value expressed as a human-readable string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/stringValue
+func (n_ Number) StringValue() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("stringValue"))
+	return rv
+}
+
+// The number object’s value expressed as an unsigned , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint16Value
+func (n_ Number) UnsignedShortValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedShortValue"))
+	return rv
+}
+
+// The number object’s value expressed as an unsigned , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint32Value
+func (n_ Number) UnsignedIntValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedIntValue"))
+	return rv
+}
+
+// The number object’s value expressed as an unsigned , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint64Value
+func (n_ Number) UnsignedLongLongValue() uint64 {
+	rv := objc.Send[uint64](n_.ID, objc.Sel("unsignedLongLongValue"))
+	return rv
+}
+
+// The number object’s value expressed as an unsigned , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint8Value
+func (n_ Number) UnsignedCharValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedCharValue"))
+	return rv
+}
+
+// The number object’s value expressed as an object, converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uintValue
+func (n_ Number) UnsignedIntegerValue() uint {
+	rv := objc.Send[uint](n_.ID, objc.Sel("unsignedIntegerValue"))
+	return rv
+}
+
+// The number object’s value expressed as an unsigned , converted as necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/unsignedLongValue
+func (n_ Number) UnsignedLongValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedLongValue"))
+	return rv
+}
+
 // The number object’s value expressed as a
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int16value
@@ -596,142 +732,6 @@ func (n_ Number) ObjCType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/objctype
 func (n_ Number) SetObjCType(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setObjCType:"), value)
-}
-
-// The number object’s value expressed as a Boolean value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/boolValue
-func (n_ Number) BoolValue() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("boolValue"))
-	return rv
-}
-
-// The number object’s value expressed as an structure.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/decimalValue
-func (n_ Number) DecimalValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("decimalValue"))
-	return rv
-}
-
-// The number object’s value expressed as a , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/doubleValue
-func (n_ Number) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("doubleValue"))
-	return rv
-}
-
-// The number object’s value expressed as a , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/floatValue
-func (n_ Number) FloatValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("floatValue"))
-	return rv
-}
-
-// The number object’s value expressed as a , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int16Value
-func (n_ Number) ShortValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("shortValue"))
-	return rv
-}
-
-// The number object’s value expressed as an , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int32Value
-func (n_ Number) IntValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("intValue"))
-	return rv
-}
-
-// The number object’s value expressed as a , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int64Value
-func (n_ Number) LongLongValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("longLongValue"))
-	return rv
-}
-
-// The number object’s value expressed as a .
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int8Value
-func (n_ Number) CharValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("charValue"))
-	return rv
-}
-
-// The number object’s value expressed as an object, converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/intValue-95zzp
-func (n_ Number) IntegerValue() int {
-	rv := objc.Send[int](n_.ID, objc.Sel("integerValue"))
-	return rv
-}
-
-// The number object’s value expressed as a , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/longValue
-func (n_ Number) LongValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("longValue"))
-	return rv
-}
-
-// The number object’s value expressed as a human-readable string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/stringValue
-func (n_ Number) StringValue() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("stringValue"))
-	return rv
-}
-
-// The number object’s value expressed as an unsigned , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint16Value
-func (n_ Number) UnsignedShortValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedShortValue"))
-	return rv
-}
-
-// The number object’s value expressed as an unsigned , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint32Value
-func (n_ Number) UnsignedIntValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedIntValue"))
-	return rv
-}
-
-// The number object’s value expressed as an unsigned , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint64Value
-func (n_ Number) UnsignedLongLongValue() uint64 {
-	rv := objc.Send[uint64](n_.ID, objc.Sel("unsignedLongLongValue"))
-	return rv
-}
-
-// The number object’s value expressed as an unsigned , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint8Value
-func (n_ Number) UnsignedCharValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedCharValue"))
-	return rv
-}
-
-// The number object’s value expressed as an object, converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uintValue
-func (n_ Number) UnsignedIntegerValue() uint {
-	rv := objc.Send[uint](n_.ID, objc.Sel("unsignedIntegerValue"))
-	return rv
-}
-
-// The number object’s value expressed as an unsigned , converted as necessary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/unsignedLongValue
-func (n_ Number) UnsignedLongValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedLongValue"))
-	return rv
 }
 
 

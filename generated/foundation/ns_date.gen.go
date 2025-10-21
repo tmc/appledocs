@@ -101,6 +101,30 @@ func (dc _DateClass) TimeIntervalSinceReferenceDate() TimeInterval {
 	rv := objc.Send[TimeInterval](objc.ID(dc.class), objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
 }
+// A date object representing a date in the distant future.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
+func (d_ Date) DistantFuture() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("distantFuture"))
+	return rv
+}
+
+// A date object representing a date in the distant past.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
+func (d_ Date) DistantPast() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("distantPast"))
+	return rv
+}
+
+// The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.type.property
+func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
+	return rv
+}
+
 // A custom playground Quick Look for this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
@@ -204,30 +228,6 @@ func (d_ Date) NSTimeIntervalSince1970() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
 func (d_ Date) SetNSTimeIntervalSince1970(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSTimeIntervalSince1970:"), value)
-}
-
-// A date object representing a date in the distant future.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
-func (d_ Date) DistantFuture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("distantFuture"))
-	return rv
-}
-
-// A date object representing a date in the distant past.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
-func (d_ Date) DistantPast() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("distantPast"))
-	return rv
-}
-
-// The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.type.property
-func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval {
-	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
-	return rv
 }
 
 

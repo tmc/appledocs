@@ -89,6 +89,32 @@ func (s_ ScriptCommand) PerformDefaultImplementation() objc.ID {
 	return rv
 }
 
+// Returns the object or objects to which the command is to be sent (called both the “receivers” or “targets” of script commands).
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/evaluatedReceivers
+func (s_ ScriptCommand) EvaluatedReceivers() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("evaluatedReceivers"))
+	return rv
+}
+
+// Sets the object specifier to that, when evaluated, indicates the receiver or receivers of the command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/receiversSpecifier
+func (s_ ScriptCommand) ReceiversSpecifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("receiversSpecifier"))
+	return rv
+}
+
+
+// SetReceiversSpecifier sets the value of the receiversSpecifier property.
+// Sets the object specifier to that, when evaluated, indicates the receiver or receivers of the command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/receiversSpecifier
+func (s_ ScriptCommand) SetReceiversSpecifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setReceiversSpecifier:"), value)
+}
+
 // If the receiver was constructed by Cocoa scripting’s built-in Apple event handling, returns the Apple event descriptor from which it was constructed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/appleevent
@@ -267,32 +293,6 @@ func (s_ ScriptCommand) ScriptErrorString() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/scripterrorstring
 func (s_ ScriptCommand) SetScriptErrorString(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScriptErrorString:"), objc.String(value))
-}
-
-// Returns the object or objects to which the command is to be sent (called both the “receivers” or “targets” of script commands).
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/evaluatedReceivers
-func (s_ ScriptCommand) EvaluatedReceivers() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("evaluatedReceivers"))
-	return rv
-}
-
-// Sets the object specifier to that, when evaluated, indicates the receiver or receivers of the command.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/receiversSpecifier
-func (s_ ScriptCommand) ReceiversSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("receiversSpecifier"))
-	return rv
-}
-
-
-// SetReceiversSpecifier sets the value of the receiversSpecifier property.
-// Sets the object specifier to that, when evaluated, indicates the receiver or receivers of the command.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/receiversSpecifier
-func (s_ ScriptCommand) SetReceiversSpecifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setReceiversSpecifier:"), value)
 }
 
 

@@ -339,24 +339,6 @@ func (d_ DecimalNumber) DecimalNumberBySubtractingWithBehavior(decimalNumber uns
 	return rv
 }
 
-// A C string containing the Objective-C type for the data contained in the decimal number object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/objctype
-func (d_ DecimalNumber) ObjCType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("objCType"))
-	return rv
-}
-
-
-// SetObjCType sets the value of the objCType property.
-// A C string containing the Objective-C type for the data contained in the decimal number object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/objctype
-func (d_ DecimalNumber) SetObjCType(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setObjCType:"), value)
-}
-
 // The decimal number’s value, expressed as an structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalValue
@@ -429,6 +411,24 @@ func (d_ DecimalNumber) One() unsafe.Pointer {
 func (d_ DecimalNumber) Zero() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("zero"))
 	return rv
+}
+
+// A C string containing the Objective-C type for the data contained in the decimal number object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/objctype
+func (d_ DecimalNumber) ObjCType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("objCType"))
+	return rv
+}
+
+
+// SetObjCType sets the value of the objCType property.
+// A C string containing the Objective-C type for the data contained in the decimal number object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/objctype
+func (d_ DecimalNumber) SetObjCType(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setObjCType:"), value)
 }
 
 

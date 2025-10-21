@@ -162,6 +162,7 @@ type FunctionDocData struct {
 	MethodParameters []ParameterData // Parameters excluding the receiver
 }
 
+// goKeywords contains Go keywords and predeclared identifiers that need escaping in parameter names
 var goKeywords = map[string]bool{
 	// Reserved keywords
 	"break": true, "case": true, "chan": true, "const": true, "continue": true,
@@ -171,23 +172,23 @@ var goKeywords = map[string]bool{
 	"select": true, "struct": true, "switch": true, "type": true, "var": true,
 	// Predeclared identifiers
 	"true": true, "false": true, "nil": true, "iota": true,
-	// Special identifiers that cannot be used as type/variable names
+	// Special identifiers
 	"init": true,
-	// Built-in types that shadow if used as parameter names
+	// Built-in types
 	"bool": true, "byte": true, "complex64": true, "complex128": true,
 	"error": true, "float32": true, "float64": true,
 	"int": true, "int8": true, "int16": true, "int32": true, "int64": true,
 	"rune": true, "string": true,
 	"uint": true, "uint8": true, "uint16": true, "uint32": true, "uint64": true, "uintptr": true,
-	// Built-in functions that could conflict
+	// Built-in functions
 	"append": true, "cap": true, "close": true, "complex": true, "copy": true,
 	"delete": true, "imag": true, "len": true, "make": true, "new": true,
 	"panic": true, "print": true, "println": true, "real": true, "recover": true,
-	// Protocol is not a Go keyword but commonly conflicts in Cocoa APIs
+	// Common Cocoa API conflicts
 	"protocol": true,
 }
 
-// isGoKeyword checks if a string is a Go reserved keyword.
+// isGoKeyword checks if a string is a Go reserved keyword or predeclared identifier
 func isGoKeyword(name string) bool {
 	return goKeywords[name]
 }
@@ -1559,31 +1560,25 @@ func sliceContainsString(slice []string, str string) bool {
 	return false
 }
 
-// capitalizeFirst capitalizes the first letter of a string.
+// capitalizeFirst capitalizes the first letter of a string for exported identifiers.
+// Capitalizing makes any Go keyword a valid exported identifier.
 // Examples:
 //   title -> Title
 //   backgroundColor -> BackgroundColor
-//   false -> False_  (appends underscore for Go keywords)
-//   protocol -> Protocol_  (appends underscore for conflicting identifiers)
+//   false -> False (valid once capitalized)
+//   type -> Type (valid once capitalized)
 func capitalizeFirst(s string) string {
 	if s == "" {
 		return ""
 	}
 	// Special case: "object" property conflicts with embedded Object type
-	// Generate "GetObject" instead of "Object"
 	if strings.ToLower(s) == "object" {
 		return "GetObject"
 	}
 
-	capitalized := strings.ToUpper(s[:1]) + s[1:]
-
-	// Check if the capitalized version would conflict with a Go keyword/identifier
-	// We need to check the lowercase version because property names are lowercased
-	if isGoKeyword(s) {
-		capitalized = capitalized + "_"
-	}
-
-	return capitalized
+	// Capitalizing makes any keyword a valid exported identifier
+	// true -> True, false -> False, type -> Type, etc. are all valid
+	return strings.ToUpper(s[:1]) + s[1:]
 }
 
 // needsCustomImports checks if any methods use types that require custom imports

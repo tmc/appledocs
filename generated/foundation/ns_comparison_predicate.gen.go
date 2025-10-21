@@ -81,6 +81,14 @@ func NewComparisonPredicate() ComparisonPredicate {
 }
 
 
+// The right expression for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/rightExpression
+func (c_ ComparisonPredicate) RightExpression() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rightExpression"))
+	return rv
+}
+
 // The comparison predicate modifier for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/comparisonpredicatemodifier
@@ -169,14 +177,6 @@ func (c_ ComparisonPredicate) PredicateOperatorType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/predicateoperatortype
 func (c_ ComparisonPredicate) SetPredicateOperatorType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateOperatorType:"), value)
-}
-
-// The right expression for the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/rightExpression
-func (c_ ComparisonPredicate) RightExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rightExpression"))
-	return rv
 }
 
 

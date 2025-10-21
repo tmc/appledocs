@@ -80,6 +80,14 @@ func NewURLResponse() URLResponse {
 }
 
 
+// The URL for the response.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse/url
+func (u_ URLResponse) URL() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("URL"))
+	return rv
+}
+
 // The expected length of the response’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/expectedcontentlength
@@ -150,14 +158,6 @@ func (u_ URLResponse) TextEncodingName() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
 func (u_ URLResponse) SetTextEncodingName(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTextEncodingName:"), objc.String(value))
-}
-
-// The URL for the response.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse/url
-func (u_ URLResponse) URL() URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("URL"))
-	return rv
 }
 
 

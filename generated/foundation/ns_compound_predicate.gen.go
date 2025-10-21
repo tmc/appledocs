@@ -130,6 +130,14 @@ func (cc _CompoundPredicateClass) NotPredicateWithSubpredicate(predicate unsafe.
 	return rv
 }
 
+// The predicate type for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/compoundPredicateType
+func (c_ CompoundPredicate) CompoundPredicateType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compoundPredicateType"))
+	return rv
+}
+
 // The receiver’s subpredicates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompoundpredicate/subpredicates
@@ -146,14 +154,6 @@ func (c_ CompoundPredicate) Subpredicates() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompoundpredicate/subpredicates
 func (c_ CompoundPredicate) SetSubpredicates(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubpredicates:"), value)
-}
-
-// The predicate type for the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/compoundPredicateType
-func (c_ CompoundPredicate) CompoundPredicateType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compoundPredicateType"))
-	return rv
 }
 
 

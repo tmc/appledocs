@@ -108,6 +108,24 @@ func (k_ KeyedUnarchiver) DecodeObjectForKey(key string) objc.ID {
 	return rv
 }
 
+// The action to take when this unarchiver fails to decode an entry.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodingFailurePolicy
+func (k_ KeyedUnarchiver) DecodingFailurePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("decodingFailurePolicy"))
+	return rv
+}
+
+
+// SetDecodingFailurePolicy sets the value of the decodingFailurePolicy property.
+// The action to take when this unarchiver fails to decode an entry.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodingFailurePolicy
+func (k_ KeyedUnarchiver) SetDecodingFailurePolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setDecodingFailurePolicy:"), value)
+}
+
 // The receiver’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/delegate
@@ -142,24 +160,6 @@ func (k_ KeyedUnarchiver) RequiresSecureCoding() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/requiressecurecoding
 func (k_ KeyedUnarchiver) SetRequiresSecureCoding(value bool) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
-}
-
-// The action to take when this unarchiver fails to decode an entry.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodingFailurePolicy
-func (k_ KeyedUnarchiver) DecodingFailurePolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("decodingFailurePolicy"))
-	return rv
-}
-
-
-// SetDecodingFailurePolicy sets the value of the decodingFailurePolicy property.
-// The action to take when this unarchiver fails to decode an entry.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodingFailurePolicy
-func (k_ KeyedUnarchiver) SetDecodingFailurePolicy(value unsafe.Pointer) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setDecodingFailurePolicy:"), value)
 }
 
 

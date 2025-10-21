@@ -104,6 +104,22 @@ func (o_ OperationQueue) CancelAllOperations() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("cancelAllOperations"))
 }
 
+// The number of operations currently in the queue.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operationCount
+func (o_ OperationQueue) OperationCount() uint {
+	rv := objc.Send[uint](o_.ID, objc.Sel("operationCount"))
+	return rv
+}
+
+// The operations currently in the queue.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operations
+func (o_ OperationQueue) Operations() []Operation {
+	rv := objc.Send[[]Operation](o_.ID, objc.Sel("operations"))
+	return rv
+}
+
 // A Boolean value indicating whether the operation can be performed now.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
@@ -246,22 +262,6 @@ func (o_ OperationQueue) UnderlyingQueue() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/underlyingqueue
 func (o_ OperationQueue) SetUnderlyingQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUnderlyingQueue:"), value)
-}
-
-// The number of operations currently in the queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operationCount
-func (o_ OperationQueue) OperationCount() uint {
-	rv := objc.Send[uint](o_.ID, objc.Sel("operationCount"))
-	return rv
-}
-
-// The operations currently in the queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operations
-func (o_ OperationQueue) Operations() []Operation {
-	rv := objc.Send[[]Operation](o_.ID, objc.Sel("operations"))
-	return rv
 }
 
 

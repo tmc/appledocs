@@ -80,6 +80,30 @@ func NewURLProtectionSpace() URLProtectionSpace {
 }
 
 
+// The authentication method used by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/authenticationMethod
+func (u_ URLProtectionSpace) AuthenticationMethod() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("authenticationMethod"))
+	return rv
+}
+
+// The acceptable certificate-issuing authorities for client certificate authentication.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/distinguishedNames
+func (u_ URLProtectionSpace) DistinguishedNames() []Data {
+	rv := objc.Send[[]Data](u_.ID, objc.Sel("distinguishedNames"))
+	return rv
+}
+
+// The receiver’s proxy type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/proxyType
+func (u_ URLProtectionSpace) ProxyType() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("proxyType"))
+	return rv
+}
+
 // The receiver’s host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
@@ -119,19 +143,19 @@ func (u_ URLProtectionSpace) SetPort(value int) {
 // The receiver’s protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
-func (u_ URLProtectionSpace) `protocol`() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("`protocol`"))
+func (u_ URLProtectionSpace) Protocol() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("protocol"))
 	return rv
 }
 
 
-// Set`protocol` sets the value of the `protocol` property.
+// SetProtocol sets the value of the protocol property.
 // The receiver’s protocol.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
-func (u_ URLProtectionSpace) Set`protocol`(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("set`protocol`:"), objc.String(value))
+func (u_ URLProtectionSpace) SetProtocol(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocol:"), objc.String(value))
 }
 
 // The receiver’s authentication realm
@@ -186,30 +210,6 @@ func (u_ URLProtectionSpace) ServerTrust() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/servertrust
 func (u_ URLProtectionSpace) SetServerTrust(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setServerTrust:"), value)
-}
-
-// The authentication method used by the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/authenticationMethod
-func (u_ URLProtectionSpace) AuthenticationMethod() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("authenticationMethod"))
-	return rv
-}
-
-// The acceptable certificate-issuing authorities for client certificate authentication.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/distinguishedNames
-func (u_ URLProtectionSpace) DistinguishedNames() []Data {
-	rv := objc.Send[[]Data](u_.ID, objc.Sel("distinguishedNames"))
-	return rv
-}
-
-// The receiver’s proxy type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/proxyType
-func (u_ URLProtectionSpace) ProxyType() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("proxyType"))
-	return rv
 }
 
 

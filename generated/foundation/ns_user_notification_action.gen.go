@@ -99,6 +99,22 @@ func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier stri
 	return rv
 }
 
+// The identifier for the user notification action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/identifier
+func (u_ UserNotificationAction) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+// The localized title shown to the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/title
+func (u_ UserNotificationAction) Title() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("title"))
+	return rv
+}
+
 // The actions that can be taken on a notification in addition to the default action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactions
@@ -133,22 +149,6 @@ func (u_ UserNotificationAction) AdditionalActivationAction() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction
 func (u_ UserNotificationAction) SetAdditionalActivationAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActivationAction:"), value)
-}
-
-// The identifier for the user notification action.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/identifier
-func (u_ UserNotificationAction) Identifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-// The localized title shown to the user.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/title
-func (u_ UserNotificationAction) Title() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("title"))
-	return rv
 }
 
 

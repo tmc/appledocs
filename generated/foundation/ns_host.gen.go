@@ -132,6 +132,30 @@ func (hc _HostClass) SetHostCacheEnabled(flag bool) {
 	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("setHostCacheEnabled:"), flag)
 }
 
+// Returns all the network addresses of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/addresses
+func (h_ Host) Addresses() []string {
+	rv := objc.Send[[]string](h_.ID, objc.Sel("addresses"))
+	return rv
+}
+
+// Returns the name used as by default when publishing .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/localizedName
+func (h_ Host) LocalizedName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("localizedName"))
+	return rv
+}
+
+// Returns one of the hostnames of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/name
+func (h_ Host) Name() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("name"))
+	return rv
+}
+
 // Returns one of the network addresses of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
@@ -166,30 +190,6 @@ func (h_ Host) Names() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
 func (h_ Host) SetNames(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setNames:"), objc.String(value))
-}
-
-// Returns all the network addresses of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/addresses
-func (h_ Host) Addresses() []string {
-	rv := objc.Send[[]string](h_.ID, objc.Sel("addresses"))
-	return rv
-}
-
-// Returns the name used as by default when publishing .
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/localizedName
-func (h_ Host) LocalizedName() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("localizedName"))
-	return rv
-}
-
-// Returns one of the hostnames of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/name
-func (h_ Host) Name() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("name"))
-	return rv
 }
 
 
