@@ -93,7 +93,17 @@ func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
 func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAffectedStores:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAffectedStores:"), nsArray)
 }
 // The type of the fetch request.
 //

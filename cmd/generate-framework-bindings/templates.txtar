@@ -350,6 +350,18 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego/objc"
+	{{- if ne .Framework "Foundation"}}
+	"github.com/tmc/appledocs/generated/foundation"
+	{{- end}}
+	{{- if ne .Framework "CoreGraphics"}}
+	"github.com/tmc/appledocs/generated/coregraphics"
+	{{- end}}
+	{{- if ne .Framework "AppKit"}}
+	"github.com/tmc/appledocs/generated/appkit"
+	{{- end}}
+	{{- if ne .Framework "QuartzCore"}}
+	"github.com/tmc/appledocs/generated/quartzcore"
+	{{- end}}
 )
 
 // {{.Framework}} Classes - Objective-C runtime bindings

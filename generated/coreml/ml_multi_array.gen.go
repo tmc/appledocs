@@ -87,14 +87,6 @@ func NewMultiArray() MultiArray {
 }
 
 
-// Merges an array of multiarrays into one multiarray along an axis.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)
-func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays unsafe.Pointer, axis int, dataType unsafe.Pointer) MultiArray {
-	rv := objc.Send[MultiArray](objc.ID(getMultiArrayClass().class), objc.Sel("multiArrayByConcatenatingMultiArrays:alongAxis:dataType:"), multiArrays, axis, dataType)
-	return rv
-}
-
 // Creates a multiarray from a data pointer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(dataPointer:shape:dataType:strides:deallocator:)
@@ -132,6 +124,14 @@ func NewMultiArrayWithShapeDataTypeStrides(shape unsafe.Pointer, dataType unsafe
 	instance := getMultiArrayClass().Alloc()
 	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithShape:dataType:strides:"), shape, dataType, strides)
 	rv.Autorelease()
+	return rv
+}
+
+// Merges an array of multiarrays into one multiarray along an axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)
+func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays unsafe.Pointer, axis int, dataType unsafe.Pointer) MultiArray {
+	rv := objc.Send[MultiArray](objc.ID(getMultiArrayClass().class), objc.Sel("multiArrayByConcatenatingMultiArrays:alongAxis:dataType:"), multiArrays, axis, dataType)
 	return rv
 }
 
@@ -222,16 +222,16 @@ func (m_ MultiArray) PixelBuffer() unsafe.Pointer {
 // The multiarray’s multidimensional shape as a number array in which each element’s value is the size of the corresponding dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/shape
-func (m_ MultiArray) Shape() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("shape"))
+func (m_ MultiArray) Shape() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](m_.ID, objc.Sel("shape"))
 	return rv
 }
 
 // A number array in which each element is the number of memory locations that span the length of the corresponding dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/strides
-func (m_ MultiArray) Strides() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("strides"))
+func (m_ MultiArray) Strides() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](m_.ID, objc.Sel("strides"))
 	return rv
 }
 

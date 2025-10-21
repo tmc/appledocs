@@ -10,13 +10,13 @@ import (
 var _ = quartzcore.NewLayer
 
 
-
 // ExampleNewLayer demonstrates how to create a Layer instance.
 // Returns an initialized   object.
 func ExampleNewLayer() {
 	_ = quartzcore.NewLayer()
 	// Output:
 }
+
 
 
 

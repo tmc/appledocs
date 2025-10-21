@@ -383,7 +383,17 @@ func (t_ TabView) TabViewItems() []TabViewItem {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/tabViewItems
 func (t_ TabView) SetTabViewItems(value []TabViewItem) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTabViewItems:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTabViewItems:"), nsArray)
 }
 // The tab type to display the tabs.
 //

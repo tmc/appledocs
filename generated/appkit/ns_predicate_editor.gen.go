@@ -84,8 +84,8 @@ func NewPredicateEditor() PredicateEditor {
 // The row templates for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
-func (p_ PredicateEditor) RowTemplates() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("rowTemplates"))
+func (p_ PredicateEditor) RowTemplates() []NSPredicateEditorRowTemplate {
+	rv := objc.Send[[]NSPredicateEditorRowTemplate](p_.ID, objc.Sel("rowTemplates"))
 	return rv
 }
 
@@ -95,8 +95,18 @@ func (p_ PredicateEditor) RowTemplates() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
-func (p_ PredicateEditor) SetRowTemplates(value []unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), value)
+func (p_ PredicateEditor) SetRowTemplates(value []NSPredicateEditorRowTemplate) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), nsArray)
 }
 
 

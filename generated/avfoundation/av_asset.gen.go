@@ -160,8 +160,8 @@ func (a_ Asset) UnusedTrackID() unsafe.Pointer {
 // The locales of the asset’s chapter metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/availableChapterLocales
-func (a_ Asset) AvailableChapterLocales() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](a_.ID, objc.Sel("availableChapterLocales"))
+func (a_ Asset) AvailableChapterLocales() []accessibility.NSLocale {
+	rv := objc.Send[[]accessibility.NSLocale](a_.ID, objc.Sel("availableChapterLocales"))
 	return rv
 }
 

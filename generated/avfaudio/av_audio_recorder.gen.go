@@ -91,22 +91,22 @@ func NewAudioRecorder() AudioRecorder {
 }
 
 
-// Creates an audio recorder with settings.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/init(url:settings:)
-func NewAudioRecorderWithURLSettingsError(url unsafe.Pointer, settings unsafe.Pointer, outError unsafe.Pointer) AudioRecorder {
-	instance := getAudioRecorderClass().Alloc()
-	rv := objc.Send[AudioRecorder](instance.ID, objc.Sel("initWithURL:settings:error:"), url, settings, outError)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates an audio recorder with an audio format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/init(url:format:)
 func NewAudioRecorderWithURLFormatError(url unsafe.Pointer, format unsafe.Pointer, outError unsafe.Pointer) AudioRecorder {
 	instance := getAudioRecorderClass().Alloc()
 	rv := objc.Send[AudioRecorder](instance.ID, objc.Sel("initWithURL:format:error:"), url, format, outError)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates an audio recorder with settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/init(url:settings:)
+func NewAudioRecorderWithURLSettingsError(url unsafe.Pointer, settings unsafe.Pointer, outError unsafe.Pointer) AudioRecorder {
+	instance := getAudioRecorderClass().Alloc()
+	rv := objc.Send[AudioRecorder](instance.ID, objc.Sel("initWithURL:settings:error:"), url, settings, outError)
 	rv.Autorelease()
 	return rv
 }
@@ -200,8 +200,8 @@ func (a_ AudioRecorder) UpdateMeters() {
 // An array of channel descriptions associated with the audio recorder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/channelAssignments
-func (a_ AudioRecorder) ChannelAssignments() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](a_.ID, objc.Sel("channelAssignments"))
+func (a_ AudioRecorder) ChannelAssignments() []avfaudio.AVAudioSessionChannelDescription {
+	rv := objc.Send[[]avfaudio.AVAudioSessionChannelDescription](a_.ID, objc.Sel("channelAssignments"))
 	return rv
 }
 
@@ -211,8 +211,18 @@ func (a_ AudioRecorder) ChannelAssignments() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/channelAssignments
-func (a_ AudioRecorder) SetChannelAssignments(value []unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelAssignments:"), value)
+func (a_ AudioRecorder) SetChannelAssignments(value []avfaudio.AVAudioSessionChannelDescription) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelAssignments:"), nsArray)
 }
 // The time, in seconds, since the beginning of the recording.
 //

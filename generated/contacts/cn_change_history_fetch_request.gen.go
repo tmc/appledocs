@@ -96,7 +96,17 @@ func (c_ CNChangeHistoryFetchRequest) AdditionalContactKeyDescriptors() []objc.I
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/additionalContactKeyDescriptors
 func (c_ CNChangeHistoryFetchRequest) SetAdditionalContactKeyDescriptors(value []objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAdditionalContactKeyDescriptors:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAdditionalContactKeyDescriptors:"), nsArray)
 }
 // An array of strings that identify transaction authors to exclude from the fetch results.
 //
@@ -113,7 +123,17 @@ func (c_ CNChangeHistoryFetchRequest) ExcludedTransactionAuthors() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/excludedTransactionAuthors
 func (c_ CNChangeHistoryFetchRequest) SetExcludedTransactionAuthors(value []string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setExcludedTransactionAuthors:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExcludedTransactionAuthors:"), nsArray)
 }
 // A Boolean value that indicates whether the fetch should also return group changes.
 //

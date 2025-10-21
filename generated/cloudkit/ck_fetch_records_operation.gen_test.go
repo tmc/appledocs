@@ -10,12 +10,12 @@ import (
 var _ = cloudkit.NewCKFetchRecordsOperation
 
 
-
 // ExampleNewCKFetchRecordsOperation demonstrates how to create a CKFetchRecordsOperation instance.
 // Creates an empty fetch operation.
 func ExampleNewCKFetchRecordsOperation() {
 	_ = cloudkit.NewCKFetchRecordsOperation()
 	// Output:
 }
+
 
 

@@ -103,5 +103,33 @@ func (ec _EDRMetadataClass) HLGMetadataWithAmbientViewingEnvironment(data unsafe
 	return rv
 }
 
+// Extended dynamic range (EDR) metadata for the Hybrid Log-Gamma (HLG) transfer function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/hlg
+func (ec _EDRMetadataClass) HLGMetadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("HLGMetadata"))
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/isAvailable
+func (ec _EDRMetadataClass) Available() bool {
+	rv := objc.Send[bool](objc.ID(ec.class), objc.Sel("available"))
+	return rv
+}
+// Extended dynamic range (EDR) metadata for the Hybrid Log-Gamma (HLG) transfer function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/hlg
+func (e_ EDRMetadata) HLGMetadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("HLGMetadata"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/isAvailable
+func (e_ EDRMetadata) Available() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("available"))
+	return rv
+}
+
 
 

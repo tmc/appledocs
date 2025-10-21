@@ -178,16 +178,6 @@ func NewDocument() Document {
 }
 
 
-// Initializes a document located by a URL of a specified type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(contentsOf:ofType:)
-func NewDocumentWithContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) Document {
-	instance := getDocumentClass().Alloc()
-	rv := objc.Send[Document](instance.ID, objc.Sel("initWithContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a document with the specified contents, and places the resulting document’s file at the designated location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(for:withContentsOf:ofType:)
@@ -204,6 +194,16 @@ func NewDocumentForURLWithContentsOfURLOfTypeError(urlOrNil unsafe.Pointer, cont
 func NewDocumentWithTypeError(typeName string, outError unsafe.Pointer) Document {
 	instance := getDocumentClass().Alloc()
 	rv := objc.Send[Document](instance.ID, objc.Sel("initWithType:error:"), objc.String(typeName), outError)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a document located by a URL of a specified type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(contentsOf:ofType:)
+func NewDocumentWithContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) Document {
+	instance := getDocumentClass().Alloc()
+	rv := objc.Send[Document](instance.ID, objc.Sel("initWithContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
 	rv.Autorelease()
 	return rv
 }
@@ -233,6 +233,55 @@ func (dc _DocumentClass) IsNativeType(type_ string) bool {
 	return rv
 }
 
+// A Boolean value that indicates whether the document subclass supports autosaving of drafts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavesDrafts
+func (dc _DocumentClass) AutosavesDrafts() bool {
+	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("autosavesDrafts"))
+	return rv
+}
+// A Boolean value that indicates whether the document subclass supports autosaving in place.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavesInPlace
+func (dc _DocumentClass) AutosavesInPlace() bool {
+	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("autosavesInPlace"))
+	return rv
+}
+// A Boolean value that indicates whether the document subclass supports version management.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/preservesVersions
+func (dc _DocumentClass) PreservesVersions() bool {
+	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("preservesVersions"))
+	return rv
+}
+// Returns the types of data the receiver can read natively and any types filterable to that native type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/readableTypes
+func (dc _DocumentClass) ReadableTypes() []string {
+	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("readableTypes"))
+	return rv
+}
+// Returns an array of key paths that represent the restorable attributes of the document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/restorableStateKeyPaths
+func (dc _DocumentClass) RestorableStateKeyPaths() []string {
+	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("restorableStateKeyPaths"))
+	return rv
+}
+// Returns whether the document object stores its contents in the user’s iCloud document storage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/usesUbiquitousStorage
+func (dc _DocumentClass) UsesUbiquitousStorage() bool {
+	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("usesUbiquitousStorage"))
+	return rv
+}
+// Returns the types of data the receiver can write natively and any types filterable to that native type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/writableTypes
+func (dc _DocumentClass) WritableTypes() []string {
+	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("writableTypes"))
+	return rv
+}
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/accommodatePresentedItemDeletion(completionHandler:)
 func (d_ Document) AccommodatePresentedItemDeletionWithCompletionHandler(completionHandler unsafe.Pointer) {
@@ -962,6 +1011,22 @@ func (d_ Document) AutosavedContentsFileURL() unsafe.Pointer {
 func (d_ Document) SetAutosavedContentsFileURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAutosavedContentsFileURL:"), value)
 }
+// A Boolean value that indicates whether the document subclass supports autosaving of drafts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavesDrafts
+func (d_ Document) AutosavesDrafts() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("autosavesDrafts"))
+	return rv
+}
+
+// A Boolean value that indicates whether the document subclass supports autosaving in place.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavesInPlace
+func (d_ Document) AutosavesInPlace() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("autosavesInPlace"))
+	return rv
+}
+
 // The document type to use for an autosave operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavingFileType
@@ -1207,6 +1272,14 @@ func (d_ Document) PresentedItemURL() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean value that indicates whether the document subclass supports version management.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/preservesVersions
+func (d_ Document) PreservesVersions() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("preservesVersions"))
+	return rv
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/previewRepresentableActivityItems
 func (d_ Document) PreviewRepresentableActivityItems() []objc.ID {
@@ -1219,7 +1292,17 @@ func (d_ Document) PreviewRepresentableActivityItems() []objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/previewRepresentableActivityItems
 func (d_ Document) SetPreviewRepresentableActivityItems(value []objc.ID) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setPreviewRepresentableActivityItems:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setPreviewRepresentableActivityItems:"), nsArray)
 }
 // The printing information associated with the document.
 //
@@ -1238,6 +1321,22 @@ func (d_ Document) PrintInfo() unsafe.Pointer {
 func (d_ Document) SetPrintInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPrintInfo:"), value)
 }
+// Returns the types of data the receiver can read natively and any types filterable to that native type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/readableTypes
+func (d_ Document) ReadableTypes() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("readableTypes"))
+	return rv
+}
+
+// Returns an array of key paths that represent the restorable attributes of the document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/restorableStateKeyPaths
+func (d_ Document) RestorableStateKeyPaths() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("restorableStateKeyPaths"))
+	return rv
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/savePanelShowsFileFormatsControl
 func (d_ Document) SavePanelShowsFileFormatsControl() bool {
@@ -1287,6 +1386,14 @@ func (d_ Document) UserActivity() unsafe.Pointer {
 func (d_ Document) SetUserActivity(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUserActivity:"), value)
 }
+// Returns whether the document object stores its contents in the user’s iCloud document storage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/usesUbiquitousStorage
+func (d_ Document) UsesUbiquitousStorage() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("usesUbiquitousStorage"))
+	return rv
+}
+
 // The document’s current window controllers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/windowControllers
@@ -1308,6 +1415,14 @@ func (d_ Document) WindowForSheet() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/windowNibName
 func (d_ Document) WindowNibName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("windowNibName"))
+	return rv
+}
+
+// Returns the types of data the receiver can write natively and any types filterable to that native type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/writableTypes
+func (d_ Document) WritableTypes() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("writableTypes"))
 	return rv
 }
 

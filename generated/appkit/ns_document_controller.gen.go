@@ -108,8 +108,8 @@ func (d_ DocumentController) OpenDocumentWithContentsOfURLDisplayCompletionHandl
 // The list of recent-document URLs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/recentDocumentURLs
-func (d_ DocumentController) RecentDocumentURLs() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](d_.ID, objc.Sel("recentDocumentURLs"))
+func (d_ DocumentController) RecentDocumentURLs() []NSURL {
+	rv := objc.Send[[]NSURL](d_.ID, objc.Sel("recentDocumentURLs"))
 	return rv
 }
 

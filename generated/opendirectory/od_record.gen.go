@@ -60,8 +60,8 @@ type IODRecord interface {
 	ValuesForAttributeError(inAttribute unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer
 	VerifyExtendedWithAuthenticationTypeAuthenticationItemsContinueItemsContextError(inType unsafe.Pointer, inItems objc.ID, outItems objc.ID, outContext objc.ID, outError unsafe.Pointer) bool
 	VerifyPasswordError(inPassword string, outError unsafe.Pointer) bool
-	WillAuthenticationsExpire(willExpireIn unsafe.Pointer) bool
-	WillPasswordExpire(willExpireIn unsafe.Pointer) bool
+	WillAuthenticationsExpire(willExpireIn uint64) bool
+	WillPasswordExpire(willExpireIn uint64) bool
 }
 
 // An object serves as a Cocoa wrapper for an Open Directory record.
@@ -340,14 +340,14 @@ func (o_ ODRecord) VerifyPasswordError(inPassword string, outError unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/willAuthenticationsExpire(_:)
-func (o_ ODRecord) WillAuthenticationsExpire(willExpireIn unsafe.Pointer) bool {
+func (o_ ODRecord) WillAuthenticationsExpire(willExpireIn uint64) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("willAuthenticationsExpire:"), willExpireIn)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/willPasswordExpire(_:)
-func (o_ ODRecord) WillPasswordExpire(willExpireIn unsafe.Pointer) bool {
+func (o_ ODRecord) WillPasswordExpire(willExpireIn uint64) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("willPasswordExpire:"), willExpireIn)
 	return rv
 }

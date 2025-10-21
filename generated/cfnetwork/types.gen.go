@@ -1,8 +1,9 @@
 // Code generated from Apple documentation for CFNetwork. DO NOT EDIT.
 
 package cfnetwork
-
-import "unsafe"
+import (
+	"unsafe"
+)
 
 // CFAllocatorRef is a CoreGraphics opaque type.
 type CFAllocatorRef unsafe.Pointer
@@ -58,4 +59,49 @@ type CFWriteStreamRef unsafe.Pointer
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+type Boolean unsafe.Pointer
+
+type CFErrorRef unsafe.Pointer
+
+type CFHostClientCallBack unsafe.Pointer
+
+type CFHostClientContext unsafe.Pointer
+
+type CFHostInfoType unsafe.Pointer
+
+type CFIndex unsafe.Pointer
+
+type CFNetDiagnosticStatus unsafe.Pointer
+
+type CFNetServiceBrowserClientCallBack unsafe.Pointer
+
+type CFNetServiceClientCallBack unsafe.Pointer
+
+type CFNetServiceClientContext unsafe.Pointer
+
+type CFNetServiceMonitorClientCallBack unsafe.Pointer
+
+type CFNetServiceMonitorType unsafe.Pointer
+
+type CFOptionFlags unsafe.Pointer
+
+type CFProxyAutoConfigurationResultCallback unsafe.Pointer
+
+type CFStreamClientContext unsafe.Pointer
+
+type CFStreamError unsafe.Pointer
+
+type CFTimeInterval unsafe.Pointer
+
+type CFTypeID unsafe.Pointer
+
+type SInt32 unsafe.Pointer
+
+type UInt8 unsafe.Pointer
+
+
 

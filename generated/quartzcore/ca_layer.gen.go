@@ -124,6 +124,14 @@ func NewLayer() Layer {
 }
 
 
+// Initializes a layer with a remote client ID.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
+func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
+	rv := objc.Send[Layer](objc.ID(getLayerClass().class), objc.Sel("layerWithRemoteClientId:"), client_id)
+	return rv
+}
+
 // Override to copy or initialize custom fields of the specified layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(layer:)
@@ -131,14 +139,6 @@ func NewLayerWithLayer(layer objc.ID) Layer {
 	instance := getLayerClass().Alloc()
 	rv := objc.Send[Layer](instance.ID, objc.Sel("initWithLayer:"), layer)
 	rv.Autorelease()
-	return rv
-}
-
-// Initializes a layer with a remote client ID.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
-func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
-	rv := objc.Send[Layer](objc.ID(getLayerClass().class), objc.Sel("layerWithRemoteClientId:"), client_id)
 	return rv
 }
 
@@ -729,7 +729,17 @@ func (l_ Layer) Constraints() []Constraint {
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/constraints
 func (l_ Layer) SetConstraints(value []Constraint) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setConstraints:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](l_.ID, objc.Sel("setConstraints:"), nsArray)
 }
 // An object that provides the contents of the layer. Animatable.
 //
@@ -1397,7 +1407,17 @@ func (l_ Layer) Sublayers() []Layer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/sublayers
 func (l_ Layer) SetSublayers(value []Layer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setSublayers:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](l_.ID, objc.Sel("setSublayers:"), nsArray)
 }
 // The superlayer of the layer.
 //

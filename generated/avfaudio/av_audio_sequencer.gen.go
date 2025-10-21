@@ -30,7 +30,7 @@ type _AudioSequencerClass struct {
 // An interface definition for the [AudioSequencer] class.
 type IAudioSequencer interface {
 	objectivec.IObject
-	HostTimeForBeatsError(inBeats unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer
+	HostTimeForBeatsError(inBeats unsafe.Pointer, outError unsafe.Pointer) uint64
 	SecondsForBeats(beats unsafe.Pointer) TimeInterval
 }
 
@@ -83,8 +83,8 @@ func NewAudioSequencer() AudioSequencer {
 // Gets the host time the sequence plays at the specified position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSequencer/hostTime(forBeats:error:)
-func (a_ AudioSequencer) HostTimeForBeatsError(inBeats unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("hostTimeForBeats:error:"), inBeats, outError)
+func (a_ AudioSequencer) HostTimeForBeatsError(inBeats unsafe.Pointer, outError unsafe.Pointer) uint64 {
+	rv := objc.Send[uint64](a_.ID, objc.Sel("hostTimeForBeats:error:"), inBeats, outError)
 	return rv
 }
 

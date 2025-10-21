@@ -80,26 +80,6 @@ func NewFSFileName() FSFileName {
 }
 
 
-// Creates a filename by copying a character sequence data object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/init(data:)
-func NewFSFileNameWithData(name unsafe.Pointer) FSFileName {
-	instance := getFSFileNameClass().Alloc()
-	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithData:"), name)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a filename by copying a character sequence from a string instance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/init(string:)
-func NewFSFileNameWithString(name string) FSFileName {
-	instance := getFSFileNameClass().Alloc()
-	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithString:"), objc.String(name))
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a file name by copying a character sequence from a byte array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/initWithBytes:length:
@@ -116,6 +96,26 @@ func NewFSFileNameWithBytesLength(bytes unsafe.Pointer, length uint) FSFileName 
 func NewFSFileNameWithCString(name unsafe.Pointer) FSFileName {
 	instance := getFSFileNameClass().Alloc()
 	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithCString:"), name)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a filename by copying a character sequence data object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/init(data:)
+func NewFSFileNameWithData(name unsafe.Pointer) FSFileName {
+	instance := getFSFileNameClass().Alloc()
+	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithData:"), name)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a filename by copying a character sequence from a string instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/init(string:)
+func NewFSFileNameWithString(name string) FSFileName {
+	instance := getFSFileNameClass().Alloc()
+	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithString:"), objc.String(name))
 	rv.Autorelease()
 	return rv
 }

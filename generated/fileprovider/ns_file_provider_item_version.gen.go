@@ -91,6 +91,21 @@ func NewFileProviderItemVersionWithContentVersionMetadataVersion(contentVersion 
 }
 
 
+// A Boolean value indicating that this version predates the version returned by the file provider extension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/beforeFirstSyncComponent
+func (fc _FileProviderItemVersionClass) BeforeFirstSyncComponent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("beforeFirstSyncComponent"))
+	return rv
+}
+// A Boolean value indicating that this version predates the version returned by the file provider extension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/beforeFirstSyncComponent
+func (f_ FileProviderItemVersion) BeforeFirstSyncComponent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("beforeFirstSyncComponent"))
+	return rv
+}
+
 // An opaque object used to track versions of the item’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/contentVersion

@@ -88,6 +88,13 @@ func (nc _NowPlayingInfoCenterClass) DefaultCenter() unsafe.Pointer {
 	return rv
 }
 
+// Keys related to animated artwork that are supported by the current platform.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoCenter/supportedAnimatedArtworkKeys
+func (nc _NowPlayingInfoCenterClass) SupportedAnimatedArtworkKeys() []string {
+	rv := objc.Send[[]string](objc.ID(nc.class), objc.Sel("supportedAnimatedArtworkKeys"))
+	return rv
+}
 // The current Now Playing information for the default Now Playing info center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo
@@ -122,5 +129,13 @@ func (n_ NowPlayingInfoCenter) PlaybackState() unsafe.Pointer {
 func (n_ NowPlayingInfoCenter) SetPlaybackState(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPlaybackState:"), value)
 }
+// Keys related to animated artwork that are supported by the current platform.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoCenter/supportedAnimatedArtworkKeys
+func (n_ NowPlayingInfoCenter) SupportedAnimatedArtworkKeys() []string {
+	rv := objc.Send[[]string](n_.ID, objc.Sel("supportedAnimatedArtworkKeys"))
+	return rv
+}
+
 
 

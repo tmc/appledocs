@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MediaQuerySection] class.
@@ -83,8 +84,8 @@ func NewMediaQuerySection() MediaQuerySection {
 // The range in the media query’s items or collections array that the media query section represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuerySection/range
-func (m_ MediaQuerySection) Range() Range {
-	rv := objc.Send[Range](m_.ID, objc.Sel("range"))
+func (m_ MediaQuerySection) Range() foundation.Range {
+	rv := objc.Send[foundation.Range](m_.ID, objc.Sel("range"))
 	return rv
 }
 

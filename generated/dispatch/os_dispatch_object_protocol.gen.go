@@ -1,0 +1,16 @@
+// Code generated from Apple documentation for Dispatch. DO NOT EDIT.
+
+package dispatch
+
+import "github.com/ebitengine/purego/objc"
+
+// OS_dispatch_objectProtocol is the OS_dispatch_object protocol.
+//
+// Use this protocol when registering custom classes that conform to OS_dispatch_object.
+var OS_dispatch_objectProtocol *objc.Protocol
+
+func init() {
+	OS_dispatch_objectProtocol = objc.GetProtocol("OS_dispatch_object")
+}
+
+

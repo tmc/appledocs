@@ -171,7 +171,17 @@ func (s_ SavePanel) AllowedContentTypes() []uniformtypeidentifiers.UTType {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
 func (s_ SavePanel) SetAllowedContentTypes(value []uniformtypeidentifiers.UTType) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowedContentTypes:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowedContentTypes:"), nsArray)
 }
 // A Boolean value that indicates whether the panel allows the user to save files with a filename extension that’s not in the list of allowed types.
 //
@@ -448,7 +458,17 @@ func (s_ SavePanel) TagNames() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/tagNames
 func (s_ SavePanel) SetTagNames(value []string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTagNames:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTagNames:"), nsArray)
 }
 // The title of the panel.
 //

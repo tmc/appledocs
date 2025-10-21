@@ -1,8 +1,9 @@
 // Code generated from Apple documentation for CoreFoundation. DO NOT EDIT.
 
 package corefoundation
-
-import "unsafe"
+import (
+	"unsafe"
+)
 
 // CFAllocatorRef is a CoreGraphics opaque type.
 type CFAllocatorRef unsafe.Pointer
@@ -172,4 +173,229 @@ type CFXMLTreeRef unsafe.Pointer
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+type Boolean unsafe.Pointer
+
+type CFAbsoluteTime unsafe.Pointer
+
+type CFAllocatorContext unsafe.Pointer
+
+type CFAllocatorTypeID unsafe.Pointer
+
+type CFArrayApplierFunction unsafe.Pointer
+
+type CFArrayCallBacks unsafe.Pointer
+
+type CFBagApplierFunction unsafe.Pointer
+
+type CFBagCallBacks unsafe.Pointer
+
+type CFBinaryHeapApplierFunction unsafe.Pointer
+
+type CFBinaryHeapCallBacks unsafe.Pointer
+
+type CFBinaryHeapCompareContext unsafe.Pointer
+
+type CFBit unsafe.Pointer
+
+type CFBundleRefNum unsafe.Pointer
+
+type CFCalendarIdentifier unsafe.Pointer
+
+type CFCalendarUnit unsafe.Pointer
+
+type CFCharacterSetPredefinedSet unsafe.Pointer
+
+type CFComparatorFunction unsafe.Pointer
+
+type CFComparisonResult unsafe.Pointer
+
+type CFDataSearchFlags unsafe.Pointer
+
+type CFDateFormatterKey unsafe.Pointer
+
+type CFDateFormatterStyle unsafe.Pointer
+
+type CFDictionaryApplierFunction unsafe.Pointer
+
+type CFDictionaryKeyCallBacks unsafe.Pointer
+
+type CFDictionaryValueCallBacks unsafe.Pointer
+
+type CFErrorDomain unsafe.Pointer
+
+type CFFileDescriptorCallBack unsafe.Pointer
+
+type CFFileDescriptorContext unsafe.Pointer
+
+type CFFileDescriptorNativeDescriptor unsafe.Pointer
+
+type CFFileSecurityClearOptions unsafe.Pointer
+
+type CFGregorianDate unsafe.Pointer
+
+type CFGregorianUnits unsafe.Pointer
+
+type CFHashCode unsafe.Pointer
+
+type CFISO8601DateFormatOptions unsafe.Pointer
+
+type CFIndex unsafe.Pointer
+
+type CFLocaleIdentifier unsafe.Pointer
+
+type CFLocaleKey unsafe.Pointer
+
+type CFLocaleLanguageDirection unsafe.Pointer
+
+type CFMachPortCallBack unsafe.Pointer
+
+type CFMachPortContext unsafe.Pointer
+
+type CFMachPortInvalidationCallBack unsafe.Pointer
+
+type CFMessagePortCallBack unsafe.Pointer
+
+type CFMessagePortContext unsafe.Pointer
+
+type CFMessagePortInvalidationCallBack unsafe.Pointer
+
+type CFNotificationCallback unsafe.Pointer
+
+type CFNotificationName unsafe.Pointer
+
+type CFNotificationSuspensionBehavior unsafe.Pointer
+
+type CFNumberFormatterKey unsafe.Pointer
+
+type CFNumberFormatterStyle unsafe.Pointer
+
+type CFNumberType unsafe.Pointer
+
+type CFOptionFlags unsafe.Pointer
+
+type CFPlugInFactoryFunction unsafe.Pointer
+
+type CFPlugInInstanceDeallocateInstanceDataFunction unsafe.Pointer
+
+type CFPlugInInstanceGetInterfaceFunction unsafe.Pointer
+
+type CFPropertyListFormat unsafe.Pointer
+
+type CFRange unsafe.Pointer
+
+type CFReadStreamClientCallBack unsafe.Pointer
+
+type CFRunLoopMode unsafe.Pointer
+
+type CFRunLoopObserverCallBack unsafe.Pointer
+
+type CFRunLoopObserverContext unsafe.Pointer
+
+type CFRunLoopRunResult unsafe.Pointer
+
+type CFRunLoopSourceContext unsafe.Pointer
+
+type CFRunLoopTimerCallBack unsafe.Pointer
+
+type CFRunLoopTimerContext unsafe.Pointer
+
+type CFSetApplierFunction unsafe.Pointer
+
+type CFSetCallBacks unsafe.Pointer
+
+type CFSocketCallBack unsafe.Pointer
+
+type CFSocketContext unsafe.Pointer
+
+type CFSocketError unsafe.Pointer
+
+type CFSocketNativeHandle unsafe.Pointer
+
+type CFSocketSignature unsafe.Pointer
+
+type CFStreamClientContext unsafe.Pointer
+
+type CFStreamError unsafe.Pointer
+
+type CFStreamPropertyKey unsafe.Pointer
+
+type CFStreamStatus unsafe.Pointer
+
+type CFStringCompareFlags unsafe.Pointer
+
+type CFStringEncoding unsafe.Pointer
+
+type CFStringNormalizationForm unsafe.Pointer
+
+type CFStringTokenizerTokenType unsafe.Pointer
+
+type CFTimeInterval unsafe.Pointer
+
+type CFTimeZoneNameStyle unsafe.Pointer
+
+type CFTreeApplierFunction unsafe.Pointer
+
+type CFTreeContext unsafe.Pointer
+
+type CFTypeID unsafe.Pointer
+
+type CFURLBookmarkCreationOptions unsafe.Pointer
+
+type CFURLBookmarkFileCreationOptions unsafe.Pointer
+
+type CFURLBookmarkResolutionOptions unsafe.Pointer
+
+type CFURLComponentType unsafe.Pointer
+
+type CFURLEnumeratorOptions unsafe.Pointer
+
+type CFURLEnumeratorResult unsafe.Pointer
+
+type CFURLPathStyle unsafe.Pointer
+
+type CFUUIDBytes unsafe.Pointer
+
+type CFUserNotificationCallBack unsafe.Pointer
+
+type CFWriteStreamClientCallBack unsafe.Pointer
+
+type CFXMLNodeTypeCode unsafe.Pointer
+
+type CFXMLParserCallBacks unsafe.Pointer
+
+type CFXMLParserContext unsafe.Pointer
+
+type CFXMLParserStatusCode unsafe.Pointer
+
+type ConstStr255Param unsafe.Pointer
+
+type ConstStringPtr unsafe.Pointer
+
+type FSRef unsafe.Pointer
+
+type LangCode unsafe.Pointer
+
+type RegionCode unsafe.Pointer
+
+type SInt32 unsafe.Pointer
+
+type StringPtr unsafe.Pointer
+
+type UIEdgeInsets unsafe.Pointer
+
+type UInt16 unsafe.Pointer
+
+type UInt32 unsafe.Pointer
+
+type UInt8 unsafe.Pointer
+
+type UTF32Char unsafe.Pointer
+
+type UniChar unsafe.Pointer
+
+
 

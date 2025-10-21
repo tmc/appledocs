@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FileProviderManager] class.
@@ -44,7 +45,7 @@ type IFileProviderManager interface {
 	ReimportItemsBelowItemWithIdentifierCompletionHandler(itemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
 	ReleaseKnownFoldersLocalizedReasonCompletionHandler(knownFolders unsafe.Pointer, localizedReason string, completionHandler unsafe.Pointer)
 	RequestDiagnosticCollectionForItemWithIdentifierErrorReasonCompletionHandler(itemIdentifier unsafe.Pointer, errorReason unsafe.Pointer, completionHandler unsafe.Pointer)
-	RequestDownloadForItemWithIdentifierRequestedRangeCompletionHandler(itemIdentifier unsafe.Pointer, rangeToMaterialize Range, completionHandler unsafe.Pointer)
+	RequestDownloadForItemWithIdentifierRequestedRangeCompletionHandler(itemIdentifier unsafe.Pointer, rangeToMaterialize foundation.Range, completionHandler unsafe.Pointer)
 	RequestModificationOfFieldsForItemWithIdentifierOptionsCompletionHandler(fields unsafe.Pointer, itemIdentifier unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
 	RunTestingOperationsError(operations unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	SignalEnumeratorForContainerItemIdentifierCompletionHandler(containerItemIdentifier unsafe.Pointer, completion unsafe.Pointer)
@@ -191,6 +192,13 @@ func (fc _FileProviderManagerClass) WritePlaceholderAtURLWithMetadataError(place
 	return rv
 }
 
+// A property that returns the shared file provider manager object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/default
+func (fc _FileProviderManagerClass) DefaultManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("defaultManager"))
+	return rv
+}
 // Asks the domain to sync the specified known folders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/claimKnownFolders(_:localizedReason:completionHandler:)
@@ -294,7 +302,7 @@ func (f_ FileProviderManager) RequestDiagnosticCollectionForItemWithIdentifierEr
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/requestDownloadForItemWithIdentifier:requestedRange:completionHandler:
-func (f_ FileProviderManager) RequestDownloadForItemWithIdentifierRequestedRangeCompletionHandler(itemIdentifier unsafe.Pointer, rangeToMaterialize Range, completionHandler unsafe.Pointer) {
+func (f_ FileProviderManager) RequestDownloadForItemWithIdentifierRequestedRangeCompletionHandler(itemIdentifier unsafe.Pointer, rangeToMaterialize foundation.Range, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("requestDownloadForItemWithIdentifier:requestedRange:completionHandler:"), itemIdentifier, rangeToMaterialize, completionHandler)
 }
 
@@ -354,6 +362,14 @@ func (f_ FileProviderManager) WaitForChangesOnItemsBelowItemWithIdentifierComple
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/waitForStabilization(completionHandler:)
 func (f_ FileProviderManager) WaitForStabilizationWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("waitForStabilizationWithCompletionHandler:"), completionHandler)
+}
+
+// A property that returns the shared file provider manager object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/default
+func (f_ FileProviderManager) DefaultManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("defaultManager"))
+	return rv
 }
 
 // The root URL for all shared documents.

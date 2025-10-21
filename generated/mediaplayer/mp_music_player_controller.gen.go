@@ -92,6 +92,34 @@ func NewMusicPlayerController() MusicPlayerController {
 }
 
 
+// Returns the application music player.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationMusicPlayer
+func (mc _MusicPlayerControllerClass) ApplicationMusicPlayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("applicationMusicPlayer"))
+	return rv
+}
+// Returns the application queue music player.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationQueuePlayer
+func (mc _MusicPlayerControllerClass) ApplicationQueuePlayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("applicationQueuePlayer"))
+	return rv
+}
+// Returns the iPod music player, which controls the iPod app’s state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/iPodMusicPlayer
+func (mc _MusicPlayerControllerClass) IPodMusicPlayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("iPodMusicPlayer"))
+	return rv
+}
+// Returns the system music player, which controls the Music app’s state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/systemMusicPlayer
+func (mc _MusicPlayerControllerClass) SystemMusicPlayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("systemMusicPlayer"))
+	return rv
+}
 // Inserts the media items defined by the queue descriptor after the last media item in the current queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/append(_:)
@@ -176,6 +204,30 @@ func (m_ MusicPlayerController) SkipToPreviousItem() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("skipToPreviousItem"))
 }
 
+// Returns the application music player.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationMusicPlayer
+func (m_ MusicPlayerController) ApplicationMusicPlayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationMusicPlayer"))
+	return rv
+}
+
+// Returns the application queue music player.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationQueuePlayer
+func (m_ MusicPlayerController) ApplicationQueuePlayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationQueuePlayer"))
+	return rv
+}
+
+// Returns the iPod music player, which controls the iPod app’s state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/iPodMusicPlayer
+func (m_ MusicPlayerController) IPodMusicPlayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("iPodMusicPlayer"))
+	return rv
+}
+
 // The index of the now playing item in the current playback queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/indexOfNowPlayingItem
@@ -243,6 +295,14 @@ func (m_ MusicPlayerController) ShuffleMode() unsafe.Pointer {
 func (m_ MusicPlayerController) SetShuffleMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShuffleMode:"), value)
 }
+// Returns the system music player, which controls the Music app’s state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/systemMusicPlayer
+func (m_ MusicPlayerController) SystemMusicPlayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("systemMusicPlayer"))
+	return rv
+}
+
 // The audio playback volume for the music player, in the range from (silent) through (maximum volume).
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/volume

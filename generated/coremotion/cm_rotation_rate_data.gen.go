@@ -1,0 +1,91 @@
+// Code generated from Apple documentation for CoreMotion. DO NOT EDIT.
+
+package coremotion
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [RotationRateData] class.
+var (
+	RotationRateDataClass     _RotationRateDataClass
+	RotationRateDataClassOnce sync.Once
+)
+
+func getRotationRateDataClass() _RotationRateDataClass {
+	RotationRateDataClassOnce.Do(func() {
+		RotationRateDataClass = _RotationRateDataClass{objc.GetClass("CMRotationRateData")}
+	})
+	return RotationRateDataClass
+}
+
+type _RotationRateDataClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [RotationRateData] class.
+type IRotationRateData interface {
+	ILogItem
+}
+
+// A data object that contains a single rotation-rate measurement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRotationRateData
+type RotationRateData struct {
+	LogItem
+}
+
+// RotationRateDataFrom constructs a [RotationRateData] from an unsafe.Pointer.
+//
+// A data object that contains a single rotation-rate measurement.
+func RotationRateDataFrom(ptr unsafe.Pointer) RotationRateData {
+	return RotationRateData{
+		LogItem: LogItemFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (rc _RotationRateDataClass) Alloc() RotationRateData {
+	rv := objc.Send[RotationRateData](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (rc _RotationRateDataClass) New() RotationRateData {
+	rv := objc.Send[RotationRateData](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ RotationRateData) Init() RotationRateData {
+	rv := objc.Send[RotationRateData](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ RotationRateData) Autorelease() RotationRateData {
+	rv := objc.Send[RotationRateData](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRotationRateData creates a new RotationRateData instance.
+func NewRotationRateData() RotationRateData {
+	return getRotationRateDataClass().New()
+}
+
+
+// The rotation rate measured by the gyroscope.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRotationRateData/rotationRate
+func (r_ RotationRateData) RotationRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rotationRate"))
+	return rv
+}
+
+
+

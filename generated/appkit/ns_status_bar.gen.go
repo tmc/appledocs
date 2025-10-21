@@ -81,11 +81,26 @@ func NewStatusBar() StatusBar {
 }
 
 
+// Returns the system-wide status bar located in the menu bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/system
+func (sc _StatusBarClass) SystemStatusBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("systemStatusBar"))
+	return rv
+}
 // Removes the specified status item from the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/removeStatusItem(_:)
 func (s_ StatusBar) RemoveStatusItem(item unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeStatusItem:"), item)
+}
+
+// Returns the system-wide status bar located in the menu bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/system
+func (s_ StatusBar) SystemStatusBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("systemStatusBar"))
+	return rv
 }
 
 

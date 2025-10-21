@@ -77,6 +77,13 @@ func NewEnvironment() Environment {
 }
 
 
+// Environment of the current user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/currentUser
+func (ec _EnvironmentClass) CurrentUser() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("currentUser"))
+	return rv
+}
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/addObserver(_:)
 func (e_ Environment) AddObserver(observer objc.ID) {
@@ -87,6 +94,14 @@ func (e_ Environment) AddObserver(observer objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/removeObserver(_:)
 func (e_ Environment) RemoveObserver(observer objc.ID) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("removeObserver:"), observer)
+}
+
+// Environment of the current user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/currentUser
+func (e_ Environment) CurrentUser() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("currentUser"))
+	return rv
 }
 
 // The environment state information.

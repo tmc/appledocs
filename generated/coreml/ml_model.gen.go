@@ -158,6 +158,13 @@ func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url unsafe
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
 }
 
+// The list of available compute devices that the model’s prediction can use.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/availableComputeDevices-42uzt
+func (mc _ModelClass) AvailableComputeDevices() []objc.ID {
+	rv := objc.Send[[]objc.ID](objc.ID(mc.class), objc.Sel("availableComputeDevices"))
+	return rv
+}
 // Creates a new state object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/newState
@@ -230,6 +237,14 @@ func (m_ Model) PredictionsFromBatchOptionsError(inputBatch objc.ID, options uns
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/predictions(fromBatch:)
 func (m_ Model) PredictionsFromBatchError(inputBatch objc.ID, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionsFromBatch:error:"), inputBatch, error_)
+	return rv
+}
+
+// The list of available compute devices that the model’s prediction can use.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/availableComputeDevices-42uzt
+func (m_ Model) AvailableComputeDevices() []objc.ID {
+	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("availableComputeDevices"))
 	return rv
 }
 

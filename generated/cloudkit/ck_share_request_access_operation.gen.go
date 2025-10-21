@@ -124,8 +124,8 @@ func (c_ CKShareRequestAccessOperation) SetShareRequestAccessCompletionBlock(val
 // The URLs of the shares to request access to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
-func (c_ CKShareRequestAccessOperation) ShareURLs() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("shareURLs"))
+func (c_ CKShareRequestAccessOperation) ShareURLs() []appkit.NSURL {
+	rv := objc.Send[[]appkit.NSURL](c_.ID, objc.Sel("shareURLs"))
 	return rv
 }
 
@@ -135,7 +135,17 @@ func (c_ CKShareRequestAccessOperation) ShareURLs() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
-func (c_ CKShareRequestAccessOperation) SetShareURLs(value []unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShareURLs:"), value)
+func (c_ CKShareRequestAccessOperation) SetShareURLs(value []appkit.NSURL) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShareURLs:"), nsArray)
 }
 

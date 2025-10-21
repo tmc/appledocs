@@ -82,8 +82,8 @@ func NewAuthorizationSingleSignOnRequest() AuthorizationSingleSignOnRequest {
 // Options that control the authorization process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/authorizationOptions
-func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](a_.ID, objc.Sel("authorizationOptions"))
+func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []authenticationservices.NSURLQueryItem {
+	rv := objc.Send[[]authenticationservices.NSURLQueryItem](a_.ID, objc.Sel("authorizationOptions"))
 	return rv
 }
 
@@ -93,8 +93,18 @@ func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/authorizationOptions
-func (a_ AuthorizationSingleSignOnRequest) SetAuthorizationOptions(value []unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationOptions:"), value)
+func (a_ AuthorizationSingleSignOnRequest) SetAuthorizationOptions(value []authenticationservices.NSURLQueryItem) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationOptions:"), nsArray)
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/isUserInterfaceEnabled

@@ -90,6 +90,13 @@ func (ec _EventClass) AddLocalMonitorForEventsMatchingMaskHandler(mask unsafe.Po
 	return rv
 }
 
+// Reports the current mouse position in screen coordinates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/mouseLocation
+func (ec _EventClass) MouseLocation() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](objc.ID(ec.class), objc.Sel("mouseLocation"))
+	return rv
+}
 // Returns the location of the receiver in the coordinate system of the given node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/location(in:)
@@ -127,6 +134,14 @@ func (e_ Event) LocationInWindow() coregraphics.CGPoint {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/modifierFlags-swift.property
 func (e_ Event) ModifierFlags() EventModifierFlags {
 	rv := objc.Send[EventModifierFlags](e_.ID, objc.Sel("modifierFlags"))
+	return rv
+}
+
+// Reports the current mouse position in screen coordinates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/mouseLocation
+func (e_ Event) MouseLocation() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](e_.ID, objc.Sel("mouseLocation"))
 	return rv
 }
 

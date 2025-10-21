@@ -92,11 +92,26 @@ func NewScrubberSelectionStyleWithCoder(coder unsafe.Pointer) ScrubberSelectionS
 }
 
 
+// A built-in selection style that draws the outline of the scrubber item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
+func (sc _ScrubberSelectionStyleClass) OutlineOverlayStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("outlineOverlayStyle"))
+	return rv
+}
 // Provides an opportunity to create a customized scrubber selection style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/makeSelectionView()
 func (s_ ScrubberSelectionStyle) MakeSelectionView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("makeSelectionView"))
+	return rv
+}
+
+// A built-in selection style that draws the outline of the scrubber item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
+func (s_ ScrubberSelectionStyle) OutlineOverlayStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("outlineOverlayStyle"))
 	return rv
 }
 

@@ -76,9 +76,22 @@ func NewMIDICIDeviceManager() MIDICIDeviceManager {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager/shared
+func (mc _MIDICIDeviceManagerClass) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("sharedInstance"))
+	return rv
+}
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager/discoveredCIDevices
 func (m_ MIDICIDeviceManager) DiscoveredCIDevices() []MIDICIDevice {
 	rv := objc.Send[[]MIDICIDevice](m_.ID, objc.Sel("discoveredCIDevices"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager/shared
+func (m_ MIDICIDeviceManager) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sharedInstance"))
 	return rv
 }
 

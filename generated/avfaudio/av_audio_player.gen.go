@@ -89,6 +89,16 @@ func NewAudioPlayer() AudioPlayer {
 }
 
 
+// Creates a player to play audio from a file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:)
+func NewAudioPlayerWithContentsOfURLError(url unsafe.Pointer, outError unsafe.Pointer) AudioPlayer {
+	instance := getAudioPlayerClass().Alloc()
+	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, outError)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates a player to play audio from a file of a particular type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:fileTypeHint:)
@@ -115,16 +125,6 @@ func NewAudioPlayerWithDataError(data unsafe.Pointer, outError unsafe.Pointer) A
 func NewAudioPlayerWithDataFileTypeHintError(data unsafe.Pointer, utiString string, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
 	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithData:fileTypeHint:error:"), data, objc.String(utiString), outError)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a player to play audio from a file.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:)
-func NewAudioPlayerWithContentsOfURLError(url unsafe.Pointer, outError unsafe.Pointer) AudioPlayer {
-	instance := getAudioPlayerClass().Alloc()
-	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, outError)
 	rv.Autorelease()
 	return rv
 }
@@ -201,8 +201,8 @@ func (a_ AudioPlayer) UpdateMeters() {
 // An array of channel descriptions for the audio player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/channelAssignments
-func (a_ AudioPlayer) ChannelAssignments() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](a_.ID, objc.Sel("channelAssignments"))
+func (a_ AudioPlayer) ChannelAssignments() []avfaudio.AVAudioSessionChannelDescription {
+	rv := objc.Send[[]avfaudio.AVAudioSessionChannelDescription](a_.ID, objc.Sel("channelAssignments"))
 	return rv
 }
 
@@ -212,8 +212,18 @@ func (a_ AudioPlayer) ChannelAssignments() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/channelAssignments
-func (a_ AudioPlayer) SetChannelAssignments(value []unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelAssignments:"), value)
+func (a_ AudioPlayer) SetChannelAssignments(value []avfaudio.AVAudioSessionChannelDescription) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelAssignments:"), nsArray)
 }
 // The unique identifier of the current audio player.
 //

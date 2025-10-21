@@ -89,4 +89,49 @@ func NewCaptureEventSoundWithURLError(url unsafe.Pointer, error_ unsafe.Pointer)
 }
 
 
+// The default sound for starting a video recording.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/beginVideoRecording
+func (cc _CaptureEventSoundClass) BeginVideoRecordingSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("beginVideoRecordingSound"))
+	return rv
+}
+// The default sound for photo capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/cameraShutter
+func (cc _CaptureEventSoundClass) CameraShutterSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("cameraShutterSound"))
+	return rv
+}
+// The default sound for ending a video recording.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/endVideoRecording
+func (cc _CaptureEventSoundClass) EndVideoRecordingSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("endVideoRecordingSound"))
+	return rv
+}
+// The default sound for starting a video recording.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/beginVideoRecording
+func (c_ CaptureEventSound) BeginVideoRecordingSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beginVideoRecordingSound"))
+	return rv
+}
+
+// The default sound for photo capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/cameraShutter
+func (c_ CaptureEventSound) CameraShutterSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cameraShutterSound"))
+	return rv
+}
+
+// The default sound for ending a video recording.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/endVideoRecording
+func (c_ CaptureEventSound) EndVideoRecordingSound() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("endVideoRecordingSound"))
+	return rv
+}
+
 

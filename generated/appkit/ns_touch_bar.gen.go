@@ -92,6 +92,13 @@ func NewTouchBarWithCoder(coder unsafe.Pointer) TouchBar {
 }
 
 
+// A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isAutomaticCustomizeTouchBarMenuItemEnabled
+func (tc _TouchBarClass) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
+	rv := objc.Send[bool](objc.ID(tc.class), objc.Sel("automaticCustomizeTouchBarMenuItemEnabled"))
+	return rv
+}
 // Returns the Touch Bar item that corresponds to a given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/item(forIdentifier:)
@@ -115,7 +122,17 @@ func (t_ TouchBar) CustomizationAllowedItemIdentifiers() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationAllowedItemIdentifiers
 func (t_ TouchBar) SetCustomizationAllowedItemIdentifiers(value []string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationAllowedItemIdentifiers:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationAllowedItemIdentifiers:"), nsArray)
 }
 // A globally unique string that makes the Touch Bar eligible for user customization.
 //
@@ -149,7 +166,17 @@ func (t_ TouchBar) CustomizationRequiredItemIdentifiers() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationRequiredItemIdentifiers
 func (t_ TouchBar) SetCustomizationRequiredItemIdentifiers(value []string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationRequiredItemIdentifiers:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationRequiredItemIdentifiers:"), nsArray)
 }
 // A required list of identifiers for items that you want to appear in the Touch Bar after instantiating it.
 //
@@ -166,7 +193,17 @@ func (t_ TouchBar) DefaultItemIdentifiers() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/defaultItemIdentifiers
 func (t_ TouchBar) SetDefaultItemIdentifiers(value []string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultItemIdentifiers:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultItemIdentifiers:"), nsArray)
 }
 // The delegate that provides items to the Touch Bar.
 //
@@ -201,6 +238,23 @@ func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/escapeKeyReplacementItemIdentifier
 func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEscapeKeyReplacementItemIdentifier:"), value)
+}
+// A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isAutomaticCustomizeTouchBarMenuItemEnabled
+func (t_ TouchBar) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("automaticCustomizeTouchBarMenuItemEnabled"))
+	return rv
+}
+
+
+// SetAutomaticCustomizeTouchBarMenuItemEnabled sets the value of the automaticCustomizeTouchBarMenuItemEnabled property.
+// A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isAutomaticCustomizeTouchBarMenuItemEnabled
+func (t_ TouchBar) SetAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticCustomizeTouchBarMenuItemEnabled:"), value)
 }
 // A Boolean value that Indicates whether the Touch Bar is eligible for display.
 //

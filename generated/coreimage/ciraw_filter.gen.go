@@ -82,6 +82,14 @@ func NewRAWFilter() RAWFilter {
 }
 
 
+// Creates a RAW filter from the image at the URL location that you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
+func NewRAWFilterWithImageURL(url unsafe.Pointer) RAWFilter {
+	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageURL:"), url)
+	return rv
+}
+
 // Creates a RAW filter from the pixel buffer and its properties that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(cvPixelBuffer:properties:)
@@ -95,14 +103,6 @@ func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties o
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
 func NewRAWFilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint string) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
-	return rv
-}
-
-// Creates a RAW filter from the image at the URL location that you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
-func NewRAWFilterWithImageURL(url unsafe.Pointer) RAWFilter {
-	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageURL:"), url)
 	return rv
 }
 
@@ -131,6 +131,13 @@ func (rc _RAWFilterClass) FilterWithImageURL(url unsafe.Pointer) unsafe.Pointer 
 	return rv
 }
 
+// An array containing the names of all supported camera models.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/supportedCameraModels
+func (rc _RAWFilterClass) SupportedCameraModels() []string {
+	rv := objc.Send[[]string](objc.ID(rc.class), objc.Sel("supportedCameraModels"))
+	return rv
+}
 // A value that indicates the baseline exposure to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/baselineExposure
@@ -696,6 +703,14 @@ func (r_ RAWFilter) SharpnessAmount() unsafe.Pointer {
 func (r_ RAWFilter) SetSharpnessAmount(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSharpnessAmount:"), value)
 }
+// An array containing the names of all supported camera models.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/supportedCameraModels
+func (r_ RAWFilter) SupportedCameraModels() []string {
+	rv := objc.Send[[]string](r_.ID, objc.Sel("supportedCameraModels"))
+	return rv
+}
+
 // An array of all supported decoder versions for the given image type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/supportedDecoderVersions

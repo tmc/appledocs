@@ -157,6 +157,27 @@ func NewCellTextCell(string_ string) Cell {
 }
 
 
+// Returns the default type of focus ring for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultFocusRingType
+func (cc _CellClass) DefaultFocusRingType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("defaultFocusRingType"))
+	return rv
+}
+// Returns the default menu for instances of the cell.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultMenu
+func (cc _CellClass) DefaultMenu() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("defaultMenu"))
+	return rv
+}
+// Returns a Boolean value that indicates whether tracking stops when the cursor leaves the cell.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/prefersTrackingUntilMouseUp
+func (cc _CellClass) PrefersTrackingUntilMouseUp() bool {
+	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("prefersTrackingUntilMouseUp"))
+	return rv
+}
 // Recalculates the cell geometry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/calcDrawInfo(_:)
@@ -704,6 +725,22 @@ func (c_ Cell) ControlView() unsafe.Pointer {
 func (c_ Cell) SetControlView(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlView:"), value)
 }
+// Returns the default type of focus ring for the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultFocusRingType
+func (c_ Cell) DefaultFocusRingType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("defaultFocusRingType"))
+	return rv
+}
+
+// Returns the default menu for instances of the cell.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultMenu
+func (c_ Cell) DefaultMenu() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("defaultMenu"))
+	return rv
+}
+
 // The cell’s value as a double-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/doubleValue
@@ -1092,6 +1129,14 @@ func (c_ Cell) ObjectValue() objc.ID {
 func (c_ Cell) SetObjectValue(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObjectValue:"), value)
 }
+// Returns a Boolean value that indicates whether tracking stops when the cursor leaves the cell.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/prefersTrackingUntilMouseUp
+func (c_ Cell) PrefersTrackingUntilMouseUp() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("prefersTrackingUntilMouseUp"))
+	return rv
+}
+
 // A Boolean value indicating whether the cell refuses the first responder status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/refusesFirstResponder

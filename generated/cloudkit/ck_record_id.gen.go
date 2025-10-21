@@ -80,22 +80,22 @@ func NewCKRecordID() CKRecordID {
 }
 
 
-// Creates a new record ID with the specified name in the default zone.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/init(recordName:)
-func NewCKRecordIDWithRecordName(recordName string) CKRecordID {
-	instance := getCKRecordIDClass().Alloc()
-	rv := objc.Send[CKRecordID](instance.ID, objc.Sel("initWithRecordName:"), objc.String(recordName))
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a new record ID with the specified name and zone information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordID/initWithRecordName:zoneID:
 func NewCKRecordIDWithRecordNameZoneID(recordName string, zoneID unsafe.Pointer) CKRecordID {
 	instance := getCKRecordIDClass().Alloc()
 	rv := objc.Send[CKRecordID](instance.ID, objc.Sel("initWithRecordName:zoneID:"), objc.String(recordName), zoneID)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a new record ID with the specified name in the default zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/init(recordName:)
+func NewCKRecordIDWithRecordName(recordName string) CKRecordID {
+	instance := getCKRecordIDClass().Alloc()
+	rv := objc.Send[CKRecordID](instance.ID, objc.Sel("initWithRecordName:"), objc.String(recordName))
 	rv.Autorelease()
 	return rv
 }

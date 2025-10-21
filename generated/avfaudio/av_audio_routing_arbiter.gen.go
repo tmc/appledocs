@@ -82,6 +82,13 @@ func NewAudioRoutingArbiter() AudioRoutingArbiter {
 }
 
 
+// The shared routing arbiter object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/shared
+func (ac _AudioRoutingArbiterClass) SharedRoutingArbiter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("sharedRoutingArbiter"))
+	return rv
+}
 // Begins routing arbitration to take ownership of a nearby Bluetooth audio route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/begin(category:completionHandler:)
@@ -94,6 +101,14 @@ func (a_ AudioRoutingArbiter) BeginArbitrationWithCategoryCompletionHandler(cate
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/leave()
 func (a_ AudioRoutingArbiter) LeaveArbitration() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("leaveArbitration"))
+}
+
+// The shared routing arbiter object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/shared
+func (a_ AudioRoutingArbiter) SharedRoutingArbiter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sharedRoutingArbiter"))
+	return rv
 }
 
 

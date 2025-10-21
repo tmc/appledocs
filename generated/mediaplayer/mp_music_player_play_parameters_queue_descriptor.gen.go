@@ -123,7 +123,17 @@ func (m_ MusicPlayerPlayParametersQueueDescriptor) PlayParametersQueue() []Music
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/playParametersQueue
 func (m_ MusicPlayerPlayParametersQueueDescriptor) SetPlayParametersQueue(value []MusicPlayerPlayParameters) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayParametersQueue:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayParametersQueue:"), nsArray)
 }
 // The item identified by the play parameters to play first.
 //

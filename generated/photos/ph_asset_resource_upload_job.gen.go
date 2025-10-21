@@ -89,11 +89,24 @@ func (pc _PHAssetResourceUploadJobClass) FetchJobsWithActionOptions(action unsaf
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJob/jobLimit
+func (pc _PHAssetResourceUploadJobClass) JobLimit() int {
+	rv := objc.Send[int](objc.ID(pc.class), objc.Sel("jobLimit"))
+	return rv
+}
 // The asset resource this upload job represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJob/destination
 func (p_ PHAssetResourceUploadJob) Destination() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("destination"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJob/jobLimit
+func (p_ PHAssetResourceUploadJob) JobLimit() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("jobLimit"))
 	return rv
 }
 

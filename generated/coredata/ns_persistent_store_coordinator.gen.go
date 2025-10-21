@@ -150,6 +150,13 @@ func (pc _PersistentStoreCoordinatorClass) SetMetadataForPersistentStoreOfTypeUR
 	return rv
 }
 
+// The coordinator’s registered store types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/registeredStoreTypes
+func (pc _PersistentStoreCoordinatorClass) RegisteredStoreTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("registeredStoreTypes"))
+	return rv
+}
 // Adds a specific type of persistent store at the provided location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/addPersistentStore(ofType:configurationName:at:options:)
@@ -328,4 +335,12 @@ func (p_ PersistentStoreCoordinator) Name() unsafe.Pointer {
 func (p_ PersistentStoreCoordinator) SetName(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
 }
+// The coordinator’s registered store types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/registeredStoreTypes
+func (p_ PersistentStoreCoordinator) RegisteredStoreTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("registeredStoreTypes"))
+	return rv
+}
+
 

@@ -82,22 +82,22 @@ func NewCXStartCallAction() CXStartCallAction {
 }
 
 
-// Creates a new action to start a call with data in an unarchiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(coder:)
-func NewCXStartCallActionWithCoder(aDecoder unsafe.Pointer) CXStartCallAction {
-	instance := getCXStartCallActionClass().Alloc()
-	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a new action to start a call with the specified UUID to a recipient with the specified handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(call:handle:)
 func NewCXStartCallActionWithCallUUIDHandle(callUUID unsafe.Pointer, handle unsafe.Pointer) CXStartCallAction {
 	instance := getCXStartCallActionClass().Alloc()
 	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCallUUID:handle:"), callUUID, handle)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a new action to start a call with data in an unarchiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(coder:)
+func NewCXStartCallActionWithCoder(aDecoder unsafe.Pointer) CXStartCallAction {
+	instance := getCXStartCallActionClass().Alloc()
+	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
 	return rv
 }

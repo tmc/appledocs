@@ -81,22 +81,22 @@ func NewEKRecurrenceRule() EKRecurrenceRule {
 }
 
 
-// Initializes and returns a simple recurrence rule with a given frequency, interval, and end.
-//
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:end:)
-func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ unsafe.Pointer, interval int, end unsafe.Pointer) EKRecurrenceRule {
-	instance := getEKRecurrenceRuleClass().Alloc()
-	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:end:"), type_, interval, end)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes and returns a recurrence rule with a given frequency and additional scheduling information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)
 func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMonthMonthsOfTheYearWeeksOfTheYearDaysOfTheYearSetPositionsEnd(type_ unsafe.Pointer, interval int, days unsafe.Pointer, monthDays unsafe.Pointer, months unsafe.Pointer, weeksOfTheYear unsafe.Pointer, daysOfTheYear unsafe.Pointer, setPositions unsafe.Pointer, end unsafe.Pointer) EKRecurrenceRule {
 	instance := getEKRecurrenceRuleClass().Alloc()
 	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:"), type_, interval, days, monthDays, months, weeksOfTheYear, daysOfTheYear, setPositions, end)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes and returns a simple recurrence rule with a given frequency, interval, and end.
+//
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:end:)
+func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ unsafe.Pointer, interval int, end unsafe.Pointer) EKRecurrenceRule {
+	instance := getEKRecurrenceRuleClass().Alloc()
+	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:end:"), type_, interval, end)
 	rv.Autorelease()
 	return rv
 }
@@ -113,8 +113,8 @@ func (e_ EKRecurrenceRule) CalendarIdentifier() unsafe.Pointer {
 // The days of the month associated with the recurrence rule, as an array of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/daysOfTheMonth
-func (e_ EKRecurrenceRule) DaysOfTheMonth() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](e_.ID, objc.Sel("daysOfTheMonth"))
+func (e_ EKRecurrenceRule) DaysOfTheMonth() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](e_.ID, objc.Sel("daysOfTheMonth"))
 	return rv
 }
 
@@ -129,8 +129,8 @@ func (e_ EKRecurrenceRule) DaysOfTheWeek() []EKRecurrenceDayOfWeek {
 // The days of the year associated with the recurrence rule, as an array of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/daysOfTheYear
-func (e_ EKRecurrenceRule) DaysOfTheYear() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](e_.ID, objc.Sel("daysOfTheYear"))
+func (e_ EKRecurrenceRule) DaysOfTheYear() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](e_.ID, objc.Sel("daysOfTheYear"))
 	return rv
 }
 
@@ -161,8 +161,8 @@ func (e_ EKRecurrenceRule) Interval() int {
 // The months of the year associated with the recurrence rule, as an array of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/monthsOfTheYear
-func (e_ EKRecurrenceRule) MonthsOfTheYear() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](e_.ID, objc.Sel("monthsOfTheYear"))
+func (e_ EKRecurrenceRule) MonthsOfTheYear() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](e_.ID, objc.Sel("monthsOfTheYear"))
 	return rv
 }
 
@@ -186,16 +186,16 @@ func (e_ EKRecurrenceRule) SetRecurrenceEnd(value unsafe.Pointer) {
 // An array of ordinal numbers that filters which recurrences to include in the recurrence rule’s frequency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/setPositions
-func (e_ EKRecurrenceRule) SetPositions() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](e_.ID, objc.Sel("setPositions"))
+func (e_ EKRecurrenceRule) SetPositions() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](e_.ID, objc.Sel("setPositions"))
 	return rv
 }
 
 // The weeks of the year associated with the recurrence rule, as an array of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/weeksOfTheYear
-func (e_ EKRecurrenceRule) WeeksOfTheYear() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](e_.ID, objc.Sel("weeksOfTheYear"))
+func (e_ EKRecurrenceRule) WeeksOfTheYear() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](e_.ID, objc.Sel("weeksOfTheYear"))
 	return rv
 }
 

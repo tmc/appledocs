@@ -89,6 +89,13 @@ func NewBAAssetPackManager() BAAssetPackManager {
 }
 
 
+// The shared asset-pack manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/sharedManager
+func (bc _BAAssetPackManagerClass) SharedManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("sharedManager"))
+	return rv
+}
 // Returns a URL for the specified relative path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/URLForPath:error:
@@ -172,5 +179,13 @@ func (b_ BAAssetPackManager) Delegate() objc.ID {
 func (b_ BAAssetPackManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
 }
+// The shared asset-pack manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/sharedManager
+func (b_ BAAssetPackManager) SharedManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sharedManager"))
+	return rv
+}
+
 
 

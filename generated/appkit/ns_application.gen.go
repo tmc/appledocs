@@ -120,6 +120,13 @@ func NewApplication() Application {
 }
 
 
+// Returns the application instance, creating it if it doesn’t exist yet.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/shared
+func (ac _ApplicationClass) SharedApplication() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("sharedApplication"))
+	return rv
+}
 // Makes the receiver the active app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/activate(ignoringOtherApps:)
@@ -501,5 +508,13 @@ func (a_ Application) ServicesProvider() objc.ID {
 func (a_ Application) SetServicesProvider(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setServicesProvider:"), value)
 }
+// Returns the application instance, creating it if it doesn’t exist yet.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/shared
+func (a_ Application) SharedApplication() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sharedApplication"))
+	return rv
+}
+
 
 

@@ -125,8 +125,8 @@ func (a_ Animation) ShouldArchiveValueForKey(key string) bool {
 // For animations attached to SceneKit objects, a list of events attached to an animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/animationEvents
-func (a_ Animation) AnimationEvents() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](a_.ID, objc.Sel("animationEvents"))
+func (a_ Animation) AnimationEvents() []quartzcore.SCNAnimationEvent {
+	rv := objc.Send[[]quartzcore.SCNAnimationEvent](a_.ID, objc.Sel("animationEvents"))
 	return rv
 }
 
@@ -136,8 +136,18 @@ func (a_ Animation) AnimationEvents() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/animationEvents
-func (a_ Animation) SetAnimationEvents(value []unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAnimationEvents:"), value)
+func (a_ Animation) SetAnimationEvents(value []quartzcore.SCNAnimationEvent) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAnimationEvents:"), nsArray)
 }
 // Specifies the receiver’s delegate object.
 //

@@ -193,7 +193,17 @@ func (s_ SearchFieldCell) RecentSearches() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentSearches
 func (s_ SearchFieldCell) SetRecentSearches(value []string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentSearches:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentSearches:"), nsArray)
 }
 // The autosave name under which the search field automatically saves the list of recent search strings.
 //

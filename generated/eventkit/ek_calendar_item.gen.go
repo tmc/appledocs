@@ -128,7 +128,17 @@ func (e_ EKCalendarItem) Alarms() []EKAlarm {
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/alarms
 func (e_ EKCalendarItem) SetAlarms(value []EKAlarm) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setAlarms:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](e_.ID, objc.Sel("setAlarms:"), nsArray)
 }
 // The attendees associated with the calendar item, as an array of objects.
 //
@@ -268,7 +278,17 @@ func (e_ EKCalendarItem) RecurrenceRules() []EKRecurrenceRule {
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/recurrenceRules
 func (e_ EKCalendarItem) SetRecurrenceRules(value []EKRecurrenceRule) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setRecurrenceRules:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](e_.ID, objc.Sel("setRecurrenceRules:"), nsArray)
 }
 // The time zone for the calendar item.
 //

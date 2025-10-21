@@ -78,6 +78,15 @@ func NewCKSyncEngineSendChangesScope() CKSyncEngineSendChangesScope {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/initWithZoneIDs:
+func NewCKSyncEngineSendChangesScopeWithZoneIDs(zoneIDs unsafe.Pointer) CKSyncEngineSendChangesScope {
+	instance := getCKSyncEngineSendChangesScopeClass().Alloc()
+	rv := objc.Send[CKSyncEngineSendChangesScope](instance.ID, objc.Sel("initWithZoneIDs:"), zoneIDs)
+	rv.Autorelease()
+	return rv
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/initWithExcludedZoneIDs:
 func NewCKSyncEngineSendChangesScopeWithExcludedZoneIDs(excludedZoneIDs unsafe.Pointer) CKSyncEngineSendChangesScope {
 	instance := getCKSyncEngineSendChangesScopeClass().Alloc()
@@ -91,15 +100,6 @@ func NewCKSyncEngineSendChangesScopeWithExcludedZoneIDs(excludedZoneIDs unsafe.P
 func NewCKSyncEngineSendChangesScopeWithRecordIDs(recordIDs unsafe.Pointer) CKSyncEngineSendChangesScope {
 	instance := getCKSyncEngineSendChangesScopeClass().Alloc()
 	rv := objc.Send[CKSyncEngineSendChangesScope](instance.ID, objc.Sel("initWithRecordIDs:"), recordIDs)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/initWithZoneIDs:
-func NewCKSyncEngineSendChangesScopeWithZoneIDs(zoneIDs unsafe.Pointer) CKSyncEngineSendChangesScope {
-	instance := getCKSyncEngineSendChangesScopeClass().Alloc()
-	rv := objc.Send[CKSyncEngineSendChangesScope](instance.ID, objc.Sel("initWithZoneIDs:"), zoneIDs)
 	rv.Autorelease()
 	return rv
 }

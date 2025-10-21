@@ -114,7 +114,17 @@ func (c_ CNContactPickerViewController) DisplayedPropertyKeys() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/displayedPropertyKeys
 func (c_ CNContactPickerViewController) SetDisplayedPropertyKeys(value []string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayedPropertyKeys:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayedPropertyKeys:"), nsArray)
 }
 // A predicate to determine the contact selectability in the list of contacts.
 //

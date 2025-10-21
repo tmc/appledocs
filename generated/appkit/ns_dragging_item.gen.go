@@ -106,6 +106,16 @@ func (d_ DraggingItem) ImageComponentsProvider() []DraggingImageComponent {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/imageComponentsProvider
 func (d_ DraggingItem) SetImageComponentsProvider(value []DraggingImageComponent) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setImageComponentsProvider:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setImageComponentsProvider:"), nsArray)
 }
 

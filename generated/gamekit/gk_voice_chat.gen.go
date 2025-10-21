@@ -1,0 +1,92 @@
+// Code generated from Apple documentation for GameKit. DO NOT EDIT.
+
+package gamekit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [VoiceChat] class.
+var (
+	VoiceChatClass     _VoiceChatClass
+	VoiceChatClassOnce sync.Once
+)
+
+func getVoiceChatClass() _VoiceChatClass {
+	VoiceChatClassOnce.Do(func() {
+		VoiceChatClass = _VoiceChatClass{objc.GetClass("GKVoiceChat")}
+	})
+	return VoiceChatClass
+}
+
+type _VoiceChatClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [VoiceChat] class.
+type IVoiceChat interface {
+	objectivec.IObject
+	Stop()
+}
+
+// A voice channel that allows players to speak with each other in a multiplayer game.
+//
+// GameKit provides the underlying mechanism to implement voice chat between players in a multiplayer game. It’s your responsibility to provide player controls and display feedback during the chat. First, configure voice chat by adding the key to the Information Property List and creating an audio session. Then, create a object using the method passing a string that identifies the voice channel. Use the method to connect players to the channel. Use the property to activate the microphone or switch the microphone between channels. Provide a handler using the property to update the interface when a player connects, speaks, or disconnects from a chat. You can also add controls that mute and set the volume using the method and property. Note that if there’s insufficient bandwidth over Wi-Fi to maintain a voice chat, GameKit may disconnect players from the channel or disband a channel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKVoiceChat
+type VoiceChat struct {
+	objectivec.Object
+}
+
+// VoiceChatFrom constructs a [VoiceChat] from an unsafe.Pointer.
+//
+// A voice channel that allows players to speak with each other in a multiplayer game.
+func VoiceChatFrom(ptr unsafe.Pointer) VoiceChat {
+	return VoiceChat{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (vc _VoiceChatClass) Alloc() VoiceChat {
+	rv := objc.Send[VoiceChat](objc.ID(vc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (vc _VoiceChatClass) New() VoiceChat {
+	rv := objc.Send[VoiceChat](objc.ID(vc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (v_ VoiceChat) Init() VoiceChat {
+	rv := objc.Send[VoiceChat](v_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (v_ VoiceChat) Autorelease() VoiceChat {
+	rv := objc.Send[VoiceChat](v_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewVoiceChat creates a new VoiceChat instance.
+func NewVoiceChat() VoiceChat {
+	return getVoiceChatClass().New()
+}
+
+
+// Ends communication with other players in a channel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKVoiceChat/stop()
+func (v_ VoiceChat) Stop() {
+	objc.Send[objc.ID](v_.ID, objc.Sel("stop"))
+}
+
+
+

@@ -84,6 +84,34 @@ func NewScreen() Screen {
 }
 
 
+// Returns a screen object representing the screen that can best represent color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/deepest
+func (sc _ScreenClass) DeepestScreen() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("deepestScreen"))
+	return rv
+}
+// Returns the screen object containing the window with the keyboard focus.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/main
+func (sc _ScreenClass) MainScreen() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("mainScreen"))
+	return rv
+}
+// Returns an array of screen objects representing all of the screens available on the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screens
+func (sc _ScreenClass) Screens() []Screen {
+	rv := objc.Send[[]Screen](objc.ID(sc.class), objc.Sel("screens"))
+	return rv
+}
+// Returns a Boolean value indicating whether each screen can have its own set of spaces.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screensHaveSeparateSpaces
+func (sc _ScreenClass) ScreensHaveSeparateSpaces() bool {
+	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("screensHaveSeparateSpaces"))
+	return rv
+}
 // A Boolean value indicating whether the color space of the screen is capable of representing the specified display gamut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/canRepresent(_:)
@@ -120,6 +148,14 @@ func (s_ Screen) CGDirectDisplayID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/colorSpace
 func (s_ Screen) ColorSpace() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("colorSpace"))
+	return rv
+}
+
+// Returns a screen object representing the screen that can best represent color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/deepest
+func (s_ Screen) DeepestScreen() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("deepestScreen"))
 	return rv
 }
 
@@ -160,6 +196,14 @@ func (s_ Screen) LastDisplayUpdateTimestamp() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/localizedName
 func (s_ Screen) LocalizedName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedName"))
+	return rv
+}
+
+// Returns the screen object containing the window with the keyboard focus.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/main
+func (s_ Screen) MainScreen() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mainScreen"))
 	return rv
 }
 
@@ -208,6 +252,22 @@ func (s_ Screen) MinimumRefreshInterval() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/safeAreaInsets
 func (s_ Screen) SafeAreaInsets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("safeAreaInsets"))
+	return rv
+}
+
+// Returns an array of screen objects representing all of the screens available on the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screens
+func (s_ Screen) Screens() []Screen {
+	rv := objc.Send[[]Screen](s_.ID, objc.Sel("screens"))
+	return rv
+}
+
+// Returns a Boolean value indicating whether each screen can have its own set of spaces.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screensHaveSeparateSpaces
+func (s_ Screen) ScreensHaveSeparateSpaces() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("screensHaveSeparateSpaces"))
 	return rv
 }
 

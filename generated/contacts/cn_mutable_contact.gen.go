@@ -101,8 +101,8 @@ func (c_ CNMutableContact) SetBirthday(value unsafe.Pointer) {
 // An array of labeled contact relations for the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/contactRelations
-func (c_ CNMutableContact) ContactRelations() []CNLabeledValue {
-	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("contactRelations"))
+func (c_ CNMutableContact) ContactRelations() []CNLabeledValue<CNContactRelation *> {
+	rv := objc.Send[[]CNLabeledValue<CNContactRelation *>](c_.ID, objc.Sel("contactRelations"))
 	return rv
 }
 
@@ -112,8 +112,18 @@ func (c_ CNMutableContact) ContactRelations() []CNLabeledValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/contactRelations
-func (c_ CNMutableContact) SetContactRelations(value []CNLabeledValue) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContactRelations:"), value)
+func (c_ CNMutableContact) SetContactRelations(value []CNLabeledValue<CNContactRelation *>) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactRelations:"), nsArray)
 }
 // An enum identifying the contact type.
 //
@@ -135,8 +145,8 @@ func (c_ CNMutableContact) SetContactType(value unsafe.Pointer) {
 // An array containing labeled Gregorian dates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/dates
-func (c_ CNMutableContact) Dates() []CNLabeledValue {
-	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("dates"))
+func (c_ CNMutableContact) Dates() []CNLabeledValue<NSDateComponents *> {
+	rv := objc.Send[[]CNLabeledValue<NSDateComponents *>](c_.ID, objc.Sel("dates"))
 	return rv
 }
 
@@ -146,8 +156,18 @@ func (c_ CNMutableContact) Dates() []CNLabeledValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/dates
-func (c_ CNMutableContact) SetDates(value []CNLabeledValue) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDates:"), value)
+func (c_ CNMutableContact) SetDates(value []CNLabeledValue<NSDateComponents *>) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDates:"), nsArray)
 }
 // The name of the department associated with the contact.
 //
@@ -169,8 +189,8 @@ func (c_ CNMutableContact) SetDepartmentName(value unsafe.Pointer) {
 // An array of labeled email addresses for the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/emailAddresses
-func (c_ CNMutableContact) EmailAddresses() []CNLabeledValue {
-	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("emailAddresses"))
+func (c_ CNMutableContact) EmailAddresses() []CNLabeledValue<NSString *> {
+	rv := objc.Send[[]CNLabeledValue<NSString *>](c_.ID, objc.Sel("emailAddresses"))
 	return rv
 }
 
@@ -180,8 +200,18 @@ func (c_ CNMutableContact) EmailAddresses() []CNLabeledValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/emailAddresses
-func (c_ CNMutableContact) SetEmailAddresses(value []CNLabeledValue) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEmailAddresses:"), value)
+func (c_ CNMutableContact) SetEmailAddresses(value []CNLabeledValue<NSString *>) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEmailAddresses:"), nsArray)
 }
 // The family name of the contact.
 //
@@ -237,8 +267,8 @@ func (c_ CNMutableContact) SetImageData(value unsafe.Pointer) {
 // An array of labeled IM addresses for the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/instantMessageAddresses
-func (c_ CNMutableContact) InstantMessageAddresses() []CNLabeledValue {
-	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("instantMessageAddresses"))
+func (c_ CNMutableContact) InstantMessageAddresses() []CNLabeledValue<CNInstantMessageAddress *> {
+	rv := objc.Send[[]CNLabeledValue<CNInstantMessageAddress *>](c_.ID, objc.Sel("instantMessageAddresses"))
 	return rv
 }
 
@@ -248,8 +278,18 @@ func (c_ CNMutableContact) InstantMessageAddresses() []CNLabeledValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/instantMessageAddresses
-func (c_ CNMutableContact) SetInstantMessageAddresses(value []CNLabeledValue) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInstantMessageAddresses:"), value)
+func (c_ CNMutableContact) SetInstantMessageAddresses(value []CNLabeledValue<CNInstantMessageAddress *>) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInstantMessageAddresses:"), nsArray)
 }
 // The contact’s job title.
 //
@@ -390,8 +430,8 @@ func (c_ CNMutableContact) SetOrganizationName(value unsafe.Pointer) {
 // An array of labeled phone numbers for a contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/phoneNumbers
-func (c_ CNMutableContact) PhoneNumbers() []CNLabeledValue {
-	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("phoneNumbers"))
+func (c_ CNMutableContact) PhoneNumbers() []CNLabeledValue<CNPhoneNumber *> {
+	rv := objc.Send[[]CNLabeledValue<CNPhoneNumber *>](c_.ID, objc.Sel("phoneNumbers"))
 	return rv
 }
 
@@ -401,8 +441,18 @@ func (c_ CNMutableContact) PhoneNumbers() []CNLabeledValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/phoneNumbers
-func (c_ CNMutableContact) SetPhoneNumbers(value []CNLabeledValue) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPhoneNumbers:"), value)
+func (c_ CNMutableContact) SetPhoneNumbers(value []CNLabeledValue<CNPhoneNumber *>) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPhoneNumbers:"), nsArray)
 }
 // The phonetic family name of the contact.
 //
@@ -475,8 +525,8 @@ func (c_ CNMutableContact) SetPhoneticOrganizationName(value unsafe.Pointer) {
 // An array of labeled postal addresses for a contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/postalAddresses
-func (c_ CNMutableContact) PostalAddresses() []CNLabeledValue {
-	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("postalAddresses"))
+func (c_ CNMutableContact) PostalAddresses() []CNLabeledValue<CNPostalAddress *> {
+	rv := objc.Send[[]CNLabeledValue<CNPostalAddress *>](c_.ID, objc.Sel("postalAddresses"))
 	return rv
 }
 
@@ -486,8 +536,18 @@ func (c_ CNMutableContact) PostalAddresses() []CNLabeledValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/postalAddresses
-func (c_ CNMutableContact) SetPostalAddresses(value []CNLabeledValue) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPostalAddresses:"), value)
+func (c_ CNMutableContact) SetPostalAddresses(value []CNLabeledValue<CNPostalAddress *>) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPostalAddresses:"), nsArray)
 }
 // The previous family name of the contact.
 //
@@ -509,8 +569,8 @@ func (c_ CNMutableContact) SetPreviousFamilyName(value unsafe.Pointer) {
 // An array of labeled social profiles for a contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/socialProfiles
-func (c_ CNMutableContact) SocialProfiles() []CNLabeledValue {
-	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("socialProfiles"))
+func (c_ CNMutableContact) SocialProfiles() []CNLabeledValue<CNSocialProfile *> {
+	rv := objc.Send[[]CNLabeledValue<CNSocialProfile *>](c_.ID, objc.Sel("socialProfiles"))
 	return rv
 }
 
@@ -520,14 +580,24 @@ func (c_ CNMutableContact) SocialProfiles() []CNLabeledValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/socialProfiles
-func (c_ CNMutableContact) SetSocialProfiles(value []CNLabeledValue) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSocialProfiles:"), value)
+func (c_ CNMutableContact) SetSocialProfiles(value []CNLabeledValue<CNSocialProfile *>) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSocialProfiles:"), nsArray)
 }
 // An array of labeled URL addresses for a contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/urlAddresses
-func (c_ CNMutableContact) UrlAddresses() []CNLabeledValue {
-	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("urlAddresses"))
+func (c_ CNMutableContact) UrlAddresses() []CNLabeledValue<NSString *> {
+	rv := objc.Send[[]CNLabeledValue<NSString *>](c_.ID, objc.Sel("urlAddresses"))
 	return rv
 }
 
@@ -537,8 +607,18 @@ func (c_ CNMutableContact) UrlAddresses() []CNLabeledValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableContact/urlAddresses
-func (c_ CNMutableContact) SetUrlAddresses(value []CNLabeledValue) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlAddresses:"), value)
+func (c_ CNMutableContact) SetUrlAddresses(value []CNLabeledValue<NSString *>) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlAddresses:"), nsArray)
 }
 
 

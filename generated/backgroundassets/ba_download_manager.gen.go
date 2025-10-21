@@ -87,6 +87,13 @@ func NewBADownloadManager() BADownloadManager {
 }
 
 
+// The download manager that both the app and the extension share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/shared
+func (bc _BADownloadManagerClass) SharedManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("sharedManager"))
+	return rv
+}
 // Cancels an asset download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/cancel(_:)
@@ -155,5 +162,13 @@ func (b_ BADownloadManager) Delegate() objc.ID {
 func (b_ BADownloadManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
 }
+// The download manager that both the app and the extension share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/shared
+func (b_ BADownloadManager) SharedManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sharedManager"))
+	return rv
+}
+
 
 

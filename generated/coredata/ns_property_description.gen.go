@@ -235,8 +235,8 @@ func (p_ PropertyDescription) SetUserInfo(value unsafe.Pointer) {
 // The validation predicates of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/validationPredicates
-func (p_ PropertyDescription) ValidationPredicates() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("validationPredicates"))
+func (p_ PropertyDescription) ValidationPredicates() []classkit.NSPredicate {
+	rv := objc.Send[[]classkit.NSPredicate](p_.ID, objc.Sel("validationPredicates"))
 	return rv
 }
 

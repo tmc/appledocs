@@ -104,6 +104,20 @@ func (fc _FSProbeResultClass) UsableButLimitedProbeResultWithNameContainerID(nam
 	return rv
 }
 
+// A probe result for an unrecognized file system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/notRecognized
+func (fc _FSProbeResultClass) NotRecognizedProbeResult() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("notRecognizedProbeResult"))
+	return rv
+}
+// A probe result for a recognized file system that is usable, but with limited capabilities.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/usableButLimited
+func (fc _FSProbeResultClass) UsableButLimitedProbeResult() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("usableButLimitedProbeResult"))
+	return rv
+}
 // The container identifier, as found during the probe operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/containerID
@@ -120,11 +134,27 @@ func (f_ FSProbeResult) Name() unsafe.Pointer {
 	return rv
 }
 
+// A probe result for an unrecognized file system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/notRecognized
+func (f_ FSProbeResult) NotRecognizedProbeResult() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("notRecognizedProbeResult"))
+	return rv
+}
+
 // The match result, representing the recognition and usability of a probed resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/result
 func (f_ FSProbeResult) Result() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("result"))
+	return rv
+}
+
+// A probe result for a recognized file system that is usable, but with limited capabilities.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/usableButLimited
+func (f_ FSProbeResult) UsableButLimitedProbeResult() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("usableButLimitedProbeResult"))
 	return rv
 }
 

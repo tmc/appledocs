@@ -84,6 +84,20 @@ func NewNISession() NISession {
 }
 
 
+// An object that communicates the device’s supported framework features.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/deviceCapabilities
+func (nc _NISessionClass) DeviceCapabilities() objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(nc.class), objc.Sel("deviceCapabilities"))
+	return rv
+}
+// A Boolean value that indicates whether the device supports basic interaction-session functionality.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/isSupported
+func (nc _NISessionClass) Supported() bool {
+	rv := objc.Send[bool](objc.ID(nc.class), objc.Sel("supported"))
+	return rv
+}
 // Stops a running session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/invalidate()
@@ -154,11 +168,27 @@ func (n_ NISession) DelegateQueue() unsafe.Pointer {
 func (n_ NISession) SetDelegateQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegateQueue:"), value)
 }
+// An object that communicates the device’s supported framework features.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/deviceCapabilities
+func (n_ NISession) DeviceCapabilities() objc.ID {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("deviceCapabilities"))
+	return rv
+}
+
 // A temporary, random identifier for a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/discoveryToken
 func (n_ NISession) DiscoveryToken() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("discoveryToken"))
+	return rv
+}
+
+// A Boolean value that indicates whether the device supports basic interaction-session functionality.
+//
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/isSupported
+func (n_ NISession) Supported() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("supported"))
 	return rv
 }
 

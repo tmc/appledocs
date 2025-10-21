@@ -81,14 +81,6 @@ func NewImageSymbolConfiguration() ImageSymbolConfiguration {
 }
 
 
-// Create a configuration with a specific color rendering mode.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(colorRenderingMode:)
-func NewImageSymbolConfigurationWithColorRenderingMode(mode unsafe.Pointer) ImageSymbolConfiguration {
-	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithColorRenderingMode:"), mode)
-	return rv
-}
-
 // Creates a hierarchical color configuration using the color you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(hierarchicalColor:)
@@ -97,35 +89,19 @@ func NewImageSymbolConfigurationWithHierarchicalColor(hierarchicalColor unsafe.P
 	return rv
 }
 
-// Creates a symbol configuration with the specified point size and font weight.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:)
-func NewImageSymbolConfigurationWithPointSizeWeight(pointSize float64, weight unsafe.Pointer) ImageSymbolConfiguration {
-	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithPointSize:weight:"), pointSize, weight)
-	return rv
-}
-
-// Creates a symbol configuration using the scale you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(scale:)
-func NewImageSymbolConfigurationWithScale(scale unsafe.Pointer) ImageSymbolConfiguration {
-	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithScale:"), scale)
-	return rv
-}
-
-// Create a configuration with a specified variable value mode.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(variableValueMode:)
-func NewImageSymbolConfigurationWithVariableValueMode(variableValueMode unsafe.Pointer) ImageSymbolConfiguration {
-	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithVariableValueMode:"), variableValueMode)
-	return rv
-}
-
 // Creates a color configuration by specifying a palette of colors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(paletteColors:)
 func NewImageSymbolConfigurationWithPaletteColors(paletteColors unsafe.Pointer) ImageSymbolConfiguration {
 	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithPaletteColors:"), paletteColors)
+	return rv
+}
+
+// Creates a symbol configuration with the specified point size and font weight.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:)
+func NewImageSymbolConfigurationWithPointSizeWeight(pointSize float64, weight unsafe.Pointer) ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithPointSize:weight:"), pointSize, weight)
 	return rv
 }
 
@@ -150,6 +126,30 @@ func NewImageSymbolConfigurationWithTextStyle(style unsafe.Pointer) ImageSymbolC
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(textStyle:scale:)
 func NewImageSymbolConfigurationWithTextStyleScale(style unsafe.Pointer, scale unsafe.Pointer) ImageSymbolConfiguration {
 	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithTextStyle:scale:"), style, scale)
+	return rv
+}
+
+// Create a configuration with a specific color rendering mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(colorRenderingMode:)
+func NewImageSymbolConfigurationWithColorRenderingMode(mode unsafe.Pointer) ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithColorRenderingMode:"), mode)
+	return rv
+}
+
+// Creates a symbol configuration using the scale you specify.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(scale:)
+func NewImageSymbolConfigurationWithScale(scale unsafe.Pointer) ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithScale:"), scale)
+	return rv
+}
+
+// Create a configuration with a specified variable value mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(variableValueMode:)
+func NewImageSymbolConfigurationWithVariableValueMode(variableValueMode unsafe.Pointer) ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithVariableValueMode:"), variableValueMode)
 	return rv
 }
 

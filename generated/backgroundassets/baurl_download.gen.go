@@ -79,16 +79,6 @@ func NewBAURLDownload() BAURLDownload {
 }
 
 
-// Creates a download that uses the specified identifier and App Group.
-//
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAURLDownload/init(identifier:request:applicationGroupIdentifier:)
-func NewBAURLDownloadWithIdentifierRequestApplicationGroupIdentifier(identifier string, request unsafe.Pointer, applicationGroupIdentifier string) BAURLDownload {
-	instance := getBAURLDownloadClass().Alloc()
-	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:applicationGroupIdentifier:"), objc.String(identifier), request, objc.String(applicationGroupIdentifier))
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a prioritized download that uses the specified identifier and App Group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAURLDownload/init(identifier:request:applicationGroupIdentifier:priority:)
@@ -113,6 +103,16 @@ func NewBAURLDownloadWithIdentifierRequestEssentialFileSizeApplicationGroupIdent
 func NewBAURLDownloadWithIdentifierRequestFileSizeApplicationGroupIdentifier(identifier string, request unsafe.Pointer, fileSize uint, applicationGroupIdentifier string) BAURLDownload {
 	instance := getBAURLDownloadClass().Alloc()
 	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:fileSize:applicationGroupIdentifier:"), objc.String(identifier), request, fileSize, objc.String(applicationGroupIdentifier))
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a download that uses the specified identifier and App Group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAURLDownload/init(identifier:request:applicationGroupIdentifier:)
+func NewBAURLDownloadWithIdentifierRequestApplicationGroupIdentifier(identifier string, request unsafe.Pointer, applicationGroupIdentifier string) BAURLDownload {
+	instance := getBAURLDownloadClass().Alloc()
+	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:applicationGroupIdentifier:"), objc.String(identifier), request, objc.String(applicationGroupIdentifier))
 	rv.Autorelease()
 	return rv
 }

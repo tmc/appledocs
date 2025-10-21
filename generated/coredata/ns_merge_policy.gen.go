@@ -93,6 +93,20 @@ func NewMergePolicyWithMergeType(ty unsafe.Pointer) MergePolicy {
 }
 
 
+// A property-based merge policy that applies in-memory changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyObjectTrump
+func (mc _MergePolicyClass) MergeByPropertyObjectTrumpMergePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("mergeByPropertyObjectTrumpMergePolicy"))
+	return rv
+}
+// A property-based merge policy that applies external changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyStoreTrump
+func (mc _MergePolicyClass) MergeByPropertyStoreTrumpMergePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("mergeByPropertyStoreTrumpMergePolicy"))
+	return rv
+}
 // Resolves the conflicts in a given list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/resolve(constraintConflicts:)
@@ -106,6 +120,22 @@ func (m_ MergePolicy) ResolveConstraintConflictsError(list unsafe.Pointer, error
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/resolve(optimisticLockingConflicts:)
 func (m_ MergePolicy) ResolveOptimisticLockingVersionConflictsError(list unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("resolveOptimisticLockingVersionConflicts:error:"), list, error_)
+	return rv
+}
+
+// A property-based merge policy that applies in-memory changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyObjectTrump
+func (m_ MergePolicy) MergeByPropertyObjectTrumpMergePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mergeByPropertyObjectTrumpMergePolicy"))
+	return rv
+}
+
+// A property-based merge policy that applies external changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyStoreTrump
+func (m_ MergePolicy) MergeByPropertyStoreTrumpMergePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mergeByPropertyStoreTrumpMergePolicy"))
 	return rv
 }
 

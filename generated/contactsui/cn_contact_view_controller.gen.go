@@ -83,14 +83,6 @@ func NewCNContactViewController() CNContactViewController {
 }
 
 
-// Initializes a view controller for an existing contact.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(for:)
-func NewCNContactViewControllerForContact(contact unsafe.Pointer) CNContactViewController {
-	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForContact:"), contact)
-	return rv
-}
-
 // Initializes a view controller for a new contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forNewContact:)
@@ -104,6 +96,14 @@ func NewCNContactViewControllerForNewContact(contact unsafe.Pointer) CNContactVi
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forUnknownContact:)
 func NewCNContactViewControllerForUnknownContact(contact unsafe.Pointer) CNContactViewController {
 	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForUnknownContact:"), contact)
+	return rv
+}
+
+// Initializes a view controller for an existing contact.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(for:)
+func NewCNContactViewControllerForContact(contact unsafe.Pointer) CNContactViewController {
+	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForContact:"), contact)
 	return rv
 }
 

@@ -83,7 +83,7 @@ func NewFSMetadataRange() FSMetadataRange {
 // Initializes a metadata range with the given properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/init(offset:segmentLength:segmentCount:)
-func NewFSMetadataRangeWithOffsetSegmentLengthSegmentCount(startOffset unsafe.Pointer, segmentLength unsafe.Pointer, segmentCount unsafe.Pointer) FSMetadataRange {
+func NewFSMetadataRangeWithOffsetSegmentLengthSegmentCount(startOffset unsafe.Pointer, segmentLength uint64, segmentCount uint64) FSMetadataRange {
 	instance := getFSMetadataRangeClass().Alloc()
 	rv := objc.Send[FSMetadataRange](instance.ID, objc.Sel("initWithOffset:segmentLength:segmentCount:"), startOffset, segmentLength, segmentCount)
 	rv.Autorelease()
@@ -94,7 +94,7 @@ func NewFSMetadataRangeWithOffsetSegmentLengthSegmentCount(startOffset unsafe.Po
 // Creates a metadata range with the given properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/rangeWithOffset:segmentLength:segmentCount:
-func (fc _FSMetadataRangeClass) RangeWithOffsetSegmentLengthSegmentCount(startOffset unsafe.Pointer, segmentLength unsafe.Pointer, segmentCount unsafe.Pointer) unsafe.Pointer {
+func (fc _FSMetadataRangeClass) RangeWithOffsetSegmentLengthSegmentCount(startOffset unsafe.Pointer, segmentLength uint64, segmentCount uint64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("rangeWithOffset:segmentLength:segmentCount:"), startOffset, segmentLength, segmentCount)
 	return rv
 }
@@ -102,16 +102,16 @@ func (fc _FSMetadataRangeClass) RangeWithOffsetSegmentLengthSegmentCount(startOf
 // The number of segments in the range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/segmentCount
-func (f_ FSMetadataRange) SegmentCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("segmentCount"))
+func (f_ FSMetadataRange) SegmentCount() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("segmentCount"))
 	return rv
 }
 
 // The segment length in bytes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/segmentLength
-func (f_ FSMetadataRange) SegmentLength() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("segmentLength"))
+func (f_ FSMetadataRange) SegmentLength() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("segmentLength"))
 	return rv
 }
 

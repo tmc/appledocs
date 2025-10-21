@@ -853,6 +853,15 @@ func mapObjCTypeToGo(objcType, framework string) string {
 				// Remove trailing * from pointer types
 				elementType = strings.TrimSpace(strings.TrimSuffix(elementType, "*"))
 
+				// Strip protocol conformance syntax: NSView<NSCollectionViewElement> -> NSView
+				// Objective-C uses Type<Protocol> syntax for protocol conformance, but in Go we just use the base type
+				// The protocol conformance is checked at runtime by Objective-C, not at compile time
+				if protocolStart := strings.Index(elementType, "<"); protocolStart > 0 {
+					if strings.HasSuffix(elementType, ">") {
+						elementType = strings.TrimSpace(elementType[:protocolStart])
+					}
+				}
+
 				// Special case: NSString -> string
 				if elementType == "NSString" {
 					return "[]string"
@@ -947,8 +956,18 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "unsafe.Pointer"
 	}
 
+	// DEBUG: Uncomment to see what occ2go.MapCTypeToGo returns
+	// if framework == "AppKit" && strings.Contains(goType, "NSTextCheckingResult") {
+	// 	fmt.Fprintf(os.Stderr, "DEBUG: occ2go.MapCTypeToGo(%q, %q) = %q\n", objcType, framework, goType)
+	// }
+
 	// Resolve cross-framework types (e.g., CGAffineTransform -> coregraphics.CGAffineTransform)
 	goType = resolveType(framework, goType)
+
+	// DEBUG: Uncomment to see what resolveType returns
+	// if framework == "AppKit" && strings.Contains(goType, "NSTextCheckingResult") {
+	// 	fmt.Fprintf(os.Stderr, "DEBUG: resolveType(%q, ...) = %q\n", framework, goType)
+	// }
 
 	return goType
 }
@@ -2126,10 +2145,12 @@ func resolveType(framework, typeName string) string {
 		"MutableData":             true,
 		"Date":                    true,
 		"URL":                     true,
+		"NSURL":                   true, // Include NS-prefixed version
 		"URLRequest":              true,
 		"MutableURLRequest":       true,
 		"Value":                   true,
 		"Number":                  true,
+		"NSNumber":                true, // Include NS-prefixed version
 		"URLSession":              true,
 		"URLSessionTask":          true,
 		"URLSessionDataTask":      true,
@@ -2203,7 +2224,11 @@ func resolveType(framework, typeName string) string {
 
 	// Check if the type exists in current framework FIRST before adding qualifications
 	// This prevents self-imports (e.g., coregraphics.CGAffineTransform in CoreGraphics)
-	if currentFrameworkClasses[typeName] {
+	// Strip the ObjC prefix before checking, since currentFrameworkClasses contains stripped names
+	strippedTypeName := stripObjCPrefix(typeName)
+	if currentFrameworkClasses[strippedTypeName] {
+		// DEBUG: Uncomment to debug same-framework type resolution
+		// fmt.Fprintf(os.Stderr, "DEBUG resolveType: Found '%s' (stripped: '%s') in current framework '%s', returning as-is\n", typeName, strippedTypeName, framework)
 		// It's in the current framework, return as-is
 		return typeName
 	}
@@ -2237,7 +2262,13 @@ func resolveType(framework, typeName string) string {
 		return typeName
 	}
 
-	// If this is a known Foundation type and we're not in Foundation, qualify it
+	// If we're in AppKit (or other frameworks that embed NSObject), Foundation types are also local
+	// since NSObject/Foundation is embedded in the object hierarchy
+	if (framework == "AppKit" || framework == "QuartzCore" || framework == "CoreData") && foundationTypes[typeName] {
+		return typeName
+	}
+
+	// If this is a known Foundation type and we're not in Foundation/AppKit, qualify it
 	if foundationTypes[typeName] {
 		return "foundation." + typeName
 	}
@@ -2255,6 +2286,44 @@ func resolveType(framework, typeName string) string {
 	// Check if we know about this type from the cross-framework registry
 	if frameworkPkg, found := crossFrameworkTypeRegistry[typeName]; found {
 		return frameworkPkg + "." + typeName
+	}
+
+	// Before falling back to unsafe.Pointer, check if this type belongs to the current framework
+	// based on naming conventions. For example, in AppKit, types like NSView, NSButton, NSTextCheckingResult
+	// should be returned as-is, not qualified with appkit.
+	// This handles types that aren't classes (so not in currentFrameworkClasses) but are still
+	// defined in the current framework's types.gen.go file.
+	if framework != "" {
+		// Check common framework prefixes
+		frameworkPrefixes := map[string][]string{
+			"AppKit":        {"NS", "AK"},
+			"Foundation":    {"NS", "CF"},
+			"CoreGraphics":  {"CG"},
+			"QuartzCore":    {"CA"},
+			"CoreImage":     {"CI"},
+			"CoreData":      {"NS", "CD"},
+			"AVFoundation":  {"AV"},
+			"Metal":         {"MTL"},
+			"MetalKit":      {"MTK"},
+			"SpriteKit":     {"SK"},
+			"SceneKit":      {"SCN"},
+			"CoreML":        {"ML"},
+			"Vision":        {"VN"},
+			"CoreLocation":  {"CL"},
+			"MapKit":        {"MK"},
+			"PhotoKit":      {"PH"},
+			"Photos":        {"PH"},
+			"ScreenCaptureKit": {"SC"},
+		}
+
+		if prefixes, ok := frameworkPrefixes[framework]; ok {
+			for _, prefix := range prefixes {
+				if strings.HasPrefix(typeName, prefix) {
+					// Type likely belongs to current framework, return as-is
+					return typeName
+				}
+			}
+		}
 	}
 
 	// Last resort: fall back to unsafe.Pointer for truly unknown types
@@ -2472,25 +2541,35 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 		}
 	}
 
-	// Check method parameters and return types for CloudKit dependencies
+	// Check method parameters and return types for AppKit, QuartzCore, and CloudKit dependencies
 	for _, method := range class.Methods {
 		// Check return type
 		if method.ReturnType != "" {
 			goType := mapObjCTypeToGo(method.ReturnType, framework)
-			if strings.HasPrefix(goType, "cloudkit.") {
+			// Use Contains instead of HasPrefix to catch array types like []appkit.View
+			if strings.Contains(goType, "appkit.") {
+				imports.NeedsAppKit = true
+			} else if strings.Contains(goType, "quartzcore.") {
+				imports.NeedsQuartzCore = true
+			} else if strings.Contains(goType, "cloudkit.") {
 				imports.NeedsCloudKit = true
-				break
 			}
 		}
 		// Check parameters
 		for _, param := range method.Parameters {
 			goType := mapObjCTypeToGo(param.Type, framework)
-			if strings.HasPrefix(goType, "cloudkit.") {
+			// Use Contains instead of HasPrefix to catch array types
+			if strings.Contains(goType, "foundation.") {
+				imports.NeedsFoundation = true
+			} else if strings.Contains(goType, "appkit.") {
+				imports.NeedsAppKit = true
+			} else if strings.Contains(goType, "quartzcore.") {
+				imports.NeedsQuartzCore = true
+			} else if strings.Contains(goType, "cloudkit.") {
 				imports.NeedsCloudKit = true
-				break
 			}
 		}
-		if imports.NeedsCloudKit {
+		if imports.NeedsFoundation || imports.NeedsAppKit || imports.NeedsQuartzCore || imports.NeedsCloudKit {
 			break
 		}
 	}
@@ -2500,14 +2579,16 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 		for _, method := range class.Methods {
 			// Check return type
 			goReturnType := mapObjCTypeToGo(method.ReturnType, framework)
-			if strings.HasPrefix(goReturnType, "foundation.") {
+			// Use Contains instead of HasPrefix to catch array types like []foundation.NSURL
+			if strings.Contains(goReturnType, "foundation.") {
 				imports.NeedsFoundation = true
 				break
 			}
 			// Check parameter types
 			for _, param := range method.Parameters {
 				goParamType := mapObjCTypeToGo(param.Type, framework)
-				if strings.HasPrefix(goParamType, "foundation.") {
+				// Use Contains instead of HasPrefix to catch array types like []foundation.NSURL
+				if strings.Contains(goParamType, "foundation.") {
 					imports.NeedsFoundation = true
 					break
 				}

@@ -103,7 +103,17 @@ func (a_ AuthorizationController) CustomAuthorizationMethods() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/customAuthorizationMethods
 func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCustomAuthorizationMethods:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCustomAuthorizationMethods:"), nsArray)
 }
 // A delegate that provides a display context in which the system can present an authorization interface to the user.
 //

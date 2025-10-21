@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextStorage] class.
@@ -29,7 +28,7 @@ type _TextStorageClass struct {
 
 // An interface definition for the [TextStorage] class.
 type ITextStorage interface {
-	foundation.IMutableAttributedString
+	IMutableAttributedString
 }
 
 // The fundamental storage mechanism of TextKit that contains the text managed by the system.
@@ -38,7 +37,7 @@ type ITextStorage interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage
 type TextStorage struct {
-	foundation.MutableAttributedString
+	MutableAttributedString
 }
 
 // TextStorageFrom constructs a [TextStorage] from an unsafe.Pointer.
@@ -46,7 +45,7 @@ type TextStorage struct {
 // The fundamental storage mechanism of TextKit that contains the text managed by the system.
 func TextStorageFrom(ptr unsafe.Pointer) TextStorage {
 	return TextStorage{
-		MutableAttributedString: foundation.MutableAttributedStringFrom(ptr),
+		MutableAttributedString: MutableAttributedStringFrom(ptr),
 	}
 }
 
@@ -97,7 +96,17 @@ func (t_ TextStorage) Characters() []TextStorage {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/characters
 func (t_ TextStorage) SetCharacters(value []TextStorage) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCharacters:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCharacters:"), nsArray)
 }
 // The observer for the text storage object.
 //

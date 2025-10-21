@@ -124,7 +124,17 @@ func (f_ FetchRequest) AffectedStores() []PersistentStore {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/affectedStores
 func (f_ FetchRequest) SetAffectedStores(value []PersistentStore) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), nsArray)
 }
 // The entity specified for the fetch request.
 //
@@ -336,7 +346,17 @@ func (f_ FetchRequest) RelationshipKeyPathsForPrefetching() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/relationshipKeyPathsForPrefetching
 func (f_ FetchRequest) SetRelationshipKeyPathsForPrefetching(value []string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setRelationshipKeyPathsForPrefetching:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](f_.ID, objc.Sel("setRelationshipKeyPathsForPrefetching:"), nsArray)
 }
 // The result type of the fetch request.
 //
@@ -409,8 +429,8 @@ func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool) {
 // The sort descriptors of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SortDescriptors() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](f_.ID, objc.Sel("sortDescriptors"))
+func (f_ FetchRequest) SortDescriptors() []cloudkit.NSSortDescriptor {
+	rv := objc.Send[[]cloudkit.NSSortDescriptor](f_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -420,7 +440,17 @@ func (f_ FetchRequest) SortDescriptors() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SetSortDescriptors(value []unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setSortDescriptors:"), value)
+func (f_ FetchRequest) SetSortDescriptors(value []cloudkit.NSSortDescriptor) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](f_.ID, objc.Sel("setSortDescriptors:"), nsArray)
 }
 

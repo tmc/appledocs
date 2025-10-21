@@ -129,6 +129,13 @@ func (gc _GraphicsContextClass) SetGraphicsState(gState int) {
 	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("setGraphicsState:"), gState)
 }
 
+// Returns the current graphics context of the current thread.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/current
+func (gc _GraphicsContextClass) CurrentContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("currentContext"))
+	return rv
+}
 // Saves the current graphics state and creates a new graphics state on the top of the stack.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.method
@@ -185,6 +192,23 @@ func (g_ GraphicsContext) CompositingOperation() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/compositingOperation
 func (g_ GraphicsContext) SetCompositingOperation(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompositingOperation:"), value)
+}
+// Returns the current graphics context of the current thread.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/current
+func (g_ GraphicsContext) CurrentContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("currentContext"))
+	return rv
+}
+
+
+// SetCurrentContext sets the value of the currentContext property.
+// Returns the current graphics context of the current thread.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/current
+func (g_ GraphicsContext) SetCurrentContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setCurrentContext:"), value)
 }
 // A Boolean value that indicates whether the drawing destination is the screen.
 //

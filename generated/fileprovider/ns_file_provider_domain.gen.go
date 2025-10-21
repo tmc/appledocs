@@ -80,16 +80,6 @@ func NewFileProviderDomain() FileProviderDomain {
 }
 
 
-// Creates a new file provider domain with the specified URL and display name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)
-func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, userInfo objc.ID, volumeURL unsafe.Pointer) FileProviderDomain {
-	instance := getFileProviderDomainClass().Alloc()
-	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithDisplayName:userInfo:volumeURL:"), objc.String(displayName), userInfo, volumeURL)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a new file provider domain with the specified identifier and display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:)
@@ -106,6 +96,16 @@ func NewFileProviderDomainWithIdentifierDisplayName(identifier unsafe.Pointer, d
 func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier unsafe.Pointer, displayName string, pathRelativeToDocumentStorage string) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:pathRelativeToDocumentStorage:"), identifier, objc.String(displayName), objc.String(pathRelativeToDocumentStorage))
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a new file provider domain with the specified URL and display name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)
+func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, userInfo objc.ID, volumeURL unsafe.Pointer) FileProviderDomain {
+	instance := getFileProviderDomainClass().Alloc()
+	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithDisplayName:userInfo:volumeURL:"), objc.String(displayName), userInfo, volumeURL)
 	rv.Autorelease()
 	return rv
 }

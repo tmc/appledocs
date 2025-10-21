@@ -83,7 +83,7 @@ func NewEKRecurrenceDayOfWeek() EKRecurrenceDayOfWeek {
 // Creates and returns a day of the week with a given day.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceDayOfWeek/init(_:)
-func NewEKRecurrenceDayOfWeekWithDay(dayOfTheWeek unsafe.Pointer) EKRecurrenceDayOfWeek {
+func NewEKRecurrenceDayOfWeek(dayOfTheWeek unsafe.Pointer) EKRecurrenceDayOfWeek {
 	rv := objc.Send[EKRecurrenceDayOfWeek](objc.ID(getEKRecurrenceDayOfWeekClass().class), objc.Sel("dayOfWeek:"), dayOfTheWeek)
 	return rv
 }

@@ -84,8 +84,8 @@ func NewChangePlaybackRateCommand() ChangePlaybackRateCommand {
 // The supported playback rates for a media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPChangePlaybackRateCommand/supportedPlaybackRates
-func (c_ ChangePlaybackRateCommand) SupportedPlaybackRates() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("supportedPlaybackRates"))
+func (c_ ChangePlaybackRateCommand) SupportedPlaybackRates() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](c_.ID, objc.Sel("supportedPlaybackRates"))
 	return rv
 }
 
@@ -95,8 +95,18 @@ func (c_ ChangePlaybackRateCommand) SupportedPlaybackRates() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPChangePlaybackRateCommand/supportedPlaybackRates
-func (c_ ChangePlaybackRateCommand) SetSupportedPlaybackRates(value []unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedPlaybackRates:"), value)
+func (c_ ChangePlaybackRateCommand) SetSupportedPlaybackRates(value []accessibility.NSNumber) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedPlaybackRates:"), nsArray)
 }
 
 

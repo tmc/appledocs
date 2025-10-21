@@ -80,5 +80,20 @@ func NewGCMouse() GCMouse {
 }
 
 
+// The most recent mouse that the user connects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/current
+func (gc _GCMouseClass) Current() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("current"))
+	return rv
+}
+// The most recent mouse that the user connects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/current
+func (g_ GCMouse) Current() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("current"))
+	return rv
+}
+
 
 

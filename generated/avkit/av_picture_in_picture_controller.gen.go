@@ -128,6 +128,20 @@ func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImageCompat
 	return rv
 }
 
+// A system-default template image for the button that starts Picture in Picture in your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStartImage
+func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStartImage"))
+	return rv
+}
+// A system-default template image for the button that stops Picture in Picture in your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStopImage
+func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStopImage"))
+	return rv
+}
 // Invalidates the controller’s current playback state and fetches the updated state from the sample buffer playback delegate object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/invalidatePlaybackState()
@@ -229,6 +243,22 @@ func (p_ PictureInPictureController) PictureInPicturePossible() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/isPictureInPictureSuspended
 func (p_ PictureInPictureController) PictureInPictureSuspended() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pictureInPictureSuspended"))
+	return rv
+}
+
+// A system-default template image for the button that starts Picture in Picture in your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStartImage
+func (p_ PictureInPictureController) PictureInPictureButtonStartImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pictureInPictureButtonStartImage"))
+	return rv
+}
+
+// A system-default template image for the button that stops Picture in Picture in your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStopImage
+func (p_ PictureInPictureController) PictureInPictureButtonStopImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pictureInPictureButtonStopImage"))
 	return rv
 }
 

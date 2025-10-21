@@ -122,6 +122,20 @@ func (cc _CNContactFormatterClass) StringFromContactStyle(contact unsafe.Pointer
 	return rv
 }
 
+// Returns the required key descriptor for the name delimiter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForDelimiter
+func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForDelimiter() objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeysForDelimiter"))
+	return rv
+}
+// Returns the required key descriptor for the display name order.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForNameOrder
+func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForNameOrder() objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeysForNameOrder"))
+	return rv
+}
 // Formats the contact name as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/attributedString(from:defaultAttributes:)
@@ -135,6 +149,22 @@ func (c_ CNContactFormatter) AttributedStringFromContactDefaultAttributes(contac
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:)
 func (c_ CNContactFormatter) StringFromContact(contact unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stringFromContact:"), contact)
+	return rv
+}
+
+// Returns the required key descriptor for the name delimiter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForDelimiter
+func (c_ CNContactFormatter) DescriptorForRequiredKeysForDelimiter() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("descriptorForRequiredKeysForDelimiter"))
+	return rv
+}
+
+// Returns the required key descriptor for the display name order.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForNameOrder
+func (c_ CNContactFormatter) DescriptorForRequiredKeysForNameOrder() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("descriptorForRequiredKeysForNameOrder"))
 	return rv
 }
 

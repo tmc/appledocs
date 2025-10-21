@@ -95,7 +95,17 @@ func (r_ RenderPipelineFunctionsDescriptor) FragmentAdditionalBinaryFunctions() 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineFunctionsDescriptor/fragmentAdditionalBinaryFunctions
 func (r_ RenderPipelineFunctionsDescriptor) SetFragmentAdditionalBinaryFunctions(value []objc.ID) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setFragmentAdditionalBinaryFunctions:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](r_.ID, objc.Sel("setFragmentAdditionalBinaryFunctions:"), nsArray)
 }
 // The tile functions to add to the render pipeline.
 //
@@ -112,7 +122,17 @@ func (r_ RenderPipelineFunctionsDescriptor) TileAdditionalBinaryFunctions() []ob
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineFunctionsDescriptor/tileAdditionalBinaryFunctions
 func (r_ RenderPipelineFunctionsDescriptor) SetTileAdditionalBinaryFunctions(value []objc.ID) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setTileAdditionalBinaryFunctions:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](r_.ID, objc.Sel("setTileAdditionalBinaryFunctions:"), nsArray)
 }
 // The vertex functions to add to the render pipeline.
 //
@@ -129,7 +149,17 @@ func (r_ RenderPipelineFunctionsDescriptor) VertexAdditionalBinaryFunctions() []
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineFunctionsDescriptor/vertexAdditionalBinaryFunctions
 func (r_ RenderPipelineFunctionsDescriptor) SetVertexAdditionalBinaryFunctions(value []objc.ID) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setVertexAdditionalBinaryFunctions:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](r_.ID, objc.Sel("setVertexAdditionalBinaryFunctions:"), nsArray)
 }
 
 

@@ -89,8 +89,8 @@ func (m_ MultiArrayConstraint) DataType() unsafe.Pointer {
 // The shape of the multi array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArrayConstraint/shape
-func (m_ MultiArrayConstraint) Shape() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("shape"))
+func (m_ MultiArrayConstraint) Shape() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](m_.ID, objc.Sel("shape"))
 	return rv
 }
 

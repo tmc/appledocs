@@ -162,6 +162,13 @@ func (rc _ResponderClass) AllowedClassesForRestorableStateKeyPath(keyPath string
 	return rv
 }
 
+// Returns an array of key paths representing the restorable attributes of the responder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/restorableStateKeyPaths
+func (rc _ResponderClass) RestorableStateKeyPaths() []string {
+	rv := objc.Send[[]string](objc.ID(rc.class), objc.Sel("restorableStateKeyPaths"))
+	return rv
+}
 // Notifies the receiver that it’s about to become first responder in its .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/becomeFirstResponder()
@@ -657,6 +664,14 @@ func (r_ Responder) NextResponder() unsafe.Pointer {
 func (r_ Responder) SetNextResponder(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNextResponder:"), value)
 }
+// Returns an array of key paths representing the restorable attributes of the responder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/restorableStateKeyPaths
+func (r_ Responder) RestorableStateKeyPaths() []string {
+	rv := objc.Send[[]string](r_.ID, objc.Sel("restorableStateKeyPaths"))
+	return rv
+}
+
 // The object associated with the responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/touchBar

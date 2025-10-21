@@ -81,11 +81,26 @@ func NewFSClient() FSClient {
 }
 
 
+// The shared instance of the FSKit client class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSClient/shared
+func (fc _FSClientClass) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sharedInstance"))
+	return rv
+}
 // Asynchronously retrieves an list of installed file system modules.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSClient/fetchInstalledExtensions(completionHandler:)
 func (f_ FSClient) FetchInstalledExtensionsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("fetchInstalledExtensionsWithCompletionHandler:"), completionHandler)
+}
+
+// The shared instance of the FSKit client class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSClient/shared
+func (f_ FSClient) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("sharedInstance"))
+	return rv
 }
 
 

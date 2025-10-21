@@ -90,26 +90,6 @@ func NewImage() Image {
 }
 
 
-// Creates a new image using the contents of the provided image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(cgImage:size:)
-func NewImageWithCGImageSize(cgImage coregraphics.CGImageRef, size coregraphics.CGSize) Image {
-	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImage:size:"), cgImage, size)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes and returns an image object using the provided image data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(data:)
-func NewImageWithData(data unsafe.Pointer) Image {
-	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:"), data)
-	rv.Autorelease()
-	return rv
-}
-
 // Returns the image object associated with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(named:)
@@ -131,6 +111,26 @@ func NewImageWithSymbolNameVariableValue(name string, value unsafe.Pointer) Imag
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)
 func NewImageWithSystemSymbolNameAccessibilityDescription(name string, description string) Image {
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), objc.String(name), objc.String(description))
+	return rv
+}
+
+// Creates a new image using the contents of the provided image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(cgImage:size:)
+func NewImageWithCGImageSize(cgImage coregraphics.CGImageRef, size coregraphics.CGSize) Image {
+	instance := getImageClass().Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImage:size:"), cgImage, size)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes and returns an image object using the provided image data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(data:)
+func NewImageWithData(data unsafe.Pointer) Image {
+	instance := getImageClass().Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:"), data)
+	rv.Autorelease()
 	return rv
 }
 

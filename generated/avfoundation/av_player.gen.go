@@ -136,6 +136,27 @@ func (pc _PlayerClass) PlayerWithURL(URL unsafe.Pointer) unsafe.Pointer {
 	return rv
 }
 
+// The HDR modes that are available for playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/availableHDRModes
+func (pc _PlayerClass) AvailableHDRModes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("availableHDRModes"))
+	return rv
+}
+// A Boolean value that indicates whether the current device can present content to an HDR display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/eligibleForHDRPlayback
+func (pc _PlayerClass) EligibleForHDRPlayback() bool {
+	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("eligibleForHDRPlayback"))
+	return rv
+}
+// AVPlayer and other AVFoundation types can optionally be observed using Swift Observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isObservationEnabled
+func (pc _PlayerClass) ObservationEnabled() bool {
+	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("observationEnabled"))
+	return rv
+}
 // Requests the invocation of a block when specified times are traversed during normal playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/addBoundaryTimeObserver(forTimes:queue:using:)
@@ -400,6 +421,14 @@ func (p_ Player) AutomaticallyWaitsToMinimizeStalling() bool {
 func (p_ Player) SetAutomaticallyWaitsToMinimizeStalling(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyWaitsToMinimizeStalling:"), value)
 }
+// The HDR modes that are available for playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/availableHDRModes
+func (p_ Player) AvailableHDRModes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("availableHDRModes"))
+	return rv
+}
+
 // The item for which the player is currently controlling playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/currentItem
@@ -425,6 +454,14 @@ func (p_ Player) DefaultRate() unsafe.Pointer {
 func (p_ Player) SetDefaultRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultRate:"), value)
 }
+// A Boolean value that indicates whether the current device can present content to an HDR display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/eligibleForHDRPlayback
+func (p_ Player) EligibleForHDRPlayback() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("eligibleForHDRPlayback"))
+	return rv
+}
+
 // An error that caused a failure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/error
@@ -517,6 +554,23 @@ func (p_ Player) Muted() bool {
 func (p_ Player) SetMuted(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMuted:"), value)
 }
+// AVPlayer and other AVFoundation types can optionally be observed using Swift Observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isObservationEnabled
+func (p_ Player) ObservationEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("observationEnabled"))
+	return rv
+}
+
+
+// SetObservationEnabled sets the value of the observationEnabled property.
+// AVPlayer and other AVFoundation types can optionally be observed using Swift Observation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isObservationEnabled
+func (p_ Player) SetObservationEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setObservationEnabled:"), value)
+}
 // A Boolean value that indicates whether output is being obscured because of insufficient external protection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isOutputObscuredDueToInsufficientExternalProtection
@@ -570,8 +624,8 @@ func (p_ Player) PlaybackCoordinator() unsafe.Pointer {
 // The registry identifier for the GPU used for video decoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preferredVideoDecoderGPURegistryID
-func (p_ Player) PreferredVideoDecoderGPURegistryID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferredVideoDecoderGPURegistryID"))
+func (p_ Player) PreferredVideoDecoderGPURegistryID() uint64 {
+	rv := objc.Send[uint64](p_.ID, objc.Sel("preferredVideoDecoderGPURegistryID"))
 	return rv
 }
 
@@ -581,7 +635,7 @@ func (p_ Player) PreferredVideoDecoderGPURegistryID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preferredVideoDecoderGPURegistryID
-func (p_ Player) SetPreferredVideoDecoderGPURegistryID(value unsafe.Pointer) {
+func (p_ Player) SetPreferredVideoDecoderGPURegistryID(value uint64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredVideoDecoderGPURegistryID:"), value)
 }
 // A Boolean value that indicates whether video playback prevents the system from automatically backgrounding the app.

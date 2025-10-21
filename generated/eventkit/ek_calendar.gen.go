@@ -6,7 +6,6 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 )
 
@@ -139,21 +138,21 @@ func (e_ EKCalendar) CalendarIdentifier() unsafe.Pointer {
 	return rv
 }
 
-// The calendar's color.
+// The calendar’s color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/cgColor
-func (e_ EKCalendar) CGColor() coregraphics.CGColorRef {
-	rv := objc.Send[coregraphics.CGColorRef](e_.ID, objc.Sel("CGColor"))
+func (e_ EKCalendar) CGColor() CGColorRef {
+	rv := objc.Send[CGColorRef](e_.ID, objc.Sel("CGColor"))
 	return rv
 }
 
 
 // SetCGColor sets the value of the CGColor property.
-// The calendar's color.
+// The calendar’s color.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/cgColor
-func (e_ EKCalendar) SetCGColor(value coregraphics.CGColorRef) {
+func (e_ EKCalendar) SetCGColor(value CGColorRef) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCGColor:"), value)
 }
 // The calendar’s color.

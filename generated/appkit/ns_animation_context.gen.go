@@ -94,5 +94,20 @@ func (ac _AnimationContextClass) RunAnimationGroupCompletionHandler(changes unsa
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("runAnimationGroup:completionHandler:"), changes, completionHandler)
 }
 
+// Returns the current animation context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/current
+func (ac _AnimationContextClass) CurrentContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("currentContext"))
+	return rv
+}
+// Returns the current animation context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/current
+func (a_ AnimationContext) CurrentContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentContext"))
+	return rv
+}
+
 
 

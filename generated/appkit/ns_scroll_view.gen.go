@@ -140,6 +140,13 @@ func (sc _ScrollViewClass) FrameSizeForContentSizeHasHorizontalScrollerHasVertic
 	return rv
 }
 
+// Returns the default class to be used for ruler objects in NSScrollViews.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/rulerViewClass
+func (sc _ScrollViewClass) RulerViewClass() objc.Class {
+	rv := objc.Send[objc.Class](objc.ID(sc.class), objc.Sel("rulerViewClass"))
+	return rv
+}
 // Adds a floating subview to the document view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/addFloatingSubview(_:for:)
@@ -629,6 +636,23 @@ func (s_ ScrollView) PageScroll() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/pageScroll
 func (s_ ScrollView) SetPageScroll(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPageScroll:"), value)
+}
+// Returns the default class to be used for ruler objects in NSScrollViews.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/rulerViewClass
+func (s_ ScrollView) RulerViewClass() objc.Class {
+	rv := objc.Send[objc.Class](s_.ID, objc.Sel("rulerViewClass"))
+	return rv
+}
+
+
+// SetRulerViewClass sets the value of the rulerViewClass property.
+// Returns the default class to be used for ruler objects in NSScrollViews.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/rulerViewClass
+func (s_ ScrollView) SetRulerViewClass(value objc.Class) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRulerViewClass:"), value)
 }
 // A Boolean that indicates whether the scroll view displays its rulers.
 //

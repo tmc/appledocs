@@ -29,8 +29,8 @@ type _GraphExecutionDescriptorClass struct {
 // An interface definition for the [GraphExecutionDescriptor] class.
 type IGraphExecutionDescriptor interface {
 	IGraphObject
-	SignalEventAtExecutionEventValue(event objc.ID, executionStage unsafe.Pointer, value unsafe.Pointer)
-	WaitForEventValue(event objc.ID, value unsafe.Pointer)
+	SignalEventAtExecutionEventValue(event objc.ID, executionStage unsafe.Pointer, value uint64)
+	WaitForEventValue(event objc.ID, value uint64)
 }
 
 // A class that consists of all the levers to synchronize and schedule graph execution.
@@ -84,14 +84,14 @@ func NewGraphExecutionDescriptor() GraphExecutionDescriptor {
 // Executable signals these shared events at execution stage and immediately proceeds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutionDescriptor/signal(_:atExecutionEvent:value:)
-func (g_ GraphExecutionDescriptor) SignalEventAtExecutionEventValue(event objc.ID, executionStage unsafe.Pointer, value unsafe.Pointer) {
+func (g_ GraphExecutionDescriptor) SignalEventAtExecutionEventValue(event objc.ID, executionStage unsafe.Pointer, value uint64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("signalEvent:atExecutionEvent:value:"), event, executionStage, value)
 }
 
 // Executable waits on these shared events before scheduling execution on the HW, this does not include encoding which can still continue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutionDescriptor/wait(for:value:)
-func (g_ GraphExecutionDescriptor) WaitForEventValue(event objc.ID, value unsafe.Pointer) {
+func (g_ GraphExecutionDescriptor) WaitForEventValue(event objc.ID, value uint64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("waitForEvent:value:"), event, value)
 }
 

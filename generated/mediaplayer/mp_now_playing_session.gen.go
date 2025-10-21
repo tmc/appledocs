@@ -176,8 +176,8 @@ func (n_ NowPlayingSession) NowPlayingInfoCenter() unsafe.Pointer {
 // The array of players associated with the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/players
-func (n_ NowPlayingSession) Players() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](n_.ID, objc.Sel("players"))
+func (n_ NowPlayingSession) Players() []avkit.AVPlayer {
+	rv := objc.Send[[]avkit.AVPlayer](n_.ID, objc.Sel("players"))
 	return rv
 }
 

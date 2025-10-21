@@ -81,6 +81,13 @@ func NewCXCallDirectoryManager() CXCallDirectoryManager {
 }
 
 
+// Returns the shared call directory manager instance for the app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/sharedInstance
+func (cc _CXCallDirectoryManagerClass) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedInstance"))
+	return rv
+}
 // Asynchronously returns the enabled status of the extension with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/getEnabledStatusForExtension(withIdentifier:completionHandler:)
@@ -100,6 +107,14 @@ func (c_ CXCallDirectoryManager) OpenSettingsWithCompletionHandler(completion un
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/reloadExtension(withIdentifier:completionHandler:)
 func (c_ CXCallDirectoryManager) ReloadExtensionWithIdentifierCompletionHandler(identifier string, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadExtensionWithIdentifier:completionHandler:"), objc.String(identifier), completion)
+}
+
+// Returns the shared call directory manager instance for the app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/sharedInstance
+func (c_ CXCallDirectoryManager) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sharedInstance"))
+	return rv
 }
 
 

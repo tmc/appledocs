@@ -181,16 +181,16 @@ func (f_ FSBlockDeviceResource) WriteFromStartingAtLengthError(buffer unsafe.Poi
 // The block count on this resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/blockCount
-func (f_ FSBlockDeviceResource) BlockCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("blockCount"))
+func (f_ FSBlockDeviceResource) BlockCount() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("blockCount"))
 	return rv
 }
 
 // The logical block size, the size of data blocks used by the file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/blockSize
-func (f_ FSBlockDeviceResource) BlockSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("blockSize"))
+func (f_ FSBlockDeviceResource) BlockSize() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("blockSize"))
 	return rv
 }
 
@@ -213,8 +213,8 @@ func (f_ FSBlockDeviceResource) Writable() bool {
 // The sector size of the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/physicalBlockSize
-func (f_ FSBlockDeviceResource) PhysicalBlockSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("physicalBlockSize"))
+func (f_ FSBlockDeviceResource) PhysicalBlockSize() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("physicalBlockSize"))
 	return rv
 }
 

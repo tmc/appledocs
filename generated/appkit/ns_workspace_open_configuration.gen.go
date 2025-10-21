@@ -171,7 +171,17 @@ func (w_ WorkspaceOpenConfiguration) Arguments() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/arguments
 func (w_ WorkspaceOpenConfiguration) SetArguments(value []string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setArguments:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](w_.ID, objc.Sel("setArguments:"), nsArray)
 }
 // A Boolean value indicating whether you want the system to launch a new instance of the app.
 //

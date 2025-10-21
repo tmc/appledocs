@@ -280,7 +280,17 @@ func (t_ TextField) PlaceholderStrings() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/placeholderStrings
 func (t_ TextField) SetPlaceholderStrings(value []string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderStrings:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderStrings:"), nsArray)
 }
 // The maximum width of the text field’s intrinsic content size.
 //

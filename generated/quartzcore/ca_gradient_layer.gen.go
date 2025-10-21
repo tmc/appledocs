@@ -119,8 +119,8 @@ func (g_ GradientLayer) SetEndPoint(value coregraphics.CGPoint) {
 // An optional array of NSNumber objects defining the location of each gradient stop. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/locations
-func (g_ GradientLayer) Locations() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](g_.ID, objc.Sel("locations"))
+func (g_ GradientLayer) Locations() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](g_.ID, objc.Sel("locations"))
 	return rv
 }
 
@@ -130,8 +130,18 @@ func (g_ GradientLayer) Locations() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/locations
-func (g_ GradientLayer) SetLocations(value []unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLocations:"), value)
+func (g_ GradientLayer) SetLocations(value []accessibility.NSNumber) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLocations:"), nsArray)
 }
 // The start point of the gradient when drawn in the layer’s coordinate space. Animatable.
 //

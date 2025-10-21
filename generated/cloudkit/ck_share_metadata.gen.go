@@ -155,8 +155,8 @@ func (c_ CKShareMetadata) RootRecordID() unsafe.Pointer {
 // The share that owns the metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/share
-func (c_ CKShareMetadata) Share() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("share"))
+func (c_ CKShareMetadata) Share() cloudkit.CKShare {
+	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("share"))
 	return rv
 }
 

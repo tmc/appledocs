@@ -76,6 +76,19 @@ func NewMIDIUMPEndpointManager() MIDIUMPEndpointManager {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager/shared
+func (mc _MIDIUMPEndpointManagerClass) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("sharedInstance"))
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager/shared
+func (m_ MIDIUMPEndpointManager) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sharedInstance"))
+	return rv
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager/umpEndpoints
 func (m_ MIDIUMPEndpointManager) UMPEndpoints() []MIDIUMPEndpoint {
 	rv := objc.Send[[]MIDIUMPEndpoint](m_.ID, objc.Sel("UMPEndpoints"))

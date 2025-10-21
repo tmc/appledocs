@@ -1,14 +1,108 @@
 // Code generated from Apple documentation for AVKit. DO NOT EDIT.
 
 package avkit
-
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+	"unsafe"
 )
 
-// Rect is a Foundation type.
-type Rect = foundation.Rect
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+type AVAudioSession unsafe.Pointer
+
+type AVCaptureEventPhase unsafe.Pointer
+
+type AVCaptureFileOutput unsafe.Pointer
+
+type AVCaptureSession unsafe.Pointer
+
+type AVCaptureViewControlsStyle unsafe.Pointer
+
+type AVContentProposalAction unsafe.Pointer
+
+type AVCustomRoutingController unsafe.Pointer
+
+type AVDateRangeMetadataGroup unsafe.Pointer
+
+type AVDisplayCriteria unsafe.Pointer
+
+type AVDisplayDynamicRange unsafe.Pointer
+
+type AVGroupExperienceCoordinator unsafe.Pointer
+
+type AVLayerVideoGravity unsafe.Pointer
+
+type AVPlayer unsafe.Pointer
+
+type AVPlayerLayer unsafe.Pointer
+
+type AVPlayerViewControllerSkippingBehavior unsafe.Pointer
+
+type AVPlayerViewControlsStyle unsafe.Pointer
+
+type AVPlayerViewTrimResult unsafe.Pointer
+
+type AVRoutePickerViewButtonState unsafe.Pointer
+
+type AVRoutePickerViewButtonStyle unsafe.Pointer
+
+type AVTimedMetadataGroup unsafe.Pointer
+
+type AVVideoFrameAnalysisType unsafe.Pointer
+
+type BOOL unsafe.Pointer
+
+type CGFloat unsafe.Pointer
+
+type CGPoint unsafe.Pointer
+
+type CGRect unsafe.Pointer
+
+type CMTime unsafe.Pointer
+
+type CMTimeRange unsafe.Pointer
+
+type NSArray unsafe.Pointer
+
+type NSColor unsafe.Pointer
+
+type NSDate unsafe.Pointer
+
+type NSDictionary unsafe.Pointer
+
+type NSError unsafe.Pointer
+
+type NSImage unsafe.Pointer
+
+type NSMenu unsafe.Pointer
+
+type NSRect unsafe.Pointer
+
+type NSString unsafe.Pointer
+
+type NSUInteger unsafe.Pointer
+
+type NSURL unsafe.Pointer
+
+type NSView unsafe.Pointer
+
+type UIAction unsafe.Pointer
+
+type UIImage unsafe.Pointer
+
+type UILayoutGuide unsafe.Pointer
+
+type UIMenuElement unsafe.Pointer
+
+type UITraitCollection unsafe.Pointer
+
+type UIView unsafe.Pointer
+
+type UIViewController unsafe.Pointer
+
+
 

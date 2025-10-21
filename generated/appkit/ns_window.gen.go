@@ -218,6 +218,24 @@ func NewWindow() Window {
 }
 
 
+// Creates a titled window that contains the specified content view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
+func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
+	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
+	return rv
+}
+
+// Returns a Cocoa window created from a Carbon window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
+func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
+	instance := getWindowClass().Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes the window with the specified values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
@@ -234,24 +252,6 @@ func NewWindowWithContentRectStyleMaskBackingDefer(contentRect coregraphics.CGRe
 func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphics.CGRect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool, screen unsafe.Pointer) Window {
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:screen:"), contentRect, style, backingStoreType, flag, screen)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates a titled window that contains the specified content view controller.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentViewController:)
-func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Window {
-	rv := objc.Send[Window](objc.ID(getWindowClass().class), objc.Sel("windowWithContentViewController:"), contentViewController)
-	return rv
-}
-
-// Returns a Cocoa window created from a Carbon window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(windowRef:)
-func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
-	instance := getWindowClass().Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
 	rv.Autorelease()
 	return rv
 }
@@ -322,11 +322,32 @@ func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point core
 // Returns the window numbers for all visible windows satisfying the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumbers(options:)
-func (wc _WindowClass) WindowNumbersWithOptions(options unsafe.Pointer) []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](objc.ID(wc.class), objc.Sel("windowNumbersWithOptions:"), options)
+func (wc _WindowClass) WindowNumbersWithOptions(options unsafe.Pointer) []NSNumber {
+	rv := objc.Send[[]NSNumber](objc.ID(wc.class), objc.Sel("windowNumbersWithOptions:"), options)
 	return rv
 }
 
+// A Boolean value that indicates whether the app can automatically organize windows into tabs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsAutomaticWindowTabbing
+func (wc _WindowClass) AllowsAutomaticWindowTabbing() bool {
+	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("allowsAutomaticWindowTabbing"))
+	return rv
+}
+// Returns the default depth limit for instances of .
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultDepthLimit
+func (wc _WindowClass) DefaultDepthLimit() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("defaultDepthLimit"))
+	return rv
+}
+// A value that indicates the user’s preference for window tabbing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/userTabbingPreference-swift.type.property
+func (wc _WindowClass) UserTabbingPreference() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("userTabbingPreference"))
+	return rv
+}
 // Adds a given window as a child window of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/addChildWindow(_:ordered:)
@@ -1329,6 +1350,23 @@ func (w_ Window) AcceptsMouseMovedEvents() bool {
 func (w_ Window) SetAcceptsMouseMovedEvents(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAcceptsMouseMovedEvents:"), value)
 }
+// A Boolean value that indicates whether the app can automatically organize windows into tabs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsAutomaticWindowTabbing
+func (w_ Window) AllowsAutomaticWindowTabbing() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("allowsAutomaticWindowTabbing"))
+	return rv
+}
+
+
+// SetAllowsAutomaticWindowTabbing sets the value of the allowsAutomaticWindowTabbing property.
+// A Boolean value that indicates whether the app can automatically organize windows into tabs.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsAutomaticWindowTabbing
+func (w_ Window) SetAllowsAutomaticWindowTabbing(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsAutomaticWindowTabbing:"), value)
+}
 // A Boolean value that indicates whether the window allows multithreaded view drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsConcurrentViewDrawing
@@ -1764,6 +1802,14 @@ func (w_ Window) DefaultButtonCell() unsafe.Pointer {
 func (w_ Window) SetDefaultButtonCell(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultButtonCell:"), value)
 }
+// Returns the default depth limit for instances of .
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultDepthLimit
+func (w_ Window) DefaultDepthLimit() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("defaultDepthLimit"))
+	return rv
+}
+
 // The window’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/delegate
@@ -2763,7 +2809,17 @@ func (w_ Window) TitlebarAccessoryViewControllers() []TitlebarAccessoryViewContr
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAccessoryViewControllers
 func (w_ Window) SetTitlebarAccessoryViewControllers(value []TitlebarAccessoryViewController) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitlebarAccessoryViewControllers:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitlebarAccessoryViewControllers:"), nsArray)
 }
 // A Boolean value that indicates whether the title bar draws its background.
 //
@@ -2833,6 +2889,14 @@ func (w_ Window) ToolbarStyle() unsafe.Pointer {
 func (w_ Window) SetToolbarStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolbarStyle:"), value)
 }
+// A value that indicates the user’s preference for window tabbing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/userTabbingPreference-swift.type.property
+func (w_ Window) UserTabbingPreference() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("userTabbingPreference"))
+	return rv
+}
+
 // A Boolean value that indicates whether any of the window’s views need to be displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/viewsNeedDisplay

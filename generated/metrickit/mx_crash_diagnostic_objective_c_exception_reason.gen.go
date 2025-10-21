@@ -1,0 +1,143 @@
+// Code generated from Apple documentation for MetricKit. DO NOT EDIT.
+
+package metrickit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [MXCrashDiagnosticObjectiveCExceptionReason] class.
+var (
+	MXCrashDiagnosticObjectiveCExceptionReasonClass     _MXCrashDiagnosticObjectiveCExceptionReasonClass
+	MXCrashDiagnosticObjectiveCExceptionReasonClassOnce sync.Once
+)
+
+func getMXCrashDiagnosticObjectiveCExceptionReasonClass() _MXCrashDiagnosticObjectiveCExceptionReasonClass {
+	MXCrashDiagnosticObjectiveCExceptionReasonClassOnce.Do(func() {
+		MXCrashDiagnosticObjectiveCExceptionReasonClass = _MXCrashDiagnosticObjectiveCExceptionReasonClass{objc.GetClass("MXCrashDiagnosticObjectiveCExceptionReason")}
+	})
+	return MXCrashDiagnosticObjectiveCExceptionReasonClass
+}
+
+type _MXCrashDiagnosticObjectiveCExceptionReasonClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [MXCrashDiagnosticObjectiveCExceptionReason] class.
+type IMXCrashDiagnosticObjectiveCExceptionReason interface {
+	objectivec.IObject
+	DictionaryRepresentation() unsafe.Pointer
+	JSONRepresentation() unsafe.Pointer
+}
+
+// An object that represents the exception reason for an uncaught ObjC exception.
+//
+// The crash report for an uncaught Objective-C can contain detailed information about the type, name and description of the exception object. Use the properties and methods on to access this information.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason
+type MXCrashDiagnosticObjectiveCExceptionReason struct {
+	objectivec.Object
+}
+
+// MXCrashDiagnosticObjectiveCExceptionReasonFrom constructs a [MXCrashDiagnosticObjectiveCExceptionReason] from an unsafe.Pointer.
+//
+// An object that represents the exception reason for an uncaught ObjC exception.
+func MXCrashDiagnosticObjectiveCExceptionReasonFrom(ptr unsafe.Pointer) MXCrashDiagnosticObjectiveCExceptionReason {
+	return MXCrashDiagnosticObjectiveCExceptionReason{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (mc _MXCrashDiagnosticObjectiveCExceptionReasonClass) Alloc() MXCrashDiagnosticObjectiveCExceptionReason {
+	rv := objc.Send[MXCrashDiagnosticObjectiveCExceptionReason](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (mc _MXCrashDiagnosticObjectiveCExceptionReasonClass) New() MXCrashDiagnosticObjectiveCExceptionReason {
+	rv := objc.Send[MXCrashDiagnosticObjectiveCExceptionReason](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) Init() MXCrashDiagnosticObjectiveCExceptionReason {
+	rv := objc.Send[MXCrashDiagnosticObjectiveCExceptionReason](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) Autorelease() MXCrashDiagnosticObjectiveCExceptionReason {
+	rv := objc.Send[MXCrashDiagnosticObjectiveCExceptionReason](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMXCrashDiagnosticObjectiveCExceptionReason creates a new MXCrashDiagnosticObjectiveCExceptionReason instance.
+func NewMXCrashDiagnosticObjectiveCExceptionReason() MXCrashDiagnosticObjectiveCExceptionReason {
+	return getMXCrashDiagnosticObjectiveCExceptionReasonClass().New()
+}
+
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/dictionaryRepresentation()
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) DictionaryRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dictionaryRepresentation"))
+	return rv
+}
+
+// Returns the contents of the exception reason in JSON format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/jsonRepresentation()
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) JSONRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("JSONRepresentation"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/arguments
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) Arguments() []string {
+	rv := objc.Send[[]string](m_.ID, objc.Sel("arguments"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/className
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ClassName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("className"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/composedMessage
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ComposedMessage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("composedMessage"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/exceptionName
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ExceptionName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("exceptionName"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/exceptionType
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ExceptionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("exceptionType"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/formatString
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) FormatString() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("formatString"))
+	return rv
+}
+
+
+

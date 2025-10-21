@@ -382,7 +382,17 @@ func (t_ Toolbar) ItemIdentifiers() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/itemIdentifiers
 func (t_ Toolbar) SetItemIdentifiers(value []string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setItemIdentifiers:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setItemIdentifiers:"), nsArray)
 }
 // An array containing the toolbar’s current items, in order.
 //

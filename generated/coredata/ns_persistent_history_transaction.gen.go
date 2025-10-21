@@ -87,6 +87,20 @@ func (pc _PersistentHistoryTransactionClass) EntityDescriptionWithContext(contex
 	return rv
 }
 
+// The entity description of the persistent history transaction entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription
+func (pc _PersistentHistoryTransactionClass) EntityDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("entityDescription"))
+	return rv
+}
+// A fetch request that has the persistent history transaction as the entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/fetchRequest
+func (pc _PersistentHistoryTransactionClass) FetchRequest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchRequest"))
+	return rv
+}
 // Obtains a notification for use in merging the transaction’s changes into a managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/objectIDNotification()
@@ -124,6 +138,22 @@ func (p_ PersistentHistoryTransaction) Changes() []PersistentHistoryChange {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/contextName
 func (p_ PersistentHistoryTransaction) ContextName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contextName"))
+	return rv
+}
+
+// The entity description of the persistent history transaction entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription
+func (p_ PersistentHistoryTransaction) EntityDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("entityDescription"))
+	return rv
+}
+
+// A fetch request that has the persistent history transaction as the entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/fetchRequest
+func (p_ PersistentHistoryTransaction) FetchRequest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 

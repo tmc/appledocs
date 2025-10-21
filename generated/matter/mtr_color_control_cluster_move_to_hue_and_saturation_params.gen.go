@@ -1,0 +1,79 @@
+// Code generated from Apple documentation for Matter. DO NOT EDIT.
+
+package matter
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [MTRColorControlClusterMoveToHueAndSaturationParams] class.
+var (
+	MTRColorControlClusterMoveToHueAndSaturationParamsClass     _MTRColorControlClusterMoveToHueAndSaturationParamsClass
+	MTRColorControlClusterMoveToHueAndSaturationParamsClassOnce sync.Once
+)
+
+func getMTRColorControlClusterMoveToHueAndSaturationParamsClass() _MTRColorControlClusterMoveToHueAndSaturationParamsClass {
+	MTRColorControlClusterMoveToHueAndSaturationParamsClassOnce.Do(func() {
+		MTRColorControlClusterMoveToHueAndSaturationParamsClass = _MTRColorControlClusterMoveToHueAndSaturationParamsClass{objc.GetClass("MTRColorControlClusterMoveToHueAndSaturationParams")}
+	})
+	return MTRColorControlClusterMoveToHueAndSaturationParamsClass
+}
+
+type _MTRColorControlClusterMoveToHueAndSaturationParamsClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [MTRColorControlClusterMoveToHueAndSaturationParams] class.
+type IMTRColorControlClusterMoveToHueAndSaturationParams interface {
+	objectivec.IObject
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueAndSaturationParams
+type MTRColorControlClusterMoveToHueAndSaturationParams struct {
+	objectivec.Object
+}
+
+// MTRColorControlClusterMoveToHueAndSaturationParamsFrom constructs a [MTRColorControlClusterMoveToHueAndSaturationParams] from an unsafe.Pointer.
+func MTRColorControlClusterMoveToHueAndSaturationParamsFrom(ptr unsafe.Pointer) MTRColorControlClusterMoveToHueAndSaturationParams {
+	return MTRColorControlClusterMoveToHueAndSaturationParams{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (mc _MTRColorControlClusterMoveToHueAndSaturationParamsClass) Alloc() MTRColorControlClusterMoveToHueAndSaturationParams {
+	rv := objc.Send[MTRColorControlClusterMoveToHueAndSaturationParams](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (mc _MTRColorControlClusterMoveToHueAndSaturationParamsClass) New() MTRColorControlClusterMoveToHueAndSaturationParams {
+	rv := objc.Send[MTRColorControlClusterMoveToHueAndSaturationParams](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) Init() MTRColorControlClusterMoveToHueAndSaturationParams {
+	rv := objc.Send[MTRColorControlClusterMoveToHueAndSaturationParams](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) Autorelease() MTRColorControlClusterMoveToHueAndSaturationParams {
+	rv := objc.Send[MTRColorControlClusterMoveToHueAndSaturationParams](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMTRColorControlClusterMoveToHueAndSaturationParams creates a new MTRColorControlClusterMoveToHueAndSaturationParams instance.
+func NewMTRColorControlClusterMoveToHueAndSaturationParams() MTRColorControlClusterMoveToHueAndSaturationParams {
+	return getMTRColorControlClusterMoveToHueAndSaturationParamsClass().New()
+}
+
+
+
+

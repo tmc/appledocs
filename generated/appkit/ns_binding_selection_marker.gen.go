@@ -75,5 +75,18 @@ func NewBindingSelectionMarker() BindingSelectionMarker {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBindingSelectionMarker/notApplicable
+func (bc _BindingSelectionMarkerClass) NotApplicableSelectionMarker() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("notApplicableSelectionMarker"))
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBindingSelectionMarker/notApplicable
+func (b_ BindingSelectionMarker) NotApplicableSelectionMarker() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("notApplicableSelectionMarker"))
+	return rv
+}
+
 
 

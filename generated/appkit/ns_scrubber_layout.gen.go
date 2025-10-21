@@ -97,6 +97,13 @@ func NewScrubberLayoutWithCoder(coder unsafe.Pointer) ScrubberLayout {
 }
 
 
+// A property containing a class that describes layout attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/layoutAttributesClass
+func (sc _ScrubberLayoutClass) LayoutAttributesClass() objc.Class {
+	rv := objc.Send[objc.Class](objc.ID(sc.class), objc.Sel("layoutAttributesClass"))
+	return rv
+}
 // Signals that the layout has been invalidated, and that the scrubber control should perform a new layout pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/invalidateLayout()
@@ -140,6 +147,14 @@ func (s_ ScrubberLayout) ShouldInvalidateLayoutForChangeFromVisibleRectToVisible
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/automaticallyMirrorsInRightToLeftLayout
 func (s_ ScrubberLayout) AutomaticallyMirrorsInRightToLeftLayout() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("automaticallyMirrorsInRightToLeftLayout"))
+	return rv
+}
+
+// A property containing a class that describes layout attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/layoutAttributesClass
+func (s_ ScrubberLayout) LayoutAttributesClass() objc.Class {
+	rv := objc.Send[objc.Class](s_.ID, objc.Sel("layoutAttributesClass"))
 	return rv
 }
 

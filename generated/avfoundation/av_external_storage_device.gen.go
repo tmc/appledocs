@@ -87,6 +87,21 @@ func (ec _ExternalStorageDeviceClass) RequestAccessWithCompletionHandler(handler
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("requestAccessWithCompletionHandler:"), handler)
 }
 
+// Your app’s authorization status for the external storage device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVExternalStorageDevice/authorizationStatus
+func (ec _ExternalStorageDeviceClass) AuthorizationStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("authorizationStatus"))
+	return rv
+}
+// Your app’s authorization status for the external storage device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVExternalStorageDevice/authorizationStatus
+func (e_ ExternalStorageDevice) AuthorizationStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("authorizationStatus"))
+	return rv
+}
+
 // A Boolean value that indicates whether the system has a connection to the external storage device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVExternalStorageDevice/isConnected

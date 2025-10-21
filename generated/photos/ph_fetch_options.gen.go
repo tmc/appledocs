@@ -168,8 +168,8 @@ func (p_ PHFetchOptions) SetPredicate(value unsafe.Pointer) {
 // A list of sort descriptors, specifying an order for the fetched objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/sortDescriptors
-func (p_ PHFetchOptions) SortDescriptors() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("sortDescriptors"))
+func (p_ PHFetchOptions) SortDescriptors() []cloudkit.NSSortDescriptor {
+	rv := objc.Send[[]cloudkit.NSSortDescriptor](p_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -179,8 +179,18 @@ func (p_ PHFetchOptions) SortDescriptors() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/sortDescriptors
-func (p_ PHFetchOptions) SetSortDescriptors(value []unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSortDescriptors:"), value)
+func (p_ PHFetchOptions) SetSortDescriptors(value []cloudkit.NSSortDescriptor) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSortDescriptors:"), nsArray)
 }
 // A Boolean value that determines whether your app receives detailed change information for the objects in the fetch result.
 //

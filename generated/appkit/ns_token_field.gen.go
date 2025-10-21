@@ -81,6 +81,21 @@ func NewTokenField() TokenField {
 }
 
 
+// Returns the default completion delay.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/defaultCompletionDelay
+func (tc _TokenFieldClass) DefaultCompletionDelay() float64 {
+	rv := objc.Send[float64](objc.ID(tc.class), objc.Sel("defaultCompletionDelay"))
+	return rv
+}
+// Returns the default completion delay.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/defaultCompletionDelay
+func (t_ TokenField) DefaultCompletionDelay() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("defaultCompletionDelay"))
+	return rv
+}
+
 // The recevier’s tokenizing character set to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/tokenizingCharacterSet

@@ -78,6 +78,20 @@ func NewPersistentHistoryChange() PersistentHistoryChange {
 }
 
 
+// The entity description of the persistent history change entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/entityDescription
+func (pc _PersistentHistoryChangeClass) EntityDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("entityDescription"))
+	return rv
+}
+// A fetch request that has the persistent history change as the entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/fetchRequest
+func (pc _PersistentHistoryChangeClass) FetchRequest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchRequest"))
+	return rv
+}
 // The change’s numeric identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changeID
@@ -99,6 +113,22 @@ func (p_ PersistentHistoryChange) ChangeType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changedObjectID
 func (p_ PersistentHistoryChange) ChangedObjectID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changedObjectID"))
+	return rv
+}
+
+// The entity description of the persistent history change entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/entityDescription
+func (p_ PersistentHistoryChange) EntityDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("entityDescription"))
+	return rv
+}
+
+// A fetch request that has the persistent history change as the entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/fetchRequest
+func (p_ PersistentHistoryChange) FetchRequest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 

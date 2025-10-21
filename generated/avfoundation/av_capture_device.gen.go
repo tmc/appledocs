@@ -147,6 +147,34 @@ func (cc _CaptureDeviceClass) RequestAccessForMediaTypeCompletionHandler(mediaTy
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("requestAccessForMediaType:completionHandler:"), mediaType, handler)
 }
 
+// The device’s active microphone mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activeMicrophoneMode
+func (cc _CaptureDeviceClass) ActiveMicrophoneMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("activeMicrophoneMode"))
+	return rv
+}
+// A class property that indicates whether a person enables the Background Replacement feature for this app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementEnabled
+func (cc _CaptureDeviceClass) BackgroundReplacementEnabled() bool {
+	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("backgroundReplacementEnabled"))
+	return rv
+}
+// A camera the system prefers to use for video and photo capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/systemPreferredCamera
+func (cc _CaptureDeviceClass) SystemPreferredCamera() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("systemPreferredCamera"))
+	return rv
+}
+// A camera the user prefers to use for video and photo capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/userPreferredCamera
+func (cc _CaptureDeviceClass) UserPreferredCamera() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("userPreferredCamera"))
+	return rv
+}
 // Returns a Boolean value that indicates whether the device supports the specified focus mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isFocusModeSupported(_:)
@@ -270,6 +298,14 @@ func (c_ CaptureDevice) ActiveInputSource() unsafe.Pointer {
 func (c_ CaptureDevice) SetActiveInputSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveInputSource:"), value)
 }
+// The device’s active microphone mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activeMicrophoneMode
+func (c_ CaptureDevice) ActiveMicrophoneMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeMicrophoneMode"))
+	return rv
+}
+
 // A virtual device’s active primary constituent device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituent
@@ -389,7 +425,17 @@ func (c_ CaptureDevice) FallbackPrimaryConstituentDevices() []CaptureDevice {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/fallbackPrimaryConstituentDevices
 func (c_ CaptureDevice) SetFallbackPrimaryConstituentDevices(value []CaptureDevice) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFallbackPrimaryConstituentDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFallbackPrimaryConstituentDevices:"), nsArray)
 }
 // The capture device’s focus mode.
 //
@@ -442,6 +488,14 @@ func (c_ CaptureDevice) AutoVideoFrameRateEnabled() bool {
 func (c_ CaptureDevice) SetAutoVideoFrameRateEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutoVideoFrameRateEnabled:"), value)
 }
+// A class property that indicates whether a person enables the Background Replacement feature for this app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementEnabled
+func (c_ CaptureDevice) BackgroundReplacementEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("backgroundReplacementEnabled"))
+	return rv
+}
+
 // Whether camera lens smudge detection is enabled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isCameraLensSmudgeDetectionEnabled
@@ -652,6 +706,14 @@ func (c_ CaptureDevice) SupportedFallbackPrimaryConstituentDevices() []CaptureDe
 	return rv
 }
 
+// A camera the system prefers to use for video and photo capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/systemPreferredCamera
+func (c_ CaptureDevice) SystemPreferredCamera() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemPreferredCamera"))
+	return rv
+}
+
 // A value that indicates the capture device’s current system pressure state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property
@@ -676,4 +738,21 @@ func (c_ CaptureDevice) UniqueID() unsafe.Pointer {
 	return rv
 }
 
+// A camera the user prefers to use for video and photo capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/userPreferredCamera
+func (c_ CaptureDevice) UserPreferredCamera() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userPreferredCamera"))
+	return rv
+}
+
+
+// SetUserPreferredCamera sets the value of the userPreferredCamera property.
+// A camera the user prefers to use for video and photo capture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/userPreferredCamera
+func (c_ CaptureDevice) SetUserPreferredCamera(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserPreferredCamera:"), value)
+}
 

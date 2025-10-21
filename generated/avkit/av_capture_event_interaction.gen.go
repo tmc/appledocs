@@ -80,16 +80,6 @@ func NewCaptureEventInteraction() CaptureEventInteraction {
 }
 
 
-// Creates a capture event interaction with handlers that respond independently to presses of hardware buttons.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/init(primary:secondary:)
-func NewCaptureEventInteractionWithPrimaryEventHandlerSecondaryEventHandler(primaryHandler unsafe.Pointer, secondaryHandler unsafe.Pointer) CaptureEventInteraction {
-	instance := getCaptureEventInteractionClass().Alloc()
-	rv := objc.Send[CaptureEventInteraction](instance.ID, objc.Sel("initWithPrimaryEventHandler:secondaryEventHandler:"), primaryHandler, secondaryHandler)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a capture event interaction with a handler that responds to presses of hardware buttons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/init(handler:)
@@ -100,7 +90,41 @@ func NewCaptureEventInteractionWithEventHandler(handler unsafe.Pointer) CaptureE
 	return rv
 }
 
+// Creates a capture event interaction with handlers that respond independently to presses of hardware buttons.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/init(primary:secondary:)
+func NewCaptureEventInteractionWithPrimaryEventHandlerSecondaryEventHandler(primaryHandler unsafe.Pointer, secondaryHandler unsafe.Pointer) CaptureEventInteraction {
+	instance := getCaptureEventInteractionClass().Alloc()
+	rv := objc.Send[CaptureEventInteraction](instance.ID, objc.Sel("initWithPrimaryEventHandler:secondaryEventHandler:"), primaryHandler, secondaryHandler)
+	rv.Autorelease()
+	return rv
+}
 
+
+// A Boolean value that indicates whether the default sound is in a disabled state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/defaultCaptureSoundDisabled
+func (cc _CaptureEventInteractionClass) DefaultCaptureSoundDisabled() bool {
+	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("defaultCaptureSoundDisabled"))
+	return rv
+}
+// A Boolean value that indicates whether the default sound is in a disabled state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/defaultCaptureSoundDisabled
+func (c_ CaptureEventInteraction) DefaultCaptureSoundDisabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("defaultCaptureSoundDisabled"))
+	return rv
+}
+
+
+// SetDefaultCaptureSoundDisabled sets the value of the defaultCaptureSoundDisabled property.
+// A Boolean value that indicates whether the default sound is in a disabled state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/defaultCaptureSoundDisabled
+func (c_ CaptureEventInteraction) SetDefaultCaptureSoundDisabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultCaptureSoundDisabled:"), value)
+}
 // A Boolean value that indicates whether this capture event interaction is in an enabled state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/isEnabled

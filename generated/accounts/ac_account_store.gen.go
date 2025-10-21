@@ -1,0 +1,159 @@
+// Code generated from Apple documentation for Accounts. DO NOT EDIT.
+
+package accounts
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [ACAccountStore] class.
+var (
+	ACAccountStoreClass     _ACAccountStoreClass
+	ACAccountStoreClassOnce sync.Once
+)
+
+func getACAccountStoreClass() _ACAccountStoreClass {
+	ACAccountStoreClassOnce.Do(func() {
+		ACAccountStoreClass = _ACAccountStoreClass{objc.GetClass("ACAccountStore")}
+	})
+	return ACAccountStoreClass
+}
+
+type _ACAccountStoreClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [ACAccountStore] class.
+type IACAccountStore interface {
+	objectivec.IObject
+	AccountWithIdentifier(identifier string) unsafe.Pointer
+	AccountTypeWithAccountTypeIdentifier(typeIdentifier string) unsafe.Pointer
+	AccountsWithAccountType(accountType unsafe.Pointer) unsafe.Pointer
+	RemoveAccountWithCompletionHandler(account unsafe.Pointer, completionHandler unsafe.Pointer)
+	RenewCredentialsForAccountCompletion(account unsafe.Pointer, completionHandler unsafe.Pointer)
+	RequestAccessToAccountsWithTypeOptionsCompletion(accountType unsafe.Pointer, options objc.ID, completion unsafe.Pointer)
+	RequestAccessToAccountsWithTypeWithCompletionHandler(accountType unsafe.Pointer, handler unsafe.Pointer)
+	SaveAccountWithCompletionHandler(account unsafe.Pointer, completionHandler unsafe.Pointer)
+}
+
+// The object you use to request, manage, and store the user’s account information.
+//
+// The class provides an interface for accessing, managing, and storing accounts. To create and retrieve accounts from the Accounts database, you must create an object. Each object belongs to a single account store object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore
+type ACAccountStore struct {
+	objectivec.Object
+}
+
+// ACAccountStoreFrom constructs a [ACAccountStore] from an unsafe.Pointer.
+//
+// The object you use to request, manage, and store the user’s account information.
+func ACAccountStoreFrom(ptr unsafe.Pointer) ACAccountStore {
+	return ACAccountStore{objectivec.Object{objc.ID(ptr)}}
+}
+
+// Alloc allocates a new instance without initialization.
+func (ac _ACAccountStoreClass) Alloc() ACAccountStore {
+	rv := objc.Send[ACAccountStore](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (ac _ACAccountStoreClass) New() ACAccountStore {
+	rv := objc.Send[ACAccountStore](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ ACAccountStore) Init() ACAccountStore {
+	rv := objc.Send[ACAccountStore](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ ACAccountStore) Autorelease() ACAccountStore {
+	rv := objc.Send[ACAccountStore](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewACAccountStore creates a new ACAccountStore instance.
+func NewACAccountStore() ACAccountStore {
+	return getACAccountStoreClass().New()
+}
+
+
+// Returns the account with the specified identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/account(withIdentifier:)
+func (a_ ACAccountStore) AccountWithIdentifier(identifier string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accountWithIdentifier:"), objc.String(identifier))
+	return rv
+}
+
+// Returns an account type that matches the specified identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/accountType(withAccountTypeIdentifier:)
+func (a_ ACAccountStore) AccountTypeWithAccountTypeIdentifier(typeIdentifier string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accountTypeWithAccountTypeIdentifier:"), objc.String(typeIdentifier))
+	return rv
+}
+
+// Returns all accounts of the specified type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/accounts(with:)
+func (a_ ACAccountStore) AccountsWithAccountType(accountType unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accountsWithAccountType:"), accountType)
+	return rv
+}
+
+// Removes an account from the account store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/removeAccount(_:withCompletionHandler:)
+func (a_ ACAccountStore) RemoveAccountWithCompletionHandler(account unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeAccount:withCompletionHandler:"), account, completionHandler)
+}
+
+// Renews account credentials when the credentials are no longer valid.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/renewCredentials(for:completion:)
+func (a_ ACAccountStore) RenewCredentialsForAccountCompletion(account unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("renewCredentialsForAccount:completion:"), account, completionHandler)
+}
+
+// Obtains permission to access protected user properties.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/requestAccessToAccounts(with:options:completion:)
+func (a_ ACAccountStore) RequestAccessToAccountsWithTypeOptionsCompletion(accountType unsafe.Pointer, options objc.ID, completion unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("requestAccessToAccountsWithType:options:completion:"), accountType, options, completion)
+}
+
+// Requests access to accounts of the specified type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/requestAccessToAccountsWithType:withCompletionHandler:
+func (a_ ACAccountStore) RequestAccessToAccountsWithTypeWithCompletionHandler(accountType unsafe.Pointer, handler unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("requestAccessToAccountsWithType:withCompletionHandler:"), accountType, handler)
+}
+
+// Saves an account to the Accounts database.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/saveAccount(_:withCompletionHandler:)
+func (a_ ACAccountStore) SaveAccountWithCompletionHandler(account unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("saveAccount:withCompletionHandler:"), account, completionHandler)
+}
+
+// The accounts managed by this account store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/accounts
+func (a_ ACAccountStore) Accounts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accounts"))
+	return rv
+}
+
+
+

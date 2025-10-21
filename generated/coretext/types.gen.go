@@ -1,8 +1,9 @@
 // Code generated from Apple documentation for CoreText. DO NOT EDIT.
 
 package coretext
-
-import "unsafe"
+import (
+	"unsafe"
+)
 
 // ATSFontRef is a CoreGraphics opaque type.
 type ATSFontRef unsafe.Pointer
@@ -97,4 +98,85 @@ type CTTypesetterRef unsafe.Pointer
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+type CFComparisonResult unsafe.Pointer
+
+type CFErrorRef unsafe.Pointer
+
+type CFIndex unsafe.Pointer
+
+type CFOptionFlags unsafe.Pointer
+
+type CFRange unsafe.Pointer
+
+type CFStringEncoding unsafe.Pointer
+
+type CFTypeID unsafe.Pointer
+
+type CGAffineTransform unsafe.Pointer
+
+type CGFloat unsafe.Pointer
+
+type CGFontIndex unsafe.Pointer
+
+type CGGlyph unsafe.Pointer
+
+type CGPoint unsafe.Pointer
+
+type CGRect unsafe.Pointer
+
+type CGSize unsafe.Pointer
+
+type CTCharacterCollection unsafe.Pointer
+
+type CTFontCollectionCopyOptions unsafe.Pointer
+
+type CTFontCollectionSortDescriptorsCallback unsafe.Pointer
+
+type CTFontDescriptorProgressHandler unsafe.Pointer
+
+type CTFontManagerAutoActivationSetting unsafe.Pointer
+
+type CTFontManagerScope unsafe.Pointer
+
+type CTFontOptions unsafe.Pointer
+
+type CTFontOrientation unsafe.Pointer
+
+type CTFontSymbolicTraits unsafe.Pointer
+
+type CTFontTableOptions unsafe.Pointer
+
+type CTFontTableTag unsafe.Pointer
+
+type CTFontUIFontType unsafe.Pointer
+
+type CTLineBoundsOptions unsafe.Pointer
+
+type CTLineTruncationType unsafe.Pointer
+
+type CTParagraphStyleSetting unsafe.Pointer
+
+type CTParagraphStyleSpecifier unsafe.Pointer
+
+type CTRubyAlignment unsafe.Pointer
+
+type CTRubyOverhang unsafe.Pointer
+
+type CTRubyPosition unsafe.Pointer
+
+type CTRunDelegateCallbacks unsafe.Pointer
+
+type CTRunStatus unsafe.Pointer
+
+type CTTextAlignment unsafe.Pointer
+
+type ConstStr255Param unsafe.Pointer
+
+type UniChar unsafe.Pointer
+
+
 

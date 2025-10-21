@@ -107,6 +107,20 @@ func (cc _ColorPanelClass) SetPickerMode(mode unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("setPickerMode:"), mode)
 }
 
+// Returns the shared instance, creating it if necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/shared
+func (cc _ColorPanelClass) SharedColorPanel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedColorPanel"))
+	return rv
+}
+// Returns a Boolean value indicating whether the has been created already.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/sharedColorPanelExists
+func (cc _ColorPanelClass) SharedColorPanelExists() bool {
+	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("sharedColorPanelExists"))
+	return rv
+}
 // Adds the list of objects specified to all the color pickers in the receiver that display color lists by invoking on all color pickers in the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/attachColorList(_:)
@@ -228,6 +242,22 @@ func (c_ ColorPanel) Mode() unsafe.Pointer {
 func (c_ ColorPanel) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMode:"), value)
 }
+// Returns the shared instance, creating it if necessary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/shared
+func (c_ ColorPanel) SharedColorPanel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sharedColorPanel"))
+	return rv
+}
+
+// Returns a Boolean value indicating whether the has been created already.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/sharedColorPanelExists
+func (c_ ColorPanel) SharedColorPanelExists() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("sharedColorPanelExists"))
+	return rv
+}
+
 // A Boolean value that indicates whether the receiver shows alpha values and an opacity slider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/showsAlpha

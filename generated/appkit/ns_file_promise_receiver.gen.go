@@ -80,6 +80,13 @@ func NewFilePromiseReceiver() FilePromiseReceiver {
 }
 
 
+// An array containing dragged file types that are readable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/readableDraggedTypes
+func (fc _FilePromiseReceiverClass) ReadableDraggedTypes() []string {
+	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("readableDraggedTypes"))
+	return rv
+}
 // An array containing names of the promised files being written to the destination location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/fileNames
@@ -93,6 +100,14 @@ func (f_ FilePromiseReceiver) FileNames() []string {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/fileTypes
 func (f_ FilePromiseReceiver) FileTypes() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("fileTypes"))
+	return rv
+}
+
+// An array containing dragged file types that are readable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/readableDraggedTypes
+func (f_ FilePromiseReceiver) ReadableDraggedTypes() []string {
+	rv := objc.Send[[]string](f_.ID, objc.Sel("readableDraggedTypes"))
 	return rv
 }
 

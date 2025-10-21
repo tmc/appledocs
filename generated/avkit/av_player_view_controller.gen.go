@@ -85,6 +85,12 @@ func NewPlayerViewController() PlayerViewController {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/mediaCharacteristicsForSupportedCustomMediaSelectionSchemes
+func (pc _PlayerViewControllerClass) MediaCharacteristicsForSupportedCustomMediaSelectionSchemes() []string {
+	rv := objc.Send[[]string](objc.ID(pc.class), objc.Sel("mediaCharacteristicsForSupportedCustomMediaSelectionSchemes"))
+	return rv
+}
 // Presents the system trimming interface controls inside the player view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/beginTrimming(completionHandler:)
@@ -114,7 +120,17 @@ func (p_ PlayerViewController) AllowedSubtitleOptionLanguages() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/allowedSubtitleOptionLanguages
 func (p_ PlayerViewController) SetAllowedSubtitleOptionLanguages(value []string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedSubtitleOptionLanguages:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedSubtitleOptionLanguages:"), nsArray)
 }
 // A Boolean value that indicates whether the player allows Picture in Picture playback.
 //
@@ -220,8 +236,8 @@ func (p_ PlayerViewController) SetContentProposalViewController(value unsafe.Poi
 // An array of action controls to present contextually during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActions
-func (p_ PlayerViewController) ContextualActions() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("contextualActions"))
+func (p_ PlayerViewController) ContextualActions() []avkit.UIAction {
+	rv := objc.Send[[]avkit.UIAction](p_.ID, objc.Sel("contextualActions"))
 	return rv
 }
 
@@ -231,8 +247,18 @@ func (p_ PlayerViewController) ContextualActions() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActions
-func (p_ PlayerViewController) SetContextualActions(value []unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContextualActions:"), value)
+func (p_ PlayerViewController) SetContextualActions(value []avkit.UIAction) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContextualActions:"), nsArray)
 }
 // A view the system shows adjacent to the contextual actions that’s suitable for showing related information.
 //
@@ -279,8 +305,8 @@ func (p_ PlayerViewController) SetCustomInfoViewController(value unsafe.Pointer)
 // An array of view controllers to display as content tabs in the player user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewControllers
-func (p_ PlayerViewController) CustomInfoViewControllers() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("customInfoViewControllers"))
+func (p_ PlayerViewController) CustomInfoViewControllers() []avkit.UIViewController {
+	rv := objc.Send[[]avkit.UIViewController](p_.ID, objc.Sel("customInfoViewControllers"))
 	return rv
 }
 
@@ -290,8 +316,18 @@ func (p_ PlayerViewController) CustomInfoViewControllers() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewControllers
-func (p_ PlayerViewController) SetCustomInfoViewControllers(value []unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomInfoViewControllers:"), value)
+func (p_ PlayerViewController) SetCustomInfoViewControllers(value []avkit.UIViewController) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomInfoViewControllers:"), nsArray)
 }
 // A view controller that presents custom content over the player view.
 //
@@ -372,8 +408,8 @@ func (p_ PlayerViewController) GroupExperienceCoordinator() unsafe.Pointer {
 // An array of actions to present in the Info content view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/infoViewActions
-func (p_ PlayerViewController) InfoViewActions() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("infoViewActions"))
+func (p_ PlayerViewController) InfoViewActions() []avkit.UIAction {
+	rv := objc.Send[[]avkit.UIAction](p_.ID, objc.Sel("infoViewActions"))
 	return rv
 }
 
@@ -383,8 +419,18 @@ func (p_ PlayerViewController) InfoViewActions() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/infoViewActions
-func (p_ PlayerViewController) SetInfoViewActions(value []unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setInfoViewActions:"), value)
+func (p_ PlayerViewController) SetInfoViewActions(value []avkit.UIAction) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setInfoViewActions:"), nsArray)
 }
 // A Boolean value that indicates whether the player item’s first video frame is ready for display.
 //
@@ -428,6 +474,13 @@ func (p_ PlayerViewController) SkipForwardEnabled() bool {
 func (p_ PlayerViewController) SetSkipForwardEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipForwardEnabled:"), value)
 }
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/mediaCharacteristicsForSupportedCustomMediaSelectionSchemes
+func (p_ PlayerViewController) MediaCharacteristicsForSupportedCustomMediaSelectionSchemes() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("mediaCharacteristicsForSupportedCustomMediaSelectionSchemes"))
+	return rv
+}
+
 // The pixel buffer attributes of the video frames the view controller presents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/pixelBufferAttributes
@@ -638,7 +691,17 @@ func (p_ PlayerViewController) Speeds() []PlaybackSpeed {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/speeds
 func (p_ PlayerViewController) SetSpeeds(value []PlaybackSpeed) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSpeeds:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSpeeds:"), nsArray)
 }
 // An action that enables the visual lookup interface.
 //
@@ -651,8 +714,8 @@ func (p_ PlayerViewController) ToggleLookupAction() unsafe.Pointer {
 // An array of actions and menus to display with the default player controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/transportBarCustomMenuItems
-func (p_ PlayerViewController) TransportBarCustomMenuItems() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("transportBarCustomMenuItems"))
+func (p_ PlayerViewController) TransportBarCustomMenuItems() []appkit.UIMenuElement {
+	rv := objc.Send[[]appkit.UIMenuElement](p_.ID, objc.Sel("transportBarCustomMenuItems"))
 	return rv
 }
 
@@ -662,8 +725,18 @@ func (p_ PlayerViewController) TransportBarCustomMenuItems() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/transportBarCustomMenuItems
-func (p_ PlayerViewController) SetTransportBarCustomMenuItems(value []unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTransportBarCustomMenuItems:"), value)
+func (p_ PlayerViewController) SetTransportBarCustomMenuItems(value []appkit.UIMenuElement) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTransportBarCustomMenuItems:"), nsArray)
 }
 // A Boolean value that indicates whether the player user interface shows the title view above the scrubber.
 //

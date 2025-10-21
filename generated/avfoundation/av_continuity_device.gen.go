@@ -83,8 +83,8 @@ func NewContinuityDevice() ContinuityDevice {
 // An array of the continuity device’s audio session port descriptions that’s available to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice/audioSessionInputs
-func (c_ ContinuityDevice) AudioSessionInputs() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("audioSessionInputs"))
+func (c_ ContinuityDevice) AudioSessionInputs() []avfoundation.AVAudioSessionPortDescription {
+	rv := objc.Send[[]avfoundation.AVAudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
 	return rv
 }
 

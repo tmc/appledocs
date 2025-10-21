@@ -6,7 +6,6 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 )
 
@@ -141,8 +140,8 @@ func (ic _InkingToolClass) DefaultWidthForInkType(inkType unsafe.Pointer) float6
 // Converts a color from light to dark appearance or vice versa.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/invertColor(_:)
-func (ic _InkingToolClass) InvertColor(color coregraphics.CGColorRef) coregraphics.CGColorRef {
-	rv := objc.Send[coregraphics.CGColorRef](objc.ID(ic.class), objc.Sel("invertColor:"), color)
+func (ic _InkingToolClass) InvertColor(color CGColorRef) CGColorRef {
+	rv := objc.Send[CGColorRef](objc.ID(ic.class), objc.Sel("invertColor:"), color)
 	return rv
 }
 

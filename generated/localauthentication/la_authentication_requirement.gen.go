@@ -86,5 +86,50 @@ func (ac _AuthenticationRequirementClass) BiometryRequirementWithFallback(fallba
 	return rv
 }
 
+// The requirement that requires biometric authentication.
+//
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometry
+func (ac _AuthenticationRequirementClass) BiometryRequirement() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("biometryRequirement"))
+	return rv
+}
+// The requirement that requires user authentication with the current set of biometrics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometryCurrentSet
+func (ac _AuthenticationRequirementClass) BiometryCurrentSetRequirement() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("biometryCurrentSetRequirement"))
+	return rv
+}
+// The requirement that requires user authentication.
+//
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/default
+func (ac _AuthenticationRequirementClass) DefaultRequirement() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("defaultRequirement"))
+	return rv
+}
+// The requirement that requires biometric authentication.
+//
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometry
+func (a_ AuthenticationRequirement) BiometryRequirement() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("biometryRequirement"))
+	return rv
+}
+
+// The requirement that requires user authentication with the current set of biometrics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometryCurrentSet
+func (a_ AuthenticationRequirement) BiometryCurrentSetRequirement() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("biometryCurrentSetRequirement"))
+	return rv
+}
+
+// The requirement that requires user authentication.
+//
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/default
+func (a_ AuthenticationRequirement) DefaultRequirement() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("defaultRequirement"))
+	return rv
+}
+
 
 

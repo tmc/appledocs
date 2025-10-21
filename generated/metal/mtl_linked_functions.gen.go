@@ -103,7 +103,17 @@ func (l_ LinkedFunctions) BinaryFunctions() []objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLinkedFunctions/binaryFunctions
 func (l_ LinkedFunctions) SetBinaryFunctions(value []objc.ID) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setBinaryFunctions:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](l_.ID, objc.Sel("setBinaryFunctions:"), nsArray)
 }
 // An array of function objects to link to the new function.
 //
@@ -120,7 +130,17 @@ func (l_ LinkedFunctions) Functions() []objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLinkedFunctions/functions
 func (l_ LinkedFunctions) SetFunctions(value []objc.ID) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setFunctions:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](l_.ID, objc.Sel("setFunctions:"), nsArray)
 }
 // An optional list of groups specifying which functions your shader can call at each call site.
 //
@@ -154,7 +174,17 @@ func (l_ LinkedFunctions) PrivateFunctions() []objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLinkedFunctions/privateFunctions
 func (l_ LinkedFunctions) SetPrivateFunctions(value []objc.ID) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setPrivateFunctions:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](l_.ID, objc.Sel("setPrivateFunctions:"), nsArray)
 }
 
 

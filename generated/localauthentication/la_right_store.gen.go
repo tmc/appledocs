@@ -86,6 +86,13 @@ func NewRightStore() RightStore {
 }
 
 
+// A shared object that stores rights.
+//
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/shared
+func (rc _RightStoreClass) SharedStore() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("sharedStore"))
+	return rv
+}
 // Removes all rights associated with this client from the right store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/removeAllRights(completion:)
@@ -126,6 +133,14 @@ func (r_ RightStore) SaveRightIdentifierCompletion(right unsafe.Pointer, identif
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:secret:completion:)
 func (r_ RightStore) SaveRightIdentifierSecretCompletion(right unsafe.Pointer, identifier string, secret unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("saveRight:identifier:secret:completion:"), right, objc.String(identifier), secret, handler)
+}
+
+// A shared object that stores rights.
+//
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/shared
+func (r_ RightStore) SharedStore() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("sharedStore"))
+	return rv
 }
 
 

@@ -107,7 +107,17 @@ func (c_ CNContactFetchRequest) KeysToFetch() []objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/keysToFetch
 func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKeysToFetch:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKeysToFetch:"), nsArray)
 }
 // A Boolean value that indicates whether to return mutable contacts.
 //

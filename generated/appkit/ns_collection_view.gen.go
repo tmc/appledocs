@@ -69,7 +69,7 @@ type ICollectionView interface {
 	SupplementaryViewForElementKindAtIndexPath(elementKind unsafe.Pointer, indexPath unsafe.Pointer) unsafe.Pointer
 	ToggleSectionCollapse(sender objc.ID)
 	VisibleItems() []CollectionViewItem
-	VisibleSupplementaryViewsOfKind(elementKind unsafe.Pointer) []unsafe.Pointer
+	VisibleSupplementaryViewsOfKind(elementKind unsafe.Pointer) []View
 }
 
 // An ordered collection of data items displayed in a customizable layout.
@@ -416,8 +416,8 @@ func (c_ CollectionView) VisibleItems() []CollectionViewItem {
 // Returns an array of the actively managed supplementary views in the collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/visibleSupplementaryViews(ofKind:)
-func (c_ CollectionView) VisibleSupplementaryViewsOfKind(elementKind unsafe.Pointer) []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("visibleSupplementaryViewsOfKind:"), elementKind)
+func (c_ CollectionView) VisibleSupplementaryViewsOfKind(elementKind unsafe.Pointer) []View {
+	rv := objc.Send[[]View](c_.ID, objc.Sel("visibleSupplementaryViewsOfKind:"), elementKind)
 	return rv
 }
 
@@ -470,7 +470,17 @@ func (c_ CollectionView) BackgroundColors() []Color {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/backgroundColors
 func (c_ CollectionView) SetBackgroundColors(value []Color) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundColors:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundColors:"), nsArray)
 }
 // The background view placed behind all items and supplementary views.
 //
@@ -538,7 +548,17 @@ func (c_ CollectionView) Content() []objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/content
 func (c_ CollectionView) SetContent(value []objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContent:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContent:"), nsArray)
 }
 // An object that provides data for the collection view.
 //

@@ -145,5 +145,50 @@ func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inp
 	return rv
 }
 
+// Override this class property if you want your processor’s output to be in a specific pixel format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat
+func (ic _ImageProcessorKernelClass) OutputFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("outputFormat"))
+	return rv
+}
+// Override this class property if your processor’s output stores 1.0 into the alpha channel of all pixels within the output extent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputIsOpaque
+func (ic _ImageProcessorKernelClass) OutputIsOpaque() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("outputIsOpaque"))
+	return rv
+}
+// Override this class property to return false if you want your processor to be given input objects that have not been synchronized for CPU access.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/synchronizeInputs
+func (ic _ImageProcessorKernelClass) SynchronizeInputs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("synchronizeInputs"))
+	return rv
+}
+// Override this class property if you want your processor’s output to be in a specific pixel format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat
+func (i_ ImageProcessorKernel) OutputFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("outputFormat"))
+	return rv
+}
+
+// Override this class property if your processor’s output stores 1.0 into the alpha channel of all pixels within the output extent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputIsOpaque
+func (i_ ImageProcessorKernel) OutputIsOpaque() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("outputIsOpaque"))
+	return rv
+}
+
+// Override this class property to return false if you want your processor to be given input objects that have not been synchronized for CPU access.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/synchronizeInputs
+func (i_ ImageProcessorKernel) SynchronizeInputs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("synchronizeInputs"))
+	return rv
+}
+
 
 

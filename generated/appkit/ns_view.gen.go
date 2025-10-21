@@ -286,6 +286,41 @@ func NewViewWithFrame(frameRect coregraphics.CGRect) View {
 }
 
 
+// Returns the default focus ring type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultFocusRingType
+func (vc _ViewClass) DefaultFocusRingType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("defaultFocusRingType"))
+	return rv
+}
+// Overridden by subclasses to return the default pop-up menu for instances of the receiving class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultMenu
+func (vc _ViewClass) DefaultMenu() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("defaultMenu"))
+	return rv
+}
+// The currently focused view object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusView
+func (vc _ViewClass) FocusView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("focusView"))
+	return rv
+}
+// A Boolean value that indicates whether views support responsive scrolling.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isCompatibleWithResponsiveScrolling
+func (vc _ViewClass) CompatibleWithResponsiveScrolling() bool {
+	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("compatibleWithResponsiveScrolling"))
+	return rv
+}
+// Returns a Boolean value indicating whether the view depends on the constraint-based layout system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/requiresConstraintBasedLayout
+func (vc _ViewClass) RequiresConstraintBasedLayout() bool {
+	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("requiresConstraintBasedLayout"))
+	return rv
+}
 // Overridden by subclasses to return if the view should be sent a message for an initial mouse-down event, if not.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/acceptsFirstMouse(for:)
@@ -1761,7 +1796,17 @@ func (v_ View) BackgroundFilters() []unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
 func (v_ View) SetBackgroundFilters(value []unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setBackgroundFilters:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setBackgroundFilters:"), nsArray)
 }
 // The distance (in points) between the bottom of the view’s alignment rectangle and its baseline.
 //
@@ -1943,8 +1988,34 @@ func (v_ View) ContentFilters() []unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
 func (v_ View) SetContentFilters(value []unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setContentFilters:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setContentFilters:"), nsArray)
 }
+// Returns the default focus ring type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultFocusRingType
+func (v_ View) DefaultFocusRingType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("defaultFocusRingType"))
+	return rv
+}
+
+// Overridden by subclasses to return the default pop-up menu for instances of the receiving class.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultMenu
+func (v_ View) DefaultMenu() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("defaultMenu"))
+	return rv
+}
+
 // The menu item containing the view or any of its superviews in the view hierarchy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/enclosingMenuItem
@@ -2010,6 +2081,14 @@ func (v_ View) FocusRingType() unsafe.Pointer {
 func (v_ View) SetFocusRingType(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFocusRingType:"), value)
 }
+// The currently focused view object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusView
+func (v_ View) FocusView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("focusView"))
+	return rv
+}
+
 // The view’s frame rectangle, which defines its position and size in its superview’s coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/frame
@@ -2076,7 +2155,17 @@ func (v_ View) GestureRecognizers() []GestureRecognizer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/gestureRecognizers
 func (v_ View) SetGestureRecognizers(value []GestureRecognizer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setGestureRecognizers:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setGestureRecognizers:"), nsArray)
 }
 // A Boolean value indicating whether the constraints impacting the layout of the view incompletely specify the location of the view.
 //
@@ -2123,6 +2212,14 @@ func (v_ View) InputContext() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/intrinsicContentSize
 func (v_ View) IntrinsicContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("intrinsicContentSize"))
+	return rv
+}
+
+// A Boolean value that indicates whether views support responsive scrolling.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isCompatibleWithResponsiveScrolling
+func (v_ View) CompatibleWithResponsiveScrolling() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("compatibleWithResponsiveScrolling"))
 	return rv
 }
 
@@ -2598,6 +2695,14 @@ func (v_ View) RegisteredDraggedTypes() []string {
 	return rv
 }
 
+// Returns a Boolean value indicating whether the view depends on the constraint-based layout system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/requiresConstraintBasedLayout
+func (v_ View) RequiresConstraintBasedLayout() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("requiresConstraintBasedLayout"))
+	return rv
+}
+
 // A layout anchor representing the right edge of the view’s frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rightAnchor
@@ -2662,7 +2767,17 @@ func (v_ View) Subviews() []View {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/subviews
 func (v_ View) SetSubviews(value []View) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setSubviews:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSubviews:"), nsArray)
 }
 // The view that is the parent of the current view.
 //

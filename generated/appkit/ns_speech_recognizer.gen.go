@@ -103,7 +103,17 @@ func (s_ SpeechRecognizer) Commands() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/commands
 func (s_ SpeechRecognizer) SetCommands(value []string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCommands:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCommands:"), nsArray)
 }
 
 

@@ -357,8 +357,8 @@ func (c_ CaptureSession) Connections() []CaptureConnection {
 // The controls that allow configuring the camera system from device hardware.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/controls
-func (c_ CaptureSession) Controls() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("controls"))
+func (c_ CaptureSession) Controls() []avfoundation.AVCaptureControl {
+	rv := objc.Send[[]avfoundation.AVCaptureControl](c_.ID, objc.Sel("controls"))
 	return rv
 }
 

@@ -80,5 +80,20 @@ func NewQueryGenerationToken() QueryGenerationToken {
 }
 
 
+// A token that informs a context to use the current generation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSQueryGenerationToken/current
+func (qc _QueryGenerationTokenClass) CurrentQueryGenerationToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("currentQueryGenerationToken"))
+	return rv
+}
+// A token that informs a context to use the current generation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSQueryGenerationToken/current
+func (q_ QueryGenerationToken) CurrentQueryGenerationToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("currentQueryGenerationToken"))
+	return rv
+}
+
 
 

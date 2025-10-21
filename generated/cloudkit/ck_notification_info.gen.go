@@ -95,7 +95,17 @@ func (c_ CKNotificationInfo) AlertLocalizationArgs() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotificationInfo/alertLocalizationArgs
 func (c_ CKNotificationInfo) SetAlertLocalizationArgs(value []string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationArgs:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationArgs:"), nsArray)
 }
 // The names of fields to include in the push notification’s payload.
 //
@@ -112,7 +122,17 @@ func (c_ CKNotificationInfo) DesiredKeys() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotificationInfo/desiredKeys
 func (c_ CKNotificationInfo) SetDesiredKeys(value []string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), nsArray)
 }
 // The fields for building a notification’s subtitle.
 //
@@ -129,7 +149,17 @@ func (c_ CKNotificationInfo) SubtitleLocalizationArgs() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotificationInfo/subtitleLocalizationArgs
 func (c_ CKNotificationInfo) SetSubtitleLocalizationArgs(value []string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationArgs:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationArgs:"), nsArray)
 }
 // The fields for building a notification’s title.
 //
@@ -146,7 +176,17 @@ func (c_ CKNotificationInfo) TitleLocalizationArgs() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotificationInfo/titleLocalizationArgs
 func (c_ CKNotificationInfo) SetTitleLocalizationArgs(value []string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationArgs:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationArgs:"), nsArray)
 }
 // The key that identifies the localized string for the notification’s action.
 //

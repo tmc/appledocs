@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/appkit"
 )
@@ -400,7 +401,17 @@ func (p_ PlayerView) Speeds() []PlaybackSpeed {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/speeds
 func (p_ PlayerView) SetSpeeds(value []PlaybackSpeed) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSpeeds:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSpeeds:"), nsArray)
 }
 // A Boolean value that indicates whether the player view controller updates the Now Playing info center.
 //
@@ -422,8 +433,8 @@ func (p_ PlayerView) SetUpdatesNowPlayingInfoCenter(value bool) {
 // The current size and position of the video image that displays within the player view’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoBounds
-func (p_ PlayerView) VideoBounds() Rect {
-	rv := objc.Send[Rect](p_.ID, objc.Sel("videoBounds"))
+func (p_ PlayerView) VideoBounds() foundation.Rect {
+	rv := objc.Send[foundation.Rect](p_.ID, objc.Sel("videoBounds"))
 	return rv
 }
 

@@ -136,8 +136,8 @@ func (s_ ShapeLayer) SetLineCap(value unsafe.Pointer) {
 // The dash pattern applied to the shape’s path when stroked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineDashPattern
-func (s_ ShapeLayer) LineDashPattern() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](s_.ID, objc.Sel("lineDashPattern"))
+func (s_ ShapeLayer) LineDashPattern() []accessibility.NSNumber {
+	rv := objc.Send[[]accessibility.NSNumber](s_.ID, objc.Sel("lineDashPattern"))
 	return rv
 }
 
@@ -147,8 +147,18 @@ func (s_ ShapeLayer) LineDashPattern() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineDashPattern
-func (s_ ShapeLayer) SetLineDashPattern(value []unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLineDashPattern:"), value)
+func (s_ ShapeLayer) SetLineDashPattern(value []accessibility.NSNumber) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLineDashPattern:"), nsArray)
 }
 // The dash phase applied to the shape’s path when stroked. Animatable.
 //

@@ -93,7 +93,17 @@ func (e_ EntityMapping) AttributeMappings() []PropertyMapping {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/attributeMappings
 func (e_ EntityMapping) SetAttributeMappings(value []PropertyMapping) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setAttributeMappings:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](e_.ID, objc.Sel("setAttributeMappings:"), nsArray)
 }
 // The destination entity name for the entity mapping.
 //
@@ -195,7 +205,17 @@ func (e_ EntityMapping) RelationshipMappings() []PropertyMapping {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/relationshipMappings
 func (e_ EntityMapping) SetRelationshipMappings(value []PropertyMapping) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setRelationshipMappings:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](e_.ID, objc.Sel("setRelationshipMappings:"), nsArray)
 }
 // The source entity name for the entity mapping.
 //

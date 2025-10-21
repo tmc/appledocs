@@ -84,14 +84,6 @@ func NewPHCollectionListChangeRequest() PHCollectionListChangeRequest {
 }
 
 
-// Creates a request for modifying the specified collection list.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/init(for:)
-func NewPHCollectionListChangeRequestForCollectionList(collectionList unsafe.Pointer) PHCollectionListChangeRequest {
-	rv := objc.Send[PHCollectionListChangeRequest](objc.ID(getPHCollectionListChangeRequestClass().class), objc.Sel("changeRequestForCollectionList:"), collectionList)
-	return rv
-}
-
 // Creates a request for modifying the specified collection list, with a fetch result for tracking changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/init(for:childCollections:)
@@ -105,6 +97,14 @@ func NewPHCollectionListChangeRequestForCollectionListChildCollections(collectio
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/init(forTopLevelCollectionListUserCollections:)
 func NewPHCollectionListChangeRequestForTopLevelCollectionListUserCollections(childCollections unsafe.Pointer) PHCollectionListChangeRequest {
 	rv := objc.Send[PHCollectionListChangeRequest](objc.ID(getPHCollectionListChangeRequestClass().class), objc.Sel("changeRequestForTopLevelCollectionListUserCollections:"), childCollections)
+	return rv
+}
+
+// Creates a request for modifying the specified collection list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/init(for:)
+func NewPHCollectionListChangeRequestForCollectionList(collectionList unsafe.Pointer) PHCollectionListChangeRequest {
+	rv := objc.Send[PHCollectionListChangeRequest](objc.ID(getPHCollectionListChangeRequestClass().class), objc.Sel("changeRequestForCollectionList:"), collectionList)
 	return rv
 }
 

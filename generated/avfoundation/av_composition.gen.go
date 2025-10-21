@@ -107,6 +107,91 @@ func (c_ Composition) MetadataForFormat(format unsafe.Pointer) []MetadataItem {
 	return rv
 }
 
+// The metadata items an asset contains for common metadata identifiers that provide a value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/commonMetadata
+func (c_ Composition) CommonMetadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("commonMetadata"))
+	return rv
+}
+
+
+// SetCommonMetadata sets the value of the commonMetadata property.
+// The metadata items an asset contains for common metadata identifiers that provide a value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/commonMetadata
+func (c_ Composition) SetCommonMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCommonMetadata:"), value)
+}
+// An array of metadata items for all metadata identifiers for which a value is available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/metadata
+func (c_ Composition) Metadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// SetMetadata sets the value of the metadata property.
+// An array of metadata items for all metadata identifiers for which a value is available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/metadata
+func (c_ Composition) SetMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
+}
+// The total duration of fragments that currently exist, or may exist in the future.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/overallDurationHint
+func (c_ Composition) OverallDurationHint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("overallDurationHint"))
+	return rv
+}
+
+
+// SetOverallDurationHint sets the value of the overallDurationHint property.
+// The total duration of fragments that currently exist, or may exist in the future.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/overallDurationHint
+func (c_ Composition) SetOverallDurationHint(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOverallDurationHint:"), value)
+}
+// The asset’s display mode preference for optimal playback of its content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/preferredDisplayCriteria
+func (c_ Composition) PreferredDisplayCriteria() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("preferredDisplayCriteria"))
+	return rv
+}
+
+
+// SetPreferredDisplayCriteria sets the value of the preferredDisplayCriteria property.
+// The asset’s display mode preference for optimal playback of its content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/preferredDisplayCriteria
+func (c_ Composition) SetPreferredDisplayCriteria(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredDisplayCriteria:"), value)
+}
+// The track groups an asset contains.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/trackGroups
+func (c_ Composition) TrackGroups() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("trackGroups"))
+	return rv
+}
+
+
+// SetTrackGroups sets the value of the trackGroups property.
+// The track groups an asset contains.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/trackGroups
+func (c_ Composition) SetTrackGroups(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTrackGroups:"), value)
+}
 // The tracks that a composition contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/tracks

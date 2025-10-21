@@ -11,6 +11,14 @@ var _ = avfaudio.NewAudioTime
 
 
 
+// ExampleNewAudioTimeWithHostTime demonstrates how to create a AudioTime instance using NewAudioTimeWithHostTime.
+// Creates an audio time object with the specified host time.
+func ExampleNewAudioTimeWithHostTime() {
+	_ = avfaudio.NewAudioTimeWithHostTime(
+		0, // hostTime uint64
+	)
+	// Output:
+}
 
 
 

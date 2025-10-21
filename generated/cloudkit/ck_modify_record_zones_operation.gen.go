@@ -135,7 +135,17 @@ func (c_ CKModifyRecordZonesOperation) RecordZoneIDsToDelete() []CKRecordZoneID 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/recordZoneIDsToDelete
 func (c_ CKModifyRecordZonesOperation) SetRecordZoneIDsToDelete(value []CKRecordZoneID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneIDsToDelete:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneIDsToDelete:"), nsArray)
 }
 // The record zones to save to the database.
 //
@@ -152,6 +162,16 @@ func (c_ CKModifyRecordZonesOperation) RecordZonesToSave() []CKRecordZone {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/recordZonesToSave
 func (c_ CKModifyRecordZonesOperation) SetRecordZonesToSave(value []CKRecordZone) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZonesToSave:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZonesToSave:"), nsArray)
 }
 

@@ -96,6 +96,13 @@ func (ac _AudioApplicationClass) RequestRecordPermissionWithCompletionHandler(re
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("requestRecordPermissionWithCompletionHandler:"), response)
 }
 
+// Accesses the shared audio application instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/shared
+func (ac _AudioApplicationClass) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("sharedInstance"))
+	return rv
+}
 // Sets a callback to handle changes to application-level audio muting states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/setInputMuteStateChangeHandler(_:)
@@ -133,6 +140,14 @@ func (a_ AudioApplication) MicrophoneInjectionPermission() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/recordPermission-swift.property
 func (a_ AudioApplication) RecordPermission() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("recordPermission"))
+	return rv
+}
+
+// Accesses the shared audio application instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/shared
+func (a_ AudioApplication) SharedInstance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sharedInstance"))
 	return rv
 }
 

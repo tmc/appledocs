@@ -103,7 +103,7 @@ func NewFSEntityIdentifierWithUUIDData(uuid unsafe.Pointer, qualifierData unsafe
 // Creates an entity identifier with the given UUID and qualifier data as a 64-bit unsigned integer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/init(uuid:qualifier:)
-func NewFSEntityIdentifierWithUUIDQualifier(uuid unsafe.Pointer, qualifier unsafe.Pointer) FSEntityIdentifier {
+func NewFSEntityIdentifierWithUUIDQualifier(uuid unsafe.Pointer, qualifier uint64) FSEntityIdentifier {
 	instance := getFSEntityIdentifierClass().Alloc()
 	rv := objc.Send[FSEntityIdentifier](instance.ID, objc.Sel("initWithUUID:qualifier:"), uuid, qualifier)
 	rv.Autorelease()

@@ -1,8 +1,12 @@
 // Code generated from Apple documentation for IOSurface. DO NOT EDIT.
 
 package iosurface
+import (
+	"unsafe"
+)
 
-import "unsafe"
+// :  IOSurfaceRef is a CoreGraphics opaque type.
+type :  IOSurfaceRef unsafe.Pointer
 
 // CFDictionaryRef is a CoreGraphics opaque type.
 type CFDictionaryRef unsafe.Pointer
@@ -19,4 +23,39 @@ type IOSurfaceRef unsafe.Pointer
 
 // TimeInterval for non-CoreGraphics frameworks
 type TimeInterval = float64  // NSTimeInterval
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+type BOOL unsafe.Pointer
+
+type Boolean unsafe.Pointer
+
+type CFTypeID unsafe.Pointer
+
+type IOSurfaceComponentName unsafe.Pointer
+
+type IOSurfaceComponentRange unsafe.Pointer
+
+type IOSurfaceComponentType unsafe.Pointer
+
+type IOSurfaceID unsafe.Pointer
+
+type IOSurfaceLockOptions unsafe.Pointer
+
+type IOSurfacePurgeabilityState unsafe.Pointer
+
+type IOSurfaceSubsampling unsafe.Pointer
+
+type NSDictionary unsafe.Pointer
+
+type NSInteger unsafe.Pointer
+
+type NSString unsafe.Pointer
+
+type NSUInteger unsafe.Pointer
+
+type OSType unsafe.Pointer
+
+
 

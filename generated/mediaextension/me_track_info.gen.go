@@ -126,8 +126,8 @@ func (m_ METrackInfo) SetNominalFrameRate(value unsafe.Pointer) {
 // An array of edit segments for the given track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/trackEdits
-func (m_ METrackInfo) TrackEdits() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("trackEdits"))
+func (m_ METrackInfo) TrackEdits() []avfoundation.NSValue {
+	rv := objc.Send[[]avfoundation.NSValue](m_.ID, objc.Sel("trackEdits"))
 	return rv
 }
 
@@ -137,7 +137,17 @@ func (m_ METrackInfo) TrackEdits() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/trackEdits
-func (m_ METrackInfo) SetTrackEdits(value []unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackEdits:"), value)
+func (m_ METrackInfo) SetTrackEdits(value []avfoundation.NSValue) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackEdits:"), nsArray)
 }
 

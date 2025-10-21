@@ -104,16 +104,16 @@ func NewNavigationMarkersGroupWithTitleTimedNavigationMarkers(title string, navi
 // The array of date range navigation markers for which the group provides navigation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/dateRangeNavigationMarkers
-func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](n_.ID, objc.Sel("dateRangeNavigationMarkers"))
+func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []avkit.AVDateRangeMetadataGroup {
+	rv := objc.Send[[]avkit.AVDateRangeMetadataGroup](n_.ID, objc.Sel("dateRangeNavigationMarkers"))
 	return rv
 }
 
 // The array of timed navigation markers for which the group provides navigation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/timedNavigationMarkers
-func (n_ NavigationMarkersGroup) TimedNavigationMarkers() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](n_.ID, objc.Sel("timedNavigationMarkers"))
+func (n_ NavigationMarkersGroup) TimedNavigationMarkers() []avkit.AVTimedMetadataGroup {
+	rv := objc.Send[[]avkit.AVTimedMetadataGroup](n_.ID, objc.Sel("timedNavigationMarkers"))
 	return rv
 }
 

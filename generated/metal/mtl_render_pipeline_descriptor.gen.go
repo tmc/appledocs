@@ -103,7 +103,17 @@ func (r_ RenderPipelineDescriptor) BinaryArchives() []objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/binaryArchives
 func (r_ RenderPipelineDescriptor) SetBinaryArchives(value []objc.ID) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setBinaryArchives:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](r_.ID, objc.Sel("setBinaryArchives:"), nsArray)
 }
 // An array of attachments that store color data.
 //
@@ -184,7 +194,17 @@ func (r_ RenderPipelineDescriptor) FragmentPreloadedLibraries() []objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/fragmentPreloadedLibraries
 func (r_ RenderPipelineDescriptor) SetFragmentPreloadedLibraries(value []objc.ID) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setFragmentPreloadedLibraries:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](r_.ID, objc.Sel("setFragmentPreloadedLibraries:"), nsArray)
 }
 // The type of primitive topology the pipeline renders.
 //

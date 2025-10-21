@@ -325,7 +325,17 @@ func (e_ EmitterCell) EmitterCells() []EmitterCell {
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/emitterCells
 func (e_ EmitterCell) SetEmitterCells(value []EmitterCell) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterCells:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterCells:"), nsArray)
 }
 // The amount by which the green color component of the cell can vary. Animatable.
 //

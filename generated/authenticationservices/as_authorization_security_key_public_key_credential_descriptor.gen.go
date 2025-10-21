@@ -106,6 +106,16 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialDescriptor) Transports() []s
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/transports
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialDescriptor) SetTransports(value []string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTransports:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTransports:"), nsArray)
 }
 

@@ -1,0 +1,16 @@
+// Code generated from Apple documentation for MapKit. DO NOT EDIT.
+
+package mapkit
+
+import "github.com/ebitengine/purego/objc"
+
+// MKMapViewDelegateProtocol is the MKMapViewDelegate protocol.
+//
+// Use this protocol when registering custom classes that conform to MKMapViewDelegate.
+var MKMapViewDelegateProtocol *objc.Protocol
+
+func init() {
+	MKMapViewDelegateProtocol = objc.GetProtocol("MKMapViewDelegate")
+}
+
+

@@ -170,7 +170,17 @@ func (t_ TextLayoutManager) TextSelections() []TextSelection {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textSelections
 func (t_ TextLayoutManager) SetTextSelections(value []TextSelection) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelections:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelections:"), nsArray)
 }
 // Returns the usage bounds for the text container.
 //

@@ -191,7 +191,17 @@ func (c_ CompileOptions) Libraries() []objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/libraries
 func (c_ CompileOptions) SetLibraries(value []objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLibraries:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLibraries:"), nsArray)
 }
 // The kind of library to create.
 //

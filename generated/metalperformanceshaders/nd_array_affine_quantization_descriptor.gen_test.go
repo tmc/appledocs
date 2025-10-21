@@ -10,11 +10,11 @@ import (
 var _ = metalperformanceshaders.NewNDArrayAffineQuantizationDescriptor
 
 
+
 // ExampleNewNDArrayAffineQuantizationDescriptor demonstrates how to create a NDArrayAffineQuantizationDescriptor instance.
 func ExampleNewNDArrayAffineQuantizationDescriptor() {
 	_ = metalperformanceshaders.NewNDArrayAffineQuantizationDescriptor()
 	// Output:
 }
-
 
 

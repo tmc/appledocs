@@ -115,7 +115,17 @@ func (c_ CKFetchRecordsOperation) DesiredKeys() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/desiredKeys-34l1l
 func (c_ CKFetchRecordsOperation) SetDesiredKeys(value []string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), nsArray)
 }
 // The record IDs of the records to fetch.
 //
@@ -132,6 +142,16 @@ func (c_ CKFetchRecordsOperation) RecordIDs() []CKRecordID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/recordIDs
 func (c_ CKFetchRecordsOperation) SetRecordIDs(value []CKRecordID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordIDs:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordIDs:"), nsArray)
 }
 

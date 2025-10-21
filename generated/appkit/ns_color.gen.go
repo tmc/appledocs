@@ -141,6 +141,89 @@ func (cc _ColorClass) ColorForControlTint(controlTint unsafe.Pointer) unsafe.Poi
 	return rv
 }
 
+// The color to use for text in a selected control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/alternateSelectedControlTextColor
+func (cc _ColorClass) AlternateSelectedControlTextColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("alternateSelectedControlTextColor"))
+	return rv
+}
+// The system color used for the dark edge of the shadow dropped from controls.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/controlDarkShadowColor
+func (cc _ColorClass) ControlDarkShadowColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("controlDarkShadowColor"))
+	return rv
+}
+// The current system control tint color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/currentControlTint
+func (cc _ColorClass) CurrentControlTint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("currentControlTint"))
+	return rv
+}
+// The primary color to use for text labels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/labelColor
+func (cc _ColorClass) LabelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("labelColor"))
+	return rv
+}
+// The quaternary color to use for text labels and separators.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/quaternaryLabelColor
+func (cc _ColorClass) QuaternaryLabelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("quaternaryLabelColor"))
+	return rv
+}
+// The secondary color to use for text labels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/secondaryLabelColor
+func (cc _ColorClass) SecondaryLabelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("secondaryLabelColor"))
+	return rv
+}
+// Returns a color object for blue that automatically adapts to vibrancy and accessibility settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemBlue
+func (cc _ColorClass) SystemBlueColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("systemBlueColor"))
+	return rv
+}
+// Returns a color object for mint that automatically adapts to vibrancy and accessibility settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemMint
+func (cc _ColorClass) SystemMintColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("systemMintColor"))
+	return rv
+}
+// Returns a color object for yellow that automatically adapts to vibrancy and accessibility settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemYellow
+func (cc _ColorClass) SystemYellowColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("systemYellowColor"))
+	return rv
+}
+// The tertiary color to use for text labels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/tertiaryLabelColor
+func (cc _ColorClass) TertiaryLabelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tertiaryLabelColor"))
+	return rv
+}
+// The color to use for the background area behind text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textBackgroundColor
+func (cc _ColorClass) TextBackgroundColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("textBackgroundColor"))
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textInsertionPointColor
+func (cc _ColorClass) TextInsertionPointColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("textInsertionPointColor"))
+	return rv
+}
 // Reinterpret the color by applying a new without changing the color components. Changing the redefines the color relative to a different peak white, changing its behavior under tone mapping and the result of calling . The new color will have a >= 1.0. If called on a color with a color space that does not support extended range, or does not have an equivalent extended range counterpart, this will return .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/applyingContentHeadroom(_:)
@@ -232,6 +315,14 @@ func (c_ Color) ColorWithSystemEffect(systemEffect unsafe.Pointer) unsafe.Pointe
 	return rv
 }
 
+// The color to use for text in a selected control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/alternateSelectedControlTextColor
+func (c_ Color) AlternateSelectedControlTextColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alternateSelectedControlTextColor"))
+	return rv
+}
+
 // The black component value of the color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/blackComponent
@@ -264,6 +355,22 @@ func (c_ Color) ColorSpace() unsafe.Pointer {
 	return rv
 }
 
+// The system color used for the dark edge of the shadow dropped from controls.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/controlDarkShadowColor
+func (c_ Color) ControlDarkShadowColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlDarkShadowColor"))
+	return rv
+}
+
+// The current system control tint color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/currentControlTint
+func (c_ Color) CurrentControlTint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentControlTint"))
+	return rv
+}
+
 // The cyan component value of the color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/cyanComponent
@@ -277,6 +384,14 @@ func (c_ Color) CyanComponent() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/hueComponent
 func (c_ Color) HueComponent() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("hueComponent"))
+	return rv
+}
+
+// The primary color to use for text labels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/labelColor
+func (c_ Color) LabelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("labelColor"))
 	return rv
 }
 
@@ -304,6 +419,14 @@ func (c_ Color) PatternImage() unsafe.Pointer {
 	return rv
 }
 
+// The quaternary color to use for text labels and separators.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/quaternaryLabelColor
+func (c_ Color) QuaternaryLabelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("quaternaryLabelColor"))
+	return rv
+}
+
 // The red component value of the color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/redComponent
@@ -320,11 +443,66 @@ func (c_ Color) SaturationComponent() float64 {
 	return rv
 }
 
+// The secondary color to use for text labels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/secondaryLabelColor
+func (c_ Color) SecondaryLabelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("secondaryLabelColor"))
+	return rv
+}
+
 // In some cases it is useful to recover the color that was base the SDR color that was exposed to generate an HDR color. If a color’s is > 1, then this will return the base SDR color. If the color is not an HDR color, this will return .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/standardDynamicRange
 func (c_ Color) StandardDynamicRangeColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("standardDynamicRangeColor"))
+	return rv
+}
+
+// Returns a color object for blue that automatically adapts to vibrancy and accessibility settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemBlue
+func (c_ Color) SystemBlueColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemBlueColor"))
+	return rv
+}
+
+// Returns a color object for mint that automatically adapts to vibrancy and accessibility settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemMint
+func (c_ Color) SystemMintColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemMintColor"))
+	return rv
+}
+
+// Returns a color object for yellow that automatically adapts to vibrancy and accessibility settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemYellow
+func (c_ Color) SystemYellowColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemYellowColor"))
+	return rv
+}
+
+// The tertiary color to use for text labels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/tertiaryLabelColor
+func (c_ Color) TertiaryLabelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("tertiaryLabelColor"))
+	return rv
+}
+
+// The color to use for the background area behind text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textBackgroundColor
+func (c_ Color) TextBackgroundColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("textBackgroundColor"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textInsertionPointColor
+func (c_ Color) TextInsertionPointColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("textInsertionPointColor"))
 	return rv
 }
 

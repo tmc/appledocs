@@ -220,7 +220,17 @@ func (p_ PlayerItem) ExternalMetadata() []MetadataItem {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/externalMetadata
 func (p_ PlayerItem) SetExternalMetadata(value []MetadataItem) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setExternalMetadata:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setExternalMetadata:"), nsArray)
 }
 // The time at which forward playback ends.
 //
@@ -242,8 +252,8 @@ func (p_ PlayerItem) SetForwardPlaybackEndTime(value unsafe.Pointer) {
 // An array of time ranges that identify interstitial content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges
-func (p_ PlayerItem) InterstitialTimeRanges() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("interstitialTimeRanges"))
+func (p_ PlayerItem) InterstitialTimeRanges() []avfoundation.AVInterstitialTimeRange {
+	rv := objc.Send[[]avfoundation.AVInterstitialTimeRange](p_.ID, objc.Sel("interstitialTimeRanges"))
 	return rv
 }
 
@@ -267,8 +277,8 @@ func (p_ PlayerItem) SetAudioSpatializationAllowed(value bool) {
 // The time marker groups that provide ways to navigate the player item’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
-func (p_ PlayerItem) NavigationMarkerGroups() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("navigationMarkerGroups"))
+func (p_ PlayerItem) NavigationMarkerGroups() []avfoundation.AVNavigationMarkersGroup {
+	rv := objc.Send[[]avfoundation.AVNavigationMarkersGroup](p_.ID, objc.Sel("navigationMarkerGroups"))
 	return rv
 }
 
@@ -278,8 +288,18 @@ func (p_ PlayerItem) NavigationMarkerGroups() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
-func (p_ PlayerItem) SetNavigationMarkerGroups(value []unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNavigationMarkerGroups:"), value)
+func (p_ PlayerItem) SetNavigationMarkerGroups(value []avfoundation.AVNavigationMarkersGroup) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNavigationMarkerGroups:"), nsArray)
 }
 // The item proposed to follow the current content.
 //
@@ -318,8 +338,8 @@ func (p_ PlayerItem) SetNowPlayingInfo(value unsafe.Pointer) {
 // Indicates the AVCustomMediaSelectionSchemes of AVMediaSelectionGroups of the receiver’s asset with which an associated UI implementation should configure its interface for media selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredCustomMediaSelectionSchemes
-func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("preferredCustomMediaSelectionSchemes"))
+func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []avfoundation.AVCustomMediaSelectionScheme {
+	rv := objc.Send[[]avfoundation.AVCustomMediaSelectionScheme](p_.ID, objc.Sel("preferredCustomMediaSelectionSchemes"))
 	return rv
 }
 
@@ -329,8 +349,18 @@ func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredCustomMediaSelectionSchemes
-func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredCustomMediaSelectionSchemes:"), value)
+func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []avfoundation.AVCustomMediaSelectionScheme) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredCustomMediaSelectionSchemes:"), nsArray)
 }
 // The desired limit, in bits per second, of network bandwidth consumption for this item.
 //

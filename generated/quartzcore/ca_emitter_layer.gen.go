@@ -114,7 +114,17 @@ func (e_ EmitterLayer) EmitterCells() []EmitterCell {
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterCells
 func (e_ EmitterLayer) SetEmitterCells(value []EmitterCell) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterCells:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterCells:"), nsArray)
 }
 // Determines the depth of the emitter shape.
 //

@@ -140,6 +140,16 @@ func (m_ MusicPlayerStoreQueueDescriptor) StoreIDs() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/storeIDs
 func (m_ MusicPlayerStoreQueueDescriptor) SetStoreIDs(value []string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStoreIDs:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStoreIDs:"), nsArray)
 }
 
