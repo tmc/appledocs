@@ -32,10 +32,6 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "AttributedString") {
-		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%q framework=%q\n", objcType, framework)
-	}
-
 	// Strip self-package qualifications from Swift documentation
 	// Swift docs often use module.Type format (e.g., uniformtypeidentifiers.UTType)
 	// When generating the same framework, we should use unqualified names
@@ -53,95 +49,74 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		}
 	}
 
-	// Strip __kindof qualifier (e.g., "__kindof NSView *" -> "NSView *")
-	// __kindof is an Objective-C type qualifier meaning "this type or any subclass"
-	// In Go, we just use the base type
-	objcType = strings.TrimPrefix(objcType, "__kindof ")
-
-	// Handle array types with __kindof in element type (e.g., "[]__kindof AVCaptureControl" -> "[]AVCaptureControl")
-	// This can occur when occ2go parser has already converted NSArray<__kindof T> to []__kindof T
-	if strings.HasPrefix(objcType, "[]__kindof ") {
-		objcType = "[]" + strings.TrimPrefix(objcType, "[]__kindof ")
-	}
+	// Strip type qualifiers (__kindof, const, etc.) using occ2go utility
+	objcType = occ2go.StripTypeQualifiers(objcType)
 
 	// Handle id<Protocol> pattern (e.g., "id<NSFetchRequestResult>" -> "objc.ID")
 	// This is Objective-C's protocol conformance syntax
-	if strings.HasPrefix(objcType, "id<") && strings.Contains(objcType, ">") {
+	if occ2go.IsProtocolType(objcType) {
 		return "objc.ID"
 	}
 
 	// Handle []id<Protocol> pattern (e.g., "[]id<NSFetchRequestResult>" -> "[]objc.ID")
-	if strings.HasPrefix(objcType, "[]id<") && strings.Contains(objcType, ">") {
-		return "[]objc.ID"
+	if occ2go.IsArrayType(objcType) {
+		elementType := occ2go.GetArrayElementType(objcType)
+		if occ2go.IsProtocolType(elementType) {
+			return "[]objc.ID"
+		}
 	}
 
 	// Handle array types that are already converted by occ2go (e.g., "[]void (^)(void)" -> "[]unsafe.Pointer")
 	// This handles cases where occ2go has already converted NSArray<T> to []T
 	// We need to recursively map the element type
-	if strings.HasPrefix(objcType, "[]") {
-		elementType := strings.TrimPrefix(objcType, "[]")
+	if occ2go.IsArrayType(objcType) {
+		elementType := occ2go.GetArrayElementType(objcType)
 		goElementType := mapObjCTypeToGo(elementType, framework)
 		return "[]" + goElementType
 	}
 
 	// Handle Objective-C generic types (e.g., NSArray<NSString *>, NSArray<SCDisplay *>)
-	if strings.Contains(objcType, "<") {
+	if occ2go.IsGenericType(objcType) {
 		// Extract NSArray element type: NSArray<ElementType *> -> []ElementType
-		if strings.HasPrefix(objcType, "NSArray<") && strings.HasSuffix(objcType, ">") {
-			// Extract element type between < and >
-			start := strings.Index(objcType, "<") + 1
-			end := strings.LastIndex(objcType, ">")
-			if start > 0 && end > start {
-				elementType := strings.TrimSpace(objcType[start:end])
-				// Strip __kindof qualifier from element type
-				elementType = strings.TrimPrefix(elementType, "__kindof ")
-				// Remove trailing * from pointer types
-				elementType = strings.TrimSpace(strings.TrimSuffix(elementType, "*"))
+		// Handle both "NSArray<T>" and "NSArray<T> *" patterns
+		elementType := occ2go.ExtractGenericElementType(objcType)
+		if elementType != "" {
+			// Successfully extracted NSArray element type
 
-				// Strip protocol conformance syntax: NSView<NSCollectionViewElement> -> NSView
-				// Objective-C uses Type<Protocol> syntax for protocol conformance, but in Go we just use the base type
-				// The protocol conformance is checked at runtime by Objective-C, not at compile time
-				if protocolStart := strings.Index(elementType, "<"); protocolStart > 0 {
-					if strings.HasSuffix(elementType, ">") {
-						elementType = strings.TrimSpace(elementType[:protocolStart])
-					}
-				}
-
-				// Special case: NSString -> string
-				if elementType == "NSString" {
-					return "[]string"
-				}
-
-				// Strip common Apple prefixes from element types
-				// This ensures NSArray<SCDisplay *> -> []Display, NSArray<NSButton *> -> []Button
-				strippedType := stripObjCPrefix(elementType)
-				if strippedType != elementType {
-					// Prefix was stripped - check if this type exists in current framework
-					if currentFrameworkClasses[strippedType] {
-						// Type is defined in current framework, safe to use
-						return "[]" + strippedType
-					}
-					// Cross-framework reference - check type mapping registry for explicit mapping
-					// Foundation defines URL and Number, not NSURL and NSNumber
-					// Try both the stripped type name and the original element type
-					if goType, found := lookupTypeMapping(strippedType, framework); found {
-						return "[]" + goType
-					}
-					if goType, found := lookupTypeMapping(elementType, framework); found {
-						return "[]" + goType
-					}
-					// Last resort - fall back to unsafe.Pointer for array elements
-					return "[]unsafe.Pointer"
-				}
-
-				// For other types, try to map them
-				goElementType := mapObjCTypeToGo(elementType, framework)
-				if goElementType == "unsafe.Pointer" {
-					// If mapping failed, use the element type directly
-					return "[]" + elementType
-				}
-				return "[]" + goElementType
+			// Special case: NSString -> string
+			if elementType == "NSString" {
+				return "[]string"
 			}
+
+			// Strip common Apple prefixes from element types
+			// This ensures NSArray<SCDisplay *> -> []Display, NSArray<NSButton *> -> []Button
+			strippedType := stripObjCPrefix(elementType)
+			if strippedType != elementType {
+				// Prefix was stripped - check if this type exists in current framework
+				if currentFrameworkClasses[strippedType] {
+					// Type is defined in current framework, safe to use
+					return "[]" + strippedType
+				}
+				// Cross-framework reference - check type mapping registry for explicit mapping
+				// Foundation defines URL and Number, not NSURL and NSNumber
+				// Try both the stripped type name and the original element type
+				if goType, found := lookupTypeMapping(strippedType, framework); found {
+					return "[]" + goType
+				}
+				if goType, found := lookupTypeMapping(elementType, framework); found {
+					return "[]" + goType
+				}
+				// Last resort - fall back to unsafe.Pointer for array elements
+				return "[]unsafe.Pointer"
+			}
+
+			// For other types, try to map them
+			goElementType := mapObjCTypeToGo(elementType, framework)
+			if goElementType == "unsafe.Pointer" {
+				// If mapping failed, use the element type directly
+				return "[]" + elementType
+			}
+			return "[]" + goElementType
 		}
 		// For other generic types (NSDictionary, etc.), fall back to unsafe.Pointer
 		return "unsafe.Pointer"
@@ -184,13 +159,13 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	// Handle Objective-C blocks (e.g., void (^)(NSModalResponse))
 	// Blocks are closures that cannot be easily represented in Go, so map to unsafe.Pointer
 	// This comes after type registry check so explicitly mapped blocks can use proper Go types
-	if strings.Contains(objcType, "^") {
+	if occ2go.IsBlockType(objcType) {
 		return "unsafe.Pointer"
 	}
 
 	// Handle pointers for types not in the registry
-	isPointer := strings.HasSuffix(objcType, "*")
-	objcTypeNoPtr := strings.TrimSpace(strings.TrimSuffix(objcType, "*"))
+	isPointer := occ2go.IsPointerType(objcType)
+	objcTypeNoPtr := occ2go.StripPointer(objcType)
 
 	// Special case: NSString * -> string (most common string parameter type)
 	if isPointer && objcTypeNoPtr == "NSString" {
