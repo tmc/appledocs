@@ -2,6 +2,7 @@ package main
 
 import (
 	"regexp"
+	"strings"
 )
 
 // UndefinedType represents a type that's referenced but not defined
@@ -107,6 +108,18 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 		defined[name] = true
 	}
 
+	// Add Objective-C types that map to Go built-ins
+	// These should never be generated as fallback types
+	for _, name := range []string{
+		"BOOL",         // maps to bool
+		"NSInteger",    // maps to int
+		"NSUInteger",   // maps to uint
+		"CGFloat",      // maps to float64
+		"TimeInterval", // maps to float64
+	} {
+		defined[name] = true
+	}
+
 	// Add types from current framework's classes and protocols
 	for _, cls := range g.Classes {
 		defined[cls.Name] = true
@@ -130,6 +143,17 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 	// Add ref types
 	for _, ref := range g.refTypes {
 		defined[ref] = true
+	}
+
+	// Add types from cross-framework registry that belong to OTHER frameworks
+	// This prevents generating fallback types for classes that exist in other frameworks
+	// e.g., UniformTypeIdentifiers shouldn't define NSArray - it exists in Foundation
+	// But we only mark them as defined if they're from a DIFFERENT framework
+	currentFrameworkPkg := strings.ToLower(g.Framework)
+	for typeName, pkgName := range crossFrameworkTypeRegistry {
+		if pkgName != currentFrameworkPkg {
+			defined[typeName] = true
+		}
 	}
 
 	// Add framework-specific types that are defined in templates or as classes

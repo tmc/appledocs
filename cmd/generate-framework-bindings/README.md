@@ -1,8 +1,8 @@
 # Apple Framework Go Bindings Generator - Design Document
 
-**Version:** 2.0
+**Version:** 2.1
 **Status:** Production
-**Last Updated:** 2025-01-21
+**Last Updated:** 2025-10-21
 **Author:** tmc
 **Reviewed By:** -
 
@@ -17,6 +17,7 @@ The `generate-framework-bindings` tool automatically generates comprehensive, ty
 - **2,500+ functions** wrapped
 - **Zero CGO requirement** - pure Go implementation
 - **~3ns selector caching** vs ~150ns uncached
+- **Enum values** extracted from macOS SDK headers for accuracy
 
 ## Table of Contents
 
@@ -101,6 +102,9 @@ cmd/generate-framework-bindings/
 │   ├── *.txt                  # Baseline tests (must pass)
 │   └── aspirational/*.txt     # Future goals (expected to fail)
 └── README.md                  # This document
+
+cmd/extract-enum-values/       # Helper tool for SDK value extraction
+└── main.go                    # Clang preprocessor integration
 ```
 
 ## Design Goals & Non-Goals
@@ -190,7 +194,45 @@ for _, doc := range documents {
 | `c:objc(pl)` | Protocol | `NSApplicationDelegate` |
 | `c:@E@` | Enum Type | `NSWindowStyleMask` |
 
-### Stage 3: Type Resolution
+### Stage 3: Enum Value Enrichment
+
+After parsing enum declarations from documentation, the generator enriches them with actual numeric values from macOS SDK headers:
+
+```go
+// Call extract-enum-values tool for each enum
+enrichEnumValues(framework, enums, verbose)
+```
+
+**Process:**
+1. Builds the `extract-enum-values` helper tool if not present
+2. For each enum, calls the tool with framework and enum name
+3. Parses JSON output containing resolved integer values
+4. Updates `ParsedEnumCase.IntValue` with actual values
+
+**Benefits:**
+- Ensures binary compatibility with Apple frameworks
+- Matches exact values defined in SDK headers
+- No more synthetic iota-based values
+- Compatible with DarwinKit and other bindings
+
+**Example:**
+```go
+// Before: Generated with synthetic values
+const (
+    BackingStoreRetained = iota  // 0
+    BackingStoreNonretained      // 1
+    BackingStoreBuffered         // 2
+)
+
+// After: With actual SDK values
+const (
+    BackingStoreRetained = 0     // Actual value from NSGraphics.h
+    BackingStoreNonretained = 1  // Actual value from NSGraphics.h
+    BackingStoreBuffered = 2     // Actual value from NSGraphics.h
+)
+```
+
+### Stage 4: Type Resolution
 
 The type resolver performs framework-aware type mapping:
 
@@ -210,7 +252,7 @@ if !isLocalType(type) {
 3. Standard library mappings
 4. Fallback to `unsafe.Pointer`
 
-### Stage 4: Generation Preparation
+### Stage 5: Generation Preparation
 
 ```go
 generator := NewGenerator(framework, packageName, ...)
@@ -235,7 +277,7 @@ MergePropertyOverrides(framework, className, class)
 - Resolve import requirements
 - Handle inheritance chains
 
-### Stage 5: Template Execution
+### Stage 6: Template Execution
 
 ```go
 // Load template archive

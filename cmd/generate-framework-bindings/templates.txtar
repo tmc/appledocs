@@ -175,11 +175,11 @@ type Point = CGPoint  // NSPoint
 type Rect = CGRect    // NSRect
 {{end -}}
 
-{{if ne .Framework "CoreGraphics" -}}
-// TimeInterval for non-CoreGraphics frameworks
+{{if eq .Framework "Foundation" -}}
+// Foundation-specific type alias for NSTimeInterval
 type TimeInterval = float64  // NSTimeInterval
-{{end -}}
 
+{{end -}}
 {{if eq .Framework "Foundation" -}}
 // Foundation-specific types
 
@@ -597,29 +597,9 @@ import (
 
 	"{{.OutputModule}}/objc"
 {{- $imports := getClassImports .Class $.Framework $.OutputModule}}
-{{- if $imports.NeedsObjectiveC}}
-	"{{.OutputModule}}/objectivec"
-{{- end}}
-{{- if $imports.NeedsFoundation}}
-	"{{.OutputModule}}/foundation"
-{{- end}}
-{{- if $imports.NeedsQuartzCore}}
-	"{{.OutputModule}}/quartzcore"
-{{- end}}
-{{- if $imports.NeedsCoreGraphics}}
-	"{{.OutputModule}}/coregraphics"
-{{- end}}
-{{- if $imports.NeedsCloudKit}}
-	"{{.OutputModule}}/cloudkit"
-{{- end}}
-{{- if $imports.NeedsAppKit}}
-	"{{.OutputModule}}/appkit"
-{{- end}}
-{{- if $imports.NeedsUserNotifications}}
-	"{{.OutputModule}}/usernotifications"
-{{- end}}
-{{- if $imports.NeedsUniformTypeIdentifiers}}
-	"{{.OutputModule}}/uniformtypeidentifiers"
+{{- $sortedImports := getSortedClassImports $imports}}
+{{- range $sortedImports}}
+	"{{.ImportPath}}"
 {{- end}}
 )
 

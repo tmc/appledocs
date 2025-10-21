@@ -2484,18 +2484,22 @@ func isInheritedFromNSObject(selector string) bool {
 
 // ClassImports holds the import paths needed for a class
 type ClassImports struct {
-	// Legacy boolean fields for backward compatibility
-	NeedsObjectiveC             bool
-	NeedsFoundation             bool
-	NeedsQuartzCore             bool
-	NeedsCoreGraphics           bool
-	NeedsCloudKit               bool
-	NeedsAppKit                 bool
-	NeedsUserNotifications      bool
-	NeedsUniformTypeIdentifiers bool
+	// DEPRECATED: Legacy boolean fields for backward compatibility.
+	// Use ImportPaths map instead for dynamic, extensible import detection.
+	// These fields are populated automatically from ImportPaths for now,
+	// but will be removed in a future version.
+	NeedsObjectiveC             bool // Deprecated: Use ImportPaths["objectivec"]
+	NeedsFoundation             bool // Deprecated: Use ImportPaths["foundation"]
+	NeedsQuartzCore             bool // Deprecated: Use ImportPaths["quartzcore"]
+	NeedsCoreGraphics           bool // Deprecated: Use ImportPaths["coregraphics"]
+	NeedsCloudKit               bool // Deprecated: Use ImportPaths["cloudkit"]
+	NeedsAppKit                 bool // Deprecated: Use ImportPaths["appkit"]
+	NeedsUserNotifications      bool // Deprecated: Use ImportPaths["usernotifications"]
+	NeedsUniformTypeIdentifiers bool // Deprecated: Use ImportPaths["uniformtypeidentifiers"]
 
 	// ImportPaths is a dynamic map of all import paths needed (package name -> import path)
-	// This replaces the need for hard-coded boolean fields above
+	// This replaces the need for hard-coded boolean fields above.
+	// Keys are package names (e.g., "foundation", "appkit"), values are full import paths.
 	ImportPaths map[string]string
 }
 
@@ -2565,12 +2569,12 @@ func typeReferencesFramework(goType, framework string) bool {
 }
 
 // getClassImports analyzes a class and its methods to determine which framework imports are needed.
-// This consolidates the complex import detection logic from the template into a single helper function.
-// Returns a ClassImports struct with boolean flags for each potential import.
-// NOTE: This function now uses the registry-based getClassImportPaths and maps the results
-// to both legacy boolean fields (for backward compatibility) and the new dynamic ImportPaths map.
+// This uses the registry-based system to automatically detect all framework dependencies.
+// Returns a ClassImports struct with:
+//  - ImportPaths: Dynamic map of all imports (package name -> import path) - RECOMMENDED
+//  - Boolean fields: Deprecated legacy fields for backward compatibility - will be removed
 func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) ClassImports {
-	// Use the new registry-based function
+	// Use the registry-based function to detect all imports automatically
 	importPathsSet := getClassImportPaths(class, framework, outputModule)
 
 	// Initialize struct with dynamic map
@@ -2578,7 +2582,7 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 		ImportPaths: make(map[string]string),
 	}
 
-	// Populate both legacy boolean fields and dynamic map
+	// Populate the dynamic ImportPaths map (this is the source of truth)
 	for importPath := range importPathsSet {
 		// Extract package name from import path
 		// e.g., "github.com/tmc/appledocs/generated/foundation" -> "foundation"
@@ -2588,30 +2592,20 @@ func getClassImports(class *occ2go.ParsedClass, framework, outputModule string) 
 		}
 		pkgName := parts[len(parts)-1]
 
-		// Add to dynamic map (all frameworks)
+		// Add to dynamic map (works for ALL frameworks automatically)
 		imports.ImportPaths[pkgName] = importPath
-
-		// Also set legacy boolean fields for backward compatibility
-		// This allows existing templates to work without changes
-		switch pkgName {
-		case "objectivec":
-			imports.NeedsObjectiveC = true
-		case "foundation":
-			imports.NeedsFoundation = true
-		case "quartzcore":
-			imports.NeedsQuartzCore = true
-		case "coregraphics":
-			imports.NeedsCoreGraphics = true
-		case "cloudkit":
-			imports.NeedsCloudKit = true
-		case "appkit":
-			imports.NeedsAppKit = true
-		case "usernotifications":
-			imports.NeedsUserNotifications = true
-		case "uniformtypeidentifiers":
-			imports.NeedsUniformTypeIdentifiers = true
-		}
 	}
+
+	// Set legacy boolean fields for backward compatibility
+	// These are derived from ImportPaths map - the map is the source of truth
+	imports.NeedsObjectiveC = imports.ImportPaths["objectivec"] != ""
+	imports.NeedsFoundation = imports.ImportPaths["foundation"] != ""
+	imports.NeedsQuartzCore = imports.ImportPaths["quartzcore"] != ""
+	imports.NeedsCoreGraphics = imports.ImportPaths["coregraphics"] != ""
+	imports.NeedsCloudKit = imports.ImportPaths["cloudkit"] != ""
+	imports.NeedsAppKit = imports.ImportPaths["appkit"] != ""
+	imports.NeedsUserNotifications = imports.ImportPaths["usernotifications"] != ""
+	imports.NeedsUniformTypeIdentifiers = imports.ImportPaths["uniformtypeidentifiers"] != ""
 
 	return imports
 }
