@@ -26,43 +26,11 @@ type CGColorRef unsafe.Pointer
 
 type CLLocation unsafe.Pointer
 
-type EKAlarmProximity unsafe.Pointer
-
-type EKAlarmType unsafe.Pointer
-
-type EKAuthorizationStatus unsafe.Pointer
-
-type EKCalendarEventAvailabilityMask unsafe.Pointer
-
-type EKCalendarType unsafe.Pointer
-
-type EKEntityMask unsafe.Pointer
-
-type EKEntityType unsafe.Pointer
-
-type EKEventAvailability unsafe.Pointer
-
 type EKEventSearchCallback unsafe.Pointer
-
-type EKEventStatus unsafe.Pointer
 
 type EKEventStoreRequestAccessCompletionHandler unsafe.Pointer
 
-type EKParticipantRole unsafe.Pointer
-
-type EKParticipantStatus unsafe.Pointer
-
-type EKParticipantType unsafe.Pointer
-
-type EKRecurrenceFrequency unsafe.Pointer
-
-type EKSourceType unsafe.Pointer
-
-type EKSpan unsafe.Pointer
-
 type EKVirtualConferenceRoomTypeIdentifier unsafe.Pointer
-
-type EKWeekday unsafe.Pointer
 
 type MKMapItem unsafe.Pointer
 

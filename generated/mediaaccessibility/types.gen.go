@@ -43,10 +43,6 @@ type MACaptionAppearanceDisplayType unsafe.Pointer
 
 type MACaptionAppearanceDomain unsafe.Pointer
 
-type MACaptionAppearanceFontStyle unsafe.Pointer
-
-type MACaptionAppearanceTextEdgeStyle unsafe.Pointer
-
 type NSCopying unsafe.Pointer
 
 type NSDictionary unsafe.Pointer

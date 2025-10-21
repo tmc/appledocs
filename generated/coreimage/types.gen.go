@@ -50,17 +50,11 @@ type CGRect unsafe.Pointer
 
 type CGSize unsafe.Pointer
 
-type CIDataMatrixCodeECCVersion unsafe.Pointer
-
 type CIFormat unsafe.Pointer
 
 type CIKernelROICallback unsafe.Pointer
 
-type CIQRCodeErrorCorrectionLevel unsafe.Pointer
-
 type CIRAWDecoderVersion unsafe.Pointer
-
-type CIRenderDestinationAlphaMode unsafe.Pointer
 
 type CVImageBufferRef unsafe.Pointer
 

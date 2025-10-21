@@ -14,20 +14,6 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type BOOL unsafe.Pointer
 
-type DDDeviceCategory unsafe.Pointer
-
-type DDDeviceMediaPlaybackState unsafe.Pointer
-
-type DDDeviceProtocol unsafe.Pointer
-
-type DDDeviceState unsafe.Pointer
-
-type DDDeviceSupports unsafe.Pointer
-
-type DDDeviceWiFiAwareServiceRole unsafe.Pointer
-
-type DDEventType unsafe.Pointer
-
 type NSData unsafe.Pointer
 
 type NSString unsafe.Pointer

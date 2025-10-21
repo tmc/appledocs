@@ -59,13 +59,9 @@ type MIDI2DeviceManufacturer unsafe.Pointer
 
 type MIDI2DeviceRevisionLevel unsafe.Pointer
 
-type MIDICIDeviceType unsafe.Pointer
-
 type MIDICIMUID unsafe.Pointer
 
 type MIDICIProfileID unsafe.Pointer
-
-type MIDICIProfileType unsafe.Pointer
 
 type MIDICISessionDisconnectBlock unsafe.Pointer
 
@@ -83,10 +79,6 @@ type MIDINotifyProc unsafe.Pointer
 
 type MIDIObjectRef unsafe.Pointer
 
-type MIDIObjectType unsafe.Pointer
-
-type MIDIProtocolID unsafe.Pointer
-
 type MIDIReceiveBlock unsafe.Pointer
 
 type MIDIThruConnectionParams unsafe.Pointer
@@ -97,19 +89,9 @@ type MIDIUInteger14 unsafe.Pointer
 
 type MIDIUInteger7 unsafe.Pointer
 
-type MIDIUMPCIObjectBackingType unsafe.Pointer
-
-type MIDIUMPFunctionBlockDirection unsafe.Pointer
-
 type MIDIUMPFunctionBlockID unsafe.Pointer
 
-type MIDIUMPFunctionBlockMIDI1Info unsafe.Pointer
-
-type MIDIUMPFunctionBlockUIHint unsafe.Pointer
-
 type MIDIUMPGroupNumber unsafe.Pointer
-
-type MIDIUMPProtocolOptions unsafe.Pointer
 
 type MIDIUniqueID unsafe.Pointer
 

@@ -44,15 +44,5 @@ type NSUInteger unsafe.Pointer
 
 type NSURL unsafe.Pointer
 
-type VZDiskSynchronizationMode unsafe.Pointer
-
-type VZEFIVariableStoreInitializationOptions unsafe.Pointer
-
-type VZLinuxRosettaAvailability unsafe.Pointer
-
-type VZMacAuxiliaryStorageInitializationOptions unsafe.Pointer
-
-type VZVirtualMachineState unsafe.Pointer
-
 
 

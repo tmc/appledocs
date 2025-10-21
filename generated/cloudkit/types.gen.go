@@ -14,53 +14,19 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type BOOL unsafe.Pointer
 
-type CKAccountStatus unsafe.Pointer
-
 type CKApplicationPermissionBlock unsafe.Pointer
-
-type CKApplicationPermissions unsafe.Pointer
-
-type CKDatabaseScope unsafe.Pointer
 
 type CKNotificationID unsafe.Pointer
 
-type CKNotificationType unsafe.Pointer
-
-type CKOperationGroupTransferSize unsafe.Pointer
-
 type CKOperationID unsafe.Pointer
-
-type CKQuerySubscriptionOptions unsafe.Pointer
 
 type CKRecordFieldKey unsafe.Pointer
 
 type CKRecordType unsafe.Pointer
 
-type CKRecordZoneCapabilities unsafe.Pointer
-
-type CKRecordZoneEncryptionScope unsafe.Pointer
-
-type CKReferenceAction unsafe.Pointer
-
-type CKShareParticipantAcceptanceStatus unsafe.Pointer
-
-type CKShareParticipantPermission unsafe.Pointer
-
-type CKShareParticipantRole unsafe.Pointer
-
-type CKShareParticipantType unsafe.Pointer
-
 type CKSubscriptionID unsafe.Pointer
 
 type CKSubscriptionType unsafe.Pointer
-
-type CKSyncEngineEventType unsafe.Pointer
-
-type CKSyncEnginePendingDatabaseChangeType unsafe.Pointer
-
-type CKSyncEnginePendingRecordZoneChangeType unsafe.Pointer
-
-type CKSyncEngineSyncReason unsafe.Pointer
 
 type CLLocation unsafe.Pointer
 

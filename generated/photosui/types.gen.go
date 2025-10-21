@@ -56,27 +56,9 @@ type PHCloudIdentifier unsafe.Pointer
 
 type PHLivePhoto unsafe.Pointer
 
-type PHLivePhotoBadgeOptions unsafe.Pointer
-
-type PHLivePhotoViewContentMode unsafe.Pointer
-
-type PHLivePhotoViewPlaybackStyle unsafe.Pointer
-
 type PHPhotoLibrary unsafe.Pointer
 
-type PHPickerCapabilities unsafe.Pointer
-
-type PHPickerConfigurationAssetRepresentationMode unsafe.Pointer
-
-type PHPickerConfigurationSelection unsafe.Pointer
-
-type PHPickerMode unsafe.Pointer
-
 type PHProject unsafe.Pointer
-
-type PHProjectSectionType unsafe.Pointer
-
-type PHProjectTextElementType unsafe.Pointer
 
 type UIGestureRecognizer unsafe.Pointer
 

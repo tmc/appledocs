@@ -16,29 +16,9 @@ type BOOL unsafe.Pointer
 
 type MPSDataType unsafe.Pointer
 
-type MPSGraphDeviceType unsafe.Pointer
-
 type MPSGraphExecutableCompletionHandler unsafe.Pointer
 
 type MPSGraphExecutableScheduledHandler unsafe.Pointer
-
-type MPSGraphExecutionStage unsafe.Pointer
-
-type MPSGraphFFTScalingMode unsafe.Pointer
-
-type MPSGraphOptimizationProfile unsafe.Pointer
-
-type MPSGraphPaddingMode unsafe.Pointer
-
-type MPSGraphPaddingStyle unsafe.Pointer
-
-type MPSGraphRNNActivation unsafe.Pointer
-
-type MPSGraphRandomDistribution unsafe.Pointer
-
-type MPSGraphSparseStorageType unsafe.Pointer
-
-type MPSGraphTensorNamedDataLayout unsafe.Pointer
 
 type MPSShape unsafe.Pointer
 

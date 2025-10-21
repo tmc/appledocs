@@ -48,7 +48,5 @@ type SKErrorCode unsafe.Pointer
 
 type SKPaymentTransactionState unsafe.Pointer
 
-type SKTestTimeRate unsafe.Pointer
-
 
 

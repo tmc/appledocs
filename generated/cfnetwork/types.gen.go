@@ -71,8 +71,6 @@ type CFHostClientCallBack unsafe.Pointer
 
 type CFHostClientContext unsafe.Pointer
 
-type CFHostInfoType unsafe.Pointer
-
 type CFIndex unsafe.Pointer
 
 type CFNetDiagnosticStatus unsafe.Pointer
@@ -84,8 +82,6 @@ type CFNetServiceClientCallBack unsafe.Pointer
 type CFNetServiceClientContext unsafe.Pointer
 
 type CFNetServiceMonitorClientCallBack unsafe.Pointer
-
-type CFNetServiceMonitorType unsafe.Pointer
 
 type CFOptionFlags unsafe.Pointer
 

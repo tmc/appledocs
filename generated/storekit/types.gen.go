@@ -46,19 +46,9 @@ type NSUUID unsafe.Pointer
 
 type SKAdNetworkCoarseConversionValue unsafe.Pointer
 
-type SKCloudServiceAuthorizationStatus unsafe.Pointer
-
 type SKCloudServiceSetupViewControllerDelegate unsafe.Pointer
 
 type SKDownloadState unsafe.Pointer
-
-type SKOverlayPosition unsafe.Pointer
-
-type SKPaymentTransactionState unsafe.Pointer
-
-type SKProductDiscountPaymentMode unsafe.Pointer
-
-type SKProductDiscountType unsafe.Pointer
 
 type SKProductStorePromotionVisibility unsafe.Pointer
 

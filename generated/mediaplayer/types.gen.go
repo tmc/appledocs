@@ -22,33 +22,9 @@ type CGSize unsafe.Pointer
 
 type MPMediaEntityPersistentID unsafe.Pointer
 
-type MPMediaGrouping unsafe.Pointer
-
-type MPMediaLibraryAuthorizationStatus unsafe.Pointer
-
-type MPMediaPlaylistAttribute unsafe.Pointer
-
-type MPMediaPredicateComparison unsafe.Pointer
-
-type MPMediaType unsafe.Pointer
-
-type MPMovieLoadState unsafe.Pointer
-
 type MPMoviePlaybackState unsafe.Pointer
 
 type MPMovieRepeatMode unsafe.Pointer
-
-type MPMusicPlaybackState unsafe.Pointer
-
-type MPMusicRepeatMode unsafe.Pointer
-
-type MPMusicShuffleMode unsafe.Pointer
-
-type MPNowPlayingInfoLanguageOptionType unsafe.Pointer
-
-type MPNowPlayingPlaybackState unsafe.Pointer
-
-type MPShuffleType unsafe.Pointer
 
 type NSArray unsafe.Pointer
 

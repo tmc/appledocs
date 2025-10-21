@@ -20,24 +20,6 @@ type NEAppPushDelegate unsafe.Pointer
 
 type NEFilterSettings unsafe.Pointer
 
-type NENetworkRuleProtocol unsafe.Pointer
-
-type NEProviderStopReason unsafe.Pointer
-
-type NETrafficDirection unsafe.Pointer
-
-type NETunnelProviderRoutingMethod unsafe.Pointer
-
-type NEVPNIKEAuthenticationMethod unsafe.Pointer
-
-type NEVPNIKEv2CertificateType unsafe.Pointer
-
-type NEVPNIKEv2DeadPeerDetectionRate unsafe.Pointer
-
-type NEVPNIKEv2TLSVersion unsafe.Pointer
-
-type NEVPNStatus unsafe.Pointer
-
 type NSArray unsafe.Pointer
 
 type NSData unsafe.Pointer

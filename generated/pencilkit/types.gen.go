@@ -48,17 +48,7 @@ type NSTimeInterval unsafe.Pointer
 
 type NSUInteger unsafe.Pointer
 
-type PKCanvasViewDrawingPolicy unsafe.Pointer
-
-type PKContentVersion unsafe.Pointer
-
-type PKEraserType unsafe.Pointer
-
 type PKInkType unsafe.Pointer
-
-type PKToolPickerCustomItemControlOptions unsafe.Pointer
-
-type PKToolPickerVisibility unsafe.Pointer
 
 type UIBarButtonItem unsafe.Pointer
 

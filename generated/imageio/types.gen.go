@@ -63,11 +63,7 @@ type CFTypeID unsafe.Pointer
 
 type CGImageMetadataTagBlock unsafe.Pointer
 
-type CGImageMetadataType unsafe.Pointer
-
 type CGImageSourceAnimationBlock unsafe.Pointer
-
-type CGImageSourceStatus unsafe.Pointer
 
 type OSStatus unsafe.Pointer
 

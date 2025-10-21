@@ -171,8 +171,6 @@ type CFXMLParserRef unsafe.Pointer
 type CFXMLTreeRef unsafe.Pointer
 
 
-// TimeInterval for non-CoreGraphics frameworks
-type TimeInterval = float64  // NSTimeInterval
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
@@ -205,19 +203,9 @@ type CFBundleRefNum unsafe.Pointer
 
 type CFCalendarIdentifier unsafe.Pointer
 
-type CFCalendarUnit unsafe.Pointer
-
-type CFCharacterSetPredefinedSet unsafe.Pointer
-
 type CFComparatorFunction unsafe.Pointer
 
-type CFComparisonResult unsafe.Pointer
-
-type CFDataSearchFlags unsafe.Pointer
-
 type CFDateFormatterKey unsafe.Pointer
-
-type CFDateFormatterStyle unsafe.Pointer
 
 type CFDictionaryApplierFunction unsafe.Pointer
 
@@ -233,23 +221,17 @@ type CFFileDescriptorContext unsafe.Pointer
 
 type CFFileDescriptorNativeDescriptor unsafe.Pointer
 
-type CFFileSecurityClearOptions unsafe.Pointer
-
 type CFGregorianDate unsafe.Pointer
 
 type CFGregorianUnits unsafe.Pointer
 
 type CFHashCode unsafe.Pointer
 
-type CFISO8601DateFormatOptions unsafe.Pointer
-
 type CFIndex unsafe.Pointer
 
 type CFLocaleIdentifier unsafe.Pointer
 
 type CFLocaleKey unsafe.Pointer
-
-type CFLocaleLanguageDirection unsafe.Pointer
 
 type CFMachPortCallBack unsafe.Pointer
 
@@ -267,13 +249,7 @@ type CFNotificationCallback unsafe.Pointer
 
 type CFNotificationName unsafe.Pointer
 
-type CFNotificationSuspensionBehavior unsafe.Pointer
-
 type CFNumberFormatterKey unsafe.Pointer
-
-type CFNumberFormatterStyle unsafe.Pointer
-
-type CFNumberType unsafe.Pointer
 
 type CFOptionFlags unsafe.Pointer
 
@@ -282,8 +258,6 @@ type CFPlugInFactoryFunction unsafe.Pointer
 type CFPlugInInstanceDeallocateInstanceDataFunction unsafe.Pointer
 
 type CFPlugInInstanceGetInterfaceFunction unsafe.Pointer
-
-type CFPropertyListFormat unsafe.Pointer
 
 type CFRange unsafe.Pointer
 
@@ -294,8 +268,6 @@ type CFRunLoopMode unsafe.Pointer
 type CFRunLoopObserverCallBack unsafe.Pointer
 
 type CFRunLoopObserverContext unsafe.Pointer
-
-type CFRunLoopRunResult unsafe.Pointer
 
 type CFRunLoopSourceContext unsafe.Pointer
 
@@ -311,8 +283,6 @@ type CFSocketCallBack unsafe.Pointer
 
 type CFSocketContext unsafe.Pointer
 
-type CFSocketError unsafe.Pointer
-
 type CFSocketNativeHandle unsafe.Pointer
 
 type CFSocketSignature unsafe.Pointer
@@ -323,19 +293,9 @@ type CFStreamError unsafe.Pointer
 
 type CFStreamPropertyKey unsafe.Pointer
 
-type CFStreamStatus unsafe.Pointer
-
-type CFStringCompareFlags unsafe.Pointer
-
 type CFStringEncoding unsafe.Pointer
 
-type CFStringNormalizationForm unsafe.Pointer
-
-type CFStringTokenizerTokenType unsafe.Pointer
-
 type CFTimeInterval unsafe.Pointer
-
-type CFTimeZoneNameStyle unsafe.Pointer
 
 type CFTreeApplierFunction unsafe.Pointer
 
@@ -343,19 +303,7 @@ type CFTreeContext unsafe.Pointer
 
 type CFTypeID unsafe.Pointer
 
-type CFURLBookmarkCreationOptions unsafe.Pointer
-
 type CFURLBookmarkFileCreationOptions unsafe.Pointer
-
-type CFURLBookmarkResolutionOptions unsafe.Pointer
-
-type CFURLComponentType unsafe.Pointer
-
-type CFURLEnumeratorOptions unsafe.Pointer
-
-type CFURLEnumeratorResult unsafe.Pointer
-
-type CFURLPathStyle unsafe.Pointer
 
 type CFUUIDBytes unsafe.Pointer
 
@@ -363,13 +311,9 @@ type CFUserNotificationCallBack unsafe.Pointer
 
 type CFWriteStreamClientCallBack unsafe.Pointer
 
-type CFXMLNodeTypeCode unsafe.Pointer
-
 type CFXMLParserCallBacks unsafe.Pointer
 
 type CFXMLParserContext unsafe.Pointer
-
-type CFXMLParserStatusCode unsafe.Pointer
 
 type ConstStr255Param unsafe.Pointer
 

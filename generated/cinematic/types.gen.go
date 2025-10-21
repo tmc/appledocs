@@ -36,10 +36,6 @@ type CNDetectionGroupID unsafe.Pointer
 
 type CNDetectionID unsafe.Pointer
 
-type CNDetectionType unsafe.Pointer
-
-type CNSpatialAudioRenderingStyle unsafe.Pointer
-
 type CVPixelBufferRef unsafe.Pointer
 
 type MTLCommandBuffer unsafe.Pointer

@@ -99,13 +99,9 @@ type SCNetworkConnectionContext unsafe.Pointer
 
 type SCNetworkConnectionFlags unsafe.Pointer
 
-type SCNetworkConnectionStatus unsafe.Pointer
-
 type SCNetworkReachabilityCallBack unsafe.Pointer
 
 type SCNetworkReachabilityContext unsafe.Pointer
-
-type SCNetworkReachabilityFlags unsafe.Pointer
 
 type SCPreferencesCallBack unsafe.Pointer
 

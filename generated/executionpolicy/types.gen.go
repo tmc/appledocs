@@ -14,8 +14,6 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type BOOL unsafe.Pointer
 
-type EPDeveloperToolStatus unsafe.Pointer
-
 type NSError unsafe.Pointer
 
 type NSURL unsafe.Pointer

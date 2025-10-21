@@ -16,12 +16,6 @@ type AUAudioUnit unsafe.Pointer
 
 type AVAudio3DAngularOrientation unsafe.Pointer
 
-type AVAudioApplicationMicrophoneInjectionPermission unsafe.Pointer
-
-type AVAudioApplicationRecordPermission unsafe.Pointer
-
-type AVAudioCommonFormat unsafe.Pointer
-
 type AVAudioConverterInputBlock unsafe.Pointer
 
 type AVAudioConverterOutputStatus unsafe.Pointer
@@ -38,39 +32,15 @@ type AVAudioNodeTapBlock unsafe.Pointer
 
 type AVAudioPacketCount unsafe.Pointer
 
-type AVAudioRoutingArbitrationCategory unsafe.Pointer
-
-type AVAudioSessionActivationOptions unsafe.Pointer
-
 type AVAudioSessionCategory unsafe.Pointer
 
-type AVAudioSessionCategoryOptions unsafe.Pointer
-
 type AVAudioSessionChannelDescription unsafe.Pointer
-
-type AVAudioSessionIOType unsafe.Pointer
-
-type AVAudioSessionMicrophoneInjectionMode unsafe.Pointer
 
 type AVAudioSessionMode unsafe.Pointer
 
 type AVAudioSessionPolarPattern unsafe.Pointer
 
-type AVAudioSessionPromptStyle unsafe.Pointer
-
-type AVAudioSessionRenderingMode unsafe.Pointer
-
-type AVAudioSessionRouteSelection unsafe.Pointer
-
-type AVAudioSessionRouteSharingPolicy unsafe.Pointer
-
-type AVAudioSessionSetActiveOptions unsafe.Pointer
-
-type AVAudioSessionSpatialExperience unsafe.Pointer
-
 type AVAudioSourceNodeRenderBlock unsafe.Pointer
-
-type AVAudioStereoOrientation unsafe.Pointer
 
 type AVAudioUnitEQFilterParameters unsafe.Pointer
 

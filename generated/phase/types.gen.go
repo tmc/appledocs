@@ -40,43 +40,7 @@ type NSString unsafe.Pointer
 
 type NSURL unsafe.Pointer
 
-type PHASEAssetType unsafe.Pointer
-
-type PHASEAutomaticHeadTrackingFlags unsafe.Pointer
-
-type PHASECullOption unsafe.Pointer
-
-type PHASECurveType unsafe.Pointer
-
-type PHASEMaterialPreset unsafe.Pointer
-
-type PHASEMediumPreset unsafe.Pointer
-
-type PHASENormalizationMode unsafe.Pointer
-
-type PHASEPlaybackMode unsafe.Pointer
-
 type PHASEPullStreamRenderBlock unsafe.Pointer
-
-type PHASERenderingMode unsafe.Pointer
-
-type PHASERenderingState unsafe.Pointer
-
-type PHASEReverbPreset unsafe.Pointer
-
-type PHASESoundEventPrepareHandlerReason unsafe.Pointer
-
-type PHASESoundEventPrepareState unsafe.Pointer
-
-type PHASESoundEventSeekHandlerReason unsafe.Pointer
-
-type PHASESoundEventStartHandlerReason unsafe.Pointer
-
-type PHASESpatialPipelineFlags unsafe.Pointer
-
-type PHASESpatializationMode unsafe.Pointer
-
-type PHASEUpdateMode unsafe.Pointer
 
 
 

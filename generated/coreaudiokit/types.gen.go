@@ -14,8 +14,6 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type AUAudioUnit unsafe.Pointer
 
-type AUGenericViewDisplayFlags unsafe.Pointer
-
 type AudioUnit unsafe.Pointer
 
 type BOOL unsafe.Pointer

@@ -21,15 +21,7 @@ type CAAnimationCalculationMode unsafe.Pointer
 
 type CAAnimationRotationMode unsafe.Pointer
 
-type CAAutoresizingMask unsafe.Pointer
-
-type CAConstraintAttribute unsafe.Pointer
-
-type CACornerMask unsafe.Pointer
-
 type CADynamicRange unsafe.Pointer
-
-type CAEdgeAntialiasingMask unsafe.Pointer
 
 type CAEmitterLayerEmitterMode unsafe.Pointer
 

@@ -22,9 +22,5 @@ type NSError unsafe.Pointer
 
 type NSString unsafe.Pointer
 
-type SAAuthorizationStatus unsafe.Pointer
-
-type SACrashDetectionEventResponse unsafe.Pointer
-
 
 

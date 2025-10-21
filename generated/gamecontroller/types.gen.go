@@ -34,8 +34,6 @@ type GCControllerPlayerIndex unsafe.Pointer
 
 type GCControllerTouchpadHandler unsafe.Pointer
 
-type GCDeviceBatteryState unsafe.Pointer
-
 type GCDualSenseAdaptiveTriggerPositionalAmplitudes unsafe.Pointer
 
 type GCExtendedGamepadSnapshotData unsafe.Pointer

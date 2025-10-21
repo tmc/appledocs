@@ -20,8 +20,6 @@ type CGFloat unsafe.Pointer
 
 type Class unsafe.Pointer
 
-type MPSAlphaType unsafe.Pointer
-
 type MPSBoundingBoxIntersectionTestType unsafe.Pointer
 
 type MPSCNNConvolutionDataSource unsafe.Pointer
@@ -51,8 +49,6 @@ type MPSImageType unsafe.Pointer
 type MPSNDArrayOffsets unsafe.Pointer
 
 type MPSNDArrayQuantizationScheme unsafe.Pointer
-
-type MPSNNComparisonType unsafe.Pointer
 
 type MPSNNGradientStateNode unsafe.Pointer
 

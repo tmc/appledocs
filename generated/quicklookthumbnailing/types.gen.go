@@ -28,10 +28,6 @@ type NSString unsafe.Pointer
 
 type NSURL unsafe.Pointer
 
-type QLThumbnailGenerationRequestRepresentationTypes unsafe.Pointer
-
-type QLThumbnailRepresentationType unsafe.Pointer
-
 type UTType unsafe.Pointer
 
 

@@ -114,49 +114,15 @@ type CGRect unsafe.Pointer
 
 type CGSize unsafe.Pointer
 
-type CTCharacterCollection unsafe.Pointer
-
-type CTFontCollectionCopyOptions unsafe.Pointer
-
 type CTFontCollectionSortDescriptorsCallback unsafe.Pointer
 
 type CTFontDescriptorProgressHandler unsafe.Pointer
 
-type CTFontManagerAutoActivationSetting unsafe.Pointer
-
-type CTFontManagerScope unsafe.Pointer
-
-type CTFontOptions unsafe.Pointer
-
-type CTFontOrientation unsafe.Pointer
-
-type CTFontSymbolicTraits unsafe.Pointer
-
-type CTFontTableOptions unsafe.Pointer
-
 type CTFontTableTag unsafe.Pointer
-
-type CTFontUIFontType unsafe.Pointer
-
-type CTLineBoundsOptions unsafe.Pointer
-
-type CTLineTruncationType unsafe.Pointer
 
 type CTParagraphStyleSetting unsafe.Pointer
 
-type CTParagraphStyleSpecifier unsafe.Pointer
-
-type CTRubyAlignment unsafe.Pointer
-
-type CTRubyOverhang unsafe.Pointer
-
-type CTRubyPosition unsafe.Pointer
-
 type CTRunDelegateCallbacks unsafe.Pointer
-
-type CTRunStatus unsafe.Pointer
-
-type CTTextAlignment unsafe.Pointer
 
 type ConstStr255Param unsafe.Pointer
 

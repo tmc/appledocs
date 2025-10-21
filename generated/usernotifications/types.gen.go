@@ -46,23 +46,7 @@ type NSURL unsafe.Pointer
 
 type UIScene unsafe.Pointer
 
-type UNAlertStyle unsafe.Pointer
-
-type UNAuthorizationOptions unsafe.Pointer
-
-type UNAuthorizationStatus unsafe.Pointer
-
-type UNNotificationActionOptions unsafe.Pointer
-
-type UNNotificationCategoryOptions unsafe.Pointer
-
-type UNNotificationInterruptionLevel unsafe.Pointer
-
-type UNNotificationSetting unsafe.Pointer
-
 type UNNotificationSoundName unsafe.Pointer
-
-type UNShowPreviewsSetting unsafe.Pointer
 
 
 

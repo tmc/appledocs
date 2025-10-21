@@ -16,29 +16,15 @@ type BOOL unsafe.Pointer
 
 type MLModel unsafe.Pointer
 
-type NLContextualEmbeddingAssetsResult unsafe.Pointer
-
 type NLDistance unsafe.Pointer
 
-type NLDistanceType unsafe.Pointer
-
 type NLLanguage unsafe.Pointer
-
-type NLModelType unsafe.Pointer
 
 type NLScript unsafe.Pointer
 
 type NLTag unsafe.Pointer
 
 type NLTagScheme unsafe.Pointer
-
-type NLTaggerAssetsResult unsafe.Pointer
-
-type NLTaggerOptions unsafe.Pointer
-
-type NLTokenUnit unsafe.Pointer
-
-type NLTokenizerAttributes unsafe.Pointer
 
 type NSArray unsafe.Pointer
 

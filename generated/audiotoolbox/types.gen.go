@@ -66,8 +66,6 @@ type AUAudioFrameCount unsafe.Pointer
 
 type AUAudioObjectID unsafe.Pointer
 
-type AUAudioUnitBusType unsafe.Pointer
-
 type AUAudioUnitViewConfiguration unsafe.Pointer
 
 type AUEventListenerBlock unsafe.Pointer
@@ -99,8 +97,6 @@ type AUNode unsafe.Pointer
 type AUNodeInteraction unsafe.Pointer
 
 type AUParameterAddress unsafe.Pointer
-
-type AUParameterAutomationEventType unsafe.Pointer
 
 type AUParameterAutomationObserver unsafe.Pointer
 
@@ -154,17 +150,11 @@ type AudioComponentFactoryFunction unsafe.Pointer
 
 type AudioComponentInstance unsafe.Pointer
 
-type AudioComponentInstantiationOptions unsafe.Pointer
-
-type AudioComponentValidationResult unsafe.Pointer
-
 type AudioConverterComplexInputDataProc unsafe.Pointer
 
 type AudioConverterComplexInputDataProcRealtimeSafe unsafe.Pointer
 
 type AudioConverterInputDataProc unsafe.Pointer
-
-type AudioConverterOptions unsafe.Pointer
 
 type AudioConverterPropertyID unsafe.Pointer
 
@@ -172,21 +162,13 @@ type AudioFileComponent unsafe.Pointer
 
 type AudioFileComponentPropertyID unsafe.Pointer
 
-type AudioFileFlags unsafe.Pointer
-
 type AudioFileID unsafe.Pointer
-
-type AudioFilePermissions unsafe.Pointer
 
 type AudioFilePropertyID unsafe.Pointer
 
 type AudioFileStreamID unsafe.Pointer
 
-type AudioFileStreamParseFlags unsafe.Pointer
-
 type AudioFileStreamPropertyID unsafe.Pointer
-
-type AudioFileStreamSeekFlags unsafe.Pointer
 
 type AudioFileTypeID unsafe.Pointer
 
@@ -213,8 +195,6 @@ type AudioQueueParameterID unsafe.Pointer
 type AudioQueueParameterValue unsafe.Pointer
 
 type AudioQueueProcessingTapCallback unsafe.Pointer
-
-type AudioQueueProcessingTapFlags unsafe.Pointer
 
 type AudioQueuePropertyID unsafe.Pointer
 
@@ -248,17 +228,11 @@ type AudioUnitParameterEvent unsafe.Pointer
 
 type AudioUnitParameterID unsafe.Pointer
 
-type AudioUnitParameterOptions unsafe.Pointer
-
-type AudioUnitParameterUnit unsafe.Pointer
-
 type AudioUnitParameterValue unsafe.Pointer
 
 type AudioUnitPropertyID unsafe.Pointer
 
 type AudioUnitPropertyListenerProc unsafe.Pointer
-
-type AudioUnitRenderActionFlags unsafe.Pointer
 
 type AudioUnitScope unsafe.Pointer
 
@@ -272,17 +246,11 @@ type CAClockBeats unsafe.Pointer
 
 type CAClockListenerProc unsafe.Pointer
 
-type CAClockPropertyID unsafe.Pointer
-
 type CAClockSeconds unsafe.Pointer
 
 type CAClockTempo unsafe.Pointer
 
 type CAClockTime unsafe.Pointer
-
-type CAClockTimeFormat unsafe.Pointer
-
-type CASoundStageSize unsafe.Pointer
 
 type CFAbsoluteTime unsafe.Pointer
 
@@ -341,14 +309,6 @@ type MusicEventUserData unsafe.Pointer
 type MusicPlayer unsafe.Pointer
 
 type MusicSequence unsafe.Pointer
-
-type MusicSequenceFileFlags unsafe.Pointer
-
-type MusicSequenceFileTypeID unsafe.Pointer
-
-type MusicSequenceLoadFlags unsafe.Pointer
-
-type MusicSequenceType unsafe.Pointer
 
 type MusicSequenceUserCallback unsafe.Pointer
 

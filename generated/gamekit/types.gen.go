@@ -20,15 +20,9 @@ type GKConnectionState unsafe.Pointer
 
 type GKGameSessionEventListener unsafe.Pointer
 
-type GKMatchType unsafe.Pointer
-
-type GKPeerPickerConnectionType unsafe.Pointer
-
 type GKPeerPickerControllerDelegate unsafe.Pointer
 
 type GKReleaseState unsafe.Pointer
-
-type GKTransportType unsafe.Pointer
 
 type GKTurnBasedMatchmakerViewControllerDelegate unsafe.Pointer
 

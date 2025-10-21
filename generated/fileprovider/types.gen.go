@@ -28,25 +28,11 @@ type NSError unsafe.Pointer
 
 type NSFileProviderDomainIdentifier unsafe.Pointer
 
-type NSFileProviderDomainRemovalMode unsafe.Pointer
-
-type NSFileProviderDomainTestingModes unsafe.Pointer
-
-type NSFileProviderItemFields unsafe.Pointer
-
 type NSFileProviderItemIdentifier unsafe.Pointer
-
-type NSFileProviderKnownFolders unsafe.Pointer
-
-type NSFileProviderManagerDisconnectionOptions unsafe.Pointer
-
-type NSFileProviderModifyItemOptions unsafe.Pointer
 
 type NSFileProviderService unsafe.Pointer
 
 type NSFileProviderServiceName unsafe.Pointer
-
-type NSFileProviderVolumeUnsupportedReason unsafe.Pointer
 
 type NSNumber unsafe.Pointer
 

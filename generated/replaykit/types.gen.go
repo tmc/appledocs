@@ -38,11 +38,5 @@ type NSView unsafe.Pointer
 
 type NSWindow unsafe.Pointer
 
-type RPCameraPosition unsafe.Pointer
-
-type RPPreviewViewControllerMode unsafe.Pointer
-
-type RPSampleBufferType unsafe.Pointer
-
 
 

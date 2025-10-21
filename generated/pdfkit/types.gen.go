@@ -66,31 +66,13 @@ type NSURL unsafe.Pointer
 
 type NSValue unsafe.Pointer
 
-type PDFAccessPermissions unsafe.Pointer
-
 type PDFAnnotationKey unsafe.Pointer
 
 type PDFAnnotationSubtype unsafe.Pointer
 
 type PDFAnnotationWidgetSubtype unsafe.Pointer
 
-type PDFBorderStyle unsafe.Pointer
-
-type PDFDisplayBox unsafe.Pointer
-
 type PDFLineStyle unsafe.Pointer
-
-type PDFMarkupType unsafe.Pointer
-
-type PDFSelectionGranularity unsafe.Pointer
-
-type PDFTextAnnotationIconType unsafe.Pointer
-
-type PDFThumbnailLayoutMode unsafe.Pointer
-
-type PDFWidgetCellState unsafe.Pointer
-
-type PDFWidgetControlType unsafe.Pointer
 
 type UIBezierPath unsafe.Pointer
 

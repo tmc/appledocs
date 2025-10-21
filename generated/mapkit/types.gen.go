@@ -46,29 +46,17 @@ type MKLocalSearchCompletion unsafe.Pointer
 
 type MKLocalSearchRegionPriority unsafe.Pointer
 
-type MKLocalSearchResultType unsafe.Pointer
-
 type MKLookAroundSnapshotOptions unsafe.Pointer
 
 type MKMapCamera unsafe.Pointer
-
-type MKMapFeatureOptions unsafe.Pointer
-
-type MKMapFeatureType unsafe.Pointer
 
 type MKMapRect unsafe.Pointer
 
 type MKMapSnapshotCompletionHandler unsafe.Pointer
 
-type MKMapType unsafe.Pointer
-
-type MKOverlayLevel unsafe.Pointer
-
 type MKPointOfInterestCategory unsafe.Pointer
 
 type MKSearchCompletionFilterType unsafe.Pointer
-
-type MKUserTrackingMode unsafe.Pointer
 
 type NSAppearance unsafe.Pointer
 

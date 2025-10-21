@@ -20,8 +20,6 @@ type NSBundle unsafe.Pointer
 
 type NSDictionary unsafe.Pointer
 
-type NSPreferencePaneUnselectReply unsafe.Pointer
-
 type NSString unsafe.Pointer
 
 type NSView unsafe.Pointer

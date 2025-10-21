@@ -145,8 +145,6 @@ type CMTimeMapping unsafe.Pointer
 
 type CMTimeRange unsafe.Pointer
 
-type CMTimeRoundingMethod unsafe.Pointer
-
 type CMTimeScale unsafe.Pointer
 
 type CMTimebase unsafe.Pointer

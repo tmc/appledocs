@@ -14,10 +14,6 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type BOOL unsafe.Pointer
 
-type MEComposeUserAction unsafe.Pointer
-
-type MEMessageEncryptionState unsafe.Pointer
-
 type NSArray unsafe.Pointer
 
 type NSDate unsafe.Pointer

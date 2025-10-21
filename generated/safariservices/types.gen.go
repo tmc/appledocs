@@ -34,8 +34,6 @@ type NSURL unsafe.Pointer
 
 type SFAuthenticationCompletionHandler unsafe.Pointer
 
-type SFSafariViewControllerDismissButtonStyle unsafe.Pointer
-
 type UIColor unsafe.Pointer
 
 type UIEventAttribution unsafe.Pointer

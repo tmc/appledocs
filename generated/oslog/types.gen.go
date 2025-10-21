@@ -28,17 +28,5 @@ type NSTimeInterval unsafe.Pointer
 
 type NSURL unsafe.Pointer
 
-type OSLogEntryLogLevel unsafe.Pointer
-
-type OSLogEntrySignpostType unsafe.Pointer
-
-type OSLogEntryStoreCategory unsafe.Pointer
-
-type OSLogEnumeratorOptions unsafe.Pointer
-
-type OSLogMessageComponentArgumentCategory unsafe.Pointer
-
-type OSLogStoreScope unsafe.Pointer
-
 
 

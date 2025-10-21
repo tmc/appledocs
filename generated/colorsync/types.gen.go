@@ -54,8 +54,6 @@ type CFTypeID unsafe.Pointer
 
 type ColorSyncCMMIterateCallback unsafe.Pointer
 
-type ColorSyncDataDepth unsafe.Pointer
-
 type ColorSyncDataLayout unsafe.Pointer
 
 type ColorSyncDeviceProfileIterateCallback unsafe.Pointer

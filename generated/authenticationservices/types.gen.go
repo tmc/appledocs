@@ -14,21 +14,11 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type ASAccountAuthenticationModificationControllerDelegate unsafe.Pointer
 
-type ASAuthorizationAppleIDButtonStyle unsafe.Pointer
-
-type ASAuthorizationAppleIDButtonType unsafe.Pointer
-
 type ASAuthorizationAppleIDProviderCredentialState unsafe.Pointer
 
 type ASAuthorizationOpenIDOperation unsafe.Pointer
 
-type ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle unsafe.Pointer
-
 type ASAuthorizationProviderExtensionKeyType unsafe.Pointer
-
-type ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation unsafe.Pointer
-
-type ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement unsafe.Pointer
 
 type ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState unsafe.Pointer
 
@@ -37,10 +27,6 @@ type ASCredentialRequest unsafe.Pointer
 type ASCredentialServiceIdentifier unsafe.Pointer
 
 type ASPasskeyCredentialRequest unsafe.Pointer
-
-type ASPublicKeyCredentialClientDataCrossOriginValue unsafe.Pointer
-
-type ASUserDetectionStatus unsafe.Pointer
 
 type ASWebAuthenticationSessionCompletionHandler unsafe.Pointer
 

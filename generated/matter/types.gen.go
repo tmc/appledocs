@@ -16,25 +16,15 @@ type BOOL unsafe.Pointer
 
 type Class unsafe.Pointer
 
-type MTRAttributeIDType unsafe.Pointer
-
 type MTRCSRDERBytes unsafe.Pointer
 
 type MTRCertificateDERBytes unsafe.Pointer
 
 type MTRCertificateTLVBytes unsafe.Pointer
 
-type MTRClusterIDType unsafe.Pointer
-
-type MTRCommandIDType unsafe.Pointer
-
 type MTRDeviceResponseHandler unsafe.Pointer
 
-type MTREventIDType unsafe.Pointer
-
 type MTRLogCallback unsafe.Pointer
-
-type MTRLogType unsafe.Pointer
 
 type MTRStatusCompletion unsafe.Pointer
 

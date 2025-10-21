@@ -18,8 +18,6 @@ type MTL4Compiler unsafe.Pointer
 
 type MTLDevice unsafe.Pointer
 
-type MTLFXSpatialScalerColorProcessingMode unsafe.Pointer
-
 type MTLPixelFormat unsafe.Pointer
 
 type NSUInteger unsafe.Pointer

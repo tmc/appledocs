@@ -14,22 +14,6 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type BOOL unsafe.Pointer
 
-type CNAuthorizationStatus unsafe.Pointer
-
-type CNContactDisplayNameOrder unsafe.Pointer
-
-type CNContactFormatterStyle unsafe.Pointer
-
-type CNContactSortOrder unsafe.Pointer
-
-type CNContactType unsafe.Pointer
-
-type CNContainerType unsafe.Pointer
-
-type CNEntityType unsafe.Pointer
-
-type CNPostalAddressFormatterStyle unsafe.Pointer
-
 type NSArray unsafe.Pointer
 
 type NSAttributedString unsafe.Pointer

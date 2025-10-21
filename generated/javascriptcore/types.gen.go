@@ -55,8 +55,6 @@ type JSObjectCallAsFunctionCallback unsafe.Pointer
 
 type JSPropertyAttributes unsafe.Pointer
 
-type JSRelationCondition unsafe.Pointer
-
 type JSType unsafe.Pointer
 
 type JSTypedArrayBytesDeallocator unsafe.Pointer

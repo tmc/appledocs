@@ -12,8 +12,6 @@ type TimeInterval = float64  // NSTimeInterval
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type AEAutocorrectMode unsafe.Pointer
-
 type BOOL unsafe.Pointer
 
 type NSDictionary unsafe.Pointer

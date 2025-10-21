@@ -24,8 +24,6 @@ type NSString unsafe.Pointer
 
 type NSTimeInterval unsafe.Pointer
 
-type TKSmartCardSlotState unsafe.Pointer
-
 type TKTokenConfiguration unsafe.Pointer
 
 type TKTokenInstanceID unsafe.Pointer

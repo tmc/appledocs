@@ -266,44 +266,44 @@ const (
 // SMPTETimeFlags - A structure that defines SMPTE time flags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeFlags
-type SMPTETimeFlags uint
+type PTETimeFlags uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeFlags/kSMPTETimeUnknown
-	kSMPTETimeUnknown SMPTETimeFlags = 0
+	kSMPTETimeUnknown PTETimeFlags = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeFlags/running
-	kSMPTETimeRunning SMPTETimeFlags = 0
+	kSMPTETimeRunning PTETimeFlags = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeFlags/valid
-	kSMPTETimeValid SMPTETimeFlags = 0
+	kSMPTETimeValid PTETimeFlags = 0
 )
 
 // SMPTETimeType - Constants that define SMPTE time types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeType
-type SMPTETimeType uint
+type PTETimeType uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeType/type2997
-	kSMPTETimeType2997 SMPTETimeType = 0
+	kSMPTETimeType2997 PTETimeType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeType/type2997Drop
-	kSMPTETimeType2997Drop SMPTETimeType = 0
+	kSMPTETimeType2997Drop PTETimeType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeType/type30
-	kSMPTETimeType30 SMPTETimeType = 0
+	kSMPTETimeType30 PTETimeType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeType/type30Drop
-	kSMPTETimeType30Drop SMPTETimeType = 0
+	kSMPTETimeType30Drop PTETimeType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeType/type5994
-	kSMPTETimeType5994 SMPTETimeType = 0
+	kSMPTETimeType5994 PTETimeType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeType/type60Drop
-	kSMPTETimeType60Drop SMPTETimeType = 0
+	kSMPTETimeType60Drop PTETimeType = 0
 )
 
 // AVAudioSessionErrorCode - Codes that describe error conditions that may occur when performing audio session operations.

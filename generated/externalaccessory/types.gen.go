@@ -16,8 +16,6 @@ type BOOL unsafe.Pointer
 
 type EABluetoothAccessoryPickerCompletion unsafe.Pointer
 
-type EAWiFiUnconfiguredAccessoryProperties unsafe.Pointer
-
 type NSArray unsafe.Pointer
 
 type NSInputStream unsafe.Pointer

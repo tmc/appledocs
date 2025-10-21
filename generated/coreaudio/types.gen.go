@@ -50,8 +50,6 @@ type BOOL unsafe.Pointer
 
 type Boolean unsafe.Pointer
 
-type CATapMuteBehavior unsafe.Pointer
-
 type CFDictionaryRef unsafe.Pointer
 
 type CFRunLoopSourceRef unsafe.Pointer

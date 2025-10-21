@@ -16,11 +16,7 @@ type ARSession unsafe.Pointer
 
 type BOOL unsafe.Pointer
 
-type NIAlgorithmConvergenceStatus unsafe.Pointer
-
 type NIAlgorithmConvergenceStatusReason unsafe.Pointer
-
-type NINearbyObjectVerticalDirectionEstimate unsafe.Pointer
 
 type NSData unsafe.Pointer
 

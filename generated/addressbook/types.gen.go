@@ -56,8 +56,6 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type ABAddressBookRequestAccessCompletionHandler unsafe.Pointer
 
-type ABAuthorizationStatus unsafe.Pointer
-
 type ABExternalChangeCallback unsafe.Pointer
 
 type ABImageClientCallback unsafe.Pointer

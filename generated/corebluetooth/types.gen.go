@@ -14,27 +14,7 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type BOOL unsafe.Pointer
 
-type CBATTError unsafe.Pointer
-
-type CBAttributePermissions unsafe.Pointer
-
-type CBCentralManagerFeature unsafe.Pointer
-
-type CBCharacteristicProperties unsafe.Pointer
-
-type CBCharacteristicWriteType unsafe.Pointer
-
 type CBL2CAPPSM unsafe.Pointer
-
-type CBManagerAuthorization unsafe.Pointer
-
-type CBManagerState unsafe.Pointer
-
-type CBPeripheralManagerAuthorizationStatus unsafe.Pointer
-
-type CBPeripheralManagerConnectionLatency unsafe.Pointer
-
-type CBPeripheralState unsafe.Pointer
 
 type CFUUIDRef unsafe.Pointer
 

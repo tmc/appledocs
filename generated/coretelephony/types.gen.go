@@ -14,8 +14,6 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type BOOL unsafe.Pointer
 
-type CTCellularPlanCapability unsafe.Pointer
-
 type NSDictionary unsafe.Pointer
 
 type NSSet unsafe.Pointer

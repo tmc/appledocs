@@ -32,12 +32,6 @@ type NSURL unsafe.Pointer
 
 type SCCaptureDynamicRange unsafe.Pointer
 
-type SCContentSharingPickerMode unsafe.Pointer
-
-type SCShareableContentStyle unsafe.Pointer
-
-type SCStreamOutputType unsafe.Pointer
-
 type UTType unsafe.Pointer
 
 

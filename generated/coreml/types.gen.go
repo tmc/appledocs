@@ -20,22 +20,6 @@ type CGImageRef unsafe.Pointer
 
 type CVPixelBufferRef unsafe.Pointer
 
-type MLComputeUnits unsafe.Pointer
-
-type MLFeatureType unsafe.Pointer
-
-type MLImageSizeConstraintType unsafe.Pointer
-
-type MLMultiArrayDataType unsafe.Pointer
-
-type MLReshapeFrequencyHint unsafe.Pointer
-
-type MLSpecializationStrategy unsafe.Pointer
-
-type MLTaskState unsafe.Pointer
-
-type MLUpdateProgressEvent unsafe.Pointer
-
 type MTLDevice unsafe.Pointer
 
 type NSArray unsafe.Pointer

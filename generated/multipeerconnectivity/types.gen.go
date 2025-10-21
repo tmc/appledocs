@@ -14,10 +14,6 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type BOOL unsafe.Pointer
 
-type MCEncryptionPreference unsafe.Pointer
-
-type MCSessionSendDataMode unsafe.Pointer
-
 type NSArray unsafe.Pointer
 
 type NSData unsafe.Pointer

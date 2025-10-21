@@ -33,19 +33,7 @@ type Boolean unsafe.Pointer
 
 type CFTypeID unsafe.Pointer
 
-type IOSurfaceComponentName unsafe.Pointer
-
-type IOSurfaceComponentRange unsafe.Pointer
-
-type IOSurfaceComponentType unsafe.Pointer
-
 type IOSurfaceID unsafe.Pointer
-
-type IOSurfaceLockOptions unsafe.Pointer
-
-type IOSurfacePurgeabilityState unsafe.Pointer
-
-type IOSurfaceSubsampling unsafe.Pointer
 
 type NSDictionary unsafe.Pointer
 

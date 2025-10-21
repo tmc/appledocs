@@ -32,8 +32,6 @@ type EAGLContext unsafe.Pointer
 
 type EAGLSharegroup unsafe.Pointer
 
-type GLKLightingType unsafe.Pointer
-
 type GLKMatrix2 unsafe.Pointer
 
 type GLKMatrix3 unsafe.Pointer
@@ -42,15 +40,7 @@ type GLKMatrix4 unsafe.Pointer
 
 type GLKQuaternion unsafe.Pointer
 
-type GLKTextureEnvMode unsafe.Pointer
-
-type GLKTextureInfoAlphaState unsafe.Pointer
-
-type GLKTextureInfoOrigin unsafe.Pointer
-
 type GLKTextureLoaderCallback unsafe.Pointer
-
-type GLKTextureTarget unsafe.Pointer
 
 type GLKVector2 unsafe.Pointer
 
@@ -59,14 +49,6 @@ type GLKVector3 unsafe.Pointer
 type GLKVector4 unsafe.Pointer
 
 type GLKVertexAttributeParameters unsafe.Pointer
-
-type GLKViewDrawableColorFormat unsafe.Pointer
-
-type GLKViewDrawableDepthFormat unsafe.Pointer
-
-type GLKViewDrawableMultisample unsafe.Pointer
-
-type GLKViewDrawableStencilFormat unsafe.Pointer
 
 type GLboolean unsafe.Pointer
 

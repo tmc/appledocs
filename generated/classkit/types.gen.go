@@ -16,13 +16,7 @@ type BOOL unsafe.Pointer
 
 type CGImageRef unsafe.Pointer
 
-type CLSBinaryValueType unsafe.Pointer
-
 type CLSContextTopic unsafe.Pointer
-
-type CLSContextType unsafe.Pointer
-
-type CLSProgressReportingCapabilityKind unsafe.Pointer
 
 type NSArray unsafe.Pointer
 

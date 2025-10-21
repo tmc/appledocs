@@ -22,11 +22,7 @@ type ElementType unsafe.Pointer
 
 type GKBox unsafe.Pointer
 
-type GKMeshGraphTriangulationMode unsafe.Pointer
-
 type GKQuad unsafe.Pointer
-
-type GKRTreeSplitStrategy unsafe.Pointer
 
 type GKTriangle unsafe.Pointer
 

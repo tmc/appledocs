@@ -25,24 +25,6 @@ type BOOL unsafe.Pointer
 
 type CFArrayRef unsafe.Pointer
 
-type CWChannelBand unsafe.Pointer
-
-type CWChannelWidth unsafe.Pointer
-
-type CWCipherKeyFlags unsafe.Pointer
-
-type CWEventType unsafe.Pointer
-
-type CWIBSSModeSecurity unsafe.Pointer
-
-type CWInterfaceMode unsafe.Pointer
-
-type CWKeychainDomain unsafe.Pointer
-
-type CWPHYMode unsafe.Pointer
-
-type CWSecurity unsafe.Pointer
-
 type NSArray unsafe.Pointer
 
 type NSData unsafe.Pointer

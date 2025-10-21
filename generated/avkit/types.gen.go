@@ -14,23 +14,15 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type AVAudioSession unsafe.Pointer
 
-type AVCaptureEventPhase unsafe.Pointer
-
 type AVCaptureFileOutput unsafe.Pointer
 
 type AVCaptureSession unsafe.Pointer
-
-type AVCaptureViewControlsStyle unsafe.Pointer
-
-type AVContentProposalAction unsafe.Pointer
 
 type AVCustomRoutingController unsafe.Pointer
 
 type AVDateRangeMetadataGroup unsafe.Pointer
 
 type AVDisplayCriteria unsafe.Pointer
-
-type AVDisplayDynamicRange unsafe.Pointer
 
 type AVGroupExperienceCoordinator unsafe.Pointer
 
@@ -40,19 +32,7 @@ type AVPlayer unsafe.Pointer
 
 type AVPlayerLayer unsafe.Pointer
 
-type AVPlayerViewControllerSkippingBehavior unsafe.Pointer
-
-type AVPlayerViewControlsStyle unsafe.Pointer
-
-type AVPlayerViewTrimResult unsafe.Pointer
-
-type AVRoutePickerViewButtonState unsafe.Pointer
-
-type AVRoutePickerViewButtonStyle unsafe.Pointer
-
 type AVTimedMetadataGroup unsafe.Pointer
-
-type AVVideoFrameAnalysisType unsafe.Pointer
 
 type BOOL unsafe.Pointer
 

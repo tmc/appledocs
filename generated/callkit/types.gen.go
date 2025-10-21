@@ -14,17 +14,7 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type BOOL unsafe.Pointer
 
-type CXCallDirectoryEnabledStatus unsafe.Pointer
-
 type CXCallDirectoryPhoneNumber unsafe.Pointer
-
-type CXCallEndedReason unsafe.Pointer
-
-type CXHandleType unsafe.Pointer
-
-type CXPlayDTMFCallActionType unsafe.Pointer
-
-type CXTranslationEngine unsafe.Pointer
 
 type Class unsafe.Pointer
 

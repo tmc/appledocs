@@ -16,27 +16,9 @@ type BOOL unsafe.Pointer
 
 type MLCArithmeticOperation unsafe.Pointer
 
-type MLCComparisonOperation unsafe.Pointer
-
-type MLCDataType unsafe.Pointer
-
-type MLCDeviceType unsafe.Pointer
-
-type MLCExecutionOptions unsafe.Pointer
-
-type MLCGraphCompilationOptions unsafe.Pointer
-
 type MLCGraphCompletionHandler unsafe.Pointer
 
 type MLCOptimizer unsafe.Pointer
-
-type MLCPaddingPolicy unsafe.Pointer
-
-type MLCRandomInitializerType unsafe.Pointer
-
-type MLCReductionType unsafe.Pointer
-
-type MLCSoftmaxOperation unsafe.Pointer
 
 type MTLDevice unsafe.Pointer
 

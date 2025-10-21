@@ -68,22 +68,6 @@ type UIFindInteraction unsafe.Pointer
 
 type UIScrollView unsafe.Pointer
 
-type WKContentMode unsafe.Pointer
-
-type WKFullscreenState unsafe.Pointer
-
-type WKInactiveSchedulingPolicy unsafe.Pointer
-
-type WKMediaCaptureState unsafe.Pointer
-
-type WKMediaPlaybackState unsafe.Pointer
-
-type WKUserScriptInjectionTime unsafe.Pointer
-
-type WKWebViewDataType unsafe.Pointer
-
-type WKWebpagePreferencesUpgradeToHTTPSPolicy unsafe.Pointer
-
 type WebArchive unsafe.Pointer
 
 type WebBackForwardList unsafe.Pointer

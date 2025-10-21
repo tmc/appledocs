@@ -85,11 +85,7 @@ type BluetoothPageScanRepetitionMode unsafe.Pointer
 
 type BluetoothRFCOMMChannelID unsafe.Pointer
 
-type BluetoothRFCOMMLineStatus unsafe.Pointer
-
 type BluetoothRFCOMMMTU unsafe.Pointer
-
-type BluetoothRFCOMMParityType unsafe.Pointer
 
 type BluetoothSDPDataElementSizeDescriptor unsafe.Pointer
 
@@ -121,11 +117,7 @@ type IOBluetoothSDPDataElementRef unsafe.Pointer
 
 type IOBluetoothSDPUUIDRef unsafe.Pointer
 
-type IOBluetoothSMSMode unsafe.Pointer
-
 type IOBluetoothUserNotificationCallback unsafe.Pointer
-
-type IOBluetoothUserNotificationChannelDirection unsafe.Pointer
 
 type IOReturn unsafe.Pointer
 

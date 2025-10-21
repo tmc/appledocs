@@ -80,11 +80,7 @@ type VNAnimalBodyPoseObservationJointsGroupName unsafe.Pointer
 
 type VNAspectRatio unsafe.Pointer
 
-type VNBarcodeCompositeType unsafe.Pointer
-
 type VNBarcodeSymbology unsafe.Pointer
-
-type VNChirality unsafe.Pointer
 
 type VNComputeStage unsafe.Pointer
 
@@ -102,8 +98,6 @@ type VNHumanHandPoseObservationJointName unsafe.Pointer
 
 type VNHumanHandPoseObservationJointsGroupName unsafe.Pointer
 
-type VNImageCropAndScaleOption unsafe.Pointer
-
 type VNRecognizedPointGroupKey unsafe.Pointer
 
 type VNRecognizedPointKey unsafe.Pointer
@@ -111,8 +105,6 @@ type VNRecognizedPointKey unsafe.Pointer
 type VNRectangleObservation unsafe.Pointer
 
 type VNRequestCompletionHandler unsafe.Pointer
-
-type VNRequestTextRecognitionLevel unsafe.Pointer
 
 
 

@@ -16,23 +16,13 @@ type BOOL unsafe.Pointer
 
 type Bool unsafe.Pointer
 
-type CLAccuracyAuthorization unsafe.Pointer
-
-type CLActivityType unsafe.Pointer
-
-type CLAuthorizationStatus unsafe.Pointer
-
 type CLBeaconMajorValue unsafe.Pointer
 
 type CLBeaconMinorValue unsafe.Pointer
 
-type CLDeviceOrientation unsafe.Pointer
-
 type CLGeocodeCompletionHandler unsafe.Pointer
 
 type CLHeadingComponentValue unsafe.Pointer
-
-type CLLiveUpdateConfiguration unsafe.Pointer
 
 type CLLocationAccuracy unsafe.Pointer
 
@@ -49,12 +39,6 @@ type CLLocationDistance unsafe.Pointer
 type CLLocationSpeed unsafe.Pointer
 
 type CLLocationSpeedAccuracy unsafe.Pointer
-
-type CLMonitoringState unsafe.Pointer
-
-type CLProximity unsafe.Pointer
-
-type CLServiceSessionAuthorizationRequirement unsafe.Pointer
 
 type CNPostalAddress unsafe.Pointer
 

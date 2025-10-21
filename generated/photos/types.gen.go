@@ -68,63 +68,19 @@ type NSURL unsafe.Pointer
 
 type NSURLRequest unsafe.Pointer
 
-type PHAccessLevel unsafe.Pointer
-
-type PHAssetBurstSelectionType unsafe.Pointer
-
-type PHAssetCollectionSubtype unsafe.Pointer
-
-type PHAssetCollectionType unsafe.Pointer
-
-type PHAssetEditOperation unsafe.Pointer
-
 type PHAssetImageProgressHandler unsafe.Pointer
-
-type PHAssetMediaSubtype unsafe.Pointer
-
-type PHAssetMediaType unsafe.Pointer
-
-type PHAssetPlaybackStyle unsafe.Pointer
 
 type PHAssetResourceDataRequestID unsafe.Pointer
 
 type PHAssetResourceProgressHandler unsafe.Pointer
 
-type PHAssetResourceType unsafe.Pointer
-
-type PHAssetResourceUploadJobAction unsafe.Pointer
-
-type PHAssetResourceUploadJobState unsafe.Pointer
-
-type PHAssetSourceType unsafe.Pointer
-
 type PHAssetVideoProgressHandler unsafe.Pointer
-
-type PHAuthorizationStatus unsafe.Pointer
-
-type PHCollectionEditOperation unsafe.Pointer
-
-type PHCollectionListSubtype unsafe.Pointer
-
-type PHCollectionListType unsafe.Pointer
 
 type PHContentEditingInputRequestID unsafe.Pointer
 
-type PHImageContentMode unsafe.Pointer
-
 type PHImageRequestID unsafe.Pointer
 
-type PHImageRequestOptionsDeliveryMode unsafe.Pointer
-
-type PHImageRequestOptionsResizeMode unsafe.Pointer
-
-type PHImageRequestOptionsVersion unsafe.Pointer
-
 type PHLivePhotoFrameProcessingBlock unsafe.Pointer
-
-type PHVideoRequestOptionsDeliveryMode unsafe.Pointer
-
-type PHVideoRequestOptionsVersion unsafe.Pointer
 
 type UIImage unsafe.Pointer
 

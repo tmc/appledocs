@@ -42,12 +42,6 @@ type ISyncClient unsafe.Pointer
 
 type NSArray unsafe.Pointer
 
-type NSAttributeType unsafe.Pointer
-
-type NSBatchDeleteRequestResultType unsafe.Pointer
-
-type NSBatchInsertRequestResultType unsafe.Pointer
-
 type NSBatchUpdateRequestResultType unsafe.Pointer
 
 type NSBundle unsafe.Pointer
@@ -56,23 +50,13 @@ type NSData unsafe.Pointer
 
 type NSDate unsafe.Pointer
 
-type NSDeleteRule unsafe.Pointer
-
 type NSDictionary unsafe.Pointer
 
-type NSEntityMappingType unsafe.Pointer
-
 type NSError unsafe.Pointer
-
-type NSFetchRequestResultType unsafe.Pointer
 
 type NSIndexPath unsafe.Pointer
 
 type NSInteger unsafe.Pointer
-
-type NSManagedObjectContextConcurrencyType unsafe.Pointer
-
-type NSMergePolicyType unsafe.Pointer
 
 type NSMutableDictionary unsafe.Pointer
 
@@ -80,19 +64,9 @@ type NSNotification unsafe.Pointer
 
 type NSObject unsafe.Pointer
 
-type NSPersistentCloudKitContainerEventResultType unsafe.Pointer
-
-type NSPersistentCloudKitContainerSchemaInitializationOptions unsafe.Pointer
-
-type NSPersistentHistoryChangeType unsafe.Pointer
-
-type NSPersistentHistoryResultType unsafe.Pointer
-
 type NSPersistentStoreAsynchronousFetchResultCompletionBlock unsafe.Pointer
 
 type NSPersistentStoreCoordinatorSyncing unsafe.Pointer
-
-type NSPersistentStoreRequestType unsafe.Pointer
 
 type NSPredicate unsafe.Pointer
 

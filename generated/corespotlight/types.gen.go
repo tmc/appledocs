@@ -14,14 +14,6 @@ type TimeInterval = float64  // NSTimeInterval
 // Using unsafe.Pointer as fallback to allow code generation.
 type BOOL unsafe.Pointer
 
-type CSSearchQuerySourceOptions unsafe.Pointer
-
-type CSSearchableItemUpdateListenerOptions unsafe.Pointer
-
-type CSSuggestionKind unsafe.Pointer
-
-type CSUserInteraction unsafe.Pointer
-
 type NSArray unsafe.Pointer
 
 type NSAttributedString unsafe.Pointer

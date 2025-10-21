@@ -87,8 +87,6 @@ type CGRect unsafe.Pointer
 
 type CGSize unsafe.Pointer
 
-type CVAttachmentMode unsafe.Pointer
-
 type CVDisplayLinkOutputCallback unsafe.Pointer
 
 type CVDisplayLinkOutputHandler unsafe.Pointer
@@ -96,10 +94,6 @@ type CVDisplayLinkOutputHandler unsafe.Pointer
 type CVEAGLContext unsafe.Pointer
 
 type CVOptionFlags unsafe.Pointer
-
-type CVPixelBufferLockFlags unsafe.Pointer
-
-type CVPixelBufferPoolFlushFlags unsafe.Pointer
 
 type CVPixelBufferReleaseBytesCallback unsafe.Pointer
 
