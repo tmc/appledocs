@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -156,8 +157,8 @@ func (c_ CollectionViewLayoutInvalidationContext) SetInvalidateEverything(value 
 // A dictionary containing the decoration views whose layout attributes are invalid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateddecorationindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) InvalidatedDecorationIndexPaths() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("invalidatedDecorationIndexPaths"))
+func (c_ CollectionViewLayoutInvalidationContext) InvalidatedDecorationIndexPaths() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("invalidatedDecorationIndexPaths"))
 	return rv
 }
 
@@ -167,15 +168,15 @@ func (c_ CollectionViewLayoutInvalidationContext) InvalidatedDecorationIndexPath
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateddecorationindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedDecorationIndexPaths(value unsafe.Pointer) {
+func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedDecorationIndexPaths(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidatedDecorationIndexPaths:"), value)
 }
 
 // The set of items whose layout attributes are invalid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateditemindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) InvalidatedItemIndexPaths() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("invalidatedItemIndexPaths"))
+func (c_ CollectionViewLayoutInvalidationContext) InvalidatedItemIndexPaths() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("invalidatedItemIndexPaths"))
 	return rv
 }
 
@@ -185,15 +186,15 @@ func (c_ CollectionViewLayoutInvalidationContext) InvalidatedItemIndexPaths() un
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateditemindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedItemIndexPaths(value unsafe.Pointer) {
+func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedItemIndexPaths(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidatedItemIndexPaths:"), value)
 }
 
 // A dictionary containing the supplementary views whose layout attributes are invalid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidatedsupplementaryindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) InvalidatedSupplementaryIndexPaths() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("invalidatedSupplementaryIndexPaths"))
+func (c_ CollectionViewLayoutInvalidationContext) InvalidatedSupplementaryIndexPaths() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("invalidatedSupplementaryIndexPaths"))
 	return rv
 }
 
@@ -203,7 +204,7 @@ func (c_ CollectionViewLayoutInvalidationContext) InvalidatedSupplementaryIndexP
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidatedsupplementaryindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedSupplementaryIndexPaths(value unsafe.Pointer) {
+func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedSupplementaryIndexPaths(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidatedSupplementaryIndexPaths:"), value)
 }
 

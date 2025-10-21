@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FormCell] class.
@@ -83,7 +84,7 @@ func NewFormCell() FormCell {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFormCell/init(coder:)
-func NewFormCellWithCoder(coder ICoder) FormCell {
+func NewFormCellWithCoder(coder foundation.ICoder) FormCell {
 	instance := getFormCellClass().Alloc()
 	rv := objc.Send[FormCell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -102,8 +103,8 @@ func (f_ FormCell) Opaque() bool {
 // The title of the cell as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/attributedtitle
-func (f_ FormCell) AttributedTitle() AttributedString {
-	rv := objc.Send[AttributedString](f_.ID, objc.Sel("attributedTitle"))
+func (f_ FormCell) AttributedTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](f_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (f_ FormCell) AttributedTitle() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/attributedtitle
-func (f_ FormCell) SetAttributedTitle(value IAttributedString) {
+func (f_ FormCell) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 
@@ -138,8 +139,8 @@ func (f_ FormCell) SetIsOpaque(value bool) {
 // The cell’s attributed placeholder string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/placeholderattributedstring
-func (f_ FormCell) PlaceholderAttributedString() AttributedString {
-	rv := objc.Send[AttributedString](f_.ID, objc.Sel("placeholderAttributedString"))
+func (f_ FormCell) PlaceholderAttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](f_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 
@@ -149,7 +150,7 @@ func (f_ FormCell) PlaceholderAttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/placeholderattributedstring
-func (f_ FormCell) SetPlaceholderAttributedString(value IAttributedString) {
+func (f_ FormCell) SetPlaceholderAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
 

@@ -52,7 +52,7 @@ type IApplication interface {
 	RegisterServicesMenuSendTypesReturnTypes(sendTypes []string, returnTypes []string)
 	RegisterUserInterfaceItemSearchHandler(handler objectivec.IObject)
 	ReplyToOpenOrPrint(reply unsafe.Pointer)
-	ReportException(exception unsafe.Pointer)
+	ReportException(exception foundation.IException)
 	Run()
 	RunModalForWindow(window IWindow) ModalResponse
 	RunModalForWindowRelativeToWindow(window IWindow, docWindow IWindow) int
@@ -123,7 +123,7 @@ func NewApplication() Application {
 // Returns the application instance, creating it if it doesn’t exist yet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/shared
-func (ac _ApplicationClass) SharedApplication() NSApplication {
+func (ac _ApplicationClass) SharedApplication() Application {
 	rv := objc.Send[NSApplication](objc.ID(ac.class), objc.Sel("sharedApplication"))
 	return rv
 }
@@ -279,7 +279,7 @@ func (a_ Application) ReplyToOpenOrPrint(reply unsafe.Pointer) {
 // Logs a given exception by calling .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/reportException(_:)
-func (a_ Application) ReportException(exception unsafe.Pointer) {
+func (a_ Application) ReportException(exception foundation.IException) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("reportException:"), exception)
 }
 

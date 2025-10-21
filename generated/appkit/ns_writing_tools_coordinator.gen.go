@@ -31,8 +31,8 @@ type _WritingToolsCoordinatorClass struct {
 // An interface definition for the [WritingToolsCoordinator] class.
 type IWritingToolsCoordinator interface {
 	objectivec.IObject
-	UpdateForReflowedTextInContextWithIdentifier(contextID unsafe.Pointer)
-	UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.IRange, replacementText IAttributedString, reason unsafe.Pointer, contextID unsafe.Pointer)
+	UpdateForReflowedTextInContextWithIdentifier(contextID foundation.IUUID)
+	UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.IRange, replacementText foundation.IAttributedString, reason unsafe.Pointer, contextID foundation.IUUID)
 }
 
 // An object that manages interactions between Writing Tools and your custom text view.
@@ -86,14 +86,14 @@ func NewWritingToolsCoordinator() WritingToolsCoordinator {
 // Informs the coordinator that a change occurred to the view or its text that requires a layout update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateForReflowedTextInContextWithIdentifier(_:)
-func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(contextID unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(contextID foundation.IUUID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateForReflowedTextInContextWithIdentifier:"), contextID)
 }
 
 // Informs the coordinator about changes your app made to the text in the specified context object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)
-func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.IRange, replacementText IAttributedString, reason unsafe.Pointer, contextID unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.IRange, replacementText foundation.IAttributedString, reason unsafe.Pointer, contextID foundation.IUUID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateRange:withText:reason:forContextWithIdentifier:"), range_, replacementText, reason, contextID)
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -313,8 +314,8 @@ func (b_ Button) SetAlternateTitle(value string) {
 // The title that the button displays as an attributed string when the button is in an on state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedAlternateTitle
-func (b_ Button) AttributedAlternateTitle() AttributedString {
-	rv := objc.Send[AttributedString](b_.ID, objc.Sel("attributedAlternateTitle"))
+func (b_ Button) AttributedAlternateTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](b_.ID, objc.Sel("attributedAlternateTitle"))
 	return rv
 }
 
@@ -324,15 +325,15 @@ func (b_ Button) AttributedAlternateTitle() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedAlternateTitle
-func (b_ Button) SetAttributedAlternateTitle(value IAttributedString) {
+func (b_ Button) SetAttributedAlternateTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedAlternateTitle:"), value)
 }
 
 // The title that the button displays in an off state, as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedTitle
-func (b_ Button) AttributedTitle() AttributedString {
-	rv := objc.Send[AttributedString](b_.ID, objc.Sel("attributedTitle"))
+func (b_ Button) AttributedTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](b_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -342,7 +343,7 @@ func (b_ Button) AttributedTitle() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedTitle
-func (b_ Button) SetAttributedTitle(value IAttributedString) {
+func (b_ Button) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 

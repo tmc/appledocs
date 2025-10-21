@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -117,8 +118,8 @@ func (t_ TreeNode) SetChildren(value ITreeNode) {
 // The position of the receiver relative to its root parent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/indexpath
-func (t_ TreeNode) IndexPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("indexPath"))
+func (t_ TreeNode) IndexPath() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](t_.ID, objc.Sel("indexPath"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (t_ TreeNode) IndexPath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/indexpath
-func (t_ TreeNode) SetIndexPath(value unsafe.Pointer) {
+func (t_ TreeNode) SetIndexPath(value foundation.IIndexPath) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIndexPath:"), value)
 }
 
@@ -153,8 +154,8 @@ func (t_ TreeNode) SetIsLeaf(value bool) {
 // A mutable array that provides read-write access to the receiver’s child nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/mutablechildren
-func (t_ TreeNode) MutableChildren() MutableArray {
-	rv := objc.Send[MutableArray](t_.ID, objc.Sel("mutableChildren"))
+func (t_ TreeNode) MutableChildren() foundation.MutableArray {
+	rv := objc.Send[foundation.MutableArray](t_.ID, objc.Sel("mutableChildren"))
 	return rv
 }
 
@@ -164,7 +165,7 @@ func (t_ TreeNode) MutableChildren() MutableArray {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/mutablechildren
-func (t_ TreeNode) SetMutableChildren(value IMutableArray) {
+func (t_ TreeNode) SetMutableChildren(value foundation.IMutableArray) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMutableChildren:"), value)
 }
 

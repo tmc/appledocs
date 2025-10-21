@@ -45,14 +45,14 @@ type IPasteboard interface {
 	PrepareForNewContentsWithOptions(options PasteboardContentsOptions) int
 	PropertyListForType(dataType PasteboardType) objc.ID
 	ReadFileContentsTypeToFile(type_ PasteboardType, filename string) foundation.String
-	ReadFileWrapper() unsafe.Pointer
+	ReadFileWrapper() foundation.FileWrapper
 	ReadObjectsForClassesOptions(classArray []objc.IClass, options unsafe.Pointer) foundation.Array
 	ReleaseGlobally()
 	SetDataForType(data foundation.IData, dataType PasteboardType) bool
 	SetPropertyListForType(plist objectivec.IObject, dataType PasteboardType) bool
 	SetStringForType(string_ string, dataType PasteboardType) bool
 	StringForType(dataType PasteboardType) foundation.String
-	WriteFileWrapper(wrapper unsafe.Pointer) bool
+	WriteFileWrapper(wrapper foundation.IFileWrapper) bool
 	WriteFileContents(filename string) bool
 	WriteObjects(objects []objc.ID) bool
 }
@@ -197,7 +197,7 @@ func (pc _PasteboardClass) PasteboardWithUniqueName() Pasteboard {
 // The shared pasteboard object to use for general content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/general
-func (pc _PasteboardClass) GeneralPasteboard() NSPasteboard {
+func (pc _PasteboardClass) GeneralPasteboard() Pasteboard {
 	rv := objc.Send[NSPasteboard](objc.ID(pc.class), objc.Sel("generalPasteboard"))
 	return rv
 }
@@ -313,8 +313,8 @@ func (p_ Pasteboard) ReadFileContentsTypeToFile(type_ PasteboardType, filename s
 // Reads data representing a file’s contents from the receiver and returns it as a file wrapper.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/readFileWrapper()
-func (p_ Pasteboard) ReadFileWrapper() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("readFileWrapper"))
+func (p_ Pasteboard) ReadFileWrapper() foundation.FileWrapper {
+	rv := objc.Send[foundation.FileWrapper](p_.ID, objc.Sel("readFileWrapper"))
 	return rv
 }
 
@@ -368,7 +368,7 @@ func (p_ Pasteboard) StringForType(dataType PasteboardType) foundation.String {
 // Writes the serialized contents of the specified file wrapper to the pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/write(_:)
-func (p_ Pasteboard) WriteFileWrapper(wrapper unsafe.Pointer) bool {
+func (p_ Pasteboard) WriteFileWrapper(wrapper foundation.IFileWrapper) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("writeFileWrapper:"), wrapper)
 	return rv
 }

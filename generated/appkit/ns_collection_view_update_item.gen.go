@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewCollectionViewUpdateItem() CollectionViewUpdateItem {
 // The index path of the item after the update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathafterupdate
-func (c_ CollectionViewUpdateItem) IndexPathAfterUpdate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexPathAfterUpdate"))
+func (c_ CollectionViewUpdateItem) IndexPathAfterUpdate() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("indexPathAfterUpdate"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (c_ CollectionViewUpdateItem) IndexPathAfterUpdate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathafterupdate
-func (c_ CollectionViewUpdateItem) SetIndexPathAfterUpdate(value unsafe.Pointer) {
+func (c_ CollectionViewUpdateItem) SetIndexPathAfterUpdate(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexPathAfterUpdate:"), value)
 }
 
 // The index path of the item before the update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathbeforeupdate
-func (c_ CollectionViewUpdateItem) IndexPathBeforeUpdate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexPathBeforeUpdate"))
+func (c_ CollectionViewUpdateItem) IndexPathBeforeUpdate() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("indexPathBeforeUpdate"))
 	return rv
 }
 
@@ -112,7 +113,7 @@ func (c_ CollectionViewUpdateItem) IndexPathBeforeUpdate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathbeforeupdate
-func (c_ CollectionViewUpdateItem) SetIndexPathBeforeUpdate(value unsafe.Pointer) {
+func (c_ CollectionViewUpdateItem) SetIndexPathBeforeUpdate(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexPathBeforeUpdate:"), value)
 }
 

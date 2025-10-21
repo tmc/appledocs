@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,12 @@ type _HelpManagerClass struct {
 // An interface definition for the [HelpManager] class.
 type IHelpManager interface {
 	objectivec.IObject
-	ContextHelpForObject(object objectivec.IObject) AttributedString
+	ContextHelpForObject(object objectivec.IObject) foundation.AttributedString
 	FindStringInBook(query string, book IHelpBookName)
 	OpenHelpAnchorInBook(anchor IHelpAnchorName, book IHelpBookName)
-	RegisterBooksInBundle(bundle unsafe.Pointer) bool
+	RegisterBooksInBundle(bundle foundation.IBundle) bool
 	RemoveContextHelpForObject(object objectivec.IObject)
-	SetContextHelpForObject(attrString IAttributedString, object objectivec.IObject)
+	SetContextHelpForObject(attrString foundation.IAttributedString, object objectivec.IObject)
 	ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt coregraphics.CGPoint) bool
 }
 
@@ -97,15 +98,15 @@ func (hc _HelpManagerClass) ContextHelpModeActive() bool {
 // Returns the shared instance, creating it if it does not already exist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/shared
-func (hc _HelpManagerClass) SharedHelpManager() NSHelpManager {
+func (hc _HelpManagerClass) SharedHelpManager() HelpManager {
 	rv := objc.Send[NSHelpManager](objc.ID(hc.class), objc.Sel("sharedHelpManager"))
 	return rv
 }
 // Returns context-sensitive help for an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/contextHelp(for:)
-func (h_ HelpManager) ContextHelpForObject(object objectivec.IObject) AttributedString {
-	rv := objc.Send[AttributedString](h_.ID, objc.Sel("contextHelpForObject:"), object)
+func (h_ HelpManager) ContextHelpForObject(object objectivec.IObject) foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](h_.ID, objc.Sel("contextHelpForObject:"), object)
 	return rv
 }
 
@@ -126,7 +127,7 @@ func (h_ HelpManager) OpenHelpAnchorInBook(anchor IHelpAnchorName, book IHelpBoo
 // Registers one or more help books in the given bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/registerBooks(in:)
-func (h_ HelpManager) RegisterBooksInBundle(bundle unsafe.Pointer) bool {
+func (h_ HelpManager) RegisterBooksInBundle(bundle foundation.IBundle) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("registerBooksInBundle:"), bundle)
 	return rv
 }
@@ -141,7 +142,7 @@ func (h_ HelpManager) RemoveContextHelpForObject(object objectivec.IObject) {
 // Associates help content with an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/setContextHelp(_:for:)
-func (h_ HelpManager) SetContextHelpForObject(attrString IAttributedString, object objectivec.IObject) {
+func (h_ HelpManager) SetContextHelpForObject(attrString foundation.IAttributedString, object objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setContextHelp:forObject:"), attrString, object)
 }
 

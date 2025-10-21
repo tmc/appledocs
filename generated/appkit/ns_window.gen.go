@@ -10,6 +10,7 @@ import (
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [Window] class.
@@ -76,7 +77,7 @@ type IWindow interface {
 	DiscardEventsMatchingMaskBeforeEvent(mask EventMask, lastEvent IEvent)
 	Display()
 	DisplayIfNeeded()
-	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) unsafe.Pointer
+	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink
 	DragImageAtOffsetEventPasteboardSourceSlideBack(image IImage, baseLocation coregraphics.CGPoint, initialOffset coregraphics.CGSize, event IEvent, pboard IPasteboard, sourceObj objectivec.IObject, slideFlag bool)
 	EnableCursorRects()
 	EnableFlushWindow()
@@ -90,9 +91,9 @@ type IWindow interface {
 	FlushWindowIfNeeded()
 	FrameRectForContentRect(contentRect coregraphics.CGRect) coregraphics.CGRect
 	GState() int
-	HandleCloseScriptCommand(command unsafe.Pointer) objc.ID
-	HandlePrintScriptCommand(command unsafe.Pointer) objc.ID
-	HandleSaveScriptCommand(command unsafe.Pointer) objc.ID
+	HandleCloseScriptCommand(command foundation.ICloseCommand) objc.ID
+	HandlePrintScriptCommand(command foundation.IScriptCommand) objc.ID
+	HandleSaveScriptCommand(command foundation.IScriptCommand) objc.ID
 	InsertTitlebarAccessoryViewControllerAtIndex(childViewController ITitlebarAccessoryViewController, index int)
 	InvalidateCursorRectsForView(view IView)
 	InvalidateShadow()
@@ -687,8 +688,8 @@ func (w_ Window) DisplayIfNeeded() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/displayLink(target:selector:)
-func (w_ Window) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
+func (w_ Window) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink {
+	rv := objc.Send[quartzcore.DisplayLink](w_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
 	return rv
 }
 
@@ -788,7 +789,7 @@ func (w_ Window) GState() int {
 // Handles the AppleScript command to close the window (and its associated document, if any).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handleClose(_:)
-func (w_ Window) HandleCloseScriptCommand(command unsafe.Pointer) objc.ID {
+func (w_ Window) HandleCloseScriptCommand(command foundation.ICloseCommand) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handleCloseScriptCommand:"), command)
 	return rv
 }
@@ -796,7 +797,7 @@ func (w_ Window) HandleCloseScriptCommand(command unsafe.Pointer) objc.ID {
 // Handles the AppleScript command to print the contents of the window (or its associated document, if any).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handlePrint(_:)
-func (w_ Window) HandlePrintScriptCommand(command unsafe.Pointer) objc.ID {
+func (w_ Window) HandlePrintScriptCommand(command foundation.IScriptCommand) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handlePrintScriptCommand:"), command)
 	return rv
 }
@@ -804,7 +805,7 @@ func (w_ Window) HandlePrintScriptCommand(command unsafe.Pointer) objc.ID {
 // Handles the AppleScript command to save the window (and its associated document, if any).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handleSave(_:)
-func (w_ Window) HandleSaveScriptCommand(command unsafe.Pointer) objc.ID {
+func (w_ Window) HandleSaveScriptCommand(command foundation.IScriptCommand) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handleSaveScriptCommand:"), command)
 	return rv
 }

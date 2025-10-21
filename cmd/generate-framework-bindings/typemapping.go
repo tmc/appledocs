@@ -378,6 +378,10 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// Try with both ObjC names (NSColor, NSImageScaling) and Go names (Color, ImageScaling)
 	// First try the stripped name (preferred) to avoid returning NSCellAttribute when we want CellAttribute
 	strippedType := stripObjCPrefix(objcType)
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error")) {
+		fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: objcType=%s strippedType=%s (stripped=%v)\n",
+			objcType, strippedType, strippedType != objcType)
+	}
 	if strippedType != objcType {
 		if frameworkPkg, found := crossFrameworkTypeRegistry[strippedType]; found {
 			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "Coder") {
@@ -394,15 +398,29 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			}
 			return result, true
 		}
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error")) {
+			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s NOT FOUND in registry\n", strippedType)
+		}
 	}
 
 	// Then try the original name as fallback
 	if frameworkPkg, found := crossFrameworkTypeRegistry[objcType]; found {
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error") || strings.Contains(objcType, "Operation")) {
+			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: original objcType=%s frameworkPkg=%s currentFramework=%s\n",
+				objcType, frameworkPkg, framework)
+		}
 		// Don't qualify types with their own framework name
 		if strings.ToLower(framework) == frameworkPkg {
 			return objcType, true
 		}
-		return frameworkPkg + "." + objcType, true
+		result := frameworkPkg + "." + objcType
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error") || strings.Contains(objcType, "Operation")) {
+			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: returning qualified: %s\n", result)
+		}
+		return result, true
+	}
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error") || strings.Contains(objcType, "Operation")) {
+		fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: NOT FOUND in registry: objcType=%s\n", objcType)
 	}
 
 	// Try without pointer suffix in cross-framework registry

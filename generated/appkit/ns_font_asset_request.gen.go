@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,8 +93,8 @@ func (f_ FontAssetRequest) SetDownloadedFontDescriptors(value IFontDescriptor) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/progress
-func (f_ FontAssetRequest) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("progress"))
+func (f_ FontAssetRequest) Progress() foundation.Progress {
+	rv := objc.Send[foundation.Progress](f_.ID, objc.Sel("progress"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (f_ FontAssetRequest) Progress() unsafe.Pointer {
 // SetProgress sets the value of the progress property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/progress
-func (f_ FontAssetRequest) SetProgress(value unsafe.Pointer) {
+func (f_ FontAssetRequest) SetProgress(value foundation.IProgress) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setProgress:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -207,8 +208,8 @@ func (t_ TextSelection) SetTextRanges(value ITextRange) {
 // The template attributes the framework uses for characters that replace the contents of this selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/typingattributes
-func (t_ TextSelection) TypingAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("typingAttributes"))
+func (t_ TextSelection) TypingAttributes() coreml.Key {
+	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("typingAttributes"))
 	return rv
 }
 
@@ -218,7 +219,7 @@ func (t_ TextSelection) TypingAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/typingattributes
-func (t_ TextSelection) SetTypingAttributes(value unsafe.Pointer) {
+func (t_ TextSelection) SetTypingAttributes(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTypingAttributes:"), value)
 }
 

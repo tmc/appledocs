@@ -265,8 +265,8 @@ func (p_ PathCell) SetPathStyle(value unsafe.Pointer) {
 // Sets the value of the placeholder attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderattributedstring
-func (p_ PathCell) PlaceholderAttributedString() AttributedString {
-	rv := objc.Send[AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
+func (p_ PathCell) PlaceholderAttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 
@@ -276,7 +276,7 @@ func (p_ PathCell) PlaceholderAttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderattributedstring
-func (p_ PathCell) SetPlaceholderAttributedString(value IAttributedString) {
+func (p_ PathCell) SetPlaceholderAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
 

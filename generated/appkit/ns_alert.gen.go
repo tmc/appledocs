@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -88,7 +89,7 @@ func NewAlert() Alert {
 // Returns an alert initialized from information in an error object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/init(error:)
-func NewAlertWithError(error_ IError) Alert {
+func NewAlertWithError(error_ foundation.IError) Alert {
 	rv := objc.Send[Alert](objc.ID(getAlertClass().class), objc.Sel("alertWithError:"), error_)
 	return rv
 }
@@ -105,7 +106,7 @@ func (ac _AlertClass) AlertWithMessageTextDefaultButtonAlternateButtonOtherButto
 // Returns an alert initialized from information in an error object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/init(error:)
-func (ac _AlertClass) AlertWithError(error_ IError) Alert {
+func (ac _AlertClass) AlertWithError(error_ foundation.IError) Alert {
 	rv := objc.Send[Alert](objc.ID(ac.class), objc.Sel("alertWithError:"), error_)
 	return rv
 }

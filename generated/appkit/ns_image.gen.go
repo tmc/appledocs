@@ -400,8 +400,8 @@ func (i_ Image) SetIsValid(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/locale
-func (i_ Image) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("locale"))
+func (i_ Image) Locale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](i_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -409,7 +409,7 @@ func (i_ Image) Locale() unsafe.Pointer {
 // SetLocale sets the value of the locale property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/locale
-func (i_ Image) SetLocale(value unsafe.Pointer) {
+func (i_ Image) SetLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocale:"), value)
 }
 

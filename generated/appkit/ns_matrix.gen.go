@@ -76,9 +76,9 @@ type IMatrix interface {
 	SizeToCells()
 	SortUsingSelector(comparator objc.SEL)
 	SortUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
-	TextDidBeginEditing(notification unsafe.Pointer)
-	TextDidChange(notification unsafe.Pointer)
-	TextDidEndEditing(notification unsafe.Pointer)
+	TextDidBeginEditing(notification foundation.INotification)
+	TextDidChange(notification foundation.INotification)
+	TextDidEndEditing(notification foundation.INotification)
 	TextShouldBeginEditing(textObject IText) bool
 	TextShouldEndEditing(textObject IText) bool
 	ToolTipForCell(cell ICell) foundation.String
@@ -493,21 +493,21 @@ func (m_ Matrix) SortUsingFunctionContext(compare unsafe.Pointer, context unsafe
 // Invoked when there’s a change in the text after the receiver gains first responder status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMatrix/textDidBeginEditing(_:)
-func (m_ Matrix) TextDidBeginEditing(notification unsafe.Pointer) {
+func (m_ Matrix) TextDidBeginEditing(notification foundation.INotification) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("textDidBeginEditing:"), notification)
 }
 
 // Invoked when a key-down event or paste operation occurs that changes the receiver’s contents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMatrix/textDidChange(_:)
-func (m_ Matrix) TextDidChange(notification unsafe.Pointer) {
+func (m_ Matrix) TextDidChange(notification foundation.INotification) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("textDidChange:"), notification)
 }
 
 // Invoked when text editing ends.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMatrix/textDidEndEditing(_:)
-func (m_ Matrix) TextDidEndEditing(notification unsafe.Pointer) {
+func (m_ Matrix) TextDidEndEditing(notification foundation.INotification) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("textDidEndEditing:"), notification)
 }
 

@@ -31,7 +31,7 @@ type _FilePromiseReceiverClass struct {
 // An interface definition for the [FilePromiseReceiver] class.
 type IFilePromiseReceiver interface {
 	objectivec.IObject
-	ReceivePromisedFilesAtDestinationOptionsOperationQueueReader(destinationDir foundation.IURL, options objectivec.IObject, operationQueue IOperationQueue, reader unsafe.Pointer)
+	ReceivePromisedFilesAtDestinationOptionsOperationQueueReader(destinationDir foundation.IURL, options objectivec.IObject, operationQueue foundation.IOperationQueue, reader unsafe.Pointer)
 }
 
 // An object that receives a file promise from the pasteboard.
@@ -92,7 +92,7 @@ func (fc _FilePromiseReceiverClass) ReadableDraggedTypes() []string {
 // Fulfills the promises at the specified destination.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/receivePromisedFiles(atDestination:options:operationQueue:reader:)
-func (f_ FilePromiseReceiver) ReceivePromisedFilesAtDestinationOptionsOperationQueueReader(destinationDir foundation.IURL, options objectivec.IObject, operationQueue IOperationQueue, reader unsafe.Pointer) {
+func (f_ FilePromiseReceiver) ReceivePromisedFilesAtDestinationOptionsOperationQueueReader(destinationDir foundation.IURL, options objectivec.IObject, operationQueue foundation.IOperationQueue, reader unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("receivePromisedFilesAtDestination:options:operationQueue:reader:"), destinationDir, options, operationQueue, reader)
 }
 

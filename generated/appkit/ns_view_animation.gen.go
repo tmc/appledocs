@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 )
 
 // The class instance for the [ViewAnimation] class.
@@ -84,8 +85,8 @@ func NewViewAnimation() ViewAnimation {
 // The dictionaries defining the objects to animate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations
-func (v_ ViewAnimation) ViewAnimations() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("viewAnimations"))
+func (v_ ViewAnimation) ViewAnimations() coreml.Key {
+	rv := objc.Send[coreml.Key](v_.ID, objc.Sel("viewAnimations"))
 	return rv
 }
 
@@ -95,7 +96,7 @@ func (v_ ViewAnimation) ViewAnimations() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations
-func (v_ ViewAnimation) SetViewAnimations(value unsafe.Pointer) {
+func (v_ ViewAnimation) SetViewAnimations(value coreml.IKey) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setViewAnimations:"), value)
 }
 

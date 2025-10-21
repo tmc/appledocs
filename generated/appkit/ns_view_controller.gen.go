@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/callkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -113,7 +115,7 @@ func NewViewController() ViewController {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(coder:)
-func NewViewControllerWithCoder(coder ICoder) ViewController {
+func NewViewControllerWithCoder(coder foundation.ICoder) ViewController {
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -125,7 +127,7 @@ func NewViewControllerWithCoder(coder ICoder) ViewController {
 // Returns a view controller object initialized to the nib file in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(nibName:bundle:)
-func NewViewControllerWithNibNameBundle(nibNameOrNil INibName, nibBundleOrNil unsafe.Pointer) ViewController {
+func NewViewControllerWithNibNameBundle(nibNameOrNil INibName, nibBundleOrNil foundation.IBundle) ViewController {
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithNibName:bundle:"), nibNameOrNil, nibBundleOrNil)
 	rv.Autorelease()
@@ -357,8 +359,8 @@ func (v_ ViewController) SetChildViewControllers(value []ViewController) {
 // For a view controller that is part of an app extension, the app extension context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/extensionContext
-func (v_ ViewController) ExtensionContext() ExtensionContext {
-	rv := objc.Send[ExtensionContext](v_.ID, objc.Sel("extensionContext"))
+func (v_ ViewController) ExtensionContext() callkit.ExtensionContext {
+	rv := objc.Send[callkit.ExtensionContext](v_.ID, objc.Sel("extensionContext"))
 	return rv
 }
 
@@ -373,8 +375,8 @@ func (v_ ViewController) ViewLoaded() bool {
 // The nib bundle to be loaded to instantiate the receiver’s primary view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/nibBundle
-func (v_ ViewController) NibBundle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("nibBundle"))
+func (v_ ViewController) NibBundle() foundation.Bundle {
+	rv := objc.Send[foundation.Bundle](v_.ID, objc.Sel("nibBundle"))
 	return rv
 }
 

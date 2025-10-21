@@ -91,7 +91,7 @@ func NewImageRep() ImageRep {
 // Creates and returns an image representation object from data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(coder:)
-func NewImageRepWithCoder(coder ICoder) ImageRep {
+func NewImageRepWithCoder(coder foundation.ICoder) ImageRep {
 	instance := getImageRepClass().Alloc()
 	rv := objc.Send[ImageRep](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

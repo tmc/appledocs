@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coredata"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -138,8 +139,8 @@ func (p_ PredicateEditorRowTemplate) SetCompoundTypes(value foundation.INumber) 
 // Returns the left hand expressions for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/leftexpressions
-func (p_ PredicateEditorRowTemplate) LeftExpressions() Expression {
-	rv := objc.Send[Expression](p_.ID, objc.Sel("leftExpressions"))
+func (p_ PredicateEditorRowTemplate) LeftExpressions() coredata.Expression {
+	rv := objc.Send[coredata.Expression](p_.ID, objc.Sel("leftExpressions"))
 	return rv
 }
 
@@ -149,7 +150,7 @@ func (p_ PredicateEditorRowTemplate) LeftExpressions() Expression {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/leftexpressions
-func (p_ PredicateEditorRowTemplate) SetLeftExpressions(value IExpression) {
+func (p_ PredicateEditorRowTemplate) SetLeftExpressions(value coredata.IExpression) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLeftExpressions:"), value)
 }
 
@@ -228,8 +229,8 @@ func (p_ PredicateEditorRowTemplate) SetRightExpressionAttributeType(value unsaf
 // Returns the right hand expressions for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/rightexpressions
-func (p_ PredicateEditorRowTemplate) RightExpressions() Expression {
-	rv := objc.Send[Expression](p_.ID, objc.Sel("rightExpressions"))
+func (p_ PredicateEditorRowTemplate) RightExpressions() coredata.Expression {
+	rv := objc.Send[coredata.Expression](p_.ID, objc.Sel("rightExpressions"))
 	return rv
 }
 
@@ -239,7 +240,7 @@ func (p_ PredicateEditorRowTemplate) RightExpressions() Expression {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/rightexpressions
-func (p_ PredicateEditorRowTemplate) SetRightExpressions(value IExpression) {
+func (p_ PredicateEditorRowTemplate) SetRightExpressions(value coredata.IExpression) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRightExpressions:"), value)
 }
 

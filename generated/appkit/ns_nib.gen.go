@@ -101,7 +101,7 @@ func NewNibWithContentsOfURL(nibFileURL foundation.IURL) Nib {
 // Initializes an instance with nib data and specified bundle for locating resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/init(nibData:bundle:)
-func NewNibWithNibDataBundle(nibData foundation.IData, bundle unsafe.Pointer) Nib {
+func NewNibWithNibDataBundle(nibData foundation.IData, bundle foundation.IBundle) Nib {
 	instance := getNibClass().Alloc()
 	rv := objc.Send[Nib](instance.ID, objc.Sel("initWithNibData:bundle:"), nibData, bundle)
 	rv.Autorelease()
@@ -113,7 +113,7 @@ func NewNibWithNibDataBundle(nibData foundation.IData, bundle unsafe.Pointer) Ni
 // Returns an object initialized to the nib file in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/init(nibNamed:bundle:)
-func NewNibWithNibNamedBundle(nibName INibName, bundle unsafe.Pointer) Nib {
+func NewNibWithNibNamedBundle(nibName INibName, bundle foundation.IBundle) Nib {
 	instance := getNibClass().Alloc()
 	rv := objc.Send[Nib](instance.ID, objc.Sel("initWithNibNamed:bundle:"), nibName, bundle)
 	rv.Autorelease()

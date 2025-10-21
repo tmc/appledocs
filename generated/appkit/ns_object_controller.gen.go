@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coredata"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ObjectController] class.
@@ -200,8 +202,8 @@ func (o_ ObjectController) SetEntityName(value string) {
 // The receiver’s fetch predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/fetchpredicate
-func (o_ ObjectController) FetchPredicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("fetchPredicate"))
+func (o_ ObjectController) FetchPredicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](o_.ID, objc.Sel("fetchPredicate"))
 	return rv
 }
 
@@ -211,7 +213,7 @@ func (o_ ObjectController) FetchPredicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/fetchpredicate
-func (o_ ObjectController) SetFetchPredicate(value unsafe.Pointer) {
+func (o_ ObjectController) SetFetchPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setFetchPredicate:"), value)
 }
 
@@ -236,8 +238,8 @@ func (o_ ObjectController) SetIsEditable(value bool) {
 // The receiver’s managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/managedobjectcontext
-func (o_ ObjectController) ManagedObjectContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("managedObjectContext"))
+func (o_ ObjectController) ManagedObjectContext() coredata.ManagedObjectContext {
+	rv := objc.Send[coredata.ManagedObjectContext](o_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
 
@@ -247,7 +249,7 @@ func (o_ ObjectController) ManagedObjectContext() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/managedobjectcontext
-func (o_ ObjectController) SetManagedObjectContext(value unsafe.Pointer) {
+func (o_ ObjectController) SetManagedObjectContext(value coredata.IManagedObjectContext) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setManagedObjectContext:"), value)
 }
 

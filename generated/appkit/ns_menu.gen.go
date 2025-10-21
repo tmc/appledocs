@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -117,7 +118,7 @@ func NewMenu() Menu {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/init(coder:)
-func NewMenuWithCoder(coder ICoder) Menu {
+func NewMenuWithCoder(coder foundation.ICoder) Menu {
 	instance := getMenuClass().Alloc()
 	rv := objc.Send[Menu](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

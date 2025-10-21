@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextFieldCell] class.
@@ -156,8 +157,8 @@ func (t_ TextFieldCell) SetBezelStyle(value unsafe.Pointer) {
 // The placeholder text for the cell, specified as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderAttributedString
-func (t_ TextFieldCell) PlaceholderAttributedString() AttributedString {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
+func (t_ TextFieldCell) PlaceholderAttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 
@@ -167,7 +168,7 @@ func (t_ TextFieldCell) PlaceholderAttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderAttributedString
-func (t_ TextFieldCell) SetPlaceholderAttributedString(value IAttributedString) {
+func (t_ TextFieldCell) SetPlaceholderAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
 

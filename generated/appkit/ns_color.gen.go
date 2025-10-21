@@ -151,14 +151,14 @@ func (cc _ColorClass) ColorForControlTint(controlTint IControlTint) Color {
 // The color to use for text in a selected control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/alternateSelectedControlTextColor
-func (cc _ColorClass) AlternateSelectedControlTextColor() NSColor {
+func (cc _ColorClass) AlternateSelectedControlTextColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("alternateSelectedControlTextColor"))
 	return rv
 }
 // The system color used for the dark edge of the shadow dropped from controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/controlDarkShadowColor
-func (cc _ColorClass) ControlDarkShadowColor() NSColor {
+func (cc _ColorClass) ControlDarkShadowColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("controlDarkShadowColor"))
 	return rv
 }
@@ -172,62 +172,62 @@ func (cc _ColorClass) CurrentControlTint() ControlTint {
 // The primary color to use for text labels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/labelColor
-func (cc _ColorClass) LabelColor() NSColor {
+func (cc _ColorClass) LabelColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("labelColor"))
 	return rv
 }
 // The quaternary color to use for text labels and separators.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/quaternaryLabelColor
-func (cc _ColorClass) QuaternaryLabelColor() NSColor {
+func (cc _ColorClass) QuaternaryLabelColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("quaternaryLabelColor"))
 	return rv
 }
 // The secondary color to use for text labels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/secondaryLabelColor
-func (cc _ColorClass) SecondaryLabelColor() NSColor {
+func (cc _ColorClass) SecondaryLabelColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("secondaryLabelColor"))
 	return rv
 }
 // Returns a color object for blue that automatically adapts to vibrancy and accessibility settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemBlue
-func (cc _ColorClass) SystemBlueColor() NSColor {
+func (cc _ColorClass) SystemBlueColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("systemBlueColor"))
 	return rv
 }
 // Returns a color object for mint that automatically adapts to vibrancy and accessibility settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemMint
-func (cc _ColorClass) SystemMintColor() NSColor {
+func (cc _ColorClass) SystemMintColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("systemMintColor"))
 	return rv
 }
 // Returns a color object for yellow that automatically adapts to vibrancy and accessibility settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemYellow
-func (cc _ColorClass) SystemYellowColor() NSColor {
+func (cc _ColorClass) SystemYellowColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("systemYellowColor"))
 	return rv
 }
 // The tertiary color to use for text labels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/tertiaryLabelColor
-func (cc _ColorClass) TertiaryLabelColor() NSColor {
+func (cc _ColorClass) TertiaryLabelColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("tertiaryLabelColor"))
 	return rv
 }
 // The color to use for the background area behind text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textBackgroundColor
-func (cc _ColorClass) TextBackgroundColor() NSColor {
+func (cc _ColorClass) TextBackgroundColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("textBackgroundColor"))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textInsertionPointColor
-func (cc _ColorClass) TextInsertionPointColor() NSColor {
+func (cc _ColorClass) TextInsertionPointColor() Color {
 	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("textInsertionPointColor"))
 	return rv
 }

@@ -17,10 +17,3 @@ func ExampleNewAppearanceNamed() {
 	)
 	// Output:
 }
-// ExampleNewAppearanceWithCoder demonstrates how to create a Appearance instance using NewAppearanceWithCoder.
-func ExampleNewAppearanceWithCoder() {
-	_ = appkit.NewAppearanceWithCoder(
-		appkit.Coder{}, // coder Coder
-	)
-	// Output:
-}

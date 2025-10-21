@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,7 +92,7 @@ func NewScrubberLayout() ScrubberLayout {
 // Initializes and returns a newly allocated scrubber layout object from a storyboard or nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout/init(coder:)
-func NewScrubberLayoutWithCoder(coder ICoder) ScrubberLayout {
+func NewScrubberLayoutWithCoder(coder foundation.ICoder) ScrubberLayout {
 	instance := getScrubberLayoutClass().Alloc()
 	rv := objc.Send[ScrubberLayout](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

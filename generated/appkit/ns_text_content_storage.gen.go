@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +34,7 @@ type ITextContentStorage interface {
 	AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) TextRange
 	LocationFromLocationWithOffset(location objectivec.IObject, offset int) objc.ID
 	OffsetFromLocationToLocation(from objectivec.IObject, to objectivec.IObject) int
-	TextElementForAttributedString(attributedString IAttributedString) TextElement
+	TextElementForAttributedString(attributedString foundation.IAttributedString) TextElement
 }
 
 // A concrete object for managing your view’s text content and generating the text elements necessary for layout.
@@ -113,7 +114,7 @@ func (t_ TextContentStorage) OffsetFromLocationToLocation(from objectivec.IObjec
 // Returns the text element corresponding to object’s attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/textElement(for:)
-func (t_ TextContentStorage) TextElementForAttributedString(attributedString IAttributedString) TextElement {
+func (t_ TextContentStorage) TextElementForAttributedString(attributedString foundation.IAttributedString) TextElement {
 	rv := objc.Send[TextElement](t_.ID, objc.Sel("textElementForAttributedString:"), attributedString)
 	return rv
 }
@@ -121,8 +122,8 @@ func (t_ TextContentStorage) TextElementForAttributedString(attributedString IAt
 // An attributed string that contains the contents of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
-func (t_ TextContentStorage) AttributedString() AttributedString {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
+func (t_ TextContentStorage) AttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -132,7 +133,7 @@ func (t_ TextContentStorage) AttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
-func (t_ TextContentStorage) SetAttributedString(value IAttributedString) {
+func (t_ TextContentStorage) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 

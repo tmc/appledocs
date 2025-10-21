@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -101,8 +102,8 @@ func (w_ WindowTab) SetAccessoryView(value IView) {
 // The title for the window tab, specified as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
-func (w_ WindowTab) AttributedTitle() AttributedString {
-	rv := objc.Send[AttributedString](w_.ID, objc.Sel("attributedTitle"))
+func (w_ WindowTab) AttributedTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](w_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -112,7 +113,7 @@ func (w_ WindowTab) AttributedTitle() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
-func (w_ WindowTab) SetAttributedTitle(value IAttributedString) {
+func (w_ WindowTab) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 

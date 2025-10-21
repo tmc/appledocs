@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -735,8 +736,8 @@ func (t_ TextView) SetIsWritingToolsActive(value bool) {
 // The attributes used to draw the onscreen presentation of link text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/linktextattributes
-func (t_ TextView) LinkTextAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("linkTextAttributes"))
+func (t_ TextView) LinkTextAttributes() coreml.Key {
+	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("linkTextAttributes"))
 	return rv
 }
 
@@ -746,15 +747,15 @@ func (t_ TextView) LinkTextAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/linktextattributes
-func (t_ TextView) SetLinkTextAttributes(value unsafe.Pointer) {
+func (t_ TextView) SetLinkTextAttributes(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLinkTextAttributes:"), value)
 }
 
 // The attributes used to draw marked text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/markedtextattributes
-func (t_ TextView) MarkedTextAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("markedTextAttributes"))
+func (t_ TextView) MarkedTextAttributes() coreml.Key {
+	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("markedTextAttributes"))
 	return rv
 }
 
@@ -764,7 +765,7 @@ func (t_ TextView) MarkedTextAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/markedtextattributes
-func (t_ TextView) SetMarkedTextAttributes(value unsafe.Pointer) {
+func (t_ TextView) SetMarkedTextAttributes(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMarkedTextAttributes:"), value)
 }
 
@@ -858,8 +859,8 @@ func (t_ TextView) SetRangeForUserTextChange(value foundation.IRange) {
 // An array containing the ranges of characters affected by an action method that changes character (not paragraph) attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusercharacterattributechange
-func (t_ TextView) RangesForUserCharacterAttributeChange() Value {
-	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserCharacterAttributeChange"))
+func (t_ TextView) RangesForUserCharacterAttributeChange() foundation.Value {
+	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("rangesForUserCharacterAttributeChange"))
 	return rv
 }
 
@@ -869,15 +870,15 @@ func (t_ TextView) RangesForUserCharacterAttributeChange() Value {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusercharacterattributechange
-func (t_ TextView) SetRangesForUserCharacterAttributeChange(value IValue) {
+func (t_ TextView) SetRangesForUserCharacterAttributeChange(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserCharacterAttributeChange:"), value)
 }
 
 // An array containing the ranges of characters affected by a method that changes paragraph (not character) attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforuserparagraphattributechange
-func (t_ TextView) RangesForUserParagraphAttributeChange() Value {
-	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserParagraphAttributeChange"))
+func (t_ TextView) RangesForUserParagraphAttributeChange() foundation.Value {
+	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("rangesForUserParagraphAttributeChange"))
 	return rv
 }
 
@@ -887,15 +888,15 @@ func (t_ TextView) RangesForUserParagraphAttributeChange() Value {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforuserparagraphattributechange
-func (t_ TextView) SetRangesForUserParagraphAttributeChange(value IValue) {
+func (t_ TextView) SetRangesForUserParagraphAttributeChange(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserParagraphAttributeChange:"), value)
 }
 
 // An array containing the ranges of characters affected by a method that changes characters (as opposed to attributes).
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusertextchange
-func (t_ TextView) RangesForUserTextChange() Value {
-	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserTextChange"))
+func (t_ TextView) RangesForUserTextChange() foundation.Value {
+	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("rangesForUserTextChange"))
 	return rv
 }
 
@@ -905,7 +906,7 @@ func (t_ TextView) RangesForUserTextChange() Value {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusertextchange
-func (t_ TextView) SetRangesForUserTextChange(value IValue) {
+func (t_ TextView) SetRangesForUserTextChange(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserTextChange:"), value)
 }
 
@@ -930,8 +931,8 @@ func (t_ TextView) SetReadablePasteboardTypes(value PasteboardType) {
 // An array containing the ranges of characters selected in the receiver’s layout manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedranges
-func (t_ TextView) SelectedRanges() Value {
-	rv := objc.Send[Value](t_.ID, objc.Sel("selectedRanges"))
+func (t_ TextView) SelectedRanges() foundation.Value {
+	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("selectedRanges"))
 	return rv
 }
 
@@ -941,15 +942,15 @@ func (t_ TextView) SelectedRanges() Value {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedranges
-func (t_ TextView) SetSelectedRanges(value IValue) {
+func (t_ TextView) SetSelectedRanges(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRanges:"), value)
 }
 
 // The attributes used to indicate the selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedtextattributes
-func (t_ TextView) SelectedTextAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedTextAttributes"))
+func (t_ TextView) SelectedTextAttributes() coreml.Key {
+	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("selectedTextAttributes"))
 	return rv
 }
 
@@ -959,7 +960,7 @@ func (t_ TextView) SelectedTextAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedtextattributes
-func (t_ TextView) SetSelectedTextAttributes(value unsafe.Pointer) {
+func (t_ TextView) SetSelectedTextAttributes(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedTextAttributes:"), value)
 }
 
@@ -1110,8 +1111,8 @@ func (t_ TextView) SetTextContentStorage(value ITextContentStorage) {
 // ************************* Text Highlight support **************************
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/texthighlightattributes
-func (t_ TextView) TextHighlightAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textHighlightAttributes"))
+func (t_ TextView) TextHighlightAttributes() coreml.Key {
+	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("textHighlightAttributes"))
 	return rv
 }
 
@@ -1121,7 +1122,7 @@ func (t_ TextView) TextHighlightAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/texthighlightattributes
-func (t_ TextView) SetTextHighlightAttributes(value unsafe.Pointer) {
+func (t_ TextView) SetTextHighlightAttributes(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextHighlightAttributes:"), value)
 }
 
@@ -1146,8 +1147,8 @@ func (t_ TextView) SetTextLayoutManager(value ITextLayoutManager) {
 // The receiver’s typing attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/typingattributes
-func (t_ TextView) TypingAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("typingAttributes"))
+func (t_ TextView) TypingAttributes() coreml.Key {
+	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("typingAttributes"))
 	return rv
 }
 
@@ -1157,7 +1158,7 @@ func (t_ TextView) TypingAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/typingattributes
-func (t_ TextView) SetTypingAttributes(value unsafe.Pointer) {
+func (t_ TextView) SetTypingAttributes(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTypingAttributes:"), value)
 }
 

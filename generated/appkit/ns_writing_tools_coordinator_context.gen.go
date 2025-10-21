@@ -92,8 +92,8 @@ func (w_ WritingToolsCoordinatorContext) Range() foundation.Range {
 // The portion of your view’s text to evaluate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
-func (w_ WritingToolsCoordinatorContext) AttributedString() AttributedString {
-	rv := objc.Send[AttributedString](w_.ID, objc.Sel("attributedString"))
+func (w_ WritingToolsCoordinatorContext) AttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](w_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -103,15 +103,15 @@ func (w_ WritingToolsCoordinatorContext) AttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
-func (w_ WritingToolsCoordinatorContext) SetAttributedString(value IAttributedString) {
+func (w_ WritingToolsCoordinatorContext) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedString:"), value)
 }
 
 // The unique identifier of the context object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/identifier
-func (w_ WritingToolsCoordinatorContext) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("identifier"))
+func (w_ WritingToolsCoordinatorContext) Identifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](w_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -121,7 +121,7 @@ func (w_ WritingToolsCoordinatorContext) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/identifier
-func (w_ WritingToolsCoordinatorContext) SetIdentifier(value unsafe.Pointer) {
+func (w_ WritingToolsCoordinatorContext) SetIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIdentifier:"), value)
 }
 

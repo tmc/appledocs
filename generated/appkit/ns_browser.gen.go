@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Browser] class.
@@ -588,8 +589,8 @@ func (b_ Browser) SetSelectedColumn(value int) {
 // The index path of the item selected in the browser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectionindexpath
-func (b_ Browser) SelectionIndexPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("selectionIndexPath"))
+func (b_ Browser) SelectionIndexPath() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](b_.ID, objc.Sel("selectionIndexPath"))
 	return rv
 }
 
@@ -599,15 +600,15 @@ func (b_ Browser) SelectionIndexPath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectionindexpath
-func (b_ Browser) SetSelectionIndexPath(value unsafe.Pointer) {
+func (b_ Browser) SetSelectionIndexPath(value foundation.IIndexPath) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSelectionIndexPath:"), value)
 }
 
 // An array containing the index paths of all items selected in the browser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectionindexpaths
-func (b_ Browser) SelectionIndexPaths() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("selectionIndexPaths"))
+func (b_ Browser) SelectionIndexPaths() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](b_.ID, objc.Sel("selectionIndexPaths"))
 	return rv
 }
 
@@ -617,7 +618,7 @@ func (b_ Browser) SelectionIndexPaths() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectionindexpaths
-func (b_ Browser) SetSelectionIndexPaths(value unsafe.Pointer) {
+func (b_ Browser) SetSelectionIndexPaths(value foundation.IIndexPath) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSelectionIndexPaths:"), value)
 }
 

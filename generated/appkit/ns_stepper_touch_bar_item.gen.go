@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [StepperTouchBarItem] class.
@@ -81,7 +82,7 @@ func NewStepperTouchBarItem() StepperTouchBarItem {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/init(identifier:formatter:)
-func NewStepperTouchBarItemWithIdentifierFormatter(identifier ITouchBarItemIdentifier, formatter unsafe.Pointer) StepperTouchBarItem {
+func NewStepperTouchBarItemWithIdentifierFormatter(identifier ITouchBarItemIdentifier, formatter foundation.IFormatter) StepperTouchBarItem {
 	rv := objc.Send[StepperTouchBarItem](objc.ID(getStepperTouchBarItemClass().class), objc.Sel("stepperTouchBarItemWithIdentifier:formatter:"), identifier, formatter)
 	return rv
 }
@@ -89,7 +90,7 @@ func NewStepperTouchBarItemWithIdentifierFormatter(identifier ITouchBarItemIdent
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/init(identifier:formatter:)
-func (sc _StepperTouchBarItemClass) StepperTouchBarItemWithIdentifierFormatter(identifier ITouchBarItemIdentifier, formatter unsafe.Pointer) unsafe.Pointer {
+func (sc _StepperTouchBarItemClass) StepperTouchBarItemWithIdentifierFormatter(identifier ITouchBarItemIdentifier, formatter foundation.IFormatter) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stepperTouchBarItemWithIdentifier:formatter:"), identifier, formatter)
 	return rv
 }

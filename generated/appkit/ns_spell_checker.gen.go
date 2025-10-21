@@ -31,7 +31,7 @@ type _SpellCheckerClass struct {
 // An interface definition for the [SpellChecker] class.
 type ISpellChecker interface {
 	objectivec.IObject
-	CheckStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(stringToCheck string, range_ foundation.IRange, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, orthography unsafe.Pointer, wordCount unsafe.Pointer) []unsafe.Pointer
+	CheckStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(stringToCheck string, range_ foundation.IRange, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, orthography unsafe.Pointer, wordCount unsafe.Pointer) []foundation.TextCheckingResult
 	CheckGrammarOfStringStartingAtLanguageWrapInSpellDocumentWithTagDetails(stringToCheck string, startingOffset int, language string, wrapFlag bool, tag int, details []foundation.IDictionary) foundation.Range
 	CheckSpellingOfStringStartingAt(stringToCheck string, startingOffset int) foundation.Range
 	CheckSpellingOfStringStartingAtLanguageWrapInSpellDocumentWithTagWordCount(stringToCheck string, startingOffset int, language string, wrapFlag bool, tag int, wordCount unsafe.Pointer) foundation.Range
@@ -93,8 +93,8 @@ func NewSpellChecker() SpellChecker {
 // Requests unified text checking for the given range of the given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/check(_:range:types:options:inSpellDocumentWithTag:orthography:wordCount:)
-func (s_ SpellChecker) CheckStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(stringToCheck string, range_ foundation.IRange, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, orthography unsafe.Pointer, wordCount unsafe.Pointer) []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](s_.ID, objc.Sel("checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:"), objc.String(stringToCheck), range_, checkingTypes, options, tag, orthography, wordCount)
+func (s_ SpellChecker) CheckStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(stringToCheck string, range_ foundation.IRange, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, orthography unsafe.Pointer, wordCount unsafe.Pointer) []foundation.TextCheckingResult {
+	rv := objc.Send[[]foundation.TextCheckingResult](s_.ID, objc.Sel("checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:"), objc.String(stringToCheck), range_, checkingTypes, options, tag, orthography, wordCount)
 	return rv
 }
 

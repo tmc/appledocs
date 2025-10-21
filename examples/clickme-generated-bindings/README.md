@@ -1,15 +1,24 @@
-# Click Me - Generated Bindings Version
+# clickme-generated-bindings
 
-This example demonstrates creating a simple macOS window with a clickable button using the generated AppKit bindings from this project.
+A minimal (88-line) AppKit application demonstrating usage of generated Go bindings for macOS frameworks.
+
+## Overview
+
+This example shows how to:
+- Create an NSApplication using generated bindings
+- Build a simple window with UI controls
+- Handle button clicks with Objective-C target/action pattern
+- Run automated E2E tests using `PerformClick()`
+
+**Total code: 88 lines** - fully inline, single main function, comprehensive E2E testing
 
 ## Features
 
-- Creates a window with title "Hello from Generated Bindings!"
-- Displays a "Click Me!" button
-- Shows a counter label that updates each time the button is clicked
-- Uses type-safe generated Go bindings
-- Automatic Go string to NSString conversion
-- Demonstrates custom button handler with target/action pattern
+- ✅ Uses generated AppKit bindings (no manual objc.Send in main code)
+- ✅ Single code path for both interactive and E2E modes
+- ✅ Actual functional testing (clicks button, verifies counter updates)
+- ✅ Clean, inline code - easy to read top-to-bottom
+- ✅ Automatic string conversion (pass Go strings directly)
 
 ## Building
 
@@ -19,15 +28,21 @@ go build
 
 ## Running
 
+### Interactive Mode
 ```bash
+go run .
+# or
 ./clickme-generated-bindings
 ```
+Creates a window with a "Click Me!" button. Each click increments a counter.
 
-## E2E Testing
-
+### E2E Test Mode
 ```bash
+go run . -e2e
+# or
 ./clickme-generated-bindings -e2e
 ```
+Runs automated test that clicks the button twice and verifies the counter updates correctly.
 
 ## Key Features of Generated Bindings
 

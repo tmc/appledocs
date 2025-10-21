@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ClipView] class.
@@ -34,8 +35,8 @@ type IClipView interface {
 	ConstrainBoundsRect(proposedBounds coregraphics.CGRect) coregraphics.CGRect
 	ConstrainScrollPoint(newOrigin coregraphics.CGPoint) coregraphics.CGPoint
 	ScrollToPoint(newOrigin coregraphics.CGPoint)
-	ViewBoundsChanged(notification unsafe.Pointer)
-	ViewFrameChanged(notification unsafe.Pointer)
+	ViewBoundsChanged(notification foundation.INotification)
+	ViewFrameChanged(notification foundation.INotification)
 }
 
 // An object that clips a document view to a scroll view’s frame.
@@ -122,14 +123,14 @@ func (c_ ClipView) ScrollToPoint(newOrigin coregraphics.CGPoint) {
 // Handles an , passed in the argument, by updating a containing based on the new bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/viewBoundsChanged(_:)
-func (c_ ClipView) ViewBoundsChanged(notification unsafe.Pointer) {
+func (c_ ClipView) ViewBoundsChanged(notification foundation.INotification) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewBoundsChanged:"), notification)
 }
 
 // Handles an , passed in the argument, by updating a containing based on the new frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/viewFrameChanged(_:)
-func (c_ ClipView) ViewFrameChanged(notification unsafe.Pointer) {
+func (c_ ClipView) ViewFrameChanged(notification foundation.INotification) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewFrameChanged:"), notification)
 }
 

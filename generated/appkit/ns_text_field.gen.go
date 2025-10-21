@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextField] class.
@@ -29,7 +30,7 @@ type _TextFieldClass struct {
 // An interface definition for the [TextField] class.
 type ITextField interface {
 	IControl
-	TextDidBeginEditing(notification unsafe.Pointer)
+	TextDidBeginEditing(notification foundation.INotification)
 	TextShouldEndEditing(textObject IText) bool
 }
 
@@ -88,7 +89,7 @@ func NewTextField() TextField {
 // Creates a text field for use as a static label that displays styled text, doesn’t wrap, and doesn’t have selectable text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/init(labelWithAttributedString:)
-func NewTextFieldLabelWithAttributedString(attributedStringValue IAttributedString) TextField {
+func NewTextFieldLabelWithAttributedString(attributedStringValue foundation.IAttributedString) TextField {
 	rv := objc.Send[TextField](objc.ID(getTextFieldClass().class), objc.Sel("labelWithAttributedString:"), attributedStringValue)
 	return rv
 }
@@ -97,7 +98,7 @@ func NewTextFieldLabelWithAttributedString(attributedStringValue IAttributedStri
 // Creates a text field for use as a static label that displays styled text, doesn’t wrap, and doesn’t have selectable text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/init(labelWithAttributedString:)
-func (tc _TextFieldClass) LabelWithAttributedString(attributedStringValue IAttributedString) unsafe.Pointer {
+func (tc _TextFieldClass) LabelWithAttributedString(attributedStringValue foundation.IAttributedString) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("labelWithAttributedString:"), attributedStringValue)
 	return rv
 }
@@ -105,7 +106,7 @@ func (tc _TextFieldClass) LabelWithAttributedString(attributedStringValue IAttri
 // Posts a notification to the default notification center that the text is about to go into edit mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/textDidBeginEditing(_:)
-func (t_ TextField) TextDidBeginEditing(notification unsafe.Pointer) {
+func (t_ TextField) TextDidBeginEditing(notification foundation.INotification) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("textDidBeginEditing:"), notification)
 }
 
@@ -264,8 +265,8 @@ func (t_ TextField) SetEditable(value bool) {
 // The attributed string the text field displays when empty to help the user understand the text field’s purpose.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/placeholderAttributedString
-func (t_ TextField) PlaceholderAttributedString() AttributedString {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
+func (t_ TextField) PlaceholderAttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 
@@ -275,7 +276,7 @@ func (t_ TextField) PlaceholderAttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/placeholderAttributedString
-func (t_ TextField) SetPlaceholderAttributedString(value IAttributedString) {
+func (t_ TextField) SetPlaceholderAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
 
@@ -588,8 +589,8 @@ func (t_ TextField) SetMaximumNumberOfLines(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderattributedstrings
-func (t_ TextField) PlaceholderAttributedStrings() AttributedString {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("placeholderAttributedStrings"))
+func (t_ TextField) PlaceholderAttributedStrings() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("placeholderAttributedStrings"))
 	return rv
 }
 
@@ -597,7 +598,7 @@ func (t_ TextField) PlaceholderAttributedStrings() AttributedString {
 // SetPlaceholderAttributedStrings sets the value of the placeholderAttributedStrings property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderattributedstrings
-func (t_ TextField) SetPlaceholderAttributedStrings(value IAttributedString) {
+func (t_ TextField) SetPlaceholderAttributedStrings(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedStrings:"), value)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextListElement] class.
@@ -82,8 +84,8 @@ func NewTextListElement() TextListElement {
 // An attributed string that represents the string the framework displays for this element taking into account markers and the indentation level of the list element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/attributedstring
-func (t_ TextListElement) AttributedString() AttributedString {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
+func (t_ TextListElement) AttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -93,7 +95,7 @@ func (t_ TextListElement) AttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/attributedstring
-func (t_ TextListElement) SetAttributedString(value IAttributedString) {
+func (t_ TextListElement) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 
@@ -118,8 +120,8 @@ func (t_ TextListElement) SetChildElements(value ITextListElement) {
 // The text list element contents without markers and formatting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/contents
-func (t_ TextListElement) Contents() AttributedString {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("contents"))
+func (t_ TextListElement) Contents() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("contents"))
 	return rv
 }
 
@@ -129,15 +131,15 @@ func (t_ TextListElement) Contents() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/contents
-func (t_ TextListElement) SetContents(value IAttributedString) {
+func (t_ TextListElement) SetContents(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
 }
 
 // A dictionary of attributed string keys and IDs that represent the list’s marker attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/markerattributes
-func (t_ TextListElement) MarkerAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("markerAttributes"))
+func (t_ TextListElement) MarkerAttributes() coreml.Key {
+	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("markerAttributes"))
 	return rv
 }
 
@@ -147,7 +149,7 @@ func (t_ TextListElement) MarkerAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/markerattributes
-func (t_ TextListElement) SetMarkerAttributes(value unsafe.Pointer) {
+func (t_ TextListElement) SetMarkerAttributes(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMarkerAttributes:"), value)
 }
 

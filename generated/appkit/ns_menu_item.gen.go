@@ -87,7 +87,7 @@ func NewMenuItem() MenuItem {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/init(coder:)
-func NewMenuItemWithCoder(coder ICoder) MenuItem {
+func NewMenuItemWithCoder(coder foundation.ICoder) MenuItem {
 	instance := getMenuItemClass().Alloc()
 	rv := objc.Send[MenuItem](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -239,8 +239,8 @@ func (m_ MenuItem) SetAllowsKeyEquivalentWhenHidden(value bool) {
 // A custom string for a menu item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/attributedTitle
-func (m_ MenuItem) AttributedTitle() AttributedString {
-	rv := objc.Send[AttributedString](m_.ID, objc.Sel("attributedTitle"))
+func (m_ MenuItem) AttributedTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](m_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -250,7 +250,7 @@ func (m_ MenuItem) AttributedTitle() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/attributedTitle
-func (m_ MenuItem) SetAttributedTitle(value IAttributedString) {
+func (m_ MenuItem) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 

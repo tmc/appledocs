@@ -48,14 +48,14 @@ type IDocument interface {
 	DuplicateAndReturnError(outError unsafe.Pointer) Document
 	DuplicateDocument(sender objectivec.IObject)
 	DuplicateDocumentWithDelegateDidDuplicateSelectorContextInfo(delegate objectivec.IObject, didDuplicateSelector objc.SEL, contextInfo unsafe.Pointer)
-	EncodeRestorableStateWithCoder(coder ICoder)
-	EncodeRestorableStateWithCoderBackgroundQueue(coder ICoder, queue IOperationQueue)
+	EncodeRestorableStateWithCoder(coder foundation.ICoder)
+	EncodeRestorableStateWithCoderBackgroundQueue(coder foundation.ICoder, queue foundation.IOperationQueue)
 	FileAttributesToWriteToURLOfTypeForSaveOperationOriginalContentsURLError(url foundation.IURL, typeName string, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.IURL, outError unsafe.Pointer) unsafe.Pointer
 	FileNameExtensionForTypeSaveOperation(typeName string, saveOperation SaveOperationType) foundation.String
-	FileWrapperOfTypeError(typeName string, outError unsafe.Pointer) unsafe.Pointer
-	HandleCloseScriptCommand(command unsafe.Pointer) objc.ID
-	HandlePrintScriptCommand(command unsafe.Pointer) objc.ID
-	HandleSaveScriptCommand(command unsafe.Pointer) objc.ID
+	FileWrapperOfTypeError(typeName string, outError unsafe.Pointer) foundation.FileWrapper
+	HandleCloseScriptCommand(command foundation.ICloseCommand) objc.ID
+	HandlePrintScriptCommand(command foundation.IScriptCommand) objc.ID
+	HandleSaveScriptCommand(command foundation.IScriptCommand) objc.ID
 	InvalidateRestorableState()
 	LockDocument(sender objectivec.IObject)
 	LockWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -71,26 +71,26 @@ type IDocument interface {
 	PrepareSharingServicePicker(sharingServicePicker ISharingServicePicker)
 	PreparePageLayout(pageLayout IPageLayout) bool
 	PrepareSavePanel(savePanel ISavePanel) bool
-	PresentError(error_ IError) bool
-	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	PresentError(error_ foundation.IError) bool
+	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ foundation.IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
 	PresentedItemDidChange()
 	PresentedItemDidChangeUbiquityAttributes(attributes unsafe.Pointer)
-	PresentedItemDidGainVersion(version unsafe.Pointer)
-	PresentedItemDidLoseVersion(version unsafe.Pointer)
+	PresentedItemDidGainVersion(version foundation.IFileVersion)
+	PresentedItemDidLoseVersion(version foundation.IFileVersion)
 	PresentedItemDidMoveToURL(newURL foundation.IURL)
-	PresentedItemDidResolveConflictVersion(version unsafe.Pointer)
+	PresentedItemDidResolveConflictVersion(version foundation.IFileVersion)
 	PrintDocumentWithSettingsShowPrintPanelDelegateDidPrintSelectorContextInfo(printSettings unsafe.Pointer, showPrintPanel bool, delegate objectivec.IObject, didPrintSelector objc.SEL, contextInfo unsafe.Pointer)
 	PrintDocument(sender objectivec.IObject)
 	PrintOperationWithSettingsError(printSettings unsafe.Pointer, outError unsafe.Pointer) PrintOperation
 	ReadFromURLOfTypeError(url foundation.IURL, typeName string, outError unsafe.Pointer) bool
-	ReadFromFileWrapperOfTypeError(fileWrapper unsafe.Pointer, typeName string, outError unsafe.Pointer) bool
+	ReadFromFileWrapperOfTypeError(fileWrapper foundation.IFileWrapper, typeName string, outError unsafe.Pointer) bool
 	ReadFromDataOfTypeError(data foundation.IData, typeName string, outError unsafe.Pointer) bool
 	RelinquishPresentedItemToReader(reader unsafe.Pointer)
 	RelinquishPresentedItemToWriter(writer unsafe.Pointer)
 	RemoveWindowController(windowController IWindowController)
 	RenameDocument(sender objectivec.IObject)
-	RestoreStateWithCoder(coder ICoder)
-	RestoreDocumentWindowWithIdentifierStateCompletionHandler(identifier IUserInterfaceItemIdentifier, state ICoder, completionHandler unsafe.Pointer)
+	RestoreStateWithCoder(coder foundation.ICoder)
+	RestoreDocumentWindowWithIdentifierStateCompletionHandler(identifier IUserInterfaceItemIdentifier, state foundation.ICoder, completionHandler unsafe.Pointer)
 	RevertToContentsOfURLOfTypeError(url foundation.IURL, typeName string, outError unsafe.Pointer) bool
 	RevertDocumentToSaved(sender objectivec.IObject)
 	RunModalPageLayoutWithPrintInfoDelegateDidRunSelectorContextInfo(printInfo IPrintInfo, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
@@ -119,10 +119,10 @@ type IDocument interface {
 	UnlockDocumentWithCompletionHandler(completionHandler unsafe.Pointer)
 	UpdateChangeCount(change DocumentChangeType)
 	UpdateChangeCountWithTokenForSaveOperation(changeCountToken objectivec.IObject, saveOperation SaveOperationType)
-	UpdateUserActivityState(activity unsafe.Pointer)
+	UpdateUserActivityState(activity foundation.IUserActivity)
 	ValidateUserInterfaceItem(item objectivec.IObject) bool
-	WillNotPresentError(error_ IError)
-	WillPresentError(error_ IError) Error
+	WillNotPresentError(error_ foundation.IError)
+	WillPresentError(error_ foundation.IError) foundation.Error
 	WindowControllerDidLoadNib(windowController IWindowController)
 	WindowControllerWillLoadNib(windowController IWindowController)
 	WritableTypesForSaveOperation(saveOperation SaveOperationType) []string
@@ -416,14 +416,14 @@ func (d_ Document) DuplicateDocumentWithDelegateDidDuplicateSelectorContextInfo(
 // Saves the interface-related state of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/encodeRestorableState(with:)
-func (d_ Document) EncodeRestorableStateWithCoder(coder ICoder) {
+func (d_ Document) EncodeRestorableStateWithCoder(coder foundation.ICoder) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("encodeRestorableStateWithCoder:"), coder)
 }
 
 // Saves the interface-related state of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/encodeRestorableState(with:backgroundQueue:)
-func (d_ Document) EncodeRestorableStateWithCoderBackgroundQueue(coder ICoder, queue IOperationQueue) {
+func (d_ Document) EncodeRestorableStateWithCoderBackgroundQueue(coder foundation.ICoder, queue foundation.IOperationQueue) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("encodeRestorableStateWithCoder:backgroundQueue:"), coder, queue)
 }
 
@@ -446,15 +446,15 @@ func (d_ Document) FileNameExtensionForTypeSaveOperation(typeName string, saveOp
 // Creates and returns a file wrapper that contains the contents of the document, formatted to the specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileWrapper(ofType:)
-func (d_ Document) FileWrapperOfTypeError(typeName string, outError unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileWrapperOfType:error:"), objc.String(typeName), outError)
+func (d_ Document) FileWrapperOfTypeError(typeName string, outError unsafe.Pointer) foundation.FileWrapper {
+	rv := objc.Send[foundation.FileWrapper](d_.ID, objc.Sel("fileWrapperOfType:error:"), objc.String(typeName), outError)
 	return rv
 }
 
 // Handles the Close AppleScript command by attempting to close the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/handleClose(_:)
-func (d_ Document) HandleCloseScriptCommand(command unsafe.Pointer) objc.ID {
+func (d_ Document) HandleCloseScriptCommand(command foundation.ICloseCommand) objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("handleCloseScriptCommand:"), command)
 	return rv
 }
@@ -462,7 +462,7 @@ func (d_ Document) HandleCloseScriptCommand(command unsafe.Pointer) objc.ID {
 // Handles the Print AppleScript command by attempting to print the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/handlePrint(_:)
-func (d_ Document) HandlePrintScriptCommand(command unsafe.Pointer) objc.ID {
+func (d_ Document) HandlePrintScriptCommand(command foundation.IScriptCommand) objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("handlePrintScriptCommand:"), command)
 	return rv
 }
@@ -470,7 +470,7 @@ func (d_ Document) HandlePrintScriptCommand(command unsafe.Pointer) objc.ID {
 // Handles the Save AppleScript command by attempting to save the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/handleSave(_:)
-func (d_ Document) HandleSaveScriptCommand(command unsafe.Pointer) objc.ID {
+func (d_ Document) HandleSaveScriptCommand(command foundation.IScriptCommand) objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("handleSaveScriptCommand:"), command)
 	return rv
 }
@@ -585,7 +585,7 @@ func (d_ Document) PrepareSavePanel(savePanel ISavePanel) bool {
 // Presents an error alert to the user as a modal panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentError(_:)
-func (d_ Document) PresentError(error_ IError) bool {
+func (d_ Document) PresentError(error_ foundation.IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("presentError:"), error_)
 	return rv
 }
@@ -593,7 +593,7 @@ func (d_ Document) PresentError(error_ IError) bool {
 // Presents an error alert to the user as a modal panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentError(_:modalFor:delegate:didPresent:contextInfo:)
-func (d_ Document) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (d_ Document) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ foundation.IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error_, window, delegate, didPresentSelector, contextInfo)
 }
 
@@ -611,13 +611,13 @@ func (d_ Document) PresentedItemDidChangeUbiquityAttributes(attributes unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemDidGain(_:)
-func (d_ Document) PresentedItemDidGainVersion(version unsafe.Pointer) {
+func (d_ Document) PresentedItemDidGainVersion(version foundation.IFileVersion) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("presentedItemDidGainVersion:"), version)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemDidLose(_:)
-func (d_ Document) PresentedItemDidLoseVersion(version unsafe.Pointer) {
+func (d_ Document) PresentedItemDidLoseVersion(version foundation.IFileVersion) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("presentedItemDidLoseVersion:"), version)
 }
 
@@ -629,7 +629,7 @@ func (d_ Document) PresentedItemDidMoveToURL(newURL foundation.IURL) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemDidResolveConflict(_:)
-func (d_ Document) PresentedItemDidResolveConflictVersion(version unsafe.Pointer) {
+func (d_ Document) PresentedItemDidResolveConflictVersion(version foundation.IFileVersion) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("presentedItemDidResolveConflictVersion:"), version)
 }
 
@@ -666,7 +666,7 @@ func (d_ Document) ReadFromURLOfTypeError(url foundation.IURL, typeName string, 
 // Sets the contents of this document by reading from a file wrapper of a specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/read(from:ofType:)-3rzsi
-func (d_ Document) ReadFromFileWrapperOfTypeError(fileWrapper unsafe.Pointer, typeName string, outError unsafe.Pointer) bool {
+func (d_ Document) ReadFromFileWrapperOfTypeError(fileWrapper foundation.IFileWrapper, typeName string, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("readFromFileWrapper:ofType:error:"), fileWrapper, objc.String(typeName), outError)
 	return rv
 }
@@ -708,14 +708,14 @@ func (d_ Document) RenameDocument(sender objectivec.IObject) {
 // Restores the interface-related state of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/restoreState(with:)
-func (d_ Document) RestoreStateWithCoder(coder ICoder) {
+func (d_ Document) RestoreStateWithCoder(coder foundation.ICoder) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("restoreStateWithCoder:"), coder)
 }
 
 // Restores a window that was associated with a document, after that document is reopened.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/restoreWindow(withIdentifier:state:completionHandler:)
-func (d_ Document) RestoreDocumentWindowWithIdentifierStateCompletionHandler(identifier IUserInterfaceItemIdentifier, state ICoder, completionHandler unsafe.Pointer) {
+func (d_ Document) RestoreDocumentWindowWithIdentifierStateCompletionHandler(identifier IUserInterfaceItemIdentifier, state foundation.ICoder, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("restoreDocumentWindowWithIdentifier:state:completionHandler:"), identifier, state, completionHandler)
 }
 
@@ -920,7 +920,7 @@ func (d_ Document) UpdateChangeCountWithTokenForSaveOperation(changeCountToken o
 // Updates the state of the given user activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/updateUserActivityState(_:)
-func (d_ Document) UpdateUserActivityState(activity unsafe.Pointer) {
+func (d_ Document) UpdateUserActivityState(activity foundation.IUserActivity) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("updateUserActivityState:"), activity)
 }
 
@@ -935,15 +935,15 @@ func (d_ Document) ValidateUserInterfaceItem(item objectivec.IObject) bool {
 // Confirms that the error object is not to be presented to the user and the error cannot be recovered from, so cleanup can be done.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/willNotPresentError(_:)
-func (d_ Document) WillNotPresentError(error_ IError) {
+func (d_ Document) WillNotPresentError(error_ foundation.IError) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("willNotPresentError:"), error_)
 }
 
 // Called when the receiver is about to present an error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/willPresentError(_:)
-func (d_ Document) WillPresentError(error_ IError) Error {
-	rv := objc.Send[Error](d_.ID, objc.Sel("willPresentError:"), error_)
+func (d_ Document) WillPresentError(error_ foundation.IError) foundation.Error {
+	rv := objc.Send[foundation.Error](d_.ID, objc.Sel("willPresentError:"), error_)
 	return rv
 }
 
@@ -1260,8 +1260,8 @@ func (d_ Document) SetLastComponentOfFileName(value string) {
 // Returns the object specifier that represents the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/objectSpecifier
-func (d_ Document) ObjectSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("objectSpecifier"))
+func (d_ Document) ObjectSpecifier() foundation.ScriptObjectSpecifier {
+	rv := objc.Send[foundation.ScriptObjectSpecifier](d_.ID, objc.Sel("objectSpecifier"))
 	return rv
 }
 
@@ -1372,8 +1372,8 @@ func (d_ Document) ShouldRunSavePanelWithAccessoryView() bool {
 // The object that the document uses to support undo/redo operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/undoManager
-func (d_ Document) UndoManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("undoManager"))
+func (d_ Document) UndoManager() foundation.UndoManager {
+	rv := objc.Send[foundation.UndoManager](d_.ID, objc.Sel("undoManager"))
 	return rv
 }
 
@@ -1383,15 +1383,15 @@ func (d_ Document) UndoManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/undoManager
-func (d_ Document) SetUndoManager(value unsafe.Pointer) {
+func (d_ Document) SetUndoManager(value foundation.IUndoManager) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUndoManager:"), value)
 }
 
 // An object that encapsulates a user activity the document supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/userActivity
-func (d_ Document) UserActivity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("userActivity"))
+func (d_ Document) UserActivity() foundation.UserActivity {
+	rv := objc.Send[foundation.UserActivity](d_.ID, objc.Sel("userActivity"))
 	return rv
 }
 
@@ -1401,7 +1401,7 @@ func (d_ Document) UserActivity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/userActivity
-func (d_ Document) SetUserActivity(value unsafe.Pointer) {
+func (d_ Document) SetUserActivity(value foundation.IUserActivity) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUserActivity:"), value)
 }
 

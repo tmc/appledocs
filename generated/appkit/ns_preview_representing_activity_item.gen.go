@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -97,7 +98,7 @@ func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objectivec.IO
 // Creates a metadata object that provides a title and images for a shareable item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:imageProvider:iconProvider:)
-func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(item objectivec.IObject, title string, imageProvider unsafe.Pointer, iconProvider unsafe.Pointer) PreviewRepresentingActivityItem {
+func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(item objectivec.IObject, title string, imageProvider foundation.IItemProvider, iconProvider foundation.IItemProvider) PreviewRepresentingActivityItem {
 	instance := getPreviewRepresentingActivityItemClass().Alloc()
 	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:imageProvider:iconProvider:"), item, objc.String(title), imageProvider, iconProvider)
 	rv.Autorelease()

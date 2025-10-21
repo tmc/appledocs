@@ -149,8 +149,8 @@ func (p_ PDFInfo) SetTagNames(value []string) {
 // A dictionary of additional attributes that describe how to export content as a PDF file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-func (p_ PDFInfo) Attributes() MutableDictionary {
-	rv := objc.Send[MutableDictionary](p_.ID, objc.Sel("attributes"))
+func (p_ PDFInfo) Attributes() foundation.MutableDictionary {
+	rv := objc.Send[foundation.MutableDictionary](p_.ID, objc.Sel("attributes"))
 	return rv
 }
 
@@ -160,7 +160,7 @@ func (p_ PDFInfo) Attributes() MutableDictionary {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-func (p_ PDFInfo) SetAttributes(value IMutableDictionary) {
+func (p_ PDFInfo) SetAttributes(value foundation.IMutableDictionary) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttributes:"), value)
 }
 

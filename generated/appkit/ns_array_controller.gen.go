@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ArrayController] class.
@@ -236,8 +237,8 @@ func (a_ ArrayController) SetClearsFilterPredicateOnInsertion(value bool) {
 // A predicate used by the receiver to filter the array controller contents
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/filterpredicate
-func (a_ ArrayController) FilterPredicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("filterPredicate"))
+func (a_ ArrayController) FilterPredicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](a_.ID, objc.Sel("filterPredicate"))
 	return rv
 }
 
@@ -247,7 +248,7 @@ func (a_ ArrayController) FilterPredicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/filterpredicate
-func (a_ ArrayController) SetFilterPredicate(value unsafe.Pointer) {
+func (a_ ArrayController) SetFilterPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFilterPredicate:"), value)
 }
 
@@ -308,8 +309,8 @@ func (a_ ArrayController) SetSelectionIndex(value int) {
 // An index set containing the indexes of the receiver’s currently selected objects in the content array
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindexes
-func (a_ ArrayController) SelectionIndexes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("selectionIndexes"))
+func (a_ ArrayController) SelectionIndexes() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](a_.ID, objc.Sel("selectionIndexes"))
 	return rv
 }
 
@@ -319,7 +320,7 @@ func (a_ ArrayController) SelectionIndexes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindexes
-func (a_ ArrayController) SetSelectionIndexes(value unsafe.Pointer) {
+func (a_ ArrayController) SetSelectionIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectionIndexes:"), value)
 }
 
@@ -344,8 +345,8 @@ func (a_ ArrayController) SetSelectsInsertedObjects(value bool) {
 // An array of sort descriptor objects, used by the receiver to arrange its content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/sortdescriptors
-func (a_ ArrayController) SortDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sortDescriptors"))
+func (a_ ArrayController) SortDescriptors() foundation.SortDescriptor {
+	rv := objc.Send[foundation.SortDescriptor](a_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -355,7 +356,7 @@ func (a_ ArrayController) SortDescriptors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/sortdescriptors
-func (a_ ArrayController) SetSortDescriptors(value unsafe.Pointer) {
+func (a_ ArrayController) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

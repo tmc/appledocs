@@ -154,7 +154,7 @@ func NewCellTextCell(string_ string) Cell {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
-func NewCellWithCoder(coder ICoder) Cell {
+func NewCellWithCoder(coder foundation.ICoder) Cell {
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -628,8 +628,8 @@ func (c_ Cell) SetAllowsUndo(value bool) {
 // The cell’s value as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/attributedStringValue
-func (c_ Cell) AttributedStringValue() AttributedString {
-	rv := objc.Send[AttributedString](c_.ID, objc.Sel("attributedStringValue"))
+func (c_ Cell) AttributedStringValue() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringValue"))
 	return rv
 }
 
@@ -639,7 +639,7 @@ func (c_ Cell) AttributedStringValue() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/attributedStringValue
-func (c_ Cell) SetAttributedStringValue(value IAttributedString) {
+func (c_ Cell) SetAttributedStringValue(value foundation.IAttributedString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringValue:"), value)
 }
 
@@ -832,8 +832,8 @@ func (c_ Cell) SetFont(value IFont) {
 // The cell’s formatter object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/formatter
-func (c_ Cell) Formatter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("formatter"))
+func (c_ Cell) Formatter() foundation.Formatter {
+	rv := objc.Send[foundation.Formatter](c_.ID, objc.Sel("formatter"))
 	return rv
 }
 
@@ -843,7 +843,7 @@ func (c_ Cell) Formatter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/formatter
-func (c_ Cell) SetFormatter(value unsafe.Pointer) {
+func (c_ Cell) SetFormatter(value foundation.IFormatter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFormatter:"), value)
 }
 

@@ -85,7 +85,7 @@ func NewMediaLibraryBrowserController() MediaLibraryBrowserController {
 // Returns the shared Media Library Browser instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/shared
-func (mc _MediaLibraryBrowserControllerClass) SharedMediaLibraryBrowserController() NSMediaLibraryBrowserController {
+func (mc _MediaLibraryBrowserControllerClass) SharedMediaLibraryBrowserController() MediaLibraryBrowserController {
 	rv := objc.Send[NSMediaLibraryBrowserController](objc.ID(mc.class), objc.Sel("sharedMediaLibraryBrowserController"))
 	return rv
 }

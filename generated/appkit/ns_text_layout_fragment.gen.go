@@ -8,6 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/coreml"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -118,8 +120,8 @@ func (t_ TextLayoutFragment) SetLayoutFragmentFrame(value coregraphics.CGRect) {
 // The queue on which the framework dispatches layout operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutqueue
-func (t_ TextLayoutFragment) LayoutQueue() OperationQueue {
-	rv := objc.Send[OperationQueue](t_.ID, objc.Sel("layoutQueue"))
+func (t_ TextLayoutFragment) LayoutQueue() foundation.OperationQueue {
+	rv := objc.Send[foundation.OperationQueue](t_.ID, objc.Sel("layoutQueue"))
 	return rv
 }
 
@@ -129,7 +131,7 @@ func (t_ TextLayoutFragment) LayoutQueue() OperationQueue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutqueue
-func (t_ TextLayoutFragment) SetLayoutQueue(value IOperationQueue) {
+func (t_ TextLayoutFragment) SetLayoutQueue(value foundation.IOperationQueue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutQueue:"), value)
 }
 
@@ -190,8 +192,8 @@ func (t_ TextLayoutFragment) SetRenderingSurfaceBounds(value coregraphics.CGRect
 // The layout information state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.property
-func (t_ TextLayoutFragment) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("state"))
+func (t_ TextLayoutFragment) State() coreml.State {
+	rv := objc.Send[coreml.State](t_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -201,7 +203,7 @@ func (t_ TextLayoutFragment) State() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.property
-func (t_ TextLayoutFragment) SetState(value unsafe.Pointer) {
+func (t_ TextLayoutFragment) SetState(value coreml.State) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setState:"), value)
 }
 

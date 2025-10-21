@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -145,8 +146,8 @@ func (w_ WorkspaceOpenConfiguration) SetAllowsRunningApplicationSubstitution(val
 // The first Apple event to send to the new app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
-func (w_ WorkspaceOpenConfiguration) AppleEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("appleEvent"))
+func (w_ WorkspaceOpenConfiguration) AppleEvent() foundation.AppleEventDescriptor {
+	rv := objc.Send[foundation.AppleEventDescriptor](w_.ID, objc.Sel("appleEvent"))
 	return rv
 }
 
@@ -156,7 +157,7 @@ func (w_ WorkspaceOpenConfiguration) AppleEvent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
-func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value unsafe.Pointer) {
+func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value foundation.IAppleEventDescriptor) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAppleEvent:"), value)
 }
 

@@ -98,7 +98,7 @@ func NewDataAssetWithName(name IDataAssetName) DataAsset {
 // Initializes and returns an object with a reference to the named data asset that’s in an asset catalog in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:bundle:)
-func NewDataAssetWithNameBundle(name IDataAssetName, bundle unsafe.Pointer) DataAsset {
+func NewDataAssetWithNameBundle(name IDataAssetName, bundle foundation.IBundle) DataAsset {
 	instance := getDataAssetClass().Alloc()
 	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:bundle:"), name, bundle)
 	rv.Autorelease()

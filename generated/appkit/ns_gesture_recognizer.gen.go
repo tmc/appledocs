@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -350,8 +351,8 @@ func (g_ GestureRecognizer) SetPressureConfiguration(value IPressureConfiguratio
 // The current state of the gesture recognizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.property
-func (g_ GestureRecognizer) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("state"))
+func (g_ GestureRecognizer) State() coreml.State {
+	rv := objc.Send[coreml.State](g_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -361,7 +362,7 @@ func (g_ GestureRecognizer) State() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.property
-func (g_ GestureRecognizer) SetState(value unsafe.Pointer) {
+func (g_ GestureRecognizer) SetState(value coreml.State) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setState:"), value)
 }
 

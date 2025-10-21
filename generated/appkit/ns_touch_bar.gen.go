@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,7 +87,7 @@ func NewTouchBar() TouchBar {
 // Creates a Touch Bar object from a coder object provided by a storyboard or NIB file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
-func NewTouchBarWithCoder(coder ICoder) TouchBar {
+func NewTouchBarWithCoder(coder foundation.ICoder) TouchBar {
 	instance := getTouchBarClass().Alloc()
 	rv := objc.Send[TouchBar](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

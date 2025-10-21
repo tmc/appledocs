@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,7 +88,7 @@ func NewUserDefaultsController() UserDefaultsController {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/init(coder:)
-func NewUserDefaultsControllerWithCoder(coder ICoder) UserDefaultsController {
+func NewUserDefaultsControllerWithCoder(coder foundation.ICoder) UserDefaultsController {
 	instance := getUserDefaultsControllerClass().Alloc()
 	rv := objc.Send[UserDefaultsController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -99,7 +100,7 @@ func NewUserDefaultsControllerWithCoder(coder ICoder) UserDefaultsController {
 // Returns an initialized NSUserDefaultsController object using the NSUserDefaults instance specified in and the initial default values contained in the dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/init(defaults:initialValues:)
-func NewUserDefaultsControllerWithDefaultsInitialValues(defaults unsafe.Pointer, initialValues unsafe.Pointer) UserDefaultsController {
+func NewUserDefaultsControllerWithDefaultsInitialValues(defaults foundation.IUserDefaults, initialValues unsafe.Pointer) UserDefaultsController {
 	instance := getUserDefaultsControllerClass().Alloc()
 	rv := objc.Send[UserDefaultsController](instance.ID, objc.Sel("initWithDefaults:initialValues:"), defaults, initialValues)
 	rv.Autorelease()
@@ -110,7 +111,7 @@ func NewUserDefaultsControllerWithDefaultsInitialValues(defaults unsafe.Pointer,
 // Returns the shared instance of NSUserDefaultsController, creating it if necessary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/shared
-func (uc _UserDefaultsControllerClass) SharedUserDefaultsController() NSUserDefaultsController {
+func (uc _UserDefaultsControllerClass) SharedUserDefaultsController() UserDefaultsController {
 	rv := objc.Send[NSUserDefaultsController](objc.ID(uc.class), objc.Sel("sharedUserDefaultsController"))
 	return rv
 }
@@ -156,8 +157,8 @@ func (u_ UserDefaultsController) SetAppliesImmediately(value bool) {
 // Returns the instance of NSUserDefaults in use by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController/defaults
-func (u_ UserDefaultsController) Defaults() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("defaults"))
+func (u_ UserDefaultsController) Defaults() foundation.UserDefaults {
+	rv := objc.Send[foundation.UserDefaults](u_.ID, objc.Sel("defaults"))
 	return rv
 }
 

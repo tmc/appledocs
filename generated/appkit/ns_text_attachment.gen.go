@@ -175,8 +175,8 @@ func (t_ TextAttachment) SetFileType(value string) {
 // The text attachment’s file wrapper.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/filewrapper
-func (t_ TextAttachment) FileWrapper() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("fileWrapper"))
+func (t_ TextAttachment) FileWrapper() foundation.FileWrapper {
+	rv := objc.Send[foundation.FileWrapper](t_.ID, objc.Sel("fileWrapper"))
 	return rv
 }
 
@@ -186,7 +186,7 @@ func (t_ TextAttachment) FileWrapper() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/filewrapper
-func (t_ TextAttachment) SetFileWrapper(value unsafe.Pointer) {
+func (t_ TextAttachment) SetFileWrapper(value foundation.IFileWrapper) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFileWrapper:"), value)
 }
 

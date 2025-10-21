@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [Screen] class.
@@ -32,7 +33,7 @@ type _ScreenClass struct {
 type IScreen interface {
 	objectivec.IObject
 	CanRepresentDisplayGamut(displayGamut DisplayGamut) bool
-	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) unsafe.Pointer
+	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink
 	UserSpaceScaleFactor() float64
 }
 
@@ -87,14 +88,14 @@ func NewScreen() Screen {
 // Returns a screen object representing the screen that can best represent color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/deepest
-func (sc _ScreenClass) DeepestScreen() NSScreen {
+func (sc _ScreenClass) DeepestScreen() Screen {
 	rv := objc.Send[NSScreen](objc.ID(sc.class), objc.Sel("deepestScreen"))
 	return rv
 }
 // Returns the screen object containing the window with the keyboard focus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/main
-func (sc _ScreenClass) MainScreen() NSScreen {
+func (sc _ScreenClass) MainScreen() Screen {
 	rv := objc.Send[NSScreen](objc.ID(sc.class), objc.Sel("mainScreen"))
 	return rv
 }
@@ -122,8 +123,8 @@ func (s_ Screen) CanRepresentDisplayGamut(displayGamut DisplayGamut) bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/displayLink(target:selector:)
-func (s_ Screen) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
+func (s_ Screen) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink {
+	rv := objc.Send[quartzcore.DisplayLink](s_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
 	return rv
 }
 

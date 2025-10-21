@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -113,7 +114,7 @@ func NewControl() Control {
 // Initializes a control with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(coder:)
-func NewControlWithCoder(coder ICoder) Control {
+func NewControlWithCoder(coder foundation.ICoder) Control {
 	instance := getControlClass().Alloc()
 	rv := objc.Send[Control](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -372,8 +373,8 @@ func (c_ Control) SetAllowsExpansionToolTips(value bool) {
 // The value of the receiver’s cell as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/attributedStringValue
-func (c_ Control) AttributedStringValue() AttributedString {
-	rv := objc.Send[AttributedString](c_.ID, objc.Sel("attributedStringValue"))
+func (c_ Control) AttributedStringValue() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringValue"))
 	return rv
 }
 
@@ -383,7 +384,7 @@ func (c_ Control) AttributedStringValue() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/attributedStringValue
-func (c_ Control) SetAttributedStringValue(value IAttributedString) {
+func (c_ Control) SetAttributedStringValue(value foundation.IAttributedString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringValue:"), value)
 }
 
@@ -480,8 +481,8 @@ func (c_ Control) SetFont(value IFont) {
 // The receiver’s formatter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/formatter
-func (c_ Control) Formatter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("formatter"))
+func (c_ Control) Formatter() foundation.Formatter {
+	rv := objc.Send[foundation.Formatter](c_.ID, objc.Sel("formatter"))
 	return rv
 }
 
@@ -491,7 +492,7 @@ func (c_ Control) Formatter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/formatter
-func (c_ Control) SetFormatter(value unsafe.Pointer) {
+func (c_ Control) SetFormatter(value foundation.IFormatter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFormatter:"), value)
 }
 

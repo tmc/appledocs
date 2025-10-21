@@ -92,7 +92,7 @@ func NewRulerView() RulerView {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
-func NewRulerViewWithCoder(coder ICoder) RulerView {
+func NewRulerViewWithCoder(coder foundation.ICoder) RulerView {
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

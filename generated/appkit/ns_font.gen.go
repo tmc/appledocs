@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -107,8 +108,8 @@ func (f_ Font) Set() {
 // The character set containing all of the nominal characters that the font can render.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/coveredCharacterSet
-func (f_ Font) CoveredCharacterSet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("coveredCharacterSet"))
+func (f_ Font) CoveredCharacterSet() foundation.CharacterSet {
+	rv := objc.Send[foundation.CharacterSet](f_.ID, objc.Sel("coveredCharacterSet"))
 	return rv
 }
 

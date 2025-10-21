@@ -36,7 +36,7 @@ type IButtonCell interface {
 	AlternateMnemonicLocation() uint
 	DrawBezelWithFrameInView(frame coregraphics.CGRect, controlView IView)
 	DrawImageWithFrameInView(image IImage, frame coregraphics.CGRect, controlView IView)
-	DrawTitleWithFrameInView(title IAttributedString, frame coregraphics.CGRect, controlView IView) coregraphics.CGRect
+	DrawTitleWithFrameInView(title foundation.IAttributedString, frame coregraphics.CGRect, controlView IView) coregraphics.CGRect
 	GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
 	MouseEntered(event IEvent)
 	MouseExited(event IEvent)
@@ -119,7 +119,7 @@ func NewButtonCellTextCell(string_ string) ButtonCell {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell/init(coder:)
-func NewButtonCellWithCoder(coder ICoder) ButtonCell {
+func NewButtonCellWithCoder(coder foundation.ICoder) ButtonCell {
 	instance := getButtonCellClass().Alloc()
 	rv := objc.Send[ButtonCell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -160,7 +160,7 @@ func (b_ ButtonCell) DrawImageWithFrameInView(image IImage, frame coregraphics.C
 // Draws the button’s title centered vertically in a specified rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell/drawTitle(_:withFrame:in:)
-func (b_ ButtonCell) DrawTitleWithFrameInView(title IAttributedString, frame coregraphics.CGRect, controlView IView) coregraphics.CGRect {
+func (b_ ButtonCell) DrawTitleWithFrameInView(title foundation.IAttributedString, frame coregraphics.CGRect, controlView IView) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](b_.ID, objc.Sel("drawTitle:withFrame:inView:"), title, frame, controlView)
 	return rv
 }
@@ -274,8 +274,8 @@ func (b_ ButtonCell) SetAlternateTitle(value string) {
 // The title displayed by the button when it’s in its alternate state, as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell/attributedAlternateTitle
-func (b_ ButtonCell) AttributedAlternateTitle() AttributedString {
-	rv := objc.Send[AttributedString](b_.ID, objc.Sel("attributedAlternateTitle"))
+func (b_ ButtonCell) AttributedAlternateTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](b_.ID, objc.Sel("attributedAlternateTitle"))
 	return rv
 }
 
@@ -285,15 +285,15 @@ func (b_ ButtonCell) AttributedAlternateTitle() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell/attributedAlternateTitle
-func (b_ ButtonCell) SetAttributedAlternateTitle(value IAttributedString) {
+func (b_ ButtonCell) SetAttributedAlternateTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedAlternateTitle:"), value)
 }
 
 // The title displayed by the button when it’s in its normal state as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell/attributedTitle
-func (b_ ButtonCell) AttributedTitle() AttributedString {
-	rv := objc.Send[AttributedString](b_.ID, objc.Sel("attributedTitle"))
+func (b_ ButtonCell) AttributedTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](b_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -303,7 +303,7 @@ func (b_ ButtonCell) AttributedTitle() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell/attributedTitle
-func (b_ ButtonCell) SetAttributedTitle(value IAttributedString) {
+func (b_ ButtonCell) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 

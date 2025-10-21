@@ -15,11 +15,3 @@ func ExampleNewResponder() {
 	_ = appkit.NewResponder()
 	// Output:
 }
-// ExampleNewResponderWithCoder demonstrates how to create a Responder instance using NewResponderWithCoder.
-// Creates a new responder object with data in an unarchiver.
-func ExampleNewResponderWithCoder() {
-	_ = appkit.NewResponderWithCoder(
-		appkit.Coder{}, // coder Coder
-	)
-	// Output:
-}

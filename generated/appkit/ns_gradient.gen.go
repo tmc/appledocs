@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -94,7 +95,7 @@ func NewGradient() Gradient {
 // Creates a gradient from data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/init(coder:)
-func NewGradientWithCoder(coder ICoder) Gradient {
+func NewGradientWithCoder(coder foundation.ICoder) Gradient {
 	instance := getGradientClass().Alloc()
 	rv := objc.Send[Gradient](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

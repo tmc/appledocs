@@ -42,30 +42,36 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 		frameworkPkg := strings.ToLower(entry.Name())
 		frameworkDir := filepath.Join(outputDir, entry.Name())
 
-		// Look for types.gen.go which contains type definitions
-		typesFile := filepath.Join(frameworkDir, "types.gen.go")
-		if _, err := os.Stat(typesFile); os.IsNotExist(err) {
+		// Scan all .gen.go files in the framework directory to find type definitions
+		// This includes types.gen.go as well as individual class files like ns_error.gen.go
+		genFiles, err := filepath.Glob(filepath.Join(frameworkDir, "*.gen.go"))
+		if err != nil || len(genFiles) == 0 {
 			continue
-		}
-
-		// Parse types.gen.go to extract type names
-		data, err := os.ReadFile(typesFile)
-		if err != nil {
-			continue // Skip on error
 		}
 
 		// Extract type definitions (e.g., "type Window struct")
 		// Match struct and interface types, but NOT unsafe.Pointer aliases
 		// unsafe.Pointer aliases are forward declarations for types in other frameworks
 		typeRegex := regexp.MustCompile(`(?m)^type\s+([A-Z][A-Za-z0-9_]*)\s+(?:struct|interface)(?:\s|{)`)
-		matches := typeRegex.FindAllSubmatch(data, -1)
 
-		for _, match := range matches {
+		for _, genFile := range genFiles {
+			// Parse each .gen.go file to extract type names
+			data, err := os.ReadFile(genFile)
+			if err != nil {
+				continue // Skip on error
+			}
+
+			matches := typeRegex.FindAllSubmatch(data, -1)
+
+			for _, match := range matches {
 			if len(match) > 1 {
 				typeName := string(match[1])
 				// Add to registry if not already present (first framework wins)
 				if _, exists := crossFrameworkTypeRegistry[typeName]; !exists {
 					crossFrameworkTypeRegistry[typeName] = frameworkPkg
+					if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(typeName, "Coder") || strings.Contains(typeName, "Error") || strings.Contains(typeName, "Operation")) {
+						fmt.Fprintf(os.Stderr, "DEBUG registry: added %s -> %s (from %s)\n", typeName, frameworkPkg, filepath.Base(genFile))
+					}
 				}
 
 				// Also register stripped name (NSCellAttribute → CellAttribute)
@@ -76,8 +82,12 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 					// So NSCellAttribute lookup finds CellAttribute, not NSCellAttribute
 					if _, exists := crossFrameworkTypeRegistry[strippedName]; !exists {
 						crossFrameworkTypeRegistry[strippedName] = frameworkPkg
+						if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(typeName, "Coder") || strings.Contains(typeName, "Error") || strings.Contains(typeName, "Operation")) {
+							fmt.Fprintf(os.Stderr, "DEBUG registry: added stripped %s (from %s) -> %s (from %s)\n", strippedName, typeName, frameworkPkg, filepath.Base(genFile))
+						}
 					}
 				}
+			}
 			}
 		}
 	}

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -89,7 +90,7 @@ func NewStoryboard() Storyboard {
 // Creates a storyboard based on the named storyboard file in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/init(name:bundle:)
-func NewStoryboardWithNameBundle(name IStoryboardName, storyboardBundleOrNil unsafe.Pointer) Storyboard {
+func NewStoryboardWithNameBundle(name IStoryboardName, storyboardBundleOrNil foundation.IBundle) Storyboard {
 	rv := objc.Send[Storyboard](objc.ID(getStoryboardClass().class), objc.Sel("storyboardWithName:bundle:"), name, storyboardBundleOrNil)
 	return rv
 }
@@ -98,7 +99,7 @@ func NewStoryboardWithNameBundle(name IStoryboardName, storyboardBundleOrNil uns
 // Creates a storyboard based on the named storyboard file in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/init(name:bundle:)
-func (sc _StoryboardClass) StoryboardWithNameBundle(name IStoryboardName, storyboardBundleOrNil unsafe.Pointer) unsafe.Pointer {
+func (sc _StoryboardClass) StoryboardWithNameBundle(name IStoryboardName, storyboardBundleOrNil foundation.IBundle) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("storyboardWithName:bundle:"), name, storyboardBundleOrNil)
 	return rv
 }
@@ -106,7 +107,7 @@ func (sc _StoryboardClass) StoryboardWithNameBundle(name IStoryboardName, storyb
 // The app’s main storyboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/main
-func (sc _StoryboardClass) MainStoryboard() NSStoryboard {
+func (sc _StoryboardClass) MainStoryboard() Storyboard {
 	rv := objc.Send[NSStoryboard](objc.ID(sc.class), objc.Sel("mainStoryboard"))
 	return rv
 }

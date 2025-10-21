@@ -87,7 +87,7 @@ func NewPrintOperation() PrintOperation {
 // Creates and returns a new print operation object ready to control the copying of EPS graphics from the specified view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:)
-func (pc _PrintOperationClass) EPSOperationWithViewInsideRectToData(view IView, rect coregraphics.CGRect, data IMutableData) PrintOperation {
+func (pc _PrintOperationClass) EPSOperationWithViewInsideRectToData(view IView, rect coregraphics.CGRect, data foundation.IMutableData) PrintOperation {
 	rv := objc.Send[PrintOperation](objc.ID(pc.class), objc.Sel("EPSOperationWithView:insideRect:toData:"), view, rect, data)
 	return rv
 }

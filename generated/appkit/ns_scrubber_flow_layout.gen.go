@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ScrubberFlowLayout] class.
@@ -30,7 +31,7 @@ type _ScrubberFlowLayoutClass struct {
 // An interface definition for the [ScrubberFlowLayout] class.
 type IScrubberFlowLayout interface {
 	IScrubberLayout
-	InvalidateLayoutForItemsAtIndexes(invalidItemIndexes unsafe.Pointer)
+	InvalidateLayoutForItemsAtIndexes(invalidItemIndexes foundation.IIndexSet)
 }
 
 // A concrete layout object that arranges items end-to-end in a linear strip.
@@ -86,7 +87,7 @@ func NewScrubberFlowLayout() ScrubberFlowLayout {
 // Informs the scrubber that it should perform a new layout pass for the items at the specified indexes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/invalidateLayoutForItems(at:)
-func (s_ ScrubberFlowLayout) InvalidateLayoutForItemsAtIndexes(invalidItemIndexes unsafe.Pointer) {
+func (s_ ScrubberFlowLayout) InvalidateLayoutForItemsAtIndexes(invalidItemIndexes foundation.IIndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("invalidateLayoutForItemsAtIndexes:"), invalidItemIndexes)
 }
 

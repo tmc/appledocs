@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TokenField] class.
@@ -99,8 +100,8 @@ func (t_ TokenField) DefaultCompletionDelay() float64 {
 // The recevier’s tokenizing character set to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/tokenizingCharacterSet
-func (t_ TokenField) TokenizingCharacterSet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tokenizingCharacterSet"))
+func (t_ TokenField) TokenizingCharacterSet() foundation.CharacterSet {
+	rv := objc.Send[foundation.CharacterSet](t_.ID, objc.Sel("tokenizingCharacterSet"))
 	return rv
 }
 
@@ -110,7 +111,7 @@ func (t_ TokenField) TokenizingCharacterSet() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/tokenizingCharacterSet
-func (t_ TokenField) SetTokenizingCharacterSet(value unsafe.Pointer) {
+func (t_ TokenField) SetTokenizingCharacterSet(value foundation.ICharacterSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
 }
 

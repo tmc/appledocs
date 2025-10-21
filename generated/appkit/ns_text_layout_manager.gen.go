@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +34,7 @@ type ITextLayoutManager interface {
 	objectivec.IObject
 	EnumerateTextSegmentsInRangeTypeOptionsUsingBlock(textRange ITextRange, type_ TextLayoutManagerSegmentType, options TextLayoutManagerSegmentOptions, block unsafe.Pointer)
 	ReplaceTextContentManager(textContentManager ITextContentManager)
-	ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString IAttributedString)
+	ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString foundation.IAttributedString)
 	ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement)
 }
 
@@ -102,7 +103,7 @@ func (t_ TextLayoutManager) ReplaceTextContentManager(textContentManager ITextCo
 // Replaces content at the location you specify with an attributed string you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/replaceContents(in:with:)-2elb
-func (t_ TextLayoutManager) ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString IAttributedString) {
+func (t_ TextLayoutManager) ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("replaceContentsInRange:withAttributedString:"), range_, attributedString)
 }
 
@@ -214,8 +215,8 @@ func (t_ TextLayoutManager) SetDelegate(value unsafe.Pointer) {
 // The queue that the framework dispatches layout operations on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/layoutqueue
-func (t_ TextLayoutManager) LayoutQueue() OperationQueue {
-	rv := objc.Send[OperationQueue](t_.ID, objc.Sel("layoutQueue"))
+func (t_ TextLayoutManager) LayoutQueue() foundation.OperationQueue {
+	rv := objc.Send[foundation.OperationQueue](t_.ID, objc.Sel("layoutQueue"))
 	return rv
 }
 
@@ -225,7 +226,7 @@ func (t_ TextLayoutManager) LayoutQueue() OperationQueue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/layoutqueue
-func (t_ TextLayoutManager) SetLayoutQueue(value IOperationQueue) {
+func (t_ TextLayoutManager) SetLayoutQueue(value foundation.IOperationQueue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutQueue:"), value)
 }
 

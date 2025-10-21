@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -345,8 +346,8 @@ func (p_ PrintInfo) SetPaperSize(value coregraphics.CGSize) {
 // A mutable dictionary containing the print settings from Core Printing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/printsettings
-func (p_ PrintInfo) PrintSettings() MutableDictionary {
-	rv := objc.Send[MutableDictionary](p_.ID, objc.Sel("printSettings"))
+func (p_ PrintInfo) PrintSettings() foundation.MutableDictionary {
+	rv := objc.Send[foundation.MutableDictionary](p_.ID, objc.Sel("printSettings"))
 	return rv
 }
 
@@ -356,7 +357,7 @@ func (p_ PrintInfo) PrintSettings() MutableDictionary {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/printsettings
-func (p_ PrintInfo) SetPrintSettings(value IMutableDictionary) {
+func (p_ PrintInfo) SetPrintSettings(value foundation.IMutableDictionary) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintSettings:"), value)
 }
 

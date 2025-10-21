@@ -119,8 +119,8 @@ func (d_ DatePickerCell) SetBackgroundColor(value IColor) {
 // The calendar used by the date picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/calendar
-func (d_ DatePickerCell) Calendar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("calendar"))
+func (d_ DatePickerCell) Calendar() foundation.Calendar {
+	rv := objc.Send[foundation.Calendar](d_.ID, objc.Sel("calendar"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (d_ DatePickerCell) Calendar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/calendar
-func (d_ DatePickerCell) SetCalendar(value unsafe.Pointer) {
+func (d_ DatePickerCell) SetCalendar(value foundation.ICalendar) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
 
@@ -245,8 +245,8 @@ func (d_ DatePickerCell) SetDrawsBackground(value bool) {
 // The locale used to display dates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/locale
-func (d_ DatePickerCell) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("locale"))
+func (d_ DatePickerCell) Locale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](d_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -256,7 +256,7 @@ func (d_ DatePickerCell) Locale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/locale
-func (d_ DatePickerCell) SetLocale(value unsafe.Pointer) {
+func (d_ DatePickerCell) SetLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocale:"), value)
 }
 
@@ -317,8 +317,8 @@ func (d_ DatePickerCell) SetTimeInterval(value unsafe.Pointer) {
 // The time zone used to display time-related values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/timezone
-func (d_ DatePickerCell) TimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeZone"))
+func (d_ DatePickerCell) TimeZone() foundation.TimeZone {
+	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
 }
 
@@ -328,7 +328,7 @@ func (d_ DatePickerCell) TimeZone() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/timezone
-func (d_ DatePickerCell) SetTimeZone(value unsafe.Pointer) {
+func (d_ DatePickerCell) SetTimeZone(value foundation.ITimeZone) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }
 

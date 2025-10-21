@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,8 +85,8 @@ func NewTextPreview() TextPreview {
 // Rectangles that define the specific portions of text to highlight.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
-func (t_ TextPreview) CandidateRects() Value {
-	rv := objc.Send[Value](t_.ID, objc.Sel("candidateRects"))
+func (t_ TextPreview) CandidateRects() foundation.Value {
+	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("candidateRects"))
 	return rv
 }
 
@@ -95,7 +96,7 @@ func (t_ TextPreview) CandidateRects() Value {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
-func (t_ TextPreview) SetCandidateRects(value IValue) {
+func (t_ TextPreview) SetCandidateRects(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCandidateRects:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -97,7 +98,7 @@ func NewAppearanceNamed(name IAppearanceName) Appearance {
 // Creates an appearance object from the named appearance file located in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/init(appearanceNamed:bundle:)
-func NewAppearanceWithAppearanceNamedBundle(name IAppearanceName, bundle unsafe.Pointer) Appearance {
+func NewAppearanceWithAppearanceNamedBundle(name IAppearanceName, bundle foundation.IBundle) Appearance {
 	instance := getAppearanceClass().Alloc()
 	rv := objc.Send[Appearance](instance.ID, objc.Sel("initWithAppearanceNamed:bundle:"), name, bundle)
 	rv.Autorelease()
@@ -106,7 +107,7 @@ func NewAppearanceWithAppearanceNamedBundle(name IAppearanceName, bundle unsafe.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/init(coder:)
-func NewAppearanceWithCoder(coder ICoder) Appearance {
+func NewAppearanceWithCoder(coder foundation.ICoder) Appearance {
 	instance := getAppearanceClass().Alloc()
 	rv := objc.Send[Appearance](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -132,14 +133,14 @@ func (ac _AppearanceClass) AppearanceNamed(name IAppearanceName) Appearance {
 // Returns the appearance object that’s active on the current thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/current
-func (ac _AppearanceClass) CurrentAppearance() NSAppearance {
+func (ac _AppearanceClass) CurrentAppearance() Appearance {
 	rv := objc.Send[NSAppearance](objc.ID(ac.class), objc.Sel("currentAppearance"))
 	return rv
 }
 // The appearance that the system uses for color and asset resolution, and that’s active for drawing, usually from locking focus on a view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/currentDrawingAppearance
-func (ac _AppearanceClass) CurrentDrawingAppearance() NSAppearance {
+func (ac _AppearanceClass) CurrentDrawingAppearance() Appearance {
 	rv := objc.Send[NSAppearance](objc.ID(ac.class), objc.Sel("currentDrawingAppearance"))
 	return rv
 }

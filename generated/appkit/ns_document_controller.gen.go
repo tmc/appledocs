@@ -60,8 +60,8 @@ type IDocumentController interface {
 	OpenDocumentWithContentsOfURLDisplayError(url foundation.IURL, displayDocument bool, outError unsafe.Pointer) objc.ID
 	OpenUntitledDocumentAndDisplayError(displayDocument bool, outError unsafe.Pointer) Document
 	OpenUntitledDocumentOfTypeDisplay(type_ string, display bool) objc.ID
-	PresentError(error_ IError) bool
-	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	PresentError(error_ foundation.IError) bool
+	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ foundation.IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
 	RemoveDocument(document IDocument)
 	ReopenDocumentForURLWithContentsOfURLDisplayCompletionHandler(urlOrNil foundation.IURL, contentsURL foundation.IURL, displayDocument bool, completionHandler unsafe.Pointer)
 	ReopenDocumentForURLWithContentsOfURLError(url foundation.IURL, contentsURL foundation.IURL, outError unsafe.Pointer) bool
@@ -75,7 +75,7 @@ type IDocumentController interface {
 	TypeFromFileExtension(fileNameExtensionOrHFSFileType string) foundation.String
 	URLsFromRunningOpenPanel() []foundation.URL
 	ValidateUserInterfaceItem(item objectivec.IObject) bool
-	WillPresentError(error_ IError) Error
+	WillPresentError(error_ foundation.IError) foundation.Error
 }
 
 // An object that manages an app’s documents.
@@ -131,7 +131,7 @@ func NewDocumentController() DocumentController {
 // This method initializes a new NSDocumentController from the coder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/init(coder:)
-func NewDocumentControllerWithCoder(coder ICoder) DocumentController {
+func NewDocumentControllerWithCoder(coder foundation.ICoder) DocumentController {
 	instance := getDocumentControllerClass().Alloc()
 	rv := objc.Send[DocumentController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -142,7 +142,7 @@ func NewDocumentControllerWithCoder(coder ICoder) DocumentController {
 // Returns the shared instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/shared
-func (dc _DocumentControllerClass) SharedDocumentController() NSDocumentController {
+func (dc _DocumentControllerClass) SharedDocumentController() DocumentController {
 	rv := objc.Send[NSDocumentController](objc.ID(dc.class), objc.Sel("sharedDocumentController"))
 	return rv
 }
@@ -371,7 +371,7 @@ func (d_ DocumentController) OpenUntitledDocumentOfTypeDisplay(type_ string, dis
 // Presents an error alert to the user as a modal panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/presentError(_:)
-func (d_ DocumentController) PresentError(error_ IError) bool {
+func (d_ DocumentController) PresentError(error_ foundation.IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("presentError:"), error_)
 	return rv
 }
@@ -379,7 +379,7 @@ func (d_ DocumentController) PresentError(error_ IError) bool {
 // Presents an error alert to the user as a modal panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/presentError(_:modalFor:delegate:didPresent:contextInfo:)
-func (d_ DocumentController) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (d_ DocumentController) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ foundation.IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error_, window, delegate, didPresentSelector, contextInfo)
 }
 
@@ -485,8 +485,8 @@ func (d_ DocumentController) ValidateUserInterfaceItem(item objectivec.IObject) 
 // Indicates an error condition and provides the opportunity to return the same or a different error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/willPresentError(_:)
-func (d_ DocumentController) WillPresentError(error_ IError) Error {
-	rv := objc.Send[Error](d_.ID, objc.Sel("willPresentError:"), error_)
+func (d_ DocumentController) WillPresentError(error_ foundation.IError) foundation.Error {
+	rv := objc.Send[foundation.Error](d_.ID, objc.Sel("willPresentError:"), error_)
 	return rv
 }
 

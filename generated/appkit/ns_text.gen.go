@@ -117,7 +117,7 @@ func NewText() Text {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
-func NewTextWithCoder(coder ICoder) Text {
+func NewTextWithCoder(coder foundation.ICoder) Text {
 	instance := getTextClass().Alloc()
 	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

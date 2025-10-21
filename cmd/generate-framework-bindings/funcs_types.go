@@ -32,7 +32,7 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "CellAttribute") {
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "CellAttribute") || strings.Contains(objcType, "NSApplication")) {
 		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%s framework=%s\n", objcType, framework)
 	}
 
@@ -223,10 +223,14 @@ func mapObjCTypeToGo(objcType, framework string) string {
 
 	// Resolve cross-framework types (e.g., CGAffineTransform -> coregraphics.CGAffineTransform)
 	resolvedType := resolveType(framework, goType)
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "AttributedString") {
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "AttributedString") || strings.Contains(objcType, "NSApplication")) {
 		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: before resolve goType=%s, after resolve=%s\n", goType, resolvedType)
 	}
 	goType = resolvedType
+
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "NSApplication") {
+		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo EXIT: objcType=%s framework=%s returning=%s\n", objcType, framework, goType)
+	}
 
 	return goType
 }

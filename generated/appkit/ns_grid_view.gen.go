@@ -103,7 +103,7 @@ func NewGridView() GridView {
 // Creates a newly allocated grid view object from the coder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
-func NewGridViewWithCoder(coder ICoder) GridView {
+func NewGridViewWithCoder(coder foundation.ICoder) GridView {
 	instance := getGridViewClass().Alloc()
 	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

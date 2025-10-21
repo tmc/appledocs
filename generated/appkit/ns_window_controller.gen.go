@@ -94,7 +94,7 @@ func NewWindowController() WindowController {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(coder:)
-func NewWindowControllerWithCoder(coder ICoder) WindowController {
+func NewWindowControllerWithCoder(coder foundation.ICoder) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

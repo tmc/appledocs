@@ -85,8 +85,8 @@ func NewATSTypesetter() ATSTypesetter {
 // The backing store that contains the text on which this typesetter operates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/attributedstring
-func (a_ ATSTypesetter) AttributedString() AttributedString {
-	rv := objc.Send[AttributedString](a_.ID, objc.Sel("attributedString"))
+func (a_ ATSTypesetter) AttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (a_ ATSTypesetter) AttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/attributedstring
-func (a_ ATSTypesetter) SetAttributedString(value IAttributedString) {
+func (a_ ATSTypesetter) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedString:"), value)
 }
 

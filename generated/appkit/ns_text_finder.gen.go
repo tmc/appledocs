@@ -156,8 +156,8 @@ func (t_ TextFinder) SetFindIndicatorNeedsUpdate(value bool) {
 // Array of incremental search matches posted on the main queue, which have been found during a background search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalmatchranges
-func (t_ TextFinder) IncrementalMatchRanges() Value {
-	rv := objc.Send[Value](t_.ID, objc.Sel("incrementalMatchRanges"))
+func (t_ TextFinder) IncrementalMatchRanges() foundation.Value {
+	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("incrementalMatchRanges"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (t_ TextFinder) IncrementalMatchRanges() Value {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalmatchranges
-func (t_ TextFinder) SetIncrementalMatchRanges(value IValue) {
+func (t_ TextFinder) SetIncrementalMatchRanges(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIncrementalMatchRanges:"), value)
 }
 
@@ -300,8 +300,8 @@ func (t_ TextFinder) SetIsSelectable(value bool) {
 // Returns an array of selected ranges.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/selectedranges
-func (t_ TextFinder) SelectedRanges() Value {
-	rv := objc.Send[Value](t_.ID, objc.Sel("selectedRanges"))
+func (t_ TextFinder) SelectedRanges() foundation.Value {
+	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("selectedRanges"))
 	return rv
 }
 
@@ -311,15 +311,15 @@ func (t_ TextFinder) SelectedRanges() Value {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/selectedranges
-func (t_ TextFinder) SetSelectedRanges(value IValue) {
+func (t_ TextFinder) SetSelectedRanges(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRanges:"), value)
 }
 
 // An array of visible character ranges.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/visiblecharacterranges
-func (t_ TextFinder) VisibleCharacterRanges() Value {
-	rv := objc.Send[Value](t_.ID, objc.Sel("visibleCharacterRanges"))
+func (t_ TextFinder) VisibleCharacterRanges() foundation.Value {
+	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("visibleCharacterRanges"))
 	return rv
 }
 
@@ -329,7 +329,7 @@ func (t_ TextFinder) VisibleCharacterRanges() Value {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/visiblecharacterranges
-func (t_ TextFinder) SetVisibleCharacterRanges(value IValue) {
+func (t_ TextFinder) SetVisibleCharacterRanges(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibleCharacterRanges:"), value)
 }
 

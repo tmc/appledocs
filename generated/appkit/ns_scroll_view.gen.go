@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ScrollView] class.
@@ -91,7 +92,7 @@ func NewScrollView() ScrollView {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(coder:)
-func NewScrollViewWithCoder(coder ICoder) ScrollView {
+func NewScrollViewWithCoder(coder foundation.ICoder) ScrollView {
 	instance := getScrollViewClass().Alloc()
 	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

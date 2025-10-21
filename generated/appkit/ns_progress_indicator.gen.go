@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -286,8 +287,8 @@ func (p_ ProgressIndicator) SetMinValue(value unsafe.Pointer) {
 // The progress object to use for updating the progress view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/observedProgress
-func (p_ ProgressIndicator) ObservedProgress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("observedProgress"))
+func (p_ ProgressIndicator) ObservedProgress() foundation.Progress {
+	rv := objc.Send[foundation.Progress](p_.ID, objc.Sel("observedProgress"))
 	return rv
 }
 
@@ -297,7 +298,7 @@ func (p_ ProgressIndicator) ObservedProgress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/observedProgress
-func (p_ ProgressIndicator) SetObservedProgress(value unsafe.Pointer) {
+func (p_ ProgressIndicator) SetObservedProgress(value foundation.IProgress) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservedProgress:"), value)
 }
 

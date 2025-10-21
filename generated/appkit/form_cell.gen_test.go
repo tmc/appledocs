@@ -9,10 +9,3 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewFormCell
 
-// ExampleNewFormCellWithCoder demonstrates how to create a FormCell instance using NewFormCellWithCoder.
-func ExampleNewFormCellWithCoder() {
-	_ = appkit.NewFormCellWithCoder(
-		appkit.Coder{}, // coder Coder
-	)
-	// Output:
-}

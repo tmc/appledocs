@@ -518,6 +518,9 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- if not (isEssentialSelector .Selector)}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+{{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
+{{- $returnType := $goType}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
@@ -528,7 +531,7 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
-func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}} {
+func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
@@ -541,6 +544,9 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- range .Properties}}
 {{- if .IsClassProperty}}
 {{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- /* If the property returns the same type as the class, use the wrapper type instead of the underlying struct */}}
+{{- $returnType := $goType}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
 {{- $capitalizedName := capitalize .Name}}
 {{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
 {{- if and (ne $goType "") (not $conflictsWithParent)}}
@@ -554,7 +560,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
-func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$goType}} {
+func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnType}} {
 	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
 	return rv
 }
@@ -735,6 +741,9 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- if not (isEssentialSelector .Selector)}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+{{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
+{{- $returnType := $goType}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
 
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
@@ -745,7 +754,7 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
-func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}} {
+func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
@@ -758,6 +767,9 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- range .Properties}}
 {{- if .IsClassProperty}}
 {{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- /* If the property returns the same type as the class, use the wrapper type instead of the underlying struct */}}
+{{- $returnType := $goType}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
 {{- $capitalizedName := capitalize .Name}}
 {{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
 {{- if and (ne $goType "") (not $conflictsWithParent)}}
@@ -771,7 +783,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
-func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$goType}} {
+func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnType}} {
 	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
 	return rv
 }
@@ -782,6 +794,9 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$goType}} 
 {{- if not (isEssentialSelector .Selector)}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+{{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
+{{- $returnType := $goType}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
 {{- $isInitMethod := hasPrefix .Selector "init"}}
 {{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 {{- if $hasValidReturnType}}
@@ -795,7 +810,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$goType}} 
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
-func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
 	{{- if $isInitMethod}}
 	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv

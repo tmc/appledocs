@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TableView] class.
@@ -31,7 +32,7 @@ type _TableViewClass struct {
 type ITableView interface {
 	IControl
 	RectOfRow(row int) coregraphics.CGRect
-	RemoveRowsAtIndexesWithAnimation(indexes unsafe.Pointer, animationOptions TableViewAnimationOptions)
+	RemoveRowsAtIndexesWithAnimation(indexes foundation.IIndexSet, animationOptions TableViewAnimationOptions)
 	RowAtPoint(point coregraphics.CGPoint) int
 	SetDraggingSourceOperationMaskForLocal(mask IDragOperation, isLocal bool)
 }
@@ -97,7 +98,7 @@ func (t_ TableView) RectOfRow(row int) coregraphics.CGRect {
 // Removes the rows using the specified animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/removeRows(at:withAnimation:)
-func (t_ TableView) RemoveRowsAtIndexesWithAnimation(indexes unsafe.Pointer, animationOptions TableViewAnimationOptions) {
+func (t_ TableView) RemoveRowsAtIndexesWithAnimation(indexes foundation.IIndexSet, animationOptions TableViewAnimationOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeRowsAtIndexes:withAnimation:"), indexes, animationOptions)
 }
 
@@ -613,8 +614,8 @@ func (t_ TableView) SetHeaderView(value ITableHeaderView) {
 // The indexes of all hidden table rows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/hiddenrowindexes
-func (t_ TableView) HiddenRowIndexes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("hiddenRowIndexes"))
+func (t_ TableView) HiddenRowIndexes() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](t_.ID, objc.Sel("hiddenRowIndexes"))
 	return rv
 }
 
@@ -624,7 +625,7 @@ func (t_ TableView) HiddenRowIndexes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/hiddenrowindexes
-func (t_ TableView) SetHiddenRowIndexes(value unsafe.Pointer) {
+func (t_ TableView) SetHiddenRowIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHiddenRowIndexes:"), value)
 }
 
@@ -811,8 +812,8 @@ func (t_ TableView) SetSelectedColumn(value int) {
 // An index set containing the indexes of the selected columns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedcolumnindexes
-func (t_ TableView) SelectedColumnIndexes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedColumnIndexes"))
+func (t_ TableView) SelectedColumnIndexes() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](t_.ID, objc.Sel("selectedColumnIndexes"))
 	return rv
 }
 
@@ -822,7 +823,7 @@ func (t_ TableView) SelectedColumnIndexes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedcolumnindexes
-func (t_ TableView) SetSelectedColumnIndexes(value unsafe.Pointer) {
+func (t_ TableView) SetSelectedColumnIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedColumnIndexes:"), value)
 }
 
@@ -847,8 +848,8 @@ func (t_ TableView) SetSelectedRow(value int) {
 // An index set containing the indexes of the selected rows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedrowindexes
-func (t_ TableView) SelectedRowIndexes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedRowIndexes"))
+func (t_ TableView) SelectedRowIndexes() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](t_.ID, objc.Sel("selectedRowIndexes"))
 	return rv
 }
 
@@ -858,15 +859,15 @@ func (t_ TableView) SelectedRowIndexes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedrowindexes
-func (t_ TableView) SetSelectedRowIndexes(value unsafe.Pointer) {
+func (t_ TableView) SetSelectedRowIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRowIndexes:"), value)
 }
 
 // The table view’s sort descriptors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/sortdescriptors
-func (t_ TableView) SortDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("sortDescriptors"))
+func (t_ TableView) SortDescriptors() foundation.SortDescriptor {
+	rv := objc.Send[foundation.SortDescriptor](t_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -876,7 +877,7 @@ func (t_ TableView) SortDescriptors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/sortdescriptors
-func (t_ TableView) SetSortDescriptors(value unsafe.Pointer) {
+func (t_ TableView) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

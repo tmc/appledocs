@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -263,8 +264,8 @@ func (t_ TableColumn) SetResizingMask(value unsafe.Pointer) {
 // The table column’s sort descriptor prototype.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
-func (t_ TableColumn) SortDescriptorPrototype() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("sortDescriptorPrototype"))
+func (t_ TableColumn) SortDescriptorPrototype() foundation.SortDescriptor {
+	rv := objc.Send[foundation.SortDescriptor](t_.ID, objc.Sel("sortDescriptorPrototype"))
 	return rv
 }
 
@@ -274,7 +275,7 @@ func (t_ TableColumn) SortDescriptorPrototype() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
-func (t_ TableColumn) SetSortDescriptorPrototype(value unsafe.Pointer) {
+func (t_ TableColumn) SetSortDescriptorPrototype(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptorPrototype:"), value)
 }
 

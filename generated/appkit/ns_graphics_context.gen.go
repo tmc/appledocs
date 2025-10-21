@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/coreimage"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -209,7 +210,7 @@ func (gc _GraphicsContextClass) SetGraphicsState(gState int) {
 // Returns the current graphics context of the current thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/current
-func (gc _GraphicsContextClass) CurrentContext() NSGraphicsContext {
+func (gc _GraphicsContextClass) CurrentContext() GraphicsContext {
 	rv := objc.Send[NSGraphicsContext](objc.ID(gc.class), objc.Sel("currentContext"))
 	return rv
 }
@@ -268,8 +269,8 @@ func (g_ GraphicsContext) CGContext() coregraphics.CGContextRef {
 // A context for Core Image objects that you can use to render into the graphics context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/ciContext
-func (g_ GraphicsContext) CIContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("CIContext"))
+func (g_ GraphicsContext) CIContext() coreimage.Context {
+	rv := objc.Send[coreimage.Context](g_.ID, objc.Sel("CIContext"))
 	return rv
 }
 

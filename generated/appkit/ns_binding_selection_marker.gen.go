@@ -77,7 +77,7 @@ func NewBindingSelectionMarker() BindingSelectionMarker {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBindingSelectionMarker/notApplicable
-func (bc _BindingSelectionMarkerClass) NotApplicableSelectionMarker() NSBindingSelectionMarker {
+func (bc _BindingSelectionMarkerClass) NotApplicableSelectionMarker() BindingSelectionMarker {
 	rv := objc.Send[NSBindingSelectionMarker](objc.ID(bc.class), objc.Sel("notApplicableSelectionMarker"))
 	return rv
 }

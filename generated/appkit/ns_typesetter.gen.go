@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -84,8 +85,8 @@ func NewTypesetter() Typesetter {
 // Returns the text backing store, usually an instance of
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributedstring
-func (t_ Typesetter) AttributedString() AttributedString {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
+func (t_ Typesetter) AttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (t_ Typesetter) AttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributedstring
-func (t_ Typesetter) SetAttributedString(value IAttributedString) {
+func (t_ Typesetter) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 
 // Returns the attributes used to lay out the extra line fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributesforextralinefragment
-func (t_ Typesetter) AttributesForExtraLineFragment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("attributesForExtraLineFragment"))
+func (t_ Typesetter) AttributesForExtraLineFragment() coreml.Key {
+	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("attributesForExtraLineFragment"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (t_ Typesetter) AttributesForExtraLineFragment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributesforextralinefragment
-func (t_ Typesetter) SetAttributesForExtraLineFragment(value unsafe.Pointer) {
+func (t_ Typesetter) SetAttributesForExtraLineFragment(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributesForExtraLineFragment:"), value)
 }
 

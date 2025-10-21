@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -130,28 +131,28 @@ func (cc _ColorSpaceClass) AvailableColorSpacesWithModel(model unsafe.Pointer) [
 // A color space object that represents an Adobe RGB (1998) color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/adobeRGB1998
-func (cc _ColorSpaceClass) AdobeRGB1998ColorSpace() NSColorSpace {
+func (cc _ColorSpaceClass) AdobeRGB1998ColorSpace() ColorSpace {
 	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("adobeRGB1998ColorSpace"))
 	return rv
 }
 // A color space object that represents a calibrated or device-dependent gray color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/deviceGray
-func (cc _ColorSpaceClass) DeviceGrayColorSpace() NSColorSpace {
+func (cc _ColorSpaceClass) DeviceGrayColorSpace() ColorSpace {
 	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("deviceGrayColorSpace"))
 	return rv
 }
 // A color space object that represents an extended gray color space with a gamma value of 2.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedGenericGamma22Gray
-func (cc _ColorSpaceClass) ExtendedGenericGamma22GrayColorSpace() NSColorSpace {
+func (cc _ColorSpaceClass) ExtendedGenericGamma22GrayColorSpace() ColorSpace {
 	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("extendedGenericGamma22GrayColorSpace"))
 	return rv
 }
 // A color space object that represents an extended sRGB color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedSRGB
-func (cc _ColorSpaceClass) ExtendedSRGBColorSpace() NSColorSpace {
+func (cc _ColorSpaceClass) ExtendedSRGBColorSpace() ColorSpace {
 	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("extendedSRGBColorSpace"))
 	return rv
 }
@@ -208,8 +209,8 @@ func (c_ ColorSpace) SetCgColorSpace(value IColorSpace) {
 // The model on which the color space is based.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorspacemodel
-func (c_ ColorSpace) ColorSpaceModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorSpaceModel"))
+func (c_ ColorSpace) ColorSpaceModel() coreml.Model {
+	rv := objc.Send[coreml.Model](c_.ID, objc.Sel("colorSpaceModel"))
 	return rv
 }
 
@@ -219,7 +220,7 @@ func (c_ ColorSpace) ColorSpaceModel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorspacemodel
-func (c_ ColorSpace) SetColorSpaceModel(value unsafe.Pointer) {
+func (c_ ColorSpace) SetColorSpaceModel(value coreml.IModel) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSpaceModel:"), value)
 }
 

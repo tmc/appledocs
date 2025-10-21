@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -145,8 +146,8 @@ func (s_ StatusItem) SetAlternateImage(value IImage) {
 // The attributed string that is displayed at the status item’s position in the status bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/attributedTitle
-func (s_ StatusItem) AttributedTitle() AttributedString {
-	rv := objc.Send[AttributedString](s_.ID, objc.Sel("attributedTitle"))
+func (s_ StatusItem) AttributedTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](s_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -156,7 +157,7 @@ func (s_ StatusItem) AttributedTitle() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/attributedTitle
-func (s_ StatusItem) SetAttributedTitle(value IAttributedString) {
+func (s_ StatusItem) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 

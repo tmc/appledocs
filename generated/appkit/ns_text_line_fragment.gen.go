@@ -83,8 +83,8 @@ func NewTextLineFragment() TextLineFragment {
 // The source attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/attributedstring
-func (t_ TextLineFragment) AttributedString() AttributedString {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
+func (t_ TextLineFragment) AttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (t_ TextLineFragment) AttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/attributedstring
-func (t_ TextLineFragment) SetAttributedString(value IAttributedString) {
+func (t_ TextLineFragment) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 

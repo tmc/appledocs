@@ -9,10 +9,3 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewCursor
 
-// ExampleNewCursorWithCoder demonstrates how to create a Cursor instance using NewCursorWithCoder.
-func ExampleNewCursorWithCoder() {
-	_ = appkit.NewCursorWithCoder(
-		appkit.Coder{}, // coder Coder
-	)
-	// Output:
-}

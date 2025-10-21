@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/coreimage"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/quartzcore"
@@ -98,7 +99,7 @@ type IView interface {
 	DisplayIfNeededInRectIgnoringOpacity(rect coregraphics.CGRect)
 	DisplayRectIgnoringOpacity(rect coregraphics.CGRect)
 	DisplayRectIgnoringOpacityInContext(rect coregraphics.CGRect, context IGraphicsContext)
-	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) unsafe.Pointer
+	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink
 	DragFileFromRectSlideBackEvent(filename string, rect coregraphics.CGRect, flag bool, event IEvent) bool
 	DragImageAtOffsetEventPasteboardSourceSlideBack(image IImage, viewLocation coregraphics.CGPoint, initialOffset coregraphics.CGSize, event IEvent, pboard IPasteboard, sourceObj objectivec.IObject, slideFlag bool)
 	DragPromisedFilesOfTypesFromRectSourceSlideBackEvent(typeArray []string, rect coregraphics.CGRect, sourceObject objectivec.IObject, flag bool, event IEvent) bool
@@ -188,8 +189,8 @@ type IView interface {
 	SetUpGState()
 	ShouldDelayWindowOrderingForEvent(event IEvent) bool
 	ShouldDrawColor() bool
-	ShowDefinitionForAttributedStringAtPoint(attrString IAttributedString, textBaselineOrigin coregraphics.CGPoint)
-	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString IAttributedString, targetRange foundation.IRange, options unsafe.Pointer, originProvider unsafe.Pointer)
+	ShowDefinitionForAttributedStringAtPoint(attrString foundation.IAttributedString, textBaselineOrigin coregraphics.CGPoint)
+	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString foundation.IAttributedString, targetRange foundation.IRange, options unsafe.Pointer, originProvider unsafe.Pointer)
 	SortSubviewsUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
 	TranslateOriginToPoint(translation coregraphics.CGPoint)
 	TranslateRectsNeedingDisplayInRectBy(clipRect coregraphics.CGRect, delta coregraphics.CGSize)
@@ -272,7 +273,7 @@ func NewView() View {
 // Initializes a view using from data in the specified coder object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(coder:)
-func NewViewWithCoder(coder ICoder) View {
+func NewViewWithCoder(coder foundation.ICoder) View {
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -309,7 +310,7 @@ func (vc _ViewClass) DefaultMenu() NSMenu {
 // The currently focused view object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusView
-func (vc _ViewClass) FocusView() NSView {
+func (vc _ViewClass) FocusView() View {
 	rv := objc.Send[NSView](objc.ID(vc.class), objc.Sel("focusView"))
 	return rv
 }
@@ -824,8 +825,8 @@ func (v_ View) DisplayRectIgnoringOpacityInContext(rect coregraphics.CGRect, con
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/displayLink(target:selector:)
-func (v_ View) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
+func (v_ View) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink {
+	rv := objc.Send[quartzcore.DisplayLink](v_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
 	return rv
 }
 
@@ -1482,14 +1483,14 @@ func (v_ View) ShouldDrawColor() bool {
 // Shows a window displaying the definition of the attributed string at the specified point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/showDefinition(for:at:)
-func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString IAttributedString, textBaselineOrigin coregraphics.CGPoint) {
+func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString foundation.IAttributedString, textBaselineOrigin coregraphics.CGPoint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("showDefinitionForAttributedString:atPoint:"), attrString, textBaselineOrigin)
 }
 
 // Shows a window displaying the definition of the specified range of the attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/showDefinition(for:range:options:baselineOriginProvider:)
-func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString IAttributedString, targetRange foundation.IRange, options unsafe.Pointer, originProvider unsafe.Pointer) {
+func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString foundation.IAttributedString, targetRange foundation.IRange, options unsafe.Pointer, originProvider unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("showDefinitionForAttributedString:range:options:baselineOriginProvider:"), attrString, targetRange, options, originProvider)
 }
 
@@ -1796,8 +1797,8 @@ func (v_ View) SetAutoresizingMask(value AutoresizingMaskOptions) {
 // An array of Core Image filters to apply to the view’s background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) BackgroundFilters() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](v_.ID, objc.Sel("backgroundFilters"))
+func (v_ View) BackgroundFilters() []coreimage.Filter {
+	rv := objc.Send[[]coreimage.Filter](v_.ID, objc.Sel("backgroundFilters"))
 	return rv
 }
 
@@ -1807,7 +1808,7 @@ func (v_ View) BackgroundFilters() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) SetBackgroundFilters(value []unsafe.IPointer) {
+func (v_ View) SetBackgroundFilters(value []coreimage.IFilter) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -1969,8 +1970,8 @@ func (v_ View) SetClipsToBounds(value bool) {
 // The Core Image filter used to composite the view’s contents with its background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/compositingFilter
-func (v_ View) CompositingFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("compositingFilter"))
+func (v_ View) CompositingFilter() coreimage.Filter {
+	rv := objc.Send[coreimage.Filter](v_.ID, objc.Sel("compositingFilter"))
 	return rv
 }
 
@@ -1980,7 +1981,7 @@ func (v_ View) CompositingFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/compositingFilter
-func (v_ View) SetCompositingFilter(value unsafe.Pointer) {
+func (v_ View) SetCompositingFilter(value coreimage.IFilter) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCompositingFilter:"), value)
 }
 
@@ -1995,8 +1996,8 @@ func (v_ View) Constraints() []LayoutConstraint {
 // An array of Core Image filters to apply to the contents of the view and its sublayers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) ContentFilters() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](v_.ID, objc.Sel("contentFilters"))
+func (v_ View) ContentFilters() []coreimage.Filter {
+	rv := objc.Send[[]coreimage.Filter](v_.ID, objc.Sel("contentFilters"))
 	return rv
 }
 
@@ -2006,7 +2007,7 @@ func (v_ View) ContentFilters() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) SetContentFilters(value []unsafe.IPointer) {
+func (v_ View) SetContentFilters(value []coreimage.IFilter) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -2585,16 +2586,16 @@ func (v_ View) OpaqueAncestor() NSView {
 // A default footer string that includes the current page number and page count.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/pageFooter
-func (v_ View) PageFooter() AttributedString {
-	rv := objc.Send[AttributedString](v_.ID, objc.Sel("pageFooter"))
+func (v_ View) PageFooter() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](v_.ID, objc.Sel("pageFooter"))
 	return rv
 }
 
 // A default header string that includes the print job title and date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/pageHeader
-func (v_ View) PageHeader() AttributedString {
-	rv := objc.Send[AttributedString](v_.ID, objc.Sel("pageHeader"))
+func (v_ View) PageHeader() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](v_.ID, objc.Sel("pageHeader"))
 	return rv
 }
 

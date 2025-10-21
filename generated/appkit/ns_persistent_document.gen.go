@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coredata"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -139,8 +140,8 @@ func (p_ PersistentDocument) WriteToURLOfTypeForSaveOperationOriginalContentsURL
 // The managed object context for the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/managedObjectContext
-func (p_ PersistentDocument) ManagedObjectContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectContext"))
+func (p_ PersistentDocument) ManagedObjectContext() coredata.ManagedObjectContext {
+	rv := objc.Send[coredata.ManagedObjectContext](p_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
 
@@ -150,15 +151,15 @@ func (p_ PersistentDocument) ManagedObjectContext() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/managedObjectContext
-func (p_ PersistentDocument) SetManagedObjectContext(value unsafe.Pointer) {
+func (p_ PersistentDocument) SetManagedObjectContext(value coredata.IManagedObjectContext) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setManagedObjectContext:"), value)
 }
 
 // The managed object model of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/managedObjectModel
-func (p_ PersistentDocument) ManagedObjectModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectModel"))
+func (p_ PersistentDocument) ManagedObjectModel() coredata.ManagedObjectModel {
+	rv := objc.Send[coredata.ManagedObjectModel](p_.ID, objc.Sel("managedObjectModel"))
 	return rv
 }
 
@@ -201,8 +202,8 @@ func (p_ PersistentDocument) SetIsDocumentEdited(value bool) {
 // The object that the document uses to support undo/redo operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
-func (p_ PersistentDocument) UndoManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("undoManager"))
+func (p_ PersistentDocument) UndoManager() foundation.UndoManager {
+	rv := objc.Send[foundation.UndoManager](p_.ID, objc.Sel("undoManager"))
 	return rv
 }
 
@@ -212,7 +213,7 @@ func (p_ PersistentDocument) UndoManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
-func (p_ PersistentDocument) SetUndoManager(value unsafe.Pointer) {
+func (p_ PersistentDocument) SetUndoManager(value foundation.IUndoManager) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUndoManager:"), value)
 }
 

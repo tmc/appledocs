@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TokenFieldCell] class.
@@ -138,8 +139,8 @@ func (t_ TokenFieldCell) SetDelegate(value unsafe.Pointer) {
 // The receiver’s tokenizing character set to a given character set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenizingcharacterset
-func (t_ TokenFieldCell) TokenizingCharacterSet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tokenizingCharacterSet"))
+func (t_ TokenFieldCell) TokenizingCharacterSet() foundation.CharacterSet {
+	rv := objc.Send[foundation.CharacterSet](t_.ID, objc.Sel("tokenizingCharacterSet"))
 	return rv
 }
 
@@ -149,7 +150,7 @@ func (t_ TokenFieldCell) TokenizingCharacterSet() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenizingcharacterset
-func (t_ TokenFieldCell) SetTokenizingCharacterSet(value unsafe.Pointer) {
+func (t_ TokenFieldCell) SetTokenizingCharacterSet(value foundation.ICharacterSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
 }
 

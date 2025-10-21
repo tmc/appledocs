@@ -36,16 +36,16 @@ type IRuleEditor interface {
 	DisplayValuesForRow(row int) foundation.Array
 	InsertRowAtIndexWithTypeAsSubrowOfRowAnimate(rowIndex int, rowType RuleEditorRowType, parentRow int, shouldAnimate bool)
 	ParentRowForRow(rowIndex int) int
-	PredicateForRow(row int) unsafe.Pointer
+	PredicateForRow(row int) foundation.Predicate
 	ReloadCriteria()
 	ReloadPredicate()
 	RemoveRowAtIndex(rowIndex int)
-	RemoveRowsAtIndexesIncludeSubrows(rowIndexes unsafe.Pointer, includeSubrows bool)
+	RemoveRowsAtIndexesIncludeSubrows(rowIndexes foundation.IIndexSet, includeSubrows bool)
 	RowForDisplayValue(displayValue objectivec.IObject) int
 	RowTypeForRow(rowIndex int) RuleEditorRowType
-	SelectRowIndexesByExtendingSelection(indexes unsafe.Pointer, extend bool)
+	SelectRowIndexesByExtendingSelection(indexes foundation.IIndexSet, extend bool)
 	SetCriteriaAndDisplayValuesForRowAtIndex(criteria objectivec.IObject, values objectivec.IObject, rowIndex int)
-	SubrowIndexesForRow(rowIndex int) unsafe.Pointer
+	SubrowIndexesForRow(rowIndex int) foundation.IndexSet
 }
 
 // An interface for configuring a rule-based list of options.
@@ -139,8 +139,8 @@ func (r_ RuleEditor) ParentRowForRow(rowIndex int) int {
 // Returns the predicate for a given row.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/predicate(forRow:)
-func (r_ RuleEditor) PredicateForRow(row int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("predicateForRow:"), row)
+func (r_ RuleEditor) PredicateForRow(row int) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](r_.ID, objc.Sel("predicateForRow:"), row)
 	return rv
 }
 
@@ -168,7 +168,7 @@ func (r_ RuleEditor) RemoveRowAtIndex(rowIndex int) {
 // Removes the rows at given indexes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/removeRows(at:includeSubrows:)
-func (r_ RuleEditor) RemoveRowsAtIndexesIncludeSubrows(rowIndexes unsafe.Pointer, includeSubrows bool) {
+func (r_ RuleEditor) RemoveRowsAtIndexesIncludeSubrows(rowIndexes foundation.IIndexSet, includeSubrows bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("removeRowsAtIndexes:includeSubrows:"), rowIndexes, includeSubrows)
 }
 
@@ -191,7 +191,7 @@ func (r_ RuleEditor) RowTypeForRow(rowIndex int) RuleEditorRowType {
 // Sets in the receiver the indexes of rows that are selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/selectRowIndexes(_:byExtendingSelection:)
-func (r_ RuleEditor) SelectRowIndexesByExtendingSelection(indexes unsafe.Pointer, extend bool) {
+func (r_ RuleEditor) SelectRowIndexesByExtendingSelection(indexes foundation.IIndexSet, extend bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("selectRowIndexes:byExtendingSelection:"), indexes, extend)
 }
 
@@ -205,8 +205,8 @@ func (r_ RuleEditor) SetCriteriaAndDisplayValuesForRowAtIndex(criteria objective
 // Returns the immediate subrows of a given row.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/subrowIndexes(forRow:)
-func (r_ RuleEditor) SubrowIndexesForRow(rowIndex int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("subrowIndexesForRow:"), rowIndex)
+func (r_ RuleEditor) SubrowIndexesForRow(rowIndex int) foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](r_.ID, objc.Sel("subrowIndexesForRow:"), rowIndex)
 	return rv
 }
 
@@ -365,8 +365,8 @@ func (r_ RuleEditor) NumberOfRows() int {
 // The rule editor’s predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/predicate
-func (r_ RuleEditor) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("predicate"))
+func (r_ RuleEditor) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](r_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -427,8 +427,8 @@ func (r_ RuleEditor) SetRowTypeKeyPath(value string) {
 // The indexes of the rule editor’s selected rows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/selectedRowIndexes
-func (r_ RuleEditor) SelectedRowIndexes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("selectedRowIndexes"))
+func (r_ RuleEditor) SelectedRowIndexes() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](r_.ID, objc.Sel("selectedRowIndexes"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TreeController] class.
@@ -318,8 +319,8 @@ func (t_ TreeController) SetSelectedObjects(value unsafe.Pointer) {
 // The index path of the first selected object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpath
-func (t_ TreeController) SelectionIndexPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectionIndexPath"))
+func (t_ TreeController) SelectionIndexPath() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](t_.ID, objc.Sel("selectionIndexPath"))
 	return rv
 }
 
@@ -329,15 +330,15 @@ func (t_ TreeController) SelectionIndexPath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpath
-func (t_ TreeController) SetSelectionIndexPath(value unsafe.Pointer) {
+func (t_ TreeController) SetSelectionIndexPath(value foundation.IIndexPath) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionIndexPath:"), value)
 }
 
 // An array containing the index paths of the currently selected objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpaths
-func (t_ TreeController) SelectionIndexPaths() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectionIndexPaths"))
+func (t_ TreeController) SelectionIndexPaths() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](t_.ID, objc.Sel("selectionIndexPaths"))
 	return rv
 }
 
@@ -347,7 +348,7 @@ func (t_ TreeController) SelectionIndexPaths() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpaths
-func (t_ TreeController) SetSelectionIndexPaths(value unsafe.Pointer) {
+func (t_ TreeController) SetSelectionIndexPaths(value foundation.IIndexPath) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionIndexPaths:"), value)
 }
 
@@ -372,8 +373,8 @@ func (t_ TreeController) SetSelectsInsertedObjects(value bool) {
 // An array containing the sort descriptors used to arrange the tree controller’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-func (t_ TreeController) SortDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("sortDescriptors"))
+func (t_ TreeController) SortDescriptors() foundation.SortDescriptor {
+	rv := objc.Send[foundation.SortDescriptor](t_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -383,7 +384,7 @@ func (t_ TreeController) SortDescriptors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-func (t_ TreeController) SetSortDescriptors(value unsafe.Pointer) {
+func (t_ TreeController) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

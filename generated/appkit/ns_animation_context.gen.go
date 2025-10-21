@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [AnimationContext] class.
@@ -97,7 +98,7 @@ func (ac _AnimationContextClass) RunAnimationGroupCompletionHandler(changes unsa
 // Returns the current animation context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/current
-func (ac _AnimationContextClass) CurrentContext() NSAnimationContext {
+func (ac _AnimationContextClass) CurrentContext() AnimationContext {
 	rv := objc.Send[NSAnimationContext](objc.ID(ac.class), objc.Sel("currentContext"))
 	return rv
 }
@@ -166,8 +167,8 @@ func (a_ AnimationContext) SetDuration(value unsafe.Pointer) {
 // The timing function used for all animations within this animation proxy group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/timingfunction
-func (a_ AnimationContext) TimingFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timingFunction"))
+func (a_ AnimationContext) TimingFunction() quartzcore.MediaTimingFunction {
+	rv := objc.Send[quartzcore.MediaTimingFunction](a_.ID, objc.Sel("timingFunction"))
 	return rv
 }
 
@@ -177,7 +178,7 @@ func (a_ AnimationContext) TimingFunction() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/timingfunction
-func (a_ AnimationContext) SetTimingFunction(value unsafe.Pointer) {
+func (a_ AnimationContext) SetTimingFunction(value quartzcore.IMediaTimingFunction) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimingFunction:"), value)
 }
 

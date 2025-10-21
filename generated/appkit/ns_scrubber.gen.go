@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _ScrubberClass struct {
 // An interface definition for the [Scrubber] class.
 type IScrubber interface {
 	IView
-	InsertItemsAtIndexes(indexes unsafe.Pointer)
+	InsertItemsAtIndexes(indexes foundation.IIndexSet)
 	ItemViewForItemAtIndex(index int) ScrubberItemView
 	MakeItemWithIdentifierOwner(itemIdentifier IUserInterfaceItemIdentifier, owner objectivec.IObject) ScrubberItemView
 	MoveItemAtIndexToIndex(oldIndex int, newIndex int)
@@ -39,8 +40,8 @@ type IScrubber interface {
 	RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier IUserInterfaceItemIdentifier)
 	RegisterNibForItemIdentifier(nib INib, itemIdentifier IUserInterfaceItemIdentifier)
 	ReloadData()
-	ReloadItemsAtIndexes(indexes unsafe.Pointer)
-	RemoveItemsAtIndexes(indexes unsafe.Pointer)
+	ReloadItemsAtIndexes(indexes foundation.IIndexSet)
+	RemoveItemsAtIndexes(indexes foundation.IIndexSet)
 	ScrollItemAtIndexToAlignment(index int, alignment ScrubberAlignment)
 }
 
@@ -99,7 +100,7 @@ func NewScrubber() Scrubber {
 // Initializes and returns a newly allocated scrubber object from a storyboard or nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
-func NewScrubberWithCoder(coder ICoder) Scrubber {
+func NewScrubberWithCoder(coder foundation.ICoder) Scrubber {
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -122,7 +123,7 @@ func NewScrubberWithFrame(frameRect coregraphics.CGRect) Scrubber {
 // Inserts new items at the specified indexes into the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/insertItems(at:)
-func (s_ Scrubber) InsertItemsAtIndexes(indexes unsafe.Pointer) {
+func (s_ Scrubber) InsertItemsAtIndexes(indexes foundation.IIndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("insertItemsAtIndexes:"), indexes)
 }
 
@@ -180,14 +181,14 @@ func (s_ Scrubber) ReloadData() {
 // Reloads the items at the specified indexes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/reloadItems(at:)
-func (s_ Scrubber) ReloadItemsAtIndexes(indexes unsafe.Pointer) {
+func (s_ Scrubber) ReloadItemsAtIndexes(indexes foundation.IIndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("reloadItemsAtIndexes:"), indexes)
 }
 
 // Removes the items at the specified indexes from the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/removeItems(at:)
-func (s_ Scrubber) RemoveItemsAtIndexes(indexes unsafe.Pointer) {
+func (s_ Scrubber) RemoveItemsAtIndexes(indexes foundation.IIndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeItemsAtIndexes:"), indexes)
 }
 

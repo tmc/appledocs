@@ -85,7 +85,7 @@ func NewStatusBar() StatusBar {
 // Returns the system-wide status bar located in the menu bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/system
-func (sc _StatusBarClass) SystemStatusBar() NSStatusBar {
+func (sc _StatusBarClass) SystemStatusBar() StatusBar {
 	rv := objc.Send[NSStatusBar](objc.ID(sc.class), objc.Sel("systemStatusBar"))
 	return rv
 }

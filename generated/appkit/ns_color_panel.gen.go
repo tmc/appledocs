@@ -111,7 +111,7 @@ func (cc _ColorPanelClass) SetPickerMode(mode ColorPanelMode) {
 // Returns the shared instance, creating it if necessary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/shared
-func (cc _ColorPanelClass) SharedColorPanel() NSColorPanel {
+func (cc _ColorPanelClass) SharedColorPanel() ColorPanel {
 	rv := objc.Send[NSColorPanel](objc.ID(cc.class), objc.Sel("sharedColorPanel"))
 	return rv
 }

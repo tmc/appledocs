@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,8 +36,8 @@ type IResponder interface {
 	ChangeModeWithEvent(event IEvent)
 	ContextMenuKeyDown(event IEvent)
 	CursorUpdate(event IEvent)
-	EncodeRestorableStateWithCoder(coder ICoder)
-	EncodeRestorableStateWithCoderBackgroundQueue(coder ICoder, queue IOperationQueue)
+	EncodeRestorableStateWithCoder(coder foundation.ICoder)
+	EncodeRestorableStateWithCoderBackgroundQueue(coder foundation.ICoder, queue foundation.IOperationQueue)
 	EndGestureWithEvent(event IEvent)
 	FlagsChanged(event IEvent)
 	FlushBufferedKeyEvents()
@@ -63,12 +64,12 @@ type IResponder interface {
 	PerformKeyEquivalent(event IEvent) bool
 	PerformMnemonic(string_ string) bool
 	PerformTextFinderAction(sender objectivec.IObject)
-	PresentError(error_ IError) bool
-	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	PresentError(error_ foundation.IError) bool
+	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ foundation.IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
 	PressureChangeWithEvent(event IEvent)
 	QuickLookWithEvent(event IEvent)
 	ResignFirstResponder() bool
-	RestoreStateWithCoder(coder ICoder)
+	RestoreStateWithCoder(coder foundation.ICoder)
 	RightMouseDown(event IEvent)
 	RightMouseDragged(event IEvent)
 	RightMouseUp(event IEvent)
@@ -87,12 +88,12 @@ type IResponder interface {
 	TouchesEndedWithEvent(event IEvent)
 	TouchesMovedWithEvent(event IEvent)
 	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool
-	UpdateUserActivityState(userActivity unsafe.Pointer)
+	UpdateUserActivityState(userActivity foundation.IUserActivity)
 	ValidRequestorForSendTypeReturnType(sendType PasteboardType, returnType PasteboardType) objc.ID
 	ValidateProposedFirstResponderForEvent(responder IResponder, event IEvent) bool
 	WantsForwardedScrollEventsForAxis(axis IEventGestureAxis) bool
 	WantsScrollEventsForSwipeTrackingOnAxis(axis IEventGestureAxis) bool
-	WillPresentError(error_ IError) Error
+	WillPresentError(error_ foundation.IError) foundation.Error
 }
 
 // An abstract class that forms the basis of event and command processing in AppKit.
@@ -148,7 +149,7 @@ func NewResponder() Responder {
 // Creates a new responder object with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/init(coder:)
-func NewResponderWithCoder(coder ICoder) Responder {
+func NewResponderWithCoder(coder foundation.ICoder) Responder {
 	instance := getResponderClass().Alloc()
 	rv := objc.Send[Responder](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -209,14 +210,14 @@ func (r_ Responder) CursorUpdate(event IEvent) {
 // Saves the interface-related state of the responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/encodeRestorableState(with:)
-func (r_ Responder) EncodeRestorableStateWithCoder(coder ICoder) {
+func (r_ Responder) EncodeRestorableStateWithCoder(coder foundation.ICoder) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("encodeRestorableStateWithCoder:"), coder)
 }
 
 // Saves the interface-related state of the responder to a keyed archiver either synchronously or asynchronously on the given operation queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/encodeRestorableState(with:backgroundQueue:)
-func (r_ Responder) EncodeRestorableStateWithCoderBackgroundQueue(coder ICoder, queue IOperationQueue) {
+func (r_ Responder) EncodeRestorableStateWithCoderBackgroundQueue(coder foundation.ICoder, queue foundation.IOperationQueue) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("encodeRestorableStateWithCoder:backgroundQueue:"), coder, queue)
 }
 
@@ -408,7 +409,7 @@ func (r_ Responder) PerformTextFinderAction(sender objectivec.IObject) {
 // Presents an error alert to the user as an application-modal dialog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/presentError(_:)
-func (r_ Responder) PresentError(error_ IError) bool {
+func (r_ Responder) PresentError(error_ foundation.IError) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("presentError:"), error_)
 	return rv
 }
@@ -416,7 +417,7 @@ func (r_ Responder) PresentError(error_ IError) bool {
 // Presents an error alert to the user as a document-modal sheet attached to document window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/presentError(_:modalFor:delegate:didPresent:contextInfo:)
-func (r_ Responder) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (r_ Responder) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ foundation.IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error_, window, delegate, didPresentSelector, contextInfo)
 }
 
@@ -445,7 +446,7 @@ func (r_ Responder) ResignFirstResponder() bool {
 // Restores the interface-related state of the responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/restoreState(with:)
-func (r_ Responder) RestoreStateWithCoder(coder ICoder) {
+func (r_ Responder) RestoreStateWithCoder(coder foundation.ICoder) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("restoreStateWithCoder:"), coder)
 }
 
@@ -580,7 +581,7 @@ func (r_ Responder) TryToPerformWith(action objc.SEL, object objectivec.IObject)
 // Updates the state of the given user activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/updateUserActivityState(_:)
-func (r_ Responder) UpdateUserActivityState(userActivity unsafe.Pointer) {
+func (r_ Responder) UpdateUserActivityState(userActivity foundation.IUserActivity) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("updateUserActivityState:"), userActivity)
 }
 
@@ -619,8 +620,8 @@ func (r_ Responder) WantsScrollEventsForSwipeTrackingOnAxis(axis IEventGestureAx
 // Returns a custom version of the supplied error object that’s more suitable for presentation in alert sheets and dialogs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/willPresentError(_:)
-func (r_ Responder) WillPresentError(error_ IError) Error {
-	rv := objc.Send[Error](r_.ID, objc.Sel("willPresentError:"), error_)
+func (r_ Responder) WillPresentError(error_ foundation.IError) foundation.Error {
+	rv := objc.Send[foundation.Error](r_.ID, objc.Sel("willPresentError:"), error_)
 	return rv
 }
 
@@ -697,16 +698,16 @@ func (r_ Responder) SetTouchBar(value ITouchBar) {
 // The undo manager for this responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/undoManager
-func (r_ Responder) UndoManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("undoManager"))
+func (r_ Responder) UndoManager() foundation.UndoManager {
+	rv := objc.Send[foundation.UndoManager](r_.ID, objc.Sel("undoManager"))
 	return rv
 }
 
 // An object encapsulating a user activity supported by this responder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/userActivity
-func (r_ Responder) UserActivity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("userActivity"))
+func (r_ Responder) UserActivity() foundation.UserActivity {
+	rv := objc.Send[foundation.UserActivity](r_.ID, objc.Sel("userActivity"))
 	return rv
 }
 
@@ -716,7 +717,7 @@ func (r_ Responder) UserActivity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/userActivity
-func (r_ Responder) SetUserActivity(value unsafe.Pointer) {
+func (r_ Responder) SetUserActivity(value foundation.IUserActivity) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUserActivity:"), value)
 }
 

@@ -9,14 +9,6 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewGradient
 
-// ExampleNewGradientWithCoder demonstrates how to create a Gradient instance using NewGradientWithCoder.
-// Creates a gradient from data in an unarchiver.
-func ExampleNewGradientWithCoder() {
-	_ = appkit.NewGradientWithCoder(
-		appkit.Coder{}, // coder Coder
-	)
-	// Output:
-}
 // ExampleNewGradientWithColors demonstrates how to create a Gradient instance using NewGradientWithColors.
 // Initializes a newly allocated gradient object with an array of colors.
 func ExampleNewGradientWithColors() {

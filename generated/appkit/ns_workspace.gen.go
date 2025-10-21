@@ -90,7 +90,7 @@ func NewWorkspace() Workspace {
 // The shared workspace object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/shared
-func (wc _WorkspaceClass) SharedWorkspace() NSWorkspace {
+func (wc _WorkspaceClass) SharedWorkspace() Workspace {
 	rv := objc.Send[NSWorkspace](objc.ID(wc.class), objc.Sel("sharedWorkspace"))
 	return rv
 }
@@ -141,8 +141,8 @@ func (w_ Workspace) RequestAuthorizationOfTypeCompletionHandler(type_ unsafe.Poi
 // The notification center for workspace notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/notificationCenter
-func (w_ Workspace) NotificationCenter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("notificationCenter"))
+func (w_ Workspace) NotificationCenter() foundation.NotificationCenter {
+	rv := objc.Send[foundation.NotificationCenter](w_.ID, objc.Sel("notificationCenter"))
 	return rv
 }
 

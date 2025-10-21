@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextParagraph] class.
@@ -82,8 +83,8 @@ func NewTextParagraph() TextParagraph {
 // Returns the source attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
-func (t_ TextParagraph) AttributedString() AttributedString {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
+func (t_ TextParagraph) AttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -93,7 +94,7 @@ func (t_ TextParagraph) AttributedString() AttributedString {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
-func (t_ TextParagraph) SetAttributedString(value IAttributedString) {
+func (t_ TextParagraph) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 

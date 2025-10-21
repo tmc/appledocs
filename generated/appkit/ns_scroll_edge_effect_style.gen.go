@@ -81,21 +81,21 @@ func NewScrollEdgeEffectStyle() ScrollEdgeEffectStyle {
 // The automatic scroll edge effect style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/automatic
-func (sc _ScrollEdgeEffectStyleClass) AutomaticStyle() NSScrollEdgeEffectStyle {
+func (sc _ScrollEdgeEffectStyleClass) AutomaticStyle() ScrollEdgeEffectStyle {
 	rv := objc.Send[NSScrollEdgeEffectStyle](objc.ID(sc.class), objc.Sel("automaticStyle"))
 	return rv
 }
 // A scroll edge effect with a hard cutoff.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/hard
-func (sc _ScrollEdgeEffectStyleClass) HardStyle() NSScrollEdgeEffectStyle {
+func (sc _ScrollEdgeEffectStyleClass) HardStyle() ScrollEdgeEffectStyle {
 	rv := objc.Send[NSScrollEdgeEffectStyle](objc.ID(sc.class), objc.Sel("hardStyle"))
 	return rv
 }
 // A scroll edge effect with a soft edge.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/soft
-func (sc _ScrollEdgeEffectStyleClass) SoftStyle() NSScrollEdgeEffectStyle {
+func (sc _ScrollEdgeEffectStyleClass) SoftStyle() ScrollEdgeEffectStyle {
 	rv := objc.Send[NSScrollEdgeEffectStyle](objc.ID(sc.class), objc.Sel("softStyle"))
 	return rv
 }

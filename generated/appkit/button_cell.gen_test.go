@@ -23,10 +23,3 @@ func ExampleNewButtonCellTextCell() {
 	)
 	// Output:
 }
-// ExampleNewButtonCellWithCoder demonstrates how to create a ButtonCell instance using NewButtonCellWithCoder.
-func ExampleNewButtonCellWithCoder() {
-	_ = appkit.NewButtonCellWithCoder(
-		appkit.Coder{}, // coder Coder
-	)
-	// Output:
-}
