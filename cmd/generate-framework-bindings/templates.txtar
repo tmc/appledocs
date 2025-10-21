@@ -35,16 +35,11 @@
 {{template "class.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}
 {{if and (classHasInit .Methods) (not (shouldExcludeTestExample $.Framework .Name)) -}}
 #-- {{classTestFileName .Name}} --
-{{template "class_test.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}
-{{end -}}
-{{end -}}
-{{end -}}
+{{template "class_test.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}{{end}}{{end}}{{end}}
 {{if gt .ProtocolCount 0 -}}
 {{- range .Protocols}}
 #-- {{protocolFileName .Name}} --
-{{template "protocol.gen.go" (dict "Protocol" . "Framework" $.Framework "PackageName" $.PackageName)}}
-{{end -}}
-{{end -}}
+{{template "protocol.gen.go" (dict "Protocol" . "Framework" $.Framework "PackageName" $.PackageName)}}{{end}}{{end}}
 {{if .GenerateTests -}}
 #-- functions.gen_test.go --
 {{template "functions.gen_test.go" .}}
@@ -60,7 +55,7 @@
 package {{.PackageName}}
 
 //go:generate rm -f *.gen.go *.gen_test.go
-//go:generate go run ../../cmd/generate-framework-bindings -framework ^{{.Framework}}${{if .Variant}} -variant {{.Variant}}{{end}}{{if .WithRefMethods}} -with-ref-methods{{end}} -output ..
+//go:generate go run github.com/tmc/appledocs/cmd/generate-framework-bindings -framework ^{{.Framework}}${{if .Variant}} -variant {{.Variant}}{{end}}{{if .WithRefMethods}} -with-ref-methods{{end}} -output ..
 
 -- doc.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
@@ -90,15 +85,13 @@ import (
 const frameworkPath = "/usr/lib/libobjc.dylib"
 {{else -}}
 const frameworkPath = "/System/Library/Frameworks/{{.Framework}}.framework/{{.Framework}}"
-{{end}}
-
+{{end -}}
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-
 -- types.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
@@ -225,6 +218,12 @@ const (
 {{if eq .Framework "QuartzCore" -}}
 // QuartzCore needs CGFloat for its functions
 type CGFloat = float64
+
+{{end -}}
+{{if eq .Framework "AppKit" -}}
+// AppKit-specific type aliases
+// WindowLevel represents a window's position in the z-axis
+type WindowLevel = int  // NSWindowLevel
 
 {{end -}}
 {{if gt (len $undefinedTypes) 0}}
@@ -490,8 +489,9 @@ func New{{$structName}}() {{$structName}} {
 {{- if ne .Selector "init"}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
-
 {{- if .Abstract}}
+
+
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//
 // [Full Topic]: {{convertDocURL .DocURL}}
@@ -725,8 +725,9 @@ func New{{$structName}}() {{$structName}} {
 {{- if ne .Selector "init"}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
-
 {{- if .Abstract}}
+
+
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//
 // [Full Topic]: {{convertDocURL .DocURL}}
@@ -867,12 +868,7 @@ func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$goType
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
 	{{- end}}
 }
-
-{{- end}}
-{{- end}}
-{{- end}}
-{{end -}}
-
+{{end}}{{end}}{{end}}{{end}}
 -- class_test.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
@@ -915,7 +911,6 @@ import (
 
 // Suppress unused import errors
 var _ = {{.PackageName}}.New{{classToStructName .Class.Name}}
-
 {{with .Class -}}
 {{$structName := classToStructName .Name -}}
 {{$packageName := $.PackageName -}}
@@ -932,7 +927,6 @@ var _ = {{.PackageName}}.New{{classToStructName .Class.Name}}
 {{- $canGenerateAllParams = false}}
 {{- end}}
 {{- end}}
-
 {{- if and $canGenerateAllParams (not (shouldExcludeTestMethod $framework $testMethodName))}}
 // Example{{$constructorName}} demonstrates how to create a {{$structName}} instance{{if ne .Selector "init"}} using {{$constructorName}}{{end}}.
 {{if .Abstract -}}
@@ -951,12 +945,7 @@ func Example{{$constructorName}}() {
 	)
 	{{- end}}
 	// Output:
-}
-{{- end}}
-{{end -}}
-{{end -}}
-{{end -}}
-
+}{{end}}{{end}}{{end}}{{end -}}
 -- protocols.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
@@ -1006,8 +995,7 @@ var {{$protocolVarName}}Protocol *objc.Protocol
 func init() {
 	{{$protocolVarName}}Protocol = objc.GetProtocol("{{.Name}}")
 }
-{{end -}}
-
+{{- end -}}
 -- methods.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
@@ -1103,7 +1091,6 @@ func Example{{$docData.Name}}() {
 
 {{end -}}
 {{end}}
-
 -- main_test.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
@@ -1298,14 +1285,10 @@ type {{stripObjCPrefix $enum.Name}} uint
 {{if gt (len $enum.Cases) 0 -}}
 const (
 {{range $i, $case := $enum.Cases -}}
-{{if $case.Abstract -}}
-	// {{stripObjCPrefix $case.Name}} - {{$case.Abstract}}
-{{end -}}
-{{if $case.DocURL -}}
-	//
+{{if $case.Abstract}}	// {{stripObjCPrefix $case.Name}} - {{$case.Abstract}}
+{{end}}{{if $case.DocURL}}	//
 	// [Full Topic]: {{convertDocURL $case.DocURL}}
-{{end -}}
-	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $enum.Name}} = {{$case.IntValue}}
+{{end}}	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $enum.Name}} = {{$case.IntValue}}
 {{end -}}
 )
 

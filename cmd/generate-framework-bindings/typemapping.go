@@ -155,7 +155,10 @@ var typeRegistry = []TypeMapping{
 	// AppKit string types
 	{ObjCType: "NSString *", GoType: "string", Framework: "AppKit"},
 
-	// ==== UniformTypeIdentifiers types used in AppKit ====
+	// ==== UniformTypeIdentifiers types ====
+	// UTType within its own framework - unqualified
+	{ObjCType: "UTType", GoType: "UTType", Framework: "UniformTypeIdentifiers"},
+	// UTType used in other frameworks - qualified
 	{ObjCType: "UTType", GoType: "uniformtypeidentifiers.UTType", Framework: "AppKit"},
 
 	// Foundation date/time types - unqualified within Foundation
@@ -268,6 +271,12 @@ var typeRegistry = []TypeMapping{
 	// Foundation imports UserNotifications, and UserNotifications imports Foundation,
 	// creating a cycle if we use typed references
 	{ObjCType: "UNNotificationAction", GoType: "objc.ID", Framework: "Foundation"},
+
+	// Foundation ↔ UniformTypeIdentifiers import cycle:
+	// Foundation methods reference UTType, but UniformTypeIdentifiers imports Foundation (for NSString, etc.)
+	// Break the cycle by mapping UTType to unsafe.Pointer in Foundation
+	{ObjCType: "UTType", GoType: "unsafe.Pointer", Framework: "Foundation"},
+	{ObjCType: "UTType *", GoType: "unsafe.Pointer", Framework: "Foundation"},
 }
 
 // lookupTypeMapping finds a type mapping for the given Objective-C type.

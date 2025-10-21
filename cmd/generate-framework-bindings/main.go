@@ -794,15 +794,9 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				}
 			}
 		} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@E@") {
-			// Skip Swift enum files (they contain -swift.enum or -swift.struct in the path)
-			if strings.Contains(path, "-swift.enum") || strings.Contains(path, "-swift.struct") {
-				if verbose {
-					fmt.Fprintf(os.Stderr, "Skipping Swift enum file: %s\n", path)
-				}
-				continue
-			}
-
-			// This is an enum type or enum case
+			// This is an Objective-C enum (may be represented as Swift struct/enum)
+			// Swift structs with ObjC enum externalIDs are option sets (like NSWindowStyleMask)
+			// We should process these as enums, not skip them
 			// Try parsing as enum type first (enum type has only 3 parts: c:@E@EnumName)
 			parts := strings.Split(doc.Metadata.ExternalID, "@")
 			if len(parts) == 3 {
@@ -815,13 +809,21 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 						break
 					}
 				}
-				if enum := occ2go.ParseEnumDeclaration(tokens); enum != nil {
+				// Try ObjC enum parsing first (enum NSBackingStoreType : NSUInteger)
+				enum := occ2go.ParseEnumDeclaration(tokens)
+				// If that fails, try Swift struct/enum parsing (struct StyleMask)
+				if enum == nil {
+					enum = occ2go.ParseSwiftEnumDeclaration(tokens)
+				}
+				if enum != nil {
 					enum.Name = parts[2]
 					enum.DocURL = doc.Identifier.URL
 					if len(doc.Abstract) > 0 {
 						enum.Abstract = doc.Abstract[0].Text
 					}
 					enums = append(enums, enum)
+				} else if verbose {
+					fmt.Fprintf(os.Stderr, "Warning: failed to parse enum declaration for %s (tokens: %+v)\n", parts[2], tokens)
 				}
 			} else if len(parts) >= 4 {
 				// This is an enum case (c:@E@EnumName@CaseName)
@@ -1123,6 +1125,15 @@ func main() {
 		}
 		fmt.Fprintf(os.Stderr, "Input: %s\n", *inputDir)
 		fmt.Fprintf(os.Stderr, "Output: %s\n", *outputDir)
+	}
+
+	// Initialize framework registry
+	baseModule := "github.com/tmc/appledocs/generated"
+	if err := initializeFrameworkRegistry(baseModule, *outputDir); err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: failed to initialize framework registry: %v\n", err)
+	} else if verbose && globalRegistry != nil {
+		allFrameworks := globalRegistry.All()
+		fmt.Fprintf(os.Stderr, "Initialized framework registry with %d frameworks\n", len(allFrameworks))
 	}
 
 	// Build cross-framework type registry for proper type resolution
@@ -1601,17 +1612,9 @@ func generateMethods(w io.Writer, framework, packageName string, functions []*oc
 }
 
 // getFrameworkPrefix returns the common type prefix for a framework
+// Deprecated: Use GetFrameworkPrefix from registry instead
 func getFrameworkPrefix(framework string) string {
-	switch framework {
-	case "CoreGraphics":
-		return "CG"
-	case "CoreFoundation":
-		return "CF"
-	case "CoreAudio":
-		return "CA"
-	default:
-		return ""
-	}
+	return GetFrameworkPrefix(framework)
 }
 
 // extractRefTypes extracts all Ref types from function signatures

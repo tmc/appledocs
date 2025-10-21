@@ -2510,30 +2510,8 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 	// Determine current framework's import path so we don't import ourselves
 	currentFrameworkImportPath := outputModule + "/" + strings.ToLower(framework)
 
-	// Check superclass for import needs
-	if class.SuperClass != "" {
-		superStructName := classToStructName(class.SuperClass)
-		superResolved := resolveType(framework, superStructName)
-
-		// Extract framework from resolved type
-		if importPath := GetImportPathFromType(superResolved); importPath != "" {
-			if importPath != currentFrameworkImportPath {
-				imports[importPath] = true
-			}
-		} else if class.SuperClass == "NSObject" || superStructName == "Object" {
-			// Default to objectivec for NSObject
-			if framework != "ObjectiveC" {
-				objcPath := outputModule + "/objectivec"
-				imports[objcPath] = true
-			}
-		}
-	} else if framework != "ObjectiveC" {
-		// No superclass specified, default to objectivec
-		objcPath := outputModule + "/objectivec"
-		imports[objcPath] = true
-	}
-
-	// Check embedded field
+	// Check embedded field for import needs
+	// Use getStructEmbeddedField which has the correct logic for NSObject handling
 	embeddedField := getStructEmbeddedField(class, framework)
 	if importPath := GetImportPathFromType(embeddedField); importPath != "" {
 		if importPath != currentFrameworkImportPath {
@@ -3126,8 +3104,9 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 		}
 
 		// Extract type definitions (e.g., "type Window struct")
-		// Simple regex to match "type TypeName" declarations
-		typeRegex := regexp.MustCompile(`(?m)^type\s+([A-Z][A-Za-z0-9_]*)\s+(?:struct|interface|unsafe\.Pointer)`)
+		// Match struct and interface types, but NOT unsafe.Pointer aliases
+		// unsafe.Pointer aliases are forward declarations for types in other frameworks
+		typeRegex := regexp.MustCompile(`(?m)^type\s+([A-Z][A-Za-z0-9_]*)\s+(?:struct|interface)(?:\s|{)`)
 		matches := typeRegex.FindAllSubmatch(data, -1)
 
 		for _, match := range matches {
