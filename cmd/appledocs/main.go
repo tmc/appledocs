@@ -1261,8 +1261,18 @@ func fetchWithCache(ctx context.Context, client *http.Client, u string, app *cra
 	// Create cache path
 	cachePath := filepath.Join(*cacheDir, parsed.Host, parsed.Path)
 
+	// Only add query params to cache path if they're NOT language params
+	// Language params (language=objc, language=swift) return identical content,
+	// so we normalize them away to avoid cache duplication
 	if parsed.RawQuery != "" {
-		cachePath = filepath.Join(cachePath + "." + url.QueryEscape(parsed.RawQuery))
+		// Parse query string
+		query := parsed.Query()
+		// Remove language parameter if present
+		query.Del("language")
+		// If there are other query params, add them to cache path
+		if len(query) > 0 {
+			cachePath = filepath.Join(cachePath + "." + url.QueryEscape(query.Encode()))
+		}
 	}
 
 	// Ensure directory exists
