@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewUnit
 
-
 // ExampleNewUnitWithSymbol demonstrates how to create a Unit instance using NewUnitWithSymbol.
 // Initializes a new unit with the specified symbol.
 func ExampleNewUnitWithSymbol() {
@@ -18,6 +17,7 @@ func ExampleNewUnitWithSymbol() {
 	)
 	// Output:
 }
+
 
 
 

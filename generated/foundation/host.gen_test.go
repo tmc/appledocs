@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewHost
 
-
 // ExampleNewHostWithAddress demonstrates how to create a Host instance using NewHostWithAddress.
 // Returns the   with the Internet address  .
 func ExampleNewHostWithAddress() {
@@ -28,6 +27,7 @@ func ExampleNewHostWithName() {
 	)
 	// Output:
 }
+
 
 
 

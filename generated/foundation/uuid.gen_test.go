@@ -9,13 +9,13 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewUUID
 
-
 // ExampleNewUUID demonstrates how to create a UUID instance.
 // Initializes a new UUID with RFC 4122 version 4 random bytes.
 func ExampleNewUUID() {
 	_ = foundation.NewUUID()
 	// Output:
 }
+
 
 
 

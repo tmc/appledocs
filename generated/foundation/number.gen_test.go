@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewNumber
 
-
 // ExampleNewNumberWithBool demonstrates how to create a Number instance using NewNumberWithBool.
 // Returns an   object initialized to contain a given value, treated as a  .
 func ExampleNewNumberWithBool() {
@@ -48,6 +47,7 @@ func ExampleNewNumberWithUnsignedLongLong() {
 	)
 	// Output:
 }
+
 
 
 

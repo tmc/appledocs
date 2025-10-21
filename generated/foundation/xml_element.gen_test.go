@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewXMLElement
 
-
 // ExampleNewXMLElementWithNameStringValue demonstrates how to create a XMLElement instance using NewXMLElementWithNameStringValue.
 // Returns an   object initialized with a specified name and a single text-node child containing a specified value.
 func ExampleNewXMLElementWithNameStringValue() {
@@ -30,6 +29,7 @@ func ExampleNewXMLElementWithNameURI() {
 	)
 	// Output:
 }
+
 
 
 

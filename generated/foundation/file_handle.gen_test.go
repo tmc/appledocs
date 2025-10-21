@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewFileHandle
 
-
 // ExampleNewFileHandleForReadingAtPath demonstrates how to create a FileHandle instance using NewFileHandleForReadingAtPath.
 // Returns a file handle initialized for reading the file, device, or named socket at the specified path.
 func ExampleNewFileHandleForReadingAtPath() {
@@ -38,6 +37,7 @@ func ExampleNewFileHandleForWritingAtPath() {
 	)
 	// Output:
 }
+
 
 
 

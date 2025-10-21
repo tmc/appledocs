@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewURL
 
-
 // ExampleNewURLFileURLWithPath demonstrates how to create a URL instance using NewURLFileURLWithPath.
 // Initializes a newly created NSURL referencing the local file or directory at  .
 func ExampleNewURLFileURLWithPath() {
@@ -62,6 +61,7 @@ func ExampleNewURLWithStringEncodingInvalidCharacters() {
 	)
 	// Output:
 }
+
 
 
 

@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewDateFormatter
 
-
 // ExampleNewDateFormatterWithDateFormatAllowNaturalLanguage demonstrates how to create a DateFormatter instance using NewDateFormatterWithDateFormatAllowNaturalLanguage.
 // Initializes and returns an   instance that uses the OS X 10.0 formatting behavior and the given date format string in its conversions.
 func ExampleNewDateFormatterWithDateFormatAllowNaturalLanguage() {
@@ -19,6 +18,7 @@ func ExampleNewDateFormatterWithDateFormatAllowNaturalLanguage() {
 	)
 	// Output:
 }
+
 
 
 

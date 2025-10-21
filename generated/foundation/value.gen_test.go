@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewValue
 
-
 // ExampleNewValueWithPoint demonstrates how to create a Value instance using NewValueWithPoint.
 // Creates a new value object containing the specified Foundation point structure.
 func ExampleNewValueWithPoint() {
@@ -48,6 +47,7 @@ func ExampleNewValueWithSize() {
 	)
 	// Output:
 }
+
 
 
 

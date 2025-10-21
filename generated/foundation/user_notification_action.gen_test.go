@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewUserNotificationAction
 
-
 // ExampleNewUserNotificationActionWithIdentifierTitle demonstrates how to create a UserNotificationAction instance using NewUserNotificationActionWithIdentifierTitle.
 // Creates a user notification action with a specified identifier and title.
 func ExampleNewUserNotificationActionWithIdentifierTitle() {
@@ -19,6 +18,7 @@ func ExampleNewUserNotificationActionWithIdentifierTitle() {
 	)
 	// Output:
 }
+
 
 
 

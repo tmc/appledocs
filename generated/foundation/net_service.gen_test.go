@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewNetService
 
-
 // ExampleNewNetServiceWithDomainTypeName demonstrates how to create a NetService instance using NewNetServiceWithDomainTypeName.
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information.
 func ExampleNewNetServiceWithDomainTypeName() {
@@ -20,6 +19,7 @@ func ExampleNewNetServiceWithDomainTypeName() {
 	)
 	// Output:
 }
+
 
 
 

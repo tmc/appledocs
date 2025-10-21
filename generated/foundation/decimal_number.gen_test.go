@@ -9,7 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewDecimalNumber
 
-
 // ExampleNewDecimalNumberWithString demonstrates how to create a DecimalNumber instance using NewDecimalNumberWithString.
 // Initializes a decimal number so that its value is equivalent to that in a given numeric string.
 func ExampleNewDecimalNumberWithString() {
@@ -18,6 +17,7 @@ func ExampleNewDecimalNumberWithString() {
 	)
 	// Output:
 }
+
 
 
 
